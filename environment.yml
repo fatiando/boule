@@ -1,0 +1,20 @@
+name: boule
+channels:
+    - conda-forge
+    - defaults
+dependencies:
+    - python=3.7
+    - pip
+    - attr
+    - numpy
+    # Development requirements
+    - pytest
+    - pytest-cov
+    - coverage
+    - black
+    - pylint
+    - flake8
+    - sphinx=1.8.5
+    - sphinx_rtd_theme
+    - sphinx-gallery
+    - numpydoc

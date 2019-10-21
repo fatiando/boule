@@ -1,0 +1,104 @@
+# Configuration file for TravisCI
+
+# We use miniconda for Python so don't need any Python specific tools
+language: generic
+
+# Use the container builds so we don't need sudo priviledges
+sudo: false
+
+# Only build pushes to the master branch and tags. This avoids the double
+# builds than happen when working on a branch instead of a fork.
+branches:
+    only:
+        - master
+        # Regex to build tagged commits with version numbers
+        - /\d+\.\d+(\.\d+)?(\S*)?$/
+
+# Define environment variables common to all builds
+env:
+    global:
+        # Encrypted variables
+        # Github Token for pushing the built HTML (GH_TOKEN)
+        - secure: "cyUO1lI9V963i8K2xcrxuYy8DncQUXnhKdUV7EaSu2DvVFsmGlBld4kf9nPyx/NMncZFXyQy+UhPqDxQNSvgAIl/l3wVKWPMcnjkw+X8xQ6gOBGrFTPX1fnxfujn3IWVWg29HF+U4ywecVCLcIufCj+PYsqYlXzofu0AfyPsQgtyfJuJFlex3GxtVqr8ewkIyfxvrf2HnVxN152ItRT7Qo82DKIAHWJLZwKBSHPR5Y/jaWMMeId2Aak7eM+VUKlkcclMRADFoOO6/yyYEAxo1PmMuMKt8T/u+W+ZGF6zgouiJVuO53BqWh0lEtcp5W4E7fzK9wUy2yGaO58yCx9BjOm06CkJgrhH4P5eMacHUdjhF3mICJi19/uOVldtZLn8LokZ1i/IzNd6y2AWzvgWz1pqdoVkD/bZ65evbuxkrFfVNQOhDyKabIWLHLFESB/83hu2MgYKMxP6GtFnhHcfceBQWKnO6TZP8cvgQ56CJ45iOjw2fC0vaLf9MlDUk9A5kZmtfUShfS258nFJAkiKjvAYOm+spCWPwZ3ApDSZSOy4WUML3ihUhjUxVlI7hH5r+C5Acc7icQKblQvUj84PhtgPtgYyf5Zlfb3gNwyqlMqkKD7BL+JOQpPliDAPNsFPBWCpZPgkCkCl/AnCdnFTFYl63B4xZP7SZzZasPlNiLE="
+        # PyPI password for deploying releases (TWINE_PASSWORD)
+        - secure: "tFBuBGUFcIdJPSfPYvJMeF8XhGg9IEGvpMQwnmupPXlLkG7TcD9Nz42HDEpRqE9SrabISLH4PLcl2jmSakI5/OKi91symr1a7S3YwMWdqleD33WceXqWWIY2my5rQjGvJ4roWQUIwzKL8SN6Kv/mAawAMkKxAMnR9qnSLXgVhhnGwv1bErcp53dGE8FnOYrwprH2vF8Krb6DtcbKqVA0BhJnREmLOMTspQI+tm9iqtBOIjcwCXn8ti66/06wA/A9OlbuGf4BHPwH2/lCP4C2C9kbnwMiZWED8lHWklsWZLoJBkX32AF7jonskgpmoD+kocywsVr3dOKqaiqSbMoty6qz4Bavn4c25YIEJ+cyZyy6b6PbkPsdfPafLGGnAC/3KuX3195UKGjXFyuuRsgIV5F2tbql/TFrzqCk3LdHcmv5A/kmUuDd+H1DGFIyAF8V46QNaqYpBcKgYIIWRySOwwUSs/4apC58mENSAxXz3u5Ny/bMjCzPeHhDdukc7G08yuiB2iWVidQtcOxMt55bzvOxkPeadGBIg1Fy99YRhGsfq8tqmBzgCjmurkDHNtiCiZPfJFWz0QlD8Lyty5nydfQDU59TQWNQ7mTOFRvcOdEag0EJKEDhIIJr6ERinOBi0zmAIiZGEiYQguFBK5PPdwZwQZWmZRCyYctd/ullLO8="
+        - TWINE_USERNAME=Leonardo.Uieda
+        # The files with the listed requirements to be installed by conda
+        - CONDA_REQUIREMENTS=requirements.txt
+        - CONDA_REQUIREMENTS_DEV=requirements-dev.txt
+        - CONDA_INSTALL_EXTRA="codecov"
+        # These variables control which actions are performed in a build
+        - DEPLOY_DOCS=false
+        - DEPLOY_PYPI=false
+
+# Specify the build configurations. Be sure to only deploy from a single build.
+matrix:
+    include:
+        - name: "Linux - Python 3.7 (deploy)"
+          os: linux
+          env:
+              - PYTHON=3.7
+              - DEPLOY_DOCS=true
+              - DEPLOY_PYPI=true
+        # Main build to deploy to PyPI and Github pages
+        - name: "Linux - Python 3.6"
+          os: linux
+          env:
+              - PYTHON=3.6
+
+# Setup the build environment
+before_install:
+    # Get the Fatiando CI scripts
+    - git clone --branch=1.2.0 --depth=1 https://github.com/fatiando/continuous-integration.git
+    # Download and install miniconda and setup dependencies
+    # Need to source the script to set the PATH variable globaly
+    - source continuous-integration/travis/setup-miniconda.sh
+    # Show installed pkg information for postmortem diagnostic
+    - conda list
+
+# Install the package that we want to test
+install:
+    # Make a binary wheel for our package and install it
+    - python setup.py bdist_wheel
+    - pip install dist/*
+
+# Run the actual tests and checks
+script:
+    # Run the test suite
+    - make test
+    # Build the documentation
+    - make -C doc clean all
+
+# Things to do if the build is successful
+after_success:
+    # Upload coverage information
+    - coverage xml
+    - echo "Uploading coverage to Codecov"
+    - codecov -e PYTHON
+
+# Deploy
+deploy:
+    # Make a release on PyPI
+    - provider: script
+      script: continuous-integration/travis/deploy-pypi.sh
+      on:
+          tags: true
+          condition: '$DEPLOY_PYPI == "true"'
+    # Push the built HTML in doc/_build/html to the gh-pages branch
+    - provider: script
+      script: continuous-integration/travis/deploy-gh-pages.sh
+      skip_cleanup: true
+      on:
+          branch: master
+          condition: '$DEPLOY_DOCS == "true"'
+    # Push HTML when building tags as well
+    - provider: script
+      script: continuous-integration/travis/deploy-gh-pages.sh
+      skip_cleanup: true
+      on:
+          tags: true
+          condition: '$DEPLOY_DOCS == "true"'
+
+# Don't send out emails every time a build fails
+notifications:
+    email: false
