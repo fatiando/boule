@@ -20,7 +20,7 @@ Part of the `Fatiando a Terra <https://www.fatiando.org>`__ project
 .. image:: https://img.shields.io/pypi/pyversions/boule.svg?style=flat-square
     :alt: Compatible Python versions.
     :target: https://pypi.python.org/pypi/boule
-.. image:: https://img.shields.io/badge/10.5281%2Fzenodo.3530749-blue.svg?style=flat-square
+.. image:: https://img.shields.io/badge/doi-10.5281%2Fzenodo.3530749-blue.svg?style=flat-square
     :alt: Digital Object Identifier
     :target: https://doi.org/10.5281/zenodo.3530749
 
