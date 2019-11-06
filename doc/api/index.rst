@@ -7,6 +7,13 @@ API Reference
 
 .. currentmodule:: boule
 
+Functionality 1
+---------------
+
+.. autosummary::
+    :toctree: generated/
+
+    function
 
 Utilities
 ---------

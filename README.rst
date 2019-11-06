@@ -1,10 +1,10 @@
 Boule
 =====
 
-    Reference ellipsoids for geodesy, geophysics, and coordinate calculations.
+    Reference ellipsoids for geodesy, geophysics, and coordinate calculations
 
-`Documentation <http://www.fatiando.org/boule>`__ |
-`Documentation (dev version) <http://www.fatiando.org/boule/dev>`__ |
+`Documentation <https://www.fatiando.org/boule>`__ |
+`Documentation (dev version) <https://www.fatiando.org/boule/dev>`__ |
 `Contact <http://contact.fatiando.org>`__ |
 Part of the `Fatiando a Terra <https://www.fatiando.org>`__ project
 
@@ -14,15 +14,15 @@ Part of the `Fatiando a Terra <https://www.fatiando.org>`__ project
 .. image:: http://img.shields.io/travis/fatiando/boule/master.svg?style=flat-square&label=TravisCI
     :alt: TravisCI build status
     :target: https://travis-ci.org/fatiando/boule
-.. image:: https://img.shields.io/azure-devops/build/fatiando/468a030e-9766-495e-b0d6-b94ff15ff50b/5/master.svg?label=Azure&style=flat-square
-    :alt: Azure Pipelines build status
-    :target: https://dev.azure.com/fatiando/boule/_build
 .. image:: https://img.shields.io/codecov/c/github/fatiando/boule/master.svg?style=flat-square
     :alt: Test coverage status
     :target: https://codecov.io/gh/fatiando/boule
 .. image:: https://img.shields.io/pypi/pyversions/boule.svg?style=flat-square
     :alt: Compatible Python versions.
     :target: https://pypi.python.org/pypi/boule
+.. image:: https://img.shields.io/badge/10.5281%2Fzenodo.3530749-blue.svg?style=flat-square
+    :alt: Digital Object Identifier
+    :target: https://doi.org/10.5281/zenodo.3530749
 
 
 .. placeholder-for-doc-index
@@ -43,11 +43,16 @@ or send us a message on our
 About
 -----
 
+PROJECT DESCRIPTION.
+Define what this project does and optionally what it doesn't do (point to other
+packages that already solve this problem).
 
 
 Project goals
 -------------
 
+* Outline the main project goals
+* Used to define the vision for this project and which features to prioritize
 
 
 Contacting Us
@@ -120,3 +125,4 @@ Documentation for other versions
 * `Development <http://www.fatiando.org/boule/dev>`__ (reflects the *master* branch on
   Github)
 * `Latest release <http://www.fatiando.org/boule/latest>`__
+* `v0.0.1 <http://www.fatiando.org/boule/v0.0.1>`__

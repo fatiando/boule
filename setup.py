@@ -19,7 +19,7 @@ URL = "https://github.com/fatiando/boule"
 DESCRIPTION = (
     "Reference ellipsoids for geodesy, geophysics, and coordinate calculations"
 )
-KEYWORDS = ""
+KEYWORDS = "geophysics, geodesy"
 with open("README.rst") as f:
     LONG_DESCRIPTION = "".join(f.readlines())
 VERSION = versioneer.get_version()
@@ -31,6 +31,7 @@ CLASSIFIERS = [
     "Intended Audience :: Education",
     "Topic :: Scientific/Engineering",
     "Topic :: Software Development :: Libraries",
+    "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.6",
     "Programming Language :: Python :: 3.7",
     "License :: OSI Approved :: {}".format(LICENSE),
@@ -39,7 +40,8 @@ PLATFORMS = "Any"
 PACKAGES = find_packages(exclude=["doc"])
 SCRIPTS = []
 PACKAGE_DATA = {}
-INSTALL_REQUIRES = ["attrs", "numpy"]
+with open("requirements.txt") as f:
+    INSTALL_REQUIRES = f.readlines()
 PYTHON_REQUIRES = ">=3.6"
 
 if __name__ == "__main__":

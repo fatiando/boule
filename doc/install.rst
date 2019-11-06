@@ -19,8 +19,7 @@ doesn't interfere with any other Python installations in your system.
 Dependencies
 ------------
 
-* `numpy <http://www.numpy.org/>`__
-* `attrs <https://www.attrs.org/>`__
+* List dependencies here with links to the projects
 
 
 Installing the latest development version

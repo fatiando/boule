@@ -5,4 +5,5 @@ exclude_paths:
   - '**/__init__.py'
   - '**/tests/**'
   - 'examples/**'
+  - 'tutorials/**'
   - 'data/examples/**'

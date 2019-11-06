@@ -27,7 +27,7 @@ PASTE ERROR MESSAGE HERE
 * Operating system:
 * Python installation (Anaconda, system, ETS):
 * Version of Python:
-* Version of this package:
+* Version of boule:
 * If using conda, paste the output of `conda list` below:
 
 <details>

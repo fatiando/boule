@@ -1,12 +1,10 @@
 # pylint: disable=missing-docstring,import-outside-toplevel
 # Import functions/classes to make the public API
 from . import version
-
-# Get the version number through versioneer
-__version__ = version.full_version
+from .function import function
 
 
-def test(doctest=True, verbose=True, coverage=False):
+def test(doctest=True, verbose=True):
     """
     Run the test suite.
 
@@ -20,9 +18,6 @@ def test(doctest=True, verbose=True, coverage=False):
         with a ``>>>`` in the docs).
     verbose : bool
         If ``True``, will print extra information during the test run.
-    coverage : bool
-        If ``True``, will run test coverage analysis on the code as well.
-        Requires ``pytest-cov``.
 
     Raises
     ------
@@ -38,9 +33,6 @@ def test(doctest=True, verbose=True, coverage=False):
     args = []
     if verbose:
         args.append("-vv")
-    if coverage:
-        args.append("--cov={}".format(package))
-        args.append("--cov-report=term-missing")
     if doctest:
         args.append("--doctest-modules")
     args.append("--pyargs")
