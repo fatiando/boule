@@ -4,19 +4,25 @@
 
 .. autoclass:: {{ objname }}
 
+.. rubric:: Attributes
+
+.. autosummary::
+    {% for item in attributes %}
+        {{ objname }}.{{ item }}
+    {% endfor %}
+
+ {% if methods|length > 1 %}
+
 .. rubric:: Methods Summary
 
 .. autosummary::
-    {% for item in members %}
-    {% if item in ['__call__'] %}
-        {{ objname }}.{{ item }}
-    {% endif %}
-    {% endfor %}
     {% for item in methods %}
     {% if item != '__init__' %}
         {{ objname }}.{{ item }}
     {% endif %}
     {% endfor %}
+
+{% endif %}
 
 ----
 
