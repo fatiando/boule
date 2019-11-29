@@ -15,12 +15,3 @@ Most classes and functions are available through the :mod:`boule` top level pack
 
 """
 import boule
-
-
-###############################################################################
-# Functionality 1
-# ---------------
-#
-# Example of functionality 1. The basics.
-
-print(boule.function())

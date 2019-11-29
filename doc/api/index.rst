@@ -7,13 +7,21 @@ API Reference
 
 .. currentmodule:: boule
 
-Functionality 1
----------------
+Ellipsoids
+----------
 
 .. autosummary::
-    :toctree: generated/
+   :toctree: generated/
 
-    function
+    WGS84
+
+All ellipsoids inherit from the following class:
+
+.. autosummary::
+   :toctree: generated/
+
+    Ellipsoid
+
 
 Utilities
 ---------
