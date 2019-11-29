@@ -54,7 +54,7 @@ The main use cases are:
   coordinate conversions.
 * Input ellipsoid parameters for spherical harmonic analysis.
 
-Boule is French for "ball" and also a `traditional shape of break resembling a
+Boule is French for "ball" and also a `traditional shape of bread resembling a
 squashed ball <https://en.wikipedia.org/wiki/Boule_(bread)>`__.
 
 
