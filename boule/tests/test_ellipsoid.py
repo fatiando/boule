@@ -1,3 +1,4 @@
+# pylint: disable=redefined-outer-name
 """
 Test the base Ellipsoid class.
 """
