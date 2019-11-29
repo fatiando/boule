@@ -43,16 +43,31 @@ or send us a message on our
 About
 -----
 
-PROJECT DESCRIPTION.
-Define what this project does and optionally what it doesn't do (point to other
-packages that already solve this problem).
+*Boule* is Python library for representing `Reference Ellipsoids
+<https://en.wikipedia.org/wiki/Reference_ellipsoid>`__, calculating their
+gravity fields, and converting coordinates defined on the ellipsoids.
+
+The main use cases are:
+
+* Calculating gravity disturbances.
+* Spherical gravity modeling, which requires geodetic to geocentric spherical
+  coordinate conversions.
+* Input ellipsoid parameters for spherical harmonic analysis.
+
+Boule is French for "ball" and also a `traditional shape of break resembling a
+squashed ball <https://en.wikipedia.org/wiki/Boule_(bread)>`__.
 
 
 Project goals
 -------------
 
-* Outline the main project goals
-* Used to define the vision for this project and which features to prioritize
+* Provide a representation of ellipsoid parameters and derived quantities,
+  including units and citations.
+* Convert between geodetic coordinates and geocentric spherical, topocentric,
+  etc.
+* Calculate the gravity, gravitational, and centrifugal potential (and its
+  derivatives) of ellipsoids in closed form.
+* Include a range ellipsoids for the Earth and other planetary bodies.
 
 
 Contacting Us
