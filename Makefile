@@ -1,7 +1,7 @@
 # Build, package, test, and clean
 PROJECT=boule
 TESTDIR=tmp-test-dir-with-unique-name
-PYTEST_ARGS=--cov-config=../.coveragerc --cov-report=term-missing --cov=$(PROJECT) --doctest-modules -v --pyargs
+PYTEST_ARGS=--cov-config=../.coveragerc --cov-report=term-missing --cov=$(PROJECT) --doctest-modules --doctest-glob='*.rst' -v --pyargs
 LINT_FILES=setup.py $(PROJECT)
 BLACK_FILES=setup.py doc/conf.py $(PROJECT) tutorials
 FLAKE8_FILES=setup.py $(PROJECT)
@@ -23,7 +23,7 @@ install:
 test:
 	# Run a tmp folder to make sure the tests are run on the installed version
 	mkdir -p $(TESTDIR)
-	cd $(TESTDIR); MPLBACKEND='agg' pytest $(PYTEST_ARGS) $(PROJECT)
+	cd $(TESTDIR); MPLBACKEND='agg' pytest $(PYTEST_ARGS) $(PROJECT) ../doc/*.rst
 	cp $(TESTDIR)/.coverage* .
 	rm -rvf $(TESTDIR)
 

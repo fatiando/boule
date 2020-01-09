@@ -59,7 +59,7 @@ def test_geodetic_to_spherical_on_equator():
     longitude = np.linspace(0, 180, size)
     height = np.linspace(-1e4, 1e4, size)
     latitude = np.zeros_like(size)
-    ellipsoid = WGS84()
+    ellipsoid = WGS84
     sph_longitude, sph_latitude, radius = ellipsoid.geodetic_to_spherical(
         longitude, latitude, height
     )
@@ -75,7 +75,7 @@ def test_geodetic_to_spherical_on_poles():
     longitude = np.hstack([np.linspace(0, 180, size)] * 2)
     height = np.hstack([np.linspace(-1e4, 1e4, size)] * 2)
     latitude = np.array([90.0] * size + [-90.0] * size)
-    ellipsoid = WGS84()
+    ellipsoid = WGS84
     sph_longitude, sph_latitude, radius = ellipsoid.geodetic_to_spherical(
         longitude, latitude, height
     )
@@ -89,7 +89,7 @@ def test_spherical_to_geodetic_on_equator():
     rtol = 1e-10
     size = 5
     spherical_latitude = np.zeros(size)
-    ellipsoid = WGS84()
+    ellipsoid = WGS84
     spherical_longitude = np.linspace(0, 180, size)
     radius = np.linspace(-1e4, 1e4, size) + ellipsoid.semimajor_axis
     longitude, latitude, height = ellipsoid.spherical_to_geodetic(
@@ -106,7 +106,7 @@ def test_spherical_to_geodetic_on_poles():
     size = 5
     spherical_longitude = np.hstack([np.linspace(0, 180, size)] * 2)
     spherical_latitude = np.array([90.0] * size + [-90.0] * size)
-    ellipsoid = WGS84()
+    ellipsoid = WGS84
     radius = np.hstack([np.linspace(-1e4, 1e4, size) + ellipsoid.semiminor_axis] * 2)
     longitude, latitude, height = ellipsoid.spherical_to_geodetic(
         spherical_longitude, spherical_latitude, radius
@@ -123,7 +123,7 @@ def test_spherical_to_geodetic_identity():
     latitude = np.linspace(-90, 90, 19)
     height = np.linspace(-1e4, 1e4, 8)
     coordinates = np.meshgrid(longitude, latitude, height)
-    ellipsoid = WGS84()
+    ellipsoid = WGS84
     spherical_coordinates = ellipsoid.geodetic_to_spherical(*coordinates)
     reconverted_coordinates = ellipsoid.spherical_to_geodetic(*spherical_coordinates)
     npt.assert_allclose(coordinates, reconverted_coordinates, rtol=rtol)
