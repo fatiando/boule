@@ -13,7 +13,7 @@
 
  {% if methods|length > 1 %}
 
-.. rubric:: Methods Summary
+.. rubric:: Methods
 
 .. autosummary::
     {% for item in methods %}
