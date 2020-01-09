@@ -6,10 +6,9 @@ import pytest
 import numpy as np
 import numpy.testing as npt
 
-from .. import Ellipsoid, WGS84, GRS80
+from .. import Ellipsoid, ELLIPSOIDS
 
 
-ELLIPSOIDS = [WGS84, GRS80]
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
 

@@ -1,5 +1,5 @@
 """
-Earth ellipsoids.
+Ellipsoid realizations for the Earth and other planetary bodies.
 """
 from .ellipsoid import Ellipsoid
 
