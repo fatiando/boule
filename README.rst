@@ -49,13 +49,14 @@ gravity fields, and converting coordinates defined on the ellipsoids.
 
 The main use cases are:
 
-* Calculating gravity disturbances.
+* Calculating normal gravity (for gravity anomalies and disturbances).
 * Spherical gravity modeling, which requires geodetic to geocentric spherical
   coordinate conversions.
 * Input ellipsoid parameters for spherical harmonic analysis.
 
 Boule is French for "ball" and also a `traditional shape of bread resembling a
-squashed ball <https://en.wikipedia.org/wiki/Boule_(bread)>`__.
+squashed ball <https://en.wikipedia.org/wiki/Boule_(bread)>`__ (much like the
+Earth).
 
 
 Project goals
