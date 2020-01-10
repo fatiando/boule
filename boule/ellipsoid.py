@@ -296,7 +296,7 @@ class Ellipsoid:
         "Calculate intermediate terms needed for the calculations."
         # Offload computation of these intermediate variables here to clean up
         # the main function body
-        beta = np.arctan2(self.semiminor_axis * sinlat / coslat, self.semimajor_axis)
+        beta = np.arctan2(self.semiminor_axis * sinlat, self.semimajor_axis * coslat)
         zl2 = (self.semiminor_axis * np.sin(beta) + height * sinlat) ** 2
         rl2 = (self.semimajor_axis * np.cos(beta) + height * coslat) ** 2
         big_d = (rl2 - zl2) / self.linear_eccentricity ** 2
