@@ -2,10 +2,10 @@
 # Import functions/classes to make the public API
 from . import version
 from .ellipsoid import Ellipsoid
-from .realizations import WGS84, GRS80
+from .realizations import WGS84, GRS80, MARS
 
 
-ELLIPSOIDS = [WGS84, GRS80]
+ELLIPSOIDS = [WGS84, GRS80, MARS]
 
 
 def test(doctest=True, verbose=True):
