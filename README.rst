@@ -141,4 +141,5 @@ Documentation for other versions
 * `Development <http://www.fatiando.org/boule/dev>`__ (reflects the *master* branch on
   Github)
 * `Latest release <http://www.fatiando.org/boule/latest>`__
+* `v0.1.0 <http://www.fatiando.org/boule/v0.1.0>`__
 * `v0.0.1 <http://www.fatiando.org/boule/v0.0.1>`__
