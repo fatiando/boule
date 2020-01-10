@@ -40,9 +40,9 @@ MARS = Ellipsoid(
     geocentric_grav_const=42828.372e9,
     angular_velocity=7.0882181e-5,
     reference=(
-        "Ardalan, A. A., Karimi, R., & Grafarend, E. W. (2009). A New Reference"
-        "Equipotential Surface, and Reference Ellipsoid for the Planet Mars."
-        "Earth, Moon, and Planets, 106(1), 1."
+        "Ardalan, A. A., Karimi, R., & Grafarend, E. W. (2009). A New Reference "
+        "Equipotential Surface, and Reference Ellipsoid for the Planet Mars. "
+        "Earth, Moon, and Planets, 106(1), 1. "
         "doi:10.1007/s11038-009-9342-7"
     ),
 )
