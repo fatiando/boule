@@ -23,7 +23,7 @@ install:
 test:
 	# Run a tmp folder to make sure the tests are run on the installed version
 	mkdir -p $(TESTDIR)
-	cd $(TESTDIR); MPLBACKEND='agg' pytest $(PYTEST_ARGS) $(PROJECT) ../doc/*.rst
+	cd $(TESTDIR); MPLBACKEND='agg' pytest $(PYTEST_ARGS) $(PROJECT) ../doc/*.rst ../doc/ellipsoids/*.rst
 	cp $(TESTDIR)/.coverage* .
 	rm -rvf $(TESTDIR)
 

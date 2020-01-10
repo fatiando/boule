@@ -22,7 +22,7 @@ Boule
     :hidden:
     :caption: User Guide
 
-    ellipsoids.rst
+    ellipsoids/index.rst
 
 .. toctree::
     :maxdepth: 2
