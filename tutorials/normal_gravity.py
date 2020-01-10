@@ -1,4 +1,6 @@
 r"""
+.. _normal_gravity:
+
 Normal Gravity
 ==============
 
