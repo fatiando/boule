@@ -9,10 +9,8 @@ All ellipsoids are instances of the :class:`~boule.Ellipsoid` class. See the
 class documentation for a list its derived physical properties (attributes) and
 computations/transformations that it can perform (methods).
 
-Earth
------
-
 .. toctree::
 
     wgs84.rst
     grs80.rst
+    mars.rst
