@@ -1,0 +1,476 @@
+
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    
+        <title>boule.Ellipsoid &mdash; Boule</title>
+    
+
+
+  
+  
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+  
+  
+  
+
+  
+  <script type="text/javascript" src="../../_static/js/modernizr.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../_static/doctools.js"></script>
+        <script type="text/javascript" src="../../_static/language_data.js"></script>
+        <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="boule.test" href="boule.test.html" />
+    <link rel="prev" title="API Reference" href="../index.html" />
+    <!-- Google Analytics tracking code -->
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new
+            Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+                })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-38125837-1', 'auto', {'storage': 'none'});
+      ga('set', 'anonymizeIp', true);
+      ga('send', 'pageview');
+    </script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html" class="icon icon-home"> Boule
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                v0.1.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+    
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Boule</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../ellipsoids/index.html">Available Ellipsoids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tutorials/normal_gravity.html">Normal Gravity</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference documentation</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">API Reference</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html#reference-ellipsoid">Reference Ellipsoid</a><ul class="current">
+<li class="toctree-l3 current"><a class="current reference internal" href="#">boule.Ellipsoid</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#examples-using-boule-ellipsoid">Examples using <code class="docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../index.html#utilities">Utilities</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">References</a></li>
+</ul>
+
+            
+          
+
+    
+        <p class="caption">
+            <span class="caption-text">
+            
+                Getting help and contributing
+            
+            </span>
+        </p>
+        <ul>
+            
+                <li class="toctree-l1"><a href="https://www.fatiando.org"><i class="fa fa-external-link-square fa-fw"></i> Fatiando a Terra</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/fatiando/boule/blob/master/CONTRIBUTING.md"><i class="fa fa-users fa-fw"></i> Contributing</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/fatiando/boule/blob/master/CODE_OF_CONDUCT.md"><i class="fa fa-gavel fa-fw"></i> Code of Conduct</a></li>
+            
+                <li class="toctree-l1"><a href="http://contact.fatiando.org"><i class="fa fa-comment fa-fw"></i> Contact</a></li>
+            
+                <li class="toctree-l1"><a href="https://github.com/fatiando/boule"><i class="fa fa-github fa-fw"></i> Source Code</a></li>
+            
+        </ul>
+    
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Boule</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../index.html">API Reference</a> &raquo;</li>
+        
+      <li>boule.Ellipsoid</li>
+    
+    
+    <li class="source-link">
+        
+            
+                
+                
+                <a href="https://github.com/fatiando/boule/issues/new?title=Suggested%20improvement%20for%20api/generated/boule.Ellipsoid&body=Please%20describe%20what%20could%20be%20improved%20about%20this%20page%20or%20the%20typo/mistake%20that%20you%20found%3A"
+                   class="fa fa-github"> Improve this page</a>
+            
+        
+        
+    </li>
+
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="boule-ellipsoid">
+<h1>boule.Ellipsoid<a class="headerlink" href="#boule-ellipsoid" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="boule.Ellipsoid">
+<em class="property">class </em><code class="sig-prename descclassname">boule.</code><code class="sig-name descname">Ellipsoid</code><span class="sig-paren">(</span><em class="sig-param">name</em>, <em class="sig-param">semimajor_axis</em>, <em class="sig-param">flattening</em>, <em class="sig-param">geocentric_grav_const</em>, <em class="sig-param">angular_velocity</em>, <em class="sig-param">long_name=None</em>, <em class="sig-param">reference=None</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/ellipsoid.html#Ellipsoid"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#boule.Ellipsoid" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reference oblate ellipsoid.</p>
+<p>The ellipsoid is oblate and spins around it’s minor axis. It is defined by
+four parameters and offers other derived quantities as read-only
+properties. In fact, all attributes of this class are read-only and cannot
+be changed after instantiation.</p>
+<p>All ellipsoid parameters are in SI units.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a>) – A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">'WGS84'</span></code>.</p></li>
+<li><p><strong>semimajor_axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The semi-major axis of the ellipsoid (equatorial radius), usually
+represented by “a” [meters].</p></li>
+<li><p><strong>flattening</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The flattening of the ellipsoid (f) [adimensional].</p></li>
+<li><p><strong>geocentric_grav_const</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The geocentric gravitational constant (GM) [m^3 s^-2].</p></li>
+<li><p><strong>angular_velocity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a>) – The angular velocity of the rotating ellipsoid (omega) [rad s^-1].</p></li>
+<li><p><strong>long_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
+<span class="pre">1984&quot;</span></code> (optional).</p></li>
+<li><p><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.8)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.8)"><em>None</em></a>) – Citation for the ellipsoid parameter values (optional).</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">Examples</p>
+<p>We can define a reference unit sphere by using 0 as the flattening:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sphere</span> <span class="o">=</span> <span class="n">Ellipsoid</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;sphere&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Unit sphere&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">flattening</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">angular_velocity</span><span class="o">=</span><span class="mi">0</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span> 
+<span class="go">Ellipsoid(name=&#39;sphere&#39;, ...)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">long_name</span><span class="p">)</span>
+<span class="go">Unit sphere</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">))</span>
+<span class="go">1.00</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">mean_radius</span><span class="p">))</span>
+<span class="go">1.00</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">linear_eccentricity</span><span class="p">))</span>
+<span class="go">0.00</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">first_eccentricity</span><span class="p">))</span>
+<span class="go">0.00</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">second_eccentricity</span><span class="p">))</span>
+<span class="go">0.00</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<p class="rubric">Attributes</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.emm</span></code></p></td>
+<td><p>Auxiliary quantity <span class="math notranslate nohighlight">\(m = \omega^2 a^2 b / (GM)\)</span></p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.first_eccentricity</span></code></p></td>
+<td><p>The first eccentricity [adimensional]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.gravity_equator</span></code></p></td>
+<td><p>The norm of the gravity vector at the equator on the ellipsoid [m/s^2]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.gravity_pole</span></code></p></td>
+<td><p>The norm of the gravity vector at the poles on the ellipsoid [m/s^2]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.linear_eccentricity</span></code></p></td>
+<td><p>The linear eccentricity [meters]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.mean_radius</span></code></p></td>
+<td><p>The arithmetic mean radius [meters]</p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.second_eccentricity</span></code></p></td>
+<td><p>The second eccentricity [adimensional]</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.semiminor_axis</span></code></p></td>
+<td><p>The small (polar) axis of the ellipsoid [meters]</p></td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Methods</p>
+<table class="longtable docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.geodetic_to_spherical" title="boule.Ellipsoid.geodetic_to_spherical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.geodetic_to_spherical</span></code></a>(longitude, …)</p></td>
+<td><p>Convert from geodetic to geocentric spherical coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.normal_gravity" title="boule.Ellipsoid.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.normal_gravity</span></code></a>(latitude, height)</p></td>
+<td><p>Calculate normal gravity at any latitude and height.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.spherical_to_geodetic" title="boule.Ellipsoid.spherical_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.spherical_to_geodetic</span></code></a>(longitude, …)</p></td>
+<td><p>Convert from geocentric spherical to geodetic coordinates.</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<dl class="method">
+<dt id="boule.Ellipsoid.geodetic_to_spherical">
+<code class="sig-prename descclassname">Ellipsoid.</code><code class="sig-name descname">geodetic_to_spherical</code><span class="sig-paren">(</span><em class="sig-param">longitude</em>, <em class="sig-param">latitude</em>, <em class="sig-param">height</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/ellipsoid.html#Ellipsoid.geodetic_to_spherical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#boule.Ellipsoid.geodetic_to_spherical" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert from geodetic to geocentric spherical coordinates.</p>
+<p>The geodetic datum is defined by this ellipsoid. The coordinates are
+converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id1"><span>[Vermeille2002]</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>longitude</strong> (<em>array</em>) – Longitude coordinates on geodetic coordinate system in degrees.</p></li>
+<li><p><strong>latitude</strong> (<em>array</em>) – Latitude coordinates on geodetic coordinate system in degrees.</p></li>
+<li><p><strong>height</strong> (<em>array</em>) – Ellipsoidal heights in meters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>longitude</strong> (<em>array</em>) – Longitude coordinates on geocentric spherical coordinate system in
+degrees.
+The longitude coordinates are not modified during this conversion.</p></li>
+<li><p><strong>spherical_latitude</strong> (<em>array</em>) – Converted latitude coordinates on geocentric spherical coordinate
+system in degrees.</p></li>
+<li><p><strong>radius</strong> (<em>array</em>) – Converted spherical radius coordinates in meters.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="boule.Ellipsoid.normal_gravity">
+<code class="sig-prename descclassname">Ellipsoid.</code><code class="sig-name descname">normal_gravity</code><span class="sig-paren">(</span><em class="sig-param">latitude</em>, <em class="sig-param">height</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/ellipsoid.html#Ellipsoid.normal_gravity"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#boule.Ellipsoid.normal_gravity" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate normal gravity at any latitude and height.</p>
+<p>Computes the magnitude of the gradient of the gravity potential
+(gravitational + centrifugal) generated by the ellipsoid at the given
+latitude and (geometric) height. Uses of a closed form expression of
+<a class="reference internal" href="../../references.html#ligotze2001" id="id2"><span>[LiGotze2001]</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>array</em>) – The (geodetic) latitude where the normal gravity will be computed
+(in degrees).</p></li>
+<li><p><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>array</em>) – The ellipsoidal (geometric) height of computation point (in meters).</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>gamma</strong> (<em>float or array</em>) – The normal gravity in mGal.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="boule.Ellipsoid.spherical_to_geodetic">
+<code class="sig-prename descclassname">Ellipsoid.</code><code class="sig-name descname">spherical_to_geodetic</code><span class="sig-paren">(</span><em class="sig-param">longitude</em>, <em class="sig-param">spherical_latitude</em>, <em class="sig-param">radius</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/ellipsoid.html#Ellipsoid.spherical_to_geodetic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#boule.Ellipsoid.spherical_to_geodetic" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert from geocentric spherical to geodetic coordinates.</p>
+<p>The geodetic datum is defined by this ellipsoid. The coordinates are
+converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id3"><span>[Vermeille2002]</span></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>longitude</strong> (<em>array</em>) – Longitude coordinates on geocentric spherical coordinate system in
+degrees.</p></li>
+<li><p><strong>spherical_latitude</strong> (<em>array</em>) – Latitude coordinates on geocentric spherical coordinate system in
+degrees.</p></li>
+<li><p><strong>radius</strong> (<em>array</em>) – Spherical radius coordinates in meters.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><ul class="simple">
+<li><p><strong>longitude</strong> (<em>array</em>) – Longitude coordinates on geodetic coordinate system in degrees.
+The longitude coordinates are not modified during this conversion.</p></li>
+<li><p><strong>latitude</strong> (<em>array</em>) – Converted latitude coordinates on geodetic coordinate system in
+degrees.</p></li>
+<li><p><strong>height</strong> (<em>array</em>) – Converted ellipsoidal height coordinates in meters.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+<div class="section" id="examples-using-boule-ellipsoid">
+<h2>Examples using <code class="docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code><a class="headerlink" href="#examples-using-boule-ellipsoid" title="Permalink to this headline">¶</a></h2>
+<div class="sphx-glr-thumbcontainer" tooltip="The main functionality of Boule is contained in the Ellipsoid class. It defines a `Reference El..."><div class="figure align-default" id="id4">
+<img alt="../../_images/sphx_glr_overview_thumb.png" src="../../_images/sphx_glr_overview_thumb.png" />
+<p class="caption"><span class="caption-text"><a class="reference internal" href="../../tutorials/overview.html#sphx-glr-tutorials-overview-py"><span class="std std-ref">Overview</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
+</div>
+</div><div style='clear:both'></div></div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="boule.test.html" class="btn btn-neutral float-right" title="boule.test" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="../index.html" class="btn btn-neutral float-left" title="API Reference" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2019-2020, The Boule Developers
+      <span class="lastupdated">
+        Last updated on Jan 10, 2020.
+      </span>
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
