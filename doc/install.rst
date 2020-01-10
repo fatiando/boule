@@ -22,6 +22,28 @@ Dependencies
 * `numpy <http://www.numpy.org/>`__
 * `attrs <https://www.attrs.org/>`__
 
+When installing Boule via conda or pip, missing dependencies will be installed
+automatically. You only need to install them manually if using the latest
+development version from GitHub.
+
+
+Installing with conda
+---------------------
+
+You can install Boule using the `conda package manager <https://conda.io/>`__
+that comes with the Anaconda distribution::
+
+    conda install boule --channel conda-forge
+
+
+Installing with pip
+-------------------
+
+Alternatively, you can also use the `pip package manager
+<https://pypi.org/project/pip/>`__::
+
+    pip install boule
+
 
 Installing the latest development version
 -----------------------------------------
