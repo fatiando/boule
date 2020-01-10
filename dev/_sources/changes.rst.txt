@@ -3,6 +3,16 @@
 Changelog
 =========
 
+Version 0.1.1
+-------------
+
+*Released on: 2020/01/10*
+
+This release contains only a documentation fix: include install instructions
+for conda and pip. No functionality has been changed (hence, no DOI was
+issued).
+
+
 Version 0.1.0
 -------------
 

@@ -81,7 +81,7 @@
             
             
               <div class="version">
-                v0.1.0
+                v0.1.1
               </div>
             
           
@@ -112,6 +112,8 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Installing</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#which-python">Which Python?</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#dependencies">Dependencies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-with-conda">Installing with conda</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-with-pip">Installing with pip</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-latest-development-version">Installing the latest development version</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#testing-your-install">Testing your install</a></li>
 </ul>
@@ -237,6 +239,24 @@ doesn’t interfere with any other Python installations in your system.</p>
 <li><p><a class="reference external" href="http://www.numpy.org/">numpy</a></p></li>
 <li><p><a class="reference external" href="https://www.attrs.org/">attrs</a></p></li>
 </ul>
+<p>When installing Boule via conda or pip, missing dependencies will be installed
+automatically. You only need to install them manually if using the latest
+development version from GitHub.</p>
+</div>
+<div class="section" id="installing-with-conda">
+<h2>Installing with conda<a class="headerlink" href="#installing-with-conda" title="Permalink to this headline">¶</a></h2>
+<p>You can install Boule using the <a class="reference external" href="https://conda.io/">conda package manager</a>
+that comes with the Anaconda distribution:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">conda</span> <span class="n">install</span> <span class="n">boule</span> <span class="o">--</span><span class="n">channel</span> <span class="n">conda</span><span class="o">-</span><span class="n">forge</span>
+</pre></div>
+</div>
+</div>
+<div class="section" id="installing-with-pip">
+<h2>Installing with pip<a class="headerlink" href="#installing-with-pip" title="Permalink to this headline">¶</a></h2>
+<p>Alternatively, you can also use the <a class="reference external" href="https://pypi.org/project/pip/">pip package manager</a>:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">pip</span> <span class="n">install</span> <span class="n">boule</span>
+</pre></div>
+</div>
 </div>
 <div class="section" id="installing-the-latest-development-version">
 <h2>Installing the latest development version<a class="headerlink" href="#installing-the-latest-development-version" title="Permalink to this headline">¶</a></h2>

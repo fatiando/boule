@@ -90,7 +90,7 @@ m/s² when compared to 970,000 mGal or 9.7 m/s².
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.135 seconds)
+   **Total running time of the script:** ( 0 minutes  0.137 seconds)
 
 
 .. _sphx_glr_download_tutorials_normal_gravity.py:
