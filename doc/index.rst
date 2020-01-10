@@ -23,6 +23,7 @@ Boule
     :caption: User Guide
 
     ellipsoids/index.rst
+    tutorials/normal_gravity.rst
 
 .. toctree::
     :maxdepth: 2
