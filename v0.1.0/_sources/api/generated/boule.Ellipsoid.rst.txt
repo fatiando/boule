@@ -1,0 +1,74 @@
+boule.Ellipsoid
+===============
+
+.. currentmodule:: boule
+
+.. autoclass:: Ellipsoid
+
+.. rubric:: Attributes
+
+.. autosummary::
+    
+        Ellipsoid.emm
+    
+        Ellipsoid.first_eccentricity
+    
+        Ellipsoid.gravity_equator
+    
+        Ellipsoid.gravity_pole
+    
+        Ellipsoid.linear_eccentricity
+    
+        Ellipsoid.mean_radius
+    
+        Ellipsoid.second_eccentricity
+    
+        Ellipsoid.semiminor_axis
+    
+
+ 
+
+.. rubric:: Methods
+
+.. autosummary::
+    
+    
+    
+    
+        Ellipsoid.geodetic_to_spherical
+    
+    
+    
+        Ellipsoid.normal_gravity
+    
+    
+    
+        Ellipsoid.spherical_to_geodetic
+    
+    
+
+
+
+----
+
+
+
+
+
+.. automethod:: Ellipsoid.geodetic_to_spherical
+
+
+
+.. automethod:: Ellipsoid.normal_gravity
+
+
+
+.. automethod:: Ellipsoid.spherical_to_geodetic
+
+
+
+.. include:: backreferences/boule.Ellipsoid.examples
+
+.. raw:: html
+
+     <div style='clear:both'></div>
