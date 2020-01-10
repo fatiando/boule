@@ -10,6 +10,7 @@ dependencies:
     - attr
     # Optional
     # Development
+    - matplotlib
     - pytest
     - pytest-cov
     - coverage
