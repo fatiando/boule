@@ -146,12 +146,11 @@ class Ellipsoid:
         )
         return result
 
-    def _prime_vertical_radius(self, latitude_radians):
-        """
+    def _prime_vertical_radius(self, sinlat):
+        r"""
         Calculate the prime vertical radius for a given latitude
 
         The prime vertical radius is compute following:
-
 
         .. math::
 
@@ -161,16 +160,16 @@ class Ellipsoid:
 
         Parameters
         ----------
-        latitude_radians : float or array-like
-            Latitude values given in radians.
+        sinlat : float or array-like
+            Sine of the latitude angle.
 
         Returns
         -------
         prime_vertical_radius : float or array-like
-            Prime vertical radius given in the same units as the semimajor axis.
+            Prime vertical radius given in the same units as the semimajor axis
         """
         return self.semimajor_axis / np.sqrt(
-            1 - self.first_eccentricity ** 2 * np.sin(latitude_radians) ** 2
+            1 - self.first_eccentricity ** 2 * sinlat ** 2
         )
 
     def geodetic_to_spherical(self, longitude, latitude, height):
@@ -203,13 +202,14 @@ class Ellipsoid:
 
         """
         latitude_rad = np.radians(latitude)
-        prime_vertical_radius = self._prime_vertical_radius(latitude_rad)
+        coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
+        prime_vertical_radius = self._prime_vertical_radius(sinlat)
         # Instead of computing X and Y, we only compute the projection on the
         # XY plane: xy_projection = sqrt( X**2 + Y**2 )
-        xy_projection = (height + prime_vertical_radius) * np.cos(latitude_rad)
+        xy_projection = (height + prime_vertical_radius) * coslat
         z_cartesian = (
             height + (1 - self.first_eccentricity ** 2) * prime_vertical_radius
-        ) * np.sin(latitude_rad)
+        ) * sinlat
         radius = np.sqrt(xy_projection ** 2 + z_cartesian ** 2)
         spherical_latitude = np.degrees(np.arcsin(z_cartesian / radius))
         return longitude, spherical_latitude, radius
@@ -289,7 +289,7 @@ class Ellipsoid:
             The (geodetic) latitude where the normal gravity will be computed
             (in degrees).
         height : float or array
-            The ellipsoidal (geometric) height of computation point (in meters).
+            The ellipsoidal (geometric) height of computation point (in meters)
 
         Returns
         -------
