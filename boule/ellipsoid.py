@@ -146,6 +146,33 @@ class Ellipsoid:
         )
         return result
 
+    def _prime_vertical_radius(self, latitude_radians):
+        """
+        Calculate the prime vertical radius for a given latitude
+
+        The prime vertical radius is compute following:
+
+
+        .. math::
+
+            N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}
+
+        Where $a$ is the semimajor axis and $e$ the first eccentricity.
+
+        Parameters
+        ----------
+        latitude_radians : float or array-like
+            Latitude values given in radians.
+
+        Returns
+        -------
+        prime_vertical_radius : float or array-like
+            Prime vertical radius given in the same units as the semimajor axis.
+        """
+        return self.semimajor_axis / np.sqrt(
+            1 - self.first_eccentricity ** 2 * np.sin(latitude_radians) ** 2
+        )
+
     def geodetic_to_spherical(self, longitude, latitude, height):
         """
         Convert from geodetic to geocentric spherical coordinates.
@@ -176,9 +203,7 @@ class Ellipsoid:
 
         """
         latitude_rad = np.radians(latitude)
-        prime_vertical_radius = self.semimajor_axis / np.sqrt(
-            1 - self.first_eccentricity ** 2 * np.sin(latitude_rad) ** 2
-        )
+        prime_vertical_radius = self._prime_vertical_radius(latitude_rad)
         # Instead of computing X and Y, we only compute the projection on the
         # XY plane: xy_projection = sqrt( X**2 + Y**2 )
         xy_projection = (height + prime_vertical_radius) * np.cos(latitude_rad)
