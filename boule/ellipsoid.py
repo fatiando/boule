@@ -158,6 +158,8 @@ class Ellipsoid:
 
         Where :math:`a` is the semimajor axis and :math:`e` is the first eccentricity.
 
+        This function receives the sine of the latitude as input to avoid repeated 
+        computations of trigonometric functions.
         Parameters
         ----------
         sinlat : float or array-like
