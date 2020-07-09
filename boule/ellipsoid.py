@@ -146,7 +146,7 @@ class Ellipsoid:
         )
         return result
 
-    def _prime_vertical_radius(self, sinlat):
+    def prime_vertical_radius(self, sinlat):
         r"""
         Calculate the prime vertical radius for a given geodetic latitude
 
