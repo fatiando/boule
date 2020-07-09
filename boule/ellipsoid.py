@@ -156,7 +156,7 @@ class Ellipsoid:
 
             N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}
 
-        Where $a$ is the semimajor axis and $e$ the first eccentricity.
+        Where :math:`a` is the semimajor axis and :math:`e` is the first eccentricity.
 
         Parameters
         ----------
