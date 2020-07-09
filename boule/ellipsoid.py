@@ -158,8 +158,9 @@ class Ellipsoid:
 
         Where :math:`a` is the semimajor axis and :math:`e` is the first eccentricity.
 
-        This function receives the sine of the latitude as input to avoid repeated 
+        This function receives the sine of the latitude as input to avoid repeated
         computations of trigonometric functions.
+
         Parameters
         ----------
         sinlat : float or array-like
@@ -291,7 +292,7 @@ class Ellipsoid:
             The (geodetic) latitude where the normal gravity will be computed
             (in degrees).
         height : float or array
-            The ellipsoidal (geometric) height of computation point (in meters)
+            The ellipsoidal (geometric) height of computation point (in meters).
 
         Returns
         -------
