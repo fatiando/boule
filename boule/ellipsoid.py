@@ -205,7 +205,7 @@ class Ellipsoid:
         """
         latitude_rad = np.radians(latitude)
         coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
-        prime_vertical_radius = self._prime_vertical_radius(sinlat)
+        prime_vertical_radius = self.prime_vertical_radius(sinlat)
         # Instead of computing X and Y, we only compute the projection on the
         # XY plane: xy_projection = sqrt( X**2 + Y**2 )
         xy_projection = (height + prime_vertical_radius) * coslat
