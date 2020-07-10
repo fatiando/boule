@@ -228,3 +228,30 @@ def test_geocentric_radius_pole_equator(ellipsoid):
         [ellipsoid.semiminor_axis, ellipsoid.semiminor_axis, ellipsoid.semimajor_axis]
     )
     npt.assert_allclose(radius_true, ellipsoid.geocentric_radius(latitude))
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_geocentric_radius_geocentric(ellipsoid):
+    "Check against coordinate conversion results with geocentric latitude"
+    latitude = np.linspace(-80, 80, 100)
+    longitude = np.linspace(-180, 180, latitude.size)
+    height = np.zeros(latitude.size)
+    latitude_spherical, radius_conversion = ellipsoid.geodetic_to_spherical(
+        longitude, latitude, height
+    )[1:]
+    npt.assert_allclose(
+        radius_conversion,
+        ellipsoid.geocentric_radius(latitude_spherical, geodetic=False),
+    )
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_geocentric_radius_geocentric_pole_equator(ellipsoid):
+    "Check against values at the pole and equator with geocentric latitude"
+    latitude = np.array([-90, 90, 0])
+    radius_true = np.array(
+        [ellipsoid.semiminor_axis, ellipsoid.semiminor_axis, ellipsoid.semimajor_axis]
+    )
+    npt.assert_allclose(
+        radius_true, ellipsoid.geocentric_radius(latitude, geodetic=False)
+    )
