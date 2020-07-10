@@ -146,6 +146,94 @@ class Ellipsoid:
         )
         return result
 
+    def geocentric_radius(self, latitude, geodetic=True):
+        r"""
+        Distance from the center of the ellipsoid to its surface.
+
+        The geocentric radius and is a function of the geodetic latitude
+        :math:`\phi` and the semi-major and semi-minor axis, a and b:
+
+        .. math::
+
+            R(\phi) = \sqrt{\dfrac{
+                (a^2\cos\phi)^2 + (b^2\sin\phi)^2}{
+                (a\cos\phi)^2 + (b\sin\phi)^2 }
+            }
+
+        See https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius
+
+        The same could be achieved with
+        :meth:`boule.Ellipsoid.geodetic_to_spherical` by passing any value for
+        the longitudes and heights equal to zero. This method provides a
+        simpler and possibly faster alternative.
+
+        Alternatively, the geocentric radius can also be expressed in terms of
+        the geocentric (spherical) latitude :math:`\theta`:
+
+        .. math::
+
+            R(\theta) = \sqrt{\dfrac{1}{
+                (\frac{\cos\theta}{a})^2 + (\frac{\sin\theta}{b})^2 }
+            }
+
+        This can be useful if you already have the geocentric latitudes and
+        need the geocentric radius of the ellipsoid (for example, in spherical
+        harmonic analysis). In these cases, the coordinate conversion route is
+        not possible since we need a radius to do that in the first place.
+
+        Boule generally tries to avoid doing coordinate conversions inside
+        functions in favour of the user handling the conversions prior to
+        input. This simplifies the code and makes sure that users know
+        precisely which conversions are taking place. This method is an
+        exception since a coordinate conversion route would not be possible.
+
+        .. note::
+
+            No elevation is taken into account (the height is zero). If you
+            need the geocentric radius at a height other than zero, use
+            :meth:`boule.Ellipsoid.geodetic_to_spherical` instead.
+
+        Parameters
+        ----------
+        latitude : float or array
+            Latitude coordinates on geodetic coordinate system in degrees.
+        geodetic : bool
+            If True (default), will assume that latitudes are geodetic
+            latitudes. Otherwise, will that they are geocentric spherical
+            latitudes.
+
+        Returns
+        -------
+        geocentric_radius : float or array
+            The geocentric radius for the given latitude(s) in the same units
+            as the ellipsoid axis.
+
+        """
+        latitude_rad = np.radians(latitude)
+        coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
+        # Avoid doing this in favour of having the user do the conversions when
+        # possible. It's not the case here, so we made an exception.
+        if geodetic:
+            radius = np.sqrt(
+                (
+                    (self.semimajor_axis ** 2 * coslat) ** 2
+                    + (self.semiminor_axis ** 2 * sinlat) ** 2
+                )
+                / (
+                    (self.semimajor_axis * coslat) ** 2
+                    + (self.semiminor_axis * sinlat) ** 2
+                )
+            )
+        else:
+            radius = np.sqrt(
+                1
+                / (
+                    (coslat / self.semimajor_axis) ** 2
+                    + (sinlat / self.semiminor_axis) ** 2
+                )
+            )
+        return radius
+
     def prime_vertical_radius(self, sinlat):
         r"""
         Calculate the prime vertical radius for a given geodetic latitude
@@ -156,10 +244,11 @@ class Ellipsoid:
 
             N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}
 
-        Where :math:`a` is the semimajor axis and :math:`e` is the first eccentricity.
+        Where :math:`a` is the semimajor axis and :math:`e` is the first
+        eccentricity.
 
-        This function receives the sine of the latitude as input to avoid repeated
-        computations of trigonometric functions.
+        This function receives the sine of the latitude as input to avoid
+        repeated computations of trigonometric functions.
 
         Parameters
         ----------
@@ -170,6 +259,7 @@ class Ellipsoid:
         -------
         prime_vertical_radius : float or array-like
             Prime vertical radius given in the same units as the semimajor axis
+
         """
         return self.semimajor_axis / np.sqrt(
             1 - self.first_eccentricity ** 2 * sinlat ** 2
