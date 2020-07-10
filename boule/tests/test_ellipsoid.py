@@ -171,3 +171,40 @@ def test_normal_gravity_non_zero_height(ellipsoid):
     assert gamma_pole < ellipsoid.normal_gravity(90, -1000)
     assert gamma_pole < ellipsoid.normal_gravity(-90, -1000)
     assert gamma_eq < ellipsoid.normal_gravity(0, -1000)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_prime_vertical_radius(ellipsoid):
+    r"""
+    Check prime vertical radius on equator, poles and 45 degrees
+
+    The prime vertical radius can be also expressed in terms of the semi-major and
+    semi-minor axis:
+
+    .. math:
+
+        N(\phi) = \frac{a^2}{\sqrt{a^2 \cos^2 \phi + b^2 \sin^2 \phi}}
+    """
+    # Compute prime vertical radius on the equator and the poles
+    latitudes = np.array([0, 90, -90, 45])
+    prime_vertical_radii = ellipsoid.prime_vertical_radius(
+        np.sin(np.radians(latitudes))
+    )
+    # Computed expected values
+    prime_vertical_radius_equator = ellipsoid.semimajor_axis
+    prime_vertical_radius_pole = (
+        ellipsoid.semimajor_axis ** 2 / ellipsoid.semiminor_axis
+    )
+    prime_vertical_radius_45 = ellipsoid.semimajor_axis ** 2 / np.sqrt(
+        0.5 * ellipsoid.semimajor_axis ** 2 + 0.5 * ellipsoid.semiminor_axis ** 2
+    )
+    expected_pvr = np.array(
+        [
+            prime_vertical_radius_equator,
+            prime_vertical_radius_pole,
+            prime_vertical_radius_pole,
+            prime_vertical_radius_45,
+        ]
+    )
+    # Compare calculated vs expected values
+    npt.assert_allclose(prime_vertical_radii, expected_pvr)

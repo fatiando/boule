@@ -146,6 +146,35 @@ class Ellipsoid:
         )
         return result
 
+    def prime_vertical_radius(self, sinlat):
+        r"""
+        Calculate the prime vertical radius for a given geodetic latitude
+
+        The prime vertical radius is defined as:
+
+        .. math::
+
+            N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}
+
+        Where :math:`a` is the semimajor axis and :math:`e` is the first eccentricity.
+
+        This function receives the sine of the latitude as input to avoid repeated
+        computations of trigonometric functions.
+
+        Parameters
+        ----------
+        sinlat : float or array-like
+            Sine of the latitude angle.
+
+        Returns
+        -------
+        prime_vertical_radius : float or array-like
+            Prime vertical radius given in the same units as the semimajor axis
+        """
+        return self.semimajor_axis / np.sqrt(
+            1 - self.first_eccentricity ** 2 * sinlat ** 2
+        )
+
     def geodetic_to_spherical(self, longitude, latitude, height):
         """
         Convert from geodetic to geocentric spherical coordinates.
@@ -176,15 +205,14 @@ class Ellipsoid:
 
         """
         latitude_rad = np.radians(latitude)
-        prime_vertical_radius = self.semimajor_axis / np.sqrt(
-            1 - self.first_eccentricity ** 2 * np.sin(latitude_rad) ** 2
-        )
+        coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
+        prime_vertical_radius = self.prime_vertical_radius(sinlat)
         # Instead of computing X and Y, we only compute the projection on the
         # XY plane: xy_projection = sqrt( X**2 + Y**2 )
-        xy_projection = (height + prime_vertical_radius) * np.cos(latitude_rad)
+        xy_projection = (height + prime_vertical_radius) * coslat
         z_cartesian = (
             height + (1 - self.first_eccentricity ** 2) * prime_vertical_radius
-        ) * np.sin(latitude_rad)
+        ) * sinlat
         radius = np.sqrt(xy_projection ** 2 + z_cartesian ** 2)
         spherical_latitude = np.degrees(np.arcsin(z_cartesian / radius))
         return longitude, spherical_latitude, radius
