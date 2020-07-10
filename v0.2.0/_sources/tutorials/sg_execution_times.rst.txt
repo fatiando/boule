@@ -1,0 +1,14 @@
+
+:orphan:
+
+.. _sphx_glr_tutorials_sg_execution_times:
+
+Computation times
+=================
+**00:00.149** total execution time for **tutorials** files:
+
++---------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_tutorials_normal_gravity.py` (``normal_gravity.py``) | 00:00.146 | 0.0 MB |
++---------------------------------------------------------------------+-----------+--------+
+| :ref:`sphx_glr_tutorials_overview.py` (``overview.py``)             | 00:00.003 | 0.0 MB |
++---------------------------------------------------------------------+-----------+--------+
