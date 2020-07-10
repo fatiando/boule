@@ -146,6 +146,54 @@ class Ellipsoid:
         )
         return result
 
+    def geocentric_radius(self, latitude):
+        r"""
+        Distance from the center of the ellipsoid to its surface.
+
+        The geocentric radius and is a function of the geodetic latitude
+        :math:`\phi` and the semi-major and semi-minor axis, a and b:
+
+        .. math::
+
+            R(\phi) = \sqrt{\dfrac{
+                (a^2\cos\phi)^2 + (b^2\sin\phi)^2}{
+                (a\cos\phi)^2 + (b\sin\phi)^2 }
+            }
+
+        See https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius
+
+        .. note::
+
+            No elevation is taken into account (the height is zero). If you
+            need the geocentric radius at a height other than zero, use
+            :meth:`boule.Ellipsoid.geodetic_to_spherical` instead.
+
+        Parameters
+        ----------
+        latitude : float or array
+            Latitude coordinates on geodetic coordinate system in degrees.
+
+        Returns
+        -------
+        geocentric_radius : float or array
+            The geocentric radius for the given latitude(s) in the same units
+            as the ellipsoid axis.
+
+        """
+        latitude_rad = np.radians(latitude)
+        coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
+        radius = np.sqrt(
+            (
+                (self.semimajor_axis ** 2 * coslat) ** 2
+                + (self.semiminor_axis ** 2 * sinlat) ** 2
+            )
+            / (
+                (self.semimajor_axis * coslat) ** 2
+                + (self.semiminor_axis * sinlat) ** 2
+            )
+        )
+        return radius
+
     def prime_vertical_radius(self, sinlat):
         r"""
         Calculate the prime vertical radius for a given geodetic latitude
@@ -156,10 +204,11 @@ class Ellipsoid:
 
             N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}
 
-        Where :math:`a` is the semimajor axis and :math:`e` is the first eccentricity.
+        Where :math:`a` is the semimajor axis and :math:`e` is the first
+        eccentricity.
 
-        This function receives the sine of the latitude as input to avoid repeated
-        computations of trigonometric functions.
+        This function receives the sine of the latitude as input to avoid
+        repeated computations of trigonometric functions.
 
         Parameters
         ----------
@@ -170,6 +219,7 @@ class Ellipsoid:
         -------
         prime_vertical_radius : float or array-like
             Prime vertical radius given in the same units as the semimajor axis
+
         """
         return self.semimajor_axis / np.sqrt(
             1 - self.first_eccentricity ** 2 * sinlat ** 2
