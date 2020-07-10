@@ -39,8 +39,10 @@
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <link rel="next" title="boule.test" href="boule.test.html" />
@@ -81,7 +83,7 @@
             
             
               <div class="version">
-                v0.1.1
+                dev
               </div>
             
           
@@ -321,11 +323,17 @@ represented by “a” [meters].</p></li>
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.geodetic_to_spherical" title="boule.Ellipsoid.geodetic_to_spherical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.geodetic_to_spherical</span></code></a>(longitude, …)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.geocentric_radius" title="boule.Ellipsoid.geocentric_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.geocentric_radius</span></code></a>(latitude[, geodetic])</p></td>
+<td><p>Distance from the center of the ellipsoid to its surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.geodetic_to_spherical" title="boule.Ellipsoid.geodetic_to_spherical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.geodetic_to_spherical</span></code></a>(longitude, …)</p></td>
 <td><p>Convert from geodetic to geocentric spherical coordinates.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.normal_gravity" title="boule.Ellipsoid.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.normal_gravity</span></code></a>(latitude, height)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.normal_gravity" title="boule.Ellipsoid.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.normal_gravity</span></code></a>(latitude, height)</p></td>
 <td><p>Calculate normal gravity at any latitude and height.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.prime_vertical_radius" title="boule.Ellipsoid.prime_vertical_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.prime_vertical_radius</span></code></a>(sinlat)</p></td>
+<td><p>Calculate the prime vertical radius for a given geodetic latitude</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.spherical_to_geodetic" title="boule.Ellipsoid.spherical_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Ellipsoid.spherical_to_geodetic</span></code></a>(longitude, …)</p></td>
 <td><p>Convert from geocentric spherical to geodetic coordinates.</p></td>
@@ -333,6 +341,59 @@ represented by “a” [meters].</p></li>
 </tbody>
 </table>
 <hr class="docutils" />
+<dl class="method">
+<dt id="boule.Ellipsoid.geocentric_radius">
+<code class="sig-prename descclassname">Ellipsoid.</code><code class="sig-name descname">geocentric_radius</code><span class="sig-paren">(</span><em class="sig-param">latitude</em>, <em class="sig-param">geodetic=True</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/ellipsoid.html#Ellipsoid.geocentric_radius"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#boule.Ellipsoid.geocentric_radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Distance from the center of the ellipsoid to its surface.</p>
+<p>The geocentric radius and is a function of the geodetic latitude
+<span class="math notranslate nohighlight">\(\phi\)</span> and the semi-major and semi-minor axis, a and b:</p>
+<div class="math notranslate nohighlight">
+\[R(\phi) = \sqrt{\dfrac{
+    (a^2\cos\phi)^2 + (b^2\sin\phi)^2}{
+    (a\cos\phi)^2 + (b\sin\phi)^2 }
+}\]</div>
+<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius">https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius</a></p>
+<p>The same could be achieved with
+<a class="reference internal" href="#boule.Ellipsoid.geodetic_to_spherical" title="boule.Ellipsoid.geodetic_to_spherical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boule.Ellipsoid.geodetic_to_spherical</span></code></a> by passing any value for
+the longitudes and heights equal to zero. This method provides a
+simpler and possibly faster alternative.</p>
+<p>Alternatively, the geocentric radius can also be expressed in terms of
+the geocentric (spherical) latitude <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[R(\theta) = \sqrt{\dfrac{1}{
+    (\frac{\cos\theta}{a})^2 + (\frac{\sin\theta}{b})^2 }
+}\]</div>
+<p>This can be useful if you already have the geocentric latitudes and
+need the geocentric radius of the ellipsoid (for example, in spherical
+harmonic analysis). In these cases, the coordinate conversion route is
+not possible since we need a radius to do that in the first place.</p>
+<p>Boule generally tries to avoid doing coordinate conversions inside
+functions in favour of the user handling the conversions prior to
+input. This simplifies the code and makes sure that users know
+precisely which conversions are taking place. This method is an
+exception since a coordinate conversion route would not be possible.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>No elevation is taken into account (the height is zero). If you
+need the geocentric radius at a height other than zero, use
+<a class="reference internal" href="#boule.Ellipsoid.geodetic_to_spherical" title="boule.Ellipsoid.geodetic_to_spherical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boule.Ellipsoid.geodetic_to_spherical</span></code></a> instead.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>array</em>) – Latitude coordinates on geodetic coordinate system in degrees.</p></li>
+<li><p><strong>geodetic</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.8)"><em>bool</em></a>) – If True (default), will assume that latitudes are geodetic
+latitudes. Otherwise, will that they are geocentric spherical
+latitudes.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>geocentric_radius</strong> (<em>float or array</em>) – The geocentric radius for the given latitude(s) in the same units
+as the ellipsoid axis.</p>
+</dd>
+</dl>
+</dd></dl>
+
 <dl class="method">
 <dt id="boule.Ellipsoid.geodetic_to_spherical">
 <code class="sig-prename descclassname">Ellipsoid.</code><code class="sig-name descname">geodetic_to_spherical</code><span class="sig-paren">(</span><em class="sig-param">longitude</em>, <em class="sig-param">latitude</em>, <em class="sig-param">height</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/ellipsoid.html#Ellipsoid.geodetic_to_spherical"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#boule.Ellipsoid.geodetic_to_spherical" title="Permalink to this definition">¶</a></dt>
@@ -384,6 +445,27 @@ latitude and (geometric) height. Uses of a closed form expression of
 </dd></dl>
 
 <dl class="method">
+<dt id="boule.Ellipsoid.prime_vertical_radius">
+<code class="sig-prename descclassname">Ellipsoid.</code><code class="sig-name descname">prime_vertical_radius</code><span class="sig-paren">(</span><em class="sig-param">sinlat</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/ellipsoid.html#Ellipsoid.prime_vertical_radius"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#boule.Ellipsoid.prime_vertical_radius" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the prime vertical radius for a given geodetic latitude</p>
+<p>The prime vertical radius is defined as:</p>
+<div class="math notranslate nohighlight">
+\[N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(a\)</span> is the semimajor axis and <span class="math notranslate nohighlight">\(e\)</span> is the first
+eccentricity.</p>
+<p>This function receives the sine of the latitude as input to avoid
+repeated computations of trigonometric functions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>sinlat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.8)"><em>float</em></a><em> or </em><em>array-like</em>) – Sine of the latitude angle.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>prime_vertical_radius</strong> (<em>float or array-like</em>) – Prime vertical radius given in the same units as the semimajor axis</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
 <dt id="boule.Ellipsoid.spherical_to_geodetic">
 <code class="sig-prename descclassname">Ellipsoid.</code><code class="sig-name descname">spherical_to_geodetic</code><span class="sig-paren">(</span><em class="sig-param">longitude</em>, <em class="sig-param">spherical_latitude</em>, <em class="sig-param">radius</em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/ellipsoid.html#Ellipsoid.spherical_to_geodetic"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#boule.Ellipsoid.spherical_to_geodetic" title="Permalink to this definition">¶</a></dt>
 <dd><p>Convert from geocentric spherical to geodetic coordinates.</p>
@@ -415,7 +497,7 @@ degrees.</p></li>
 <div class="section" id="examples-using-boule-ellipsoid">
 <h2>Examples using <code class="docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code><a class="headerlink" href="#examples-using-boule-ellipsoid" title="Permalink to this headline">¶</a></h2>
 <div class="sphx-glr-thumbcontainer" tooltip="The main functionality of Boule is contained in the Ellipsoid class. It defines a `Reference El..."><div class="figure align-default" id="id4">
-<img alt="../../_images/sphx_glr_overview_thumb.png" src="../../_images/sphx_glr_overview_thumb.png" />
+<img alt="Overview" src="../../_images/sphx_glr_overview_thumb.png" />
 <p class="caption"><span class="caption-text"><a class="reference internal" href="../../tutorials/overview.html#sphx-glr-tutorials-overview-py"><span class="std std-ref">Overview</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
 </div>
 </div><div style='clear:both'></div></div>
@@ -443,7 +525,7 @@ degrees.</p></li>
     <p>
         &copy; Copyright 2019-2020, The Boule Developers
       <span class="lastupdated">
-        Last updated on Jan 10, 2020.
+        Last updated on Jul 10, 2020.
       </span>
 
     </p>

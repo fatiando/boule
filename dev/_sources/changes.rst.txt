@@ -3,6 +3,25 @@
 Changelog
 =========
 
+Version 0.2.0
+-------------
+
+*Released on: 2020/07/10*
+
+.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3939204.svg
+    :alt: Digital Object Identifier
+    :target: https://doi.org/10.5281/zenodo.3939204
+
+* Add the ``Ellipsoid.geocentric_radius`` method to calculate the distance from the center of the ellipsoid to its surface as a function of latitude (geodetic or geocentric). (`#37 <https://github.com/fatiando/boule/pull/37>`__)
+* Add the ``Ellipsoid.prime_vertical_radius`` method for computing the prime vertical radius (usually represented by N in equations) as a function of geodetic latitude. (`#35 <https://github.com/fatiando/boule/pull/35>`__)
+* Fix typo in README contributing section (`#32 <https://github.com/fatiando/boule/pull/32>`__)
+
+This release contains contributions from:
+
+* Leonardo Uieda
+* Rowan Cockett
+* Santiago Soler
+
 Version 0.1.1
 -------------
 

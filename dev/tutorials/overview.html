@@ -39,8 +39,10 @@
   
   <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Installing" href="../install.html" />
@@ -81,7 +83,7 @@
             
             
               <div class="version">
-                v0.1.1
+                dev
               </div>
             
           
@@ -225,7 +227,7 @@
             
   <div class="sphx-glr-download-link-note admonition note">
 <p class="admonition-title">Note</p>
-<p>Click <a class="reference internal" href="#sphx-glr-download-tutorials-overview-py"><span class="std std-ref">here</span></a> to download the full example code</p>
+<p>Click <a class="reference internal" href="#sphx-glr-download-tutorials-overview-py"><span class="std std-ref">here</span></a>     to download the full example code</p>
 </div>
 <div class="sphx-glr-example-title section" id="overview">
 <span id="sphx-glr-tutorials-overview-py"></span><span id="id1"></span><h1>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h1>
@@ -260,8 +262,8 @@ import:</p>
 <h2>Ellipsoids<a class="headerlink" href="#ellipsoids" title="Permalink to this headline">¶</a></h2>
 <p>Boule comes with <a class="reference internal" href="../ellipsoids/index.html#ellipsoids"><span class="std std-ref">built-in ellipsoids</span></a> that can be accessed
 as global variables in the <a class="reference internal" href="../api/index.html#module-boule" title="boule"><code class="xref py py-mod docutils literal notranslate"><span class="pre">boule</span></code></a> module:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -272,8 +274,8 @@ Ellipsoid(name=&#39;MARS&#39;, semimajor_axis=3395428, flattening=0.005227617843
 <p>As seen above, <a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ellipsoid</span></code></a> instances can be printed to record
 their defining attributes. Additionally, ellipsoids define a name (short and
 long version) and reference for the origin of the numbers used:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span><span class="o">.</span><span class="n">name</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span><span class="o">.</span><span class="n">reference</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span><span class="o">.</span><span class="n">name</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="https://docs.python.org/3/library/stdtypes.html#str" title="builtins.str" class="sphx-glr-backref-module-builtins sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span><span class="o">.</span><span class="n">reference</span></a><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -283,9 +285,9 @@ Ardalan, A. A., Karimi, R., &amp; Grafarend, E. W. (2009). A New Reference Equip
 </div>
 <p>Other derived properties of ellipsoids are calculated on demand when
 accessed:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span><span class="o">.</span><span class="n">first_eccentricity</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span><span class="o">.</span><span class="n">gravity_pole</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span><span class="o">.</span><span class="n">gravity_equator</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span></a><span class="o">.</span><span class="n">first_eccentricity</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span></a><span class="o">.</span><span class="n">gravity_pole</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">bl</span><span class="o">.</span><span class="n">MARS</span></a><span class="o">.</span><span class="n">gravity_equator</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -297,7 +299,7 @@ accessed:</p>
 <p>You can also define your own ellipsoid. For example, this would be the
 definition of a sphere with 1000 m radius and dummy values for <span class="math notranslate nohighlight">\(GM\)</span> and
 <span class="math notranslate nohighlight">\(\omega\)</span>:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="View documentation for boule.Ellipsoid"><span class="n">sphere</span></a> <span class="o">=</span> <a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="View documentation for boule.Ellipsoid"><span class="n">bl</span><span class="o">.</span><span class="n">Ellipsoid</span></a><span class="p">(</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sphere</span></a> <span class="o">=</span> <a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class"><span class="n">bl</span><span class="o">.</span><span class="n">Ellipsoid</span></a><span class="p">(</span>
     <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Sphere&quot;</span><span class="p">,</span>
     <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Ellipsoid with 0 flattening&quot;</span><span class="p">,</span>
     <span class="n">flattening</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span>
@@ -305,9 +307,9 @@ definition of a sphere with 1000 m radius and dummy values for <span class="math
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="View documentation for boule.Ellipsoid"><span class="n">sphere</span></a><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="View documentation for boule.Ellipsoid"><span class="n">sphere</span></a><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="View documentation for boule.Ellipsoid"><span class="n">sphere</span></a><span class="o">.</span><span class="n">first_eccentricity</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sphere</span></a><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sphere</span></a><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sphere</span></a><span class="o">.</span><span class="n">first_eccentricity</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -319,7 +321,7 @@ definition of a sphere with 1000 m radius and dummy values for <span class="math
 <p>However, the equations for calculating gravity are not suited for the 0
 flattening case. <strong>So don’t define reference spheres like this.</strong> This is due
 to the first eccentricity being 0 (it appears in divisions in the equations).</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="View documentation for boule.Ellipsoid"><span class="n">sphere</span></a><span class="o">.</span><span class="n">gravity_pole</span><span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><a href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid" class="sphx-glr-backref-module-boule sphx-glr-backref-type-py-class sphx-glr-backref-instance"><span class="n">sphere</span></a><span class="o">.</span><span class="n">gravity_pole</span><span class="p">)</span>
 </pre></div>
 </div>
 <p class="sphx-glr-script-out">Out:</p>
@@ -342,12 +344,12 @@ radius.</p></li>
 </ol>
 <p>See the respective tutorials and <a class="reference internal" href="../api/index.html#api"><span class="std std-ref">reference documentation</span></a> for
 more information.</p>
-<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.002 seconds)</p>
+<p class="sphx-glr-timing"><strong>Total running time of the script:</strong> ( 0 minutes  0.003 seconds)</p>
 <div class="sphx-glr-footer class sphx-glr-footer-example docutils container" id="sphx-glr-download-tutorials-overview-py">
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-python docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/ebb5519668b799fc9e6596d299314e5a/overview.py"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Python</span> <span class="pre">source</span> <span class="pre">code:</span> <span class="pre">overview.py</span></code></a></p>
 </div>
-<div class="sphx-glr-download docutils container">
+<div class="sphx-glr-download sphx-glr-download-jupyter docutils container">
 <p><a class="reference download internal" download="" href="../_downloads/4ac16ddf039c43285d5fed04b3dede96/overview.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">Download</span> <span class="pre">Jupyter</span> <span class="pre">notebook:</span> <span class="pre">overview.ipynb</span></code></a></p>
 </div>
 </div>
@@ -377,7 +379,7 @@ more information.</p>
     <p>
         &copy; Copyright 2019-2020, The Boule Developers
       <span class="lastupdated">
-        Last updated on Jan 10, 2020.
+        Last updated on Jul 10, 2020.
       </span>
 
     </p>

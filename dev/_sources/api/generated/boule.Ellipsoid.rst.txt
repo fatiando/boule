@@ -35,11 +35,19 @@ boule.Ellipsoid
     
     
     
+        Ellipsoid.geocentric_radius
+    
+    
+    
         Ellipsoid.geodetic_to_spherical
     
     
     
         Ellipsoid.normal_gravity
+    
+    
+    
+        Ellipsoid.prime_vertical_radius
     
     
     
@@ -55,11 +63,19 @@ boule.Ellipsoid
 
 
 
+.. automethod:: Ellipsoid.geocentric_radius
+
+
+
 .. automethod:: Ellipsoid.geodetic_to_spherical
 
 
 
 .. automethod:: Ellipsoid.normal_gravity
+
+
+
+.. automethod:: Ellipsoid.prime_vertical_radius
 
 
 

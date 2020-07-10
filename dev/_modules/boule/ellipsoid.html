@@ -39,8 +39,10 @@
   
   <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="../../_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <!-- Google Analytics tracking code -->
@@ -79,7 +81,7 @@
             
             
               <div class="version">
-                v0.1.1
+                dev
               </div>
             
           
@@ -359,6 +361,125 @@
         <span class="p">)</span>
         <span class="k">return</span> <span class="n">result</span>
 
+<div class="viewcode-block" id="Ellipsoid.geocentric_radius"><a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geocentric_radius">[docs]</a>    <span class="k">def</span> <span class="nf">geocentric_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">geodetic</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Distance from the center of the ellipsoid to its surface.</span>
+
+<span class="sd">        The geocentric radius and is a function of the geodetic latitude</span>
+<span class="sd">        :math:`\phi` and the semi-major and semi-minor axis, a and b:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            R(\phi) = \sqrt{\dfrac{</span>
+<span class="sd">                (a^2\cos\phi)^2 + (b^2\sin\phi)^2}{</span>
+<span class="sd">                (a\cos\phi)^2 + (b\sin\phi)^2 }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        See https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius</span>
+
+<span class="sd">        The same could be achieved with</span>
+<span class="sd">        :meth:`boule.Ellipsoid.geodetic_to_spherical` by passing any value for</span>
+<span class="sd">        the longitudes and heights equal to zero. This method provides a</span>
+<span class="sd">        simpler and possibly faster alternative.</span>
+
+<span class="sd">        Alternatively, the geocentric radius can also be expressed in terms of</span>
+<span class="sd">        the geocentric (spherical) latitude :math:`\theta`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            R(\theta) = \sqrt{\dfrac{1}{</span>
+<span class="sd">                (\frac{\cos\theta}{a})^2 + (\frac{\sin\theta}{b})^2 }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        This can be useful if you already have the geocentric latitudes and</span>
+<span class="sd">        need the geocentric radius of the ellipsoid (for example, in spherical</span>
+<span class="sd">        harmonic analysis). In these cases, the coordinate conversion route is</span>
+<span class="sd">        not possible since we need a radius to do that in the first place.</span>
+
+<span class="sd">        Boule generally tries to avoid doing coordinate conversions inside</span>
+<span class="sd">        functions in favour of the user handling the conversions prior to</span>
+<span class="sd">        input. This simplifies the code and makes sure that users know</span>
+<span class="sd">        precisely which conversions are taking place. This method is an</span>
+<span class="sd">        exception since a coordinate conversion route would not be possible.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            No elevation is taken into account (the height is zero). If you</span>
+<span class="sd">            need the geocentric radius at a height other than zero, use</span>
+<span class="sd">            :meth:`boule.Ellipsoid.geodetic_to_spherical` instead.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            Latitude coordinates on geodetic coordinate system in degrees.</span>
+<span class="sd">        geodetic : bool</span>
+<span class="sd">            If True (default), will assume that latitudes are geodetic</span>
+<span class="sd">            latitudes. Otherwise, will that they are geocentric spherical</span>
+<span class="sd">            latitudes.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        geocentric_radius : float or array</span>
+<span class="sd">            The geocentric radius for the given latitude(s) in the same units</span>
+<span class="sd">            as the ellipsoid axis.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">latitude_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span>
+        <span class="n">coslat</span><span class="p">,</span> <span class="n">sinlat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">)</span>
+        <span class="c1"># Avoid doing this in favour of having the user do the conversions when</span>
+        <span class="c1"># possible. It&#39;s not the case here, so we made an exception.</span>
+        <span class="k">if</span> <span class="n">geodetic</span><span class="p">:</span>
+            <span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">coslat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sinlat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="p">)</span>
+                <span class="o">/</span> <span class="p">(</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">*</span> <span class="n">coslat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">*</span> <span class="n">sinlat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+                <span class="mi">1</span>
+                <span class="o">/</span> <span class="p">(</span>
+                    <span class="p">(</span><span class="n">coslat</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">+</span> <span class="p">(</span><span class="n">sinlat</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">radius</span></div>
+
+<div class="viewcode-block" id="Ellipsoid.prime_vertical_radius"><a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.prime_vertical_radius">[docs]</a>    <span class="k">def</span> <span class="nf">prime_vertical_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sinlat</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Calculate the prime vertical radius for a given geodetic latitude</span>
+
+<span class="sd">        The prime vertical radius is defined as:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}</span>
+
+<span class="sd">        Where :math:`a` is the semimajor axis and :math:`e` is the first</span>
+<span class="sd">        eccentricity.</span>
+
+<span class="sd">        This function receives the sine of the latitude as input to avoid</span>
+<span class="sd">        repeated computations of trigonometric functions.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sinlat : float or array-like</span>
+<span class="sd">            Sine of the latitude angle.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        prime_vertical_radius : float or array-like</span>
+<span class="sd">            Prime vertical radius given in the same units as the semimajor axis</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_eccentricity</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">sinlat</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span></div>
+
 <div class="viewcode-block" id="Ellipsoid.geodetic_to_spherical"><a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical">[docs]</a>    <span class="k">def</span> <span class="nf">geodetic_to_spherical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Convert from geodetic to geocentric spherical coordinates.</span>
@@ -389,15 +510,14 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">latitude_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span>
-        <span class="n">prime_vertical_radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
-            <span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_eccentricity</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
-        <span class="p">)</span>
+        <span class="n">coslat</span><span class="p">,</span> <span class="n">sinlat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">)</span>
+        <span class="n">prime_vertical_radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prime_vertical_radius</span><span class="p">(</span><span class="n">sinlat</span><span class="p">)</span>
         <span class="c1"># Instead of computing X and Y, we only compute the projection on the</span>
         <span class="c1"># XY plane: xy_projection = sqrt( X**2 + Y**2 )</span>
-        <span class="n">xy_projection</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span> <span class="o">+</span> <span class="n">prime_vertical_radius</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">)</span>
+        <span class="n">xy_projection</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span> <span class="o">+</span> <span class="n">prime_vertical_radius</span><span class="p">)</span> <span class="o">*</span> <span class="n">coslat</span>
         <span class="n">z_cartesian</span> <span class="o">=</span> <span class="p">(</span>
             <span class="n">height</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_eccentricity</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">prime_vertical_radius</span>
-        <span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">)</span>
+        <span class="p">)</span> <span class="o">*</span> <span class="n">sinlat</span>
         <span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">xy_projection</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">z_cartesian</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
         <span class="n">spherical_latitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">z_cartesian</span> <span class="o">/</span> <span class="n">radius</span><span class="p">))</span>
         <span class="k">return</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">spherical_latitude</span><span class="p">,</span> <span class="n">radius</span></div>
@@ -552,7 +672,7 @@
     <p>
         &copy; Copyright 2019-2020, The Boule Developers
       <span class="lastupdated">
-        Last updated on Jan 10, 2020.
+        Last updated on Jul 10, 2020.
       </span>
 
     </p>

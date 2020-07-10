@@ -1,10 +1,12 @@
-.. note::
-    :class: sphx-glr-download-link-note
+.. only:: html
 
-    Click :ref:`here <sphx_glr_download_tutorials_normal_gravity.py>` to download the full example code
-.. rst-class:: sphx-glr-example-title
+    .. note::
+        :class: sphx-glr-download-link-note
 
-.. _sphx_glr_tutorials_normal_gravity.py:
+        Click :ref:`here <sphx_glr_download_tutorials_normal_gravity.py>`     to download the full example code
+    .. rst-class:: sphx-glr-example-title
+
+    .. _sphx_glr_tutorials_normal_gravity.py:
 
 
 .. _normal_gravity:
@@ -49,6 +51,7 @@ at a height of 1000 m using the :ref:`WGS84 <wgs84>` ellipsoid.
 
 
 .. image:: /tutorials/images/sphx_glr_normal_gravity_001.png
+    :alt: WGS84 normal gravity
     :class: sphx-glr-single-img
 
 
@@ -76,6 +79,7 @@ normal gravity of the :ref:`Martian ellipsoid <mars>`:
 
 
 .. image:: /tutorials/images/sphx_glr_normal_gravity_002.png
+    :alt: Mars normal gravity
     :class: sphx-glr-single-img
 
 
@@ -90,7 +94,7 @@ m/s² when compared to 970,000 mGal or 9.7 m/s².
 
 .. rst-class:: sphx-glr-timing
 
-   **Total running time of the script:** ( 0 minutes  0.137 seconds)
+   **Total running time of the script:** ( 0 minutes  0.147 seconds)
 
 
 .. _sphx_glr_download_tutorials_normal_gravity.py:
@@ -103,13 +107,13 @@ m/s² when compared to 970,000 mGal or 9.7 m/s².
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-python
 
      :download:`Download Python source code: normal_gravity.py <normal_gravity.py>`
 
 
 
-  .. container:: sphx-glr-download
+  .. container:: sphx-glr-download sphx-glr-download-jupyter
 
      :download:`Download Jupyter notebook: normal_gravity.ipynb <normal_gravity.ipynb>`
 

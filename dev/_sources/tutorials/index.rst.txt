@@ -18,6 +18,7 @@ Tutorials
 .. only:: html
 
  .. figure:: /tutorials/images/thumb/sphx_glr_normal_gravity_thumb.png
+     :alt: Normal Gravity
 
      :ref:`sphx_glr_tutorials_normal_gravity.py`
 
@@ -38,6 +39,7 @@ Tutorials
 .. only:: html
 
  .. figure:: /tutorials/images/thumb/sphx_glr_overview_thumb.png
+     :alt: Overview
 
      :ref:`sphx_glr_tutorials_overview.py`
 

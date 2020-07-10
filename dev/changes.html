@@ -39,8 +39,10 @@
   
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
   <link rel="stylesheet" href="_static/style.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-binder.css" type="text/css" />
+  <link rel="stylesheet" href="_static/gallery-dataframe.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="References" href="references.html" />
@@ -81,7 +83,7 @@
             
             
               <div class="version">
-                v0.1.1
+                dev
               </div>
             
           
@@ -121,6 +123,7 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="api/index.html">API Reference</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Changelog</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#version-0-2-0">Version 0.2.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-1-1">Version 0.1.1</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-1-0">Version 0.1.0</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#version-0-0-1">Version 0.0.1</a></li>
@@ -220,6 +223,22 @@
             
   <div class="section" id="changelog">
 <span id="changes"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="version-0-2-0">
+<h2>Version 0.2.0<a class="headerlink" href="#version-0-2-0" title="Permalink to this headline">¶</a></h2>
+<p><em>Released on: 2020/07/10</em></p>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3939204"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3939204.svg" /></a>
+<ul class="simple">
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.geocentric_radius</span></code> method to calculate the distance from the center of the ellipsoid to its surface as a function of latitude (geodetic or geocentric). (<a class="reference external" href="https://github.com/fatiando/boule/pull/37">#37</a>)</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.prime_vertical_radius</span></code> method for computing the prime vertical radius (usually represented by N in equations) as a function of geodetic latitude. (<a class="reference external" href="https://github.com/fatiando/boule/pull/35">#35</a>)</p></li>
+<li><p>Fix typo in README contributing section (<a class="reference external" href="https://github.com/fatiando/boule/pull/32">#32</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Leonardo Uieda</p></li>
+<li><p>Rowan Cockett</p></li>
+<li><p>Santiago Soler</p></li>
+</ul>
+</div>
 <div class="section" id="version-0-1-1">
 <h2>Version 0.1.1<a class="headerlink" href="#version-0-1-1" title="Permalink to this headline">¶</a></h2>
 <p><em>Released on: 2020/01/10</em></p>
@@ -273,7 +292,7 @@ integration deployment process.</p>
     <p>
         &copy; Copyright 2019-2020, The Boule Developers
       <span class="lastupdated">
-        Last updated on Jan 10, 2020.
+        Last updated on Jul 10, 2020.
       </span>
 
     </p>
