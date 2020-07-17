@@ -11,9 +11,12 @@ Part of the `Fatiando a Terra <https://www.fatiando.org>`__ project
 .. image:: http://img.shields.io/pypi/v/boule.svg?style=flat-square
     :alt: Latest version on PyPI
     :target: https://pypi.python.org/pypi/boule
+.. image:: https://img.shields.io/conda/vn/conda-forge/boule.svg?style=flat-square
+    :alt: Latest version on conda-forge
+    :target: https://github.com/conda-forge/boule-feedstock
 .. image:: http://img.shields.io/travis/fatiando/boule/master.svg?style=flat-square&label=TravisCI
     :alt: TravisCI build status
-    :target: https://travis-ci.org/fatiando/boule
+    :target: https://travis-ci.com/fatiando/boule
 .. image:: https://img.shields.io/codecov/c/github/fatiando/boule/master.svg?style=flat-square
     :alt: Test coverage status
     :target: https://codecov.io/gh/fatiando/boule
