@@ -4,7 +4,7 @@ TESTDIR=tmp-test-dir-with-unique-name
 PYTEST_ARGS=--cov-config=../.coveragerc --cov-report=term-missing --cov=$(PROJECT) --doctest-modules --doctest-glob='*.rst' -v --pyargs
 LINT_FILES=setup.py $(PROJECT)
 BLACK_FILES=setup.py doc/conf.py $(PROJECT) tutorials
-FLAKE8_FILES=setup.py $(PROJECT)
+FLAKE8_FILES=setup.py doc/conf.py $(PROJECT)
 
 help:
 	@echo "Commands:"
