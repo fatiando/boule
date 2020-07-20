@@ -38,7 +38,7 @@ sphinx_gallery_conf = {
     "examples_dirs": ["../tutorials"],
     # path where to save gallery generated examples
     "gallery_dirs": ["tutorials"],
-    "filename_pattern": "\.py",
+    "filename_pattern": r"\.py",
     # Remove the "Download all examples" button from the top level gallery
     "download_all_examples": False,
     # Sort gallery example by file name instead of number of lines (default)
