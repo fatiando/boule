@@ -12,49 +12,6 @@ from .. import Ellipsoid, ELLIPSOIDS
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
 
-@pytest.fixture
-def sphere():
-    "A spherical ellipsoid"
-    ellipsoid = Ellipsoid(
-        name="unit_sphere",
-        semimajor_axis=1.0,
-        flattening=0,
-        geocentric_grav_const=0,
-        angular_velocity=0,
-    )
-    return ellipsoid
-
-
-def test_geodetic_to_spherical_with_spherical_ellipsoid(sphere):
-    "Test geodetic to geocentric conversion if ellipsoid is a sphere."
-    rtol = 1e-10
-    size = 5
-    longitude = np.linspace(0, 180, size)
-    latitude = np.linspace(-90, 90, size)
-    height = np.linspace(-0.2, 0.2, size)
-    sph_longitude, sph_latitude, radius = sphere.geodetic_to_spherical(
-        longitude, latitude, height
-    )
-    npt.assert_allclose(sph_longitude, longitude, rtol=rtol)
-    npt.assert_allclose(sph_latitude, latitude, rtol=rtol)
-    npt.assert_allclose(radius, sphere.mean_radius + height, rtol=rtol)
-
-
-def test_spherical_to_geodetic_with_spherical_ellipsoid(sphere):
-    "Test spherical to geodetic conversion if ellipsoid is a sphere."
-    rtol = 1e-10
-    size = 5
-    spherical_longitude = np.linspace(0, 180, size)
-    spherical_latitude = np.linspace(-90, 90, size)
-    radius = np.linspace(0.8, 1.2, size)
-    longitude, latitude, height = sphere.spherical_to_geodetic(
-        spherical_longitude, spherical_latitude, radius
-    )
-    npt.assert_allclose(spherical_longitude, longitude, rtol=rtol)
-    npt.assert_allclose(spherical_latitude, latitude, rtol=rtol)
-    npt.assert_allclose(radius, sphere.mean_radius + height, rtol=rtol)
-
-
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_geodetic_to_spherical_on_equator(ellipsoid):
     "Test geodetic to geocentric coordinates conversion on equator."
