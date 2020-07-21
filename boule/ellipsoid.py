@@ -76,6 +76,14 @@ class Ellipsoid:
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
 
+    @flattening.validator
+    def check_flattening(self, flattening, value):
+        if value < 1e-7:
+            raise ValueError(
+                "Flattening '{}' too close to zero. ".format(value)
+                + "Use boule.Sphere for representing ellipsoids with zero flattening."
+            )
+
     @property
     def semiminor_axis(self):
         "The small (polar) axis of the ellipsoid [meters]"
