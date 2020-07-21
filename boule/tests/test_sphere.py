@@ -21,18 +21,21 @@ def test_normal_gravity_no_rotation():
     """
     Check normal gravity without rotation
     """
-    gm = 3
+    gm_constant = 3
     radius = 1
     sphere = Sphere(
-        name="sphere", radius=radius, geocentric_grav_const=gm, angular_velocity=0
+        name="sphere",
+        radius=radius,
+        geocentric_grav_const=gm_constant,
+        angular_velocity=0,
     )
     # Create a set of points a different latitudes and same height
-    for h in [1, 2, 3, 4]:
-        latitude = np.linspace(-90, 90, 19)
-        height = h * np.ones_like(latitude)
+    for height in [1, 2, 3, 4]:
+        latitudes = np.linspace(-90, 90, 19)
+        heights = height * np.ones_like(latitudes)
         # Check if normal gravity is equal on every point (rotational symmetry)
-        expected_gravity = gm / (radius + h) ** 2
-        npt.assert_allclose(expected_gravity, sphere.normal_gravity(latitude, height))
+        expected_gravity = gm_constant / (radius + height) ** 2
+        npt.assert_allclose(expected_gravity, sphere.normal_gravity(latitudes, heights))
 
 
 def test_normal_gravity_only_rotation():

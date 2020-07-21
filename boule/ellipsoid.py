@@ -77,7 +77,10 @@ class Ellipsoid:
     reference = attr.ib(default=None)
 
     @flattening.validator
-    def check_flattening(self, flattening, value):
+    def check_flattening(self, flattening, value):  # pylint: disable=no-self-use
+        """
+        Check if flattening is not equal (or almost) zero
+        """
         if value < 1e-7:
             raise ValueError(
                 "Flattening '{}' too close to zero. ".format(value)
