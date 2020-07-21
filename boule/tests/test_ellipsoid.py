@@ -12,6 +12,30 @@ from .. import Ellipsoid, ELLIPSOIDS
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
 
+def test_ellipsoid_zero_flattening():
+    """
+    Check if error is raised after passing zero flattening
+    """
+    # Test with zero flattening
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="zero-flattening",
+            semimajor_axis=1,
+            flattening=0,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+    # Test with almost zero flattening
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="almost-zero-flattening",
+            semimajor_axis=1,
+            flattening=1e-8,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+
+
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_geodetic_to_spherical_on_equator(ellipsoid):
     "Test geodetic to geocentric coordinates conversion on equator."
