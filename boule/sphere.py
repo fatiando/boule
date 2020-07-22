@@ -12,7 +12,8 @@ class Sphere:
     """
     Reference sphere.
 
-    Implements the representation of ellipsoids with zero flattenning as spheres.
+    Implements the representation of ellipsoids with zero flattening as spheres.
+    This is required since some computations can fail if the flattening is too small.
 
     All parameters are in SI units.
 
