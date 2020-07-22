@@ -44,9 +44,9 @@ class Sphere:
     ...     geocentric_grav_const=1,
     ...     angular_velocity=0,
     ... )
-    >>> sphere.normal_gravity(latitude=0, height=1)
+    >>> print(sphere.normal_gravity(latitude=0, height=1))
     0.25
-    >>> sphere.normal_gravity(latitude=90, height=1)
+    >>> print(sphere.normal_gravity(latitude=90, height=1))
     0.25
     """
 
