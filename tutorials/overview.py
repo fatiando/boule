@@ -62,7 +62,7 @@ print(bl.MARS.gravity_pole)
 print(bl.MARS.gravity_equator)
 
 ###############################################################################
-# You can also define your own ellipsoid. For example, this would be a definition of ane
+# You can also define your own ellipsoid. For example, this would be a definition of an
 # ellipsoid with 1000 m semimajor axis, flattening equal to 0.5 and dummy values for
 # :math:`GM` and :math:`\omega`:
 
