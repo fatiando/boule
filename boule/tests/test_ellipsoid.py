@@ -2,6 +2,7 @@
 """
 Test the base Ellipsoid class.
 """
+import warnings
 import pytest
 import numpy as np
 import numpy.testing as npt
@@ -17,7 +18,7 @@ def test_ellipsoid_zero_flattening():
     Check if error is raised after passing zero flattening
     """
     # Test with zero flattening
-    with pytest.raises(ValueError):
+    with warnings.catch_warnings(record=True) as warn:
         Ellipsoid(
             name="zero-flattening",
             semimajor_axis=1,
@@ -25,8 +26,9 @@ def test_ellipsoid_zero_flattening():
             geocentric_grav_const=1,
             angular_velocity=0,
         )
+        assert len(warn) >= 1
     # Test with almost zero flattening
-    with pytest.raises(ValueError):
+    with warnings.catch_warnings(record=True) as warn:
         Ellipsoid(
             name="almost-zero-flattening",
             semimajor_axis=1,
@@ -34,6 +36,7 @@ def test_ellipsoid_zero_flattening():
             geocentric_grav_const=1,
             angular_velocity=0,
         )
+        assert len(warn) >= 1
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)

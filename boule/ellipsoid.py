@@ -1,6 +1,7 @@
 """
 Module for defining and setting the reference ellipsoid.
 """
+from warnings import warn
 import attr
 import numpy as np
 
@@ -77,15 +78,17 @@ class Ellipsoid:
     reference = attr.ib(default=None)
 
     @flattening.validator
-    def check_flattening(self, flattening, value):  # pylint: disable=no-self-use
+    def check_flattening(
+        self, flattening, value
+    ):  # pylint: disable=no-self-use,unused-argument
         """
         Check if flattening is not equal (or almost) zero
         """
+        warn_msg = "Use boule.Sphere for representing ellipsoids with zero flattening."
+        if value == 0:
+            warn("Flattening equal to zero. " + warn_msg)
         if value < 1e-7:
-            raise ValueError(
-                "Flattening '{}' too close to zero. ".format(value)
-                + "Use boule.Sphere for representing ellipsoids with zero flattening."
-            )
+            warn("Flattening '{}' too close to zero. ".format(value) + warn_msg)
 
     @property
     def semiminor_axis(self):
