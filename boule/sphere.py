@@ -45,9 +45,9 @@ class Sphere:
     ...     angular_velocity=0,
     ... )
     >>> print(sphere.normal_gravity(latitude=0, height=1))
-    0.25
+    25000.0
     >>> print(sphere.normal_gravity(latitude=90, height=1))
-    0.25
+    25000.0
     """
 
     name = attr.ib()

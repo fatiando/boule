@@ -34,7 +34,7 @@ def test_normal_gravity_no_rotation():
         latitudes = np.linspace(-90, 90, 19)
         heights = height * np.ones_like(latitudes)
         # Check if normal gravity is equal on every point (rotational symmetry)
-        expected_gravity = gm_constant / (radius + height) ** 2
+        expected_gravity = 1e5 * gm_constant / (radius + height) ** 2
         npt.assert_allclose(expected_gravity, sphere.normal_gravity(latitudes, heights))
 
 
@@ -49,7 +49,7 @@ def test_normal_gravity_only_rotation():
     )
     # Check normal gravity on the equator
     for height in [1, 2, 3, 4]:
-        expected_value = -(omega ** 2) * (radius + height)
+        expected_value = -1e5 * (omega ** 2) * (radius + height)
         npt.assert_allclose(
             expected_value, sphere.normal_gravity(latitude=0, height=height),
         )
