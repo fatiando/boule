@@ -46,7 +46,24 @@ class Sphere(Ellipsoid):
     ...     radius=1,
     ...     geocentric_grav_const=1,
     ...     angular_velocity=0,
+    ...     long_name="Spherical Ellipsoid",
     ... )
+    >>> print(sphere) # doctest: +ELLIPSIS
+    Sphere(name='sphere', ...)
+    >>> print(sphere.long_name)
+    Spherical Ellipsoid
+    >>> print("{:.2f}".format(sphere.semiminor_axis))
+    1.00
+    >>> print("{:.2f}".format(sphere.mean_radius))
+    1.00
+    >>> print("{:.2f}".format(sphere.flattening))
+    0.00
+    >>> print("{:.2f}".format(sphere.linear_eccentricity))
+    0.00
+    >>> print("{:.2f}".format(sphere.first_eccentricity))
+    0.00
+    >>> print("{:.2f}".format(sphere.second_eccentricity))
+    0.00
     >>> print(sphere.normal_gravity(latitude=0, height=1))
     25000.0
     >>> print(sphere.normal_gravity(latitude=90, height=1))
