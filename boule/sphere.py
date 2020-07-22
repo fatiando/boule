@@ -84,7 +84,7 @@ class Sphere:
 
         References
         ----------
-        _[Heiskanen-Moritz]
+        [Heiskanen-Moritz]_
         """
         return self._gravity_sphere(height) + self._centrifugal_force(latitude, height)
 
