@@ -4,11 +4,13 @@ Module for defining and setting the reference sphere.
 import attr
 import numpy as np
 
+from . import Ellipsoid
+
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
 # accidentally.
 @attr.s(frozen=True)
-class Sphere:
+class Sphere(Ellipsoid):
     """
     Reference sphere.
 
@@ -56,11 +58,18 @@ class Sphere:
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+    # semimajor_axis and flattening shouldn't be defined on initialization:
+    #   - semimajor_axis will be equal to radius
+    #   - flattening will be equal to zero
+    semimajor_axis = attr.ib(init=False)
+    flattening = attr.ib(init=False)
 
-    @property
-    def flattening(self):
-        "Return zero flattening"
-        return 0
+    def __attrs_post_init__(self):
+        """
+        Overwrite inherited attributes
+        """
+        object.__setattr__(self, "semimajor_axis", self.radius)
+        object.__setattr__(self, "flattening", 0)
 
     def normal_gravity(self, latitude, height):
         """
@@ -104,3 +113,33 @@ class Sphere:
             * (self.radius + height)
             * np.cos(np.radians(latitude))
         )
+
+    @property
+    def gravity_equator(self):
+        """
+        The norm of the gravity vector at the equator on the sphere [m/s^2]
+
+        Overrides the inherited method from :class:`boule.Ellipsoid` to avoid
+        singularities due to zero flattening.
+        """
+        return self._gravity_on_surface
+
+    @property
+    def gravity_pole(self):
+        """
+        The norm of the gravity vector at the poles on the sphere [m/s^2]
+
+        Overrides the inherited method from :class:`boule.Ellipsoid` to avoid
+        singularities due to zero flattening.
+        """
+        return self._gravity_on_surface
+
+    @property
+    def _gravity_on_surface(self):
+        """
+        Compute norm of the gravity vector on the surface of the sphere [m/s^2]
+
+        Due to rotational symmetry, the norm of the gravity vector is the same
+        on every point of the surface.
+        """
+        return self.geocentric_grav_const / self.radius ** 2
