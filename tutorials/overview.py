@@ -80,7 +80,7 @@ print(ellipsoid.first_eccentricity)
 
 
 ###############################################################################
-# If you own ellipsoid is a sphere (zero flattening), you must use the
+# If the ellipsoid has zero flattening (a sphere), you must use the
 # :class:`boule.Sphere` class instead. For example, this would be the definition of
 # a sphere with 1000 m radius and dummy values for :math:`GM` and :math:`\omega`:
 
