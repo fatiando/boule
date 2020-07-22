@@ -12,10 +12,11 @@ from . import Ellipsoid
 @attr.s(frozen=True)
 class Sphere(Ellipsoid):
     """
-    Reference sphere.
+    Reference spherical ellipsoid
 
-    Implements the representation of ellipsoids with zero flattening as spheres.
-    This is required since some computations can fail if the flattening is too small.
+    Represents ellipsoids with zero flattening (spheres). Inherits methods and
+    properties of the :class:`boule.Ellipsoid`, guaranteeing no singularities
+    due to zero flattening (and thus zero eccentricity).
 
     All parameters are in SI units.
 
