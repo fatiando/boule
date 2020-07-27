@@ -80,14 +80,12 @@ class Sphere(Ellipsoid):
     #   - semimajor_axis will be equal to radius
     #   - flattening will be equal to zero
     semimajor_axis = attr.ib(init=False)
-    flattening = attr.ib(init=False)
+    flattening = attr.ib(init=False, default=0)
 
-    def __attrs_post_init__(self):
-        """
-        Overwrite inherited attributes
-        """
-        object.__setattr__(self, "semimajor_axis", self.radius)
-        object.__setattr__(self, "flattening", 0)
+    @semimajor_axis.default
+    def _set_semimajor_axis(self):
+        "The semimajor axis should be the radius"
+        return self.radius
 
     def normal_gravity(self, latitude, height):
         """
