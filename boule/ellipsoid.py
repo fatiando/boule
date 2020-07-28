@@ -1,6 +1,7 @@
 """
 Module for defining and setting the reference ellipsoid.
 """
+from warnings import warn
 import attr
 import numpy as np
 
@@ -41,30 +42,30 @@ class Ellipsoid:
     Examples
     --------
 
-    We can define a reference unit sphere by using 0 as the flattening:
+    We can define an ellipsoid with flattening equal to 0.5 and unit semimajor axis:
 
-    >>> sphere = Ellipsoid(
-    ...     name="sphere",
-    ...     long_name="Unit sphere",
+    >>> ellipsoid = Ellipsoid(
+    ...     name="oblate-ellipsoid",
+    ...     long_name="Oblate Ellipsoid",
     ...     semimajor_axis=1,
-    ...     flattening=0,
+    ...     flattening=0.5,
     ...     geocentric_grav_const=1,
     ...     angular_velocity=0
     ... )
-    >>> print(sphere) # doctest: +ELLIPSIS
-    Ellipsoid(name='sphere', ...)
-    >>> print(sphere.long_name)
-    Unit sphere
-    >>> print("{:.2f}".format(sphere.semiminor_axis))
-    1.00
-    >>> print("{:.2f}".format(sphere.mean_radius))
-    1.00
-    >>> print("{:.2f}".format(sphere.linear_eccentricity))
-    0.00
-    >>> print("{:.2f}".format(sphere.first_eccentricity))
-    0.00
-    >>> print("{:.2f}".format(sphere.second_eccentricity))
-    0.00
+    >>> print(ellipsoid) # doctest: +ELLIPSIS
+    Ellipsoid(name='oblate-ellipsoid', ...)
+    >>> print(ellipsoid.long_name)
+    Oblate Ellipsoid
+    >>> print("{:.2f}".format(ellipsoid.semiminor_axis))
+    0.50
+    >>> print("{:.2f}".format(ellipsoid.mean_radius))
+    0.83
+    >>> print("{:.2f}".format(ellipsoid.linear_eccentricity))
+    0.87
+    >>> print("{:.2f}".format(ellipsoid.first_eccentricity))
+    0.87
+    >>> print("{:.2f}".format(ellipsoid.second_eccentricity))
+    1.73
 
     """
 
@@ -75,6 +76,19 @@ class Ellipsoid:
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+
+    @flattening.validator
+    def check_flattening(
+        self, flattening, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Check if flattening is not equal (or almost) zero
+        """
+        warn_msg = "Use boule.Sphere for representing ellipsoids with zero flattening."
+        if value == 0:
+            warn("Flattening equal to zero. " + warn_msg)
+        if value < 1e-7:
+            warn("Flattening '{}' too close to zero. ".format(value) + warn_msg)
 
     @property
     def semiminor_axis(self):
