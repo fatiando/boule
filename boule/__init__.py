@@ -3,7 +3,7 @@
 from . import version
 from .ellipsoid import Ellipsoid
 from .sphere import Sphere
-from .realizations import WGS84, GRS80, MARS
+from .realizations import WGS84, GRS80, MARS, MOON
 
 
 ELLIPSOIDS = [WGS84, GRS80, MARS, MOON]
