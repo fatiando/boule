@@ -90,6 +90,19 @@ class Ellipsoid:
                 + "Flattening should be greater or equal to zero and lower than 1."
             )
 
+    @flattening.validator
+    def check_nonzero_flattening(
+        self, flattening, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Warn if flattening is equal to (or almost) zero
+        """
+        warn_msg = "Use boule.Sphere for representing ellipsoids with zero flattening."
+        if value == 0:
+            warn("Flattening equal to zero. " + warn_msg)
+        if value < 1e-7:
+            warn("Flattening '{}' too close to zero. ".format(value) + warn_msg)
+
     @semimajor_axis.validator
     def check_semimajor_axis(
         self, semimajor_axis, value
@@ -111,22 +124,7 @@ class Ellipsoid:
         Warn if geocentric_grav_const is negative
         """
         if value < 0:
-            warn(
-                "Received a negative geocentric_grav_const '{}'. ".format(value)
-            )
-
-    @flattening.validator
-    def check_nonzero_flattening(
-        self, flattening, value
-    ):  # pylint: disable=no-self-use,unused-argument
-        """
-        Check if flattening is not equal (or almost) zero
-        """
-        warn_msg = "Use boule.Sphere for representing ellipsoids with zero flattening."
-        if value == 0:
-            warn("Flattening equal to zero. " + warn_msg)
-        if value < 1e-7:
-            warn("Flattening '{}' too close to zero. ".format(value) + warn_msg)
+            warn("Received a negative geocentric_grav_const '{}'. ".format(value))
 
     @property
     def semiminor_axis(self):

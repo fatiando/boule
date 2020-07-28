@@ -35,6 +35,32 @@ def test_check_flattening():
         )
 
 
+def test_check_zero_flattening():
+    """
+    Check if warning is raised after passing zero flattening
+    """
+    # Test with zero flattening
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="zero-flattening",
+            semimajor_axis=1,
+            flattening=0,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    # Test with almost zero flattening
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="almost-zero-flattening",
+            semimajor_axis=1,
+            flattening=1e-8,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+
+
 def test_check_semimajor_axis():
     """
     Check if error is raised after invalid semimajor_axis
@@ -67,32 +93,6 @@ def test_check_geocentric_grav_const():
             semimajor_axis=1,
             flattening=0.1,
             geocentric_grav_const=-1,
-            angular_velocity=0,
-        )
-        assert len(warn) >= 1
-
-
-def test_ellipsoid_zero_flattening():
-    """
-    Check if error is raised after passing zero flattening
-    """
-    # Test with zero flattening
-    with warnings.catch_warnings(record=True) as warn:
-        Ellipsoid(
-            name="zero-flattening",
-            semimajor_axis=1,
-            flattening=0,
-            geocentric_grav_const=1,
-            angular_velocity=0,
-        )
-        assert len(warn) >= 1
-    # Test with almost zero flattening
-    with warnings.catch_warnings(record=True) as warn:
-        Ellipsoid(
-            name="almost-zero-flattening",
-            semimajor_axis=1,
-            flattening=1e-8,
-            geocentric_grav_const=1,
             angular_velocity=0,
         )
         assert len(warn) >= 1
