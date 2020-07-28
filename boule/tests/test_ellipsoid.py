@@ -2,6 +2,7 @@
 """
 Test the base Ellipsoid class.
 """
+import warnings
 import pytest
 import numpy as np
 import numpy.testing as npt
@@ -23,6 +24,65 @@ def sphere():
         angular_velocity=0,
     )
     return ellipsoid
+
+
+def test_check_flattening():
+    """
+    Check if error is raised after invalid flattening
+    """
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="negative_flattening",
+            semimajor_axis=1.0,
+            flattening=-1,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="flattening_greater_than_one",
+            semimajor_axis=1.0,
+            flattening=1.5,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+
+def test_check_semimajor_axis():
+    """
+    Check if error is raised after invalid semimajor_axis
+    """
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="zero_semimajor_axis",
+            semimajor_axis=0,
+            flattening=0.1,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="negative_semimajor_axis",
+            semimajor_axis=-1,
+            flattening=0.1,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+
+def test_check_geocentric_grav_const():
+    """
+    Check if warn is raised after negative geocentric_grav_const
+    """
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="negative_gm",
+            semimajor_axis=1,
+            flattening=0.1,
+            geocentric_grav_const=-1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
 
 
 def test_geodetic_to_spherical_with_spherical_ellipsoid(sphere):

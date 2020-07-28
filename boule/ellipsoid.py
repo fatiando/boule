@@ -1,6 +1,7 @@
 """
 Module for defining and setting the reference ellipsoid.
 """
+import warnings
 import attr
 import numpy as np
 
@@ -75,6 +76,44 @@ class Ellipsoid:
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+
+    @flattening.validator
+    def check_flattening(
+        self, flattening, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Check if flattening is between 0 and 1
+        """
+        if value < 0 or value >= 1:
+            raise ValueError(
+                "Invalid flattening '{}'. ".format(value)
+                + "Flattening should be greater or equal to zero and lower than 1."
+            )
+
+    @semimajor_axis.validator
+    def check_semimajor_axis(
+        self, semimajor_axis, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Check if semimajor_axis is positive
+        """
+        if not value > 0:
+            raise ValueError(
+                "Invalid semimajor_axis '{}'. ".format(value)
+                + "Semimajor axis should be greater than zero."
+            )
+
+    @geocentric_grav_const.validator
+    def check_geocentric_grav_const(
+        self, geocentric_grav_const, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Warn if geocentric_grav_const is negative
+        """
+        if value < 0:
+            warnings.warn(
+                "Received a negative geocentric_grav_const '{}'. ".format(value)
+            )
 
     @property
     def semiminor_axis(self):
