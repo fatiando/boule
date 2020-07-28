@@ -2,6 +2,7 @@
 Ellipsoid realizations for the Earth and other planetary bodies.
 """
 from .ellipsoid import Ellipsoid
+from .sphere import Sphere
 
 
 WGS84 = Ellipsoid(
@@ -32,11 +33,10 @@ GRS80 = Ellipsoid(
 )
 
 
-MOON = Ellipsoid(
+MOON = Sphere(
     name="Moon",
     long_name="",
-    semimajor_axis=1737151,
-    flattening=0,
+    radius=1737151,
     geocentric_grav_const=4.90280007e12,
     angular_velocity=2.6617073e-6,
     reference=(
@@ -46,7 +46,7 @@ MOON = Ellipsoid(
     ),
 )
 
-      
+
 MARS = Ellipsoid(
     name="MARS",
     long_name="Mars Ellipsoid",
