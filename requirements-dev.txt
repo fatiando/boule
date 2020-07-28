@@ -1,4 +1,5 @@
 # Development requirements
+matplotlib
 pytest
 pytest-cov
 pytest-mpl

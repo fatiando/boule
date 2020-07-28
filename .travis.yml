@@ -26,7 +26,7 @@ env:
         # The files with the listed requirements to be installed by conda
         - CONDA_REQUIREMENTS=requirements.txt
         - CONDA_REQUIREMENTS_DEV=requirements-dev.txt
-        - CONDA_INSTALL_EXTRA="codecov"
+        - CONDA_INSTALL_EXTRA="codecov twine"
         # These variables control which actions are performed in a build
         - DEPLOY_DOCS=false
         - DEPLOY_PYPI=false

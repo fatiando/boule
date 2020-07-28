@@ -112,7 +112,7 @@ What could you possibly offer?
 We assure you that the little voice in your head is wrong.
 
 **Being a contributor doesn't just mean writing code**.
-Equality important contributions include:
+Equally important contributions include:
 writing or proof-reading documentation, suggesting or implementing tests, or
 even giving feedback about the project (including giving feedback about the
 contribution process).
@@ -141,4 +141,7 @@ Documentation for other versions
 * `Development <http://www.fatiando.org/boule/dev>`__ (reflects the *master* branch on
   Github)
 * `Latest release <http://www.fatiando.org/boule/latest>`__
+* `v0.2.0 <http://www.fatiando.org/boule/v0.2.0>`__
+* `v0.1.1 <http://www.fatiando.org/boule/v0.1.1>`__
+* `v0.1.0 <http://www.fatiando.org/boule/v0.1.0>`__
 * `v0.0.1 <http://www.fatiando.org/boule/v0.0.1>`__
