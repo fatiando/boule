@@ -62,28 +62,36 @@ print(bl.MARS.gravity_pole)
 print(bl.MARS.gravity_equator)
 
 ###############################################################################
-# You can also define your own ellipsoid. For example, this would be the
-# definition of a sphere with 1000 m radius and dummy values for :math:`GM` and
-# :math:`\omega`:
+# You can also define your own ellipsoid. For example, this would be a definition of an
+# ellipsoid with 1000 m semimajor axis, flattening equal to 0.5 and dummy values for
+# :math:`GM` and :math:`\omega`:
 
-sphere = bl.Ellipsoid(
-    name="Sphere",
-    long_name="Ellipsoid with 0 flattening",
-    flattening=0,
+ellipsoid = bl.Ellipsoid(
+    name="Ellipsoid",
+    long_name="Ellipsoid with 0.5 flattening",
+    flattening=0.5,
     semimajor_axis=1000,
     geocentric_grav_const=1,
     angular_velocity=1,
 )
-print(sphere)
-print(sphere.semiminor_axis)
-print(sphere.first_eccentricity)
+print(ellipsoid)
+print(ellipsoid.semiminor_axis)
+print(ellipsoid.first_eccentricity)
+
 
 ###############################################################################
-# However, the equations for calculating gravity are not suited for the 0
-# flattening case. **So don't define reference spheres like this.** This is due
-# to the first eccentricity being 0 (it appears in divisions in the equations).
+# If the ellipsoid has zero flattening (a sphere), you must use the
+# :class:`boule.Sphere` class instead. For example, this would be the definition of
+# a sphere with 1000 m radius and dummy values for :math:`GM` and :math:`\omega`:
 
-print(sphere.gravity_pole)
+sphere = bl.Sphere(
+    name="Sphere",
+    long_name="Ellipsoid with 0 flattening",
+    radius=1000,
+    geocentric_grav_const=1,
+    angular_velocity=1,
+)
+print(sphere)
 
 ###############################################################################
 # Computations
