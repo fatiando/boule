@@ -239,3 +239,34 @@ def test_geocentric_radius_geocentric_pole_equator(ellipsoid):
     npt.assert_allclose(
         radius_true, ellipsoid.geocentric_radius(latitude, geodetic=False)
     )
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_normal_gravity_against_somigliana(ellipsoid):
+    """
+    Check if normal gravity on the surface satisfies Somigliana equation
+    """
+    height = 0
+    latitudes = np.linspace(-90, 90, 18)
+    for latitude in latitudes:
+        npt.assert_allclose(
+            ellipsoid.normal_gravity(latitude, height),
+            somigliana_equation(latitude, ellipsoid) * 1e5,
+        )
+
+
+def somigliana_equation(latitude, ellipsoid):
+    """
+    Computes normal gravity on the surface of the ellipsoid [m/s^2]
+    """
+    return (
+        ellipsoid.semimajor_axis
+        * ellipsoid.gravity_equator
+        * np.cos(np.radians(latitude)) ** 2
+        + ellipsoid.semiminor_axis
+        * ellipsoid.gravity_pole
+        * np.sin(np.radians(latitude)) ** 2
+    ) / np.sqrt(
+        ellipsoid.semimajor_axis ** 2 * np.cos(np.radians(latitude)) ** 2
+        + ellipsoid.semiminor_axis ** 2 * np.sin(np.radians(latitude)) ** 2
+    )
