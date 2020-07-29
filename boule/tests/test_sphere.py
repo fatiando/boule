@@ -146,7 +146,7 @@ def test_normal_gravity_only_rotation():
     )
     # Check normal gravity on the equator
     for height in [1, 2, 3, 4]:
-        expected_value = -1e5 * (omega ** 2) * (radius + height)
+        expected_value = 1e5 * (omega ** 2) * (radius + height)
         npt.assert_allclose(
             expected_value, sphere.normal_gravity(latitude=0, height=height),
         )
@@ -156,7 +156,7 @@ def test_normal_gravity_only_rotation():
         assert sphere.normal_gravity(latitude=-90, height=height) < 1e-15
     # Check normal gravity at 45 degrees latitude
     for height in [1, 2, 3, 4]:
-        expected_value = -1e5 * (omega ** 2) * (radius + height) * np.sqrt(2) / 2
+        expected_value = 1e5 * (omega ** 2) * (radius + height) * np.sqrt(2) / 2
         npt.assert_allclose(
             expected_value, sphere.normal_gravity(latitude=45, height=height),
         )
