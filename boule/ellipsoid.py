@@ -14,11 +14,19 @@ class Ellipsoid:
     Reference oblate ellipsoid.
 
     The ellipsoid is oblate and spins around it's minor axis. It is defined by
-    four parameters and offers other derived quantities as read-only
-    properties. In fact, all attributes of this class are read-only and cannot
-    be changed after instantiation.
+    four parameters and offers other derived quantities. **All attributes of
+    this class are read-only and cannot be changed after instantiation.**
 
-    All ellipsoid parameters are in SI units.
+    All parameters are in SI units.
+
+    The term "gravity" refers to the magnitude of gradient of the gravity
+    potential (the sum of the gravitational and centrifugal potentials).
+
+    .. note::
+
+        Use :class:`boule.Sphere` if you desire zero flattening because there
+        are singularities for this particular case in the ellipsoid normal
+        gravity calculations.
 
     Parameters
     ----------
@@ -42,7 +50,7 @@ class Ellipsoid:
     Examples
     --------
 
-    We can define an ellipsoid with flattening equal to 0.5 and unit semimajor axis:
+    We can define an ellipsoid by setting the 4 key numerical parameters:
 
     >>> ellipsoid = Ellipsoid(
     ...     name="oblate-ellipsoid",
@@ -50,12 +58,15 @@ class Ellipsoid:
     ...     semimajor_axis=1,
     ...     flattening=0.5,
     ...     geocentric_grav_const=1,
-    ...     angular_velocity=0
+    ...     angular_velocity=0,
     ... )
     >>> print(ellipsoid) # doctest: +ELLIPSIS
     Ellipsoid(name='oblate-ellipsoid', ...)
     >>> print(ellipsoid.long_name)
     Oblate Ellipsoid
+
+    The class defines several derived attributes based on the input parameters:
+
     >>> print("{:.2f}".format(ellipsoid.semiminor_axis))
     0.50
     >>> print("{:.2f}".format(ellipsoid.mean_radius))
@@ -113,9 +124,7 @@ class Ellipsoid:
     @property
     def mean_radius(self):
         """
-        The arithmetic mean radius [meters]
-
-        :math:`R_1 = (2a + b) /3` [Moritz2000]_
+        The arithmetic mean radius :math:`R_1=(2a+b)/3` [Moritz1988]_ [meters]
         """
         return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
 
@@ -132,7 +141,7 @@ class Ellipsoid:
     @property
     def gravity_equator(self):
         """
-        The norm of the gravity vector at the equator on the ellipsoid [m/s^2]
+        The norm of the gravity vector at the equator of the ellipsoid [m/s²]
         """
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
@@ -147,7 +156,7 @@ class Ellipsoid:
 
     @property
     def gravity_pole(self):
-        "The norm of the gravity vector at the poles on the ellipsoid [m/s^2]"
+        "The norm of the gravity vector at the poles of the ellipsoid [m/s²]"
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
         aux = (
@@ -396,7 +405,8 @@ class Ellipsoid:
             The (geodetic) latitude where the normal gravity will be computed
             (in degrees).
         height : float or array
-            The ellipsoidal (geometric) height of computation point (in meters).
+            The ellipsoidal (geometric) height of computation the point (in
+            meters).
 
         Returns
         -------
