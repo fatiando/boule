@@ -15,7 +15,7 @@ ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
 def test_check_flattening():
     """
-    Check if error is raised after invalid flattening
+    Check if error/warns is raised after invalid flattening
     """
     with pytest.raises(ValueError):
         Ellipsoid(
@@ -33,23 +33,22 @@ def test_check_flattening():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-
-
-def test_check_zero_flattening():
-    """
-    Check if warning is raised after passing zero flattening
-    """
-    # Test with zero flattening
-    with warnings.catch_warnings(record=True) as warn:
+    with pytest.raises(ValueError):
         Ellipsoid(
-            name="zero-flattening",
-            semimajor_axis=1,
+            name="zero_flattening",
+            semimajor_axis=1.0,
             flattening=0,
-            geocentric_grav_const=1,
+            geocentric_grav_const=0,
             angular_velocity=0,
         )
-        assert len(warn) >= 1
-    # Test with almost zero flattening
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="almost_zero_negative_flattening",
+            semimajor_axis=1.0,
+            flattening=-1e8,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
     with warnings.catch_warnings(record=True) as warn:
         Ellipsoid(
             name="almost-zero-flattening",

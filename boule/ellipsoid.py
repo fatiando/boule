@@ -82,26 +82,26 @@ class Ellipsoid:
         self, flattening, value
     ):  # pylint: disable=no-self-use,unused-argument
         """
-        Check if flattening is between 0 and 1
+        Check if flattening is valid
         """
         if value < 0 or value >= 1:
             raise ValueError(
                 "Invalid flattening '{}'. ".format(value)
                 + "Flattening should be greater or equal to zero and lower than 1."
             )
-
-    @flattening.validator
-    def check_nonzero_flattening(
-        self, flattening, value
-    ):  # pylint: disable=no-self-use,unused-argument
-        """
-        Warn if flattening is equal to (or almost) zero
-        """
-        warn_msg = "Use boule.Sphere for representing ellipsoids with zero flattening."
         if value == 0:
-            warn("Flattening equal to zero. " + warn_msg)
+            raise ValueError(
+                "Flattening equal to zero. "
+                + "Use boule.Sphere for representing ellipsoids with zero flattening."
+            )
         if value < 1e-7:
-            warn("Flattening '{}' too close to zero. ".format(value) + warn_msg)
+            warn(
+                "Flattening '{}' too close to zero. ".format(value)
+                + "This may create inaccurate results and/or encounter divisions "
+                + "by zero errors. "
+                + "Consider using boule.Sphere for representing ellipsoids "
+                + "with zero flattening."
+            )
 
     @semimajor_axis.validator
     def check_semimajor_axis(
