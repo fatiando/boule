@@ -100,13 +100,18 @@ def test_geocentric_radius(sphere):
         )
 
 
-def test_gravity_on_equator_and_poles(sphere):
+def test_normal_gravity_pole_equator(sphere):
     """
-    Check gravity on equator and poles
+    Compare normal gravity values at pole and equator
     """
-    expected_value = sphere.geocentric_grav_const / sphere.radius ** 2
-    npt.assert_allclose(sphere.gravity_pole, expected_value)
-    npt.assert_allclose(sphere.gravity_equator, expected_value)
+    rtol = 1e-10
+    height = 0
+    # Convert gamma to mGal
+    gamma_pole = sphere.gravity_pole * 1e5
+    gamma_eq = sphere.gravity_equator * 1e5
+    npt.assert_allclose(gamma_pole, sphere.normal_gravity(-90, height), rtol=rtol)
+    npt.assert_allclose(gamma_pole, sphere.normal_gravity(90, height), rtol=rtol)
+    npt.assert_allclose(gamma_eq, sphere.normal_gravity(0, height), rtol=rtol)
 
 
 def test_normal_gravity_no_rotation():

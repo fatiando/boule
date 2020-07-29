@@ -138,7 +138,10 @@ class Sphere(Ellipsoid):
         Overrides the inherited method from :class:`boule.Ellipsoid` to avoid
         singularities due to zero flattening.
         """
-        return self._gravity_on_surface
+        return (
+            self.geocentric_grav_const / self.radius ** 2
+            - self.radius * self.angular_velocity ** 2
+        )
 
     @property
     def gravity_pole(self):
@@ -147,15 +150,5 @@ class Sphere(Ellipsoid):
 
         Overrides the inherited method from :class:`boule.Ellipsoid` to avoid
         singularities due to zero flattening.
-        """
-        return self._gravity_on_surface
-
-    @property
-    def _gravity_on_surface(self):
-        """
-        Compute norm of the gravity vector on the surface of the sphere [m/s^2]
-
-        Due to rotational symmetry, the norm of the gravity vector is the same
-        on every point of the surface.
         """
         return self.geocentric_grav_const / self.radius ** 2
