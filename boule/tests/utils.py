@@ -6,7 +6,7 @@ import numpy as np
 
 def normal_gravity_surface(latitude, ellipsoid):
     """
-    Computes normal gravity on the surface of the ellipsoid [m/s^2]
+    Computes normal gravity on the surface of the ellipsoid [mGal]
 
     Uses the closed-form Somigliana equation [Hofmann-WellenhofMoritz2006]_.
     """
