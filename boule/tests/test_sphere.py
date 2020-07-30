@@ -7,7 +7,6 @@ import numpy as np
 import numpy.testing as npt
 
 from .. import Sphere
-from .utils import normal_gravity_surface
 
 
 @pytest.fixture
@@ -161,14 +160,3 @@ def test_normal_gravity_only_rotation():
         npt.assert_allclose(
             expected_value, sphere.normal_gravity(latitude=45, height=height),
         )
-
-
-def test_normal_gravity_against_somigliana(sphere):
-    """
-    Check if normal gravity on the surface satisfies Somigliana equation
-    """
-    latitude = np.linspace(-90, 90, 181)
-    npt.assert_allclose(
-        sphere.normal_gravity(latitude, height=0),
-        normal_gravity_surface(latitude, sphere),
-    )
