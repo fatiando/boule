@@ -94,8 +94,8 @@ class Sphere(Ellipsoid):
     # semimajor_axis and flattening shouldn't be defined on initialization:
     #   - semimajor_axis will be equal to radius
     #   - flattening will be equal to zero
-    semimajor_axis = attr.ib(init=False)
-    flattening = attr.ib(init=False, default=0)
+    semimajor_axis = attr.ib(init=False, repr=False)
+    flattening = attr.ib(init=False, default=0, repr=False)
 
     @semimajor_axis.default
     def _set_semimajor_axis(self):
