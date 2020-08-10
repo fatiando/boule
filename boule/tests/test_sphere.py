@@ -114,15 +114,9 @@ def test_normal_gravity_pole_equator(sphere):
     npt.assert_allclose(gamma_pole, sphere.normal_gravity(-90, height), rtol=rtol)
     npt.assert_allclose(gamma_pole, sphere.normal_gravity(90, height), rtol=rtol)
     npt.assert_allclose(gamma_eq, sphere.normal_gravity(0, height), rtol=rtol)
-    # Check against sphere.normal_gravity_norm()
-    npt.assert_allclose(gamma_pole, sphere.normal_gravity_norm(-90, height), rtol=rtol)
-    npt.assert_allclose(gamma_pole, sphere.normal_gravity_norm(90, height), rtol=rtol)
-    npt.assert_allclose(gamma_eq, sphere.normal_gravity_norm(0, height), rtol=rtol)
-    # Check gravity on the pole against sphere.gravity_no_rotation()
-    npt.assert_allclose(gamma_pole, 1e5 * sphere.normal_gravity_no_rotation(height))
 
 
-def test_normal_gravity_no_rotation():
+def test_normal_gravity():
     """
     Check normal gravity without rotation
     """
@@ -141,33 +135,6 @@ def test_normal_gravity_no_rotation():
         # Check if normal gravity is equal on every point (rotational symmetry)
         expected_gravity = 1e5 * gm_constant / (radius + height) ** 2
         npt.assert_allclose(expected_gravity, sphere.normal_gravity(latitudes, heights))
-
-
-def test_normal_gravity_only_rotation():
-    """
-    Check normal gravity only with rotation (no gravitational attraction)
-    """
-    radius = 1
-    omega = 2
-    sphere = Sphere(
-        name="sphere", radius=radius, geocentric_grav_const=0, angular_velocity=omega
-    )
-    # Check normal gravity on the equator
-    for height in [1, 2, 3, 4]:
-        expected_value = -1e5 * (omega ** 2) * (radius + height)
-        npt.assert_allclose(
-            expected_value, sphere.normal_gravity(latitude=0, height=height),
-        )
-    # Check normal gravity on the poles (must be equal to zero)
-    for height in [1, 2, 3, 4]:
-        assert sphere.normal_gravity(latitude=90, height=height) < 1e-15
-        assert sphere.normal_gravity(latitude=-90, height=height) < 1e-15
-    # Check normal gravity at 45 degrees latitude
-    for height in [1, 2, 3, 4]:
-        expected_value = -1e5 * (omega ** 2) * (radius + height) * 0.5
-        npt.assert_allclose(
-            expected_value, sphere.normal_gravity(latitude=45, height=height),
-        )
 
 
 def test_normal_gravity_against_somigliana(sphere):
