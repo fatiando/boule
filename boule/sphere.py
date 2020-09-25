@@ -97,7 +97,7 @@ class Sphere(Ellipsoid):
 
         Computes the magnitude of the gradient of the gravity potential of
         a sphere in hydrostatic equilibrium, which is not under rotation.
-        The normal gravity is then computed as the magnitude of the gradient of
+        The normal gravity is computed then as the magnitude of the gradient of
         the gravity potential without taking into account the centrifugal
         potential.
 
