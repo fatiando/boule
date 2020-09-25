@@ -101,6 +101,11 @@ class Sphere(Ellipsoid):
             \sqrt{\left( \frac{GM}{r^2} \right)^2
             + \left(\omega^2 r - 2\frac{GM}{r^2} \right) \omega^2 r \cos^2 \varphi}
 
+        .. warning::
+
+            A sphere under rotation is not in hydrostatic equilibrium,
+            therefore they are not their own equipotential gravity surface.
+
         Parameters
         ----------
         latitude : float or array
