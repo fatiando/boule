@@ -82,13 +82,49 @@ class Ellipsoid:
         self, flattening, value
     ):  # pylint: disable=no-self-use,unused-argument
         """
-        Check if flattening is not equal (or almost) zero
+        Check if flattening is valid
         """
-        warn_msg = "Use boule.Sphere for representing ellipsoids with zero flattening."
+        if value < 0 or value >= 1:
+            raise ValueError(
+                "Invalid flattening '{}'. ".format(value)
+                + "Flattening should be greater or equal to zero and lower than 1."
+            )
         if value == 0:
-            warn("Flattening equal to zero. " + warn_msg)
+            raise ValueError(
+                "Flattening equal to zero. "
+                + "Use boule.Sphere for representing ellipsoids with zero flattening."
+            )
         if value < 1e-7:
-            warn("Flattening '{}' too close to zero. ".format(value) + warn_msg)
+            warn(
+                "Flattening '{}' too close to zero. ".format(value)
+                + "This may create inaccurate results and/or encounter divisions "
+                + "by zero errors. "
+                + "Consider using boule.Sphere for representing ellipsoids "
+                + "with zero flattening."
+            )
+
+    @semimajor_axis.validator
+    def check_semimajor_axis(
+        self, semimajor_axis, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Check if semimajor_axis is positive
+        """
+        if not value > 0:
+            raise ValueError(
+                "Invalid semimajor_axis '{}'. ".format(value)
+                + "Semimajor axis should be greater than zero."
+            )
+
+    @geocentric_grav_const.validator
+    def check_geocentric_grav_const(
+        self, geocentric_grav_const, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Warn if geocentric_grav_const is negative
+        """
+        if value < 0:
+            warn("Received a negative geocentric_grav_const '{}'. ".format(value))
 
     @property
     def semiminor_axis(self):
