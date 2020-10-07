@@ -8,6 +8,7 @@ import numpy as np
 import numpy.testing as npt
 
 from .. import Ellipsoid, ELLIPSOIDS
+from .utils import normal_gravity_surface
 
 
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
@@ -297,3 +298,18 @@ def test_geocentric_radius_geocentric_pole_equator(ellipsoid):
     npt.assert_allclose(
         radius_true, ellipsoid.geocentric_radius(latitude, geodetic=False)
     )
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_normal_gravity_against_somigliana(ellipsoid):
+    """
+    Check if normal gravity on the surface satisfies Somigliana equation
+    """
+    latitude = np.linspace(-90, 90, 181)
+    # Somigliana equation applies only to ellipsoids that are their own
+    # equipotential gravity surface. Spheres (with zero flattening) aren't.
+    if ellipsoid.flattening != 0:
+        npt.assert_allclose(
+            ellipsoid.normal_gravity(latitude, height=0),
+            normal_gravity_surface(latitude, ellipsoid),
+        )
