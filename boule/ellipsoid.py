@@ -14,11 +14,19 @@ class Ellipsoid:
     Reference oblate ellipsoid.
 
     The ellipsoid is oblate and spins around it's minor axis. It is defined by
-    four parameters and offers other derived quantities as read-only
-    properties. In fact, all attributes of this class are read-only and cannot
-    be changed after instantiation.
+    four parameters (semi-major axis, flattening, geocentric gravitational
+    constant, and angular velocity) and offers other derived quantities.
 
-    All ellipsoid parameters are in SI units.
+    **All attributes of this class are read-only and cannot be changed after
+    instantiation.**
+
+    All parameters are in SI units.
+
+    .. note::
+
+        Use :class:`boule.Sphere` if you desire zero flattening because there
+        are singularities for this particular case in the normal gravity
+        calculations.
 
     Parameters
     ----------
@@ -42,7 +50,7 @@ class Ellipsoid:
     Examples
     --------
 
-    We can define an ellipsoid with flattening equal to 0.5 and unit semimajor axis:
+    We can define an ellipsoid by setting the 4 key numerical parameters:
 
     >>> ellipsoid = Ellipsoid(
     ...     name="oblate-ellipsoid",
@@ -50,12 +58,15 @@ class Ellipsoid:
     ...     semimajor_axis=1,
     ...     flattening=0.5,
     ...     geocentric_grav_const=1,
-    ...     angular_velocity=0
+    ...     angular_velocity=0,
     ... )
     >>> print(ellipsoid) # doctest: +ELLIPSIS
     Ellipsoid(name='oblate-ellipsoid', ...)
     >>> print(ellipsoid.long_name)
     Oblate Ellipsoid
+
+    The class defines several derived attributes based on the input parameters:
+
     >>> print("{:.2f}".format(ellipsoid.semiminor_axis))
     0.50
     >>> print("{:.2f}".format(ellipsoid.mean_radius))
@@ -146,9 +157,7 @@ class Ellipsoid:
     @property
     def mean_radius(self):
         """
-        The arithmetic mean radius [meters]
-
-        :math:`R_1 = (2a + b) /3` [Moritz2000]_
+        The arithmetic mean radius :math:`R_1=(2a+b)/3` [Moritz1988]_ [meters]
         """
         return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
 
@@ -165,7 +174,7 @@ class Ellipsoid:
     @property
     def gravity_equator(self):
         """
-        The norm of the gravity vector at the equator on the ellipsoid [m/s^2]
+        The norm of the gravity vector on the ellipsoid at the equator [m/s²]
         """
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
@@ -180,7 +189,7 @@ class Ellipsoid:
 
     @property
     def gravity_pole(self):
-        "The norm of the gravity vector at the poles on the ellipsoid [m/s^2]"
+        "The norm of the gravity vector on the ellipsoid at the poles [m/s²]"
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
         aux = (
@@ -226,13 +235,8 @@ class Ellipsoid:
         This can be useful if you already have the geocentric latitudes and
         need the geocentric radius of the ellipsoid (for example, in spherical
         harmonic analysis). In these cases, the coordinate conversion route is
-        not possible since we need a radius to do that in the first place.
-
-        Boule generally tries to avoid doing coordinate conversions inside
-        functions in favour of the user handling the conversions prior to
-        input. This simplifies the code and makes sure that users know
-        precisely which conversions are taking place. This method is an
-        exception since a coordinate conversion route would not be possible.
+        not possible since we need the radial coordinates to do that in the
+        first place.
 
         .. note::
 
@@ -291,7 +295,7 @@ class Ellipsoid:
 
             N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}
 
-        Where :math:`a` is the semimajor axis and :math:`e` is the first
+        Where :math:`a` is the semi-major axis and :math:`e` is the first
         eccentricity.
 
         This function receives the sine of the latitude as input to avoid
@@ -305,7 +309,8 @@ class Ellipsoid:
         Returns
         -------
         prime_vertical_radius : float or array-like
-            Prime vertical radius given in the same units as the semimajor axis
+            Prime vertical radius given in the same units as the semi-major
+            axis
 
         """
         return self.semimajor_axis / np.sqrt(
@@ -429,7 +434,8 @@ class Ellipsoid:
             The (geodetic) latitude where the normal gravity will be computed
             (in degrees).
         height : float or array
-            The ellipsoidal (geometric) height of computation point (in meters).
+            The ellipsoidal (geometric) height of computation the point (in
+            meters).
 
         Returns
         -------
