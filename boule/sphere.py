@@ -1,6 +1,8 @@
 """
 Define the reference sphere (ellipsoid with 0 flattening).
 """
+from warnings import warn
+
 import attr
 import numpy as np
 
@@ -113,6 +115,26 @@ class Sphere(Ellipsoid):
     def _set_semimajor_axis(self):
         "The semimajor axis should be the radius"
         return self.radius
+
+    @radius.validator
+    def _check_radius(
+        self, radius, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Check if the radius is positive
+        """
+        if not value > 0:
+            raise ValueError(f"Invalid radius '{value}'. Should be greater than zero.")
+
+    @geocentric_grav_const.validator
+    def _check_geocentric_grav_const(
+        self, geocentric_grav_const, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Warn if geocentric_grav_const is negative
+        """
+        if value < 0:
+            warn(f"The geocentric gravitational constant is negative: '{value}'")
 
     def normal_gravity(self, latitude, height):
         r"""

@@ -2,6 +2,8 @@
 """
 Test the base Sphere class.
 """
+import warnings
+
 import pytest
 import numpy as np
 import numpy.testing as npt
@@ -19,6 +21,40 @@ def sphere():
         angular_velocity=1.3,
     )
     return ellipsoid
+
+
+def test_check_radius():
+    """
+    Check if error is raised after invalid radius
+    """
+    with pytest.raises(ValueError):
+        Sphere(
+            name="zero_radius",
+            radius=0,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Sphere(
+            name="negative_radius",
+            radius=-1,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+
+def test_check_geocentric_grav_const():
+    """
+    Check if warn is raised after negative geocentric_grav_const
+    """
+    with warnings.catch_warnings(record=True) as warn:
+        Sphere(
+            name="negative_gm",
+            radius=1,
+            geocentric_grav_const=-1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
 
 
 def test_sphere_flattening(sphere):
