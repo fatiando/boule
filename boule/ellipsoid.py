@@ -89,7 +89,7 @@ class Ellipsoid:
     reference = attr.ib(default=None)
 
     @flattening.validator
-    def check_flattening(
+    def _check_flattening(
         self, flattening, value
     ):  # pylint: disable=no-self-use,unused-argument
         """
@@ -97,25 +97,23 @@ class Ellipsoid:
         """
         if value < 0 or value >= 1:
             raise ValueError(
-                "Invalid flattening '{}'. ".format(value)
-                + "Flattening should be greater or equal to zero and lower than 1."
+                f"Invalid flattening '{value}'. "
+                "Should be greater than zero and lower than 1."
             )
         if value == 0:
             raise ValueError(
-                "Flattening equal to zero. "
-                + "Use boule.Sphere for representing ellipsoids with zero flattening."
+                "Flattening equal to zero will lead to errors in normal gravity. "
+                "Use boule.Sphere for representing ellipsoids with zero flattening."
             )
         if value < 1e-7:
             warn(
-                "Flattening '{}' too close to zero. ".format(value)
-                + "This may create inaccurate results and/or encounter divisions "
-                + "by zero errors. "
-                + "Consider using boule.Sphere for representing ellipsoids "
-                + "with zero flattening."
+                f"Flattening is too close to zero ('{value}'). "
+                "This may lead to inaccurate results and division by zero errors. "
+                "Use boule.Sphere for representing ellipsoids with zero flattening."
             )
 
     @semimajor_axis.validator
-    def check_semimajor_axis(
+    def _check_semimajor_axis(
         self, semimajor_axis, value
     ):  # pylint: disable=no-self-use,unused-argument
         """
@@ -123,19 +121,18 @@ class Ellipsoid:
         """
         if not value > 0:
             raise ValueError(
-                "Invalid semimajor_axis '{}'. ".format(value)
-                + "Semimajor axis should be greater than zero."
+                f"Invalid semi-major axis '{value}'. Should be greater than zero."
             )
 
     @geocentric_grav_const.validator
-    def check_geocentric_grav_const(
+    def _check_geocentric_grav_const(
         self, geocentric_grav_const, value
     ):  # pylint: disable=no-self-use,unused-argument
         """
         Warn if geocentric_grav_const is negative
         """
         if value < 0:
-            warn("Received a negative geocentric_grav_const '{}'. ".format(value))
+            warn(f"The geocentric gravitational constant is negative: '{value}'")
 
     @property
     def semiminor_axis(self):
