@@ -13,7 +13,10 @@ from .. import Sphere
 def sphere():
     "A spherical ellipsoid"
     ellipsoid = Sphere(
-        name="unit_sphere", radius=1.0, geocentric_grav_const=2.0, angular_velocity=1.3,
+        name="unit_sphere",
+        radius=1.0,
+        geocentric_grav_const=2.0,
+        angular_velocity=1.3,
     )
     return ellipsoid
 
@@ -151,7 +154,8 @@ def test_normal_gravity_only_rotation():
     for height in heights:
         expected_value = 1e5 * (omega ** 2) * (radius + height)
         npt.assert_allclose(
-            expected_value, sphere.normal_gravity(latitude=0, height=height),
+            expected_value,
+            sphere.normal_gravity(latitude=0, height=height),
         )
     # Check normal gravity on the poles (must be equal to zero)
     for height in heights:
@@ -163,5 +167,6 @@ def test_normal_gravity_only_rotation():
     for height in heights:
         expected_value = 1e5 * (omega ** 2) * (radius + height) * np.sqrt(2) / 2
         npt.assert_allclose(
-            expected_value, sphere.normal_gravity(latitude=45, height=height),
+            expected_value,
+            sphere.normal_gravity(latitude=45, height=height),
         )
