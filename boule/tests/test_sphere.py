@@ -2,6 +2,8 @@
 """
 Test the base Sphere class.
 """
+import warnings
+
 import pytest
 import numpy as np
 import numpy.testing as npt
@@ -13,12 +15,37 @@ from .. import Sphere
 def sphere():
     "A spherical ellipsoid"
     ellipsoid = Sphere(
-        name="unit_sphere",
-        radius=1.0,
-        geocentric_grav_const=2.0,
-        angular_velocity=1.3,
+        name="unit_sphere", radius=1.0, geocentric_grav_const=2.0, angular_velocity=1.3,
     )
     return ellipsoid
+
+
+def test_check_radius():
+    """
+    Check if error is raised after invalid radius
+    """
+    with pytest.raises(ValueError):
+        Sphere(
+            name="zero_radius", radius=0, geocentric_grav_const=0, angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Sphere(
+            name="negative_radius",
+            radius=-1,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+
+def test_check_geocentric_grav_const():
+    """
+    Check if warn is raised after negative geocentric_grav_const
+    """
+    with warnings.catch_warnings(record=True) as warn:
+        Sphere(
+            name="negative_gm", radius=1, geocentric_grav_const=-1, angular_velocity=0,
+        )
+        assert len(warn) >= 1
 
 
 def test_sphere_flattening(sphere):
@@ -154,8 +181,7 @@ def test_normal_gravity_only_rotation():
     for height in heights:
         expected_value = 1e5 * (omega ** 2) * (radius + height)
         npt.assert_allclose(
-            expected_value,
-            sphere.normal_gravity(latitude=0, height=height),
+            expected_value, sphere.normal_gravity(latitude=0, height=height),
         )
     # Check normal gravity on the poles (must be equal to zero)
     for height in heights:
@@ -167,6 +193,5 @@ def test_normal_gravity_only_rotation():
     for height in heights:
         expected_value = 1e5 * (omega ** 2) * (radius + height) * np.sqrt(2) / 2
         npt.assert_allclose(
-            expected_value,
-            sphere.normal_gravity(latitude=45, height=height),
+            expected_value, sphere.normal_gravity(latitude=45, height=height),
         )
