@@ -8,32 +8,91 @@ import numpy as np
 import numpy.testing as npt
 
 from .. import Ellipsoid, ELLIPSOIDS
+from .utils import normal_gravity_surface
 
 
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
 
-def test_ellipsoid_zero_flattening():
+def test_check_flattening():
     """
-    Check if error is raised after passing zero flattening
+    Check if error/warns is raised after invalid flattening
     """
-    # Test with zero flattening
-    with warnings.catch_warnings(record=True) as warn:
+    with pytest.raises(ValueError):
         Ellipsoid(
-            name="zero-flattening",
-            semimajor_axis=1,
-            flattening=0,
-            geocentric_grav_const=1,
+            name="negative_flattening",
+            semimajor_axis=1.0,
+            flattening=-1,
+            geocentric_grav_const=0,
             angular_velocity=0,
         )
-        assert len(warn) >= 1
-    # Test with almost zero flattening
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="flattening_greater_than_one",
+            semimajor_axis=1.0,
+            flattening=1.5,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="zero_flattening",
+            semimajor_axis=1.0,
+            flattening=0,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="almost_zero_negative_flattening",
+            semimajor_axis=1.0,
+            flattening=-1e8,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
     with warnings.catch_warnings(record=True) as warn:
         Ellipsoid(
             name="almost-zero-flattening",
             semimajor_axis=1,
             flattening=1e-8,
             geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+
+
+def test_check_semimajor_axis():
+    """
+    Check if error is raised after invalid semimajor_axis
+    """
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="zero_semimajor_axis",
+            semimajor_axis=0,
+            flattening=0.1,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="negative_semimajor_axis",
+            semimajor_axis=-1,
+            flattening=0.1,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+
+def test_check_geocentric_grav_const():
+    """
+    Check if warn is raised after negative geocentric_grav_const
+    """
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="negative_gm",
+            semimajor_axis=1,
+            flattening=0.1,
+            geocentric_grav_const=-1,
             angular_velocity=0,
         )
         assert len(warn) >= 1
@@ -239,3 +298,18 @@ def test_geocentric_radius_geocentric_pole_equator(ellipsoid):
     npt.assert_allclose(
         radius_true, ellipsoid.geocentric_radius(latitude, geodetic=False)
     )
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_normal_gravity_against_somigliana(ellipsoid):
+    """
+    Check if normal gravity on the surface satisfies Somigliana equation
+    """
+    latitude = np.linspace(-90, 90, 181)
+    # Somigliana equation applies only to ellipsoids that are their own
+    # equipotential gravity surface. Spheres (with zero flattening) aren't.
+    if ellipsoid.flattening != 0:
+        npt.assert_allclose(
+            ellipsoid.normal_gravity(latitude, height=0),
+            normal_gravity_surface(latitude, ellipsoid),
+        )

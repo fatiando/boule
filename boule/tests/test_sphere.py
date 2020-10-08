@@ -141,22 +141,27 @@ def test_normal_gravity_only_rotation():
     """
     radius = 1
     omega = 2
+    heights = [1, 100, 1000]
     sphere = Sphere(
         name="sphere", radius=radius, geocentric_grav_const=0, angular_velocity=omega
     )
     # Check normal gravity on the equator
-    for height in [1, 2, 3, 4]:
-        expected_value = -1e5 * (omega ** 2) * (radius + height)
+    # Expected value is positive because normal gravity is the norm of the
+    # vector.
+    for height in heights:
+        expected_value = 1e5 * (omega ** 2) * (radius + height)
         npt.assert_allclose(
             expected_value, sphere.normal_gravity(latitude=0, height=height),
         )
     # Check normal gravity on the poles (must be equal to zero)
-    for height in [1, 2, 3, 4]:
+    for height in heights:
         assert sphere.normal_gravity(latitude=90, height=height) < 1e-15
         assert sphere.normal_gravity(latitude=-90, height=height) < 1e-15
     # Check normal gravity at 45 degrees latitude
-    for height in [1, 2, 3, 4]:
-        expected_value = -1e5 * (omega ** 2) * (radius + height) * np.sqrt(2) / 2
+    # Expected value is positive because normal gravity is the norm of the
+    # vector.
+    for height in heights:
+        expected_value = 1e5 * (omega ** 2) * (radius + height) * np.sqrt(2) / 2
         npt.assert_allclose(
             expected_value, sphere.normal_gravity(latitude=45, height=height),
         )

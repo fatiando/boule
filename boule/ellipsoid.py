@@ -14,19 +14,19 @@ class Ellipsoid:
     Reference oblate ellipsoid.
 
     The ellipsoid is oblate and spins around it's minor axis. It is defined by
-    four parameters and offers other derived quantities. **All attributes of
-    this class are read-only and cannot be changed after instantiation.**
+    four parameters (semi-major axis, flattening, geocentric gravitational
+    constant, and angular velocity) and offers other derived quantities.
+
+    **All attributes of this class are read-only and cannot be changed after
+    instantiation.**
 
     All parameters are in SI units.
-
-    The term "gravity" refers to the magnitude of gradient of the gravity
-    potential (the sum of the gravitational and centrifugal potentials).
 
     .. note::
 
         Use :class:`boule.Sphere` if you desire zero flattening because there
-        are singularities for this particular case in the ellipsoid normal
-        gravity calculations.
+        are singularities for this particular case in the normal gravity
+        calculations.
 
     Parameters
     ----------
@@ -93,13 +93,49 @@ class Ellipsoid:
         self, flattening, value
     ):  # pylint: disable=no-self-use,unused-argument
         """
-        Check if flattening is not equal (or almost) zero
+        Check if flattening is valid
         """
-        warn_msg = "Use boule.Sphere for representing ellipsoids with zero flattening."
+        if value < 0 or value >= 1:
+            raise ValueError(
+                "Invalid flattening '{}'. ".format(value)
+                + "Flattening should be greater or equal to zero and lower than 1."
+            )
         if value == 0:
-            warn("Flattening equal to zero. " + warn_msg)
+            raise ValueError(
+                "Flattening equal to zero. "
+                + "Use boule.Sphere for representing ellipsoids with zero flattening."
+            )
         if value < 1e-7:
-            warn("Flattening '{}' too close to zero. ".format(value) + warn_msg)
+            warn(
+                "Flattening '{}' too close to zero. ".format(value)
+                + "This may create inaccurate results and/or encounter divisions "
+                + "by zero errors. "
+                + "Consider using boule.Sphere for representing ellipsoids "
+                + "with zero flattening."
+            )
+
+    @semimajor_axis.validator
+    def check_semimajor_axis(
+        self, semimajor_axis, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Check if semimajor_axis is positive
+        """
+        if not value > 0:
+            raise ValueError(
+                "Invalid semimajor_axis '{}'. ".format(value)
+                + "Semimajor axis should be greater than zero."
+            )
+
+    @geocentric_grav_const.validator
+    def check_geocentric_grav_const(
+        self, geocentric_grav_const, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Warn if geocentric_grav_const is negative
+        """
+        if value < 0:
+            warn("Received a negative geocentric_grav_const '{}'. ".format(value))
 
     @property
     def semiminor_axis(self):
@@ -141,7 +177,7 @@ class Ellipsoid:
     @property
     def gravity_equator(self):
         """
-        The norm of the gravity vector at the equator of the ellipsoid [m/s²]
+        The norm of the gravity vector on the ellipsoid at the equator [m/s²]
         """
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
@@ -156,7 +192,7 @@ class Ellipsoid:
 
     @property
     def gravity_pole(self):
-        "The norm of the gravity vector at the poles of the ellipsoid [m/s²]"
+        "The norm of the gravity vector on the ellipsoid at the poles [m/s²]"
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
         aux = (
@@ -202,13 +238,8 @@ class Ellipsoid:
         This can be useful if you already have the geocentric latitudes and
         need the geocentric radius of the ellipsoid (for example, in spherical
         harmonic analysis). In these cases, the coordinate conversion route is
-        not possible since we need a radius to do that in the first place.
-
-        Boule generally tries to avoid doing coordinate conversions inside
-        functions in favour of the user handling the conversions prior to
-        input. This simplifies the code and makes sure that users know
-        precisely which conversions are taking place. This method is an
-        exception since a coordinate conversion route would not be possible.
+        not possible since we need the radial coordinates to do that in the
+        first place.
 
         .. note::
 
@@ -267,7 +298,7 @@ class Ellipsoid:
 
             N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}
 
-        Where :math:`a` is the semimajor axis and :math:`e` is the first
+        Where :math:`a` is the semi-major axis and :math:`e` is the first
         eccentricity.
 
         This function receives the sine of the latitude as input to avoid
@@ -281,7 +312,8 @@ class Ellipsoid:
         Returns
         -------
         prime_vertical_radius : float or array-like
-            Prime vertical radius given in the same units as the semimajor axis
+            Prime vertical radius given in the same units as the semi-major
+            axis
 
         """
         return self.semimajor_axis / np.sqrt(
