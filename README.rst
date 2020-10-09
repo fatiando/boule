@@ -14,9 +14,9 @@ Part of the `Fatiando a Terra <https://www.fatiando.org>`__ project
 .. image:: https://img.shields.io/conda/vn/conda-forge/boule.svg?style=flat-square
     :alt: Latest version on conda-forge
     :target: https://github.com/conda-forge/boule-feedstock
-.. image:: http://img.shields.io/travis/fatiando/boule/master.svg?style=flat-square&label=TravisCI
-    :alt: TravisCI build status
-    :target: https://travis-ci.com/fatiando/boule
+.. image:: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Ffatiando%2Fboule%2Fbadge%3Fref%3Dmaster&style=flat-square
+    :alt: GitHub Actions status
+    :target: https://actions-badge.atrox.dev/fatiando/boule/goto?ref=master
 .. image:: https://img.shields.io/codecov/c/github/fatiando/boule/master.svg?style=flat-square
     :alt: Test coverage status
     :target: https://codecov.io/gh/fatiando/boule
