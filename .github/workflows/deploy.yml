@@ -100,7 +100,7 @@ jobs:
     name: docs
     runs-on: ubuntu-latest
     # Only publish from the origin repository, not forks
-    if: github.repository == 'fatiando/harmonica'
+    if: github.repository == 'fatiando/boule'
     env:
       CONDA_REQUIREMENTS: requirements.txt
       CONDA_REQUIREMENTS_DEV: requirements-dev.txt
