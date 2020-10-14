@@ -8,6 +8,7 @@ build/
 dist/
 .*.swp
 .coverage
+.coverage.*
 .cache
 doc/_build
 doc/api/generated

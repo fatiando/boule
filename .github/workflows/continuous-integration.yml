@@ -92,13 +92,10 @@ jobs:
           name: docs-${{ matrix.os }}-${{ matrix.python }}${{ matrix.dependencies }}-{{ github.sha }}
           path: doc/_build/html
 
-      - name: Convert coverage report to XML for codecov
-        run: coverage xml
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage.xml
+          file: ./.coverage.xml
           env_vars: OS,PYTHON
           # Don't mark the job as failed if the upload fails for some reason.
           # It does sometimes but shouldn't be the reason for running
