@@ -206,3 +206,6 @@ def run_pytest(session):
     tmpdir = session.create_tmp()
     session.cd(tmpdir)
     session.run("pytest", *PYTEST_ARGS, PACKAGE, *RST_FILES)
+    # Copy the coverage information back so it can be reported
+    for f in Path(".").glob(".coverage*"):
+        shutil.copy(f, Path(__file__).parent)
