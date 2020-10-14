@@ -103,11 +103,6 @@ jobs:
     runs-on: ubuntu-latest
     # Only publish from the origin repository, not forks
     if: github.repository == 'fatiando/boule'
-    env:
-      REQUIREMENTS: requirements.txt
-      REQUIREMENTS_DEV: requirements-dev.txt
-      REQUIREMENTS_EXTRA:
-      PYTHON: 3.8
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
@@ -130,49 +125,13 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ env.PYTHON }}
+          python-version: "3.8"
 
-      - name: Install requirements
-        run: |
-          requirements_file=full-requirements.txt
-          if [ ! -z "$REQUIREMENTS" ]; then
-              echo "Capturing dependencies from $REQUIREMENTS"
-              cat $REQUIREMENTS >> $requirements_file
-          fi
-          if [ ! -z "$REQUIREMENTS_DEV" ]; then
-              echo "Capturing dependencies from $REQUIREMENTS_DEV"
-              cat $REQUIREMENTS_DEV >> $requirements_file
-          fi
-          if [ ! -z "$REQUIREMENTS_EXTRA" ]; then
-              echo "Capturing extra dependencies: $REQUIREMENTS_EXTRA"
-              echo "# Extra" >> $requirements_file
-              # Use xargs to print one argument per line
-              echo $REQUIREMENTS_EXTRA | xargs -n 1 >> $requirements_file
-          fi
-          if [ -f $requirements_file ]; then
-              echo "Collected dependencies:"
-              cat $requirements_file
-              echo ""
-              python -m pip install -r $requirements_file
-          else
-              echo "No requirements defined."
-          fi
-
-      - name: List installed packages
-        run: python -m pip freeze
-
-      - name: Build source and wheel distributions
-        run: |
-          python setup.py sdist bdist_wheel
-          echo ""
-          echo "Generated files:"
-          ls -lh dist/
-
-      - name: Install the package
-        run: python -m pip install --no-deps dist/*.whl
+      - name: Install nox
+        run: python -m pip install nox
 
       - name: Build the documentation
-        run: make -C doc clean all
+        run: nox -s docs -- list-packages
 
       - name: Checkout the gh-pages branch in a separate folder
         uses: actions/checkout@28c7f3d2b5162b5ddd3dfd9a45aa55eaf396478b

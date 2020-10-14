@@ -17,7 +17,6 @@ on:
 ###############################################################################
 jobs:
   black:
-    name: black [format]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -30,17 +29,13 @@ jobs:
         with:
           python-version: "3.8"
 
-      - name: Install requirements
-        run: pip install black>=20.8b1
-
-      - name: List installed packages
-        run: pip freeze
+      - name: Install nox
+        run: python -m pip install nox
 
       - name: Check code format
-        run: make black-check
+        run: nox -s black_check -- list-packages
 
   flake8:
-    name: flake8 [style]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -53,17 +48,13 @@ jobs:
         with:
           python-version: "3.8"
 
-      - name: Install requirements
-        run: pip install flake8
-
-      - name: List installed packages
-        run: pip freeze
+      - name: Install nox
+        run: python -m pip install nox
 
       - name: Check code style
-        run: make flake8
+        run: nox -s flake8 -- list-packages
 
   pylint:
-    name: pylint [style]
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -76,11 +67,8 @@ jobs:
         with:
           python-version: "3.8"
 
-      - name: Install requirements
-        run: pip install pylint==2.4.*
-
-      - name: List installed packages
-        run: pip freeze
+      - name: Install nox
+        run: python -m pip install nox
 
       - name: Linting (pylint)
-        run: make lint
+        run: nox -s pylint -- list-packages

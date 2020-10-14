@@ -1,6 +1,6 @@
-# Build, package, test, and clean
-PROJECT=boule
-
+# Automation to help development. Provides rules to run nox commands. See the
+# noxfile.py for the actual commands to build and test the project.
+#
 help:
 	@echo "Commands:"
 	@echo ""
@@ -10,7 +10,6 @@ help:
 	@echo "  lint      run pylint for a deeper (and slower) quality check"
 	@echo "  test      run the test suite (including doctests) and report coverage"
 	@echo "  docs      build the documentation"
-	@echo "  serve     serve the documentation at http://localhost:8000"
 	@echo "  clean     clean up build and generated files"
 	@echo ""
 
@@ -18,41 +17,24 @@ install:
 	pip install --no-deps -e .
 
 test:
-	nox -s test
+	nox -rs test
 
 format:
-	nox -s format
+	nox -rs format
 
 check: black-check flake8
 
 black-check:
-	nox -s black_check
+	nox -rs black_check
 
 flake8:
-	nox -s flake8
+	nox -rs flake8
 
 lint:
-	nox -s pylint
+	nox -rs pylint
 
 docs:
-	nox -s docs
-
-serve: docs
-	cd doc/_build/html && python -m http.server 8000
+	nox -rs docs
 
 clean:
-	find $(PROJECT) -name "*.pyc" -exec rm -v {} \;
-	find . -name ".coverage.*" -exec rm -v {} \;
-	rm -rvf build dist \
-		MANIFEST \
-		*.egg-info \
-		__pycache__ \
-		.coverage \
-		.cache \
-		.pytest_cache \
-		doc/_build/ \
-		doc/api/generated \
-		doc/gallery \
-		doc/tutorials \
-		doc/sample_data \
-		doc/.ipynb_checkpoints
+	nox -rs clean
