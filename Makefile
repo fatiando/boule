@@ -1,10 +1,5 @@
 # Build, package, test, and clean
 PROJECT=boule
-TESTDIR=tmp-test-dir-with-unique-name
-PYTEST_ARGS=--cov-config=../.coveragerc --cov-report=term-missing --cov=$(PROJECT) --doctest-modules --doctest-glob='*.rst' -v --pyargs
-LINT_FILES=setup.py $(PROJECT)
-BLACK_FILES=setup.py doc/conf.py $(PROJECT) tutorials
-FLAKE8_FILES=setup.py doc/conf.py $(PROJECT)
 
 help:
 	@echo "Commands:"
@@ -21,28 +16,32 @@ install:
 	pip install --no-deps -e .
 
 test:
-	# Run a tmp folder to make sure the tests are run on the installed version
-	mkdir -p $(TESTDIR)
-	cd $(TESTDIR); MPLBACKEND='agg' pytest $(PYTEST_ARGS) $(PROJECT) ../doc/*.rst ../doc/ellipsoids/*.rst
-	cp $(TESTDIR)/.coverage* .
-	rm -rvf $(TESTDIR)
+	nox -s test
 
 format:
-	black $(BLACK_FILES)
+	nox -s format
 
 check: black-check flake8
 
 black-check:
-	black --check $(BLACK_FILES)
+	nox -s black_check
 
 flake8:
-	flake8 $(FLAKE8_FILES)
+	nox -s flake8
 
 lint:
-	pylint --jobs=0 $(LINT_FILES)
+	nox -s pylint
+
+docs:
+	nox -s docs
 
 clean:
-	find . -name "*.pyc" -exec rm -v {} \;
+	find $(PROJECT) -name "*.pyc" -exec rm -v {} \;
 	find . -name ".coverage.*" -exec rm -v {} \;
 	rm -rvf build dist MANIFEST *.egg-info __pycache__ .coverage .cache .pytest_cache
-	rm -rvf $(TESTDIR)
+	rm -rf doc/_build/
+	rm -rf doc/api/generated
+	rm -rf doc/gallery
+	rm -rf doc/tutorials
+	rm -rf doc/sample_data
+	rm -rf doc/.ipynb_checkpoints

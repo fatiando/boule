@@ -5,18 +5,10 @@ channels:
 dependencies:
     - python=3.7
     - pip
-    # Required
-    - numpy
-    - attr
-    # Optional
-    # Development
-    - matplotlib
+    - setuptools>42
+    - wheel
+    - nox
+    - black
+    - flake8
     - pytest
     - pytest-cov
-    - coverage
-    - black
-    - pylint=2.4.*
-    - flake8
-    - sphinx=2.2.1
-    - sphinx_rtd_theme=0.4.3
-    - sphinx-gallery
