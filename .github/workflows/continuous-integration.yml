@@ -84,14 +84,6 @@ jobs:
       - name: Build the documentation
         run: nox -s docs -- list-packages
 
-      # Store the docs as a build artifact on GitHub so we can check it if
-      # needed.
-      - name: Upload HTML documentation as an artifact
-        uses: actions/upload-artifact@v2
-        with:
-          name: docs-${{ matrix.os }}-${{ matrix.python }}${{ matrix.dependencies }}-{{ github.sha }}
-          path: doc/_build/html
-
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
