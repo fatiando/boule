@@ -17,24 +17,24 @@ install:
 	pip install --no-deps -e .
 
 test:
-	nox -rs test
+	nox -s test
 
 format:
-	nox -rs format
+	nox -s format
 
 check: black-check flake8
 
 black-check:
-	nox -rs black_check
+	nox -s black_check
 
 flake8:
-	nox -rs flake8
+	nox -s flake8
 
 lint:
-	nox -rs pylint
+	nox -s pylint
 
 docs:
-	nox -rs docs
+	nox -s docs
 
 clean:
-	nox -rs clean
+	nox -s clean

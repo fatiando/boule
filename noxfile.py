@@ -3,13 +3,19 @@ Configuration for setting up virtual environments to run tests, build
 documentation, and check code style.
 
 Use 'nox -l' to see a list of all sessions available and 'nox -s SESSION_NAME'
-to run a session. Use '-rs' instead of '-s' to avoid creating new virtual
-environments all the time.
+to run a session.
 """
 from pathlib import Path
 import shutil
 
 import nox
+
+
+# CONFIGURE NOX
+# Specify session that will execute when running with no arguments
+nox.options.sessions = ("check", "test")
+# Always reuse environments. Use --no-reuse-existing-virtualenvs to disable.
+nox.options.reuse_existing_virtualenvs = True
 
 
 PACKAGE = "boule"
@@ -19,11 +25,22 @@ REQUIREMENTS = {
     "run": "requirements.txt",
     "test": str(Path("env") / "requirements-test.txt"),
     "docs": str(Path("env") / "requirements-docs.txt"),
+    "style": str(Path("env") / "requirements-style.txt"),
+    "build": str(Path("env") / "requirements-build.txt"),
 }
 
-PYLINT_FILES = [PACKAGE, "setup.py"]
-FLAKE8_FILES = [PACKAGE, "setup.py", str(DOCS / "conf.py")]
-BLACK_FILES = [PACKAGE, "setup.py", str(DOCS / "conf.py"), "tutorials", "noxfile.py"]
+STYLE_ARGS = {
+    "pylint": [PACKAGE, "setup.py"],
+    "flake8": [PACKAGE, "setup.py", str(DOCS / "conf.py")],
+    "black": [
+        "--check",
+        PACKAGE,
+        "setup.py",
+        str(DOCS / "conf.py"),
+        "tutorials",
+        "noxfile.py",
+    ],
+}
 
 # Use absolute paths for pytest otherwise it struggles to pick up coverage info
 PYTEST_ARGS = [
@@ -37,39 +54,25 @@ PYTEST_ARGS = [
 ]
 RST_FILES = [str(p.resolve()) for p in Path("doc").glob("**/*.rst")]
 
-
-# Configure Nox
-nox.options.sessions = ("black_check", "flake8", "pylint", "test")
-
-
-@nox.session()
-def black_check(session):
-    """
-    Check code style using black
-    """
-    session.install("black")
-    list_packages(session)
-    session.run("black", "--check", *BLACK_FILES)
+# Command line arguments that we're implementing. Pass them to nox after "--":
+#   nox -s test -- list-packages
+NOX_ARGS = ["skip-install", "list-packages"]
 
 
 @nox.session()
-def flake8(session):
+def check(session):
     """
-    Check code style using flake8
+    Check code style using black, flake8, and pylint
     """
-    session.install("flake8")
+    install_requirements(session, ["style"])
     list_packages(session)
-    session.run("flake8", *FLAKE8_FILES)
-
-
-@nox.session()
-def pylint(session):
-    """
-    Check code style using pylint
-    """
-    session.install("pylint==2.4.*")
-    list_packages(session)
-    session.run("pylint", *PYLINT_FILES)
+    args = list(set(session.posargs).difference(NOX_ARGS))
+    if args:
+        checks = args
+    else:
+        checks = ["black", "flake8", "pylint"]
+    for check in checks:
+        session.run(check, *STYLE_ARGS[check])
 
 
 @nox.session()
@@ -77,22 +80,8 @@ def format(session):
     """
     Run black to format the code
     """
-    session.install("black")
-    session.run("black", *BLACK_FILES)
-
-
-def build_and_install(session):
-    """
-    Build source and wheel packages for the project and install them
-    """
-    if Path("dist").exists():
-        shutil.rmtree("dist")
-    session.install("wheel")
-    session.run("python", "setup.py", "sdist", "bdist_wheel", silent=True)
-    wheel = [str(p) for p in Path("dist").glob("*.whl")]
-    assert len(wheel) == 1, f"More than 1 wheel present: {wheel}"
-    session.install("--no-deps", wheel[0])
-    # session.install("--no-deps", "-e", ".")
+    install_requirements(session, ["style"])
+    session.run("black", *STYLE_ARGS["black"][1:])
 
 
 @nox.session(python=PYTHON_VERSIONS)
@@ -100,8 +89,8 @@ def test(session):
     """
     Run the tests and measure coverage (using pip)
     """
-    session.install("-r", REQUIREMENTS["test"], "-r", REQUIREMENTS["run"])
-    build_and_install(session)
+    install_requirements(session, ["build", "run", "test"])
+    packages = build_project(session, install=True)
     list_packages(session)
     run_pytest(session)
 
@@ -111,8 +100,8 @@ def test_conda(session):
     """
     Run the tests and measure coverage (using conda)
     """
-    session.conda_install("--file", REQUIREMENTS["test"], "--file", REQUIREMENTS["run"])
-    build_and_install(session)
+    install_requirements(session, ["build", "run", "test"], package_manager="conda")
+    build_project(session, install=True)
     list_packages(session, package_manager="conda")
     run_pytest(session)
 
@@ -122,9 +111,9 @@ def docs(session):
     """
     Build the documentation
     """
-    session.install("-r", REQUIREMENTS["docs"], "-r", REQUIREMENTS["run"])
-    list_packages(session)
-    build_and_install(session)
+    install_requirements(session, ["build", "run", "docs"])
+    build_project(session, install=True)
+    list_packages(session, package_manager="pip")
     # Generate the API reference
     session.run(
         "sphinx-autogen",
@@ -143,6 +132,17 @@ def docs(session):
         "doc",
         str(DOCS / "_build" / "html"),
     )
+
+
+@nox.session()
+def build(session):
+    """
+    Build source and wheel distributions for the project
+    """
+    install_requirements(session, ["build"])
+    packages = build_project(session, install=False)
+    check_packages(session, packages)
+    list_packages(session)
 
 
 @nox.session
@@ -180,6 +180,33 @@ def clean(session):
 ###############################################################################
 
 
+def install_requirements(session, requirements, package_manager="pip"):
+    """
+    Install dependencies from the requirements files specified in REQUIREMENTS.
+
+    *requirements* should be a list of keywords defined in the REQUIREMENTS
+    dictionary. Set *package_manager* to "conda" if using the conda backend for
+    virtual environments.
+    """
+    if package_manager not in {"pip", "conda"}:
+        raise ValueError(f"Invalid package manager '{package_manager}'")
+    if session.posargs and "skip-install" in session.posargs:
+        session.log(f"Skipping install steps.")
+        return
+    arg_name = {"pip": "-r", "conda": "--file"}
+    args = []
+    for requirement in requirements:
+        args.extend([arg_name[package_manager], REQUIREMENTS[requirement]])
+    if package_manager == "pip":
+        session.install(*args)
+    elif package_manager == "conda":
+        session.conda_install(
+            "--channel=conda-forge",
+            "--channel=defaults",
+            *args,
+        )
+
+
 def list_packages(session, package_manager="pip"):
     """
     List installed packages in the virtual environment.
@@ -193,6 +220,7 @@ def list_packages(session, package_manager="pip"):
     if package_manager not in {"pip", "conda"}:
         raise ValueError(f"Invalid package manager '{package_manager}'")
     if session.posargs and "list-packages" in session.posargs:
+        session.log(f"Packages installed ({package_manager}):")
         if package_manager == "pip":
             session.run("pip", "freeze")
         elif package_manager == "conda":
@@ -210,3 +238,26 @@ def run_pytest(session):
     # Copy the coverage information back so it can be reported
     for f in Path(".").glob(".coverage*"):
         shutil.copy(f, Path(__file__).parent)
+
+
+def build_project(session, install=False):
+    """
+    Build source and wheel packages for the project and returns their path.
+    If 'install==True', will also install the package.
+    """
+    session.log("Build source and wheel distributions:")
+    if Path("dist").exists():
+        shutil.rmtree("dist")
+    session.run("python", "setup.py", "sdist", "bdist_wheel", silent=True)
+    packages = list(Path("dist").glob("*"))
+    if install:
+        session.install("--force-reinstall", "--no-deps", str(packages[0]))
+    return packages
+
+
+def check_packages(session, packages):
+    """
+    Use twine to check the built packages (source and wheel).
+    """
+    for package in packages:
+        session.run("twine", "check", str(package))

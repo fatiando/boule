@@ -57,7 +57,7 @@ jobs:
           python-version: "3.8"
 
       - name: Install requirements
-        run: python -m pip install setuptools twine wheel
+        run: python -m pip install nox
 
       - name: List installed packages
         run: python -m pip freeze
@@ -69,13 +69,10 @@ jobs:
           # we rely the hash to indicate to the tests that this is a local
           # verison instead of a published version.
           sed --in-place "s/pep440/pep440-pre/g" setup.cfg
-          python setup.py sdist bdist_wheel
+          nox -s build -- list-packages
           echo ""
           echo "Generated files:"
           ls -lh dist/
-
-      - name: Check the archives
-        run: twine check dist/*
 
       - name: Publish to Test PyPI
         if: success()
