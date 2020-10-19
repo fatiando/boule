@@ -6,8 +6,7 @@ help:
 	@echo ""
 	@echo "  format    run black to automatically format the code"
 	@echo "  install   install in editable mode"
-	@echo "  check     run code style and quality checks (black and flake8)"
-	@echo "  lint      run pylint for a deeper (and slower) quality check"
+	@echo "  check     run code style and quality checks (black, flake8 and pylint)"
 	@echo "  test      run the test suite (including doctests) and report coverage"
 	@echo "  docs      build the documentation"
 	@echo "  clean     clean up build and generated files"
@@ -22,16 +21,8 @@ test:
 format:
 	nox -s format
 
-check: black-check flake8
-
-black-check:
-	nox -s black_check
-
-flake8:
-	nox -s flake8
-
-lint:
-	nox -s pylint
+check:
+	nox -s check
 
 docs:
 	nox -s docs
