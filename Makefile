@@ -22,19 +22,17 @@ test:
 format:
 	nox -s format
 
-check: black-check flake8
-
-black-check:
-	nox -s black_check
-
-flake8:
-	nox -s flake8
+check:
+	nox -s check -- black flake8
 
 lint:
-	nox -s pylint
+	nox -s check -- pylint
 
 docs:
 	nox -s docs
 
 clean:
 	nox -s clean
+
+clean-nox:
+	rm -rf .nox

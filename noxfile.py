@@ -1,25 +1,40 @@
 """
-Configuration for setting up virtual environments to run tests, build
-documentation, and check code style.
+Configuration for setting up virtual environments to check code style, run
+tests, build documentation, and create package distributions for PyPI.
 
-Use 'nox -l' to see a list of all sessions available and 'nox -s SESSION_NAME'
-to run a session.
+Instructions
+------------
+
+* List all available sessions: 'nox -l'
+* Run all sessions: 'nox' (without arguments)
+* Run only a particular session: 'nox -s SESSION' (e.g., 'nox -s test-3.8')
+* Only create virtual environments and install packages: 'nox --install-only'
+  (use this to prepare for working offline)
+* Run a session but skip the install step: 'nox -s SESSION -- skip-install'
+* Run a session and list installed packages:
+  'nox -s SESSION -- list-packages'
+* Run only selected code style checkers: 'nox -s check -- CHECKER' (could be
+  'black', 'flake8', or 'pylint')
+* Open the documentation in a browser after building: 'nox -s docs -- show'
+
 """
 from pathlib import Path
 import shutil
+import webbrowser
 
 import nox
 
 
 # CONFIGURE NOX
-# Specify session that will execute when running with no arguments
-nox.options.sessions = ("check", "test")
 # Always reuse environments. Use --no-reuse-existing-virtualenvs to disable.
 nox.options.reuse_existing_virtualenvs = True
 
+# Custom command-line arguments that we're implementing
+NOX_ARGS = ["skip-install", "list-packages", "show"]
+
 
 PACKAGE = "boule"
-PYTHON_VERSIONS = ["3.8", "3.7", "3.6"]
+PYTHON_VERSIONS = ["3.9", "3.8", "3.7", "3.6"]
 DOCS = Path("doc")
 REQUIREMENTS = {
     "run": "requirements.txt",
@@ -54,16 +69,17 @@ PYTEST_ARGS = [
 ]
 RST_FILES = [str(p.resolve()) for p in Path("doc").glob("**/*.rst")]
 
-# Command line arguments that we're implementing. Pass them to nox after "--":
-#   nox -s test -- list-packages
-NOX_ARGS = ["skip-install", "list-packages"]
+
+@nox.session()
+def format(session):
+    "Run 'black' to format the code"
+    install_requirements(session, ["style"])
+    session.run("black", *STYLE_ARGS["black"][1:])
 
 
 @nox.session()
 def check(session):
-    """
-    Check code style using black, flake8, and pylint
-    """
+    "Check code style"
     install_requirements(session, ["style"])
     list_packages(session)
     args = list(set(session.posargs).difference(NOX_ARGS))
@@ -76,30 +92,26 @@ def check(session):
 
 
 @nox.session()
-def format(session):
-    """
-    Run black to format the code
-    """
-    install_requirements(session, ["style"])
-    session.run("black", *STYLE_ARGS["black"][1:])
+def build(session):
+    "Build source and wheel distributions"
+    install_requirements(session, ["build"])
+    packages = build_project(session, install=False)
+    check_packages(session, packages)
+    list_packages(session)
 
 
 @nox.session(python=PYTHON_VERSIONS)
 def test(session):
-    """
-    Run the tests and measure coverage (using pip)
-    """
+    "Run the tests and measure coverage (using pip)"
     install_requirements(session, ["build", "run", "test"])
-    packages = build_project(session, install=True)
+    build_project(session, install=True)
     list_packages(session)
     run_pytest(session)
 
 
 @nox.session(venv_backend="conda", python=PYTHON_VERSIONS)
 def test_conda(session):
-    """
-    Run the tests and measure coverage (using conda)
-    """
+    "Run the tests and measure coverage (using conda)"
     install_requirements(session, ["build", "run", "test"], package_manager="conda")
     build_project(session, install=True)
     list_packages(session, package_manager="conda")
@@ -108,9 +120,7 @@ def test_conda(session):
 
 @nox.session()
 def docs(session):
-    """
-    Build the documentation
-    """
+    "Build the documentation web pages"
     install_requirements(session, ["build", "run", "docs"])
     build_project(session, install=True)
     list_packages(session, package_manager="pip")
@@ -125,24 +135,17 @@ def docs(session):
         str(DOCS / "api" / "index.rst"),
     )
     # Build the HTML pages
+    html = DOCS / "_build" / "html"
     session.run(
         "sphinx-build",
         "-d",
         str(DOCS / "_build" / "doctrees"),
         "doc",
-        str(DOCS / "_build" / "html"),
+        str(html),
     )
-
-
-@nox.session()
-def build(session):
-    """
-    Build source and wheel distributions for the project
-    """
-    install_requirements(session, ["build"])
-    packages = build_project(session, install=False)
-    check_packages(session, packages)
-    list_packages(session)
+    if session.posargs and "show" in session.posargs:
+        session.log("Opening built docs in the default web browser.")
+        webbrowser.open(f"file://{(html / 'index.html').resolve()}")
 
 
 @nox.session
@@ -191,7 +194,7 @@ def install_requirements(session, requirements, package_manager="pip"):
     if package_manager not in {"pip", "conda"}:
         raise ValueError(f"Invalid package manager '{package_manager}'")
     if session.posargs and "skip-install" in session.posargs:
-        session.log(f"Skipping install steps.")
+        session.log("Skipping install steps.")
         return
     arg_name = {"pip": "-r", "conda": "--file"}
     args = []
@@ -250,7 +253,7 @@ def build_project(session, install=False):
         shutil.rmtree("dist")
     session.run("python", "setup.py", "sdist", "bdist_wheel", silent=True)
     packages = list(Path("dist").glob("*"))
-    if install:
+    if install and packages:
         session.install("--force-reinstall", "--no-deps", str(packages[0]))
     return packages
 
