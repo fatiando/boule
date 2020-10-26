@@ -17,7 +17,7 @@ on:
 ###############################################################################
 jobs:
   black:
-    name: black [format]
+    name: black
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -40,7 +40,7 @@ jobs:
         run: make black-check
 
   flake8:
-    name: flake8 [style]
+    name: flake8
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
@@ -63,7 +63,7 @@ jobs:
         run: make flake8
 
   pylint:
-    name: pylint [style]
+    name: pylint
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
