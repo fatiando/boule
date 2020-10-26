@@ -8,6 +8,9 @@ from .realizations import WGS84, GRS80, MARS
 
 ELLIPSOIDS = [WGS84, GRS80, MARS]
 
+# Get the version number through setuptools-scm
+__version__ = version.version
+
 
 def test(doctest=True, verbose=True):
     """

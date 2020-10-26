@@ -30,7 +30,7 @@ jobs:
   #############################################################################
   # Run tests, build the docs, and deploy if needed
   test:
-    name: ${{ matrix.os }} py${{ matrix.python }} ${{ matrix.dependencies }} [test]
+    name: ${{ matrix.os }} py${{ matrix.python }} ${{ matrix.dependencies }}
     runs-on: ${{ matrix.os }}-latest
     strategy:
       # Otherwise, the workflow would stop if a single job fails. We want to
@@ -63,7 +63,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          # Need to fetch more than the last commit so that versioneer can
+          # Need to fetch more than the last commit so that setuptools-scm can
           # create the correct version string. If the number of commits since
           # the last release is greater than this, the version still be wrong.
           # Increase if necessary.
@@ -72,7 +72,7 @@ jobs:
           # to be able to push to GitHub.
           persist-credentials: false
 
-      # Need the tags so that versioneer can form a valid version number
+      # Need the tags so that setuptools-scm can form a valid version number
       - name: Fetch git tags
         run: git fetch origin 'refs/tags/*:refs/tags/*'
 
