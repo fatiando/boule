@@ -1,9 +1,10 @@
 name: boule
 channels:
-    - conda-forge
-    - defaults
+  - conda-forge
+  - defaults
 dependencies:
-    - python=3.9
-    - pip
-    - nox
-    - make
+  - python=3.9
+  - pip
+  - nox
+  - setuptools_scm
+  - make
