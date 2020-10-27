@@ -6,6 +6,7 @@
 .nox
 build/
 dist/
+.eggs
 .*.swp
 .coverage
 .coverage.*
