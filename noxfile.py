@@ -16,6 +16,10 @@ Instructions
 * Run only selected code style checkers: 'nox -s check -- CHECKER' (could be
   'black', 'flake8', or 'pylint')
 * Open the documentation in a browser after building: 'nox -s docs -- show'
+* Create a sandbox conda environment with all dependencies and the package
+  installed: 'nox -s sandbox'. You can then activate it with 'conda activate
+  .nox/sandbox' (from the project folder) and run things like 'python',
+  'ipython', and 'jupyter'. Useful for experimentation.
 
 """
 from pathlib import Path
@@ -42,6 +46,7 @@ REQUIREMENTS = {
     "docs": str(Path("env") / "requirements-docs.txt"),
     "style": str(Path("env") / "requirements-style.txt"),
     "build": str(Path("env") / "requirements-build.txt"),
+    "sandbox": str(Path("env") / "requirements-sandbox.txt"),
 }
 
 STYLE_ARGS = {
@@ -146,6 +151,16 @@ def docs(session):
     if session.posargs and "show" in session.posargs:
         session.log("Opening built docs in the default web browser.")
         webbrowser.open(f"file://{(html / 'index.html').resolve()}")
+
+
+@nox.session(venv_backend="conda", python="3.8")
+def sandbox(session):
+    "Create a sandbox conda environment to use outside of nox"
+    install_requirements(
+        session, ["build", "style", "run", "docs", "sandbox"], package_manager="conda"
+    )
+    build_project(session, install=True)
+    list_packages(session, package_manager="conda")
 
 
 @nox.session
