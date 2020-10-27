@@ -1,0 +1,6 @@
+# Requirements for building the documentation
+matplotlib
+numpydoc
+sphinx-gallery
+sphinx==2.2.1
+sphinx_rtd_theme==0.4.3

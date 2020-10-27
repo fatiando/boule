@@ -1,3 +1,2 @@
-setuptools_scm
 numpy
 attrs

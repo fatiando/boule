@@ -6,7 +6,7 @@ from warnings import warn
 import attr
 import numpy as np
 
-from . import Ellipsoid
+from .ellipsoid import Ellipsoid
 
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations

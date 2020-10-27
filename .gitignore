@@ -3,10 +3,13 @@
 *.so
 *.pyd
 .pytest_cache/
+.nox
 build/
 dist/
+.eggs
 .*.swp
 .coverage
+.coverage.*
 .cache
 doc/_build
 doc/api/generated

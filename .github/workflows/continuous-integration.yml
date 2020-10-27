@@ -30,7 +30,7 @@ jobs:
   #############################################################################
   # Run tests, build the docs, and deploy if needed
   test:
-    name: ${{ matrix.os }} py${{ matrix.python }} ${{ matrix.dependencies }}
+    name: ${{ matrix.os }} py${{ matrix.python }}
     runs-on: ${{ matrix.os }}-latest
     strategy:
       # Otherwise, the workflow would stop if a single job fails. We want to
@@ -39,13 +39,7 @@ jobs:
       matrix:
         os: [ubuntu, macos, windows]
         python: [3.6, 3.7, 3.8]
-        # If "optional", will install non-required dependencies in the build
-        # environment. Otherwise, only required dependencies are installed.
-        dependencies: [""]
     env:
-      REQUIREMENTS: requirements.txt
-      REQUIREMENTS_DEV: requirements-dev.txt
-      REQUIREMENTS_EXTRA:
       # Used to tag codecov submissions
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python }}
@@ -81,58 +75,19 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
-      - name: Install requirements
-        run: |
-          requirements_file=full-requirements.txt
-          if [ ! -z "$REQUIREMENTS" ]; then
-              echo "Capturing dependencies from $REQUIREMENTS"
-              cat $REQUIREMENTS >> $requirements_file
-          fi
-          if [ ! -z "$REQUIREMENTS_DEV" ]; then
-              echo "Capturing dependencies from $REQUIREMENTS_DEV"
-              cat $REQUIREMENTS_DEV >> $requirements_file
-          fi
-          if [ ! -z "$REQUIREMENTS_EXTRA" ]; then
-              echo "Capturing extra dependencies: $REQUIREMENTS_EXTRA"
-              echo "# Extra" >> $requirements_file
-              # Use xargs to print one argument per line
-              echo $REQUIREMENTS_EXTRA | xargs -n 1 >> $requirements_file
-          fi
-          if [ -f $requirements_file ]; then
-              echo "Collected dependencies:"
-              cat $requirements_file
-              echo ""
-              python -m pip install -r $requirements_file
-          else
-              echo "No requirements defined."
-          fi
-
-      - name: List installed packages
-        run: python -m pip freeze
-
-      - name: Build source and wheel distributions
-        run: |
-          python setup.py sdist bdist_wheel
-          echo ""
-          echo "Generated files:"
-          ls -lh dist/
-
-      - name: Install the package
-        run: python -m pip install --no-deps dist/*.whl
+      - name: Install nox
+        run: python -m pip install nox
 
       - name: Run the tests
-        run: make test
+        run: nox -s test-${{ matrix.python }} -- list-packages
 
       - name: Build the documentation
-        run: make -C doc clean all
-
-      - name: Convert coverage report to XML for codecov
-        run: coverage xml
+        run: nox -s docs -- list-packages
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v1
         with:
-          file: ./coverage.xml
+          file: ./.coverage.xml
           env_vars: OS,PYTHON
           # Don't mark the job as failed if the upload fails for some reason.
           # It does sometimes but shouldn't be the reason for running
