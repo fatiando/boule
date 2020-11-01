@@ -178,6 +178,9 @@ class Sphere(Ellipsoid):
             The normal gravity in mGal.
 
         """
+        if height < 0:
+        warn(f"The normal gravity formulas used are valid for points outside
+        the ellipsoid, height must be major or equal to zero")
         radial_distance = self.radius + height
         gravity_acceleration = self.geocentric_grav_const / (radial_distance) ** 2
         return 1e5 * np.sqrt(
