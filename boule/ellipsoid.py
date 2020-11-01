@@ -443,6 +443,15 @@ class Ellipsoid:
             The normal gravity in mGal.
 
         """
+        """
+        Warn if given point is not outside the ellipsoid
+        
+        """
+        if height < 0:
+            warn(f"The normal gravity formulas used are valid for points outside
+            the ellipsoid, height must be major or equal to zero")
+        
+
         sinlat = np.sin(np.deg2rad(latitude))
         coslat = np.sqrt(1 - sinlat ** 2)
         # The terms below follow the variable names from Li and Goetze (2001)
