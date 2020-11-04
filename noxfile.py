@@ -1,9 +1,3 @@
-# Copyright (c) YEAR The PROJECT Developers.
-# Distributed under the terms of the BSD 3-Clause License.
-# SPDX-License-Identifier: BSD-3-Clause
-#
-# This code is part of the Fatiando a Terra project (https://www.fatiando.org)
-#
 """
 Configuration for setting up virtual environments to check code style, run
 tests, build documentation, and create package distributions for PyPI.
