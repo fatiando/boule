@@ -3,10 +3,10 @@
 from . import version
 from .ellipsoid import Ellipsoid
 from .sphere import Sphere
-from .realizations import WGS84, GRS80, MARS
+from .realizations import WGS84, GRS80, MARS, VENUS
 
 
-ELLIPSOIDS = [WGS84, GRS80, MARS]
+ELLIPSOIDS = [WGS84, GRS80, MARS, VENUS]
 
 # Get the version number through setuptools-scm
 __version__ = version.version
