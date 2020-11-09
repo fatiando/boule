@@ -136,7 +136,7 @@ class Sphere(Ellipsoid):
         if value < 0:
             warn(f"The geocentric gravitational constant is negative: '{value}'")
 
-    def normal_gravity(self, latitude, height):
+    def normal_gravity(self, latitude, height, si_units=False):
         r"""
         Calculate normal gravity at any latitude and height
 
@@ -171,6 +171,8 @@ class Sphere(Ellipsoid):
         height : float or array
             The height (above the surface of the sphere) of the computation
             point (in meters).
+        si_units : bool 
+            Return the value in mGal (False, default) or SI units (True)
 
         Returns
         -------
@@ -180,7 +182,7 @@ class Sphere(Ellipsoid):
         """
         radial_distance = self.radius + height
         gravity_acceleration = self.geocentric_grav_const / (radial_distance) ** 2
-        return 1e5 * np.sqrt(
+        gamma = np.sqrt(
             gravity_acceleration ** 2
             + (self.angular_velocity ** 2 * radial_distance - 2 * gravity_acceleration)
             * self.angular_velocity ** 2
@@ -188,6 +190,10 @@ class Sphere(Ellipsoid):
             # replace cos^2 with (1 - sin^2) for more accurate results on the pole
             * (1 - np.sin(np.radians(latitude)) ** 2)
         )
+        if si_units:
+            return gamma
+        # Convert gamma from SI to mGal
+        return gamma * 1e5
 
     @property
     def gravity_equator(self):

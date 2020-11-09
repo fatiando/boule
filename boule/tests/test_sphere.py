@@ -152,6 +152,18 @@ def test_normal_gravity_pole_equator(sphere):
     npt.assert_allclose(gamma_pole, sphere.normal_gravity(90, height), rtol=rtol)
     npt.assert_allclose(gamma_eq, sphere.normal_gravity(0, height), rtol=rtol)
 
+def test_normal_gravity_si_pole_equator(sphere):
+    """
+    Compare normal gravity values at pole and equator
+    """
+    rtol = 1e-10
+    height = 0
+    # Get gammas in SI Units
+    gamma_pole = sphere.gravity_pole 
+    gamma_eq = sphere.gravity_equator 
+    npt.assert_allclose(gamma_pole, sphere.normal_gravity(-90, height, si_units=True), rtol=rtol)
+    npt.assert_allclose(gamma_pole, sphere.normal_gravity(90, height, si_units=True), rtol=rtol)
+    npt.assert_allclose(gamma_eq, sphere.normal_gravity(0, height, si_units=True), rtol=rtol)
 
 def test_normal_gravity_no_rotation():
     """
