@@ -86,6 +86,13 @@ class Sphere(Ellipsoid):
     >>> print("{:.2f}".format(sphere.normal_gravity(latitude=90, height=0)))
     200000.00
 
+    The flag si_units will return the Normal gravity in m/s².
+
+    >>> print("{:.2f}".format(sphere.normal_gravity(latitude=0, height=0, si_units=True)))
+    1.75
+    >>> print("{:.2f}".format(sphere.normal_gravity(latitude=90, height=0, si_units=True)))
+    2.00
+
     The flattening and eccentricities will all be zero:
 
     >>> print("{:.2f}".format(sphere.flattening))
