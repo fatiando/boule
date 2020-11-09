@@ -419,7 +419,7 @@ class Ellipsoid:
         big_d = k * radius * cos_latitude / (k + self.first_eccentricity ** 2)
         return k, big_z, big_d
 
-    def normal_gravity(self, latitude, height):
+    def normal_gravity(self, latitude, height, si_units=False):
         """
         Calculate normal gravity at any latitude and height.
 
@@ -436,6 +436,8 @@ class Ellipsoid:
         height : float or array
             The ellipsoidal (geometric) height of computation the point (in
             meters).
+        si_units : bool 
+            Return the value in mGal (False, default) or SI units (True)
 
         Returns
         -------
@@ -460,6 +462,8 @@ class Ellipsoid:
         )
         term3 = -cosbeta_l2 * b_l * self.angular_velocity ** 2
         gamma = (term1 + term2 + term3) / big_w
+        if si_units:
+            return gamma
         # Convert gamma from SI to mGal
         return gamma * 1e5
 

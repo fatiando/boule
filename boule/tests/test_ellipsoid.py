@@ -203,6 +203,18 @@ def test_normal_gravity_arrays(ellipsoid):
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_normal_gravity_siunits_arrays(ellipsoid):
+    "Compare normal gravity passing arrays as arguments instead of floats and returning values in SI units"
+    rtol = 1e-10
+    heights = np.zeros(3)
+    latitudes = np.array([-90, 90, 0])
+    gammas = np.array(
+        [ellipsoid.gravity_pole, ellipsoid.gravity_pole, ellipsoid.gravity_equator]
+    )
+    npt.assert_allclose(gammas, ellipsoid.normal_gravity(latitudes, heights, si_units=True), rtol=rtol)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_normal_gravity_non_zero_height(ellipsoid):
     "Check consistency of normal gravity above and below the ellipsoid."
     # Convert gamma to mGal
