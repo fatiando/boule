@@ -211,7 +211,9 @@ def test_normal_gravity_siunits_arrays(ellipsoid):
     gammas = np.array(
         [ellipsoid.gravity_pole, ellipsoid.gravity_pole, ellipsoid.gravity_equator]
     )
-    npt.assert_allclose(gammas, ellipsoid.normal_gravity(latitudes, heights, si_units=True), rtol=rtol)
+    npt.assert_allclose(
+        gammas, ellipsoid.normal_gravity(latitudes, heights, si_units=True), rtol=rtol
+    )
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)

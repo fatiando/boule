@@ -436,7 +436,7 @@ class Ellipsoid:
         height : float or array
             The ellipsoidal (geometric) height of computation the point (in
             meters).
-        si_units : bool 
+        si_units : bool
             Return the value in mGal (False, default) or SI units (True)
 
         Returns
