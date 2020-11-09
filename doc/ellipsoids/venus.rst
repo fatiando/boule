@@ -1,7 +1,7 @@
 .. _venus:
 
 Venus
-====
+=====
 
 The parameters of the Venusian spheroid were obtained from [Weiczorek2015]_:
 
