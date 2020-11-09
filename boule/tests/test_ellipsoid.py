@@ -188,8 +188,9 @@ def test_normal_gravity_pole_equator(ellipsoid):
     npt.assert_allclose(gamma_eq, ellipsoid.normal_gravity(0, height), rtol=rtol)
 
 
+@pytest.mark.parametrize("si_units", [False, True], ids=["mGal", "SI"])
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
-def test_normal_gravity_arrays(ellipsoid):
+def test_normal_gravity_arrays(ellipsoid, si_units):
     "Compare normal gravity passing arrays as arguments instead of floats"
     rtol = 1e-10
     heights = np.zeros(3)
@@ -198,21 +199,12 @@ def test_normal_gravity_arrays(ellipsoid):
         [ellipsoid.gravity_pole, ellipsoid.gravity_pole, ellipsoid.gravity_equator]
     )
     # Convert gammas to mGal
-    gammas *= 1e5
-    npt.assert_allclose(gammas, ellipsoid.normal_gravity(latitudes, heights), rtol=rtol)
-
-
-@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
-def test_normal_gravity_siunits_arrays(ellipsoid):
-    "Compare normal gravity passing arrays as arguments instead of floats and returning values in SI units"
-    rtol = 1e-10
-    heights = np.zeros(3)
-    latitudes = np.array([-90, 90, 0])
-    gammas = np.array(
-        [ellipsoid.gravity_pole, ellipsoid.gravity_pole, ellipsoid.gravity_equator]
-    )
+    if not si_units:
+        gammas *= 1e5
     npt.assert_allclose(
-        gammas, ellipsoid.normal_gravity(latitudes, heights, si_units=True), rtol=rtol
+        gammas,
+        ellipsoid.normal_gravity(latitudes, heights, si_units=si_units),
+        rtol=rtol,
     )
 
 
