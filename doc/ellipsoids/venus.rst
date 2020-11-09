@@ -15,7 +15,7 @@ The parameters of the Venusian spheroid were obtained from [Weiczorek2015]_:
     0.00000
     >>> # Radius
     >>> print("{:.0f}".format(VENUS.semimajor_axis))
-    60518780
+    6051878
     >>> # Geocentric gravitational constant (GM)
     >>> print("{:.7e}".format(VENUS.geocentric_grav_const))
     3.2485859e+14
