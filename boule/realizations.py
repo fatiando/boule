@@ -55,8 +55,8 @@ VENUS = Sphere(
     geocentric_grav_const=324.858592e12,
     angular_velocity=-299.24e-9,
     reference=(
-        "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial"
-        "Planets, Treatise of Geophysics (Second Edition); Elsevier."
+        "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
+        "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
         "doi:10.1016/B978-0-444-53802-4.00169-X"
     ),
 )
