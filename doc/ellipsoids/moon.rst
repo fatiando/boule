@@ -9,6 +9,7 @@ The parameters of the Lunar spheroid were obtained from [Weiczorek2015]_:
     >>> from boule import MOON
     >>> print(MOON)
     Sphere(name='MOON', ...)
+    >>> # Flattening (Note the Moon is a sphere)
     >>> print("{:.5f}".format(MOON.flattening))
     0.00000
     >>> # Radius

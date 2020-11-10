@@ -9,7 +9,7 @@ The parameters of the Mercurian spheroid were obtained from [Weiczorek2015]_:
     >>> from boule import MERCURY
     >>> print(MERCURY)
     Sphere(name='MERCURY', ...)
-    >>> # Flattening
+    >>> # Flattening (Note Mercury is a sphere)
     >>> print("{:.5f}".format(MERCURY.flattening))
     0.00000
     >>> # Radius
