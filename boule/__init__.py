@@ -9,6 +9,7 @@
 from . import version
 from .ellipsoid import Ellipsoid
 from .sphere import Sphere
+from .triaxialellipsoid import TriaxialEllipsoid
 from .realizations import WGS84, GRS80, MARS, VENUS, MOON, MERCURY
 
 
