@@ -1,11 +1,12 @@
-.. _Mercury:
+.. _mercury:
 
 Mercury
-=====
+=======
 
-The parameters of the Mercurian spheroid were obtained from [Weiczorek2015]_:
+The parameters of the Mercurian spheroid were obtained from [Wieczorek2015]_:
 
 .. doctest::
+
     >>> from boule import MERCURY
     >>> print(MERCURY)
     Sphere(name='MERCURY', ...)

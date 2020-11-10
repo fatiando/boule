@@ -1,11 +1,12 @@
-.. _Moon:
+.. _moon:
 
 Moon
-=====
+====
 
-The parameters of the Lunar spheroid were obtained from [Weiczorek2015]_:
+The parameters of the Lunar spheroid were obtained from [Wieczorek2015]_:
 
 .. doctest::
+
     >>> from boule import MOON
     >>> print(MOON)
     Sphere(name='MOON', ...)
