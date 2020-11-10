@@ -66,3 +66,27 @@ VENUS = Sphere(
         "doi:10.1016/B978-0-444-53802-4.00169-X"
     ),
 )
+
+MOON = Sphere(
+    name="MOON",
+    radius=1_737_151,
+    geocentric_grav_const=4.90280007e12,
+    angular_velocity=2.6617073e-6,
+    reference=(
+        "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
+        "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
+        "doi:10.1016/B978-0-444-53802-4.00169-X"
+    ),
+)
+
+MERCURY = Sphere(
+    name="MERCURY",
+    radius=2_439_372,
+    geocentric_grav_const=22.031839221e12,
+    angular_velocity=1.2400172589e-6,
+    reference=(
+        "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
+        "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
+        "doi:10.1016/B978-0-444-53802-4.00169-X"
+    ),
+)
