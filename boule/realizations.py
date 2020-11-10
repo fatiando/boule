@@ -1,7 +1,14 @@
+# Copyright (c) 2019 The Boule Developers.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+#
+# This code is part of the Fatiando a Terra project (https://www.fatiando.org)
+#
 """
-Ellipsoid realizations for the Earth and other planetary bodies.
+Ellipsoid and Sphere realizations for the Earth and other planetary bodies.
 """
 from .ellipsoid import Ellipsoid
+from .sphere import Sphere
 
 
 WGS84 = Ellipsoid(
@@ -44,5 +51,18 @@ MARS = Ellipsoid(
         "Equipotential Surface, and Reference Ellipsoid for the Planet Mars. "
         "Earth, Moon, and Planets, 106(1), 1. "
         "doi:10.1007/s11038-009-9342-7"
+    ),
+)
+
+VENUS = Sphere(
+    name="VENUS",
+    long_name="Venus Spheroid",
+    radius=6_051_878,
+    geocentric_grav_const=324.858592e12,
+    angular_velocity=-299.24e-9,
+    reference=(
+        "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
+        "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
+        "doi:10.1016/B978-0-444-53802-4.00169-X"
     ),
 )

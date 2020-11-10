@@ -1,12 +1,18 @@
+# Copyright (c) 2019 The Boule Developers.
+# Distributed under the terms of the BSD 3-Clause License.
+# SPDX-License-Identifier: BSD-3-Clause
+#
+# This code is part of the Fatiando a Terra project (https://www.fatiando.org)
+#
 # pylint: disable=missing-docstring,import-outside-toplevel
 # Import functions/classes to make the public API
 from . import version
 from .ellipsoid import Ellipsoid
 from .sphere import Sphere
-from .realizations import WGS84, GRS80, MARS
+from .realizations import WGS84, GRS80, MARS, VENUS
 
 
-ELLIPSOIDS = [WGS84, GRS80, MARS]
+ELLIPSOIDS = [WGS84, GRS80, MARS, VENUS]
 
 # Get the version number through setuptools-scm
 __version__ = version.version
