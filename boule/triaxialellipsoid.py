@@ -178,14 +178,21 @@ class TriaxialEllipsoid:
         """
         The arithmetic mean radius :math:`R_1=(a+b+c)/3` [meters]
         """
-        return 1 / 3 * (self.semimajor_axis + self.semimedium_axis +  self.semiminor_axis)
+        return (
+            1 / 3 * (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis)
+        )
 
     @property
     def volume(self):
         """
         The volume of a triaxial ellipsoid :math: `V = /frac{4}{3} pi a b c ` [meters^3]
         """
-        return 4 * np.pi / 3 * (self.semimajor_axis * self.semimedium_axis *  self.semiminor_axis)
+        return (
+            4
+            * np.pi
+            / 3
+            * (self.semimajor_axis * self.semimedium_axis * self.semiminor_axis)
+        )
 
     @property
     def gravity_equator(self):
