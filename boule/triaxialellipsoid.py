@@ -64,7 +64,7 @@ class TriaxialEllipsoid:
 
     We can define an ellipsoid by setting the 5 key numerical parameters:
 
-    >>> ellipsoid = TriAxialEllipsoid(
+    >>> ellipsoid = TriaxialEllipsoid(
     ...     name="Watermelon",
     ...     long_name="Large Watermelon",
     ...     semimajor_axis=4,
@@ -74,18 +74,18 @@ class TriaxialEllipsoid:
     ...     angular_velocity=0,
     ... )
     >>> print(ellipsoid) # doctest: +ELLIPSIS
-    Ellipsoid(name='Watermelon', ...)
+    TriaxialEllipsoid(name='Watermelon', ...)
     >>> print(ellipsoid.long_name)
     Large Watermelon
 
     The class defines several derived attributes based on the input parameters:
 
     >>> print("{:.2f}".format(ellipsoid.semimajor_axis))
-    1.00
+    4.00
     >>> print("{:.2f}".format(ellipsoid.semimedium_axis))
     2.00
     >>> print("{:.2f}".format(ellipsoid.semiminor_axis))
-    4.00
+    1.00
     >>> print("{:.2f}".format(ellipsoid.mean_radius))
     2.33
     >>> print("{:.2f}".format(ellipsoid.volume))
