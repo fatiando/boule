@@ -419,7 +419,9 @@ class Ellipsoid:
         big_d = k * radius * cos_latitude / (k + self.first_eccentricity ** 2)
         return k, big_z, big_d
 
-    def normal_gravity(self, latitude, height, si_units=False):
+    def normal_gravity(
+        self, latitude, height, si_units=False
+    ):  # pylint: disable=too-many-locals
         """
         Calculate normal gravity at any latitude and height.
 
