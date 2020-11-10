@@ -145,18 +145,28 @@ def test_geocentric_radius(sphere):
         )
 
 
-def test_normal_gravity_pole_equator(sphere):
+@pytest.mark.parametrize("si_units", [False, True], ids=["mGal", "SI"])
+def test_normal_gravity_pole_equator(sphere, si_units):
     """
     Compare normal gravity values at pole and equator
     """
     rtol = 1e-10
     height = 0
-    # Convert gamma to mGal
-    gamma_pole = sphere.gravity_pole * 1e5
-    gamma_eq = sphere.gravity_equator * 1e5
-    npt.assert_allclose(gamma_pole, sphere.normal_gravity(-90, height), rtol=rtol)
-    npt.assert_allclose(gamma_pole, sphere.normal_gravity(90, height), rtol=rtol)
-    npt.assert_allclose(gamma_eq, sphere.normal_gravity(0, height), rtol=rtol)
+    gamma_pole = sphere.gravity_pole
+    gamma_eq = sphere.gravity_equator
+    if not si_units:
+        # Convert gamma to mGal
+        gamma_pole = sphere.gravity_pole * 1e5
+        gamma_eq = sphere.gravity_equator * 1e5
+    npt.assert_allclose(
+        gamma_pole, sphere.normal_gravity(-90, height, si_units=si_units), rtol=rtol
+    )
+    npt.assert_allclose(
+        gamma_pole, sphere.normal_gravity(90, height, si_units=si_units), rtol=rtol
+    )
+    npt.assert_allclose(
+        gamma_eq, sphere.normal_gravity(0, height, si_units=si_units), rtol=rtol
+    )
 
 
 def test_normal_gravity_no_rotation():
