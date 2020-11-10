@@ -7,4 +7,4 @@ References
 .. [LiGotze2001] Li, X. and H. J. Gotze, 2001, Tutorial: Ellipsoid, geoid, gravity, geodesy, and geophysics, Geophysics, 66(6), p. 1660-1668, doi:`10.1190/1.1487109 <https://doi.org/10.1190/1.1487109>`__
 .. [Moritz1988] Moritz, H. (1988). Geodetic reference system 1980. Bull. Geodesique 62, 348–358. doi:`10.1007/BF02520722 <https://doi.org/10.1007/BF02520722>`__ (see `the corrigendum <http://fgg-web.fgg.uni-lj.si/~/MKUHAR/Zalozba/GRS_80_Moritz.pdf>`__)
 .. [Vermeille2002] Vermeille, H., 2002. Direct transformation from geocentric coordinates to geodetic coordinates. Journal of Geodesy. 76. 451-454. doi:`10.1007/s00190-002-0273-6 <https://doi.org/10.1007/s00190-002-0273-6>`__
-
+.. [Wieczorek2015] Wieczorek, M. A. (2015). Gravity and Topography of the Terrestrial Planets. In Treatise on Geophysics (pp. 153–193). Elsevier. doi:`10.1016/b978-0-444-53802-4.00169-x <https://doi.org/10.1016/b978-0-444-53802-4.00169-x>`__
