@@ -217,6 +217,11 @@ class TriaxialEllipsoid:
         "The norm of the gravity vector on the ellipsoid at the poles [m/s²]"
         raise NotImplementedError
 
+    def radius(self, latitude, longitude):
+        r"""
+        Return the radius of the Triaxial Ellipsoid at the given latitude and longitude [metres]
+        """
+        raise NotImplementedError
 
 
     def geocentric_radius(self, latitude, geodetic=True):
