@@ -213,16 +213,11 @@ class TriaxialEllipsoid:
         )
 
     @property
-    def gravity_equator(self):
-        """
-        The norm of the gravity vector on the ellipsoid at the equator [m/s²]
-        """
-        raise NotImplementedError
-
-    @property
     def gravity_pole(self):
         "The norm of the gravity vector on the ellipsoid at the poles [m/s²]"
         raise NotImplementedError
+
+
 
     def geocentric_radius(self, latitude, geodetic=True):
         r"""
