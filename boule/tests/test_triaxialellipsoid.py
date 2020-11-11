@@ -99,6 +99,45 @@ def test_check_semiminor():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
+
+def test_check_semimajor_is_largest():
+    """
+    Check if error is raised after invalid semimajor is not the 
+    largest axis length
+    """
+    with pytest.raises(ValueError):
+        TriaxialEllipsoid(
+            name="largest_axis_is_semiminor_axis",
+            semimajor_axis=1,
+            semimedium_axis=2,
+            semiminor_axis=4,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        TriaxialEllipsoid(
+            name="largest_axis_is_semimedium_axis",
+            semimajor_axis=2,
+            semimedium_axis=4,
+            semiminor_axis=1,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+def test_check_semimedium_larger_than_semiminor():
+    """
+    Check if error is raised if semiminor axis length is larger than 
+    semimedium axis length
+    """
+    with pytest.raises(ValueError):
+        TriaxialEllipsoid(
+            name="smallest_axis_is_semimedium_axis",
+            semimajor_axis=4,
+            semimedium_axis=1,
+            semiminor_axis=2,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
 ##  
 ##  
 ##  def test_check_geocentric_grav_const():
