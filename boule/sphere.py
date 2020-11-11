@@ -230,7 +230,7 @@ class Sphere(Ellipsoid):
         latitude : float or array
             The latitude where the normal gravity will be computed (in
             degrees). This value is not used in the computation but is kept
-            here for backward compatibility.
+            here for compatibility with ``normal_gravity``. Can be ``None``.
         si_units : bool
             Return the value in mGal (False, default) or SI units (True)
 
