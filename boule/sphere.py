@@ -99,6 +99,13 @@ class Sphere(Ellipsoid):
     >>> print("{:.2f}".format(sphere.normal_gravity(latitude=90, height=0, si_units=True)))
     2.00
 
+    Normal gravitation (the magnitude of the gravitational acceleration of
+    the sphere) can be calculated at any latitude and height.
+    Values can be returned in mGal or m/s using the si_units flag.
+
+    >>> print("{:.2f}".format(sphere.normal_gravitation(latitude=0, height=10, si_units=True)))
+    0.02
+
     The flattening and eccentricities will all be zero:
 
     >>> print("{:.2f}".format(sphere.flattening))
@@ -209,6 +216,7 @@ class Sphere(Ellipsoid):
         return gamma * 1e5
 
     def normal_gravitation(self, height, latitude=0, si_units=False):
+        #pylint: disable=unused-argument
         r"""
         Calculate the norm of the gravitational acceleration of the sphere.
 
@@ -221,16 +229,17 @@ class Sphere(Ellipsoid):
             \frac{GM}{(R + h)^2} \right
 
         in which :math:`R` is the sphere radius, :math:`G` is the gravitational
+        constant, and :math:`M` is the mass of the sphere.
 
         Parameters
         ----------
-        height : float or array
-            The height (above the surface of the sphere) of the computation
-            point (in meters).
         latitude : float or array
             The latitude where the normal gravity will be computed (in
             degrees). This value is not used in the computation but is kept
             here for compatibility with ``normal_gravity``. Can be ``None``.
+        height : float or array
+            The height (above the surface of the sphere) of the computation
+            point (in meters).
         si_units : bool
             Return the value in mGal (False, default) or SI units (True)
 

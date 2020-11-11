@@ -22,6 +22,3 @@ The parameters of the Lunar spheroid were obtained from [Wieczorek2015]_:
     >>> # Angular velocity
     >>> print("{:.7e}".format(MOON.angular_velocity))
     2.6617073e-06
-    >>> # Acceleration due to gravity alone
-    >>> print("{:.3f}".format(MOON.normal_gravitation(height=0, si_units=True)))
-    1.625
