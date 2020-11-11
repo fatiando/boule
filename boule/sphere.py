@@ -217,7 +217,7 @@ class Sphere(Ellipsoid):
 
         .. math::
 
-            \gamma(\theta, g) =
+            \gamma(\theta, h) =
             \frac{GM}{(R + h)^2} \right
 
         in which :math:`R` is the sphere radius, :math:`G` is the gravitational
