@@ -138,22 +138,36 @@ def test_check_semimedium_larger_than_semiminor():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-##  
-##  
-##  def test_check_geocentric_grav_const():
-##      """
-##      Check if warn is raised after negative geocentric_grav_const
-##      """
-##      with warnings.catch_warnings(record=True) as warn:
-##          Sphere(
-##              name="negative_gm",
-##              radius=1,
-##              geocentric_grav_const=-1,
-##              angular_velocity=0,
-##          )
-##          assert len(warn) >= 1
-##  
-##  
+
+
+def test_check_geocentric_grav_const():
+    """
+    Check if warn is raised after negative geocentric_grav_const
+    """
+    with warnings.catch_warnings(record=True) as warn:
+        TriaxialEllipsoid(
+            name="negative_gm",
+            semimajor_axis=4,
+            semimedium_axis=2,
+            semiminor_axis=1,
+            geocentric_grav_const=-1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+
+def test_volume_gt_minorsphere(triaxialellipsoid):
+    """
+    Check that the volume is larger than a sphere of semiminor axis radius
+    """
+    assert triaxialellipsoid.volume > 4 * np.pi / 3 * triaxialellipsoid.semiminor_axis ** 3
+
+def test_volume_lt_majorsphere(triaxialellipsoid):
+    """
+    Check that the volume is lesser than a sphere of semimajor axis radius
+    """
+    assert triaxialellipsoid.volume < 4 * np.pi / 3 * triaxialellipsoid.semimajor_axis ** 3
+
+
 ##  def test_sphere_flattening(sphere):
 ##      """
 ##      Check if flattening property is equal to zero
