@@ -54,6 +54,7 @@ def test_check_semimajor():
             angular_velocity=0,
         )
 
+
 def test_check_semimedium():
     """
     Check if error is raised after invalid semimedium axis
@@ -76,6 +77,7 @@ def test_check_semimedium():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
+
 
 def test_check_semiminor():
     """
@@ -100,9 +102,10 @@ def test_check_semiminor():
             angular_velocity=0,
         )
 
+
 def test_check_semimajor_is_largest():
     """
-    Check if error is raised after invalid semimajor is not the 
+    Check if error is raised after invalid semimajor is not the
     largest axis length
     """
     with pytest.raises(ValueError):
@@ -124,9 +127,10 @@ def test_check_semimajor_is_largest():
             angular_velocity=0,
         )
 
+
 def test_check_semimedium_larger_than_semiminor():
     """
-    Check if error is raised if semiminor axis length is larger than 
+    Check if error is raised if semiminor axis length is larger than
     semimedium axis length
     """
     with pytest.raises(ValueError):
@@ -155,17 +159,23 @@ def test_check_geocentric_grav_const():
         )
         assert len(warn) >= 1
 
+
 def test_volume_gt_minorsphere(triaxialellipsoid):
     """
     Check that the volume is larger than a sphere of semiminor axis radius
     """
-    assert triaxialellipsoid.volume > 4 * np.pi / 3 * triaxialellipsoid.semiminor_axis ** 3
+    assert (
+        triaxialellipsoid.volume > 4 * np.pi / 3 * triaxialellipsoid.semiminor_axis ** 3
+    )
+
 
 def test_volume_lt_majorsphere(triaxialellipsoid):
     """
     Check that the volume is lesser than a sphere of semimajor axis radius
     """
-    assert triaxialellipsoid.volume < 4 * np.pi / 3 * triaxialellipsoid.semimajor_axis ** 3
+    assert (
+        triaxialellipsoid.volume < 4 * np.pi / 3 * triaxialellipsoid.semimajor_axis ** 3
+    )
 
 
 ##  def test_sphere_flattening(sphere):
@@ -173,15 +183,15 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
 ##      Check if flattening property is equal to zero
 ##      """
 ##      assert sphere.flattening == 0
-##  
-##  
+##
+##
 ##  def test_sphere_semimajor_axis(sphere):
 ##      """
 ##      Check if semimajor_axis is equal to the radius
 ##      """
 ##      npt.assert_allclose(sphere.semimajor_axis, sphere.radius)
-##  
-##  
+##
+##
 ##  def test_geodetic_to_spherical(sphere):
 ##      "Test geodetic to geocentric conversion on spherical ellipsoid."
 ##      rtol = 1e-10
@@ -195,8 +205,8 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
 ##      npt.assert_allclose(sph_longitude, longitude, rtol=rtol)
 ##      npt.assert_allclose(sph_latitude, latitude, rtol=rtol)
 ##      npt.assert_allclose(radius, sphere.radius + height, rtol=rtol)
-##  
-##  
+##
+##
 ##  def test_spherical_to_geodetic(sphere):
 ##      "Test spherical to geodetic conversion on spherical ellipsoid."
 ##      rtol = 1e-10
@@ -210,8 +220,8 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
 ##      npt.assert_allclose(spherical_longitude, longitude, rtol=rtol)
 ##      npt.assert_allclose(spherical_latitude, latitude, rtol=rtol)
 ##      npt.assert_allclose(radius, sphere.radius + height, rtol=rtol)
-##  
-##  
+##
+##
 ##  def test_ellipsoidal_properties(sphere):
 ##      """
 ##      Check inherited properties from Ellipsoid
@@ -227,8 +237,8 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
 ##          * sphere.radius ** 3
 ##          / sphere.geocentric_grav_const,
 ##      )
-##  
-##  
+##
+##
 ##  def test_prime_vertical_radius(sphere):
 ##      """
 ##      Check prime vertical radius
@@ -237,8 +247,8 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
 ##      npt.assert_allclose(
 ##          sphere.prime_vertical_radius(np.sin(np.radians(latitudes))), sphere.radius
 ##      )
-##  
-##  
+##
+##
 ##  def test_geocentric_radius(sphere):
 ##      """
 ##      Check geocentric radius
@@ -248,8 +258,8 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
 ##          npt.assert_allclose(
 ##              sphere.geocentric_radius(latitudes, geodetic=geodetic), sphere.radius
 ##          )
-##  
-##  
+##
+##
 ##  def test_normal_gravity_pole_equator(sphere):
 ##      """
 ##      Compare normal gravity values at pole and equator
@@ -262,8 +272,8 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
 ##      npt.assert_allclose(gamma_pole, sphere.normal_gravity(-90, height), rtol=rtol)
 ##      npt.assert_allclose(gamma_pole, sphere.normal_gravity(90, height), rtol=rtol)
 ##      npt.assert_allclose(gamma_eq, sphere.normal_gravity(0, height), rtol=rtol)
-##  
-##  
+##
+##
 ##  def test_normal_gravity_no_rotation():
 ##      """
 ##      Check normal gravity without rotation
@@ -283,8 +293,8 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
 ##          # Check if normal gravity is equal on every point (rotational symmetry)
 ##          expected_gravity = 1e5 * gm_constant / (radius + height) ** 2
 ##          npt.assert_allclose(expected_gravity, sphere.normal_gravity(latitudes, heights))
-##  
-##  
+##
+##
 ##  def test_normal_gravity_only_rotation():
 ##      """
 ##      Check normal gravity only with rotation (no gravitational attraction)

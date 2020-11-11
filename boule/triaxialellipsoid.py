@@ -118,11 +118,11 @@ class TriaxialEllipsoid:
         """
         if self.semiminor_axis > value:
             raise ValueError(
-                f"Invalid semi-minor / semi-major axis combination. The semimajor axis must be larger than the semi-medium axis.                 Semi-major axis was '{value}' and the semi-minor axis was '{self.semiminor_axis}'"
+                f"Invalid semi-minor / semi-major axis combination.                The semimajor axis must be larger than the semi-medium axis.                Semi-major axis was '{value}' and the semi-minor axis was '{self.semiminor_axis}'"
             )
         if self.semimedium_axis > value:
             raise ValueError(
-                f"Invalid semi-medium / semi-major axis combination. The semimajor axis must be larger than the semi-medium axis. Semi-major axis was '{value}' and the semi-medium axis was '{self.semimedium_axis}'"
+                f"Invalid semi-medium / semi-major axis combination.                 The semimajor axis must be larger than the semi-medium axis.                 Semi-major axis was '{value}' and the semi-medium axis was '{self.semimedium_axis}'"
             )
 
     @semimedium_axis.validator
@@ -141,7 +141,7 @@ class TriaxialEllipsoid:
         """
         if self.semiminor_axis > value:
             raise ValueError(
-                f"Invalid semi-minor / semi-medium axis combination. The semimedium axis must be larger than the semi-minor axis.                 Semi-medium axis was '{value}' and the semi-minor axis was '{self.semiminor_axis}'"
+                f"Invalid semi-minor / semi-medium axis combination.                 The semimedium axis must be larger than the semi-minor axis.                Semi-medium axis was '{value}' and the semi-minor axis was '{self.semiminor_axis}'"
             )
 
     @semiminor_axis.validator
@@ -222,7 +222,6 @@ class TriaxialEllipsoid:
         Return the radius of the Triaxial Ellipsoid at the given latitude and longitude [metres]
         """
         raise NotImplementedError
-
 
     def geocentric_radius(self, latitude, geodetic=True):
         r"""
