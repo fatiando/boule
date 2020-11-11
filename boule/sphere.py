@@ -237,7 +237,7 @@ class Sphere(Ellipsoid):
         Returns
         -------
         gamma : float or array
-            The normal gravity in mGal.
+            The normal gravitation in mGal.
 
         """
         radial_distance = self.radius + height
