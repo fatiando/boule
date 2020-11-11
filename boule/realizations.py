@@ -9,6 +9,7 @@ Ellipsoid and Sphere realizations for the Earth and other planetary bodies.
 """
 from .ellipsoid import Ellipsoid
 from .sphere import Sphere
+from .triaxialellipsoid import TriaxialEllipsoid
 
 
 WGS84 = Ellipsoid(
@@ -88,5 +89,23 @@ MERCURY = Sphere(
         "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
         "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
         "doi:10.1016/B978-0-444-53802-4.00169-X"
+    ),
+)
+
+VESTA = TriaxialEllipsoid(
+    name="VESTA",
+    semimajor_axis=286_300,
+    semimedium_axis=278_600,
+    semiminor_axis=223_200,
+    geocentric_grav_const=1.729094e+10,
+    angular_velocity=326.71050958367e-6,
+    reference=("C. T. Russell, C. A. Raymond, A. Coradini, H. Y. McSween, M. T. "
+    "Zuber, A. Nathues, M. C. De Sanctis, R. Jaumann, A. S. Konopliv, F. "
+    "Preusker, S. W. Asmar, R. S. Park, R. Gaskell, H. U. Keller, S. Mottola, "
+    "T. Roatsch, J. E. C. Scully, D. E. Smith, P. Tricarico, M. J. Toplis, U. "
+    "R. Christensen, W. C. Feldman, D. J. Lawrence, T. J. McCoy, T. H. "
+    "Prettyman, R. C. Reedy, M. E. Sykes, T. N. Titus. Dawn at Vesta: Testing "
+    "the Protoplanetary Paradigm, Science  11 May 2012: Vol. 336, Issue 6082, "
+    "pp. 684-686, DOI: 10.1126/science.1219381 "
     ),
 )
