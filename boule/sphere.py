@@ -209,6 +209,35 @@ class Sphere(Ellipsoid):
         return gamma * 1e5
 
     @property
+    def normal_gravitation(self, height, latitude=0, si_units=False):
+        """
+        The norm of the gravitational acceleration.
+
+        Parameters
+        ----------
+        height : float or array
+            The height (above the surface of the sphere) of the computation
+            point (in meters).
+        latitude : float or array
+            The latitude where the normal gravity will be computed (in
+            degrees). This value is not used in the computation but is kept 
+            here for backward compatibility.
+        si_units : bool
+            Return the value in mGal (False, default) or SI units (True)
+
+        Returns
+        -------
+        gamma : float or array
+            The normal gravity in mGal.
+
+        """
+        radial_distance = self.radius + height
+        gamma = self.geocentric_grav_const / (radial_distance) ** 2
+        if si_units:
+            return gamma
+        return   gamma *1e5
+
+    @property
     def gravity_equator(self):
         """
         The norm of the gravity vector at the equator on the sphere [m/s²]
