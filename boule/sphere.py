@@ -215,7 +215,7 @@ class Sphere(Ellipsoid):
         # Convert gamma from SI to mGal
         return gamma * 1e5
 
-    def normal_gravitation(self, height, latitude=0, si_units=False):
+    def normal_gravitation(self, latitude, height, si_units=False):
         # pylint: disable=unused-argument
         r"""
         Calculate the norm of the gravitational acceleration of the sphere.
