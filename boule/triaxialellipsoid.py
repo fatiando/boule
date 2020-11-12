@@ -167,21 +167,6 @@ class TriaxialEllipsoid:
             warn(f"The geocentric gravitational constant is negative: '{value}'")
 
     @property
-    def a(self):
-        "The semimajor axis length [meters]"
-        return self.semimajor_axis
-
-    @property
-    def b(self):
-        "The semimedium axis length [meters]"
-        return self.semimedium_axis
-
-    @property
-    def c(self):
-        "The semiminor axis length [meters]"
-        return self.semiminor_axis
-
-    @property
     def omega(self):
         "The angular_velocity [rad s^-1]"
         return self.angular_velocity
