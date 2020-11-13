@@ -100,10 +100,13 @@ class Sphere(Ellipsoid):
     2.00
 
     Normal gravitation (the magnitude of the gravitational acceleration of
-    the sphere) can be calculated at any latitude and height.
+    the sphere) can be calculated at any longitude, latitude and height.
+    However as this is a sphere, only the height is used in the calculation.
     Values can be returned in mGal or m/s using the si_units flag.
 
-    >>> print("{:.2f}".format(sphere.normal_gravitation(latitude=0, height=10, si_units=True)))
+    >>> print("{:.2f}".format(sphere.normal_gravitation(height=10, si_units=True)))
+    0.02
+    >>> print("{:.2f}".format(sphere.normal_gravitation(longitude=26, latitude=14, height=10, si_units=True)))
     0.02
 
     The flattening and eccentricities will all be zero:
@@ -215,7 +218,7 @@ class Sphere(Ellipsoid):
         # Convert gamma from SI to mGal
         return gamma * 1e5
 
-    def normal_gravitation(self, latitude, height, si_units=False):
+    def normal_gravitation(self, si_units=False, **kwargs):
         # pylint: disable=unused-argument
         r"""
         Calculate the norm of the gravitational acceleration of the sphere.
@@ -249,11 +252,20 @@ class Sphere(Ellipsoid):
             The normal gravitation in mGal.
 
         """
-        radial_distance = self.radius + height
-        gamma = self.geocentric_grav_const / (radial_distance) ** 2
-        if si_units:
-            return gamma
-        return gamma * 1e5
+
+        for arg in kwargs.keys():
+            # Test that the arguments are valid. This should catch typos.
+            if arg not in ['latitude', 'longitude', 'height']:
+                raise ValueError(f"Invalid argument kwarg[arg]. ")
+        
+        if 'height' in kwargs:
+            radial_distance = self.radius + kwargs['height']
+            gamma = self.geocentric_grav_const / (radial_distance) ** 2
+            if si_units:
+                return gamma
+            return gamma * 1e5
+        else:
+            raise ValueError(f"Height not specified. ")
 
     @property
     def gravity_equator(self):
