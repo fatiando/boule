@@ -17,32 +17,32 @@ import numpy as np
 @attr.s(frozen=True)
 class Ellipsoid:
     """
-    Reference oblate ellipsoid.
+    Reference ellipsoid.
 
-    The ellipsoid is oblate and spins around it's minor axis. It is defined by
-    four parameters (semi-major axis, flattening, geocentric gravitational
-    constant, and angular velocity) and offers other derived quantities.
+    Represents an ellipsoid which spins around it's minor axis. The ellipsoid can be a sphere,
+    oblate spheroid, or triaxial ellipsoid depending on the parameters parsed at initialisation.
+
+    It is defined by 3 types of parameters; one (sphere), two (oblate spheroid) or three (triaxial ellipsoid) semi-axis lengths, the geocentric gravitational constant, and angular velocity. 
+    Alternatively, oblate spheroids may also be initialed through the use of a semimajor radius and a flattening factor.
 
     **All attributes of this class are read-only and cannot be changed after
     instantiation.**
 
     All parameters are in SI units.
 
-    .. note::
-
-        Use :class:`boule.Sphere` if you desire zero flattening because there
-        are singularities for this particular case in the normal gravity
-        calculations.
-
     Parameters
     ----------
     name : str
         A short name for the ellipsoid, for example ``'WGS84'``.
     semimajor_axis : float
-        The semi-major axis of the ellipsoid (equatorial radius), usually
-        represented by "a" [meters].
+        The largest radii of the ellipsoid [metres].
+    semiminor_axis : float
+        The smallest radii of the ellipsoid [metres].
+    semimedium_axis : float
+        The radii whose value is between the semi-major and semi-minor axis 
+        lengths of a triaxial ellipsoid [metres].
     flattening : float
-        The flattening of the ellipsoid (f) [adimensional].
+        The flattening of the oblate spheroid (f) [adimensional].
     geocentric_grav_const : float
         The geocentric gravitational constant (GM) [m^3 s^-2].
     angular_velocity : float
@@ -56,23 +56,48 @@ class Ellipsoid:
     Examples
     --------
 
-    We can define an ellipsoid by setting the 4 key numerical parameters:
+    We can define a sphere by specifying 3 numerical parameters,
+
+    >>> sphere = Ellipsoid(
+    ...     name="Ball",
+    ...     long_name="A Sphere",
+    ...     semimajor_axis=1,
+    ...     geocentric_grav_const=2,
+    ...     angular_velocity=0.5,
+    ... )
+
+    Or, we can define an oblate ellipsoid by setting 4 numerical parameters:
 
     >>> ellipsoid = Ellipsoid(
-    ...     name="oblate-ellipsoid",
-    ...     long_name="Oblate Ellipsoid",
+    ...     name="Orange",
+    ...     long_name="An Oblate Ellipsoid",
     ...     semimajor_axis=1,
     ...     flattening=0.5,
     ...     geocentric_grav_const=1,
     ...     angular_velocity=0,
     ... )
+
+    Or, we can define a triaxial ellipsoid by setting 5 numerical parameters:
+
+    >>> triaxialellipsoid = Ellipsoid(
+    ...     name="Watermelon",
+    ...     long_name="A triaxial Ellipsoid",
+    ...     semimajor_axis=2,
+    ...     semimedium_axis=1,
+    ...     semiminor_axis=0.5,
+    ...     geocentric_grav_const=1,
+    ...     angular_velocity=0,
+    ... )
+
     >>> print(ellipsoid) # doctest: +ELLIPSIS
     Ellipsoid(name='oblate-ellipsoid', ...)
-    >>> print(ellipsoid.long_name)
-    Oblate Ellipsoid
+    >>> shapes = [sphere, ellipsoid, triaxialellipsoid]
+    >>> [ shape.long_name) for shape in shapes ]
+    [ "A Sphere", "An Oblate Ellipsoid", "A triaxial Ellipsoid]
 
     The class defines several derived attributes based on the input parameters:
-
+    
+    >>> for shape in 
     >>> print("{:.2f}".format(ellipsoid.semiminor_axis))
     0.50
     >>> print("{:.2f}".format(ellipsoid.mean_radius))
