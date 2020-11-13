@@ -19,11 +19,15 @@ class Ellipsoid:
     """
     Reference ellipsoid.
 
-    Represents an ellipsoid which spins around it's minor axis. The ellipsoid can be a sphere,
-    oblate spheroid, or triaxial ellipsoid depending on the parameters parsed at initialisation.
+    Represents an ellipsoid which spins around it's minor axis. The ellipsoid 
+    can be a sphere, oblate spheroid, or triaxial ellipsoid depending on the 
+    parameters parsed at initialisation.
 
-    It is defined by 3 types of parameters; one (sphere), two (oblate spheroid) or three (triaxial ellipsoid) semi-axis lengths, the geocentric gravitational constant, and angular velocity. 
-    Alternatively, oblate spheroids may also be initialed through the use of a semimajor radius and a flattening factor.
+    It is defined by 3 types of parameters; one (sphere), two (oblate 
+    spheroid) or three (triaxial ellipsoid) semi-axis lengths, the geocentric 
+    gravitational constant, and angular velocity. 
+    Alternatively, oblate spheroids may also be initialed through the use of a 
+    semimajor radius and a flattening factor.
 
     **All attributes of this class are read-only and cannot be changed after
     instantiation.**
@@ -90,14 +94,14 @@ class Ellipsoid:
     ... )
 
     >>> print(ellipsoid) # doctest: +ELLIPSIS
-    Ellipsoid(name='oblate-ellipsoid', ...)
+    Ellipsoid(name='Orange', ...)
     >>> shapes = [sphere, ellipsoid, triaxialellipsoid]
     >>> [ shape.long_name) for shape in shapes ]
     [ "A Sphere", "An Oblate Ellipsoid", "A triaxial Ellipsoid]
 
     The class defines several derived attributes based on the input parameters:
-    
-    >>> for shape in 
+
+    >>> for shape in
     >>> print("{:.2f}".format(ellipsoid.semiminor_axis))
     0.50
     >>> print("{:.2f}".format(ellipsoid.mean_radius))
@@ -118,6 +122,29 @@ class Ellipsoid:
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+
+
+    @semimajor_axis.validator
+    def _check_semimajor_axis(
+        self, semimajor_axis, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Check if semimajor_axis is positive
+        """
+        if not value > 0:
+            raise ValueError(
+                f"Invalid semi-major axis '{value}'. Should be greater than zero."
+            )
+
+    @geocentric_grav_const.validator
+    def _check_geocentric_grav_const(
+        self, geocentric_grav_const, value
+    ):  # pylint: disable=no-self-use,unused-argument
+        """
+        Warn if geocentric_grav_const is negative
+        """
+        if value < 0:
+            warn(f"The geocentric gravitational constant is negative: '{value}'")
 
     @flattening.validator
     def _check_flattening(
@@ -142,28 +169,6 @@ class Ellipsoid:
                 "This may lead to inaccurate results and division by zero errors. "
                 "Use boule.Sphere for representing ellipsoids with zero flattening."
             )
-
-    @semimajor_axis.validator
-    def _check_semimajor_axis(
-        self, semimajor_axis, value
-    ):  # pylint: disable=no-self-use,unused-argument
-        """
-        Check if semimajor_axis is positive
-        """
-        if not value > 0:
-            raise ValueError(
-                f"Invalid semi-major axis '{value}'. Should be greater than zero."
-            )
-
-    @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(
-        self, geocentric_grav_const, value
-    ):  # pylint: disable=no-self-use,unused-argument
-        """
-        Warn if geocentric_grav_const is negative
-        """
-        if value < 0:
-            warn(f"The geocentric gravitational constant is negative: '{value}'")
 
     @property
     def semiminor_axis(self):
