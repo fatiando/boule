@@ -205,10 +205,8 @@ class Ellipsoid:
         "The small (polar) axis of the ellipsoid [meters]"
         if self.flattening is not None and self.semiminor_axis is None:
             return self.semimajor_axis * (1 - self.flattening)
-        if self.semiminor_axis is None:
-            return 0
         return self.semiminor_axis
-  
+
     @property
     def linear_eccentricity(self):
         "The linear eccentricity [meters]"
@@ -255,12 +253,15 @@ class Ellipsoid:
     @property
     def emm(self):
         r"Auxiliary quantity :math:`m = \omega^2 a^2 b / (GM)`"
-        return (
-            self.angular_velocity ** 2
-            * self.semimajor_axis ** 2
-            * self.semiminor_axis
-            / self.geocentric_grav_const
-        )
+        if self.kind == 'oblate' :
+            return (
+                self.angular_velocity ** 2
+                * self.semimajor_axis ** 2
+                * self.semiminor_axis
+                / self.geocentric_grav_const
+            )
+        else:
+            raise ValueError("Emm values not defined for sphere or triaxial ellipsoids")
 
     @property
     def gravity_equator(self):
@@ -289,17 +290,25 @@ class Ellipsoid:
     @property
     def gravity_pole(self):
         "The norm of the gravity vector on the ellipsoid at the poles [m/s²]"
-        ratio = self.semiminor_axis / self.linear_eccentricity
-        arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-        aux = (
-            self.second_eccentricity
-            * (3 * (1 + ratio ** 2) * (1 - ratio * arctan) - 1)
-            / (1.5 * ((1 + 3 * ratio ** 2) * arctan - 3 * ratio))
-        )
-        result = (
-            self.geocentric_grav_const * (1 + self.emm * aux) / self.semimajor_axis ** 2
-        )
-        return result
+        if self.kind == 'oblate':
+            ratio = self.semiminor_axis / self.linear_eccentricity
+            arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
+            aux = (
+                self.second_eccentricity
+                * (3 * (1 + ratio ** 2) * (1 - ratio * arctan) - 1)
+                / (1.5 * ((1 + 3 * ratio ** 2) * arctan - 3 * ratio))
+            )
+            result = (
+                self.geocentric_grav_const * (1 + self.emm * aux) / self.semimajor_axis ** 2
+            )
+            return result
+        if self.kind == 'triaxial':
+            raise NotImplementedError("gravity_pole is not yet implemented for triaxial ellipsoids")
+        if self.kind == 'sphere':
+
+    #######################
+    ### All code below this point copied from the old oblate ellipsoid class verbatim.
+    ########################
 
     def geocentric_radius(self, latitude, geodetic=True):
         r"""
