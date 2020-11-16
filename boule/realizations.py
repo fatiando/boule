@@ -8,7 +8,6 @@
 Ellipsoid and Sphere realizations for the Earth and other planetary bodies.
 """
 from .ellipsoid import Ellipsoid
-from .sphere import Sphere
 
 
 WGS84 = Ellipsoid(
@@ -54,10 +53,10 @@ MARS = Ellipsoid(
     ),
 )
 
-VENUS = Sphere(
+VENUS = Ellipsoid(
     name="VENUS",
     long_name="Venus Spheroid",
-    radius=6_051_878,
+    semimajor_axis=6_051_878,
     geocentric_grav_const=324.858592e12,
     angular_velocity=-299.24e-9,
     reference=(
@@ -67,9 +66,9 @@ VENUS = Sphere(
     ),
 )
 
-MOON = Sphere(
+MOON = Ellipsoid(
     name="MOON",
-    radius=1_737_151,
+    semimajor_axis=1_737_151,
     geocentric_grav_const=4.90280007e12,
     angular_velocity=2.6617073e-6,
     reference=(
@@ -79,9 +78,9 @@ MOON = Sphere(
     ),
 )
 
-MERCURY = Sphere(
+MERCURY = Ellipsoid(
     name="MERCURY",
-    radius=2_439_372,
+    semimajor_axis=2_439_372,
     geocentric_grav_const=22.031839221e12,
     angular_velocity=1.2400172589e-6,
     reference=(
