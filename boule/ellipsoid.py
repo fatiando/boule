@@ -128,11 +128,11 @@ class Ellipsoid:
     # semimajor, semimedium and semiminor.
     name = attr.ib()
     semimajor_axis = attr.ib()
+    geocentric_grav_const = attr.ib()
+    angular_velocity = attr.ib()
     semimedium_axis = attr.ib(default=None)
     semiminor_axis = attr.ib(default=None)
     flattening = attr.ib(default=None)
-    geocentric_grav_const = attr.ib()
-    angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
 
@@ -166,17 +166,19 @@ class Ellipsoid:
         """
         Check if flattening is valid
         """
-        if value < 0 or value >= 1:
+        if value is None:
+            pass
+        elif value < 0 or value >= 1:
             raise ValueError(
                 f"Invalid flattening '{value}'. "
                 "Should be greater than zero and lower than 1."
             )
-        if value == 0:
+        elif value == 0:
             raise ValueError(
                 "Flattening equal to zero will lead to errors in normal gravity. "
                 "Use boule.Sphere for representing ellipsoids with zero flattening."
             )
-        if value < 1e-7:
+        elif value < 1e-7:
             warn(
                 f"Flattening is too close to zero ('{value}'). "
                 "This may lead to inaccurate results and division by zero errors. "
@@ -186,10 +188,7 @@ class Ellipsoid:
     @property
     def kind(self):
         "The type of ellipsoid: sphere, oblate or triaxial"
-        if self.semiminor_axis is not None and 
-        self.semimedium_axis is not None and 
-        self.semimajor_axis != self.semimedium_axis and
-        self.semimedium_axis != self.semiminor_axis:
+        if self.semiminor_axis is not None and self.semimedium_axis is not None and  self.semimajor_axis != self.semimedium_axis and self.semimedium_axis != self.semiminor_axis:
             return "triaxial"
 
         if self.semiminor_axis is not None or self.flattening is not None:
@@ -204,15 +203,12 @@ class Ellipsoid:
     @property
     def semiminor_axis(self):
         "The small (polar) axis of the ellipsoid [meters]"
-        if self.kind == "sphere":
-            raise ValueError("Sphere's do not have semiminor_axis values")
-        if self.kind == "triaxial" 
-            return self.semiminor_axis
-        if self.kind == 'oblate' and self.semiminor_axis is None:
+        if self.flattening is not None and self.semiminor_axis is None:
             return self.semimajor_axis * (1 - self.flattening)
-        if self.kind == 'oblate':
-            return self.semiminor_axis
-
+        if self.semiminor_axis is None:
+            return 0
+        return self.semiminor_axis
+  
     @property
     def linear_eccentricity(self):
         "The linear eccentricity [meters]"
@@ -287,7 +283,7 @@ class Ellipsoid:
                 self.geocentric_grav_const / self.radius ** 2
                 - self.radius * self.angular_velocity ** 2
             )
-       if self.kind == "triaxial":
+        if self.kind == "triaxial":
             raise ValueError("The Gravity at the equator is not constant for a triaxial ellipsoid")
 
     @property
