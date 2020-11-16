@@ -11,7 +11,6 @@ from warnings import warn
 import attr
 import numpy as np
 
-
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
 # accidentally.
 @attr.s(frozen=True)
@@ -70,7 +69,9 @@ class Ellipsoid:
     ...     angular_velocity=0.5,
     ... )
 
-    Or, we can define an oblate ellipsoid by setting 4 numerical parameters:
+    Or, we can define an oblate ellipsoid by setting 4 numerical parameters,
+    either the semimajor axis and flattening, or the semimajor and semiminor 
+    axes:
 
     >>> ellipsoid = Ellipsoid(
     ...     name="Orange",
@@ -86,9 +87,9 @@ class Ellipsoid:
     >>> triaxialellipsoid = Ellipsoid(
     ...     name="Watermelon",
     ...     long_name="A triaxial Ellipsoid",
-    ...     semimajor_axis=2,
-    ...     semimedium_axis=1,
-    ...     semiminor_axis=0.5,
+    ...     semimajor_axis=6,
+    ...     semimedium_axis=4,
+    ...     semiminor_axis=2,
     ...     geocentric_grav_const=1,
     ...     angular_velocity=0,
     ... )
@@ -101,29 +102,41 @@ class Ellipsoid:
 
     The class defines several derived attributes based on the input parameters:
 
-    >>> for shape in
-    >>> print("{:.2f}".format(ellipsoid.semiminor_axis))
-    0.50
-    >>> print("{:.2f}".format(ellipsoid.mean_radius))
-    0.83
+    >>> [ shape.kind for shape in shapes ]
+    [ "sphere", "oblate", "triaxial"]
+    >>> [ shape.semimajor_axis for shape in shapes ]
+    [ 1, 1, 6 ]
+    >>> [ shape.mean_radius for shape in shapes ]
+    [ 1, 0.75, 4 ] 
+    >>> [ shape.volume for shape in shapes ]
+    [ A, B, C ]     ## To be calculated
+
+    Some shapes have additional attributes that are commonly used.
+
     >>> print("{:.2f}".format(ellipsoid.linear_eccentricity))
     0.87
     >>> print("{:.2f}".format(ellipsoid.first_eccentricity))
     0.87
     >>> print("{:.2f}".format(ellipsoid.second_eccentricity))
     1.73
-
     """
 
+    # TO DO: Add logic that allows any one of the following:
+    # Semimajor axis
+    # Semimajor and semiminor
+    # semimajor and flattening
+    # semimajor, semimedium and semiminor.
     name = attr.ib()
     semimajor_axis = attr.ib()
-    flattening = attr.ib()
+    semimedium_axis = attr.ib(default=None)
+    semiminor_axis = attr.ib(default=None)
+    flattening = attr.ib(default=None)
     geocentric_grav_const = attr.ib()
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
 
-
+    # Question: Do validators get called on every init, or only when the parameters are specified?
     @semimajor_axis.validator
     def _check_semimajor_axis(
         self, semimajor_axis, value
@@ -171,31 +184,77 @@ class Ellipsoid:
             )
 
     @property
+    def kind(self):
+        "The type of ellipsoid: sphere, oblate or triaxial"
+        if self.semiminor_axis is not None and 
+        self.semimedium_axis is not None and 
+        self.semimajor_axis != self.semimedium_axis and
+        self.semimedium_axis != self.semiminor_axis:
+            return "triaxial"
+
+        if self.semiminor_axis is not None or self.flattening is not None:
+            # Oblate ellipsoids either have a semiminor axis or a flattening
+            return "oblate"
+
+        if self.semiminor_axis is None and self.semimedium_axis is None and self.flattening is None:
+            return "sphere"
+
+        raise ValueError(f"Unable to determine ellipsoid kind with axis parameters {self.semimajor_axis}, {self.semimedium_axis}, {self.semiminor_axis} and flattening {self.flattening}")
+
+    @property
     def semiminor_axis(self):
         "The small (polar) axis of the ellipsoid [meters]"
-        return self.semimajor_axis * (1 - self.flattening)
+        if self.kind == "sphere":
+            raise ValueError("Sphere's do not have semiminor_axis values")
+        if self.kind == "triaxial" 
+            return self.semiminor_axis
+        if self.kind == 'oblate' and self.semiminor_axis is None:
+            return self.semimajor_axis * (1 - self.flattening)
+        if self.kind == 'oblate':
+            return self.semiminor_axis
 
     @property
     def linear_eccentricity(self):
         "The linear eccentricity [meters]"
-        return np.sqrt(self.semimajor_axis ** 2 - self.semiminor_axis ** 2)
+        if self.kind == 'oblate':
+            return np.sqrt(self.semimajor_axis ** 2 - self.semiminor_axis ** 2)
+        raise ValueError("Linear eccentricity is not defined for Spheres or Triaxial Ellipsoids")
 
     @property
     def first_eccentricity(self):
         "The first eccentricity [adimensional]"
-        return self.linear_eccentricity / self.semimajor_axis
+        if self.kind == 'oblate':
+            return self.linear_eccentricity / self.semimajor_axis
+        raise ValueError("First eccentricity is not defined for Spheres or Triaxial Ellipsoids")
 
     @property
     def second_eccentricity(self):
         "The second eccentricity [adimensional]"
-        return self.linear_eccentricity / self.semiminor_axis
+        if self.kind == 'oblate':
+            return self.linear_eccentricity / self.semiminor_axis
+        raise ValueError("Second eccentricity is not defined for Spheres or Triaxial Ellipsoids")
+
+    @property
+    def volume(self):
+        """The volume of the ellipsoid [ metres^3 ]"""
+        if self.kind == 'sphere':
+            return 4 / 3 *np.pi* (self.semimajor_axis**3)
+        if self.kind == 'oblate':
+            return 4 / 3 *np.pi* (2 * self.semimajor_axis * self.semiminor_axis)
+        if self.kind == 'triaxial':
+            return 4 / 3 *np.pi* (self.semimajor_axis * self.semimedium_axis * self.semiminor_axis)
 
     @property
     def mean_radius(self):
         """
         The arithmetic mean radius :math:`R_1=(2a+b)/3` [Moritz1988]_ [meters]
         """
-        return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
+        if self.kind == 'sphere':
+            return 1 / 3 * (3 * self.semimajor_axis)
+        if self.kind == 'oblate':
+            return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
+        if self.kind == 'triaxial':
+            return 1 / 3 * (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis)
 
     @property
     def emm(self):
