@@ -9,7 +9,7 @@ The parameters of the Venusian spheroid were obtained from [Wieczorek2015]_:
 
     >>> from boule import VENUS
     >>> print(VENUS)
-    Sphere(name='VENUS', ...)
+    Ellipsoid(name='VENUS', ...)
     >>> # Flattening (Note Venus is a sphere)
     >>> print("{:.5f}".format(VENUS.flattening))
     0.00000
