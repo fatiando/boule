@@ -271,16 +271,24 @@ class Ellipsoid:
         """
         The norm of the gravity vector on the ellipsoid at the equator [m/s²]
         """
-        ratio = self.semiminor_axis / self.linear_eccentricity
-        arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-        aux = (
-            self.second_eccentricity
-            * (3 * (1 + ratio ** 2) * (1 - ratio * arctan) - 1)
-            / (3 * ((1 + 3 * ratio ** 2) * arctan - 3 * ratio))
-        )
-        axis_mul = self.semimajor_axis * self.semiminor_axis
-        result = self.geocentric_grav_const * (1 - self.emm - self.emm * aux) / axis_mul
-        return result
+        if self.kind == "oblate":
+            ratio = self.semiminor_axis / self.linear_eccentricity
+            arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
+            aux = (
+                self.second_eccentricity
+                * (3 * (1 + ratio ** 2) * (1 - ratio * arctan) - 1)
+                / (3 * ((1 + 3 * ratio ** 2) * arctan - 3 * ratio))
+            )
+            axis_mul = self.semimajor_axis * self.semiminor_axis
+            result = self.geocentric_grav_const * (1 - self.emm - self.emm * aux) / axis_mul
+            return result
+        if self.kind == "sphere":
+            return (
+                self.geocentric_grav_const / self.radius ** 2
+                - self.radius * self.angular_velocity ** 2
+            )
+       if self.kind == "triaxial":
+            raise ValueError("The Gravity at the equator is not constant for a triaxial ellipsoid")
 
     @property
     def gravity_pole(self):
