@@ -166,6 +166,7 @@ class Ellipsoid:
         """
         Check if flattening is valid
         """
+        # This validator is a WIP. I am not sure what to do here.
         if value is None:
             pass
         elif value < 0 or value >= 1:
@@ -199,6 +200,13 @@ class Ellipsoid:
             return "sphere"
 
         raise ValueError(f"Unable to determine ellipsoid kind with axis parameters {self.semimajor_axis}, {self.semimedium_axis}, {self.semiminor_axis} and flattening {self.flattening}")
+
+    # Running this code as is produces a RecursionError.
+    # For oblate spheroids, the semiminor_axis method takes the semimajor_axis and flattening value to calculate the semiminor axis.
+    # The kind method, looks at the value of the semi-minor axis to see what type of ellipsoid it is.
+    # Both methods are relying on the other, and neither can work.
+    # The only way I can see around this is to force the user to specify the semi-minor axis, which breaks the API.
+    # Help needed.
 
     @property
     def semiminor_axis(self):
@@ -290,6 +298,8 @@ class Ellipsoid:
     @property
     def gravity_pole(self):
         "The norm of the gravity vector on the ellipsoid at the poles [m/s²]"
+        if self.kind == 'sphere':
+            return self.geocentric_grav_const / self.radius ** 2
         if self.kind == 'oblate':
             ratio = self.semiminor_axis / self.linear_eccentricity
             arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
@@ -304,7 +314,7 @@ class Ellipsoid:
             return result
         if self.kind == 'triaxial':
             raise NotImplementedError("gravity_pole is not yet implemented for triaxial ellipsoids")
-        if self.kind == 'sphere':
+
 
     #######################
     ### All code below this point copied from the old oblate ellipsoid class verbatim.
