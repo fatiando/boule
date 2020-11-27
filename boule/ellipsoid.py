@@ -136,6 +136,14 @@ class Ellipsoid:
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
 
+    @property
+    def kind(self):
+        if self.flattening is not None:
+            return "oblate"
+        if self.semiminor_axis is not None and self.semimedium_axis is not None:
+            return "triaxial"
+        return "sphere"
+
     # Question: Do validators get called on every init, or only when the parameters are specified?
     @semimajor_axis.validator
     def _check_semimajor_axis(
@@ -187,31 +195,9 @@ class Ellipsoid:
             )
 
     @property
-    def kind(self):
-        "The type of ellipsoid: sphere, oblate or triaxial"
-        if self.semiminor_axis is not None and self.semimedium_axis is not None and  self.semimajor_axis != self.semimedium_axis and self.semimedium_axis != self.semiminor_axis:
-            return "triaxial"
-
-        if self.semiminor_axis is not None or self.flattening is not None:
-            # Oblate ellipsoids either have a semiminor axis or a flattening
-            return "oblate"
-
-        if self.semiminor_axis is None and self.semimedium_axis is None and self.flattening is None:
-            return "sphere"
-
-        raise ValueError(f"Unable to determine ellipsoid kind with axis parameters {self.semimajor_axis}, {self.semimedium_axis}, {self.semiminor_axis} and flattening {self.flattening}")
-
-    # Running this code as is produces a RecursionError.
-    # For oblate spheroids, the semiminor_axis method takes the semimajor_axis and flattening value to calculate the semiminor axis.
-    # The kind method, looks at the value of the semi-minor axis to see what type of ellipsoid it is.
-    # Both methods are relying on the other, and neither can work.
-    # The only way I can see around this is to force the user to specify the semi-minor axis, which breaks the API.
-    # Help needed.
-
-    @property
     def semiminor_axis(self):
         "The small (polar) axis of the ellipsoid [meters]"
-        if self.flattening is not None and self.semiminor_axis is None:
+        if self.flattening is not None and self.kind == "oblate":
             return self.semimajor_axis * (1 - self.flattening)
         return self.semiminor_axis
 
