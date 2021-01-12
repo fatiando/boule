@@ -19,14 +19,36 @@ from .utils import normal_gravity_surface
 
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
+# Sphere input tests:
+# 1 parameter: semimajor axis (aka radius)
+def test_check_sphere_radius():
+    """
+    Check if error is raised after invalid semimajor axis is parsed for a sphere.
+    """
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="sphere_zero_radius",
+            semimajor_axis=0,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="sphere_negative_radius",
+            semimajor_axis=-1,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
 
-def test_check_flattening():
+# Oblate spheriod defined using flattening factor Tests
+# 2 parameters: semi-major axis and flattening
+def test_check_oblate_flattening_factor():
     """
     Check if error/warns is raised after invalid flattening
     """
     with pytest.raises(ValueError):
         Ellipsoid(
-            name="negative_flattening",
+            name="oblate_negative_flattening",
             semimajor_axis=1.0,
             flattening=-1,
             geocentric_grav_const=0,
@@ -34,7 +56,7 @@ def test_check_flattening():
         )
     with pytest.raises(ValueError):
         Ellipsoid(
-            name="flattening_greater_than_one",
+            name="oblate_flattening_greater_than_one",
             semimajor_axis=1.0,
             flattening=1.5,
             geocentric_grav_const=0,
@@ -42,7 +64,7 @@ def test_check_flattening():
         )
     with pytest.raises(ValueError):
         Ellipsoid(
-            name="zero_flattening",
+            name="oblate_zero_flattening",
             semimajor_axis=1.0,
             flattening=0,
             geocentric_grav_const=0,
@@ -50,7 +72,7 @@ def test_check_flattening():
         )
     with pytest.raises(ValueError):
         Ellipsoid(
-            name="almost_zero_negative_flattening",
+            name="oblate_almost_zero_negative_flattening",
             semimajor_axis=1.0,
             flattening=-1e8,
             geocentric_grav_const=0,
@@ -58,7 +80,7 @@ def test_check_flattening():
         )
     with warnings.catch_warnings(record=True) as warn:
         Ellipsoid(
-            name="almost-zero-flattening",
+            name="oblate_almost-zero-flattening",
             semimajor_axis=1,
             flattening=1e-8,
             geocentric_grav_const=1,
@@ -67,13 +89,13 @@ def test_check_flattening():
         assert len(warn) >= 1
 
 
-def test_check_semimajor_axis():
+def test_check_oblate_semimajor_axis_wflattening():
     """
-    Check if error is raised after invalid semimajor_axis
+    Check if error is raised after invalid semimajor_axis for an oblate spheriod
     """
     with pytest.raises(ValueError):
         Ellipsoid(
-            name="zero_semimajor_axis",
+            name="oblate_zero_semimajor_axis",
             semimajor_axis=0,
             flattening=0.1,
             geocentric_grav_const=0,
@@ -81,28 +103,278 @@ def test_check_semimajor_axis():
         )
     with pytest.raises(ValueError):
         Ellipsoid(
-            name="negative_semimajor_axis",
+            name="oblate_negative_semimajor_axis",
             semimajor_axis=-1,
             flattening=0.1,
             geocentric_grav_const=0,
             angular_velocity=0,
         )
 
+# Oblate spheriod defined by two axial lengths
+# 2 parameters: semi-major and semi-minor axis 
+def test_check_oblate_semimajor_axis_noflattening():
+    """
+    Check if error is raised after invalid semimajor_axis for an oblate spheriod
+    """
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="oblate_zero_semimajor_axis_noflattening",
+            semimajor_axis=0,
+            semiminor_axis=0.9,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="oblate_negative_semimajor_axis_noflattening",
+            semimajor_axis=-1,
+            semiminor_axis=0.9,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
 
-def test_check_geocentric_grav_const():
+def test_check_oblate_semiminor_axis_noflattening():
+    """
+    Check if error is raised after invalid semiminor_axis for an oblate spheriod
+    """
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="oblate_zero_semiminor_axis_noflattening",
+            semimajor_axis=0,
+            semiminor_axis=0.9,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="oblate_negative_semiminor_axis_noflattening",
+            semimajor_axis=1,
+            semiminor_axis=-0.9,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+def test_check_warning_oblate_axial_values_noflattening():
+    """
+    Check a warning is generated for strange combinations of axis values.
+    """
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="oblate_semiminor_gt_semimajor",
+            semimajor_axis=0.9,
+            semiminor_axis=1.0,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="oblate_semiminor_eq_semimajor",
+            semimajor_axis=1.0,
+            semiminor_axis=1.0,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+
+
+# Triaxial input tests.
+# 3 parameters: semi-major, semi-medium and semi-minor axis.
+def test_check_triaxial_semimajor_axis():
+    """
+    Check if error is raised after invalid semimajor axis for triaxial ellipsoid
+    """
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="triaxial_zero_semimajor_axis",
+            semimajor_axis=0,
+            semimedium_axis=0.9,
+            semiminor_axis=0.8,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="triaxial_negative_semimajor_axis",
+            semimajor_axis=-1,
+            semimedium_axis=0.9,
+            semiminor_axis=0.8,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+def test_check_triaxial_semimedium_axis():
+    """
+    Check if error is raised after invalid semimedium axis for triaxial ellipsoid
+    """
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="triaxial_zero_semimedium_axis",
+            semimajor_axis=1,
+            semimedium_axis=0,
+            semiminor_axis=0.8,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="triaxial_negative_semimedium_axis",
+            semimajor_axis=1,
+            semimedium_axis=-0.9,
+            semiminor_axis=0.8,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+def test_check_triaxial_semiminor_axis():
+    """
+    Check if error is raised after invalid semiminor axis for triaxial ellipsoid
+    """
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="triaxial_zero_semiminor_axis",
+            semimajor_axis=1,
+            semimedium_axis=0.9,
+            semiminor_axis=0,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+    with pytest.raises(ValueError):
+        Ellipsoid(
+            name="triaxial_negative_semiminor_axis",
+            semimajor_axis=1,
+            semimedium_axis=0.9,
+            semiminor_axis=-0.8,
+            geocentric_grav_const=0,
+            angular_velocity=0,
+        )
+
+def test_check_warning_triaxial_axis_values():
+    """
+    Check a warning is generated for strange combinations of axis values.
+    """
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="triaxial_",
+            semimajor_axis=,
+            semimedium_axis=,
+            semiminor_axis=,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="triaxial_semimajor_lt_semimedium",
+            semimajor_axis=0.9,
+            semimedium_axis=1,
+            semiminor_axis=0.8,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="triaxial_semimedium_lt_semiminor",
+            semimajor_axis=1.0,
+            semimedium_axis=0.8,
+            semiminor_axis=0.9,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="triaxial_semimajor_lt_semiminor",
+            semimajor_axis=0.8,
+            semimedium_axis=0.9,
+            semiminor_axis=1.0,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="triaxial_semimajor_eq_semimedium",
+            semimajor_axis=1.0,
+            semimedium_axis=1.0,
+            semiminor_axis=0.8,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="triaxial_semimedium_eq_semiminor",
+            semimajor_axis=1.0,
+            semimedium_axis=0.8,
+            semiminor_axis=0.8,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="triaxial_semiminor_eq_semimajor",
+            semimajor_axis=0.8,
+            semimedium_axis=1.0,
+            semiminor_axis=0.8,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="triaxial_all_axis_equal",
+            semimajor_axis=1.0,
+            semimedium_axis=1.0,
+            semiminor_axis=1.0,
+            geocentric_grav_const=1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+
+# Test input Gravitational Constant.
+def test_check_all_geocentric_grav_const():
     """
     Check if warn is raised after negative geocentric_grav_const
     """
     with warnings.catch_warnings(record=True) as warn:
         Ellipsoid(
-            name="negative_gm",
+            name="sphere_negative_gm",
+            semimajor_axis=1,
+            geocentric_grav_const=-1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="oblate_no_flattening_negative_gm",
+            semimajor_axis=1,
+            semiminor_axis=0.9,
+            geocentric_grav_const=-1,
+            angular_velocity=0,
+        )
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="oblate_wflattening_negative_gm",
             semimajor_axis=1,
             flattening=0.1,
             geocentric_grav_const=-1,
             angular_velocity=0,
         )
         assert len(warn) >= 1
-
+    with warnings.catch_warnings(record=True) as warn:
+        Ellipsoid(
+            name="triaxial_negative_gm",
+            semimajor_axis=1,
+            semimedium_axis=0.9,
+            semiminor_axis=0.8,
+            geocentric_grav_const=-1,
+            angular_velocity=0,
+        )
+        assert len(warn) >= 1
+###
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_geodetic_to_spherical_on_equator(ellipsoid):
