@@ -453,7 +453,7 @@ class Ellipsoid:
             The normal gravity in mGal.
 
         """
-        if height < 0:
+        if np.linalg.norm(height) < 0:
             warn(
                 "Formulas used are valid for points outside the ellipsoid."
                 "Height must be major or equal to zero."
