@@ -455,10 +455,10 @@ class Ellipsoid:
         """
         if height < 0:
             warn(
-                f"Formulas used are valid for points outside the ellipsoid."
+                "Formulas used are valid for points outside the ellipsoid."
                 "Height must be major or equal to zero."
             )
-            
+
         sinlat = np.sin(np.deg2rad(latitude))
         coslat = np.sqrt(1 - sinlat ** 2)
         # The terms below follow the variable names from Li and Goetze (2001)
