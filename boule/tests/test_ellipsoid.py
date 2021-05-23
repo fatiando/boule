@@ -325,3 +325,14 @@ def test_normal_gravity_against_somigliana(ellipsoid):
             ellipsoid.normal_gravity(latitude, height=0),
             normal_gravity_surface(latitude, ellipsoid),
         )
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_normal_gravity_computed_on_internal_point(ellipsoid):
+    """
+    Check if warn is raised if height is negative
+    """
+    with warnings.catch_warnings(record=True) as warn:
+        latitude = np.linspace(-90, 90, 100)
+        ellipsoid.normal_gravity(latitude, height=-10)
+        assert len(warn) >= 1
