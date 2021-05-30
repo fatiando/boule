@@ -332,7 +332,7 @@ def test_normal_gravity_computed_on_internal_point(ellipsoid):
     """
     Check if warn is raised if height is negative
     """
+    latitude = np.linspace(-90, 90, 100)
     with warnings.catch_warnings(record=True) as warn:
-        latitude = np.linspace(-90, 90, 100)
         ellipsoid.normal_gravity(latitude, height=-10)
         assert len(warn) >= 1
