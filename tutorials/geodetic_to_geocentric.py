@@ -46,13 +46,13 @@ import boule as bl
 latitude = np.linspace(-90, 90, 100)
 longitude = 0
 # ellipsoid surface
-Height1=0
+Height1 = 0
 # ICESat-2 orbit height
-Height2=481000
-SP_Cor1 = bl.WGS84.geodetic_to_spherical(longitude , latitude, Height1)
-SP_Cor2 = bl.WGS84.geodetic_to_spherical(longitude , latitude, Height2)
+Height2 = 481000
+SP_Cor1 = bl.WGS84.geodetic_to_spherical(longitude, latitude, Height1)
+SP_Cor2 = bl.WGS84.geodetic_to_spherical(longitude, latitude, Height2)
 
-fig, (axs1,axs2,axs3) = plt.subplots(3,1,figsize=(10,15))
+fig, (axs1, axs2, axs3) = plt.subplots(3, 1, figsize=(10, 15))
 
 axs1.plot(latitude, SP_Cor1[1], "-k")
 axs1.set_title("Geodetic latitude to geocentric latitude at ellipsoid surface")
@@ -62,8 +62,10 @@ axs2.plot(latitude, SP_Cor1[2], "-k")
 axs2.set_title("Geocentric radius at ellipsoid surface")
 axs2.set(xlabel="Geodetic Latitude", ylabel="Geocentric Radius (m)")
 
-axs3.plot(latitude, latitude-SP_Cor1[1], "-k")
-axs3.set_title("Difference between geodetic latitude and geocentric latitude at ellipsoid surface")
+axs3.plot(latitude, latitude - SP_Cor1[1], "-k")
+axs3.set_title(
+    "Difference between geodetic latitude and geocentric latitude at ellipsoid surface"
+)
 axs3.set(xlabel="Geodetic Latitude", ylabel="Difference (Degree)")
 
 plt.show()
@@ -75,13 +77,13 @@ plt.show()
 # height vs ellipsoid surface), this difference could be 0.013 degrees. Similarly,
 # the Geocentric radius change could be 2.5 meters.
 
-fig, (axs1,axs2) = plt.subplots(2,1,figsize=(10,10))
+fig, (axs1, axs2) = plt.subplots(2, 1, figsize=(10, 10))
 
-axs1.plot(latitude, SP_Cor2[1]-SP_Cor1[1], "-k")
+axs1.plot(latitude, SP_Cor2[1] - SP_Cor1[1], "-k")
 axs1.set_title("Geocentric latitude changes at different ellipsoid heights")
 axs1.set(xlabel="Geodetic Latitude", ylabel="Difference (Degree)")
 
-axs2.plot(latitude, SP_Cor2[2]-SP_Cor1[2], "-k")
+axs2.plot(latitude, SP_Cor2[2] - SP_Cor1[2], "-k")
 axs2.set_title("Geocentric radius changes at different ellipsoid height")
 axs2.set(xlabel="Geodetic Latitude", ylabel="Difference (m)")
 
