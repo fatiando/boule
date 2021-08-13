@@ -21,10 +21,10 @@ is defined by the angle between the plane the equator and the line from earth
 centre to a given point. The distance from the point to the earth centre is 
 geocentric radius :`R`. In geodetic coordinate system, the geodetic latitude is 
 the angle between the plane of the equator and the surface normal at a point 
-on the ellipsoid. The ellipsoid height :math:`h` is the height abrove the 
+on the ellipsoid. The ellipsoid height :math:`h` is the height above the 
 ellipsoid surface, it also normal to that surface.
 
-.. imgae:: https://github.com/fatiando/boule/tree/master/doc/_static/coordinate.png
+.. image:: https://github.com/fatiando/boule/tree/master/doc/_static/coordinate.png
 
 Note, the flattening of the shown ellipsoid is larger than the real earth. 
 The real difference between geodetic latitude and geocentric latitude at 
