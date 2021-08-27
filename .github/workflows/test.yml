@@ -37,6 +37,10 @@ jobs:
       matrix:
         os: [ubuntu, macos, windows]
         python: ["3.6", "3.7", "3.8", "3.9", "3.10-dev"]
+        # Remove when binary wheels available:
+        exclude:
+          - os: macos
+            python: "3.10-dev"
     env:
       # Used to tag codecov submissions
       OS: ${{ matrix.os }}
