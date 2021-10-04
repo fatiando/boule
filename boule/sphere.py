@@ -197,7 +197,7 @@ class Sphere(Ellipsoid):
         if np.any(height < 0):
             warn(
                 "Formulas used are valid for points outside the ellipsoid."
-                "Height must be major or equal to zero."
+                "Height must be greater than or equal to zero."
             )
         radial_distance = self.radius + height
         gravity_acceleration = self.geocentric_grav_const / (radial_distance) ** 2
