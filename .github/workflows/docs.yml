@@ -32,7 +32,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      REQUIREMENTS: requirements.txt env/requiremente-docs.txt
+      REQUIREMENTS: requirements.txt env/requirements-docs.txt
       PYTHON: 3.9
 
     steps:
