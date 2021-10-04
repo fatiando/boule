@@ -24,7 +24,7 @@ DESCRIPTION = (
     "Reference ellipsoids for geodesy, geophysics, and coordinate calculations"
 )
 KEYWORDS = "geophysics, geodesy"
-with open("README.rst") as f:
+with open("README.rst", encoding="utf-8") as f:
     LONG_DESCRIPTION = "".join(f.readlines())
 CLASSIFIERS = [
     "Development Status :: 3 - Alpha",
@@ -39,13 +39,13 @@ CLASSIFIERS = [
     "Programming Language :: Python :: 3.8",
     "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
-    "License :: OSI Approved :: {}".format(LICENSE),
+    f"License :: OSI Approved :: {LICENSE}",
 ]
 PLATFORMS = "Any"
 PACKAGES = find_packages(exclude=["doc"])
 SCRIPTS = []
 PACKAGE_DATA = {}
-with open("requirements.txt") as f:
+with open("requirements.txt", encoding="utf-8") as f:
     INSTALL_REQUIRES = f.readlines()
 PYTHON_REQUIRES = ">=3.6"
 

@@ -16,6 +16,7 @@ on:
 
 ###############################################################################
 jobs:
+
   black:
     runs-on: ubuntu-latest
     steps:
@@ -27,13 +28,16 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
+          python-version: '3.9'
 
-      - name: Install nox
-        run: python -m pip install nox
+      - name: Install requirements
+        run: pip install black
+
+      - name: List installed packages
+        run: pip freeze
 
       - name: Check code format
-        run: nox -s check -- black list-packages
+        run: make black-check
 
   flake8:
     runs-on: ubuntu-latest
@@ -46,13 +50,16 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
+          python-version: '3.9'
 
-      - name: Install nox
-        run: python -m pip install nox
+      - name: Install requirements
+        run: pip install flake8
+
+      - name: List installed packages
+        run: pip freeze
 
       - name: Check code style
-        run: nox -s check -- flake8 list-packages
+        run: make flake8
 
   pylint:
     runs-on: ubuntu-latest
@@ -65,10 +72,35 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: "3.8"
+          python-version: '3.9'
 
-      - name: Install nox
-        run: python -m pip install nox
+      - name: Install requirements
+        run: pip install pylint==2.4.*
+
+      - name: List installed packages
+        run: pip freeze
 
       - name: Linting (pylint)
-        run: nox -s check -- pylint list-packages
+        run: make lint
+
+  license:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+
+      - name: Install requirements
+        run: pip install pathspec
+
+      - name: List installed packages
+        run: pip freeze
+
+      - name: Check license notice on all source files
+        run: make license-check
