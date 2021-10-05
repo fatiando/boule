@@ -24,7 +24,8 @@ Boule
 
     ellipsoids/index.rst
     tutorials/normal_gravity.rst
-	tutorials/geodetic_to_geocentric.rst
+    tutorials/geodetic_to_geocentric.rst
+	
 .. toctree::
     :maxdepth: 2
     :hidden:
