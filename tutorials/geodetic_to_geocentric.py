@@ -7,8 +7,9 @@
 r"""
 .. _geodetic_to_geocentric:
 
-Converting geodetic latitude and height into geocentric latitude and radius
-==============
+Coordinate conversions
+==================
+
 Both geocentric coordinate system and geodetic coordinate system are geographic 
 coordinate systems centred at the mass of the earth. In geocentric coordinate 
 system, the earth is modelled as a sphere. The geodetic coordinate system is 
