@@ -28,7 +28,7 @@ ellipsoid surface, it also normal to that surface.
 .. figure:: ../_static/coordinate.png
     :alt: Depiction of geocentric and geodetic systems with associated coordinates.
     
-    CAPTION SHOULD  BE ADDED HERE
+    Geocentric and Geodetic Coordinates Systems
 
 Note, the flattening of the shown ellipsoid is larger than the real earth. 
 The real difference between geodetic latitude and geocentric latitude at 
