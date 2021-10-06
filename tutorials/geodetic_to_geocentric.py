@@ -8,36 +8,36 @@ r"""
 .. _geodetic_to_geocentric:
 
 Coordinate conversions
-==================
+======================
 
-Both geocentric coordinate system and geodetic coordinate system are geographic 
-coordinate systems centred at the mass of the earth. In geocentric coordinate 
-system, the earth is modelled as a sphere. The geodetic coordinate system is 
-based on the reference ellipsoid considering the centrifugal force due to 
+Both geocentric coordinate system and geodetic coordinate system are geographic
+coordinate systems centred at the mass of the earth. In geocentric coordinate
+system, the earth is modelled as a sphere. The geodetic coordinate system is
+based on the reference ellipsoid considering the centrifugal force due to
 the earth's rotation.
 
-The major difference between these two systems is the way how they define 
-latitude and height. In geocentric coordinate system, the geocentric latitude 
-is defined by the angle between the plane the equator and the line from earth 
-centre to a given point. The distance from the point to the earth centre is 
-geocentric radius :`R`. In geodetic coordinate system, the geodetic latitude is 
-the angle between the plane of the equator and the surface normal at a point 
-on the ellipsoid. The ellipsoid height :math:`h` is the height above the 
+The major difference between these two systems is the way how they define
+latitude and height. In geocentric coordinate system, the geocentric latitude
+is defined by the angle between the plane the equator and the line from earth
+centre to a given point. The distance from the point to the earth centre is
+geocentric radius :`R`. In geodetic coordinate system, the geodetic latitude is
+the angle between the plane of the equator and the surface normal at a point
+on the ellipsoid. The ellipsoid height :math:`h` is the height above the
 ellipsoid surface, it also normal to that surface.
 
 .. figure:: ../_static/coordinate.png
     :alt: Depiction of geocentric and geodetic systems with associated coordinates.
-    
+
     Geocentric and Geodetic Coordinates Systems
 
-Note, the flattening of the shown ellipsoid is larger than the real earth. 
-The real difference between geodetic latitude and geocentric latitude at 
+Note, the flattening of the shown ellipsoid is larger than the real earth.
+The real difference between geodetic latitude and geocentric latitude at
 the earth ellipsoid surface is less than 0.2 degrees.
 
 The calculation is performed by the :meth:`boule.Ellipsoid.geodetic_to_spherical`
 method.
 
-This example will show you how to convert geodetic latitude and height into 
+This example will show you how to convert geodetic latitude and height into
 geocentric latitude and radius. We use :ref:`WGS84 <wgs84>`  ellipsoid in here.
 
 """
