@@ -107,8 +107,8 @@ print(sphere)
 # geophysical applications:
 #
 # 1. :ref:`Normal gravity <normal_gravity>`
-# 2. Converting geodetic latitude and height into geocentric latitude and
-#    radius.
+# 2. :ref:`Converting geodetic latitude and height into geocentric latitude and
+#    radius <geodetic_to_geocentric>`.
 #
 # See the respective tutorials and :ref:`reference documentation <api>` for
 # more information.
