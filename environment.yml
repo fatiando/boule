@@ -3,7 +3,28 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python=3.8
+  - python==3.9
   - pip
-  - nox
   - make
+  # Main dependencies
+  - numpy
+  - attrs
+  # Requirements to build and check distributions
+  - twine
+  - wheel
+  - setuptools
+  - setuptools_scm
+  # Requirements for checking code style
+  - black
+  - flake8
+  - pylint
+  # Requirements for building the documentation
+  - matplotlib
+  - numpydoc
+  - sphinx-gallery
+  - sphinx==2.2.1
+  - sphinx_rtd_theme==0.4.3
+  # Requirements for running the tests
+  - pytest
+  - pytest-cov
+  - coverage
