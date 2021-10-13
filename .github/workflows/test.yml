@@ -39,11 +39,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, macos, windows]
-        python: ["3.6", "3.9", "3.10-dev"]
-        # Remove when binary wheels available:
-        exclude:
-          - os: macos
-            python: "3.10-dev"
+        python: ["3.6", "3.10"]
     env:
       REQUIREMENTS: requirements.txt env/requirements-test.txt
       # Used to tag codecov submissions
