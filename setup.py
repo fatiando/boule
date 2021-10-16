@@ -48,14 +48,14 @@ PACKAGE_DATA = {}
 with open("requirements.txt", encoding="utf-8") as f:
     INSTALL_REQUIRES = f.readlines()
 PYTHON_REQUIRES = ">=3.6"
-
-# Configuration for setuptools-scm
 SETUP_REQUIRES = ["setuptools_scm"]
+# Configuration for setuptools-scm
 USE_SCM_VERSION = {
     "relative_to": __file__,
+    "version_scheme": "post-release",
     "local_scheme": "node-and-date",
+    "write_to": f"{NAME}/_version.py",
 }
-
 
 if __name__ == "__main__":
     setup(
