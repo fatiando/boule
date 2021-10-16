@@ -75,7 +75,7 @@ jobs:
           python-version: '3.9'
 
       - name: Install requirements
-        run: pip install pylint==2.4.*
+        run: pip install pylint
 
       - name: List installed packages
         run: pip freeze

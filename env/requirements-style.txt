@@ -1,4 +1,4 @@
 # Requirements for checking code style
 black
 flake8
-pylint==2.4.*
+pylint
