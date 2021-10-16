@@ -1,6 +1,12 @@
-include README.rst
-include LICENSE.txt
-include CODE_OF_CONDUCT.md
-include CONTRIBUTING.md
-include AUTHORS.md
-include requirements.txt
+# Exclude these files from source distributions.
+# setuptools_scm includes everything else by default.
+prune .github
+prune env
+prune doc
+exclude .*.yml
+exclude .*rc
+exclude requirements*.txt
+exclude Makefile
+exclude .gitignore
+exclude .gitattributes
+exclude environment.yml
