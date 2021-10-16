@@ -28,9 +28,6 @@ Part of the `Fatiando a Terra <https://www.fatiando.org>`__ project
     :target: https://doi.org/10.5281/zenodo.3530749
 
 
-.. placeholder-for-doc-index
-
-
 Disclaimer
 ----------
 
@@ -41,6 +38,9 @@ Let us know by submitting
 `issues on Github <https://github.com/fatiando/boule/issues>`__
 or send us a message on our
 `Slack chatroom <http://contact.fatiando.org>`__.
+
+
+.. placeholder-for-doc-index
 
 
 About
@@ -136,15 +136,3 @@ License
 This is free software: you can redistribute it and/or modify it under the terms
 of the **BSD 3-clause License**. A copy of this license is provided in
 `LICENSE.txt <https://github.com/fatiando/boule/blob/master/LICENSE.txt>`__.
-
-
-Documentation for other versions
---------------------------------
-
-* `Development <http://www.fatiando.org/boule/dev>`__ (reflects the *master* branch on
-  Github)
-* `Latest release <http://www.fatiando.org/boule/latest>`__
-* `v0.2.0 <http://www.fatiando.org/boule/v0.2.0>`__
-* `v0.1.1 <http://www.fatiando.org/boule/v0.1.1>`__
-* `v0.1.0 <http://www.fatiando.org/boule/v0.1.0>`__
-* `v0.0.1 <http://www.fatiando.org/boule/v0.0.1>`__
