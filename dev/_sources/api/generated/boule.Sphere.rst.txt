@@ -1,0 +1,160 @@
+boule.Sphere
+============
+
+.. currentmodule:: boule
+
+.. autoclass:: Sphere
+
+.. rubric:: Methods Summary
+
+.. autosummary::
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        Sphere.geocentric_radius
+    
+    
+    
+        Sphere.geodetic_to_spherical
+    
+    
+    
+        Sphere.normal_gravity
+    
+    
+    
+        Sphere.prime_vertical_radius
+    
+    
+    
+        Sphere.spherical_to_geodetic
+    
+    
+
+----
+
+
+
+
+
+.. automethod:: Sphere.geocentric_radius
+
+
+
+.. automethod:: Sphere.geodetic_to_spherical
+
+
+
+.. automethod:: Sphere.normal_gravity
+
+
+
+.. automethod:: Sphere.prime_vertical_radius
+
+
+
+.. automethod:: Sphere.spherical_to_geodetic
+
+
+
+.. include:: backreferences/boule.Sphere.examples
+
+.. raw:: html
+
+     <div style='clear:both'></div>

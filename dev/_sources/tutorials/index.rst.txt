@@ -13,6 +13,27 @@ Tutorials
 
 .. raw:: html
 
+    <div class="sphx-glr-thumbcontainer" tooltip="Both geocentric coordinate system and geodetic coordinate system are geographic coordinate syst...">
+
+.. only:: html
+
+ .. figure:: /tutorials/images/thumb/sphx_glr_geodetic_to_geocentric_thumb.png
+     :alt: Coordinate conversions
+
+     :ref:`sphx_glr_tutorials_geodetic_to_geocentric.py`
+
+.. raw:: html
+
+    </div>
+
+
+.. toctree::
+   :hidden:
+
+   /tutorials/geodetic_to_geocentric
+
+.. raw:: html
+
     <div class="sphx-glr-thumbcontainer" tooltip="One of the main uses for ellipsoids in geodesy and geophysics is the computation of *normal gra...">
 
 .. only:: html

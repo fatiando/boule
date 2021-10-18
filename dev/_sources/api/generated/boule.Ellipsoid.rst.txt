@@ -5,32 +5,100 @@ boule.Ellipsoid
 
 .. autoclass:: Ellipsoid
 
-.. rubric:: Attributes
+.. rubric:: Methods Summary
 
 .. autosummary::
     
-        Ellipsoid.emm
     
-        Ellipsoid.first_eccentricity
     
-        Ellipsoid.gravity_equator
     
-        Ellipsoid.gravity_pole
     
-        Ellipsoid.linear_eccentricity
     
-        Ellipsoid.mean_radius
     
-        Ellipsoid.second_eccentricity
     
-        Ellipsoid.semiminor_axis
     
-
- 
-
-.. rubric:: Methods
-
-.. autosummary::
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     
     
     
@@ -54,8 +122,6 @@ boule.Ellipsoid
         Ellipsoid.spherical_to_geodetic
     
     
-
-
 
 ----
 
