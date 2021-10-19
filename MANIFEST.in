@@ -3,9 +3,11 @@
 prune .github
 prune env
 prune doc
+prune tutorials
 exclude .*.yml
 exclude .*rc
-exclude requirements*.txt
+exclude .flake8
+exclude license_notice.py
 exclude Makefile
 exclude .gitignore
 exclude .gitattributes
