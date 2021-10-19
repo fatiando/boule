@@ -1,0 +1,156 @@
+boule.Ellipsoid
+===============
+
+.. currentmodule:: boule
+
+.. autoclass:: Ellipsoid
+
+.. rubric:: Methods Summary
+
+.. autosummary::
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+        Ellipsoid.geocentric_radius
+    
+    
+    
+        Ellipsoid.geodetic_to_spherical
+    
+    
+    
+        Ellipsoid.normal_gravity
+    
+    
+    
+        Ellipsoid.prime_vertical_radius
+    
+    
+    
+        Ellipsoid.spherical_to_geodetic
+    
+    
+
+----
+
+
+
+
+
+.. automethod:: Ellipsoid.geocentric_radius
+
+
+
+.. automethod:: Ellipsoid.geodetic_to_spherical
+
+
+
+.. automethod:: Ellipsoid.normal_gravity
+
+
+
+.. automethod:: Ellipsoid.prime_vertical_radius
+
+
+
+.. automethod:: Ellipsoid.spherical_to_geodetic
+
+
+
+.. include:: backreferences/boule.Ellipsoid.examples
+
+.. raw:: html
+
+     <div style='clear:both'></div>
