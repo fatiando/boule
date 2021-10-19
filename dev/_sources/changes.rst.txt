@@ -3,6 +3,21 @@
 Changelog
 =========
 
+Version 0.3.1
+-------------
+
+*Released on: 2021/10/19*
+
+doi:`10.5281/zenodo.5577885 <https://doi.org/10.5281/zenodo.5577885>`__
+
+Bug fix:
+
+* Package the missing ``requirements.txt`` file in source distributions (`#96 <https://github.com/fatiando/boule/pull/96>`__)
+
+This release contains contributions from:
+
+* Leonardo Uieda
+
 Version 0.3.0
 -------------
 
