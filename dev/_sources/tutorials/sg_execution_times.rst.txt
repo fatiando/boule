@@ -5,12 +5,12 @@
 
 Computation times
 =================
-**00:00.895** total execution time for **tutorials** files:
+**00:00.750** total execution time for **tutorials** files:
 
 +-------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_tutorials_geodetic_to_geocentric.py` (``geodetic_to_geocentric.py``) | 00:00.659 | 0.0 MB |
+| :ref:`sphx_glr_tutorials_geodetic_to_geocentric.py` (``geodetic_to_geocentric.py``) | 00:00.559 | 0.0 MB |
 +-------------------------------------------------------------------------------------+-----------+--------+
-| :ref:`sphx_glr_tutorials_normal_gravity.py` (``normal_gravity.py``)                 | 00:00.233 | 0.0 MB |
+| :ref:`sphx_glr_tutorials_normal_gravity.py` (``normal_gravity.py``)                 | 00:00.188 | 0.0 MB |
 +-------------------------------------------------------------------------------------+-----------+--------+
 | :ref:`sphx_glr_tutorials_overview.py` (``overview.py``)                             | 00:00.003 | 0.0 MB |
 +-------------------------------------------------------------------------------------+-----------+--------+
