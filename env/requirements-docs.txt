@@ -1,5 +1,8 @@
 # Requirements for building the documentation
 matplotlib
+xarray
+pygmt
+ensaio
 sphinx==3.5.*
 sphinx-book-theme==0.1.*
 sphinx-gallery==0.10.*
