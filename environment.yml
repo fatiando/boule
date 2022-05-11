@@ -20,8 +20,8 @@ dependencies:
   - pylint
   # Requirements for building the documentation
   - matplotlib
-  - sphinx==3.5.*
-  - sphinx-book-theme==0.1.*
+  - sphinx==4.5.*
+  - sphinx-book-theme==0.2.*
   - sphinx-gallery==0.10.*
   # Requirements for running the tests
   - pytest
