@@ -1,8 +1,12 @@
 # Requirements for building the documentation
+ipytho
 matplotlib
 xarray
-pygmt
+netcdf4
+pandas
+pygmt==0.5.*
 ensaio
 sphinx==4.5.*
 sphinx-book-theme==0.2.*
 sphinx-gallery==0.10.*
+jupyter-sphinx
