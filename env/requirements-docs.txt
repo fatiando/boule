@@ -1,5 +1,5 @@
 # Requirements for building the documentation
-ipytho
+ipython
 matplotlib
 xarray
 netcdf4
