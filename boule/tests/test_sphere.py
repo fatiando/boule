@@ -118,8 +118,8 @@ def test_ellipsoidal_properties(sphere):
     npt.assert_allclose(sphere.mean_radius, sphere.radius)
     npt.assert_allclose(
         sphere.emm,
-        sphere.angular_velocity ** 2
-        * sphere.radius ** 3
+        sphere.angular_velocity**2
+        * sphere.radius**3
         / sphere.geocentric_grav_const,
     )
 
@@ -204,7 +204,7 @@ def test_normal_gravity_only_rotation():
     # Expected value is positive because normal gravity is the norm of the
     # vector.
     for height in heights:
-        expected_value = 1e5 * (omega ** 2) * (radius + height)
+        expected_value = 1e5 * (omega**2) * (radius + height)
         npt.assert_allclose(
             expected_value,
             sphere.normal_gravity(latitude=0, height=height),
@@ -217,7 +217,7 @@ def test_normal_gravity_only_rotation():
     # Expected value is positive because normal gravity is the norm of the
     # vector.
     for height in heights:
-        expected_value = 1e5 * (omega ** 2) * (radius + height) * np.sqrt(2) / 2
+        expected_value = 1e5 * (omega**2) * (radius + height) * np.sqrt(2) / 2
         npt.assert_allclose(
             expected_value,
             sphere.normal_gravity(latitude=45, height=height),
