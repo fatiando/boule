@@ -14,7 +14,7 @@ Gravity disturbances are the differences between the measured gravity and a
 normal gravity produced by an ellipsoid.
 
 As an example, lets calculate a gravity disturbances grid at a height of 1000 m
-using the global gravity from EIGEN-6C4 and `WGS84 <wgs84>` ellipsoid.
+using the global gravity from EIGEN-6C4 and WGS84 ellipsoid.
 """
 
 import boule as bl
