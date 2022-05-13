@@ -148,7 +148,7 @@ class Ellipsoid:
     @property
     def linear_eccentricity(self):
         "The linear eccentricity [meters]"
-        return np.sqrt(self.semimajor_axis ** 2 - self.semiminor_axis ** 2)
+        return np.sqrt(self.semimajor_axis**2 - self.semiminor_axis**2)
 
     @property
     def first_eccentricity(self):
@@ -171,8 +171,8 @@ class Ellipsoid:
     def emm(self):
         r"Auxiliary quantity :math:`m = \omega^2 a^2 b / (GM)`"
         return (
-            self.angular_velocity ** 2
-            * self.semimajor_axis ** 2
+            self.angular_velocity**2
+            * self.semimajor_axis**2
             * self.semiminor_axis
             / self.geocentric_grav_const
         )
@@ -186,8 +186,8 @@ class Ellipsoid:
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
         aux = (
             self.second_eccentricity
-            * (3 * (1 + ratio ** 2) * (1 - ratio * arctan) - 1)
-            / (3 * ((1 + 3 * ratio ** 2) * arctan - 3 * ratio))
+            * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
+            / (3 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
         )
         axis_mul = self.semimajor_axis * self.semiminor_axis
         result = self.geocentric_grav_const * (1 - self.emm - self.emm * aux) / axis_mul
@@ -200,11 +200,11 @@ class Ellipsoid:
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
         aux = (
             self.second_eccentricity
-            * (3 * (1 + ratio ** 2) * (1 - ratio * arctan) - 1)
-            / (1.5 * ((1 + 3 * ratio ** 2) * arctan - 3 * ratio))
+            * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
+            / (1.5 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
         )
         result = (
-            self.geocentric_grav_const * (1 + self.emm * aux) / self.semimajor_axis ** 2
+            self.geocentric_grav_const * (1 + self.emm * aux) / self.semimajor_axis**2
         )
         return result
 
@@ -273,8 +273,8 @@ class Ellipsoid:
         if geodetic:
             radius = np.sqrt(
                 (
-                    (self.semimajor_axis ** 2 * coslat) ** 2
-                    + (self.semiminor_axis ** 2 * sinlat) ** 2
+                    (self.semimajor_axis**2 * coslat) ** 2
+                    + (self.semiminor_axis**2 * sinlat) ** 2
                 )
                 / (
                     (self.semimajor_axis * coslat) ** 2
@@ -320,7 +320,7 @@ class Ellipsoid:
 
         """
         return self.semimajor_axis / np.sqrt(
-            1 - self.first_eccentricity ** 2 * sinlat ** 2
+            1 - self.first_eccentricity**2 * sinlat**2
         )
 
     def geodetic_to_spherical(self, longitude, latitude, height):
@@ -359,9 +359,9 @@ class Ellipsoid:
         # XY plane: xy_projection = sqrt( X**2 + Y**2 )
         xy_projection = (height + prime_vertical_radius) * coslat
         z_cartesian = (
-            height + (1 - self.first_eccentricity ** 2) * prime_vertical_radius
+            height + (1 - self.first_eccentricity**2) * prime_vertical_radius
         ) * sinlat
-        radius = np.sqrt(xy_projection ** 2 + z_cartesian ** 2)
+        radius = np.sqrt(xy_projection**2 + z_cartesian**2)
         spherical_latitude = np.degrees(np.arcsin(z_cartesian / radius))
         return longitude, spherical_latitude, radius
 
@@ -398,12 +398,12 @@ class Ellipsoid:
         spherical_latitude = np.radians(spherical_latitude)
         k, big_z, big_d = self._spherical_to_geodetic_terms(spherical_latitude, radius)
         latitude = np.degrees(
-            2 * np.arctan(big_z / (big_d + np.sqrt(big_d ** 2 + big_z ** 2)))
+            2 * np.arctan(big_z / (big_d + np.sqrt(big_d**2 + big_z**2)))
         )
         height = (
-            (k + self.first_eccentricity ** 2 - 1)
+            (k + self.first_eccentricity**2 - 1)
             / k
-            * np.sqrt(big_d ** 2 + big_z ** 2)
+            * np.sqrt(big_d**2 + big_z**2)
         )
         return longitude, latitude, height
 
@@ -413,16 +413,16 @@ class Ellipsoid:
         # the main function body
         cos_latitude = np.cos(spherical_latitude)
         big_z = radius * np.sin(spherical_latitude)
-        p_0 = radius ** 2 * cos_latitude ** 2 / self.semimajor_axis ** 2
-        q_0 = (1 - self.first_eccentricity ** 2) / self.semimajor_axis ** 2 * big_z ** 2
-        r_0 = (p_0 + q_0 - self.first_eccentricity ** 4) / 6
-        s_0 = self.first_eccentricity ** 4 * p_0 * q_0 / 4 / r_0 ** 3
-        t_0 = np.cbrt(1 + s_0 + np.sqrt(2 * s_0 + s_0 ** 2))
+        p_0 = radius**2 * cos_latitude**2 / self.semimajor_axis**2
+        q_0 = (1 - self.first_eccentricity**2) / self.semimajor_axis**2 * big_z**2
+        r_0 = (p_0 + q_0 - self.first_eccentricity**4) / 6
+        s_0 = self.first_eccentricity**4 * p_0 * q_0 / 4 / r_0**3
+        t_0 = np.cbrt(1 + s_0 + np.sqrt(2 * s_0 + s_0**2))
         u_0 = r_0 * (1 + t_0 + 1 / t_0)
-        v_0 = np.sqrt(u_0 ** 2 + q_0 * self.first_eccentricity ** 4)
-        w_0 = self.first_eccentricity ** 2 * (u_0 + v_0 - q_0) / 2 / v_0
-        k = np.sqrt(u_0 + v_0 + w_0 ** 2) - w_0
-        big_d = k * radius * cos_latitude / (k + self.first_eccentricity ** 2)
+        v_0 = np.sqrt(u_0**2 + q_0 * self.first_eccentricity**4)
+        w_0 = self.first_eccentricity**2 * (u_0 + v_0 - q_0) / 2 / v_0
+        k = np.sqrt(u_0 + v_0 + w_0**2) - w_0
+        big_d = k * radius * cos_latitude / (k + self.first_eccentricity**2)
         return k, big_z, big_d
 
     def normal_gravity(
@@ -461,21 +461,21 @@ class Ellipsoid:
             )
 
         sinlat = np.sin(np.deg2rad(latitude))
-        coslat = np.sqrt(1 - sinlat ** 2)
+        coslat = np.sqrt(1 - sinlat**2)
         # The terms below follow the variable names from Li and Goetze (2001)
         cosbeta_l2, sinbeta_l2, b_l, q_0, q_l, big_w = self._normal_gravity_terms(
             sinlat, coslat, height
         )
         # Put together gamma using 3 terms
-        term1 = self.geocentric_grav_const / (b_l ** 2 + self.linear_eccentricity ** 2)
+        term1 = self.geocentric_grav_const / (b_l**2 + self.linear_eccentricity**2)
         term2 = (0.5 * sinbeta_l2 - 1 / 6) * (
-            self.semimajor_axis ** 2
+            self.semimajor_axis**2
             * self.linear_eccentricity
             * q_l
-            * self.angular_velocity ** 2
-            / ((b_l ** 2 + self.linear_eccentricity ** 2) * q_0)
+            * self.angular_velocity**2
+            / ((b_l**2 + self.linear_eccentricity**2) * q_0)
         )
-        term3 = -cosbeta_l2 * b_l * self.angular_velocity ** 2
+        term3 = -cosbeta_l2 * b_l * self.angular_velocity**2
         gamma = (term1 + term2 + term3) / big_w
         if si_units:
             return gamma
@@ -489,11 +489,11 @@ class Ellipsoid:
         beta = np.arctan2(self.semiminor_axis * sinlat, self.semimajor_axis * coslat)
         zl2 = (self.semiminor_axis * np.sin(beta) + height * sinlat) ** 2
         rl2 = (self.semimajor_axis * np.cos(beta) + height * coslat) ** 2
-        big_d = (rl2 - zl2) / self.linear_eccentricity ** 2
-        big_r = (rl2 + zl2) / self.linear_eccentricity ** 2
-        cosbeta_l2 = 0.5 * (1 + big_r) - np.sqrt(0.25 * (1 + big_r ** 2) - 0.5 * big_d)
+        big_d = (rl2 - zl2) / self.linear_eccentricity**2
+        big_r = (rl2 + zl2) / self.linear_eccentricity**2
+        cosbeta_l2 = 0.5 * (1 + big_r) - np.sqrt(0.25 * (1 + big_r**2) - 0.5 * big_d)
         sinbeta_l2 = 1 - cosbeta_l2
-        b_l = np.sqrt(rl2 + zl2 - self.linear_eccentricity ** 2 * cosbeta_l2)
+        b_l = np.sqrt(rl2 + zl2 - self.linear_eccentricity**2 * cosbeta_l2)
         q_0 = 0.5 * (
             (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
             * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
@@ -511,7 +511,7 @@ class Ellipsoid:
             - 1
         )
         big_w = np.sqrt(
-            (b_l ** 2 + self.linear_eccentricity ** 2 * sinbeta_l2)
-            / (b_l ** 2 + self.linear_eccentricity ** 2)
+            (b_l**2 + self.linear_eccentricity**2 * sinbeta_l2)
+            / (b_l**2 + self.linear_eccentricity**2)
         )
         return cosbeta_l2, sinbeta_l2, b_l, q_0, q_l, big_w
