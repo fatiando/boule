@@ -43,7 +43,7 @@ fig.basemap(
     projection="W15c",
     frame=True,
 )
-fig.grdimage(disturbance, cmap="viridis", shading="+nt0.5")
+fig.grdimage(disturbance, cmap="polar+h", shading="+nt0.5")
 fig.colorbar(frame='af+l"disturbance [mGal]"')
 fig.coast(shorelines=True, resolution="c", area_thresh=1e4)
 fig.show()
