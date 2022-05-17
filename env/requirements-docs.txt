@@ -4,7 +4,8 @@ matplotlib
 xarray
 netcdf4
 pandas
-pygmt==0.5.*
+pygmt==0.6.*
+gmt==6.3.*
 ensaio
 sphinx==4.5.*
 sphinx-book-theme==0.2.*
