@@ -108,7 +108,8 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ runner.temp }}/cache/ensaio
-          key:
+          # Use a constant key to reuse the datasets across all jobs
+          key: ensaio
 
       - name: Build the documentation
         run: make -C doc clean all
