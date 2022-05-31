@@ -5,7 +5,7 @@
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
 r"""
-.. _normal_gravity:
+.. _gravity_disturbance:
 
 Gravity disturbances
 ====================
