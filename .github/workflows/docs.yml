@@ -113,7 +113,7 @@ jobs:
       - name: Build the documentation
         run: make -C doc clean all
         env:
-          # Define directory where sample data will be stored
+          # Fetch the data from the GitHub releases to avoid overloading Zenodo
           ENSAIO_DATA_FROM_GITHUB: true
           # Define directory where sample data will be stored
           ENSAIO_DATA_DIR: ${{ runner.temp }}/cache/ensaio/
