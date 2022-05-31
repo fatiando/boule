@@ -44,6 +44,7 @@
 
     ellipsoids/index.rst
     tutorials/normal_gravity.rst
+    tutorials/gravity_disturbance.rst
     tutorials/geodetic_to_geocentric.rst
 
 .. toctree::
