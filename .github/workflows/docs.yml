@@ -53,23 +53,21 @@ jobs:
       - name: Fetch git tags
         run: git fetch origin 'refs/tags/*:refs/tags/*'
 
-      - name: Setup Python
-        uses: actions/setup-python@v2
+      - name: Setup Miniconda
+        uses: conda-incubator/setup-miniconda@v2
         with:
           python-version: ${{ env.PYTHON }}
+          miniforge-variant: Mambaforge
+          use-mamba: true
+          channels: conda-forge,defaults
+          # Needed for caching
+          use-only-tar-bz2: true
 
-      - name: Get the pip cache folder
-        id: pip-cache
-        run: |
-          echo "::set-output name=dir::$(pip cache dir)"
-
-      - name: Setup caching for pip packages
+      - name: Setup caching for conda packages
         uses: actions/cache@v2
         with:
-          path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          path: ~/conda_pkgs_dir
+          key: conda-${{ runner.os }}-${{ env.PYTHON }}-${{ hashFiles('requirements.txt') }}
 
       - name: Install requirements
         run: |
@@ -87,14 +85,14 @@ jobs:
               echo ""
               # Install wheel before anything else so pip can use wheels for
               # other packages.
-              python -m pip install -r env/requirements-build.txt
-              python -m pip install -r $requirements_file
+              mamba install --quiet --file env/requirements-build.txt python==$PYTHON
+              mamba install --quiet --file  $requirements_file python==$PYTHON
           else
               echo "No requirements defined."
           fi
 
       - name: List installed packages
-        run: pip freeze
+        run: mamba list
 
       - name: Build source and wheel distributions
         run: |
@@ -106,8 +104,19 @@ jobs:
       - name: Install the package
         run: pip install --no-deps dist/*.whl
 
+      - name: Cache the Ensaio datasets
+        uses: actions/cache@v2
+        with:
+          path: ${{ runner.temp }}/cache/ensaio
+          key:
+
       - name: Build the documentation
         run: make -C doc clean all
+        env:
+          # Define directory where sample data will be stored
+          ENSAIO_DATA_FROM_GITHUB: true
+          # Define directory where sample data will be stored
+          ENSAIO_DATA_DIR: ${{ runner.temp }}/cache/ensaio/
 
       # Store the docs as a build artifact so we can deploy it later
       - name: Upload HTML documentation as an artifact
