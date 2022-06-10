@@ -113,9 +113,9 @@ class TriaxialEllipsoid:
             raise ValueError(
                 f"Invalid semi-major axis '{value}'. Should be greater than zero."
             )
-        
+
         # Check if semimajor axis is the largest of the 3 axes.
-        
+
         if self.semiminor_axis > value:
             raise ValueError(
                 f"Invalid semi-minor / semi-major axis combination.                The semimajor axis must be larger than the semi-medium axis.                Semi-major axis was '{value}' and the semi-minor axis was '{self.semiminor_axis}'"
@@ -137,9 +137,9 @@ class TriaxialEllipsoid:
             raise ValueError(
                 f"Invalid semi-medium axis '{value}'. Should be greater than zero."
             )
-        
+
         # Check if semimedium axis is the middle of the 3 axes.
-        
+
         if self.semiminor_axis > value:
             raise ValueError(
                 f"Invalid semi-minor / semi-medium axis combination.                 The semimedium axis must be larger than the semi-minor axis.                Semi-medium axis was '{value}' and the semi-minor axis was '{self.semiminor_axis}'"
