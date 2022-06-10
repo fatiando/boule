@@ -4,18 +4,21 @@
 #
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
-# pylint: disable=missing-docstring,import-outside-toplevel
+# pylint: disable=missing-docstring,import-outside-toplevel,import-self
+#
 # Import functions/classes to make the public API
-from . import version
 from .ellipsoid import Ellipsoid
 from .sphere import Sphere
 from .realizations import WGS84, GRS80, MARS, VENUS, MOON, MERCURY
 
+# This file is generated automatically by setuptools_scm
+from . import _version
+
 
 ELLIPSOIDS = [WGS84, GRS80, MARS, VENUS, MOON, MERCURY]
 
-# Get the version number through setuptools-scm
-__version__ = version.version
+# Add a "v" to the version number
+__version__ = f"v{_version.version}"
 
 
 def test(doctest=True, verbose=True):

@@ -27,6 +27,9 @@ defaults:
     shell: bash
 
 jobs:
+
+  #############################################################################
+  # Run tests and upload to codecov
   test:
     name: ${{ matrix.os }} py${{ matrix.python }}
     runs-on: ${{ matrix.os }}-latest
@@ -36,8 +39,9 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, macos, windows]
-        python: [3.6, 3.7, 3.8]
+        python: ["3.6", "3.10"]
     env:
+      REQUIREMENTS: requirements.txt env/requirements-test.txt
       # Used to tag codecov submissions
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python }}
@@ -73,16 +77,65 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
-      - name: Install nox
-        run: python -m pip install nox
+      - name: Get the pip cache folder
+        id: pip-cache
+        run: |
+          echo "::set-output name=dir::$(pip cache dir)"
+
+      - name: Setup caching for pip packages
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.pip-cache.outputs.dir }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+
+      - name: Install requirements
+        run: |
+          requirements_file=requirements-full.txt
+          if [ ! -z "$REQUIREMENTS" ]; then
+              echo "Capturing dependencies from $REQUIREMENTS"
+              for requirement in $REQUIREMENTS
+              do
+                cat $requirement >> $requirements_file
+              done
+          fi
+          if [ -f $requirements_file ]; then
+              echo "Collected dependencies:"
+              cat $requirements_file
+              echo ""
+              # Install wheel before anything else so pip can use wheels for
+              # other packages.
+              python -m pip install -r env/requirements-build.txt
+              python -m pip install -r $requirements_file
+          else
+              echo "No requirements defined."
+          fi
+
+      - name: List installed packages
+        run: python -m pip freeze
+
+      - name: Build source and wheel distributions
+        run: |
+          python setup.py sdist bdist_wheel
+          echo ""
+          echo "Generated files:"
+          ls -lh dist/
+
+      - name: Install the package
+        run: python -m pip install --no-deps dist/*.whl
 
       - name: Run the tests
-        run: nox -s test-${{ matrix.python }} -- list-packages
+        run: make test
+
+      - name: Convert coverage report to XML for codecov
+        run: coverage xml
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
+        uses: codecov/codecov-action@v2
         with:
-          file: ./.coverage.xml
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
           env_vars: OS,PYTHON
           # Don't mark the job as failed if the upload fails for some reason.
           # It does sometimes but shouldn't be the reason for running

@@ -248,10 +248,10 @@ def test_prime_vertical_radius(ellipsoid):
     # Computed expected values
     prime_vertical_radius_equator = ellipsoid.semimajor_axis
     prime_vertical_radius_pole = (
-        ellipsoid.semimajor_axis ** 2 / ellipsoid.semiminor_axis
+        ellipsoid.semimajor_axis**2 / ellipsoid.semiminor_axis
     )
-    prime_vertical_radius_45 = ellipsoid.semimajor_axis ** 2 / np.sqrt(
-        0.5 * ellipsoid.semimajor_axis ** 2 + 0.5 * ellipsoid.semiminor_axis ** 2
+    prime_vertical_radius_45 = ellipsoid.semimajor_axis**2 / np.sqrt(
+        0.5 * ellipsoid.semimajor_axis**2 + 0.5 * ellipsoid.semiminor_axis**2
     )
     expected_pvr = np.array(
         [
@@ -325,3 +325,14 @@ def test_normal_gravity_against_somigliana(ellipsoid):
             ellipsoid.normal_gravity(latitude, height=0),
             normal_gravity_surface(latitude, ellipsoid),
         )
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_normal_gravity_computed_on_internal_point(ellipsoid):
+    """
+    Check if warn is raised if height is negative
+    """
+    latitude = np.linspace(-90, 90, 100)
+    with warnings.catch_warnings(record=True) as warn:
+        ellipsoid.normal_gravity(latitude, height=-10)
+        assert len(warn) >= 1

@@ -1,6 +1,12 @@
 # Requirements for building the documentation
+ipython
 matplotlib
-numpydoc
-sphinx-gallery
-sphinx==2.2.1
-sphinx_rtd_theme==0.4.3
+xarray
+netcdf4
+pandas
+pygmt==0.6.*
+gmt==6.3.*
+ensaio
+sphinx==4.5.*
+sphinx-book-theme==0.2.*
+sphinx-gallery==0.10.*
