@@ -193,12 +193,18 @@ class Sphere(Ellipsoid):
             The normal gravity in mGal.
 
         """
+        # Warn if height is negative
+        if np.any(height < 0):
+            warn(
+                "Formulas used are valid for points outside the ellipsoid."
+                "Height must be greater than or equal to zero."
+            )
         radial_distance = self.radius + height
         gravity_acceleration = self.geocentric_grav_const / (radial_distance) ** 2
         gamma = np.sqrt(
-            gravity_acceleration ** 2
-            + (self.angular_velocity ** 2 * radial_distance - 2 * gravity_acceleration)
-            * self.angular_velocity ** 2
+            gravity_acceleration**2
+            + (self.angular_velocity**2 * radial_distance - 2 * gravity_acceleration)
+            * self.angular_velocity**2
             * radial_distance
             # replace cos^2 with (1 - sin^2) for more accurate results on the pole
             * (1 - np.sin(np.radians(latitude)) ** 2)
@@ -217,8 +223,8 @@ class Sphere(Ellipsoid):
         singularities due to zero flattening.
         """
         return (
-            self.geocentric_grav_const / self.radius ** 2
-            - self.radius * self.angular_velocity ** 2
+            self.geocentric_grav_const / self.radius**2
+            - self.radius * self.angular_velocity**2
         )
 
     @property
@@ -229,4 +235,4 @@ class Sphere(Ellipsoid):
         Overrides the inherited method from :class:`boule.Ellipsoid` to avoid
         singularities due to zero flattening.
         """
-        return self.geocentric_grav_const / self.radius ** 2
+        return self.geocentric_grav_const / self.radius**2
