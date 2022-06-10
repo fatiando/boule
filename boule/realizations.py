@@ -70,6 +70,7 @@ VENUS = Sphere(
 
 MOON = Sphere(
     name="MOON",
+    long_name="Moon Spheroid",
     radius=1_737_151,
     geocentric_grav_const=4.90280007e12,
     angular_velocity=2.6617073e-6,
@@ -82,6 +83,7 @@ MOON = Sphere(
 
 MERCURY = Sphere(
     name="MERCURY",
+    long_name="Mercury Spheroid",
     radius=2_439_372,
     geocentric_grav_const=22.031839221e12,
     angular_velocity=1.2400172589e-6,
@@ -94,19 +96,16 @@ MERCURY = Sphere(
 
 VESTA = TriaxialEllipsoid(
     name="VESTA",
+    long_name="Vesta Triaxial Ellipsoid",
     semimajor_axis=286_300,
     semimedium_axis=278_600,
     semiminor_axis=223_200,
     geocentric_grav_const=1.729094e10,
     angular_velocity=326.71050958367e-6,
     reference=(
-        "C. T. Russell, C. A. Raymond, A. Coradini, H. Y. McSween, M. T. "
-        "Zuber, A. Nathues, M. C. De Sanctis, R. Jaumann, A. S. Konopliv, F. "
-        "Preusker, S. W. Asmar, R. S. Park, R. Gaskell, H. U. Keller, S. Mottola, "
-        "T. Roatsch, J. E. C. Scully, D. E. Smith, P. Tricarico, M. J. Toplis, U. "
-        "R. Christensen, W. C. Feldman, D. J. Lawrence, T. J. McCoy, T. H. "
-        "Prettyman, R. C. Reedy, M. E. Sykes, T. N. Titus. Dawn at Vesta: Testing "
-        "the Protoplanetary Paradigm, Science  11 May 2012: Vol. 336, Issue 6082, "
-        "pp. 684-686, DOI: 10.1126/science.1219381 "
+        "Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, "
+        "M. T., Nathues, A., et al. (2012, May 11). Dawn at Vesta: Testing "
+        "the Protoplanetary Paradigm. Science. "
+        "doi:10.1126/science.1219381"
     ),
 )
