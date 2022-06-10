@@ -19,9 +19,10 @@ class TriaxialEllipsoid:
     """
     Reference triaxial ellipsoid.
 
-    The ellipsoid is triaxial and spins around it's largest moment of inertia. It is defined by
-    five parameters (semi-major axis, semi-medium axis, semi-minor axis,  geocentric gravitational
-    constant, and angular velocity) and offers other derived quantities.
+    The ellipsoid is triaxial and spins around it's largest moment of inertia.
+    It is defined by five parameters (semi-major axis, semi-medium axis,
+    semi-minor axis,  geocentric gravitational constant, and angular velocity)
+    and offers other derived quantities.
 
     **All attributes of this class are read-only and cannot be changed after
     instantiation.**
@@ -30,25 +31,28 @@ class TriaxialEllipsoid:
 
     .. note::
 
-        Use :class:`boule.Sphere` if you desire zero flattening because there
-        are singularities for this particular case in the normal gravity
-        calculations.
+        Use :class:`boule.Sphere` if you desire zero flattening or
+        :class:`boule.Ellipsoid` for oblate ellipsoids. Some calculations would
+        not work by setting the axis to the same value.
 
-        Use :class:`boule.Ellipsoid` if you wish to implement an oblate spheroid
+    .. warning::
+
+        Gravity calculations have not been implemented yet for triaxial
+        ellipsoids.
 
     Parameters
     ----------
     name : str
         A short name for the ellipsoid, for example ``'WGS84'``.
     semimajor_axis : float
-        The semi-major axis of the ellipsoid (equatorial radius), usually
-        represented by "a" [meters].
+        The semi-major axis of the ellipsoid, usually represented by "a"
+        [meters].
     semimedium_axis : float
-        The semi-medium axis of the ellipsoid (equatorial radius), usually
-        represented by "b" [meters].
+        The semi-medium axis of the ellipsoid, usually represented by "b"
+        [meters].
     semimajor_axis : float
-        The semi-minor axis of the ellipsoid (equatorial radius), usually
-        represented by "c" [meters].
+        The semi-minor axis of the ellipsoid, usually represented by "c"
+        [meters].
     geocentric_grav_const : float
         The geocentric gravitational constant (GM) [m^3 s^-2].
     angular_velocity : float
@@ -102,6 +106,18 @@ class TriaxialEllipsoid:
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
 
+    def _raise_invalid_axis(self):
+        """
+        Raise a ValueError informing that the axis are invalid.
+        """
+        raise ValueError(
+            "Invalid triaxial ellipsoid axis: "
+            f"major={self.semimajor_axis} "
+            f"medium={self.semimedium_axis} "
+            f"minor={self.semiminor_axis}. "
+            "Must be major > medium > minor."
+        )
+
     @semimajor_axis.validator
     def _check_semimajor_axis(
         self, semimajor_axis, value
@@ -113,18 +129,8 @@ class TriaxialEllipsoid:
             raise ValueError(
                 f"Invalid semi-major axis '{value}'. Should be greater than zero."
             )
-
-        # Check if semimajor axis is the largest of the 3 axes.
-
-        if self.semiminor_axis > value:
-            raise ValueError(
-                f"Invalid semi-minor / semi-major axis combination.                The semimajor axis must be larger than the semi-medium axis.                Semi-major axis was '{value}' and the semi-minor axis was '{self.semiminor_axis}'"
-            )
-
         if self.semimedium_axis > value:
-            raise ValueError(
-                f"Invalid semi-medium / semi-major axis combination.                 The semimajor axis must be larger than the semi-medium axis.                 Semi-major axis was '{value}' and the semi-medium axis was '{self.semimedium_axis}'"
-            )
+            self._raise_invalid_axis()
 
     @semimedium_axis.validator
     def _check_semimedium_axis(
@@ -137,13 +143,9 @@ class TriaxialEllipsoid:
             raise ValueError(
                 f"Invalid semi-medium axis '{value}'. Should be greater than zero."
             )
-
         # Check if semimedium axis is the middle of the 3 axes.
-
         if self.semiminor_axis > value:
-            raise ValueError(
-                f"Invalid semi-minor / semi-medium axis combination.                 The semimedium axis must be larger than the semi-minor axis.                Semi-medium axis was '{value}' and the semi-minor axis was '{self.semiminor_axis}'"
-            )
+            self._raise_invalid_axis()
 
     @semiminor_axis.validator
     def _check_semiminor_axis(
@@ -156,6 +158,8 @@ class TriaxialEllipsoid:
             raise ValueError(
                 f"Invalid semi-minor axis '{value}'. Should be greater than zero."
             )
+        # Don't need to check here because if the two checks for major and
+        # medium pass it means that this is the smallest.
 
     @geocentric_grav_const.validator
     def _check_geocentric_grav_const(
@@ -168,19 +172,9 @@ class TriaxialEllipsoid:
             warn(f"The geocentric gravitational constant is negative: '{value}'")
 
     @property
-    def omega(self):
-        "The angular_velocity [rad s^-1]"
-        return self.angular_velocity
-
-    @property
-    def GM(self):
-        "The Geocentric Gravitational Constant [m^3 s^-2]"
-        return self.geocentric_grav_const
-
-    @property
     def mean_radius(self):
         """
-        The arithmetic mean radius :math:`R_1=(a+b+c)/3` [meters]
+        The arithmetic mean radius :math:`R=(a+b+c)/3` [meters]
         """
         return (
             1 / 3 * (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis)
@@ -192,49 +186,8 @@ class TriaxialEllipsoid:
         The volume of a triaxial ellipsoid :math: `V = /frac{4}{3} pi a b c ` [meters^3]
         """
         return (
-            4
-            * np.pi
-            / 3
-            * (self.semimajor_axis * self.semimedium_axis * self.semiminor_axis)
+            (4 / 3 * np.pi)
+            * self.semimajor_axis
+            * self.semimedium_axis
+            * self.semiminor_axis
         )
-
-    @property
-    def gravity_pole(self):
-        "The norm of the gravity vector on the ellipsoid at the poles [m/s²]"
-        raise NotImplementedError
-
-    def radius(self, latitude, longitude):
-        r"""
-        Return the radius of the Triaxial Ellipsoid at the given latitude and longitude [metres]
-        """
-        raise NotImplementedError
-
-    def geocentric_radius(self, latitude, geodetic=True):
-        r"""
-        Distance from the center of the ellipsoid to its surface.
-        """
-        raise NotImplementedError
-
-    def prime_vertical_radius(self, sinlat):
-        r"""
-        Calculate the prime vertical radius for a given geodetic latitude
-        """
-        raise NotImplementedError
-
-    def geodetic_to_spherical(self, longitude, latitude, height):
-        """
-        Convert from geodetic to geocentric spherical coordinates.
-        """
-        raise NotImplementedError
-
-    def spherical_to_geodetic(self, longitude, spherical_latitude, radius):
-        """
-        Convert from geocentric spherical to geodetic coordinates.
-        """
-        raise NotImplementedError
-
-    def normal_gravity(self, latitude, height):
-        """
-        Calculate normal gravity at any latitude and height.
-        """
-        raise NotImplementedError
