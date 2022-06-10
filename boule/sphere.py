@@ -261,11 +261,11 @@ class Sphere(Ellipsoid):
 
         for arg in kwargs.keys():
             # Test that the arguments are valid. This should catch typos.
-            if arg not in ['latitude', 'longitude', 'height']:
+            if arg not in ["latitude", "longitude", "height"]:
                 raise ValueError(f"Invalid argument kwarg[arg]. ")
-        
-        if 'height' in kwargs:
-            radial_distance = self.radius + kwargs['height']
+
+        if "height" in kwargs:
+            radial_distance = self.radius + kwargs["height"]
             gamma = self.geocentric_grav_const / (radial_distance) ** 2
             if si_units:
                 return gamma
