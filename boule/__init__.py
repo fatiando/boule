@@ -9,7 +9,8 @@
 # Import functions/classes to make the public API
 from .ellipsoid import Ellipsoid
 from .sphere import Sphere
-from .realizations import WGS84, GRS80, MARS, VENUS, MOON, MERCURY
+from .triaxialellipsoid import TriaxialEllipsoid
+from .realizations import WGS84, GRS80, MARS, VENUS, MOON, MERCURY, VESTA
 
 # This file is generated automatically by setuptools_scm
 from . import _version

@@ -9,6 +9,7 @@ Ellipsoid and Sphere realizations for the Earth and other planetary bodies.
 """
 from .ellipsoid import Ellipsoid
 from .sphere import Sphere
+from .triaxialellipsoid import TriaxialEllipsoid
 
 
 WGS84 = Ellipsoid(
@@ -69,6 +70,7 @@ VENUS = Sphere(
 
 MOON = Sphere(
     name="MOON",
+    long_name="Moon Spheroid",
     radius=1_737_151,
     geocentric_grav_const=4.90280007e12,
     angular_velocity=2.6617073e-6,
@@ -81,6 +83,7 @@ MOON = Sphere(
 
 MERCURY = Sphere(
     name="MERCURY",
+    long_name="Mercury Spheroid",
     radius=2_439_372,
     geocentric_grav_const=22.031839221e12,
     angular_velocity=1.2400172589e-6,
@@ -88,5 +91,21 @@ MERCURY = Sphere(
         "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
         "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
         "doi:10.1016/B978-0-444-53802-4.00169-X"
+    ),
+)
+
+VESTA = TriaxialEllipsoid(
+    name="VESTA",
+    long_name="Vesta Triaxial Ellipsoid",
+    semimajor_axis=286_300,
+    semimedium_axis=278_600,
+    semiminor_axis=223_200,
+    geocentric_grav_const=1.729094e10,
+    angular_velocity=326.71050958367e-6,
+    reference=(
+        "Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, "
+        "M. T., Nathues, A., et al. (2012, May 11). Dawn at Vesta: Testing "
+        "the Protoplanetary Paradigm. Science. "
+        "doi:10.1126/science.1219381"
     ),
 )
