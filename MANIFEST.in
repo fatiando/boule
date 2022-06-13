@@ -4,7 +4,6 @@ prune .github
 prune env
 prune doc
 prune tools
-prune tutorials
 exclude .*.yml
 exclude .*rc
 exclude .gitignore
