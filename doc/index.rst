@@ -64,7 +64,7 @@
     :caption: Community
 
     Join the community <http://contact.fatiando.org>
-    How to contribute <https://github.com/fatiando/boule/blob/master/CONTRIBUTING.md>
-    Code of Conduct <https://github.com/fatiando/boule/blob/master/CODE_OF_CONDUCT.md>
+    How to contribute <https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md>
+    Code of Conduct <https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md>
     Source code on GitHub <https://github.com/fatiando/boule>
     The Fatiando a Terra project <https://www.fatiando.org>

@@ -14,10 +14,10 @@ Part of the `Fatiando a Terra <https://www.fatiando.org>`__ project
 .. image:: https://img.shields.io/conda/vn/conda-forge/boule.svg?style=flat-square
     :alt: Latest version on conda-forge
     :target: https://github.com/conda-forge/boule-feedstock
-.. image:: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Ffatiando%2Fboule%2Fbadge%3Fref%3Dmaster&style=flat-square
+.. image:: https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Ffatiando%2Fboule%2Fbadge%3Fref%3Dmain&style=flat-square
     :alt: GitHub Actions status
-    :target: https://actions-badge.atrox.dev/fatiando/boule/goto?ref=master
-.. image:: https://img.shields.io/codecov/c/github/fatiando/boule/master.svg?style=flat-square
+    :target: https://actions-badge.atrox.dev/fatiando/boule/goto?ref=main
+.. image:: https://img.shields.io/codecov/c/github/fatiando/boule/main.svg?style=flat-square
     :alt: Test coverage status
     :target: https://codecov.io/gh/fatiando/boule
 .. image:: https://img.shields.io/pypi/pyversions/boule.svg?style=flat-square
@@ -92,14 +92,14 @@ Code of conduct
 +++++++++++++++
 
 Please note that this project is released with a
-`Contributor Code of Conduct <https://github.com/fatiando/boule/blob/master/CODE_OF_CONDUCT.md>`__.
+`Contributor Code of Conduct <https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md>`__.
 By participating in this project you agree to abide by its terms.
 
 Contributing Guidelines
 +++++++++++++++++++++++
 
 Please read our
-`Contributing Guide <https://github.com/fatiando/boule/blob/master/CONTRIBUTING.md>`__
+`Contributing Guide <https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md>`__
 to see how you can help and give feedback.
 
 Imposter syndrome disclaimer
@@ -135,4 +135,4 @@ License
 
 This is free software: you can redistribute it and/or modify it under the terms
 of the **BSD 3-clause License**. A copy of this license is provided in
-`LICENSE.txt <https://github.com/fatiando/boule/blob/master/LICENSE.txt>`__.
+`LICENSE.txt <https://github.com/fatiando/boule/blob/main/LICENSE.txt>`__.
