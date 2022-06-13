@@ -4,10 +4,6 @@
 #
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
-# pylint: disable=missing-docstring,import-outside-toplevel,import-self
-#
-# Import functions/classes to make the public API
-# This file is generated automatically by setuptools_scm
 from . import _version
 from .ellipsoid import Ellipsoid
 from .realizations import GRS80, MARS, MERCURY, MOON, VENUS, VESTA, WGS84

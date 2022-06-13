@@ -150,9 +150,7 @@ class Sphere(Ellipsoid):
         return self.radius
 
     @radius.validator
-    def _check_radius(
-        self, radius, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_radius(self, radius, value):
         """
         Check if the radius is positive
         """
@@ -160,9 +158,7 @@ class Sphere(Ellipsoid):
             raise ValueError(f"Invalid radius '{value}'. Should be greater than zero.")
 
     @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(
-        self, geocentric_grav_const, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_geocentric_grav_const(self, geocentric_grav_const, value):
         """
         Warn if geocentric_grav_const is negative
         """

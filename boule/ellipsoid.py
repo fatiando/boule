@@ -96,9 +96,7 @@ class Ellipsoid:
     reference = attr.ib(default=None)
 
     @flattening.validator
-    def _check_flattening(
-        self, flattening, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_flattening(self, flattening, value):
         """
         Check if flattening is valid
         """
@@ -120,9 +118,7 @@ class Ellipsoid:
             )
 
     @semimajor_axis.validator
-    def _check_semimajor_axis(
-        self, semimajor_axis, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_semimajor_axis(self, semimajor_axis, value):
         """
         Check if semimajor_axis is positive
         """
@@ -132,9 +128,7 @@ class Ellipsoid:
             )
 
     @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(
-        self, geocentric_grav_const, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_geocentric_grav_const(self, geocentric_grav_const, value):
         """
         Warn if geocentric_grav_const is negative
         """
@@ -426,9 +420,7 @@ class Ellipsoid:
         big_d = k * radius * cos_latitude / (k + self.first_eccentricity**2)
         return k, big_z, big_d
 
-    def normal_gravity(
-        self, latitude, height, si_units=False
-    ):  # pylint: disable=too-many-locals
+    def normal_gravity(self, latitude, height, si_units=False):
         """
         Calculate normal gravity at any latitude and height.
 
