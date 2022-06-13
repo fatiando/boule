@@ -115,7 +115,6 @@ Some examples of where Boule can be applied:
 
     tutorials/overview.rst
     install.rst
-    citing.rst
 
 .. toctree::
     :maxdepth: 2
@@ -134,9 +133,10 @@ Some examples of where Boule can be applied:
 
     api/index.rst
     compatibility.rst
-    changes.rst
+    citing.rst
     glossary.rst
     references.rst
+    changes.rst
     versions.rst
 
 .. toctree::
