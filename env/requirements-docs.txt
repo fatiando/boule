@@ -1,7 +1,9 @@
 # Requirements for building the documentation
 sphinx==4.5.*
-sphinx-book-theme==0.2.*
-sphinx-gallery==0.10.*
+sphinx-book-theme==0.3.*
+sphinx-copybutton==0.5.*
+jupyter-sphinx==0.3.*
+sphinx-design==0.1.*
 ensaio
 pandas
 matplotlib
