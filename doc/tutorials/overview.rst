@@ -5,17 +5,14 @@ Overview
 
 The main functionality of Boule is contained in the :class:`~boule.Ellipsoid`
 class.
-It defines a `Reference Ellipsoid
-<https://en.wikipedia.org/wiki/Reference_ellipsoid>`__: an *oblate* ellipsoid
+It defines a :term:`reference ellipsoid`: an *oblate* ellipsoid
 that approximates the shape of the Earth (or other planetary body).
 Ellipsoids are generally specified by 4 parameters:
 
 1. The semi-major axis (:math:`a`): the equatorial radius.
 2. The flattening (:math:`f = (a - b)/a`): the ratio between the equatorial and
    polar radii.
-3. The geocentric gravitational constant (:math:`GM`): the multiplication of
-   the total mass of the ellipsoid and the `gravitational constant
-   <https://en.wikipedia.org/wiki/Gravitational_constant>`__.
+3. The :term:`geocentric gravitational constant` (:math:`GM`).
 4. The angular velocity (:math:`\omega`): spin rate of the ellipsoid which
    defines the centrifugal potential.
 
