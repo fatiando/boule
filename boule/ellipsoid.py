@@ -8,6 +8,7 @@
 Module for defining and setting the reference ellipsoid.
 """
 from warnings import warn
+
 import attr
 import numpy as np
 

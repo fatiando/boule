@@ -4,9 +4,10 @@
 #
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
-import sys
-import os
 import datetime
+import os
+import sys
+
 import sphinx_gallery
 from sphinx_gallery.sorting import FileNameSortKey
 
@@ -15,7 +16,7 @@ import boule
 # Project information
 # -----------------------------------------------------------------------------
 project = "Boule"
-copyright = f"2019-{datetime.date.today().year}, The {project} Developers"
+copyright = f"2019-{datetime.date.today().year}, The {project} Developers"  # noqa: A001
 if len(boule.__version__.split("+")) > 1 or boule.__version__ == "unknown":
     version = "dev"
 else:

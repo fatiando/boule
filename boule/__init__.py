@@ -7,14 +7,12 @@
 # pylint: disable=missing-docstring,import-outside-toplevel,import-self
 #
 # Import functions/classes to make the public API
-from .ellipsoid import Ellipsoid
-from .sphere import Sphere
-from .triaxialellipsoid import TriaxialEllipsoid
-from .realizations import WGS84, GRS80, MARS, VENUS, MOON, MERCURY, VESTA
-
 # This file is generated automatically by setuptools_scm
 from . import _version
-
+from .ellipsoid import Ellipsoid
+from .realizations import GRS80, MARS, MERCURY, MOON, VENUS, VESTA, WGS84
+from .sphere import Sphere
+from .triaxialellipsoid import TriaxialEllipsoid
 
 ELLIPSOIDS = [WGS84, GRS80, MARS, VENUS, MOON, MERCURY]
 

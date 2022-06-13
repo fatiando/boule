@@ -1,12 +1,12 @@
 # Requirements for building the documentation
-ipython
-matplotlib
-xarray
-netcdf4
-pandas
-pygmt==0.6.*
-gmt==6.3.*
-ensaio
 sphinx==4.5.*
 sphinx-book-theme==0.2.*
 sphinx-gallery==0.10.*
+ensaio
+pandas
+matplotlib
+xarray
+netcdf4
+pygmt==0.6.*
+gmt==6.3.*
+ipython

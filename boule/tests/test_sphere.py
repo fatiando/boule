@@ -10,9 +10,9 @@ Test the base Sphere class.
 """
 import warnings
 
-import pytest
 import numpy as np
 import numpy.testing as npt
+import pytest
 
 from .. import Sphere
 
