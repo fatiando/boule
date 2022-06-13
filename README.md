@@ -1,6 +1,6 @@
 <h1 align="center">Boule</h1>
 
-<h2 align="center">Reference ellipsoids for geodesy and geophysics</h2>
+<p align="center"><strong>Reference ellipsoids for geodesy and geophysics</strong></p>
 
 <p align="center">
 <a href="https://www.fatiando.org/bould"><strong>Documentation</strong> (latest)</a> •
