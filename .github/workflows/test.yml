@@ -31,7 +31,7 @@ jobs:
   #############################################################################
   # Run tests and upload to codecov
   test:
-    name: ${{ matrix.os }} py${{ matrix.python }}
+    name: ${{ matrix.os }} python=${{ matrix.python }}
     runs-on: ${{ matrix.os }}-latest
     strategy:
       # Otherwise, the workflow would stop if a single job fails. We want to
@@ -41,7 +41,7 @@ jobs:
         os: [ubuntu, macos, windows]
         python: ["3.6", "3.10"]
     env:
-      REQUIREMENTS: requirements.txt env/requirements-test.txt
+      REQUIREMENTS: env/requirements-build.txt env/requirements-test.txt
       # Used to tag codecov submissions
       OS: ${{ matrix.os }}
       PYTHON: ${{ matrix.python }}
@@ -77,6 +77,28 @@ jobs:
         with:
           python-version: ${{ matrix.python }}
 
+      - name: Collect requirements
+        run: |
+          echo "Install Dependente to capture dependencies:"
+          python -m pip install dependente==0.1.0
+          echo ""
+          echo "Capturing run-time dependencies:"
+          if [[ "${{ matrix.dependencies }}" == "oldest" ]]; then
+            dependente --source install --oldest > requirements-full.txt
+          else
+            dependente --source install > requirements-full.txt
+          fi
+          echo ""
+          echo "Capturing dependencies from:"
+          for requirement in $REQUIREMENTS
+          do
+            echo "  $requirement"
+            cat $requirement >> requirements-full.txt
+          done
+          echo ""
+          echo "Collected dependencies:"
+          cat requirements-full.txt
+
       - name: Get the pip cache folder
         id: pip-cache
         run: |
@@ -86,38 +108,18 @@ jobs:
         uses: actions/cache@v2
         with:
           path: ${{ steps.pip-cache.outputs.dir }}
-          key: ${{ runner.os }}-pip-${{ hashFiles('**/requirements*.txt') }}
-          restore-keys: |
-            ${{ runner.os }}-pip-
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements-full.txt') }}
 
       - name: Install requirements
         run: |
-          requirements_file=requirements-full.txt
-          if [ ! -z "$REQUIREMENTS" ]; then
-              echo "Capturing dependencies from $REQUIREMENTS"
-              for requirement in $REQUIREMENTS
-              do
-                cat $requirement >> $requirements_file
-              done
-          fi
-          if [ -f $requirements_file ]; then
-              echo "Collected dependencies:"
-              cat $requirements_file
-              echo ""
-              # Install wheel before anything else so pip can use wheels for
-              # other packages.
-              python -m pip install -r env/requirements-build.txt
-              python -m pip install -r $requirements_file
-          else
-              echo "No requirements defined."
-          fi
+          python -m pip install --requirement requirements-full.txt
 
       - name: List installed packages
         run: python -m pip freeze
 
       - name: Build source and wheel distributions
         run: |
-          python setup.py sdist bdist_wheel
+          make build
           echo ""
           echo "Generated files:"
           ls -lh dist/
