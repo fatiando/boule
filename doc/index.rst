@@ -53,6 +53,7 @@
     :caption: Reference
 
     api/index.rst
+    compatibility.rst
     citing.rst
     changes.rst
     references.rst
