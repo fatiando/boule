@@ -4,18 +4,17 @@
 #
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
-# pylint: disable=redefined-outer-name
 """
 Test the base Ellipsoid class.
 """
 import warnings
-import pytest
+
 import numpy as np
 import numpy.testing as npt
+import pytest
 
-from .. import Ellipsoid, ELLIPSOIDS
+from .. import ELLIPSOIDS, Ellipsoid
 from .utils import normal_gravity_surface
-
 
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
@@ -233,12 +232,13 @@ def test_prime_vertical_radius(ellipsoid):
     r"""
     Check prime vertical radius on equator, poles and 45 degrees
 
-    The prime vertical radius can be also expressed in terms of the semi-major and
-    semi-minor axis:
+    The prime vertical radius can be also expressed in terms of the semi-major
+    and semi-minor axis:
 
     .. math:
 
         N(\phi) = \frac{a^2}{\sqrt{a^2 \cos^2 \phi + b^2 \sin^2 \phi}}
+
     """
     # Compute prime vertical radius on the equator and the poles
     latitudes = np.array([0, 90, -90, 45])

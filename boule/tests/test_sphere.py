@@ -4,15 +4,14 @@
 #
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
-# pylint: disable=redefined-outer-name
 """
 Test the base Sphere class.
 """
 import warnings
 
-import pytest
 import numpy as np
 import numpy.testing as npt
+import pytest
 
 from .. import Sphere
 

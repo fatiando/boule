@@ -11,7 +11,6 @@ from .ellipsoid import Ellipsoid
 from .sphere import Sphere
 from .triaxialellipsoid import TriaxialEllipsoid
 
-
 WGS84 = Ellipsoid(
     name="WGS84",
     long_name="World Geodetic System 1984",

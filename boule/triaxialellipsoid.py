@@ -8,6 +8,7 @@
 Module for defining and setting the reference ellipsoid.
 """
 from warnings import warn
+
 import attr
 import numpy as np
 
@@ -119,9 +120,7 @@ class TriaxialEllipsoid:
         )
 
     @semimajor_axis.validator
-    def _check_semimajor_axis(
-        self, semimajor_axis, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_semimajor_axis(self, semimajor_axis, value):
         """
         Check if semimajor_axis is positive and is the largest of the radii
         """
@@ -133,11 +132,9 @@ class TriaxialEllipsoid:
             self._raise_invalid_axis()
 
     @semimedium_axis.validator
-    def _check_semimedium_axis(
-        self, semimedium_axis, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_semimedium_axis(self, semimedium_axis, value):
         """
-        Check if semimedium_axis is positive and larger than the semi-minor axis
+        Check if semimedium_axis is positive and larger than semi-minor axis
         """
         if not value > 0:
             raise ValueError(
@@ -148,9 +145,7 @@ class TriaxialEllipsoid:
             self._raise_invalid_axis()
 
     @semiminor_axis.validator
-    def _check_semiminor_axis(
-        self, semiminor_axis, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_semiminor_axis(self, semiminor_axis, value):
         """
         Check if semiminor_axis is positive
         """
@@ -162,9 +157,7 @@ class TriaxialEllipsoid:
         # medium pass it means that this is the smallest.
 
     @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(
-        self, geocentric_grav_const, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_geocentric_grav_const(self, geocentric_grav_const, value):
         """
         Warn if geocentric_grav_const is negative
         """
@@ -183,7 +176,7 @@ class TriaxialEllipsoid:
     @property
     def volume(self):
         """
-        The volume of a triaxial ellipsoid :math: `V = /frac{4}{3} pi a b c ` [meters^3]
+        The volume :math:`V = /frac{4}{3} pi a b c` [meters^3]
         """
         return (
             (4 / 3 * np.pi)

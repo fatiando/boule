@@ -94,9 +94,17 @@ class Sphere(Ellipsoid):
 
     The flag si_units will return the Normal gravity in m/s².
 
-    >>> print("{:.2f}".format(sphere.normal_gravity(latitude=0, height=0, si_units=True)))
+    >>> print(
+    ...     "{:.2f}".format(
+    ...         sphere.normal_gravity(latitude=0, height=0, si_units=True)
+    ...     )
+    ... )
     1.75
-    >>> print("{:.2f}".format(sphere.normal_gravity(latitude=90, height=0, si_units=True)))
+    >>> print(
+    ...     "{:.2f}".format(
+    ...         sphere.normal_gravity(latitude=90, height=0, si_units=True)
+    ...     )
+    ... )
     2.00
 
     Normal gravitation (the magnitude of the gravitational acceleration of
@@ -106,7 +114,9 @@ class Sphere(Ellipsoid):
 
     >>> print("{:.2f}".format(sphere.normal_gravitation(height=1)))
     50000.00
-    >>> print("{:.2f}".format(sphere.normal_gravitation(height=1, si_units=True)))
+    >>> print(
+    ...     "{:.2f}".format(sphere.normal_gravitation(height=1, si_units=True))
+    ... )
     0.50
 
     The flattening and eccentricities will all be zero:
@@ -140,9 +150,7 @@ class Sphere(Ellipsoid):
         return self.radius
 
     @radius.validator
-    def _check_radius(
-        self, radius, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_radius(self, radius, value):
         """
         Check if the radius is positive
         """
@@ -150,9 +158,7 @@ class Sphere(Ellipsoid):
             raise ValueError(f"Invalid radius '{value}'. Should be greater than zero.")
 
     @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(
-        self, geocentric_grav_const, value
-    ):  # pylint: disable=no-self-use,unused-argument
+    def _check_geocentric_grav_const(self, geocentric_grav_const, value):
         """
         Warn if geocentric_grav_const is negative
         """
@@ -216,7 +222,7 @@ class Sphere(Ellipsoid):
             + (self.angular_velocity**2 * radial_distance - 2 * gravity_acceleration)
             * self.angular_velocity**2
             * radial_distance
-            # replace cos^2 with (1 - sin^2) for more accurate results on the pole
+            # Use cos^2 = (1 - sin^2) for more accurate results on the pole
             * (1 - np.sin(np.radians(latitude)) ** 2)
         )
         if si_units:

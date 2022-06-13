@@ -26,7 +26,7 @@ on the ellipsoid. The ellipsoid height :math:`h` is the height above the
 ellipsoid surface, it also normal to that surface.
 
 .. figure:: ../_static/coordinate.png
-    :alt: Depiction of geocentric and geodetic systems with associated coordinates.
+    :alt: Geocentric and geodetic systems with associated coordinates.
 
     Geocentric and Geodetic Coordinates Systems
 
@@ -34,18 +34,18 @@ Note, the flattening of the shown ellipsoid is larger than the real earth.
 The real difference between geodetic latitude and geocentric latitude at
 the earth ellipsoid surface is less than 0.2 degrees.
 
-The calculation is performed by the :meth:`boule.Ellipsoid.geodetic_to_spherical`
-method.
+The calculation is performed by the
+:meth:`boule.Ellipsoid.geodetic_to_spherical` method.
 
 This example will show you how to convert geodetic latitude and height into
 geocentric latitude and radius. We use :ref:`WGS84 <wgs84>`  ellipsoid in here.
 
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-import boule as bl
+import numpy as np
 
+import boule as bl
 
 latitude = np.linspace(-90, 90, 100)
 longitude = 0
@@ -75,11 +75,11 @@ axs3.set(xlabel="Geodetic Latitude", ylabel="Difference (Degree)")
 plt.show()
 
 ###############################################################################
-# The geocentric latitude is a function of geodetic latitude and ellipsoid height.
-# The influence of ellipsoid height change on the geocentric latitude varies with
-# the geodetic latitude. Consider different ellipsoid heights (ICESat-2 orbit
-# height vs ellipsoid surface), this difference could be 0.013 degrees. Similarly,
-# the Geocentric radius change could be 2.5 meters.
+# The geocentric latitude is a function of geodetic latitude and ellipsoid
+# height. The influence of ellipsoid height change on the geocentric latitude
+# varies with the geodetic latitude. Consider different ellipsoid heights
+# (ICESat-2 orbit height vs ellipsoid surface), this difference could be 0.013
+# degrees. Similarly, the Geocentric radius change could be 2.5 meters.
 
 fig, (axs1, axs2) = plt.subplots(2, 1, figsize=(10, 10))
 
