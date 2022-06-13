@@ -3,9 +3,9 @@
 <p align="center"><strong>Reference ellipsoids for geodesy and geophysics</strong></p>
 
 <p align="center">
-<a href="https://www.fatiando.org/bould"><strong>Documentation</strong> (latest)</a> •
-<a href="https://www.fatiando.org/bould/dev"><strong>Documentation</strong> (main branch)</a> •
-<a href="https://github.com/fatiando/bould/blob/main/CONTRIBUTING.md"><strong>Contributing</strong></a> •
+<a href="https://www.fatiando.org/boule"><strong>Documentation</strong> (latest)</a> •
+<a href="https://www.fatiando.org/boule/dev"><strong>Documentation</strong> (main branch)</a> •
+<a href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md"><strong>Contributing</strong></a> •
 <a href="https://www.fatiando.org/contact/"><strong>Contact</strong></a>
 </p>
 
@@ -14,10 +14,10 @@ Part of the <a href="https://www.fatiando.org"><strong>Fatiando a Terra</strong>
 </p>
 
 <p align="center">
-<a href="https://pypi.python.org/pypi/bould"><img src="http://img.shields.io/pypi/v/bould.svg?style=flat-square" alt="Latest version on PyPI"></a>
-<a href="https://github.com/conda-forge/bould-feedstock"><img src="https://img.shields.io/conda/vn/conda-forge/bould.svg?style=flat-square" alt="Latest version on conda-forge"></a>
-<a href="https://codecov.io/gh/fatiando/bould"><img src="https://img.shields.io/codecov/c/github/fatiando/bould/main.svg?style=flat-square" alt="Test coverage status"></a>
-<a href="https://pypi.python.org/pypi/bould"><img src="https://img.shields.io/pypi/pyversions/bould.svg?style=flat-square" alt="Compatible Python versions."></a>
+<a href="https://pypi.python.org/pypi/boule"><img src="http://img.shields.io/pypi/v/boule.svg?style=flat-square" alt="Latest version on PyPI"></a>
+<a href="https://github.com/conda-forge/boule-feedstock"><img src="https://img.shields.io/conda/vn/conda-forge/boule.svg?style=flat-square" alt="Latest version on conda-forge"></a>
+<a href="https://codecov.io/gh/fatiando/boule"><img src="https://img.shields.io/codecov/c/github/fatiando/boule/main.svg?style=flat-square" alt="Test coverage status"></a>
+<a href="https://pypi.python.org/pypi/boule"><img src="https://img.shields.io/pypi/pyversions/boule.svg?style=flat-square" alt="Compatible Python versions."></a>
 <a href="https://doi.org/10.5281/zenodo.3530749"><img src="https://img.shields.io/badge/doi-10.5281%2Fzenodo.3530749-blue?style=flat-square" alt="DOI used to cite Boule"></a>
 </p>
 
@@ -55,7 +55,7 @@ Find out more about how to reach us at
 
 👩🏾‍💻 **Contributing to project development:**
 Please read our
-[Contributing Guide](https://github.com/fatiando/bould/blob/main/CONTRIBUTING.md)
+[Contributing Guide](https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md)
 to see how you can help and give feedback.
 
 🧑🏾‍🤝‍🧑🏼 **Code of conduct:**
