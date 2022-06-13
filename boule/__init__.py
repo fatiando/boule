@@ -4,16 +4,14 @@
 #
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
-from . import _version
+# Import functions/classes to make the public API
 from .ellipsoid import Ellipsoid
 from .realizations import GRS80, MARS, MERCURY, MOON, VENUS, VESTA, WGS84
 from .sphere import Sphere
 from .triaxialellipsoid import TriaxialEllipsoid
+from ._version import __version__
 
 ELLIPSOIDS = [WGS84, GRS80, MARS, VENUS, MOON, MERCURY]
-
-# Add a "v" to the version number
-__version__ = f"v{_version.version}"
 
 
 def test(doctest=True, verbose=True):
