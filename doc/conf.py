@@ -16,8 +16,8 @@ import boule
 # Project information
 # -----------------------------------------------------------------------------
 project = "Boule"
-copyright = f"2019-{datetime.date.today().year}, The {project} Developers"  # noqa: A001
-if len(boule.__version__.split("+")) > 1 or boule.__version__ == "unknown":
+copyright = f"{datetime.date.today().year}, The {project} Developers"  # noqa: A001
+if len(boule.__version__.split(".")) > 3:
     version = "dev"
 else:
     version = boule.__version__
