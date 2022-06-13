@@ -31,7 +31,7 @@ jobs:
   #############################################################################
   # Run tests and upload to codecov
   test:
-    name: ${{ matrix.os }} python=${{ matrix.python }}
+    name: ${{ matrix.os }} python=${{ matrix.python }} dependencies=${{ matrix.dependencies }}
     runs-on: ${{ matrix.os }}-latest
     strategy:
       # Otherwise, the workflow would stop if a single job fails. We want to
@@ -40,6 +40,7 @@ jobs:
       matrix:
         os: [ubuntu, macos, windows]
         python: ["3.6", "3.10"]
+        dependencies: [latest, oldest]
     env:
       REQUIREMENTS: env/requirements-build.txt env/requirements-test.txt
       # Used to tag codecov submissions
