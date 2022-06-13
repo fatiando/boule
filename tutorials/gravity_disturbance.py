@@ -17,10 +17,11 @@ As an example, lets calculate a gravity disturbances grid at a height of 10 km
 using the global gravity from EIGEN-6C4 and WGS84 ellipsoid.
 """
 
-import boule as bl
 import ensaio
-import xarray as xr
 import pygmt
+import xarray as xr
+
+import boule as bl
 
 # Download and cache the global gravity data using Ensaio
 fname = ensaio.fetch_earth_gravity(version=1)

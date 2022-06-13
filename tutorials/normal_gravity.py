@@ -25,10 +25,10 @@ As an example, lets calculate a profile of normal gravity from pole to pole
 at a height of 1000 m using the :ref:`WGS84 <wgs84>` ellipsoid.
 """
 
-import numpy as np
 import matplotlib.pyplot as plt
-import boule as bl
+import numpy as np
 
+import boule as bl
 
 latitude = np.linspace(-90, 90, 100)
 gamma = bl.WGS84.normal_gravity(latitude, height=1000)

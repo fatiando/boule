@@ -12,9 +12,9 @@ Overview
 
 The main functionality of Boule is contained in the :class:`~boule.Ellipsoid`
 class.
-It defines a `Reference Ellipsoid <https://en.wikipedia.org/wiki/Reference_ellipsoid>`__:
-an *oblate* ellipsoid that approximates the shape of the Earth (or other
-planetary body).
+It defines a `Reference Ellipsoid
+<https://en.wikipedia.org/wiki/Reference_ellipsoid>`__: an *oblate* ellipsoid
+that approximates the shape of the Earth (or other planetary body).
 Ellipsoids are generally specified by 4 parameters:
 
 1. The semi-major axis (:math:`a`): the equatorial radius.
@@ -68,9 +68,9 @@ print(bl.MARS.gravity_pole)
 print(bl.MARS.gravity_equator)
 
 ###############################################################################
-# You can also define your own ellipsoid. For example, this would be a definition of an
-# ellipsoid with 1000 m semimajor axis, flattening equal to 0.5 and dummy values for
-# :math:`GM` and :math:`\omega`:
+# You can also define your own ellipsoid. For example, this would be a
+# definition of an ellipsoid with 1000 m semimajor axis, flattening equal to
+# 0.5 and dummy values for :math:`GM` and :math:`\omega`:
 
 ellipsoid = bl.Ellipsoid(
     name="Ellipsoid",
@@ -87,8 +87,9 @@ print(ellipsoid.first_eccentricity)
 
 ###############################################################################
 # If the ellipsoid has zero flattening (a sphere), you must use the
-# :class:`boule.Sphere` class instead. For example, this would be the definition of
-# a sphere with 1000 m radius and dummy values for :math:`GM` and :math:`\omega`:
+# :class:`boule.Sphere` class instead. For example, this would be the
+# definition of a sphere with 1000 m radius and dummy values for :math:`GM` and
+# :math:`\omega`:
 
 sphere = bl.Sphere(
     name="Sphere",
