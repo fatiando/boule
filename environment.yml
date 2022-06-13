@@ -10,10 +10,8 @@ dependencies:
   - numpy
   - attrs
   # Build
+  - build
   - twine
-  - wheel
-  - setuptools
-  - setuptools_scm
   # Test
   - pytest
   - pytest-cov
