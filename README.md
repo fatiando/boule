@@ -47,6 +47,19 @@ Some examples of where Boule can be applied:
   derivatives) of ellipsoids in closed form.
 * Include a range ellipsoids for the Earth and other planetary bodies.
 
+## Project status
+
+**Boule is ready for use but still changing.**
+This means that we sometimes break backwards compatibility as we try to
+improve the software based on user experience, new ideas, better design
+decisions, etc. Please keep that in mind before you update Boule to a newer
+version.
+
+**We welcome feedback and ideas!** This is a great time to bring new ideas on
+how we can improve the project.
+[Join the conversation](https://www.fatiando.org/contact) or submit
+[issues on GitHub](https://github.com/fatiando/boule/issues).
+
 ## Getting involved
 
 🗨️ **Contact us:**
@@ -77,4 +90,4 @@ By participating in this project you agree to abide by its terms.
 
 This is free software: you can redistribute it and/or modify it under the terms
 of the **BSD 3-clause License**. A copy of this license is provided in
-`LICENSE.txt <https://github.com/fatiando/boule/blob/main/LICENSE.txt>`__.
+[`LICENSE.txt`](https://github.com/fatiando/boule/blob/main/LICENSE.txt).
