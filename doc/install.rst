@@ -27,7 +27,7 @@ There are different ways to install Boule:
     .. tab-item:: Developement version
 
         You can use ``pip`` to install the latest **unreleased** version from
-        GitHub (**not recommended** in most situations)::
+        GitHub (**not recommended** in most situations):
 
         .. code:: bash
 
