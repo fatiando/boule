@@ -7,9 +7,9 @@
 """
 Ellipsoid and Sphere realizations for the Earth and other planetary bodies.
 """
-from .ellipsoid import Ellipsoid
-from .sphere import Sphere
-from .triaxialellipsoid import TriaxialEllipsoid
+from ._ellipsoid import Ellipsoid
+from ._sphere import Sphere
+from ._triaxialellipsoid import TriaxialEllipsoid
 
 WGS84 = Ellipsoid(
     name="WGS84",

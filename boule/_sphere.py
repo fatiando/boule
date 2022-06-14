@@ -12,7 +12,7 @@ from warnings import warn
 import attr
 import numpy as np
 
-from .ellipsoid import Ellipsoid
+from ._ellipsoid import Ellipsoid
 
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
