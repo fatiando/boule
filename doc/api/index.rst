@@ -20,11 +20,3 @@ Reference Ellipsoid
 All ellipsoids are instances of these classes. See the class reference
 documentation for a list their derived physical properties (attributes) and
 computations/transformations that they can perform (methods).
-
-Utilities
----------
-
-.. autosummary::
-   :toctree: generated/
-
-    test
