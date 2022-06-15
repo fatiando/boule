@@ -141,6 +141,18 @@ class Ellipsoid:
         return self.semimajor_axis * (1 - self.flattening)
 
     @property
+    def thirdflattening(self):
+        "The third flattening [adimensional]"
+        return (self.semimajor_axis - self.semiminor_axis) / (
+            self.semimajor_axis + self.semiminor_axis
+        )
+
+    @property
+    def eccentricity(self):
+        "The eccentricity [adimensional]"
+        return np.sqrt(2 * self.flattening - self.flattening**2)
+
+    @property
     def linear_eccentricity(self):
         "The linear eccentricity [meters]"
         return np.sqrt(self.semimajor_axis**2 - self.semiminor_axis**2)
