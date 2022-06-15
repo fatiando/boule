@@ -340,6 +340,11 @@ def test_normal_gravity_computed_on_internal_point(ellipsoid):
         assert len(warn) >= 1
 
 
+def test_emm_wgs84():
+    "The _emm property should be equal this value for WGS84"
+    npt.assert_allclose(WGS84._emm, 0.00344978650684)
+
+
 def test_pymap3d_integration_axis_only():
     "Check that Boule works with pymap3d functions that only need the axis"
     ellipsoid = Ellipsoid(

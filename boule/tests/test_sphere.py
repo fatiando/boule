@@ -115,12 +115,6 @@ def test_ellipsoidal_properties(sphere):
     npt.assert_allclose(sphere.first_eccentricity, 0)
     npt.assert_allclose(sphere.second_eccentricity, 0)
     npt.assert_allclose(sphere.mean_radius, sphere.radius)
-    npt.assert_allclose(
-        sphere.emm,
-        sphere.angular_velocity**2
-        * sphere.radius**3
-        / sphere.geocentric_grav_const,
-    )
 
 
 def test_prime_vertical_radius(sphere):

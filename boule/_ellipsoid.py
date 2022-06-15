@@ -175,8 +175,8 @@ class Ellipsoid:
         return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
 
     @property
-    def emm(self):
-        r"Auxiliary quantity :math:`m = \omega^2 a^2 b / (GM)`"
+    def _emm(self):
+        "Auxiliary quantity used to calculate gravity at the pole and equator"
         return (
             self.angular_velocity**2
             * self.semimajor_axis**2
@@ -197,7 +197,9 @@ class Ellipsoid:
             / (3 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
         )
         axis_mul = self.semimajor_axis * self.semiminor_axis
-        result = self.geocentric_grav_const * (1 - self.emm - self.emm * aux) / axis_mul
+        result = (
+            self.geocentric_grav_const * (1 - self._emm - self._emm * aux) / axis_mul
+        )
         return result
 
     @property
@@ -211,7 +213,9 @@ class Ellipsoid:
             / (1.5 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
         )
         result = (
-            self.geocentric_grav_const * (1 + self.emm * aux) / self.semimajor_axis**2
+            self.geocentric_grav_const
+            * (1 + self._emm * aux)
+            / self.semimajor_axis**2
         )
         return result
 
