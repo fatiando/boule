@@ -1,6 +1,6 @@
-<h1 align="center">Boule</h1>
+<img src="https://github.com/fatiando/boule/raw/main/doc/_static/readme-banner.png" alt="Boule">
 
-<p align="center"><strong>Reference ellipsoids for geodesy and geophysics</strong></p>
+<h2 align="center">Reference ellipsoids for geodesy and geophysics</h2>
 
 <p align="center">
 <a href="https://www.fatiando.org/boule"><strong>Documentation</strong> (latest)</a> •
