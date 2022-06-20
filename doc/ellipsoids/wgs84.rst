@@ -40,8 +40,6 @@ The following are some of the derived attributes:
     8.2094437949696e-02
     >>> print("{:.4f}".format(WGS84.mean_radius))
     6371008.7714
-    >>> print("{:.14f}".format(WGS84.emm))
-    0.00344978650684
     >>> print("{:.10f}".format(WGS84.gravity_equator))
     9.7803253359
     >>> print("{:.10f}".format(WGS84.gravity_pole))
