@@ -7,8 +7,6 @@
 """
 Test the base Ellipsoid class.
 """
-import warnings
-
 import numpy as np
 import numpy.testing as npt
 import pymap3d
@@ -19,6 +17,20 @@ from .. import ELLIPSOIDS, WGS84, Ellipsoid
 from .utils import normal_gravity_surface
 
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
+
+
+def test_coordinate_conversion_deprecations():
+    """
+    Check if warn is raised when using coordinate conversion functions
+    """
+    with pytest.warns(FutureWarning) as warning:
+        WGS84.geodetic_to_spherical(0, 0, 0)
+        assert len(warning) >= 1
+        assert "geodetic2spherical" in warning[0].message.args[0]
+    with pytest.warns(FutureWarning) as warning:
+        WGS84.spherical_to_geodetic(0, 0, 6_000_000)
+        assert len(warning) >= 1
+        assert "spherical2geodetic" in warning[0].message.args[0]
 
 
 def test_check_flattening():
@@ -57,7 +69,7 @@ def test_check_flattening():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with warnings.catch_warnings(record=True) as warn:
+    with pytest.warns(UserWarning) as warn:
         Ellipsoid(
             name="almost-zero-flattening",
             semimajor_axis=1,
@@ -94,7 +106,7 @@ def test_check_geocentric_grav_const():
     """
     Check if warn is raised after negative geocentric_grav_const
     """
-    with warnings.catch_warnings(record=True) as warn:
+    with pytest.warns(UserWarning) as warn:
         Ellipsoid(
             name="negative_gm",
             semimajor_axis=1,
@@ -335,7 +347,7 @@ def test_normal_gravity_computed_on_internal_point(ellipsoid):
     Check if warn is raised if height is negative
     """
     latitude = np.linspace(-90, 90, 100)
-    with warnings.catch_warnings(record=True) as warn:
+    with pytest.warns(UserWarning) as warn:
         ellipsoid.normal_gravity(latitude, height=-10)
         assert len(warn) >= 1
 
