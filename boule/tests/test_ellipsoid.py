@@ -13,9 +13,10 @@ import pymap3d
 import pymap3d.latitude
 import pytest
 
-from .. import ELLIPSOIDS, WGS84, Ellipsoid
+from .. import GRS80, MARS, WGS84, Ellipsoid
 from .utils import normal_gravity_surface
 
+ELLIPSOIDS = [WGS84, GRS80, MARS]
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
 

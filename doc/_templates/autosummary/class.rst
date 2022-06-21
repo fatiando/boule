@@ -4,6 +4,8 @@
 
 .. autoclass:: {{ objname }}
 
+{% if attributes %}
+
 Attributes
 ----------
 
@@ -12,6 +14,8 @@ Attributes
 .. autoattribute:: {{ objname }}.{{ item }}
 
 {% endfor %}
+
+{% endif %}
 
 Methods
 -------
