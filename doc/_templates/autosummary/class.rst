@@ -4,14 +4,19 @@
 
 .. autoclass:: {{ objname }}
 
-.. rubric:: Attributes
+Attributes
+----------
 
-.. autosummary::
-    {% for item in attributes %}
-        {{ objname }}.{{ item }}
-    {% endfor %}
+{% for item in attributes %}
 
-.. rubric:: Methods
+.. autoattribute:: {{ objname }}.{{ item }}
+
+{% endfor %}
+
+Methods
+-------
+
+.. rubric:: List of methods
 
 .. autosummary::
     {% for item in methods %}
@@ -20,13 +25,14 @@
     {% endif %}
     {% endfor %}
 
-----
-
-.. rubric:: Method documentation
+.. rubric:: Methods documentation
 
 {% for item in methods %}
 {% if item != '__init__' %}
 .. automethod:: {{ objname }}.{{ item }}
+
+----
+
 {% endif %}
 {% endfor %}
 
