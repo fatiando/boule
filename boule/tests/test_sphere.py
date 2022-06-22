@@ -48,6 +48,16 @@ def test_check_radius():
         )
 
 
+def test_normal_gravity_computed_on_internal_point(sphere):
+    """
+    Check if warn is raised if height is negative
+    """
+    latitude = np.linspace(-90, 90, 100)
+    with pytest.warns(UserWarning) as warn:
+        sphere.normal_gravity(latitude, height=-10)
+        assert len(warn) >= 1
+
+
 def test_check_geocentric_grav_const():
     """
     Check if warn is raised after negative geocentric_grav_const
@@ -62,82 +72,6 @@ def test_check_geocentric_grav_const():
         assert len(warn) >= 1
 
 
-def test_sphere_flattening(sphere):
-    """
-    Check if flattening property is equal to zero
-    """
-    assert sphere.flattening == 0
-
-
-def test_sphere_semimajor_axis(sphere):
-    """
-    Check if semimajor_axis is equal to the radius
-    """
-    npt.assert_allclose(sphere.semimajor_axis, sphere.radius)
-
-
-def test_geodetic_to_spherical(sphere):
-    "Test geodetic to geocentric conversion on spherical ellipsoid."
-    rtol = 1e-10
-    size = 5
-    longitude = np.linspace(0, 180, size)
-    latitude = np.linspace(-90, 90, size)
-    height = np.linspace(-0.2, 0.2, size)
-    sph_longitude, sph_latitude, radius = sphere.geodetic_to_spherical(
-        longitude, latitude, height
-    )
-    npt.assert_allclose(sph_longitude, longitude, rtol=rtol)
-    npt.assert_allclose(sph_latitude, latitude, rtol=rtol)
-    npt.assert_allclose(radius, sphere.radius + height, rtol=rtol)
-
-
-def test_spherical_to_geodetic(sphere):
-    "Test spherical to geodetic conversion on spherical ellipsoid."
-    rtol = 1e-10
-    size = 5
-    spherical_longitude = np.linspace(0, 180, size)
-    spherical_latitude = np.linspace(-90, 90, size)
-    radius = np.linspace(0.8, 1.2, size)
-    longitude, latitude, height = sphere.spherical_to_geodetic(
-        spherical_longitude, spherical_latitude, radius
-    )
-    npt.assert_allclose(spherical_longitude, longitude, rtol=rtol)
-    npt.assert_allclose(spherical_latitude, latitude, rtol=rtol)
-    npt.assert_allclose(radius, sphere.radius + height, rtol=rtol)
-
-
-def test_ellipsoidal_properties(sphere):
-    """
-    Check inherited properties from Ellipsoid
-    """
-    npt.assert_allclose(sphere.semiminor_axis, sphere.radius)
-    npt.assert_allclose(sphere.linear_eccentricity, 0)
-    npt.assert_allclose(sphere.first_eccentricity, 0)
-    npt.assert_allclose(sphere.second_eccentricity, 0)
-    npt.assert_allclose(sphere.mean_radius, sphere.radius)
-
-
-def test_prime_vertical_radius(sphere):
-    """
-    Check prime vertical radius
-    """
-    latitudes = np.linspace(-90, 90, 18)
-    npt.assert_allclose(
-        sphere.prime_vertical_radius(np.sin(np.radians(latitudes))), sphere.radius
-    )
-
-
-def test_geocentric_radius(sphere):
-    """
-    Check geocentric radius
-    """
-    latitudes = np.linspace(-90, 90, 18)
-    for geodetic in (True, False):
-        npt.assert_allclose(
-            sphere.geocentric_radius(latitudes, geodetic=geodetic), sphere.radius
-        )
-
-
 @pytest.mark.parametrize("si_units", [False, True], ids=["mGal", "SI"])
 def test_normal_gravity_pole_equator(sphere, si_units):
     """
@@ -145,20 +79,17 @@ def test_normal_gravity_pole_equator(sphere, si_units):
     """
     rtol = 1e-10
     height = 0
-    gamma_pole = sphere.gravity_pole
-    gamma_eq = sphere.gravity_equator
+    gamma_pole = sphere.normal_gravity(90, height, si_units=si_units)
+    gamma_eq = sphere.normal_gravity(0, height, si_units=si_units)
+    gravitation_pole = sphere.normal_gravitation(height, si_units=si_units)
+    centrifugal = sphere.angular_velocity**2 * (sphere.radius + height)
     if not si_units:
-        # Convert gamma to mGal
-        gamma_pole = sphere.gravity_pole * 1e5
-        gamma_eq = sphere.gravity_equator * 1e5
+        centrifugal *= 1e5
+    npt.assert_allclose(gamma_pole, gravitation_pole, rtol=rtol)
     npt.assert_allclose(
-        gamma_pole, sphere.normal_gravity(-90, height, si_units=si_units), rtol=rtol
-    )
-    npt.assert_allclose(
-        gamma_pole, sphere.normal_gravity(90, height, si_units=si_units), rtol=rtol
-    )
-    npt.assert_allclose(
-        gamma_eq, sphere.normal_gravity(0, height, si_units=si_units), rtol=rtol
+        gamma_eq,
+        gravitation_pole - centrifugal,
+        rtol=rtol,
     )
 
 

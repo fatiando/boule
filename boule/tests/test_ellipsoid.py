@@ -9,13 +9,12 @@ Test the base Ellipsoid class.
 """
 import numpy as np
 import numpy.testing as npt
-import pymap3d
-import pymap3d.latitude
 import pytest
 
-from .. import ELLIPSOIDS, WGS84, Ellipsoid
+from .. import GRS80, MARS, WGS84, Ellipsoid
 from .utils import normal_gravity_surface
 
+ELLIPSOIDS = [WGS84, GRS80, MARS]
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
 
@@ -355,36 +354,3 @@ def test_normal_gravity_computed_on_internal_point(ellipsoid):
 def test_emm_wgs84():
     "The _emm property should be equal this value for WGS84"
     npt.assert_allclose(WGS84._emm, 0.00344978650684)
-
-
-def test_pymap3d_integration_axis_only():
-    "Check that Boule works with pymap3d functions that only need the axis"
-    ellipsoid = Ellipsoid(
-        name="test",
-        semimajor_axis=1.0,
-        flattening=0.5,
-        geocentric_grav_const=0,
-        angular_velocity=0,
-    )
-    x, y, z = pymap3d.geodetic2ecef(lat=0, lon=0, alt=1, ell=ellipsoid)
-    npt.assert_allclose([x, y, z], [2, 0, 0], rtol=0, atol=1e-10)
-    x, y, z = pymap3d.geodetic2ecef(lat=90, lon=0, alt=2, ell=ellipsoid)
-    npt.assert_allclose([x, y, z], [0, 0, 2.5], rtol=0, atol=1e-10)
-
-
-def test_pymap3d_integration_eccentricity():
-    "Check that Boule works with pymap3d functions that need the eccentricity"
-    # Test values come from the pymap3d tests
-    latitude = pymap3d.latitude.geodetic2authalic(np.array([0, 90, -90, 45]), ell=WGS84)
-    true_latitude = np.array([0, 90, -90, 44.87170288])
-    npt.assert_allclose(latitude, true_latitude, rtol=0, atol=1e-6)
-
-
-def test_pymap3d_integration_thirdflattening():
-    "Check that Boule works with pymap3d funcs that need the 3rd flattening"
-    # These need the eccentricity
-    latitude = pymap3d.latitude.geodetic2rectifying(
-        np.array([0, 90, -90, 45]), ell=WGS84
-    )
-    true_latitude = np.array([0, 90, -90, 44.855682])
-    npt.assert_allclose(latitude, true_latitude, rtol=0, atol=1e-6)

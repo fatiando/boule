@@ -10,5 +10,3 @@ from ._realizations import GRS80, MARS, MERCURY, MOON, VENUS, VESTA, WGS84
 from ._sphere import Sphere
 from ._triaxialellipsoid import TriaxialEllipsoid
 from ._version import __version__
-
-ELLIPSOIDS = [WGS84, GRS80, MARS, VENUS, MOON, MERCURY]
