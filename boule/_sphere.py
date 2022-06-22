@@ -81,6 +81,23 @@ class Sphere:
     >>> print(sphere.long_name)
     That's no moon
 
+    The sphere defines semi-axis, flattening, and some eccentricities similar
+    to :class:`~bould.Ellipsoid` for compatibility with the coordinate
+    conversion functions of pymap3d:
+
+    >>> print(sphere.semiminor_axis)
+    1
+    >>> print(sphere.semimajor_axis)
+    1
+    >>> print(sphere.first_eccentricity)
+    0
+    >>> print(sphere.eccentricity)
+    0
+    >>> print(sphere.flattening)
+    0
+    >>> print(sphere.thirdflattening)
+    0
+
     """
 
     name = attr.ib()
@@ -101,6 +118,61 @@ class Sphere:
         "Warn if geocentric_grav_const is negative."
         if value < 0:
             warn(f"The geocentric gravitational constant is negative: '{value}'")
+
+    @property
+    def semiminor_axis(self):
+        """
+        The semiminor axis of the sphere is equal to its radius. Added for
+        compatibility with pymap3d.
+        Definition: :math:`b = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
+    def semimajor_axis(self):
+        """
+        The semimajor axis of the sphere is equal to its radius. Added for
+        compatibility with pymap3d.
+        Definition: :math:`a = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
+    def flattening(self):
+        r"""
+        The flattening of the sphere is equal to zero. Added for compatibility
+        with pymap3d.
+        Definition: :math:`f = \dfrac{a - b}{a}`.
+        Units: adimensional.
+        """
+        return 0
+
+    @property
+    def thirdflattening(self):
+        r"""
+        The third flattening of the sphere is equal to zero. Added for
+        compatibility with pymap3d
+        Definition: :math:`f^{\prime\prime}= \dfrac{a -b}{a + b}`.
+        Units: adimensional.
+        """
+        return 0
+
+    @property
+    def eccentricity(self):
+        "Alias for the first eccentricity."
+        return self.first_eccentricity
+
+    @property
+    def first_eccentricity(self):
+        r"""
+        The (first) eccentricity of the sphere is equal to zero. Added for
+        compatibility with pymap3d.
+        Definition: :math:`e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}`.
+        Units: adimensional.
+        """
+        return 0
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""
