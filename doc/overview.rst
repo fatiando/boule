@@ -3,8 +3,10 @@
 Overview
 ========
 
-The main functionality of Boule is contained in the :class:`~boule.Ellipsoid`
-class.
+The main functionality of Boule is contained in the classes used to define a
+:term:`reference ellipsoid`: :class:`~boule.Ellipsoid`, :class:`~boule.Sphere`,
+and :class:`~boule.TriaxialEllipsoid`.
+
 It defines a :term:`reference ellipsoid`: an *oblate* ellipsoid
 that approximates the shape of the Earth (or other planetary body).
 Ellipsoids are generally specified by 4 parameters:

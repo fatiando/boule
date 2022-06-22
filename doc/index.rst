@@ -10,19 +10,54 @@
       Reference ellipsoids for geodesy and geophysics
     </p>
 
-**Boule** is Python library for representing reference ellipsoids
-geometrically, calculating their gravity fields, and performing some global
-coordinate conversions.
+**Boule** is Python library for representing
+:term:`reference ellipsoids <reference ellipsoid>` geometrically, calculating
+their gravity fields, and performing some global coordinate conversions.
 "Boule" is also French for "ball" as well as a `traditional shape of bread
 resembling a squashed ball <https://en.wikipedia.org/wiki/Boule_(bread)>`__
 (much like the Earth).
 
-Some examples of where Boule can be applied:
+Boule is designed for:
 
-* Storing and manipulating ellipsoid parameters for spherical harmonic analysis.
-* Calculating normal gravity for generating gravity anomalies and disturbances.
-* Modelling in spherical coordinates, which requires geodetic to geocentric
-  spherical coordinate conversions.
+* Storing and manipulating ellipsoid parameters for spherical harmonic analysis
+  and coordinate system conversions.
+* Calculating :term:`normal gravity` for generating gravity anomalies and
+  disturbances.
+
+Here is an example of using Boule to calculate the :term:`normal gravity` of
+the WGS84 ellipsoid on the Earth's surface (topography in the continents, the
+geoid the oceans):
+
+
+.. jupyter-execute::
+
+    import boule as bl
+    import ensaio
+    import pygmt
+    import xarray as xr
+
+    # Download and open colocated topography and geoid grids using Ensaio
+    fname_topo = ensaio.fetch_earth_topography(version=1)
+    fname_geoid = ensaio.fetch_earth_geoid(version=1)
+    topography = xr.load_dataarray(fname_topo)
+    geoid = xr.load_dataarray(fname_geoid)
+
+    # Define height by combining topography and geoid using xarray
+    height = xr.where(
+        topography >= 0,
+        topography + geoid,  # geometric height of topography in the continents
+        geoid,  # geoid height in the oceans
+    )
+
+    # Calculate normal gravity
+    gamma = bl.WGS84.normal_gravity(topography.latitude, height)
+
+    # Plot a map of it using PyGMT
+    fig = pygmt.Figure()
+    fig.grdimage(gamma, projection="W20c", cmap="viridis", shading="+a45+nt0.3")
+    fig.basemap(frame=["af", "WEsn"])
+    fig.colorbar(position="JCB+w10c", frame=["af", 'y+l"mGal"'])
+    fig.show()
 
 ----
 
@@ -113,7 +148,7 @@ Some examples of where Boule can be applied:
     :hidden:
     :caption: Getting Started
 
-    tutorials/overview.rst
+    overview.rst
     install.rst
 
 .. toctree::
@@ -121,10 +156,9 @@ Some examples of where Boule can be applied:
     :hidden:
     :caption: User Guide
 
-    ellipsoids/index.rst
-    tutorials/normal_gravity.rst
-    tutorials/gravity_disturbance.rst
-    tutorials/geodetic_to_geocentric.rst
+    user_guide/normal_gravity.rst
+    user_guide/gravity_disturbance.rst
+    user_guide/geodetic_to_geocentric.rst
 
 .. toctree::
     :maxdepth: 2
@@ -132,11 +166,12 @@ Some examples of where Boule can be applied:
     :caption: Reference Documentation
 
     api/index.rst
-    compatibility.rst
+    ellipsoids.rst
     citing.rst
     glossary.rst
     references.rst
     changes.rst
+    compatibility.rst
     versions.rst
 
 .. toctree::
