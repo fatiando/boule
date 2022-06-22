@@ -17,74 +17,97 @@ import numpy as np
 # accidentally.
 @attr.s(frozen=True)
 class Ellipsoid:
-    """
-    Reference oblate ellipsoid.
+    r"""
+    A rotating oblate ellipsoid.
 
-    The ellipsoid is oblate and spins around it's minor axis. It is defined by
-    four parameters (semi-major axis, flattening, geocentric gravitational
-    constant, and angular velocity) and offers other derived quantities.
+    The ellipsoid is defined by four parameters: semimajor axis, flattening,
+    geocentric gravitational constant, and angular velocity. It spins around
+    it's semiminor axis and has constant gravity potential at its surface. The
+    internal density structure of the ellipsoid is unspecified but must be such
+    that the constant potential condition is satisfied.
 
-    **All attributes of this class are read-only and cannot be changed after
-    instantiation.**
+    **This class is read-only:** Input parameters and attributes cannot be
+    changed after instantiation.
 
-    All parameters are in SI units.
-
-    .. note::
-
-        Use :class:`boule.Sphere` if you desire zero flattening because there
-        are singularities for this particular case in the normal gravity
-        calculations.
+    **Units:** All input parameters and derived attributes are in SI units.
 
     Parameters
     ----------
     name : str
-        A short name for the ellipsoid, for example ``'WGS84'``.
+        A short name for the ellipsoid, for example ``"WGS84"``.
     semimajor_axis : float
-        The semi-major axis of the ellipsoid (equatorial radius), usually
-        represented by "a" [meters].
+        The semimajor axis of the ellipsoid. The equatorial (large) radius.
+        Definition: :math:`a`.
+        Units: :math:`m`.
     flattening : float
-        The flattening of the ellipsoid (f) [adimensional].
+        The (first) flattening of the ellipsoid.
+        Definition: :math:`f = (a - b)/a`.
+        Units: adimensional.
     geocentric_grav_const : float
-        The geocentric gravitational constant (GM) [m^3 s^-2].
+        The geocentric gravitational constant. The product of the mass of the
+        ellipsoid :math:`M` and the gravitational constant :math:`G`.
+        Definition: :math:`GM`. Units:
+        :math:`m^3.s^{-2}`.
     angular_velocity : float
-        The angular velocity of the rotating ellipsoid (omega) [rad s^-1].
+        The angular velocity of the rotating ellipsoid.
+        Definition: :math:`\omega`.
+        Units: :math:`\\rad.s^{-1}`.
     long_name : str or None
         A long name for the ellipsoid, for example ``"World Geodetic System
         1984"`` (optional).
     reference : str or None
         Citation for the ellipsoid parameter values (optional).
 
+
+    .. caution::
+
+        Use :class:`boule.Sphere` if you desire zero flattening because there
+        are singularities for this particular case in the normal gravity
+        calculations.
+
     Examples
     --------
 
-    We can define an ellipsoid by setting the 4 key numerical parameters:
+    We can define an ellipsoid by setting the 4 key numerical parameters and
+    some metadata about where they came from:
 
     >>> ellipsoid = Ellipsoid(
-    ...     name="oblate-ellipsoid",
-    ...     long_name="Oblate Ellipsoid",
-    ...     semimajor_axis=1,
-    ...     flattening=0.5,
-    ...     geocentric_grav_const=1,
-    ...     angular_velocity=0,
+    ...     name="WGS84",
+    ...     long_name="World Geodetic System 1984",
+    ...     semimajor_axis=6378137,
+    ...     flattening=1 / 298.257223563,
+    ...     geocentric_grav_const=3986004.418e8,
+    ...     angular_velocity=7292115e-11,
+    ...     reference=(
+    ...         "Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy "
+    ...         "(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."
+    ...     ),
     ... )
     >>> print(ellipsoid) # doctest: +ELLIPSIS
-    Ellipsoid(name='oblate-ellipsoid', ...)
+    Ellipsoid(name='WGS84', ...)
     >>> print(ellipsoid.long_name)
-    Oblate Ellipsoid
+    World Geodetic System 1984
 
-    The class defines several derived attributes based on the input parameters:
+    The class then defines several derived attributes based on the input
+    parameters:
 
-    >>> print("{:.2f}".format(ellipsoid.semiminor_axis))
-    0.50
-    >>> print("{:.2f}".format(ellipsoid.mean_radius))
-    0.83
-    >>> print("{:.2f}".format(ellipsoid.linear_eccentricity))
-    0.87
-    >>> print("{:.2f}".format(ellipsoid.first_eccentricity))
-    0.87
-    >>> print("{:.2f}".format(ellipsoid.second_eccentricity))
-    1.73
+    >>> print(f"{ellipsoid.semiminor_axis:.4f} m")
+    6356752.3142 m
+    >>> print(f"{ellipsoid.linear_eccentricity:.8f} m")
+    521854.00842339 m
+    >>> print(f"{ellipsoid.first_eccentricity:.13e}")
+    8.1819190842621e-02
+    >>> print(f"{ellipsoid.second_eccentricity:.13e}")
+    8.2094437949696e-02
+    >>> print(f"{ellipsoid.mean_radius:.4f} m")
+    6371008.7714 m
+    >>> print(f"{ellipsoid.gravity_equator:.10f} m/s²")
+    9.7803253359 m/s²
+    >>> print(f"{ellipsoid.gravity_pole:.10f} m/s²")
+    9.8321849379 m/s²
 
+    Use the class methods for calculating normal gravity and other geometric
+    quantities.
     """
 
     name = attr.ib()
@@ -97,9 +120,7 @@ class Ellipsoid:
 
     @flattening.validator
     def _check_flattening(self, flattening, value):
-        """
-        Check if flattening is valid
-        """
+        "Check if flattening is valid"
         if value < 0 or value >= 1:
             raise ValueError(
                 f"Invalid flattening '{value}'. "
@@ -119,9 +140,7 @@ class Ellipsoid:
 
     @semimajor_axis.validator
     def _check_semimajor_axis(self, semimajor_axis, value):
-        """
-        Check if semimajor_axis is positive
-        """
+        "Check if semimajor_axis is valid"
         if not value > 0:
             raise ValueError(
                 f"Invalid semi-major axis '{value}'. Should be greater than zero."
@@ -129,48 +148,72 @@ class Ellipsoid:
 
     @geocentric_grav_const.validator
     def _check_geocentric_grav_const(self, geocentric_grav_const, value):
-        """
-        Warn if geocentric_grav_const is negative
-        """
+        "Warn if geocentric_grav_const is negative"
         if value < 0:
             warn(f"The geocentric gravitational constant is negative: '{value}'")
 
     @property
     def semiminor_axis(self):
-        "The small (polar) axis of the ellipsoid [meters]"
+        """
+        The semiminor (small/polar) axis of the ellipsoid.
+        Definition: :math:`b = a (1 - f)`.
+        Units: :math:`m`.
+        """
         return self.semimajor_axis * (1 - self.flattening)
 
     @property
     def thirdflattening(self):
-        "The third flattening [adimensional]"
+        r"""
+        The third flattening of the ellipsoid (used in geodetic calculations).
+        Definition: :math:`f^{\prime\prime}= \dfrac{a -b}{a + b}`.
+        Units: adimensional.
+        """
         return (self.semimajor_axis - self.semiminor_axis) / (
             self.semimajor_axis + self.semiminor_axis
         )
 
     @property
-    def eccentricity(self):
-        "The eccentricity [adimensional]"
-        return np.sqrt(2 * self.flattening - self.flattening**2)
-
-    @property
     def linear_eccentricity(self):
-        "The linear eccentricity [meters]"
+        r"""
+        The linear eccentricity of the ellipsoid. The distance between the
+        ellipsoid's center and one of its foci.
+        Definition: :math:`c = \sqrt{a^2 - b^2}`.
+        Units: :math:`m`.
+        """
         return np.sqrt(self.semimajor_axis**2 - self.semiminor_axis**2)
 
     @property
+    def eccentricity(self):
+        "Alias for the first eccentricity."
+        return self.first_eccentricity
+
+    @property
     def first_eccentricity(self):
-        "The first eccentricity [adimensional]"
-        return self.linear_eccentricity / self.semimajor_axis
+        r"""
+        The (first) eccentricity of the ellipsoid. The ratio between the linear
+        eccentricity and the semimajor axis.
+        Definition: :math:`e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}`.
+        Units: adimensional.
+        """
+        return np.sqrt(2 * self.flattening - self.flattening**2)
 
     @property
     def second_eccentricity(self):
-        "The second eccentricity [adimensional]"
-        return self.linear_eccentricity / self.semiminor_axis
+        r"""
+        The second eccentricity of the ellipsoid. The ratio between the linear
+        eccentricity and the semiminor axis.
+        Definition: :math:`e^\prime = \dfrac{\sqrt{a^2 - b^2}}{b}
+        = \dfrac{\sqrt{2f - f^2}}{1 - f}`.
+        Units: adimensional.
+        """
+        return self.first_eccentricity / (1 - self.flattening)
 
     @property
     def mean_radius(self):
         """
-        The arithmetic mean radius :math:`R_1=(2a+b)/3` [Moritz1988]_ [meters]
+        The arithmetic mean radius of the ellipsoid [Moritz1988]_.
+        Definition: :math:`R_1 = (2a + b)/3`.
+        Units: :math:`m`.
         """
         return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
 
@@ -187,7 +230,9 @@ class Ellipsoid:
     @property
     def gravity_equator(self):
         """
-        The norm of the gravity vector on the ellipsoid at the equator [m/s²]
+        The norm of the gravity acceleration vector (gravitational +
+        centrifugal accelerations) at the equator on the surface of the
+        ellipsoid. Units: :math:`m/s^2`.
         """
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
@@ -204,7 +249,11 @@ class Ellipsoid:
 
     @property
     def gravity_pole(self):
-        "The norm of the gravity vector on the ellipsoid at the poles [m/s²]"
+        """
+        The norm of the gravity acceleration vector (gravitational +
+        centrifugal accelerations) at the poles on the surface of the
+        ellipsoid. Units: :math:`m/s^2`.
+        """
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
         aux = (
@@ -221,45 +270,10 @@ class Ellipsoid:
 
     def geocentric_radius(self, latitude, geodetic=True):
         r"""
-        Distance from the center of the ellipsoid to its surface.
+        Radial distance from the center of the ellipsoid to its surface.
 
-        The geocentric radius and is a function of the geodetic latitude
-        :math:`\phi` and the semi-major and semi-minor axis, a and b:
-
-        .. math::
-
-            R(\phi) = \sqrt{\dfrac{
-                (a^2\cos\phi)^2 + (b^2\sin\phi)^2}{
-                (a\cos\phi)^2 + (b\sin\phi)^2 }
-            }
-
-        See https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius
-
-        The same could be achieved with
-        :meth:`boule.Ellipsoid.geodetic_to_spherical` by passing any value for
-        the longitudes and heights equal to zero. This method provides a
-        simpler and possibly faster alternative.
-
-        Alternatively, the geocentric radius can also be expressed in terms of
-        the geocentric (spherical) latitude :math:`\theta`:
-
-        .. math::
-
-            R(\theta) = \sqrt{\dfrac{1}{
-                (\frac{\cos\theta}{a})^2 + (\frac{\sin\theta}{b})^2 }
-            }
-
-        This can be useful if you already have the geocentric latitudes and
-        need the geocentric radius of the ellipsoid (for example, in spherical
-        harmonic analysis). In these cases, the coordinate conversion route is
-        not possible since we need the radial coordinates to do that in the
-        first place.
-
-        .. note::
-
-            No elevation is taken into account (the height is zero). If you
-            need the geocentric radius at a height other than zero, use
-            :meth:`boule.Ellipsoid.geodetic_to_spherical` instead.
+        Can be calculated from either geocentric geodetic or geocentric
+        spherical latitudes.
 
         Parameters
         ----------
@@ -267,14 +281,63 @@ class Ellipsoid:
             Latitude coordinates on geodetic coordinate system in degrees.
         geodetic : bool
             If True (default), will assume that latitudes are geodetic
-            latitudes. Otherwise, will that they are geocentric spherical
-            latitudes.
+            latitudes. Otherwise, will assume that they are geocentric
+            spherical latitudes.
 
         Returns
         -------
         geocentric_radius : float or array
             The geocentric radius for the given latitude(s) in the same units
             as the ellipsoid axis.
+
+
+        .. tip::
+
+            No elevation is taken into account. If you need the geocentric
+            radius at a height other than zero, use
+            ``pymap3d.geodetic2spherical`` instead.
+
+        Notes
+        ------
+
+        The geocentric surface radius :math:`R` is a function of the geocentric
+        geodetic latitude :math:`\phi` and the semimajor and semiminor axis,
+        :math:`a` and :math:`b` [1]_:
+
+        .. math::
+
+            R(\phi) = \sqrt{
+                \dfrac{
+                    (a^2\cos\phi)^2 + (b^2\sin\phi)^2
+                }{
+                    (a\cos\phi)^2 + (b\sin\phi)^2
+                }
+            }
+
+        Alternatively, the geocentric surface radius can also be calculated
+        using the geocentric spherical latitude :math:`\theta` by passing
+        ``geodetic=False``:
+
+        .. math::
+
+            R(\theta) = \sqrt{
+                \dfrac{
+                    1
+                }{
+                    (\frac{\cos\theta}{a})^2 + (\frac{\sin\theta}{b})^2
+                }
+            }
+
+        This can be useful if you already have the geocentric spherical
+        latitudes and need the geocentric radius of the ellipsoid (for example,
+        in spherical harmonic synthesis). In these cases, the coordinate
+        conversion route is not possible since we need the radial coordinates
+        to do that in the first place.
+
+        References
+        ----------
+
+        .. [1] See https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius
 
         """
         latitude_rad = np.radians(latitude)
@@ -304,30 +367,41 @@ class Ellipsoid:
 
     def prime_vertical_radius(self, sinlat):
         r"""
-        Calculate the prime vertical radius for a given geodetic latitude
+        The prime vertical radius of curvature for a given geodetic latitude.
 
-        The prime vertical radius is defined as:
+        .. note::
 
-        .. math::
-
-            N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}
-
-        Where :math:`a` is the semi-major axis and :math:`e` is the first
-        eccentricity.
-
-        This function receives the sine of the latitude as input to avoid
-        repeated computations of trigonometric functions.
+            This function receives the sine of the latitude as input to avoid
+            repeated computations of trigonometric functions in
+            methods/functions that rely on it.
 
         Parameters
         ----------
         sinlat : float or array-like
-            Sine of the latitude angle.
+            Sine of the geocentric geodetic latitude.
 
         Returns
         -------
         prime_vertical_radius : float or array-like
             Prime vertical radius given in the same units as the semi-major
             axis
+
+        Notes
+        -----
+
+        The prime vertical radius of curvature :math:`N` is defined as [2]_:
+
+        .. math::
+
+            N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}
+
+        Where :math:`a` is the semimajor axis and :math:`e` is the first
+        eccentricity.
+
+        References
+        ----------
+
+        .. [2] See https://en.wikipedia.org/wiki/Earth_radius#Prime_vertical
 
         """
         return self.semimajor_axis / np.sqrt(
@@ -337,6 +411,14 @@ class Ellipsoid:
     def geodetic_to_spherical(self, longitude, latitude, height):
         """
         Convert from geodetic to geocentric spherical coordinates.
+
+        .. warning::
+
+            **This method is deprecated and will be removed in Boule v0.5.0.**
+            Please use the equivalent function in
+            `pymap3d <https://github.com/geospace-code/pymap3d/>`__ instead
+            (``pymap3d.geodetic2spherical``) which is available since version
+            2.9.0.
 
         The geodetic datum is defined by this ellipsoid. The coordinates are
         converted following [Vermeille2002]_.
@@ -363,6 +445,12 @@ class Ellipsoid:
             Converted spherical radius coordinates in meters.
 
         """
+        warn(
+            "Ellipsoid.geodetic_to_spherical is deprecated and will be removed "
+            "in Boule v0.5.0. Use pymap3d.geodetic2spherical instead.",
+            FutureWarning,
+        )
+
         latitude_rad = np.radians(latitude)
         coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
         prime_vertical_radius = self.prime_vertical_radius(sinlat)
@@ -379,6 +467,14 @@ class Ellipsoid:
     def spherical_to_geodetic(self, longitude, spherical_latitude, radius):
         """
         Convert from geocentric spherical to geodetic coordinates.
+
+        .. warning::
+
+            **This method is deprecated and will be removed in Boule v0.5.0.**
+            Please use the equivalent function in
+            `pymap3d <https://github.com/geospace-code/pymap3d/>`__ instead
+            (``pymap3d.spherical2geodetic``) which is available since version
+            2.9.0.
 
         The geodetic datum is defined by this ellipsoid. The coordinates are
         converted following [Vermeille2002]_.
@@ -406,6 +502,12 @@ class Ellipsoid:
             Converted ellipsoidal height coordinates in meters.
 
         """
+        warn(
+            "Ellipsoid.spherical_to_geodetic is deprecated and will be removed "
+            "in Boule v0.5.0. Use pymap3d.spherical2geodetic instead.",
+            FutureWarning,
+        )
+
         spherical_latitude = np.radians(spherical_latitude)
         k, big_z, big_d = self._spherical_to_geodetic_terms(spherical_latitude, radius)
         latitude = np.degrees(
@@ -437,29 +539,48 @@ class Ellipsoid:
         return k, big_z, big_d
 
     def normal_gravity(self, latitude, height, si_units=False):
-        """
-        Calculate normal gravity at any latitude and height.
+        r"""
+        Normal gravity of the ellipsoid at the given latitude and height.
 
         Computes the magnitude of the gradient of the gravity potential
-        (gravitational + centrifugal) generated by the ellipsoid at the given
-        latitude and (geometric) height. Uses of a closed form expression of
-        [LiGotze2001]_.
+        (gravitational + centrifugal; see [Heiskanen-Moritz]_) generated by the
+        ellipsoid at the given geodetic latitude :math:`\phi` and height above
+        the ellipsoid :math:`h` (geometric height).
+
+        .. math::
+
+            \gamma(\phi, h) = \|\vec{\nabla}U(\phi, h)\|
+
+        in which :math:`U = V + \Phi` is the gravity potential of the
+        ellipsoid, :math:`V` is the gravitational potential of the ellipsoid,
+        and :math:`\Phi` is the centrifugal potential.
+
+        Assumes that the internal density distribution of the ellipsoid is such
+        that the gravity potential is constant at its surface.
+
+        Based on closed-form expressions by [Lakshmanan1991]_ and corrected by
+        [LiGotze2001]_ which don't require the free-air correction.
+
+        .. caution::
+
+            These expressions are only valid for heights on or above the
+            surface of the ellipsoid.
 
         Parameters
         ----------
         latitude : float or array
-            The (geodetic) latitude where the normal gravity will be computed
-            (in degrees).
+            The geodetic latitude where the normal gravity will be computed (in
+            degrees).
         height : float or array
             The ellipsoidal (geometric) height of computation the point (in
             meters).
         si_units : bool
-            Return the value in mGal (False, default) or SI units (True)
+            Return the value in mGal (False, default) or m/s² (True)
 
         Returns
         -------
         gamma : float or array
-            The normal gravity in mGal.
+            The normal gravity in mGal or m/s².
 
         """
         # Warn if height is negative
@@ -469,58 +590,69 @@ class Ellipsoid:
                 "Height must be greater than or equal to zero."
             )
 
-        sinlat = np.sin(np.deg2rad(latitude))
+        # Pre-compute to avoid repeated calculations
+        sinlat = np.sin(np.radians(latitude))
         coslat = np.sqrt(1 - sinlat**2)
-        # The terms below follow the variable names from Li and Goetze (2001)
-        cosbeta_l2, sinbeta_l2, b_l, q_0, q_l, big_w = self._normal_gravity_terms(
-            sinlat, coslat, height
-        )
-        # Put together gamma using 3 terms
-        term1 = self.geocentric_grav_const / (b_l**2 + self.linear_eccentricity**2)
-        term2 = (0.5 * sinbeta_l2 - 1 / 6) * (
-            self.semimajor_axis**2
-            * self.linear_eccentricity
-            * q_l
-            * self.angular_velocity**2
-            / ((b_l**2 + self.linear_eccentricity**2) * q_0)
-        )
-        term3 = -cosbeta_l2 * b_l * self.angular_velocity**2
-        gamma = (term1 + term2 + term3) / big_w
-        if si_units:
-            return gamma
-        # Convert gamma from SI to mGal
-        return gamma * 1e5
 
-    def _normal_gravity_terms(self, sinlat, coslat, height):
-        "Calculate intermediate terms needed for the calculations."
-        # Offload computation of these intermediate variables here to clean up
-        # the main function body
+        # The terms below follow the variable names from Li and Goetze (2001).
+        # The prime terms (*_p) refer to quantities on an ellipsoid passing
+        # through the computation point.
+
+        # The reduced latitude of the projection of the point on the ellipsoid
         beta = np.arctan2(self.semiminor_axis * sinlat, self.semimajor_axis * coslat)
-        zl2 = (self.semiminor_axis * np.sin(beta) + height * sinlat) ** 2
-        rl2 = (self.semimajor_axis * np.cos(beta) + height * coslat) ** 2
-        big_d = (rl2 - zl2) / self.linear_eccentricity**2
-        big_r = (rl2 + zl2) / self.linear_eccentricity**2
-        cosbeta_l2 = 0.5 * (1 + big_r) - np.sqrt(0.25 * (1 + big_r**2) - 0.5 * big_d)
-        sinbeta_l2 = 1 - cosbeta_l2
-        b_l = np.sqrt(rl2 + zl2 - self.linear_eccentricity**2 * cosbeta_l2)
+        sinbeta = np.sin(beta)
+        cosbeta = np.sqrt(1 - sinbeta**2)
+
+        # Distance between the computation point and the equatorial plane
+        z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
+        # Distance between the computation point and the spin axis
+        r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
+
+        # Auxiliary variables
+        big_d = (r_p2 - z_p2) / self.linear_eccentricity**2
+        big_r = (r_p2 + z_p2) / self.linear_eccentricity**2
+
+        # Reduced latitude of the computation point
+        cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
+        sinbeta_p2 = 1 - cosbeta_p2
+
+        # Auxiliary variables
+        b_p = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
         q_0 = 0.5 * (
             (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
             * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
             - 3 * self.semiminor_axis / self.linear_eccentricity
         )
-        q_l = (
+        q_p = (
             3
-            * (1 + (b_l / self.linear_eccentricity) ** 2)
+            * (1 + (b_p / self.linear_eccentricity) ** 2)
             * (
                 1
-                - b_l
+                - b_p
                 / self.linear_eccentricity
-                * np.arctan2(self.linear_eccentricity, b_l)
+                * np.arctan2(self.linear_eccentricity, b_p)
             )
             - 1
         )
         big_w = np.sqrt(
-            (b_l**2 + self.linear_eccentricity**2 * sinbeta_l2)
-            / (b_l**2 + self.linear_eccentricity**2)
+            (b_p**2 + self.linear_eccentricity**2 * sinbeta_p2)
+            / (b_p**2 + self.linear_eccentricity**2)
         )
-        return cosbeta_l2, sinbeta_l2, b_l, q_0, q_l, big_w
+
+        # Put together gamma using 3 separate terms
+        term1 = self.geocentric_grav_const / (b_p**2 + self.linear_eccentricity**2)
+        term2 = (0.5 * sinbeta_p2 - 1 / 6) * (
+            self.semimajor_axis**2
+            * self.linear_eccentricity
+            * q_p
+            * self.angular_velocity**2
+            / ((b_p**2 + self.linear_eccentricity**2) * q_0)
+        )
+        term3 = -cosbeta_p2 * b_p * self.angular_velocity**2
+        gamma = (term1 + term2 + term3) / big_w
+
+        # Convert gamma from SI to mGal
+        if not si_units:
+            gamma *= 1e5
+
+        return gamma
