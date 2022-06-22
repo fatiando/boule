@@ -24,6 +24,7 @@ dependencies:
   - jupyter-sphinx==0.3.*
   - sphinx-design==0.1.*
   - ensaio
+  - verde
   - pandas
   - matplotlib
   - xarray

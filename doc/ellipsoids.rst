@@ -1,6 +1,6 @@
 .. _ellipsoids:
 
-Available Ellipsoids
+Available ellipsoids
 ====================
 
 These are the available ellipsoids and their corresponding defining parameters.

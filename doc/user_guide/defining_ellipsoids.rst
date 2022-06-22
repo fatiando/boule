@@ -1,4 +1,4 @@
-Defining Ellipsoids
+Defining ellipsoids
 ===================
 
 The main functionality of Boule is contained in the classes used to define a
