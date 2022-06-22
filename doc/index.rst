@@ -24,41 +24,6 @@ Boule is designed for:
 * Calculating :term:`normal gravity` for generating gravity anomalies and
   disturbances.
 
-Here is an example of using Boule to calculate the :term:`normal gravity` of
-the WGS84 ellipsoid on the Earth's surface (topography in the continents, the
-geoid the oceans):
-
-
-.. jupyter-execute::
-
-    import boule as bl
-    import ensaio
-    import pygmt
-    import xarray as xr
-
-    # Download and open colocated topography and geoid grids using Ensaio
-    fname_topo = ensaio.fetch_earth_topography(version=1)
-    fname_geoid = ensaio.fetch_earth_geoid(version=1)
-    topography = xr.load_dataarray(fname_topo)
-    geoid = xr.load_dataarray(fname_geoid)
-
-    # Define height by combining topography and geoid using xarray
-    height = xr.where(
-        topography >= 0,
-        topography + geoid,  # geometric height of topography in the continents
-        geoid,  # geoid height in the oceans
-    )
-
-    # Calculate normal gravity
-    gamma = bl.WGS84.normal_gravity(topography.latitude, height)
-
-    # Plot a map of it using PyGMT
-    fig = pygmt.Figure()
-    fig.grdimage(gamma, projection="W20c", cmap="viridis", shading="+a45+nt0.3")
-    fig.basemap(frame=["af", "WEsn"])
-    fig.colorbar(position="JCB+w10c", frame=["af", 'y+l"mGal"'])
-    fig.show()
-
 ----
 
 .. grid:: 1 1 2 2
@@ -141,8 +106,6 @@ geoid the oceans):
     `Fatiando a Terra <https://www.fatiando.org/>`_ project.
 
 
-
-
 .. toctree::
     :maxdepth: 2
     :hidden:
@@ -158,7 +121,8 @@ geoid the oceans):
 
     user_guide/normal_gravity.rst
     user_guide/gravity_disturbance.rst
-    user_guide/geodetic_to_geocentric.rst
+    user_guide/coordinates.rst
+    user_guide/defining_ellipsoids.rst
 
 .. toctree::
     :maxdepth: 2

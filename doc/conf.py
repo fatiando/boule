@@ -38,7 +38,8 @@ extensions = [
 # functions/classes
 intersphinx_mapping = {
     "python": ("https://docs.python.org/3/", None),
-    "numpy": ("https://docs.scipy.org/doc/numpy/", None),
+    "numpy": ("https://numpy.org/doc/stable/", None),
+    "xarray": ("https://docs.xarray.dev/en/stable/", None),
     "pygmt": ("https://www.pygmt.org/latest/", None),
     "ensaio": ("https://www.fatiando.org/ensaio/latest/", None),
 }

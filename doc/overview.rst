@@ -3,28 +3,10 @@
 Overview
 ========
 
-The main functionality of Boule is contained in the classes used to define a
-:term:`reference ellipsoid`: :class:`~boule.Ellipsoid`, :class:`~boule.Sphere`,
-and :class:`~boule.TriaxialEllipsoid`.
-
-It defines a :term:`reference ellipsoid`: an *oblate* ellipsoid
-that approximates the shape of the Earth (or other planetary body).
-Ellipsoids are generally specified by 4 parameters:
-
-1. The semi-major axis (:math:`a`): the equatorial radius.
-2. The flattening (:math:`f = (a - b)/a`): the ratio between the equatorial and
-   polar radii.
-3. The :term:`geocentric gravitational constant` (:math:`GM`).
-4. The angular velocity (:math:`\omega`): spin rate of the ellipsoid which
-   defines the centrifugal potential.
-
-With these parameters, Boule can calculate gravity, coordinate conversions, and
-other derived physical and geometric properties of the ellipsoid.
-
 The library
 -----------
 
-All functions and classes in Boule are available in the base namespace of the
+All functions and classes in Boule are available from the base namespace of the
 :mod:`boule` package. This means that you can access all of them with a single
 import:
 
@@ -36,21 +18,22 @@ import:
 Ellipsoids
 ----------
 
-Boule comes with :ref:`built-in ellipsoids <ellipsoids>` that can be accessed
-as global variables in the :mod:`boule` module:
+Boule comes with several :ref:`built-in ellipsoids <ellipsoids>` that are
+available as global variables in the :mod:`boule` module.
+The ellipsoids can be printed to view their defining attributes:
 
 .. jupyter-execute::
 
     print(bl.WGS84)
-    print(bl.MARS)
+    print(bl.MOON)
+    print(bl.VESTA)
 
-As seen above, :class:`~boule.Ellipsoid` instances can be printed to record
-their defining attributes. Additionally, ellipsoids define a name (short and
-long version) and reference for the origin of the numbers used:
+Ellipsoids define a name (short and long version) and reference for the origin
+of the numbers used:
 
 .. jupyter-execute::
 
-    print(bl.MARS.name)
+    print(f"{bl.MARS.name}: {bl.MARS.long_name}")
     print(bl.MARS.reference)
 
 Other derived properties of ellipsoids are calculated on demand when
@@ -58,53 +41,72 @@ accessed:
 
 .. jupyter-execute::
 
-    print(bl.MARS.first_eccentricity)
-    print(bl.MARS.gravity_pole)
-    print(bl.MARS.gravity_equator)
+    print(bl.GRS80.first_eccentricity)
+    print(bl.GRS80.gravity_pole)
+    print(bl.GRS80.gravity_equator)
 
-You can also define your own ellipsoid. For example, this would be a
-definition of an ellipsoid with 1000 m semimajor axis, flattening equal to
-0.5 and dummy values for :math:`GM` and :math:`\omega`:
+.. hint::
 
-.. jupyter-execute::
+    You may have noticed that there are 3 different types of ellipsoids:
+    :class:`~boule.Ellipsoid`, :class:`~boule.Sphere`, and
+    :class:`~boule.TriaxialEllipsoid`. They each offer different attributes and
+    capabilities. Be sure to check out the :ref:`api` for a full list of what
+    each class offers.
 
-    ellipsoid = bl.Ellipsoid(
-        name="Ellipsoid",
-        long_name="Ellipsoid with 0.5 flattening",
-        flattening=0.5,
-        semimajor_axis=1000,
-        geocentric_grav_const=1,
-        angular_velocity=1,
-    )
-    print(ellipsoid)
-    print(ellipsoid.semiminor_axis)
-    print(ellipsoid.first_eccentricity)
-
-If the ellipsoid has zero flattening (a sphere), you must use the
-:class:`boule.Sphere` class instead. For example, this would be the
-definition of a sphere with 1000 m radius and dummy values for :math:`GM` and
-:math:`\omega`:
-
-.. jupyter-execute::
-
-    sphere = bl.Sphere(
-        name="Sphere",
-        long_name="Ellipsoid with 0 flattening",
-        radius=1000,
-        geocentric_grav_const=1,
-        angular_velocity=1,
-    )
-    print(sphere)
-
-Computations
-------------
+Normal gravity
+--------------
 
 Ellipsoids can be used for computations generally encountered in geodetic and
-geophysical applications:
+geophysical applications.
+A common one is calculating :term:`normal gravity`.
+Here is an example of using Boule to calculate the :term:`normal gravity` of
+the WGS84 ellipsoid on the Earth's surface (topography in the continents, the
+geoid the oceans).
 
-1. :ref:`Normal gravity <normal_gravity>`
-2. :ref:`Converting geodetic latitude and height into geocentric latitude and
-   radius <geodetic_to_geocentric>`.
+First, we need to import a few other packages:
 
-See the respective tutorials and :ref:`reference documentation <api>` for
-more information.
+.. jupyter-execute::
+
+    import ensaio        # For downloading sample data
+    import pygmt         # For plotting maps
+    import xarray as xr  # For manipulating grids
+
+Now we can download and open co-located topography and geoid grids using
+:mod:`ensaio` and :mod:`xarray`:
+
+.. jupyter-execute::
+
+    fname_topo = ensaio.fetch_earth_topography(version=1)
+    fname_geoid = ensaio.fetch_earth_geoid(version=1)
+    topography = xr.load_dataarray(fname_topo)
+    geoid = xr.load_dataarray(fname_geoid)
+    geoid
+
+The computation height can be defined by combining topography and geoid:
+
+.. jupyter-execute::
+
+    height = xr.where(
+        topography >= 0,
+        topography + geoid,  # geometric height of topography in the continents
+        geoid,  # geoid height in the oceans
+    )
+
+Finally, we can calculate normal gravity using
+:meth:`~boule.Ellipsoid.normal_gravity` at the given heights and plot it on a
+map with :mod:`pygmt`:
+
+.. jupyter-execute::
+
+    gamma = bl.WGS84.normal_gravity(topography.latitude, height)
+
+    fig = pygmt.Figure()
+    fig.grdimage(gamma, projection="W20c", cmap="viridis", shading="+a45+nt0.3")
+    fig.basemap(frame=["af", "WEsn"])
+    fig.colorbar(position="JCB+w10c", frame=["af", 'y+l"mGal"'])
+    fig.show()
+
+.. seealso::
+
+    :ref:`normal_gravity` provides a more detailed tutorial, including the
+    different definitions of normal gravity for each ellipsoid type.
