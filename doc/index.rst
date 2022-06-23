@@ -1,14 +1,27 @@
 .. title:: Home
 
-.. raw:: html
+.. grid::
+    :gutter: 2 3 3 3
+    :margin: 5 5 0 0
+    :padding: 0 0 0 0
 
-    <h1 class="display-2 text-center">
-      Boule
-    </h1>
+    .. grid-item::
+        :columns: 12 8 8 8
 
-    <p class="lead text-center front-page-callout">
-      Reference ellipsoids for geodesy and geophysics
-    </p>
+        .. raw:: html
+
+            <h1 class="display-1">Boule</h1>
+
+        .. div:: sd-fs-3
+
+            Reference ellipsoids for geodesy and geophysics
+
+    .. grid-item::
+        :columns: 12 4 4 4
+
+        .. image:: ./_static/boule-logo.svg
+            :width: 200px
+            :class: sd-m-auto
 
 **Boule** is Python library for representing
 :term:`reference ellipsoids <reference ellipsoid>` geometrically, calculating
