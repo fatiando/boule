@@ -22,7 +22,7 @@ Boule is designed for:
 * Storing and manipulating ellipsoid parameters for spherical harmonic analysis
   and coordinate system conversions.
 * Calculating :term:`normal gravity` for generating gravity anomalies and
-  disturbances.
+  :term:`gravity disturbances <gravity disturbance>`.
 
 ----
 
