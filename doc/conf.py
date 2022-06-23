@@ -67,7 +67,7 @@ add_function_parentheses = False
 # HTML output configuration
 # -----------------------------------------------------------------------------
 html_title = f'{project} <span class="project-version">{version}</span>'
-html_logo = ""
+html_logo = "_static/boule-logo.png"
 html_favicon = "_static/favicon.png"
 html_last_updated_fmt = "%b %d, %Y"
 html_copy_source = True
