@@ -39,8 +39,9 @@ Boule is designed for:
 
 ----
 
-.. grid:: 1 1 2 2
+.. grid:: 1 2 1 2
     :margin: 5 5 0 0
+    :padding: 0 0 0 0
     :gutter: 4
 
     .. grid-item-card:: :octicon:`info` Getting started

@@ -1,9 +1,76 @@
+.. _defining_ellipsoids:
+
 Defining ellipsoids
 ===================
 
-The main functionality of Boule is contained in the classes used to define a
-:term:`reference ellipsoid`: :class:`~boule.Ellipsoid`, :class:`~boule.Sphere`,
-and :class:`~boule.TriaxialEllipsoid`.
+Boule comes with a range of :ref:`built-in ellipsoids <ellipsoids>` already but
+you may want to define your own.
+If that's the case, then you have the following options to choose from:
+
+.. grid:: 1 2 1 2
+    :margin: 2 5 0 0
+    :padding: 0 0 0 0
+    :gutter: 4
+
+    .. grid-item-card:: Oblate ellipsoid
+        :class-title: sd-fs-4 text-center
+
+        **Class:** :class:`boule.Ellipsoid`
+
+        **When to use:** Your model has 2 semi-axis and non-zero flattening.
+
+        **Caveat:** Assumes constant :term:`gravity potential` on its surface
+        and has no specified density distribution.
+
+        .. button-ref:: defining_ellipsoids_oblate
+            :ref-type: ref
+            :click-parent:
+            :color: primary
+            :outline:
+            :expand:
+
+            Example
+
+    .. grid-item-card:: Sphere
+        :class-title: sd-fs-4 text-center
+
+        **Class:** :class:`boule.Sphere`
+
+        **When to use:** Your model has zero flattening.
+
+        **Caveat:** Definition of :term:`normal gravity` is slightly different
+        since it's not possible for a rotating sphere to have constant gravity
+        potential on its surface.
+
+        .. button-ref:: defining_ellipsoids_sphere
+            :ref-type: ref
+            :click-parent:
+            :color: primary
+            :outline:
+            :expand:
+
+            Example
+
+    .. grid-item-card:: Triaxial ellipsoid
+        :class-title: sd-fs-4 text-center
+
+        **Class:** :class:`boule.TriaxialEllipsoid`
+
+        **When to use:** Your model has 3 distinct semi-axis.
+
+        **Caveat:** Definition of :term:`normal gravity` is the same as the
+        case for the sphere. Gravity calculations are not yet available.
+
+        .. button-ref:: defining_ellipsoids_triaxial
+            :ref-type: ref
+            :click-parent:
+            :color: primary
+            :outline:
+            :expand:
+
+            Example
+
+.. _defining_ellipsoids_oblate:
 
 Oblate ellipsoids
 -----------------
@@ -57,9 +124,13 @@ definition of a sphere with 1000 m radius and dummy values for :math:`GM` and
     )
     print(sphere)
 
+
+.. _defining_ellipsoids_sphere:
+
 Spheres
 -------
 
+.. _defining_ellipsoids_triaxial:
 
 Triaxial ellipsoids
 -------------------
