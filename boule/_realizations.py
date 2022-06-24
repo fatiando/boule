@@ -103,8 +103,7 @@ VESTA = TriaxialEllipsoid(
     angular_velocity=326.71050958367e-6,
     reference=(
         "Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, "
-        "M. T., Nathues, A., et al. (2012, May 11). Dawn at Vesta: Testing "
-        "the Protoplanetary Paradigm. Science. "
-        "doi:10.1126/science.1219381"
+        "M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the "
+        "Protoplanetary Paradigm. Science. doi:10.1126/science.1219381"
     ),
 )

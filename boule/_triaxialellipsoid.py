@@ -34,7 +34,8 @@ class TriaxialEllipsoid:
 
         Gravity calculations have not been implemented yet for triaxial
         ellipsoids. If you're interested in this feature or would like to help
-        implement, please `get in touch <https://www.fatiando.org/contact>`__.
+        implement it, please
+        `get in touch <https://www.fatiando.org/contact>`__.
 
     Parameters
     ----------
@@ -48,7 +49,7 @@ class TriaxialEllipsoid:
         The semimedium (middle) axis of the ellipsoid.
         Definition: :math:`b`.
         Units: :math:`m`.
-    semimajor_axis : float
+    semiminor_axis : float
         The semiminor (smallest) axis of the ellipsoid.
         Definition: :math:`c`.
         Units: :math:`m`.

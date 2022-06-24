@@ -1,33 +1,47 @@
 .. title:: Home
 
-.. raw:: html
+.. grid::
+    :gutter: 2 3 3 3
+    :margin: 5 5 0 0
+    :padding: 0 0 0 0
 
-    <h1 class="display-2 text-center">
-      Boule
-    </h1>
+    .. grid-item::
+        :columns: 12 8 8 8
 
-    <p class="lead text-center front-page-callout">
-      Reference ellipsoids for geodesy and geophysics
-    </p>
+        .. raw:: html
 
-**Boule** is Python library for representing reference ellipsoids
-geometrically, calculating their gravity fields, and performing some global
-coordinate conversions.
+            <h1 class="display-1">Boule</h1>
+
+        .. div:: sd-fs-3
+
+            Reference ellipsoids for geodesy and geophysics
+
+    .. grid-item::
+        :columns: 12 4 4 4
+
+        .. image:: ./_static/boule-logo.svg
+            :width: 200px
+            :class: sd-m-auto
+
+**Boule** is Python library for representing
+:term:`reference ellipsoids <reference ellipsoid>` geometrically, calculating
+their gravity fields, and performing some global coordinate conversions.
 "Boule" is also French for "ball" as well as a `traditional shape of bread
 resembling a squashed ball <https://en.wikipedia.org/wiki/Boule_(bread)>`__
 (much like the Earth).
 
-Some examples of where Boule can be applied:
+Boule is designed for:
 
-* Storing and manipulating ellipsoid parameters for spherical harmonic analysis.
-* Calculating normal gravity for generating gravity anomalies and disturbances.
-* Modelling in spherical coordinates, which requires geodetic to geocentric
-  spherical coordinate conversions.
+* Storing and manipulating ellipsoid parameters for spherical harmonic analysis
+  and coordinate system conversions.
+* Calculating :term:`normal gravity` for generating gravity anomalies and
+  :term:`gravity disturbances <gravity disturbance>`.
 
 ----
 
-.. grid:: 1 1 2 2
+.. grid:: 1 2 1 2
     :margin: 5 5 0 0
+    :padding: 0 0 0 0
     :gutter: 4
 
     .. grid-item-card:: :octicon:`info` Getting started
@@ -106,14 +120,12 @@ Some examples of where Boule can be applied:
     `Fatiando a Terra <https://www.fatiando.org/>`_ project.
 
 
-
-
 .. toctree::
     :maxdepth: 2
     :hidden:
     :caption: Getting Started
 
-    tutorials/overview.rst
+    overview.rst
     install.rst
 
 .. toctree::
@@ -121,10 +133,10 @@ Some examples of where Boule can be applied:
     :hidden:
     :caption: User Guide
 
-    ellipsoids/index.rst
-    tutorials/normal_gravity.rst
-    tutorials/gravity_disturbance.rst
-    tutorials/geodetic_to_geocentric.rst
+    user_guide/normal_gravity.rst
+    user_guide/gravity_disturbance.rst
+    user_guide/defining_ellipsoids.rst
+    user_guide/coordinates.rst
 
 .. toctree::
     :maxdepth: 2
@@ -132,11 +144,12 @@ Some examples of where Boule can be applied:
     :caption: Reference Documentation
 
     api/index.rst
-    compatibility.rst
+    ellipsoids.rst
     citing.rst
     glossary.rst
     references.rst
     changes.rst
+    compatibility.rst
     versions.rst
 
 .. toctree::

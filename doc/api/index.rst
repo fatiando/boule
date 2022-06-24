@@ -7,8 +7,9 @@ List of functions and classes (API)
 
 .. currentmodule:: boule
 
-Reference Ellipsoid
--------------------
+All :ref:`available ellipsoids <ellipsoids>` are instances of these classes.
+See the class documentation for a list their derived physical properties
+(attributes) and computations/transformations that they can perform (methods).
 
 .. autosummary::
    :toctree: generated/
@@ -16,7 +17,3 @@ Reference Ellipsoid
     Ellipsoid
     Sphere
     TriaxialEllipsoid
-
-All ellipsoids are instances of these classes. See the class reference
-documentation for a list their derived physical properties (attributes) and
-computations/transformations that they can perform (methods).

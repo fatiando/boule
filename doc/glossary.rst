@@ -15,3 +15,17 @@ Glossary
         and the `gravitational constant
         <https://en.wikipedia.org/wiki/Gravitational_constant>`__. Often
         represented as :math:`GM`.
+
+    Normal gravity
+        The magnitude of the gradient of the :term:`gravity potential` of a
+        :term:`reference ellipsoid`.
+
+    Gravity potential
+        The combined gravitational and centrifugal potential
+        :math:`U = V + \Phi` [HofmannWellenhofMoritz2006]_.
+
+    Gravity disturbance
+        The gravity disturbance is the difference between the magnitude of
+        observed gravity and the magnitude of normal gravity evaluated at the
+        same point [HofmannWellenhofMoritz2006]_:
+        :math:`\delta g(\lambda, \phi, h) = \|\vec{g}(\lambda, \phi, h)\| - \|\vec{\gamma}(\lambda, \phi, h)\|`

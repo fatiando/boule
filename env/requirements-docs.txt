@@ -5,6 +5,7 @@ sphinx-copybutton==0.5.*
 jupyter-sphinx==0.3.*
 sphinx-design==0.1.*
 ensaio
+verde
 pandas
 matplotlib
 xarray
@@ -12,3 +13,4 @@ netcdf4
 pygmt==0.6.*
 gmt==6.3.*
 ipython
+pymap3d>=2.9.0
