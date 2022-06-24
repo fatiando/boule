@@ -226,11 +226,7 @@ class Ellipsoid:
         Definition: :math:`V = \dfrac{4}{3} \pi a^2 c`.
         Units: :math:`m^3`.
         """
-        return (
-            (4 / 3 * np.pi)
-            * self.semimajor_axis**2
-            * self.semiminor_axis
-        )
+        return (4 / 3 * np.pi) * self.semimajor_axis**2 * self.semiminor_axis
 
     @property
     def _emm(self):
