@@ -1,88 +1,82 @@
-.. _geodetic_to_geocentric:
+.. _coordinates:
 
 Coordinate conversions
 ======================
 
-Both geocentric coordinate system and geodetic coordinate system are geographic
-coordinate systems centred at the mass of the earth. In geocentric coordinate
-system, the earth is modelled as a sphere. The geodetic coordinate system is
-based on the reference ellipsoid considering the centrifugal force due to
-the earth's rotation.
+Boule's :class:`~boule.Ellipsoid` and :class:`~boule.Sphere` classes can be
+used with `pymap3d <https://github.com/geospace-code/pymap3d/>`__ for
+converting between different coordinate systems.
+While pymap3d defines some ellipsoids internally, you may want to use one from
+Boule if:
 
-The major difference between these two systems is the way how they define
-latitude and height. In geocentric coordinate system, the geocentric latitude
-is defined by the angle between the plane the equator and the line from earth
-centre to a given point. The distance from the point to the earth centre is
-geocentric radius :`R`. In geodetic coordinate system, the geodetic latitude is
-the angle between the plane of the equator and the surface normal at a point
-on the ellipsoid. The ellipsoid height :math:`h` is the height above the
-ellipsoid surface, it also normal to that surface.
+* You want to be certain that the parameters used for coordinate conversions
+  and gravity calculations are consistent.
+* Need to :ref:`define your own ellipsoid <defining_ellipsoids>` either because
+  you need different parameters than the built-in ones or they aren't available
+  in either Boule or pymap3d.
 
-.. figure:: ../_static/coordinate.png
-    :alt: Geocentric and geodetic systems with associated coordinates.
+.. admonition:: Help!
+    :class: hint
 
-    Geocentric and Geodetic Coordinates Systems
+    If an ellipsoid you need isn't in Boule yet, please `reach out
+    <https://www.fatiando.org/contact>`__ to the team and consider adding it
+    yourself. It requires no special knowledge of the code and is a great way
+    to help the project!
 
-Note, the flattening of the shown ellipsoid is larger than the real earth.
-The real difference between geodetic latitude and geocentric latitude at
-the earth ellipsoid surface is less than 0.2 degrees.
+Geodetic to spherical
+---------------------
 
-The calculation is performed by the
-:meth:`boule.Ellipsoid.geodetic_to_spherical` method.
-
-This example will show you how to convert geodetic latitude and height into
-geocentric latitude and radius. We use :ref:`WGS84 <wgs84>`  ellipsoid in here.
+The example below will show you how to convert geodetic latitude and height
+into geocentric spherical latitude and radius.
 
 .. jupyter-execute::
-
-    import matplotlib.pyplot as plt
-    import numpy as np
 
     import boule as bl
+    import pymap3d
+    import numpy as np
 
-    latitude = np.linspace(-90, 90, 100)
-    longitude = 0
-    # ellipsoid surface
-    Height1 = 0
-    # ICESat-2 orbit height
-    Height2 = 481000
-    SP_Cor1 = bl.WGS84.geodetic_to_spherical(longitude, latitude, Height1)
-    SP_Cor2 = bl.WGS84.geodetic_to_spherical(longitude, latitude, Height2)
+    latitude = np.linspace(-90, 90, 45)
+    longitude = 40
+    height = 481_000  # ICESat-2 orbit height in meters
 
-    fig, (axs1, axs2, axs3) = plt.subplots(3, 1, figsize=(10, 15))
-
-    axs1.plot(latitude, SP_Cor1[1], "-k")
-    axs1.set_title("Geodetic latitude to geocentric latitude at ellipsoid surface")
-    axs1.set(xlabel="Geodetic Latitude", ylabel="Geocentric Latitude")
-
-    axs2.plot(latitude, SP_Cor1[2], "-k")
-    axs2.set_title("Geocentric radius at ellipsoid surface")
-    axs2.set(xlabel="Geodetic Latitude", ylabel="Geocentric Radius (m)")
-
-    axs3.plot(latitude, latitude - SP_Cor1[1], "-k")
-    axs3.set_title(
-        "Difference between geodetic latitude and geocentric latitude at ellipsoid surface"
+    latitude_sph, longitude_sph, radius = pymap3d.geodetic2spherical(
+        latitude, longitude, height, ell=bl.WGS84,
     )
-    axs3.set(xlabel="Geodetic Latitude", ylabel="Difference (Degree)")
+    print("Geodetic latitude:", latitude)
+    print("Spherical latitude:", latitude_sph)
+    print()
+    print("Geodetic longitude:", longitude)
+    print("Spherical longitude:", longitude_sph)
+    print()
+    print("Height (m):", height)
+    print("Radius (m):", radius)
 
-    plt.show()
+Notice that:
 
-The geocentric latitude is a function of geodetic latitude and ellipsoid
-height. The influence of ellipsoid height change on the geocentric latitude
-varies with the geodetic latitude. Consider different ellipsoid heights
-(ICESat-2 orbit height vs ellipsoid surface), this difference could be 0.013
-degrees. Similarly, the Geocentric radius change could be 2.5 meters.
+1. The latitude is slightly different except for the poles and equator.
+2. The longitude is the same in both coordinates systems.
+3. The radius (distance from the center of the ellipsoid) varies even though
+   the height is constant.
+
+.. tip::
+
+    We used the WGS84 ellipsoid here but the workflow is the same for any
+    other oblate ellipsoid or sphere. Checkout :ref:`ellipsoids` for options.
+
+Geodetic to Cartesian
+---------------------
+
+Another common coordinate conversion done in global studies is from geodetic
+latitude, longitude, and height to geocentric Cartesian X, Y, and Z.
+The example below performs this conversion for the location of the
+`Insight lander <https://en.wikipedia.org/wiki/InSight>`__ on Mars based on
+[Parker2019]_:
 
 .. jupyter-execute::
 
-    fig, (axs1, axs2) = plt.subplots(2, 1, figsize=(10, 10))
-
-    axs1.plot(latitude, SP_Cor2[1] - SP_Cor1[1], "-k")
-    axs1.set_title("Geocentric latitude changes at different ellipsoid heights")
-    axs1.set(xlabel="Geodetic Latitude", ylabel="Difference (Degree)")
-
-    axs2.plot(latitude, SP_Cor2[2] - SP_Cor1[2], "-k")
-    axs2.set_title("Geocentric radius changes at different ellipsoid height")
-    axs2.set(xlabel="Geodetic Latitude", ylabel="Difference (m)")
-
-    plt.show()
+    X, Y, Z = pymap3d.geodetic2ecef(
+        lat=4.502384, lon=135.623447, alt=-2613.426, ell=bl.MARS,
+    )
+    print(f"X = {X} m")
+    print(f"Y = {Y} m")
+    print(f"Z = {Z} m")
