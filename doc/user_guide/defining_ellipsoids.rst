@@ -70,14 +70,14 @@ If that's the case, then you have the following options to choose from:
 
             Example
 
+----
+
 .. _defining_ellipsoids_oblate:
 
 Oblate ellipsoids
 -----------------
 
-It defines a :term:`reference ellipsoid`: an *oblate* ellipsoid
-that approximates the shape of the Earth (or other planetary body).
-Ellipsoids are generally specified by 4 parameters:
+Oblate ellipsoids are defined by 4 numerical parameters:
 
 1. The semi-major axis (:math:`a`): the equatorial radius.
 2. The flattening (:math:`f = (a - b)/a`): the ratio between the equatorial and
@@ -86,51 +86,111 @@ Ellipsoids are generally specified by 4 parameters:
 4. The angular velocity (:math:`\omega`): spin rate of the ellipsoid which
    defines the centrifugal potential.
 
-With these parameters, Boule can calculate gravity, coordinate conversions, and
-other derived physical and geometric properties of the ellipsoid.
-
-You can also define your own ellipsoid. For example, this would be a
-definition of an ellipsoid with 1000 m semimajor axis, flattening equal to
-0.5 and dummy values for :math:`GM` and :math:`\omega`:
+You can also include metadata about where the defining parameters came from (a
+citation) and a long descriptive name for the ellipsoid. For example, this is
+how the WGS84 ellipsoid can be defined with :class:`boule.Ellipsoid` using
+parameters from [HofmannWellenhofMoritz2006]_:
 
 .. jupyter-execute::
 
     import boule as bl
-    ellipsoid = bl.Ellipsoid(
-        name="Ellipsoid",
-        long_name="Ellipsoid with 0.5 flattening",
-        flattening=0.5,
-        semimajor_axis=1000,
-        geocentric_grav_const=1,
-        angular_velocity=1,
+
+
+    WGS84 = bl.Ellipsoid(
+        name="WGS84",
+        long_name="World Geodetic System 1984",
+        semimajor_axis=6378137,
+        flattening=1 / 298.257223563,
+        geocentric_grav_const=3986004.418e8,
+        angular_velocity=7292115e-11,
+        reference=(
+            "Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy "
+            "(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."
+        ),
     )
-    print(ellipsoid)
-    print(ellipsoid.semiminor_axis)
-    print(ellipsoid.first_eccentricity)
+    print(WGS84)
 
-If the ellipsoid has zero flattening (a sphere), you must use the
-:class:`boule.Sphere` class instead. For example, this would be the
-definition of a sphere with 1000 m radius and dummy values for :math:`GM` and
-:math:`\omega`:
+.. warning::
 
-.. jupyter-execute::
-
-    sphere = bl.Sphere(
-        name="Sphere",
-        long_name="Ellipsoid with 0 flattening",
-        radius=1000,
-        geocentric_grav_const=1,
-        angular_velocity=1,
-    )
-    print(sphere)
-
+    You **must** use :class:`boule.Sphere` to represent ellipsoids with
+    **zero flattening**. This is because normal gravity calculations in
+    :class:`boule.Ellipsoid` make assumptions that fail for the case of
+    ``flattening=0`` (mainly that the :term:`gravity potential` is constant on
+    the surface of the ellipsoid).
 
 .. _defining_ellipsoids_sphere:
 
 Spheres
 -------
 
+Spheres are defined by 3 numerical parameters:
+
+1. The radius (:math:`R`).
+2. The :term:`geocentric gravitational constant` (:math:`GM`).
+3. The angular velocity (:math:`\omega`): spin rate of the sphere which defines
+   the centrifugal potential.
+
+As with oblate ellipsoids, :class:`boule.Sphere` also takes the same metadata
+as input.
+For example, here is the definition of the Mercury spheroid from parameters
+found in [Wieczorek2015]_:
+
+.. jupyter-execute::
+
+    MERCURY = bl.Sphere(
+        name="MERCURY",
+        long_name="Mercury Spheroid",
+        radius=2_439_372,
+        geocentric_grav_const=22.031839221e12,
+        angular_velocity=1.2400172589e-6,
+        reference=(
+            "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
+            "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
+            "doi:10.1016/B978-0-444-53802-4.00169-X"
+        ),
+    )
+    print(MERCURY)
+
 .. _defining_ellipsoids_triaxial:
 
 Triaxial ellipsoids
 -------------------
+
+Triaxial ellipsoids are defined by 5 numerical parameters:
+
+1. The semi-major axis (:math:`a`): the largest radius.
+2. The semi-medium axis (:math:`b`): the middle radius.
+3. The semi-minor axis (:math:`c`): the smallest radius.
+4. The :term:`geocentric gravitational constant` (:math:`GM`).
+5. The angular velocity (:math:`\omega`): spin rate of the ellipsoid which
+   defines the centrifugal potential.
+
+:class:`boule.TriaxialEllipsoid` also takes the same metadata attributes as
+input.
+For example, here is the definition of the Vesta ellipsoid using parameters
+from [Russell2012]_:
+
+.. jupyter-execute::
+
+    VESTA = bl.TriaxialEllipsoid(
+        name="VESTA",
+        long_name="Vesta Triaxial Ellipsoid",
+        semimajor_axis=286_300,
+        semimedium_axis=278_600,
+        semiminor_axis=223_200,
+        geocentric_grav_const=1.729094e10,
+        angular_velocity=326.71050958367e-6,
+        reference=(
+            "Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, "
+            "M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the "
+            "Protoplanetary Paradigm. Science. doi:10.1126/science.1219381"
+        ),
+    )
+    print(VESTA)
+
+
+.. attention::
+
+    Gravity calculations have not been implemented yet for triaxial ellipsoids.
+    If you're interested in this feature or would like to help implement it,
+    please `get in touch <https://www.fatiando.org/contact>`__.
