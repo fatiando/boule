@@ -5,14 +5,16 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
     
         <title>boule.Sphere | Boule dev</title>
     
 
     
-  <link href="../../_static/css/theme.css" rel="stylesheet">
-  <link href="../../_static/css/index.ff1ffe594081f20da1ef19478df9384b.css" rel="stylesheet">
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
 
     
   <link rel="stylesheet"
@@ -22,36 +24,53 @@
   <link rel="preload" as="font" type="font/woff2" crossorigin
     href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
 
-    
-      
-
-    
-    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
-    <link rel="stylesheet" href="../../_static/sphinx-book-theme.css?digest=c3fdc42140077d1ad13ad2f1588a4309" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-binder.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-dataframe.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/sg_gallery-rendered-html.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
     
-  <link rel="preload" as="script" href="../../_static/js/index.be7d3bbb2ef33a8344ce.js">
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
 
-    <script id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
     <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/sphinx-book-theme.d59cb220de22ca1c485ebbdc042f0030.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="boule.test" href="boule.test.html" />
+    <link rel="next" title="boule.TriaxialEllipsoid" href="boule.TriaxialEllipsoid.html" />
     <link rel="prev" title="boule.Ellipsoid" href="boule.Ellipsoid.html" />
     <!-- Plausible analytics for anonymous usage statistics -->
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
     
     <div class="container-fluid" id="banner"></div>
 
@@ -60,11 +79,17 @@
     <div class="container-xl">
       <div class="row">
           
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
-    
-        <div class="navbar-brand-box">
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
     <a class="navbar-brand text-wrap" href="../../index.html">
       
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/boule-logo.png" class="logo" alt="logo">
       
       
       <h1 class="site-logo" id="site-title">Boule <span class="project-version">dev</span></h1>
@@ -75,14 +100,14 @@
   <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
 </form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item active">
-        <p class="caption">
+        <p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Getting Started
  </span>
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference internal" href="../../tutorials/overview.html">
+  <a class="reference internal" href="../../overview.html">
    Overview
   </a>
  </li>
@@ -92,68 +117,36 @@
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   User Guide
  </span>
 </p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../ellipsoids/index.html">
-   Available Ellipsoids
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../ellipsoids/wgs84.html">
-     WGS84: World Geodetic System 1984
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../ellipsoids/grs80.html">
-     GRS80: Geodetic Reference System 1980
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../ellipsoids/moon.html">
-     Moon
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../ellipsoids/mars.html">
-     Mars
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../ellipsoids/venus.html">
-     Venus
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../ellipsoids/mercury.html">
-     Mercury
-    </a>
-   </li>
-  </ul>
- </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../tutorials/normal_gravity.html">
-   Normal Gravity
+  <a class="reference internal" href="../../user_guide/normal_gravity.html">
+   Normal gravity
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../tutorials/geodetic_to_geocentric.html">
+  <a class="reference internal" href="../../user_guide/gravity_disturbance.html">
+   Gravity disturbances
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/defining_ellipsoids.html">
+   Defining ellipsoids
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/coordinates.html">
    Coordinate conversions
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
-  Reference
+  Reference Documentation
  </span>
 </p>
 <ul class="current nav bd-sidenav">
@@ -161,8 +154,8 @@
   <a class="reference internal" href="../index.html">
    List of functions and classes (API)
   </a>
-  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
-  <label for="toctree-checkbox-2">
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
    <i class="fas fa-chevron-down">
    </i>
   </label>
@@ -178,11 +171,16 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="boule.test.html">
-     boule.test
+    <a class="reference internal" href="boule.TriaxialEllipsoid.html">
+     boule.TriaxialEllipsoid
     </a>
    </li>
   </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ellipsoids.html">
+   Available ellipsoids
+  </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="../../citing.html">
@@ -190,8 +188,8 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../changes.html">
-   Changelog
+  <a class="reference internal" href="../../glossary.html">
+   Glossary
   </a>
  </li>
  <li class="toctree-l1">
@@ -200,12 +198,22 @@
   </a>
  </li>
  <li class="toctree-l1">
+  <a class="reference internal" href="../../changes.html">
+   Changelog
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../compatibility.html">
+   Version compatibility
+  </a>
+ </li>
+ <li class="toctree-l1">
   <a class="reference internal" href="../../versions.html">
    Documentation for other versions
   </a>
  </li>
 </ul>
-<p class="caption">
+<p aria-level="2" class="caption" role="heading">
  <span class="caption-text">
   Community
  </span>
@@ -217,12 +225,12 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule/blob/master/CONTRIBUTING.md">
+  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">
    How to contribute
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule/blob/master/CODE_OF_CONDUCT.md">
+  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">
    Code of Conduct
   </a>
  </li>
@@ -239,110 +247,214 @@
 </ul>
 
     </div>
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
             
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../../_sources/api/generated/boule.Sphere.rst.txt"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.rst</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-                onclick="printPdf(this)" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Connect with source repository"><i class="fab fa-github"></i></button>
-    <div class="dropdown-buttons sourcebuttons">
-        <a class="repository-button"
-            href="https://github.com/fatiando/boule"><button type="button" class="btn btn-secondary topbarbtn"
-                data-toggle="tooltip" data-placement="left" title="Source repository"><i
-                    class="fab fa-github"></i>repository</button></a>
-        <a class="issues-button"
-            href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2Fapi/generated/boule.Sphere.html&body=Your%20issue%20content%20here."><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Open an issue"><i class="fas fa-lightbulb"></i>open issue</button></a>
-        <a class="edit-button" href="https://github.com/fatiando/boule/edit/master/doc/api/generated/boule.Sphere.rst"><button
-                type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip" data-placement="left"
-                title="Edit this page"><i class="fas fa-pencil-alt"></i>suggest edit</button></a>
-    </div>
-</div>
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-
-<a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-        data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-        title="Fullscreen mode"><i
-            class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show noprint">
-            
-            <div class="tocsection onthispage pt-5 pb-3">
-                <i class="fas fa-list"></i> Contents
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
             </div>
-            <nav id="bd-toc-nav" aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/fatiando/boule"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2Fapi/generated/boule.Sphere.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/fatiando/boule/edit/main/doc/api/generated/boule.Sphere.rst"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Edit this page"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="headerbtn__text-container">suggest edit</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+<div class="menu-dropdown menu-dropdown-download-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Download this page">
+      <i class="fas fa-download"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="../../_sources/api/generated/boule.Sphere.rst.txt"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Download source file"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="headerbtn__text-container">.rst</span>
+</a>
+
+      </li>
+      
+      <li>
+        
+<button onclick="printPdf(this)"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="left"
+title="Print to PDF"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="headerbtn__text-container">.pdf</span>
+</button>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+<label for="__page-toc"
+  class="headerbtn headerbtn-page-toc"
+  
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-list"></i>
+  </span>
+
+</label>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+    <div class="tocsection onthispage pt-5 pb-3">
+        <i class="fas fa-list"></i> Contents
+    </div>
+    <nav id="bd-toc-nav" aria-label="Page">
+        <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples-using-boule-sphere">
-   Examples using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     boule.Sphere
-    </span>
-   </code>
+  <a class="reference internal nav-link" href="#attributes">
+   Attributes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#methods">
+   Methods
   </a>
  </li>
 </ul>
 
-            </nav>
-        </div>
-    </div>
+    </nav>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
                 <h1>boule.Sphere</h1>
@@ -356,13 +468,13 @@
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#examples-using-boule-sphere">
-   Examples using
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     boule.Sphere
-    </span>
-   </code>
+  <a class="reference internal nav-link" href="#attributes">
+   Attributes
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#methods">
+   Methods
   </a>
  </li>
 </ul>
@@ -371,40 +483,53 @@
                     </div>
                 </div>
             </div>
-            
+            <main id="main-content" role="main">
+                
               <div>
                 
-  <div class="section" id="boule-sphere">
-<h1>boule.Sphere<a class="headerlink" href="#boule-sphere" title="Permalink to this headline">¶</a></h1>
+  <section id="boule-sphere">
+<h1>boule.Sphere<a class="headerlink" href="#boule-sphere" title="Permalink to this headline">#</a></h1>
 <dl class="py class">
-<dt id="boule.Sphere">
-<em class="property"><span class="pre">class</span> </em><code class="sig-prename descclassname"><span class="pre">boule.</span></code><code class="sig-name descname"><span class="pre">Sphere</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geocentric_grav_const</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/sphere.html#Sphere"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reference sphere (zero flattening ellipsoids)</p>
-<p>Represents a rotating reference ellipsoid with zero flattening. It is
-defined by three parameters (radius, geocentric gravitational constant, and
-angular velocity) and offers other derived quantities.</p>
-<p><strong>All attributes of this class are read-only and cannot be changed after
-instantiation.</strong></p>
-<p>All parameters are in SI units.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>Must be used instead of <a class="reference internal" href="boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a> to account for
-singularities due to zero flattening (and thus zero eccentricity) in
-normal gravity calculations.</p>
-</div>
+<dt class="sig sig-object py" id="boule.Sphere">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boule.</span></span><span class="sig-name descname"><span class="pre">Sphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geocentric_grav_const</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere" title="Permalink to this definition">#</a></dt>
+<dd><p>A rotating sphere (zero-flattening ellipsoid).</p>
+<p>The ellipsoid is defined by three parameters: radius, geocentric
+gravitational constant, and angular velocity. The internal density
+structure can be either homogeneous or vary radially (e.g. in homogeneous
+concentric spherical shells). The gravity potential of the sphere is not
+constant on its surface because of the latitude-dependent centrifugal
+potential.</p>
+<p><strong>This class is read-only:</strong> Input parameters and attributes cannot be
+changed after instantiation.</p>
+<p><strong>Units:</strong> All input parameters and derived attributes are in SI units.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – A short name for the sphere, for example <code class="docutils literal notranslate"><span class="pre">'Moon'</span></code>.</p></li>
-<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The radius of the sphere [meters].</p></li>
-<li><p><strong>geocentric_grav_const</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The geocentric gravitational constant (GM) [m^3 s^-2].</p></li>
-<li><p><strong>angular_velocity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The angular velocity of the rotating sphere (omega) [rad s^-1].</p></li>
-<li><p><strong>long_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a>) – A long name for the sphere, for example <code class="docutils literal notranslate"><span class="pre">&quot;Moon</span> <span class="pre">Reference</span> <span class="pre">System&quot;</span></code>
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – A short name for the sphere, for example <code class="docutils literal notranslate"><span class="pre">&quot;Moon&quot;</span></code>.</p></li>
+<li><p><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The radius of the sphere.
+Definition: <span class="math notranslate nohighlight">\(R\)</span>.
+Units: <span class="math notranslate nohighlight">\(m\)</span>.</p></li>
+<li><p><strong>geocentric_grav_const</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The geocentric gravitational constant. The product of the mass of the
+sphere <span class="math notranslate nohighlight">\(M\)</span> and the gravitational constant <span class="math notranslate nohighlight">\(G\)</span>.
+Definition: <span class="math notranslate nohighlight">\(GM\)</span>. Units:
+<span class="math notranslate nohighlight">\(m^3.s^{-2}\)</span>.</p></li>
+<li><p><strong>angular_velocity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The angular velocity of the rotating sphere.
+Definition: <span class="math notranslate nohighlight">\(\omega\)</span>.
+Units: <span class="math notranslate nohighlight">\(\\rad.s^{-1}\)</span>.</p></li>
+<li><p><strong>long_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – A long name for the sphere, for example <code class="docutils literal notranslate"><span class="pre">&quot;Moon</span> <span class="pre">Reference</span> <span class="pre">System&quot;</span></code>
 (optional).</p></li>
-<li><p><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.10)"><em>None</em></a>) – Citation for the sphere parameter values (optional).</p></li>
+<li><p><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – Citation for the sphere parameter values (optional).</p></li>
 </ul>
 </dd>
 </dl>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Must be used instead of <a class="reference internal" href="boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a> with zero flattening
+for gravity calculations because it is impossible for a rotating sphere
+to have constant gravity (gravitational + centrifugal) potential on its
+surface. So the underlying ellipsoid gravity calculations don’t apply
+and are in fact singular when the flattening is zero.</p>
+</div>
 <p class="rubric">Examples</p>
 <p>We can define a sphere by specifying the 3 key numerical parameters:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
@@ -420,255 +545,240 @@ normal gravity calculations.</p>
 <span class="go">That&#39;s no moon</span>
 </pre></div>
 </div>
-<p>The class defines several derived attributes based on the input parameters:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="p">))</span>
-<span class="go">1.00</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">))</span>
-<span class="go">1.00</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">mean_radius</span><span class="p">))</span>
-<span class="go">1.00</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">gravity_equator</span><span class="p">))</span>
-<span class="go">1.75</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">gravity_pole</span><span class="p">))</span>
-<span class="go">2.00</span>
-</pre></div>
-</div>
-<p>Normal gravity (the magnitude of the gravity potential) can be calculated
-at any latitude and height. <strong>Note that this method returns values in mGal
-instead of m/s².</strong></p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
-<span class="go">175000.00</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">)))</span>
-<span class="go">200000.00</span>
-</pre></div>
-</div>
-<p>The flag si_units will return the Normal gravity in m/s².</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
-<span class="go">1.75</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">True</span><span class="p">)))</span>
-<span class="go">2.00</span>
-</pre></div>
-</div>
-<p>The flattening and eccentricities will all be zero:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">flattening</span><span class="p">))</span>
-<span class="go">0.00</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">linear_eccentricity</span><span class="p">))</span>
-<span class="go">0.00</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">first_eccentricity</span><span class="p">))</span>
-<span class="go">0.00</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">{:.2f}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">second_eccentricity</span><span class="p">))</span>
-<span class="go">0.00</span>
+<p>The sphere defines semi-axis, flattening, and some eccentricities similar
+to <code class="xref py py-class docutils literal notranslate"><span class="pre">Ellipsoid</span></code> for compatibility with the coordinate
+conversion functions of pymap3d:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="p">)</span>
+<span class="go">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">first_eccentricity</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">eccentricity</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">flattening</span><span class="p">)</span>
+<span class="go">0</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">thirdflattening</span><span class="p">)</span>
+<span class="go">0</span>
 </pre></div>
 </div>
 </dd></dl>
 
-<p class="rubric">Methods Summary</p>
-<table class="longtable table autosummary">
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Permalink to this headline">#</a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.Sphere.eccentricity">
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">eccentricity</span></span><a class="headerlink" href="#boule.Sphere.eccentricity" title="Permalink to this definition">#</a></dt>
+<dd><p>Alias for the first eccentricity.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.Sphere.first_eccentricity">
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">first_eccentricity</span></span><a class="headerlink" href="#boule.Sphere.first_eccentricity" title="Permalink to this definition">#</a></dt>
+<dd><p>The (first) eccentricity of the sphere is equal to zero. Added for
+compatibility with pymap3d.
+Definition: <span class="math notranslate nohighlight">\(e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}\)</span>.
+Units: adimensional.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.Sphere.flattening">
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">flattening</span></span><a class="headerlink" href="#boule.Sphere.flattening" title="Permalink to this definition">#</a></dt>
+<dd><p>The flattening of the sphere is equal to zero. Added for compatibility
+with pymap3d.
+Definition: <span class="math notranslate nohighlight">\(f = \dfrac{a - b}{a}\)</span>.
+Units: adimensional.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.Sphere.semimajor_axis">
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semimajor_axis</span></span><a class="headerlink" href="#boule.Sphere.semimajor_axis" title="Permalink to this definition">#</a></dt>
+<dd><p>The semimajor axis of the sphere is equal to its radius. Added for
+compatibility with pymap3d.
+Definition: <span class="math notranslate nohighlight">\(a = R\)</span>.
+Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.Sphere.semiminor_axis">
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semiminor_axis</span></span><a class="headerlink" href="#boule.Sphere.semiminor_axis" title="Permalink to this definition">#</a></dt>
+<dd><p>The semiminor axis of the sphere is equal to its radius. Added for
+compatibility with pymap3d.
+Definition: <span class="math notranslate nohighlight">\(b = R\)</span>.
+Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.Sphere.thirdflattening">
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">thirdflattening</span></span><a class="headerlink" href="#boule.Sphere.thirdflattening" title="Permalink to this definition">#</a></dt>
+<dd><p>The third flattening of the sphere is equal to zero. Added for
+compatibility with pymap3d
+Definition: <span class="math notranslate nohighlight">\(f^{\prime\prime}= \dfrac{a -b}{a + b}\)</span>.
+Units: adimensional.</p>
+</dd></dl>
+
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Permalink to this headline">#</a></h2>
+<p class="rubric">List of methods</p>
+<table class="autosummary longtable table autosummary">
 <colgroup>
 <col style="width: 10%" />
 <col style="width: 90%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.geocentric_radius" title="boule.Sphere.geocentric_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere.geocentric_radius</span></code></a>(latitude[, geodetic])</p></td>
-<td><p>Distance from the center of the ellipsoid to its surface.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravitation" title="boule.Sphere.normal_gravitation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere.normal_gravitation</span></code></a>(height[, si_units])</p></td>
+<td><p>Calculate normal gravitation at any height.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.geodetic_to_spherical" title="boule.Sphere.geodetic_to_spherical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere.geodetic_to_spherical</span></code></a>(longitude, …)</p></td>
-<td><p>Convert from geodetic to geocentric spherical coordinates.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravity" title="boule.Sphere.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere.normal_gravity</span></code></a>(latitude, height[, …])</p></td>
-<td><p>Calculate normal gravity at any latitude and height</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.prime_vertical_radius" title="boule.Sphere.prime_vertical_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere.prime_vertical_radius</span></code></a>(sinlat)</p></td>
-<td><p>Calculate the prime vertical radius for a given geodetic latitude</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.spherical_to_geodetic" title="boule.Sphere.spherical_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere.spherical_to_geodetic</span></code></a>(longitude, …)</p></td>
-<td><p>Convert from geocentric spherical to geodetic coordinates.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravity" title="boule.Sphere.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">Sphere.normal_gravity</span></code></a>(latitude, height[, ...])</p></td>
+<td><p>Normal gravity of the sphere at the given latitude and height.</p></td>
 </tr>
 </tbody>
 </table>
-<hr class="docutils" />
+<p class="rubric">Methods documentation</p>
 <dl class="py method">
-<dt id="boule.Sphere.geocentric_radius">
-<code class="sig-prename descclassname"><span class="pre">Sphere.</span></code><code class="sig-name descname"><span class="pre">geocentric_radius</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geodetic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.Sphere.geocentric_radius" title="Permalink to this definition">¶</a></dt>
-<dd><p>Distance from the center of the ellipsoid to its surface.</p>
-<p>The geocentric radius and is a function of the geodetic latitude
-<span class="math notranslate nohighlight">\(\phi\)</span> and the semi-major and semi-minor axis, a and b:</p>
+<dt class="sig sig-object py" id="boule.Sphere.normal_gravitation">
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravitation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravitation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravitation" title="Permalink to this definition">#</a></dt>
+<dd><p>Calculate normal gravitation at any height.</p>
+<p>Computes the magnitude of the gradient of the gravitational potential
+generated by the sphere at the given height <span class="math notranslate nohighlight">\(h\)</span>:</p>
 <div class="math notranslate nohighlight">
-\[R(\phi) = \sqrt{\dfrac{
-    (a^2\cos\phi)^2 + (b^2\sin\phi)^2}{
-    (a\cos\phi)^2 + (b\sin\phi)^2 }
-}\]</div>
-<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius">https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius</a></p>
-<p>The same could be achieved with
-<a class="reference internal" href="boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical" title="boule.Ellipsoid.geodetic_to_spherical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boule.Ellipsoid.geodetic_to_spherical</span></code></a> by passing any value for
-the longitudes and heights equal to zero. This method provides a
-simpler and possibly faster alternative.</p>
-<p>Alternatively, the geocentric radius can also be expressed in terms of
-the geocentric (spherical) latitude <span class="math notranslate nohighlight">\(\theta\)</span>:</p>
-<div class="math notranslate nohighlight">
-\[R(\theta) = \sqrt{\dfrac{1}{
-    (\frac{\cos\theta}{a})^2 + (\frac{\sin\theta}{b})^2 }
-}\]</div>
-<p>This can be useful if you already have the geocentric latitudes and
-need the geocentric radius of the ellipsoid (for example, in spherical
-harmonic analysis). In these cases, the coordinate conversion route is
-not possible since we need the radial coordinates to do that in the
-first place.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>No elevation is taken into account (the height is zero). If you
-need the geocentric radius at a height other than zero, use
-<a class="reference internal" href="boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical" title="boule.Ellipsoid.geodetic_to_spherical"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boule.Ellipsoid.geodetic_to_spherical</span></code></a> instead.</p>
+\[\gamma(h) = \|\vec{\nabla}V(h)\| = \dfrac{GM}{(R + h)^2}\]</div>
+<p>in which <span class="math notranslate nohighlight">\(R\)</span> is the sphere radius, <span class="math notranslate nohighlight">\(G\)</span> is the gravitational
+constant, and <span class="math notranslate nohighlight">\(M\)</span> is the mass of the sphere.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>These expressions are only valid for heights on or above the
+surface of the sphere.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array</em>) – Latitude coordinates on geodetic coordinate system in degrees.</p></li>
-<li><p><strong>geodetic</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True (default), will assume that latitudes are geodetic
-latitudes. Otherwise, will that they are geocentric spherical
-latitudes.</p></li>
+<li><p><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array</em>) – The height above the surface of the sphere of the computation point
+(in meters).</p></li>
+<li><p><strong>si_units</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Return the value in mGal (False, default) or m/s² (True)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>geocentric_radius</strong> (<em>float or array</em>) – The geocentric radius for the given latitude(s) in the same units
-as the ellipsoid axis.</p>
+<dd class="field-even"><p><strong>gamma</strong> (<em>float or array</em>) – The normal gravitation in mGal.</p>
 </dd>
 </dl>
+<p class="rubric">Examples</p>
+<p>Normal gravitation can be calculated at any point. However as this is a
+sphere, only the height is used in the calculation.</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Moon&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;That&#39;s no moon&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravitation</span><span class="p">(</span><span class="n">height</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">g</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal&quot;</span><span class="p">)</span>
+<span class="go">50000.00 mGal</span>
+</pre></div>
+</div>
 </dd></dl>
 
+<hr class="docutils" />
 <dl class="py method">
-<dt id="boule.Sphere.geodetic_to_spherical">
-<code class="sig-prename descclassname"><span class="pre">Sphere.</span></code><code class="sig-name descname"><span class="pre">geodetic_to_spherical</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.Sphere.geodetic_to_spherical" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert from geodetic to geocentric spherical coordinates.</p>
-<p>The geodetic datum is defined by this ellipsoid. The coordinates are
-converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id1"><span>[Vermeille2002]</span></a>.</p>
+<dt class="sig sig-object py" id="boule.Sphere.normal_gravity">
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravity" title="Permalink to this definition">#</a></dt>
+<dd><p>Normal gravity of the sphere at the given latitude and height.</p>
+<p>Computes the magnitude of the gradient of the gravity potential
+(gravitational + centrifugal; see <a class="reference internal" href="../../references.html#hofmannwellenhofmoritz2006" id="id1"><span>[HofmannWellenhofMoritz2006]</span></a>)
+generated by the sphere at the given spherical latitude <span class="math notranslate nohighlight">\(\theta\)</span>
+and height above the surface of the sphere <span class="math notranslate nohighlight">\(h\)</span>:</p>
+<div class="math notranslate nohighlight">
+\[\gamma(\theta, h) = \|\vec{\nabla}U(\theta, h)\|\]</div>
+<p>in which <span class="math notranslate nohighlight">\(U = V + \Phi\)</span> is the gravity potential of the sphere,
+<span class="math notranslate nohighlight">\(V\)</span> is the gravitational potential of the sphere, and
+<span class="math notranslate nohighlight">\(\Phi\)</span> is the centrifugal potential.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>The current implementation is only valid for heights on or above
+the surface of the sphere.</p>
+</div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>longitude</strong> (<em>array</em>) – Longitude coordinates on geodetic coordinate system in degrees.</p></li>
-<li><p><strong>latitude</strong> (<em>array</em>) – Latitude coordinates on geodetic coordinate system in degrees.</p></li>
-<li><p><strong>height</strong> (<em>array</em>) – Ellipsoidal heights in meters.</p></li>
+<li><p><strong>latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array</em>) – The spherical latitude where the normal gravity will be computed
+(in degrees).</p></li>
+<li><p><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array</em>) – The height above the surface of the sphere of the computation point
+(in meters).</p></li>
+<li><p><strong>si_units</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Return the value in mGal (False, default) or m/s² (True)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>longitude</strong> (<em>array</em>) – Longitude coordinates on geocentric spherical coordinate system in
-degrees.
-The longitude coordinates are not modified during this conversion.</p></li>
-<li><p><strong>spherical_latitude</strong> (<em>array</em>) – Converted latitude coordinates on geocentric spherical coordinate
-system in degrees.</p></li>
-<li><p><strong>radius</strong> (<em>array</em>) – Converted spherical radius coordinates in meters.</p></li>
-</ul>
-</p>
+<dd class="field-even"><p><strong>gamma</strong> (<em>float or array</em>) – The normal gravity in mGal or m/s².</p>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="boule.Sphere.normal_gravity">
-<code class="sig-prename descclassname"><span class="pre">Sphere.</span></code><code class="sig-name descname"><span class="pre">normal_gravity</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/sphere.html#Sphere.normal_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravity" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate normal gravity at any latitude and height</p>
-<p>Computes the magnitude of the gradient of the gravity potential
-(gravitational + centrifugal; see <a class="reference internal" href="../../references.html#heiskanen-moritz" id="id2"><span>[Heiskanen-Moritz]</span></a>) generated by the
-sphere at the given latitude <span class="math notranslate nohighlight">\(\theta\)</span> and height <span class="math notranslate nohighlight">\(h\)</span>:</p>
+<p class="rubric">Examples</p>
+<p>Normal gravity can be calculated at any spherical latitude and height
+above the sphere:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Moon&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;That&#39;s no moon&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gamma_equator</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">gamma_equator</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal&quot;</span><span class="p">)</span>
+<span class="go">175000.00 mGal</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">gamma_pole</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">90</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">gamma_pole</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal&quot;</span><span class="p">)</span>
+<span class="go">200000.00 mGal</span>
+</pre></div>
+</div>
+<p class="rubric">Notes</p>
+<p>The gradient of the gravity potential is the sum of the gravitational
+<span class="math notranslate nohighlight">\(\vec{g}\)</span> and centrifugal <span class="math notranslate nohighlight">\(\vec{f}\)</span> accelerations for a
+rotating sphere:</p>
 <div class="math notranslate nohighlight">
-\[\gamma(\theta, h) =
-\sqrt{\left( \frac{GM}{(R + h)^2} \right)^2
-+ \left(\omega^2 (R + h) - 2\frac{GM}{(R + h)^2} \right)
-\omega^2 (R + h) \cos^2 \theta}\]</div>
+\[\vec{\nabla}U(\theta, h) = \vec{g}(\theta, h)
+    + \vec{f}(\theta, h)\]</div>
+<p>The radial and latitudinal components of the two acceleration vectors
+are:</p>
+<div class="math notranslate nohighlight">
+\[g_r = -\dfrac{GM}{(R + h)^2}\]</div>
+<div class="math notranslate nohighlight">
+\[g_\theta = 0\]</div>
+<p>and</p>
+<div class="math notranslate nohighlight">
+\[f_r = \omega^2 (R + h) \cos^2 \theta\]</div>
+<div class="math notranslate nohighlight">
+\[f_\theta = \omega^2 (R + h) \cos\theta\sin\theta\]</div>
 <p>in which <span class="math notranslate nohighlight">\(R\)</span> is the sphere radius, <span class="math notranslate nohighlight">\(G\)</span> is the gravitational
 constant, <span class="math notranslate nohighlight">\(M\)</span> is the mass of the sphere, and <span class="math notranslate nohighlight">\(\omega\)</span> is
 the angular velocity.</p>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>A sphere under rotation is not in hydrostatic equilibrium.
-Therefore, it is not it’s own equipotential gravity surface (as is
-the case for the ellipsoid) and the normal gravity vector is not
-normal to the surface of the sphere.</p>
-</div>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array</em>) – The latitude where the normal gravity will be computed (in
-degrees). For a reference sphere there is no difference between
-geodetic and spherical latitudes.</p></li>
-<li><p><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array</em>) – The height (above the surface of the sphere) of the computation
-point (in meters).</p></li>
-<li><p><strong>si_units</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Return the value in mGal (False, default) or SI units (True)</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>gamma</strong> (<em>float or array</em>) – The normal gravity in mGal.</p>
-</dd>
-</dl>
-</dd></dl>
-
-<dl class="py method">
-<dt id="boule.Sphere.prime_vertical_radius">
-<code class="sig-prename descclassname"><span class="pre">Sphere.</span></code><code class="sig-name descname"><span class="pre">prime_vertical_radius</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sinlat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.Sphere.prime_vertical_radius" title="Permalink to this definition">¶</a></dt>
-<dd><p>Calculate the prime vertical radius for a given geodetic latitude</p>
-<p>The prime vertical radius is defined as:</p>
+<p>The norm of the combined gravitational and centrifugal accelerations
+is:</p>
 <div class="math notranslate nohighlight">
-\[N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}\]</div>
-<p>Where <span class="math notranslate nohighlight">\(a\)</span> is the semi-major axis and <span class="math notranslate nohighlight">\(e\)</span> is the first
-eccentricity.</p>
-<p>This function receives the sine of the latitude as input to avoid
-repeated computations of trigonometric functions.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>sinlat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array-like</em>) – Sine of the latitude angle.</p>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><strong>prime_vertical_radius</strong> (<em>float or array-like</em>) – Prime vertical radius given in the same units as the semi-major
-axis</p>
-</dd>
-</dl>
+\[\gamma(\theta, h) = \sqrt{
+    \left( \dfrac{GM}{(R + h)^2} \right)^2
+    + \left( \omega^2 (R + h) - 2\dfrac{GM}{(R + h)^2} \right)
+    \omega^2 (R + h) \cos^2 \theta
+}\]</div>
+<p>It’s worth noting that a sphere under rotation is not in hydrostatic
+equilibrium. Therefore unlike the oblate ellipsoid, it is not it’s own
+equipotential gravity surface (as is the case for the ellipsoid), the
+gravity potential is not constant at the surface, and  the normal
+gravity vector is not normal to the surface of the sphere.</p>
 </dd></dl>
 
-<dl class="py method">
-<dt id="boule.Sphere.spherical_to_geodetic">
-<code class="sig-prename descclassname"><span class="pre">Sphere.</span></code><code class="sig-name descname"><span class="pre">spherical_to_geodetic</span></code><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spherical_latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.Sphere.spherical_to_geodetic" title="Permalink to this definition">¶</a></dt>
-<dd><p>Convert from geocentric spherical to geodetic coordinates.</p>
-<p>The geodetic datum is defined by this ellipsoid. The coordinates are
-converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id3"><span>[Vermeille2002]</span></a>.</p>
-<dl class="field-list simple">
-<dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><ul class="simple">
-<li><p><strong>longitude</strong> (<em>array</em>) – Longitude coordinates on geocentric spherical coordinate system in
-degrees.</p></li>
-<li><p><strong>spherical_latitude</strong> (<em>array</em>) – Latitude coordinates on geocentric spherical coordinate system in
-degrees.</p></li>
-<li><p><strong>radius</strong> (<em>array</em>) – Spherical radius coordinates in meters.</p></li>
-</ul>
-</dd>
-<dt class="field-even">Returns</dt>
-<dd class="field-even"><p><ul class="simple">
-<li><p><strong>longitude</strong> (<em>array</em>) – Longitude coordinates on geodetic coordinate system in degrees.
-The longitude coordinates are not modified during this conversion.</p></li>
-<li><p><strong>latitude</strong> (<em>array</em>) – Converted latitude coordinates on geodetic coordinate system in
-degrees.</p></li>
-<li><p><strong>height</strong> (<em>array</em>) – Converted ellipsoidal height coordinates in meters.</p></li>
-</ul>
-</p>
-</dd>
-</dl>
-</dd></dl>
-
-<div class="section" id="examples-using-boule-sphere">
-<h2>Examples using <code class="docutils literal notranslate"><span class="pre">boule.Sphere</span></code><a class="headerlink" href="#examples-using-boule-sphere" title="Permalink to this headline">¶</a></h2>
-<div class="sphx-glr-thumbcontainer" tooltip="The main functionality of Boule is contained in the Ellipsoid class. It defines a `Reference El..."><div class="figure align-default" id="id4">
-<img alt="Overview" src="../../_images/sphx_glr_overview_thumb.png" />
-<p class="caption"><span class="caption-text"><a class="reference internal" href="../../tutorials/overview.html#sphx-glr-tutorials-overview-py"><span class="std std-ref">Overview</span></a></span><a class="headerlink" href="#id4" title="Permalink to this image">¶</a></p>
-</div>
-</div><div style='clear:both'></div></div>
-</div>
+<hr class="docutils" />
+<div style='clear:both'></div></section>
+</section>
 
 
               </div>
               
-            
-                <!-- Previous / next buttons -->
-<div class='prev-next-area'> 
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
     <a class='left-prev' id="prev-link" href="boule.Ellipsoid.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
@@ -676,31 +786,35 @@ degrees.</p></li>
             <p class="prev-next-title">boule.Ellipsoid</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="boule.test.html" title="next page">
+    <a class='right-next' id="next-link" href="boule.TriaxialEllipsoid.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">boule.test</p>
+        <p class="prev-next-title">boule.TriaxialEllipsoid</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
 </div>
-            
+            </footer>
         </div>
     </div>
-    <footer class="footer">
-  <p>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+      &copy; Copyright 2022, The Boule Developers.<br/>
+    Last updated on Aug 08, 2022.<br/>
+</p>
+        </footer>
+    </div>
     
-        &copy; Copyright 2019-2022, The Boule Developers.<br/>
-      Last updated on Jan 21, 2022.<br/>
-  </p>
-</footer>
-</main>
+</div>
 
 
       </div>
     </div>
   
-  <script src="../../_static/js/index.be7d3bbb2ef33a8344ce.js"></script>
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
 
   </body>
 </html>

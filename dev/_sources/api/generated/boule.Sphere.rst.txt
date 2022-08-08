@@ -5,155 +5,76 @@ boule.Sphere
 
 .. autoclass:: Sphere
 
-.. rubric:: Methods Summary
+
+
+Attributes
+----------
+
+
+
+.. autoattribute:: Sphere.eccentricity
+
+
+
+.. autoattribute:: Sphere.first_eccentricity
+
+
+
+.. autoattribute:: Sphere.flattening
+
+
+
+.. autoattribute:: Sphere.semimajor_axis
+
+
+
+.. autoattribute:: Sphere.semiminor_axis
+
+
+
+.. autoattribute:: Sphere.thirdflattening
+
+
+
+
+
+Methods
+-------
+
+.. rubric:: List of methods
 
 .. autosummary::
     
     
     
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        Sphere.geocentric_radius
-    
-    
-    
-        Sphere.geodetic_to_spherical
+        Sphere.normal_gravitation
     
     
     
         Sphere.normal_gravity
     
     
-    
-        Sphere.prime_vertical_radius
-    
-    
-    
-        Sphere.spherical_to_geodetic
-    
-    
+
+.. rubric:: Methods documentation
+
+
+
+
+
+.. automethod:: Sphere.normal_gravitation
 
 ----
 
 
 
 
-
-.. automethod:: Sphere.geocentric_radius
-
-
-
-.. automethod:: Sphere.geodetic_to_spherical
-
-
-
 .. automethod:: Sphere.normal_gravity
 
-
-
-.. automethod:: Sphere.prime_vertical_radius
-
-
-
-.. automethod:: Sphere.spherical_to_geodetic
+----
 
 
 
-.. include:: backreferences/boule.Sphere.examples
 
 .. raw:: html
 

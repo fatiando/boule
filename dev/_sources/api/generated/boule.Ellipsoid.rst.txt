@@ -5,100 +5,61 @@ boule.Ellipsoid
 
 .. autoclass:: Ellipsoid
 
-.. rubric:: Methods Summary
+
+
+Attributes
+----------
+
+
+
+.. autoattribute:: Ellipsoid.eccentricity
+
+
+
+.. autoattribute:: Ellipsoid.first_eccentricity
+
+
+
+.. autoattribute:: Ellipsoid.gravity_equator
+
+
+
+.. autoattribute:: Ellipsoid.gravity_pole
+
+
+
+.. autoattribute:: Ellipsoid.linear_eccentricity
+
+
+
+.. autoattribute:: Ellipsoid.mean_radius
+
+
+
+.. autoattribute:: Ellipsoid.second_eccentricity
+
+
+
+.. autoattribute:: Ellipsoid.semiminor_axis
+
+
+
+.. autoattribute:: Ellipsoid.thirdflattening
+
+
+
+.. autoattribute:: Ellipsoid.volume
+
+
+
+
+
+Methods
+-------
+
+.. rubric:: List of methods
 
 .. autosummary::
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     
     
@@ -123,7 +84,7 @@ boule.Ellipsoid
     
     
 
-----
+.. rubric:: Methods documentation
 
 
 
@@ -131,25 +92,38 @@ boule.Ellipsoid
 
 .. automethod:: Ellipsoid.geocentric_radius
 
+----
+
+
 
 
 .. automethod:: Ellipsoid.geodetic_to_spherical
+
+----
+
 
 
 
 .. automethod:: Ellipsoid.normal_gravity
 
+----
+
+
 
 
 .. automethod:: Ellipsoid.prime_vertical_radius
+
+----
+
 
 
 
 .. automethod:: Ellipsoid.spherical_to_geodetic
 
+----
 
 
-.. include:: backreferences/boule.Ellipsoid.examples
+
 
 .. raw:: html
 
