@@ -3,6 +3,65 @@
 Changelog
 =========
 
+Version 0.4.0
+-------------
+
+*Released on: 2022/08/09*
+
+doi: https://doi.org/10.5281/zenodo.6779998
+
+.. warning::
+
+    **Boule v0.4.0 is the last release that is compatible with Python 3.6.**
+
+**Backwards incompatible changes:**
+
+* Refactor the ``Sphere`` class to not inherit from ``Ellipsoid``. Breaks backwards compatibility due to the removal of inherited methods and attributes (`#129 <https://github.com/fatiando/boule/pull/129>`__)
+* Make all package modules private by adding a leading ``_`` to their name (`#119 <https://github.com/fatiando/boule/pull/119>`__)
+* Rename the ``Ellipsoid.emm`` attribute to ``Ellipsoid._emm`` to make it private (`#123 <https://github.com/fatiando/boule/pull/123>`__)
+* Remove the ``boule.test`` function (`#116 <https://github.com/fatiando/boule/pull/116>`__)
+
+Deprecations:
+
+* Deprecate the coordinate conversion methods which have been ported to the pymap3d library v2.9.0 (`#126 <https://github.com/fatiando/boule/pull/126>`__)
+
+New features:
+
+* Add the ``volume`` property to ``Ellipsoid`` (`#132 <https://github.com/fatiando/boule/pull/132>`__)
+* Add missing attributes to ``Ellipsoid`` for pymap3 compatibility (`#121 <https://github.com/fatiando/boule/pull/121>`__)
+* Add the ``TriaxialEllipsoid`` class with geometric parameters (`#72 <https://github.com/fatiando/boule/pull/72>`__)
+* Add a normal gravitation method to ``Sphere`` (`#73 <https://github.com/fatiando/boule/pull/73>`__)
+
+Documentation:
+
+* Add a logo for Boule (`#125 <https://github.com/fatiando/boule/pull/125>`__)
+* Refactor the documentation tutorials to shift the focus to how to do things with Boule and point to other pages for more of the theory (`#130 <https://github.com/fatiando/boule/pull/130>`__)
+* Refactor documentation of ``TriaxialEllipsoid`` (`#128 <https://github.com/fatiando/boule/pull/128>`__)
+* Refactor the documentation of ``Ellipsoid`` (`#127 <https://github.com/fatiando/boule/pull/127>`__)
+* Fix formatting for code to pip install from GitHub (`#118 <https://github.com/fatiando/boule/pull/118>`__)
+* Fix license link and compatibility warning in the README (`#117 <https://github.com/fatiando/boule/pull/117>`__)
+* Use jupyter-sphinx instead of sphinx-gallery and update the documentation front page (`#112 <https://github.com/fatiando/boule/pull/112>`__)
+* Point to our organization wide guides in the documentation (`#108 <https://github.com/fatiando/boule/pull/108>`__)
+* Add an example calculating global gravity disturbances (`#102 <https://github.com/fatiando/boule/pull/102>`__)
+* Update Sphinx version to 4.5.0 (`#103 <https://github.com/fatiando/boule/pull/103>`__)
+
+Maintenance:
+
+* Convert the README to Markdown (`#113 <https://github.com/fatiando/boule/pull/113>`__)
+* Specify oldest supported version of each dependency (`#111 <https://github.com/fatiando/boule/pull/111>`__)
+* Move to ``pyproject.toml/setup.cfg`` with ``build`` instead of ``setup.py`` (`#110 <https://github.com/fatiando/boule/pull/110>`__)
+* Replace pylint with flake8 and some extensions (`#109 <https://github.com/fatiando/boule/pull/109>`__)
+* Rename the git "master" branch to "main" (`#107 <https://github.com/fatiando/boule/pull/107>`__)
+* Update code style to Black 22.3.0 (`#104 <https://github.com/fatiando/boule/pull/104>`__)
+* Replace Google Analytics with Plausible for page visit statistics (`#99 <https://github.com/fatiando/boule/pull/99>`__)
+
+This release contains contributions from:
+
+* Agustina Pesce
+* Chris Dinneen
+* Leonardo Uieda
+* Santiago Soler
+
 Version 0.3.1
 -------------
 
