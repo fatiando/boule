@@ -61,7 +61,7 @@ geophysical applications.
 A common one is calculating :term:`normal gravity`.
 Here is an example of using Boule to calculate the :term:`normal gravity` of
 the WGS84 ellipsoid on the Earth's surface (topography in the continents, the
-geoid the oceans).
+geoid in the oceans).
 
 First, we need to import a few other packages:
 
