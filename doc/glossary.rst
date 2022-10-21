@@ -33,13 +33,7 @@ Glossary
         
     Reference ellipsoid
         An ellipsoid with geometric and physical properties used to best
-        approaximate a given planetary body (the Earth or others).
+        approximate a given planetary body (the Earth or others).
         See `Wikipedia <https://en.wikipedia.org/wiki/Reference_ellipsoid>`__.
-
-
-
-
-
-
 
 

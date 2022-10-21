@@ -71,8 +71,8 @@ First, we need to import a few other packages:
     import pygmt         # For plotting maps
     import xarray as xr  # For manipulating grids
 
-Now we can download and open :co-located:`co-located grids` topography and geoid grids using
-:mod:`ensaio` and :mod:`xarray`:
+Now we can download and open :term:`co-located grids` of topography and geoid
+using :mod:`ensaio` and :mod:`xarray`:
 
 .. jupyter-execute::
 
