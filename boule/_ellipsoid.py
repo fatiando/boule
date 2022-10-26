@@ -423,14 +423,6 @@ class Ellipsoid:
         """
         Convert from geodetic to geocentric spherical coordinates.
 
-        .. warning::
-
-            **This method is deprecated and will be removed in Boule v0.5.0.**
-            Please use the equivalent function in
-            `pymap3d <https://github.com/geospace-code/pymap3d/>`__ instead
-            (``pymap3d.geodetic2spherical``) which is available since version
-            2.9.0.
-
         The geodetic datum is defined by this ellipsoid. The coordinates are
         converted following [Vermeille2002]_.
 
@@ -456,12 +448,6 @@ class Ellipsoid:
             Converted spherical radius coordinates in meters.
 
         """
-        warn(
-            "Ellipsoid.geodetic_to_spherical is deprecated and will be removed "
-            "in Boule v0.5.0. Use pymap3d.geodetic2spherical instead.",
-            FutureWarning,
-        )
-
         latitude_rad = np.radians(latitude)
         coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
         prime_vertical_radius = self.prime_vertical_radius(sinlat)
@@ -478,14 +464,6 @@ class Ellipsoid:
     def spherical_to_geodetic(self, longitude, spherical_latitude, radius):
         """
         Convert from geocentric spherical to geodetic coordinates.
-
-        .. warning::
-
-            **This method is deprecated and will be removed in Boule v0.5.0.**
-            Please use the equivalent function in
-            `pymap3d <https://github.com/geospace-code/pymap3d/>`__ instead
-            (``pymap3d.spherical2geodetic``) which is available since version
-            2.9.0.
 
         The geodetic datum is defined by this ellipsoid. The coordinates are
         converted following [Vermeille2002]_.
@@ -513,12 +491,6 @@ class Ellipsoid:
             Converted ellipsoidal height coordinates in meters.
 
         """
-        warn(
-            "Ellipsoid.spherical_to_geodetic is deprecated and will be removed "
-            "in Boule v0.5.0. Use pymap3d.spherical2geodetic instead.",
-            FutureWarning,
-        )
-
         spherical_latitude = np.radians(spherical_latitude)
         k, big_z, big_d = self._spherical_to_geodetic_terms(spherical_latitude, radius)
         latitude = np.degrees(
