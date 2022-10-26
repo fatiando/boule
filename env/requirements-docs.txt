@@ -13,4 +13,3 @@ netcdf4
 pygmt==0.6.*
 gmt==6.3.*
 ipython
-pymap3d>=2.9.0

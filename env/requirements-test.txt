@@ -2,4 +2,3 @@
 pytest
 pytest-cov
 coverage
-pymap3d
