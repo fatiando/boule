@@ -12,8 +12,6 @@ from warnings import warn
 import attr
 import numpy as np
 
-from pymap3d import geodetic2spherical, spherical2geodetic
-
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
 # accidentally.
@@ -448,16 +446,16 @@ class Ellipsoid:
             system in degrees.
         radius : array
             Converted spherical radius coordinates in meters.
-
-        See also
-        --------
-        :func:`pymap3d.geodetic2spherical`
         """
-        # Use pymap3d.geodetic2spyherical to perform coordinate conversions.
-        # Be aware of the order of arguments and returns.
-        spherical_latitude, longitude, radius = geodetic2spherical(
-            latitude, longitude, height, ell=self, deg=True
-        )
+        sinlat = np.sin(np.radians(latitude))
+        coslat = np.sqrt(1 - sinlat**2)
+        prime_radius = self.prime_vertical_radius(sinlat)
+        # Instead of computing X and Y, we only compute the projection on the
+        # XY plane: xy_projection = sqrt( X**2 + Y**2 )
+        xy_projection = (height + prime_radius) * coslat
+        z_cartesian = (height + (1 - self.eccentricity**2) * prime_radius) * sinlat
+        radius = np.hypot(xy_projection, z_cartesian)
+        spherical_latitude = np.degrees(np.arcsin(z_cartesian / radius))
         return longitude, spherical_latitude, radius
 
     def spherical_to_geodetic(self, longitude, spherical_latitude, radius):
@@ -488,16 +486,23 @@ class Ellipsoid:
             degrees.
         height : array
             Converted ellipsoidal height coordinates in meters.
-
-        See also
-        --------
-        :func:`pymap3d.spherical2geodetic`
         """
-        # Use pymap3d.spyherical2geodetic to perform coordinate conversions.
-        # Be aware of the order of arguments and returns.
-        latitude, longitude, height = spherical2geodetic(
-            spherical_latitude, longitude, radius, ell=self, deg=True
-        )
+        sinlat = np.sin(np.radians(spherical_latitude))
+        coslat = np.sqrt(1 - sinlat**2)
+        big_z = radius * sinlat
+        p_0 = radius**2 * coslat**2 / self.semimajor_axis**2
+        q_0 = (1 - self.eccentricity**2) / self.semimajor_axis**2 * big_z**2
+        r_0 = (p_0 + q_0 - self.eccentricity**4) / 6
+        s_0 = self.eccentricity**4 * p_0 * q_0 / 4 / r_0**3
+        t_0 = np.cbrt(1 + s_0 + np.sqrt(2 * s_0 + s_0**2))
+        u_0 = r_0 * (1 + t_0 + 1 / t_0)
+        v_0 = np.sqrt(u_0**2 + q_0 * self.eccentricity**4)
+        w_0 = self.eccentricity**2 * (u_0 + v_0 - q_0) / 2 / v_0
+        k = np.sqrt(u_0 + v_0 + w_0**2) - w_0
+        big_d = k * radius * coslat / (k + self.eccentricity**2)
+        hypot_dz = np.hypot(big_d, big_z)
+        latitude = np.degrees(2 * np.arctan2(big_z, (big_d + hypot_dz)))
+        height = (k + self.eccentricity**2 - 1) / k * hypot_dz
         return longitude, latitude, height
 
     def normal_gravity(self, latitude, height, si_units=False):

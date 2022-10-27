@@ -53,7 +53,6 @@ Boule with ``pip`` or ``conda``:
 
 * `numpy <http://www.numpy.org/>`__
 * `attrs <https://www.attrs.org/>`__
-* `pymap3d <https://geospace-code.github.io/pymap3d/>`__
 
 See :ref:`dependency-versions` for the our policy of oldest supported versions
 of each dependency.
