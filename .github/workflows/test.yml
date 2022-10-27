@@ -39,9 +39,9 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, macos, windows]
-        python: ["3.6", "3.10"]
+        python: ["3.7", "3.10"]
         include:
-          - python: "3.6"
+          - python: "3.7"
             dependencies: oldest
           - python: "3.10"
             dependencies: latest
