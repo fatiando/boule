@@ -45,7 +45,7 @@
     <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../../_static/design-tabs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
@@ -134,13 +134,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/defining_ellipsoids.html">
-   Defining ellipsoids
+  <a class="reference internal" href="../../user_guide/coordinates.html">
+   Coordinate conversions
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/coordinates.html">
-   Coordinate conversions
+  <a class="reference internal" href="../../user_guide/defining_ellipsoids.html">
+   Defining custom ellipsoids
   </a>
  </li>
 </ul>
@@ -220,7 +220,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="http://contact.fatiando.org">
+  <a class="reference external" href="https://www.fatiando.org/contact">
    Join the community
   </a>
  </li>
@@ -504,23 +504,23 @@ changed after instantiation.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a>) – A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;WGS84&quot;</span></code>.</p></li>
-<li><p><strong>semimajor_axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The semimajor axis of the ellipsoid. The equatorial (large) radius.
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a>) – A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;WGS84&quot;</span></code>.</p></li>
+<li><p><strong>semimajor_axis</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The semimajor axis of the ellipsoid. The equatorial (large) radius.
 Definition: <span class="math notranslate nohighlight">\(a\)</span>.
 Units: <span class="math notranslate nohighlight">\(m\)</span>.</p></li>
-<li><p><strong>flattening</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The (first) flattening of the ellipsoid.
+<li><p><strong>flattening</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The (first) flattening of the ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(f = (a - b)/a\)</span>.
 Units: adimensional.</p></li>
-<li><p><strong>geocentric_grav_const</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The geocentric gravitational constant. The product of the mass of the
+<li><p><strong>geocentric_grav_const</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The geocentric gravitational constant. The product of the mass of the
 ellipsoid <span class="math notranslate nohighlight">\(M\)</span> and the gravitational constant <span class="math notranslate nohighlight">\(G\)</span>.
 Definition: <span class="math notranslate nohighlight">\(GM\)</span>. Units:
 <span class="math notranslate nohighlight">\(m^3.s^{-2}\)</span>.</p></li>
-<li><p><strong>angular_velocity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a>) – The angular velocity of the rotating ellipsoid.
+<li><p><strong>angular_velocity</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a>) – The angular velocity of the rotating ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(\omega\)</span>.
 Units: <span class="math notranslate nohighlight">\(\\rad.s^{-1}\)</span>.</p></li>
-<li><p><strong>long_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
+<li><p><strong>long_name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
 <span class="pre">1984&quot;</span></code> (optional).</p></li>
-<li><p><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.10)"><em>str</em></a><em> or </em><em>None</em>) – Citation for the ellipsoid parameter values (optional).</p></li>
+<li><p><strong>reference</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.11)"><em>str</em></a><em> or </em><em>None</em>) – Citation for the ellipsoid parameter values (optional).</p></li>
 </ul>
 </dd>
 </dl>
@@ -696,8 +696,8 @@ spherical latitudes.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array</em>) – Latitude coordinates on geodetic coordinate system in degrees.</p></li>
-<li><p><strong>geodetic</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – If True (default), will assume that latitudes are geodetic
+<li><p><strong>latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em> or </em><em>array</em>) – Latitude coordinates on geodetic coordinate system in degrees.</p></li>
+<li><p><strong>geodetic</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – If True (default), will assume that latitudes are geodetic
 latitudes. Otherwise, will assume that they are geocentric
 spherical latitudes.</p></li>
 </ul>
@@ -754,14 +754,6 @@ to do that in the first place.</p>
 <dt class="sig sig-object py" id="boule.Ellipsoid.geodetic_to_spherical">
 <span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">geodetic_to_spherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.geodetic_to_spherical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.geodetic_to_spherical" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert from geodetic to geocentric spherical coordinates.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>This method is deprecated and will be removed in Boule v0.5.0.</strong>
-Please use the equivalent function in
-<a class="reference external" href="https://github.com/geospace-code/pymap3d/">pymap3d</a> instead
-(<code class="docutils literal notranslate"><span class="pre">pymap3d.geodetic2spherical</span></code>) which is available since version
-2.9.0.</p>
-</div>
 <p>The geodetic datum is defined by this ellipsoid. The coordinates are
 converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id4"><span>[Vermeille2002]</span></a>.</p>
 <dl class="field-list simple">
@@ -812,11 +804,11 @@ surface of the ellipsoid.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
 <dd class="field-odd"><ul class="simple">
-<li><p><strong>latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array</em>) – The geodetic latitude where the normal gravity will be computed (in
+<li><p><strong>latitude</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em> or </em><em>array</em>) – The geodetic latitude where the normal gravity will be computed (in
 degrees).</p></li>
-<li><p><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array</em>) – The ellipsoidal (geometric) height of computation the point (in
+<li><p><strong>height</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em> or </em><em>array</em>) – The ellipsoidal (geometric) height of computation the point (in
 meters).</p></li>
-<li><p><strong>si_units</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.10)"><em>bool</em></a>) – Return the value in mGal (False, default) or m/s² (True)</p></li>
+<li><p><strong>si_units</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.11)"><em>bool</em></a>) – Return the value in mGal (False, default) or m/s² (True)</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns</dt>
@@ -838,7 +830,7 @@ methods/functions that rely on it.</p>
 </div>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters</dt>
-<dd class="field-odd"><p><strong>sinlat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.10)"><em>float</em></a><em> or </em><em>array-like</em>) – Sine of the geocentric geodetic latitude.</p>
+<dd class="field-odd"><p><strong>sinlat</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.11)"><em>float</em></a><em> or </em><em>array-like</em>) – Sine of the geocentric geodetic latitude.</p>
 </dd>
 <dt class="field-even">Returns</dt>
 <dd class="field-even"><p><strong>prime_vertical_radius</strong> (<em>float or array-like</em>) – Prime vertical radius given in the same units as the semi-major
@@ -864,14 +856,6 @@ eccentricity.</p>
 <dt class="sig sig-object py" id="boule.Ellipsoid.spherical_to_geodetic">
 <span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">spherical_to_geodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spherical_latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.spherical_to_geodetic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.spherical_to_geodetic" title="Permalink to this definition">#</a></dt>
 <dd><p>Convert from geocentric spherical to geodetic coordinates.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p><strong>This method is deprecated and will be removed in Boule v0.5.0.</strong>
-Please use the equivalent function in
-<a class="reference external" href="https://github.com/geospace-code/pymap3d/">pymap3d</a> instead
-(<code class="docutils literal notranslate"><span class="pre">pymap3d.spherical2geodetic</span></code>) which is available since version
-2.9.0.</p>
-</div>
 <p>The geodetic datum is defined by this ellipsoid. The coordinates are
 converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id10"><span>[Vermeille2002]</span></a>.</p>
 <dl class="field-list simple">
@@ -931,7 +915,7 @@ degrees.</p></li>
         <footer class="col footer"><p>
   
       &copy; Copyright 2022, The Boule Developers.<br/>
-    Last updated on Aug 08, 2022.<br/>
+    Last updated on Oct 27, 2022.<br/>
 </p>
         </footer>
     </div>

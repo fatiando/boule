@@ -135,8 +135,8 @@ Boule is designed for:
 
     user_guide/normal_gravity.rst
     user_guide/gravity_disturbance.rst
-    user_guide/defining_ellipsoids.rst
     user_guide/coordinates.rst
+    user_guide/defining_ellipsoids.rst
 
 .. toctree::
     :maxdepth: 2
@@ -157,7 +157,7 @@ Boule is designed for:
     :hidden:
     :caption: Community
 
-    Join the community <http://contact.fatiando.org>
+    Join the community <https://www.fatiando.org/contact>
     How to contribute <https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md>
     Code of Conduct <https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md>
     Source code on GitHub <https://github.com/fatiando/boule>

@@ -1,7 +1,7 @@
 .. _defining_ellipsoids:
 
-Defining ellipsoids
-===================
+Defining custom ellipsoids
+==========================
 
 Boule comes with a range of :ref:`built-in ellipsoids <ellipsoids>` already but
 you may want to define your own.

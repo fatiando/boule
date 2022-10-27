@@ -45,7 +45,7 @@
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="_static/design-tabs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -133,13 +133,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="user_guide/defining_ellipsoids.html">
-   Defining ellipsoids
+  <a class="reference internal" href="user_guide/coordinates.html">
+   Coordinate conversions
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="user_guide/coordinates.html">
-   Coordinate conversions
+  <a class="reference internal" href="user_guide/defining_ellipsoids.html">
+   Defining custom ellipsoids
   </a>
  </li>
 </ul>
@@ -219,7 +219,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="http://contact.fatiando.org">
+  <a class="reference external" href="https://www.fatiando.org/contact">
    Join the community
   </a>
  </li>
@@ -438,6 +438,11 @@ title="Print to PDF"
     <nav id="bd-toc-nav" aria-label="Page">
         <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-0-4-1">
+   Version 0.4.1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#version-0-4-0">
    Version 0.4.0
   </a>
@@ -492,6 +497,11 @@ title="Print to PDF"
                         <nav aria-label="Page">
                             <ul class="visible nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#version-0-4-1">
+   Version 0.4.1
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#version-0-4-0">
    Version 0.4.0
   </a>
@@ -538,9 +548,32 @@ title="Print to PDF"
                 
   <section id="changelog">
 <span id="changes"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Permalink to this headline">#</a></h1>
+<section id="version-0-4-1">
+<h2>Version 0.4.1<a class="headerlink" href="#version-0-4-1" title="Permalink to this headline">#</a></h2>
+<p>Released on: 2022/10/27</p>
+<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.7258175">https://doi.org/10.5281/zenodo.7258175</a></p>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Update contact link in the docs side bar (<a class="reference external" href="https://github.com/fatiando/boule/pull/141">#141</a>)</p></li>
+<li><p>Add definition of “co-located grids” to the glossary (<a class="reference external" href="https://github.com/fatiando/boule/pull/139">#139</a>)</p></li>
+<li><p>Fix typo in overview docs page (<a class="reference external" href="https://github.com/fatiando/boule/pull/137">#137</a>)</p></li>
+</ul>
+<p>Maintenance:</p>
+<ul class="simple">
+<li><p>Undo deprecation of coordinate conversion methods (<a class="reference external" href="https://github.com/fatiando/boule/pull/142">#142</a>)</p></li>
+<li><p>Drop support for Python 3.6 (<a class="reference external" href="https://github.com/fatiando/boule/pull/144">#144</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">serve</span></code> target in <code class="docutils literal notranslate"><span class="pre">doc/Makefile</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/136">#136</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Mariana Gomez</p></li>
+<li><p>Santiago Soler</p></li>
+<li><p>Leonardo Uieda</p></li>
+</ul>
+</section>
 <section id="version-0-4-0">
 <h2>Version 0.4.0<a class="headerlink" href="#version-0-4-0" title="Permalink to this headline">#</a></h2>
-<p><em>Released on: 2022/08/09</em></p>
+<p>Released on: 2022/08/09</p>
 <p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.6779998">https://doi.org/10.5281/zenodo.6779998</a></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
@@ -597,7 +630,7 @@ title="Print to PDF"
 </section>
 <section id="version-0-3-1">
 <h2>Version 0.3.1<a class="headerlink" href="#version-0-3-1" title="Permalink to this headline">#</a></h2>
-<p><em>Released on: 2021/10/19</em></p>
+<p>Released on: 2021/10/19</p>
 <p>doi:<a class="reference external" href="https://doi.org/10.5281/zenodo.5577885">10.5281/zenodo.5577885</a></p>
 <p>Bug fix:</p>
 <ul class="simple">
@@ -610,7 +643,7 @@ title="Print to PDF"
 </section>
 <section id="version-0-3-0">
 <h2>Version 0.3.0<a class="headerlink" href="#version-0-3-0" title="Permalink to this headline">#</a></h2>
-<p><em>Released on: 2021/10/18</em></p>
+<p>Released on: 2021/10/18</p>
 <p>doi:<a class="reference external" href="https://doi.org/10.5281/zenodo.5575827">10.5281/zenodo.5575827</a></p>
 <p>Highlights:</p>
 <ul class="simple">
@@ -662,7 +695,7 @@ title="Print to PDF"
 </section>
 <section id="version-0-2-0">
 <h2>Version 0.2.0<a class="headerlink" href="#version-0-2-0" title="Permalink to this headline">#</a></h2>
-<p><em>Released on: 2020/07/10</em></p>
+<p>Released on: 2020/07/10</p>
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3939204"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3939204.svg" /></a>
 <ul class="simple">
 <li><p>Add the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.geocentric_radius</span></code> method to calculate the distance from the center of the ellipsoid to its surface as a function of latitude (geodetic or geocentric). (<a class="reference external" href="https://github.com/fatiando/boule/pull/37">#37</a>)</p></li>
@@ -678,14 +711,14 @@ title="Print to PDF"
 </section>
 <section id="version-0-1-1">
 <h2>Version 0.1.1<a class="headerlink" href="#version-0-1-1" title="Permalink to this headline">#</a></h2>
-<p><em>Released on: 2020/01/10</em></p>
+<p>Released on: 2020/01/10</p>
 <p>This release contains only a documentation fix: include install instructions
 for conda and pip. No functionality has been changed (hence, no DOI was
 issued).</p>
 </section>
 <section id="version-0-1-0">
 <h2>Version 0.1.0<a class="headerlink" href="#version-0-1-0" title="Permalink to this headline">#</a></h2>
-<p><em>Released on: 2020/01/10</em></p>
+<p>Released on: 2020/01/10</p>
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3603997"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3603997.svg" /></a>
 <p>First release of <em>Boule</em> including basic functionality:</p>
 <ul class="simple">
@@ -699,7 +732,7 @@ geocentric.</p></li>
 </section>
 <section id="version-0-0-1">
 <h2>Version 0.0.1<a class="headerlink" href="#version-0-0-1" title="Permalink to this headline">#</a></h2>
-<p><em>Released on: 2019/11/06</em></p>
+<p>Released on: 2019/11/06</p>
 <a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3530750"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3530750.svg" /></a>
 <p>This release is a placeholder that serves as a marker for the start of this
 project. It is used to register the project on PyPI and test the continuous
@@ -737,7 +770,7 @@ integration deployment process.</p>
         <footer class="col footer"><p>
   
       &copy; Copyright 2022, The Boule Developers.<br/>
-    Last updated on Aug 08, 2022.<br/>
+    Last updated on Oct 27, 2022.<br/>
 </p>
         </footer>
     </div>

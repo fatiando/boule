@@ -45,7 +45,7 @@
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="_static/design-tabs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
@@ -134,13 +134,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="user_guide/defining_ellipsoids.html">
-   Defining ellipsoids
+  <a class="reference internal" href="user_guide/coordinates.html">
+   Coordinate conversions
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="user_guide/coordinates.html">
-   Coordinate conversions
+  <a class="reference internal" href="user_guide/defining_ellipsoids.html">
+   Defining custom ellipsoids
   </a>
  </li>
 </ul>
@@ -220,7 +220,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="http://contact.fatiando.org">
+  <a class="reference external" href="https://www.fatiando.org/contact">
    Join the community
   </a>
  </li>
@@ -443,24 +443,29 @@ title="Print to PDF"
   <section id="glossary">
 <span id="id1"></span><h1>Glossary<a class="headerlink" href="#glossary" title="Permalink to this headline">#</a></h1>
 <dl class="glossary simple">
-<dt id="term-Reference-ellipsoid">Reference ellipsoid<a class="headerlink" href="#term-Reference-ellipsoid" title="Permalink to this term">#</a></dt><dd><p>An ellipsoid with geometric and physical properties used to best
-approaximate a given planetary body (the Earth or others).
-See <a class="reference external" href="https://en.wikipedia.org/wiki/Reference_ellipsoid">Wikipedia</a>.</p>
+<dt id="term-Co-located-grids">Co-located grids<a class="headerlink" href="#term-Co-located-grids" title="Permalink to this term">#</a></dt><dd><p>One or more grids that have grid points are at exactly the same locations.
+This property is important when performing operations like adding and
+subtracting grid values since they must be located at the same
+geographical locations.</p>
 </dd>
 <dt id="term-Geocentric-gravitational-constant">Geocentric gravitational constant<a class="headerlink" href="#term-Geocentric-gravitational-constant" title="Permalink to this term">#</a></dt><dd><p>The multiplication of the total mass of a <a class="reference internal" href="#term-Reference-ellipsoid"><span class="xref std std-term">reference ellipsoid</span></a>
 and the <a class="reference external" href="https://en.wikipedia.org/wiki/Gravitational_constant">gravitational constant</a>. Often
 represented as <span class="math notranslate nohighlight">\(GM\)</span>.</p>
 </dd>
+<dt id="term-Gravity-disturbance">Gravity disturbance<a class="headerlink" href="#term-Gravity-disturbance" title="Permalink to this term">#</a></dt><dd><p>The gravity disturbance is the difference between the magnitude of
+observed gravity and the magnitude of normal gravity evaluated at the
+same point <a class="reference internal" href="references.html#hofmannwellenhofmoritz2006" id="id2"><span>[HofmannWellenhofMoritz2006]</span></a>:
+<span class="math notranslate nohighlight">\(\delta g(\lambda, \phi, h) = \|\vec{g}(\lambda, \phi, h)\| - \|\vec{\gamma}(\lambda, \phi, h)\|\)</span></p>
+</dd>
+<dt id="term-Gravity-potential">Gravity potential<a class="headerlink" href="#term-Gravity-potential" title="Permalink to this term">#</a></dt><dd><p>The combined gravitational and centrifugal potential
+<span class="math notranslate nohighlight">\(U = V + \Phi\)</span> <a class="reference internal" href="references.html#hofmannwellenhofmoritz2006" id="id3"><span>[HofmannWellenhofMoritz2006]</span></a>.</p>
+</dd>
 <dt id="term-Normal-gravity">Normal gravity<a class="headerlink" href="#term-Normal-gravity" title="Permalink to this term">#</a></dt><dd><p>The magnitude of the gradient of the <a class="reference internal" href="#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> of a
 <a class="reference internal" href="#term-Reference-ellipsoid"><span class="xref std std-term">reference ellipsoid</span></a>.</p>
 </dd>
-<dt id="term-Gravity-potential">Gravity potential<a class="headerlink" href="#term-Gravity-potential" title="Permalink to this term">#</a></dt><dd><p>The combined gravitational and centrifugal potential
-<span class="math notranslate nohighlight">\(U = V + \Phi\)</span> <a class="reference internal" href="references.html#hofmannwellenhofmoritz2006" id="id2"><span>[HofmannWellenhofMoritz2006]</span></a>.</p>
-</dd>
-<dt id="term-Gravity-disturbance">Gravity disturbance<a class="headerlink" href="#term-Gravity-disturbance" title="Permalink to this term">#</a></dt><dd><p>The gravity disturbance is the difference between the magnitude of
-observed gravity and the magnitude of normal gravity evaluated at the
-same point <a class="reference internal" href="references.html#hofmannwellenhofmoritz2006" id="id3"><span>[HofmannWellenhofMoritz2006]</span></a>:
-<span class="math notranslate nohighlight">\(\delta g(\lambda, \phi, h) = \|\vec{g}(\lambda, \phi, h)\| - \|\vec{\gamma}(\lambda, \phi, h)\|\)</span></p>
+<dt id="term-Reference-ellipsoid">Reference ellipsoid<a class="headerlink" href="#term-Reference-ellipsoid" title="Permalink to this term">#</a></dt><dd><p>An ellipsoid with geometric and physical properties used to best
+approximate a given planetary body (the Earth or others).
+See <a class="reference external" href="https://en.wikipedia.org/wiki/Reference_ellipsoid">Wikipedia</a>.</p>
 </dd>
 </dl>
 </section>
@@ -495,7 +500,7 @@ same point <a class="reference internal" href="references.html#hofmannwellenhofm
         <footer class="col footer"><p>
   
       &copy; Copyright 2022, The Boule Developers.<br/>
-    Last updated on Aug 08, 2022.<br/>
+    Last updated on Oct 27, 2022.<br/>
 </p>
         </footer>
     </div>

@@ -45,7 +45,7 @@
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="_static/design-tabs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -133,13 +133,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="user_guide/defining_ellipsoids.html">
-   Defining ellipsoids
+  <a class="reference internal" href="user_guide/coordinates.html">
+   Coordinate conversions
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="user_guide/coordinates.html">
-   Coordinate conversions
+  <a class="reference internal" href="user_guide/defining_ellipsoids.html">
+   Defining custom ellipsoids
   </a>
  </li>
 </ul>
@@ -219,7 +219,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="http://contact.fatiando.org">
+  <a class="reference external" href="https://www.fatiando.org/contact">
    Join the community
   </a>
  </li>
@@ -585,7 +585,7 @@ geophysical applications.
 A common one is calculating <a class="reference internal" href="glossary.html#term-Normal-gravity"><span class="xref std std-term">normal gravity</span></a>.
 Here is an example of using Boule to calculate the <a class="reference internal" href="glossary.html#term-Normal-gravity"><span class="xref std std-term">normal gravity</span></a> of
 the WGS84 ellipsoid on the Earth’s surface (topography in the continents, the
-geoid the oceans).</p>
+geoid in the oceans).</p>
 <p>First, we need to import a few other packages:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
@@ -598,8 +598,8 @@ geoid the oceans).</p>
 <div class="cell_output docutils container">
 </div>
 </div>
-<p>Now we can download and open co-located topography and geoid grids using
-<a class="reference external" href="https://www.fatiando.org/ensaio/latest/api/index.html#module-ensaio" title="(in Ensaio vv0.4.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ensaio</span></code></a> and <a class="reference external" href="https://docs.xarray.dev/en/stable/index.html#module-xarray" title="(in xarray v2022.6.1.dev0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xarray</span></code></a>:</p>
+<p>Now we can download and open <a class="reference internal" href="glossary.html#term-Co-located-grids"><span class="xref std std-term">co-located grids</span></a> of topography and geoid
+using <a class="reference external" href="https://www.fatiando.org/ensaio/latest/api/index.html#module-ensaio" title="(in Ensaio vv0.4.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ensaio</span></code></a> and <a class="reference external" href="https://docs.xarray.dev/en/stable/index.html#module-xarray" title="(in xarray v2022.10.1.dev0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xarray</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fname_topo</span> <span class="o">=</span> <span class="n">ensaio</span><span class="o">.</span><span class="n">fetch_earth_topography</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -992,7 +992,7 @@ Attributes:
     description:     height of the geoid with respect to the WGS84 ellipsoid
     units:           m
     actual_range:    [-106.5   86. ]
-    icgem_metadata:  generating_institute: gfz-potsdam\ngenerating_date: 2021...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'geoid'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-6c69915a-1697-4933-89ae-bca5547dd35e' class='xr-array-in' type='checkbox' checked><label for='section-6c69915a-1697-4933-89ae-bca5547dd35e' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-29.5 -29.5 -29.5 -29.5 -29.5 -29.5 ... 15.4 15.4 15.4 15.4 15.4 15.4</span></div><div class='xr-array-data'><pre>array([[-29.5     , -29.5     , -29.5     , ..., -29.5     , -29.5     ,
+    icgem_metadata:  generating_institute: gfz-potsdam\ngenerating_date: 2021...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'geoid'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-c907bbea-814f-4267-92b7-5c2145c695fc' class='xr-array-in' type='checkbox' checked><label for='section-c907bbea-814f-4267-92b7-5c2145c695fc' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-29.5 -29.5 -29.5 -29.5 -29.5 -29.5 ... 15.4 15.4 15.4 15.4 15.4 15.4</span></div><div class='xr-array-data'><pre>array([[-29.5     , -29.5     , -29.5     , ..., -29.5     , -29.5     ,
         -29.5     ],
        [-29.5     , -29.5     , -29.5     , ..., -29.5     , -29.5     ,
         -29.5     ],
@@ -1004,9 +1004,9 @@ Attributes:
        [ 15.2     ,  15.2     ,  15.2     , ...,  15.2     ,  15.2     ,
          15.2     ],
        [ 15.400001,  15.400001,  15.400001, ...,  15.400001,  15.400001,
-         15.400001]], dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-2bb51346-5551-474b-b14d-3fce0430b91b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-2bb51346-5551-474b-b14d-3fce0430b91b' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-8b430f00-63ac-4064-bf7d-eb2cbae650b5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-8b430f00-63ac-4064-bf7d-eb2cbae650b5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4255974e-b1e6-4bd1-a7ee-432a954a1f10' class='xr-var-data-in' type='checkbox'><label for='data-4255974e-b1e6-4bd1-a7ee-432a954a1f10' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
-        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-50f8ec9f-6100-4498-97c3-0227747b8ef8' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-50f8ec9f-6100-4498-97c3-0227747b8ef8' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-fdf91d5c-9719-4f44-a40b-22594f88deb1' class='xr-var-data-in' type='checkbox'><label for='data-fdf91d5c-9719-4f44-a40b-22594f88deb1' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
-        90.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-cd125f29-0b00-4a56-bf5c-8352b4332e63' class='xr-section-summary-in' type='checkbox'  ><label for='section-cd125f29-0b00-4a56-bf5c-8352b4332e63' class='xr-section-summary' >Attributes: <span>(12)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.8</dd><dt><span>title :</span></dt><dd>Geoid height (EIGEN-6C4) with respect to WGS84</dd><dt><span>crs :</span></dt><dd>WGS84</dd><dt><span>source :</span></dt><dd>Generated from the EIGEN-6C4 model by the ICGEM Calculation Service (http://icgem.gfz-potsdam.de)</dd><dt><span>license :</span></dt><dd>Creative Commons Attribution 4.0 International Licence</dd><dt><span>references :</span></dt><dd>https://doi.org/10.5880/icgem.2015.1</dd><dt><span>long_name :</span></dt><dd>geoid height</dd><dt><span>standard_name :</span></dt><dd>geoid_height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of the geoid with respect to the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[-106.5   86. ]</dd><dt><span>icgem_metadata :</span></dt><dd>generating_institute: gfz-potsdam
+         15.400001]], dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-9be37d01-6665-4314-a9ad-8123a0daea2f' class='xr-section-summary-in' type='checkbox'  checked><label for='section-9be37d01-6665-4314-a9ad-8123a0daea2f' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-2eb8d5b3-deaa-4ffe-af17-91973f105cf5' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-2eb8d5b3-deaa-4ffe-af17-91973f105cf5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-663a53af-80dd-46a8-b99a-bea504f63ca4' class='xr-var-data-in' type='checkbox'><label for='data-663a53af-80dd-46a8-b99a-bea504f63ca4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
+        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-28f4e6ad-660b-4a0b-81a5-c61d1fcc05e7' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-28f4e6ad-660b-4a0b-81a5-c61d1fcc05e7' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-84b9e424-2118-49fb-bc60-58ab58818b92' class='xr-var-data-in' type='checkbox'><label for='data-84b9e424-2118-49fb-bc60-58ab58818b92' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
+        90.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-96fa2bd0-31da-4342-ac0c-d6ec611503b7' class='xr-section-summary-in' type='checkbox'  ><label for='section-96fa2bd0-31da-4342-ac0c-d6ec611503b7' class='xr-section-summary' >Attributes: <span>(12)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.8</dd><dt><span>title :</span></dt><dd>Geoid height (EIGEN-6C4) with respect to WGS84</dd><dt><span>crs :</span></dt><dd>WGS84</dd><dt><span>source :</span></dt><dd>Generated from the EIGEN-6C4 model by the ICGEM Calculation Service (http://icgem.gfz-potsdam.de)</dd><dt><span>license :</span></dt><dd>Creative Commons Attribution 4.0 International Licence</dd><dt><span>references :</span></dt><dd>https://doi.org/10.5880/icgem.2015.1</dd><dt><span>long_name :</span></dt><dd>geoid height</dd><dt><span>standard_name :</span></dt><dd>geoid_height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of the geoid with respect to the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[-106.5   86. ]</dd><dt><span>icgem_metadata :</span></dt><dd>generating_institute: gfz-potsdam
 generating_date: 2021/06/11
 product_type: gravity_field
 body: earth
@@ -1113,7 +1113,7 @@ different definitions of normal gravity for each ellipsoid type.</p>
         <footer class="col footer"><p>
   
       &copy; Copyright 2022, The Boule Developers.<br/>
-    Last updated on Aug 08, 2022.<br/>
+    Last updated on Oct 27, 2022.<br/>
 </p>
         </footer>
     </div>

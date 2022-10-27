@@ -45,7 +45,7 @@
     <script src="_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="_static/design-tabs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <link rel="shortcut icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -133,13 +133,13 @@
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="user_guide/defining_ellipsoids.html">
-   Defining ellipsoids
+  <a class="reference internal" href="user_guide/coordinates.html">
+   Coordinate conversions
   </a>
  </li>
  <li class="toctree-l1">
-  <a class="reference internal" href="user_guide/coordinates.html">
-   Coordinate conversions
+  <a class="reference internal" href="user_guide/defining_ellipsoids.html">
+   Defining custom ellipsoids
   </a>
  </li>
 </ul>
@@ -219,7 +219,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="http://contact.fatiando.org">
+  <a class="reference external" href="https://www.fatiando.org/contact">
    Join the community
   </a>
  </li>
@@ -490,16 +490,16 @@ title="Print to PDF"
 <span id="install"></span><h1>Installing<a class="headerlink" href="#installing" title="Permalink to this headline">#</a></h1>
 <p>There are different ways to install Boule:</p>
 <div class="sd-tab-set docutils">
-<input checked="checked" id="e6dc963c-8b93-408e-8cd5-7a28c31c631a" name="cd6a143c-c2fb-4025-8b75-42c69c4b5a8e" type="radio">
-</input><label class="sd-tab-label" for="e6dc963c-8b93-408e-8cd5-7a28c31c631a">
+<input checked="checked" id="ad036869-196c-4159-83e6-115d8da23afc" name="f579aeab-d7f6-47fb-b42a-7b6822d09c24" type="radio">
+</input><label class="sd-tab-label" for="ad036869-196c-4159-83e6-115d8da23afc">
 pip</label><div class="sd-tab-content docutils">
 <p>Using the <a class="reference external" href="https://pypi.org/project/pip/">pip package manager</a>:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install boule
 </pre></div>
 </div>
 </div>
-<input id="29559829-93e9-4713-bf72-7c3b0a8e1973" name="cd6a143c-c2fb-4025-8b75-42c69c4b5a8e" type="radio">
-</input><label class="sd-tab-label" for="29559829-93e9-4713-bf72-7c3b0a8e1973">
+<input id="eee05f4c-fa80-4bab-b1d4-a263d7746760" name="f579aeab-d7f6-47fb-b42a-7b6822d09c24" type="radio">
+</input><label class="sd-tab-label" for="eee05f4c-fa80-4bab-b1d4-a263d7746760">
 conda/mamba</label><div class="sd-tab-content docutils">
 <p>Using the <a class="reference external" href="https://conda.io/">conda package manager</a> (or <code class="docutils literal notranslate"><span class="pre">mamba</span></code>)
 that comes with the Anaconda/Miniconda distribution:</p>
@@ -507,8 +507,8 @@ that comes with the Anaconda/Miniconda distribution:</p>
 </pre></div>
 </div>
 </div>
-<input id="6ea1ae9b-c1f8-4501-89ab-2dadc1a5f5be" name="cd6a143c-c2fb-4025-8b75-42c69c4b5a8e" type="radio">
-</input><label class="sd-tab-label" for="6ea1ae9b-c1f8-4501-89ab-2dadc1a5f5be">
+<input id="007553dc-48c4-42a0-814e-3b2891ab01fd" name="f579aeab-d7f6-47fb-b42a-7b6822d09c24" type="radio">
+</input><label class="sd-tab-label" for="007553dc-48c4-42a0-814e-3b2891ab01fd">
 Developement version</label><div class="sd-tab-content docutils">
 <p>You can use <code class="docutils literal notranslate"><span class="pre">pip</span></code> to install the latest <strong>unreleased</strong> version from
 GitHub (<strong>not recommended</strong> in most situations):</p>
@@ -524,7 +524,7 @@ GitHub (<strong>not recommended</strong> in most situations):</p>
 </div>
 <section id="which-python">
 <h2>Which Python?<a class="headerlink" href="#which-python" title="Permalink to this headline">#</a></h2>
-<p>You’ll need <strong>Python &gt;= 3.6</strong>.
+<p>You’ll need <strong>Python &gt;= 3.7</strong>.
 See <a class="reference internal" href="compatibility.html#python-versions"><span class="std std-ref">Supported Python versions</span></a> if you require support for older versions.</p>
 </section>
 <section id="dependencies">
@@ -570,7 +570,7 @@ of each dependency.</p>
         <footer class="col footer"><p>
   
       &copy; Copyright 2022, The Boule Developers.<br/>
-    Last updated on Aug 08, 2022.<br/>
+    Last updated on Oct 27, 2022.<br/>
 </p>
         </footer>
     </div>

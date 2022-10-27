@@ -8,7 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
     
-        <title>Defining ellipsoids | Boule dev</title>
+        <title>Defining custom ellipsoids | Boule dev</title>
     
 
     
@@ -45,13 +45,13 @@
     <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
     <script src="../_static/design-tabs.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
-    <script src="https://unpkg.com/@jupyter-widgets/html-manager@^0.20.1/dist/embed-amd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <link rel="shortcut icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Coordinate conversions" href="coordinates.html" />
-    <link rel="prev" title="Gravity disturbances" href="gravity_disturbance.html" />
+    <link rel="next" title="List of functions and classes (API)" href="../api/index.html" />
+    <link rel="prev" title="Coordinate conversions" href="coordinates.html" />
     <!-- Plausible analytics for anonymous usage statistics -->
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
@@ -133,14 +133,14 @@
    Gravity disturbances
   </a>
  </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Defining ellipsoids
-  </a>
- </li>
  <li class="toctree-l1">
   <a class="reference internal" href="coordinates.html">
    Coordinate conversions
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Defining custom ellipsoids
   </a>
  </li>
 </ul>
@@ -220,7 +220,7 @@
 </p>
 <ul class="nav bd-sidenav">
  <li class="toctree-l1">
-  <a class="reference external" href="http://contact.fatiando.org">
+  <a class="reference external" href="https://www.fatiando.org/contact">
    Join the community
   </a>
  </li>
@@ -462,7 +462,7 @@ title="Print to PDF"
         <div class="col pl-md-3 pl-lg-5 content-container">
             <!-- Table of contents that is only displayed when printing the page -->
             <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Defining ellipsoids</h1>
+                <h1>Defining custom ellipsoids</h1>
                 <!-- Table of contents -->
                 <div id="print-main-content">
                     <div id="jb-print-toc">
@@ -497,8 +497,8 @@ title="Print to PDF"
                 
               <div>
                 
-  <section id="defining-ellipsoids">
-<span id="id1"></span><h1>Defining ellipsoids<a class="headerlink" href="#defining-ellipsoids" title="Permalink to this headline">#</a></h1>
+  <section id="defining-custom-ellipsoids">
+<span id="defining-ellipsoids"></span><h1>Defining custom ellipsoids<a class="headerlink" href="#defining-custom-ellipsoids" title="Permalink to this headline">#</a></h1>
 <p>Boule comes with a range of <a class="reference internal" href="../ellipsoids.html#ellipsoids"><span class="std std-ref">built-in ellipsoids</span></a> already but
 you may want to define your own.
 If that’s the case, then you have the following options to choose from:</p>
@@ -561,7 +561,7 @@ defines the centrifugal potential.</p></li>
 <p>You can also include metadata about where the defining parameters came from (a
 citation) and a long descriptive name for the ellipsoid. For example, this is
 how the WGS84 ellipsoid can be defined with <a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a> using
-parameters from <a class="reference internal" href="../references.html#hofmannwellenhofmoritz2006" id="id2"><span>[HofmannWellenhofMoritz2006]</span></a>:</p>
+parameters from <a class="reference internal" href="../references.html#hofmannwellenhofmoritz2006" id="id1"><span>[HofmannWellenhofMoritz2006]</span></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
@@ -610,7 +610,7 @@ the centrifugal potential.</p></li>
 <p>As with oblate ellipsoids, <a class="reference internal" href="../api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Sphere</span></code></a> also takes the same metadata
 as input.
 For example, here is the definition of the Mercury spheroid from parameters
-found in <a class="reference internal" href="../references.html#wieczorek2015" id="id3"><span>[Wieczorek2015]</span></a>:</p>
+found in <a class="reference internal" href="../references.html#wieczorek2015" id="id2"><span>[Wieczorek2015]</span></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">MERCURY</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span>
@@ -650,7 +650,7 @@ defines the centrifugal potential.</p></li>
 <p><a class="reference internal" href="../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid" title="boule.TriaxialEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.TriaxialEllipsoid</span></code></a> also takes the same metadata attributes as
 input.
 For example, here is the definition of the Vesta ellipsoid using parameters
-from <a class="reference internal" href="../references.html#russell2012" id="id4"><span>[Russell2012]</span></a>:</p>
+from <a class="reference internal" href="../references.html#russell2012" id="id3"><span>[Russell2012]</span></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">VESTA</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">TriaxialEllipsoid</span><span class="p">(</span>
@@ -694,17 +694,17 @@ please <a class="reference external" href="https://www.fatiando.org/contact">get
                 
     <!-- Previous / next buttons -->
 <div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="gravity_disturbance.html" title="previous page">
+    <a class='left-prev' id="prev-link" href="coordinates.html" title="previous page">
         <i class="fas fa-angle-left"></i>
         <div class="prev-next-info">
             <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Gravity disturbances</p>
+            <p class="prev-next-title">Coordinate conversions</p>
         </div>
     </a>
-    <a class='right-next' id="next-link" href="coordinates.html" title="next page">
+    <a class='right-next' id="next-link" href="../api/index.html" title="next page">
     <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Coordinate conversions</p>
+        <p class="prev-next-title">List of functions and classes (API)</p>
     </div>
     <i class="fas fa-angle-right"></i>
     </a>
@@ -716,7 +716,7 @@ please <a class="reference external" href="https://www.fatiando.org/contact">get
         <footer class="col footer"><p>
   
       &copy; Copyright 2022, The Boule Developers.<br/>
-    Last updated on Aug 08, 2022.<br/>
+    Last updated on Oct 27, 2022.<br/>
 </p>
         </footer>
     </div>
