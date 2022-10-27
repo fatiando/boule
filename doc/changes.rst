@@ -3,10 +3,35 @@
 Changelog
 =========
 
+Version 0.4.1
+-------------
+
+Released on: 2022/10/27
+
+doi: https://doi.org/10.5281/zenodo.7258175
+
+Documentation:
+
+* Update contact link in the docs side bar (`#141 <https://github.com/fatiando/boule/pull/141>`__)
+* Add definition of “co-located grids” to the glossary (`#139 <https://github.com/fatiando/boule/pull/139>`__)
+* Fix typo in overview docs page (`#137 <https://github.com/fatiando/boule/pull/137>`__)
+
+Maintenance:
+
+* Undo deprecation of coordinate conversion methods (`#142 <https://github.com/fatiando/boule/pull/142>`__)
+* Drop support for Python 3.6 (`#144 <https://github.com/fatiando/boule/pull/144>`__)
+* Add ``serve`` target in ``doc/Makefile`` (`#136 <https://github.com/fatiando/boule/pull/136>`__)
+
+This release contains contributions from:
+
+* Mariana Gomez
+* Santiago Soler
+* Leonardo Uieda
+
 Version 0.4.0
 -------------
 
-*Released on: 2022/08/09*
+Released on: 2022/08/09
 
 doi: https://doi.org/10.5281/zenodo.6779998
 
@@ -65,7 +90,7 @@ This release contains contributions from:
 Version 0.3.1
 -------------
 
-*Released on: 2021/10/19*
+Released on: 2021/10/19
 
 doi:`10.5281/zenodo.5577885 <https://doi.org/10.5281/zenodo.5577885>`__
 
@@ -80,7 +105,7 @@ This release contains contributions from:
 Version 0.3.0
 -------------
 
-*Released on: 2021/10/18*
+Released on: 2021/10/18
 
 doi:`10.5281/zenodo.5575827 <https://doi.org/10.5281/zenodo.5575827>`__
 
@@ -134,7 +159,7 @@ This release contains contributions from:
 Version 0.2.0
 -------------
 
-*Released on: 2020/07/10*
+Released on: 2020/07/10
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3939204.svg
     :alt: Digital Object Identifier
@@ -153,7 +178,7 @@ This release contains contributions from:
 Version 0.1.1
 -------------
 
-*Released on: 2020/01/10*
+Released on: 2020/01/10
 
 This release contains only a documentation fix: include install instructions
 for conda and pip. No functionality has been changed (hence, no DOI was
@@ -162,7 +187,7 @@ issued).
 Version 0.1.0
 -------------
 
-*Released on: 2020/01/10*
+Released on: 2020/01/10
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3603997.svg
     :alt: Digital Object Identifier
@@ -180,7 +205,7 @@ First release of *Boule* including basic functionality:
 Version 0.0.1
 -------------
 
-*Released on: 2019/11/06*
+Released on: 2019/11/06
 
 .. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3530750.svg
     :alt: Digital Object Identifier
