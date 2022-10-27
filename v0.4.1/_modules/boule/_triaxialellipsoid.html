@@ -1,0 +1,596 @@
+
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <title>boule._triaxialellipsoid | Boule v0.4.1</title>
+    
+
+    
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+
+    
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <!-- Plausible analytics for anonymous usage statistics -->
+    <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
+<!-- Checkboxes to toggle the left sidebar -->
+<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
+<label class="overlay overlay-navbar" for="__navigation">
+    <div class="visually-hidden">Toggle navigation sidebar</div>
+</label>
+<!-- Checkboxes to toggle the in-page toc -->
+<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
+<label class="overlay overlay-pagetoc" for="__page-toc">
+    <div class="visually-hidden">Toggle in-page Table of Contents</div>
+</label>
+<!-- Headers at the top -->
+<div class="announcement header-item noprint"></div>
+<div class="header header-item noprint"></div>
+
+    
+    <div class="container-fluid" id="banner"></div>
+
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<!-- Sidebar -->
+<div class="bd-sidebar noprint" id="site-navigation">
+    <div class="bd-sidebar__content">
+        <div class="bd-sidebar__top"><div class="navbar-brand-box">
+    <a class="navbar-brand text-wrap" href="../../index.html">
+      
+        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+        
+      
+      
+      <img src="../../_static/boule-logo.png" class="logo" alt="logo">
+      
+      
+      <h1 class="site-logo" id="site-title">Boule <span class="project-version">v0.4.1</span></h1>
+      
+    </a>
+</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
+</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item active">
+        <p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Getting Started
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../overview.html">
+   Overview
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../install.html">
+   Installing
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  User Guide
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/normal_gravity.html">
+   Normal gravity
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/gravity_disturbance.html">
+   Gravity disturbances
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/coordinates.html">
+   Coordinate conversions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../user_guide/defining_ellipsoids.html">
+   Defining custom ellipsoids
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Reference Documentation
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../api/index.html">
+   List of functions and classes (API)
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/boule.Ellipsoid.html">
+     boule.Ellipsoid
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/boule.Sphere.html">
+     boule.Sphere
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../api/generated/boule.TriaxialEllipsoid.html">
+     boule.TriaxialEllipsoid
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../ellipsoids.html">
+   Available ellipsoids
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../citing.html">
+   Citing Boule
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../glossary.html">
+   Glossary
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../references.html">
+   References
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../changes.html">
+   Changelog
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../compatibility.html">
+   Version compatibility
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../../versions.html">
+   Documentation for other versions
+  </a>
+ </li>
+</ul>
+<p aria-level="2" class="caption" role="heading">
+ <span class="caption-text">
+  Community
+ </span>
+</p>
+<ul class="nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.fatiando.org/contact">
+   Join the community
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">
+   How to contribute
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">
+   Code of Conduct
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://github.com/fatiando/boule">
+   Source code on GitHub
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference external" href="https://www.fatiando.org">
+   The Fatiando a Terra project
+  </a>
+ </li>
+</ul>
+
+    </div>
+</nav></div>
+        <div class="bd-sidebar__bottom">
+             <!-- To handle the deprecated key -->
+            
+            <div class="navbar_extra_footer">
+            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
+            </div>
+            
+        </div>
+    </div>
+    <div id="rtd-footer-container"></div>
+</div>
+
+
+          
+
+
+          
+<!-- A tiny helper pixel to detect if we've scrolled -->
+<div class="sbt-scroll-pixel-helper"></div>
+<!-- Main content -->
+<div class="col py-0 content-container">
+    
+    <div class="header-article row sticky-top noprint">
+        
+
+
+
+<div class="col py-1 d-flex header-article-main">
+    <div class="header-article__left">
+        
+        <label for="__navigation"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="right"
+title="Toggle navigation"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-bars"></i>
+  </span>
+
+</label>
+
+        
+    </div>
+    <div class="header-article__right">
+<button onclick="toggleFullScreen()"
+  class="headerbtn"
+  data-toggle="tooltip"
+data-placement="bottom"
+title="Fullscreen mode"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+<div class="menu-dropdown menu-dropdown-repository-buttons">
+  <button class="headerbtn menu-dropdown__trigger"
+      aria-label="Source repositories">
+      <i class="fab fa-github"></i>
+  </button>
+  <div class="menu-dropdown__content">
+    <ul>
+      <li>
+        <a href="https://github.com/fatiando/boule"
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Source repository"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="headerbtn__text-container">repository</span>
+</a>
+
+      </li>
+      
+      <li>
+        <a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2F_modules/boule/_triaxialellipsoid.html&body=Your%20issue%20content%20here."
+   class="headerbtn"
+   data-toggle="tooltip"
+data-placement="left"
+title="Open an issue"
+>
+  
+
+<span class="headerbtn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="headerbtn__text-container">open issue</span>
+</a>
+
+      </li>
+      
+    </ul>
+  </div>
+</div>
+
+    </div>
+</div>
+
+<!-- Table of contents -->
+<div class="col-md-3 bd-toc show noprint">
+</div>
+    </div>
+    <div class="article row">
+        <div class="col pl-md-3 pl-lg-5 content-container">
+            <!-- Table of contents that is only displayed when printing the page -->
+            <div id="jb-print-docs-body" class="onlyprint">
+                <h1></h1>
+                <!-- Table of contents -->
+                <div id="print-main-content">
+                    <div id="jb-print-toc">
+                        
+                    </div>
+                </div>
+            </div>
+            <main id="main-content" role="main">
+                
+              <div>
+                
+  <h1>Source code for boule._triaxialellipsoid</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2019 The Boule Developers.</span>
+<span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="c1">#</span>
+<span class="c1"># This code is part of the Fatiando a Terra project (https://www.fatiando.org)</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Define a reference triaxial ellipsoid.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+
+<span class="kn">import</span> <span class="nn">attr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+
+<span class="c1"># Don&#39;t let ellipsoid parameters be changed to avoid messing up calculations</span>
+<span class="c1"># accidentally.</span>
+<div class="viewcode-block" id="TriaxialEllipsoid"><a class="viewcode-back" href="../../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid">[docs]</a><span class="nd">@attr</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">TriaxialEllipsoid</span><span class="p">:</span>
+    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A rotating triaxial ellipsoid.</span>
+
+<span class="sd">    The ellipsoid is defined by five parameters: semimajor axis, semimedium</span>
+<span class="sd">    axis, semiminor axis, geocentric gravitational constant, and angular</span>
+<span class="sd">    velocity The thee semi-axis are different and the ellipsoid spins around</span>
+<span class="sd">    it&#39;s largest moment of inertia.</span>
+
+<span class="sd">    **This class is read-only:** Input parameters and attributes cannot be</span>
+<span class="sd">    changed after instantiation.</span>
+
+<span class="sd">    **Units:** All input parameters and derived attributes are in SI units.</span>
+
+<span class="sd">    .. attention::</span>
+
+<span class="sd">        Gravity calculations have not been implemented yet for triaxial</span>
+<span class="sd">        ellipsoids. If you&#39;re interested in this feature or would like to help</span>
+<span class="sd">        implement it, please</span>
+<span class="sd">        `get in touch &lt;https://www.fatiando.org/contact&gt;`__.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        A short name for the ellipsoid, for example ``&quot;WGS84&quot;``.</span>
+<span class="sd">    semimajor_axis : float</span>
+<span class="sd">        The semimajor (largest) axis of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`a`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">    semimedium_axis : float</span>
+<span class="sd">        The semimedium (middle) axis of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`b`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">    semiminor_axis : float</span>
+<span class="sd">        The semiminor (smallest) axis of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`c`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">    geocentric_grav_const : float</span>
+<span class="sd">        The geocentric gravitational constant. The product of the mass of the</span>
+<span class="sd">        ellipsoid :math:`M` and the gravitational constant :math:`G`.</span>
+<span class="sd">        Definition: :math:`GM`. Units:</span>
+<span class="sd">        :math:`m^3.s^{-2}`.</span>
+<span class="sd">    angular_velocity : float</span>
+<span class="sd">        The angular velocity of the rotating ellipsoid.</span>
+<span class="sd">        Definition: :math:`\omega`.</span>
+<span class="sd">        Units: :math:`\\rad.s^{-1}`.</span>
+<span class="sd">    long_name : str or None</span>
+<span class="sd">        A long name for the ellipsoid, for example ``&quot;World Geodetic System</span>
+<span class="sd">        1984&quot;`` (optional).</span>
+<span class="sd">    reference : str or None</span>
+<span class="sd">        Citation for the ellipsoid parameter values (optional).</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    We can define an ellipsoid by setting the 5 key numerical parameters:</span>
+
+<span class="sd">    &gt;&gt;&gt; ellipsoid = TriaxialEllipsoid(</span>
+<span class="sd">    ...     name=&quot;VESTA&quot;,</span>
+<span class="sd">    ...     long_name=&quot;Vesta Triaxial Ellipsoid&quot;,</span>
+<span class="sd">    ...     semimajor_axis=286_300,</span>
+<span class="sd">    ...     semimedium_axis=278_600,</span>
+<span class="sd">    ...     semiminor_axis=223_200,</span>
+<span class="sd">    ...     geocentric_grav_const=1.729094e10,</span>
+<span class="sd">    ...     angular_velocity=326.71050958367e-6,</span>
+<span class="sd">    ...     reference=(</span>
+<span class="sd">    ...         &quot;Russell, C. T., Raymond, C. A., Coradini, A., McSween, &quot;</span>
+<span class="sd">    ...         &quot;H. Y., Zuber, M. T., Nathues, A., et al. (2012). Dawn at &quot;</span>
+<span class="sd">    ...         &quot;Vesta: Testing the Protoplanetary Paradigm. Science. &quot;</span>
+<span class="sd">    ...         &quot;doi:10.1126/science.1219381&quot;</span>
+<span class="sd">    ...     ),</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; print(ellipsoid) # doctest: +ELLIPSIS</span>
+<span class="sd">    TriaxialEllipsoid(name=&#39;VESTA&#39;, ...)</span>
+<span class="sd">    &gt;&gt;&gt; print(ellipsoid.long_name)</span>
+<span class="sd">    Vesta Triaxial Ellipsoid</span>
+
+<span class="sd">    The class then defines several derived attributes based on the input</span>
+<span class="sd">    parameters:</span>
+
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.mean_radius:.0f} m&quot;)</span>
+<span class="sd">    262700 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.volume * 1e-9:.0f} km³&quot;)</span>
+<span class="sd">    74573626 km³</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">semimajor_axis</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">semimedium_axis</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">semiminor_axis</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">geocentric_grav_const</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">long_name</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">reference</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">_raise_invalid_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Raise a ValueError informing that the axis are invalid.&quot;</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Invalid triaxial ellipsoid axis: &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;major=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="si">}</span><span class="s2"> &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;medium=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span><span class="si">}</span><span class="s2"> &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;minor=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="si">}</span><span class="s2">. &quot;</span>
+            <span class="s2">&quot;Must be major &gt; medium &gt; minor.&quot;</span>
+        <span class="p">)</span>
+
+    <span class="nd">@semimajor_axis</span><span class="o">.</span><span class="n">validator</span>
+    <span class="k">def</span> <span class="nf">_check_semimajor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semimajor_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if semimajor_axis is positive and is the largest of the axis.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid semi-major axis &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;. Should be greater than zero.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span> <span class="o">&gt;</span> <span class="n">value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raise_invalid_axis</span><span class="p">()</span>
+
+    <span class="nd">@semimedium_axis</span><span class="o">.</span><span class="n">validator</span>
+    <span class="k">def</span> <span class="nf">_check_semimedium_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semimedium_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Check if semimedium_axis is positive and larger than semi-minor axis.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid semi-medium axis &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;. Should be greater than zero.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">&gt;</span> <span class="n">value</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">_raise_invalid_axis</span><span class="p">()</span>
+
+    <span class="nd">@semiminor_axis</span><span class="o">.</span><span class="n">validator</span>
+    <span class="k">def</span> <span class="nf">_check_semiminor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semiminor_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="s2">&quot;Check if semiminor_axis is positive.&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid semi-minor axis &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;. Should be greater than zero.&quot;</span>
+            <span class="p">)</span>
+        <span class="c1"># Don&#39;t need to check here because if the two checks for major and</span>
+        <span class="c1"># medium pass it means that this is the smallest.</span>
+
+    <span class="nd">@geocentric_grav_const</span><span class="o">.</span><span class="n">validator</span>
+    <span class="k">def</span> <span class="nf">_check_geocentric_grav_const</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geocentric_grav_const</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="s2">&quot;Warn if geocentric_grav_const is negative.&quot;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The geocentric gravitational constant is negative: &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The arithmetic mean radius of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`R = \dfrac{a + b + c}{3}`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The volume bounded by the ellipsoid.</span>
+<span class="sd">        Definition: :math:`V = \dfrac{4}{3} \pi a b c`.</span>
+<span class="sd">        Units: :math:`m^3`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span>
+        <span class="p">)</span></div>
+</pre></div>
+
+              </div>
+              
+            </main>
+            <footer class="footer-article noprint">
+                
+    <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+            </footer>
+        </div>
+    </div>
+    <div class="footer-content row">
+        <footer class="col footer"><p>
+  
+      &copy; Copyright 2022, The Boule Developers.<br/>
+    Last updated on Oct 27, 2022.<br/>
+</p>
+        </footer>
+    </div>
+    
+</div>
+
+
+      </div>
+    </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+
+
+  </body>
+</html>
