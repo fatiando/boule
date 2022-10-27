@@ -16,7 +16,7 @@ dependencies:
   - pytest
   - pytest-cov
   - coverage
-  - pymap3d>=2.9.0
+  - pymap3d>=2.9
   # Documentation
   - sphinx==4.5.*
   - sphinx-book-theme==0.3.*

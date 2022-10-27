@@ -10,6 +10,14 @@ All ellipsoids are instances of the :class:`~boule.Ellipsoid`,
 class documentations for a list their derived physical properties (attributes)
 and computations/transformations that they can perform (methods).
 
+.. admonition:: Help!
+    :class: hint
+
+    If an ellipsoid you need isn't in Boule yet, please `reach out
+    <https://www.fatiando.org/contact>`__ to the team and consider adding it
+    yourself. It requires no special knowledge of the code and is a great way
+    to help the project!
+
 .. jupyter-execute::
     :hide-code:
 

@@ -135,8 +135,8 @@ Boule is designed for:
 
     user_guide/normal_gravity.rst
     user_guide/gravity_disturbance.rst
-    user_guide/defining_ellipsoids.rst
     user_guide/coordinates.rst
+    user_guide/defining_ellipsoids.rst
 
 .. toctree::
     :maxdepth: 2

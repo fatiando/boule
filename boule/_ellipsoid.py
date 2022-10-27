@@ -423,14 +423,6 @@ class Ellipsoid:
         """
         Convert from geodetic to geocentric spherical coordinates.
 
-        .. warning::
-
-            **This method is deprecated and will be removed in Boule v0.5.0.**
-            Please use the equivalent function in
-            `pymap3d <https://github.com/geospace-code/pymap3d/>`__ instead
-            (``pymap3d.geodetic2spherical``) which is available since version
-            2.9.0.
-
         The geodetic datum is defined by this ellipsoid. The coordinates are
         converted following [Vermeille2002]_.
 
@@ -454,38 +446,21 @@ class Ellipsoid:
             system in degrees.
         radius : array
             Converted spherical radius coordinates in meters.
-
         """
-        warn(
-            "Ellipsoid.geodetic_to_spherical is deprecated and will be removed "
-            "in Boule v0.5.0. Use pymap3d.geodetic2spherical instead.",
-            FutureWarning,
-        )
-
-        latitude_rad = np.radians(latitude)
-        coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
-        prime_vertical_radius = self.prime_vertical_radius(sinlat)
+        sinlat = np.sin(np.radians(latitude))
+        coslat = np.sqrt(1 - sinlat**2)
+        prime_radius = self.prime_vertical_radius(sinlat)
         # Instead of computing X and Y, we only compute the projection on the
         # XY plane: xy_projection = sqrt( X**2 + Y**2 )
-        xy_projection = (height + prime_vertical_radius) * coslat
-        z_cartesian = (
-            height + (1 - self.first_eccentricity**2) * prime_vertical_radius
-        ) * sinlat
-        radius = np.sqrt(xy_projection**2 + z_cartesian**2)
+        xy_projection = (height + prime_radius) * coslat
+        z_cartesian = (height + (1 - self.eccentricity**2) * prime_radius) * sinlat
+        radius = np.hypot(xy_projection, z_cartesian)
         spherical_latitude = np.degrees(np.arcsin(z_cartesian / radius))
         return longitude, spherical_latitude, radius
 
     def spherical_to_geodetic(self, longitude, spherical_latitude, radius):
         """
         Convert from geocentric spherical to geodetic coordinates.
-
-        .. warning::
-
-            **This method is deprecated and will be removed in Boule v0.5.0.**
-            Please use the equivalent function in
-            `pymap3d <https://github.com/geospace-code/pymap3d/>`__ instead
-            (``pymap3d.spherical2geodetic``) which is available since version
-            2.9.0.
 
         The geodetic datum is defined by this ellipsoid. The coordinates are
         converted following [Vermeille2002]_.
@@ -511,43 +486,24 @@ class Ellipsoid:
             degrees.
         height : array
             Converted ellipsoidal height coordinates in meters.
-
         """
-        warn(
-            "Ellipsoid.spherical_to_geodetic is deprecated and will be removed "
-            "in Boule v0.5.0. Use pymap3d.spherical2geodetic instead.",
-            FutureWarning,
-        )
-
-        spherical_latitude = np.radians(spherical_latitude)
-        k, big_z, big_d = self._spherical_to_geodetic_terms(spherical_latitude, radius)
-        latitude = np.degrees(
-            2 * np.arctan(big_z / (big_d + np.sqrt(big_d**2 + big_z**2)))
-        )
-        height = (
-            (k + self.first_eccentricity**2 - 1)
-            / k
-            * np.sqrt(big_d**2 + big_z**2)
-        )
-        return longitude, latitude, height
-
-    def _spherical_to_geodetic_terms(self, spherical_latitude, radius):
-        "Calculate intermediate terms needed for the conversion."
-        # Offload computation of these intermediate variables here to clean up
-        # the main function body
-        cos_latitude = np.cos(spherical_latitude)
-        big_z = radius * np.sin(spherical_latitude)
-        p_0 = radius**2 * cos_latitude**2 / self.semimajor_axis**2
-        q_0 = (1 - self.first_eccentricity**2) / self.semimajor_axis**2 * big_z**2
-        r_0 = (p_0 + q_0 - self.first_eccentricity**4) / 6
-        s_0 = self.first_eccentricity**4 * p_0 * q_0 / 4 / r_0**3
+        sinlat = np.sin(np.radians(spherical_latitude))
+        coslat = np.sqrt(1 - sinlat**2)
+        big_z = radius * sinlat
+        p_0 = radius**2 * coslat**2 / self.semimajor_axis**2
+        q_0 = (1 - self.eccentricity**2) / self.semimajor_axis**2 * big_z**2
+        r_0 = (p_0 + q_0 - self.eccentricity**4) / 6
+        s_0 = self.eccentricity**4 * p_0 * q_0 / 4 / r_0**3
         t_0 = np.cbrt(1 + s_0 + np.sqrt(2 * s_0 + s_0**2))
         u_0 = r_0 * (1 + t_0 + 1 / t_0)
-        v_0 = np.sqrt(u_0**2 + q_0 * self.first_eccentricity**4)
-        w_0 = self.first_eccentricity**2 * (u_0 + v_0 - q_0) / 2 / v_0
+        v_0 = np.sqrt(u_0**2 + q_0 * self.eccentricity**4)
+        w_0 = self.eccentricity**2 * (u_0 + v_0 - q_0) / 2 / v_0
         k = np.sqrt(u_0 + v_0 + w_0**2) - w_0
-        big_d = k * radius * cos_latitude / (k + self.first_eccentricity**2)
-        return k, big_z, big_d
+        big_d = k * radius * coslat / (k + self.eccentricity**2)
+        hypot_dz = np.hypot(big_d, big_z)
+        latitude = np.degrees(2 * np.arctan2(big_z, (big_d + hypot_dz)))
+        height = (k + self.eccentricity**2 - 1) / k * hypot_dz
+        return longitude, latitude, height
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""
