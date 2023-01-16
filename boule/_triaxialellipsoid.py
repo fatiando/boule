@@ -184,3 +184,100 @@ class TriaxialEllipsoid:
             * self.semimedium_axis
             * self.semiminor_axis
         )
+
+    def geocentric_radius(self, latitude, longitude, longitude_semimajor_axis=0.0):
+        r"""
+        Radial distance from the center of the ellipsoid.
+
+        Assumes geocentric spherical latitude and geocentric spherical
+        longitudes.
+
+        Parameters
+        ----------
+        latitude : float or array
+            Latitude coordinates on spherical coordinate system in degrees.
+        longitude : float or array
+            Longitude coordinates on spherical coordinate system in degrees.
+        longitude_semimajor_axis : float
+            Longitude coordinate of the meridian containing the semi-major axis
+            on spherical coordinate system in degrees. Optional, default value
+            is 0.0.
+
+        Returns
+        -------
+        geocentric_radius : float or array
+            The geocentric radius for the given spherical latitude(s) and
+            spherical longitude(s) in the same units as the axes of the
+            ellipsoid.
+
+
+        .. tip::
+
+            No elevation is taken into account.
+
+        Notes
+        -----
+
+        Given geocentric spherical latitude :math:`\phi` and geocentric
+        spherical longitude :math:`\lambda`, the geocentric surface radius
+        :math:`R` is computed as (see Eq. 1 of [1]_)
+
+        .. math::
+
+            R(\phi, \lambda) = \frac{a \, (1 - f_1) \, (1 - f_2)}{\sqrt{1 - (2
+            f_1 - f_1^2) \, \cos^2\phi - (2 f_2 - f_2^2) \, \sin^2\phi - (1
+            - f_1)^2 \, (2 f_2 - f_2^2) \, \cos^2\phi \, \cos^2(\lambda
+            - \lambda_a)}}{,}
+
+        where
+
+        .. math::
+
+            f_1 = \frac{a - c}{a}
+
+        and
+
+        .. math::
+
+            f_2 = \frac{a - b}{a}{,}
+
+        with :math:`a`, :math:`b` and :math:`c` being the semi-major,
+        semi-medium and semi-minor axes of the ellipsoid and :math:`\lambda_a`
+        being the geocentric spherical longitude of the meridian containing the
+        semi-major axis.
+
+        Note that the authors of [1]_ use geocentric spherical co-latitude,
+        while here we used geocentric spherical latitude.
+
+        References
+        ----------
+
+        .. [1] Pec, K., Martinec, Z. (1983). Expansion of geoid heights over
+            a triaxial Earth's ellipsoid into a spherical harmonic series.
+            Studia Geophysica et Geodaetica, 27
+
+        """
+        latitude_rad = np.radians(latitude)
+        longitude_rad = np.radians(longitude)
+        longitude_semimajor_axis_rad = np.radians(longitude_semimajor_axis)
+
+        coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
+
+        a = self.semimajor_axis
+        b = self.semimedium_axis
+        c = self.semiminor_axis
+
+        f1 = (a - c) / a
+        f2 = (a - b) / a
+
+        radius = (a * (1.0 - f1) * (1.0 - f2)) / np.sqrt(
+            1.0
+            - (2.0 * f1 - f1 ** 2) * coslat ** 2
+            - (2.0 * f2 - f2 ** 2) * sinlat ** 2
+            - (1.0 - f1) ** 2
+            * (2.0 * f2 - f2 ** 2)
+            * coslat ** 2
+            * np.cos(longitude_rad - longitude_semimajor_axis_rad) ** 2
+        )
+
+        return radius
