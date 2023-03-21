@@ -189,7 +189,7 @@ def test_volume_gt_minorsphere(triaxialellipsoid):
     Check that the volume is larger than a sphere of semiminor axis radius
     """
     assert (
-        triaxialellipsoid.volume > 4 * np.pi / 3 * triaxialellipsoid.semiminor_axis ** 3
+        triaxialellipsoid.volume > 4 * np.pi / 3 * triaxialellipsoid.semiminor_axis**3
     )
 
 
@@ -198,7 +198,7 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
     Check that the volume is lesser than a sphere of semimajor axis radius
     """
     assert (
-        triaxialellipsoid.volume < 4 * np.pi / 3 * triaxialellipsoid.semimajor_axis ** 3
+        triaxialellipsoid.volume < 4 * np.pi / 3 * triaxialellipsoid.semimajor_axis**3
     )
 
 

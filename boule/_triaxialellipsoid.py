@@ -272,11 +272,11 @@ class TriaxialEllipsoid:
 
         radius = (a * (1.0 - f1) * (1.0 - f2)) / np.sqrt(
             1.0
-            - (2.0 * f1 - f1 ** 2) * coslat ** 2
-            - (2.0 * f2 - f2 ** 2) * sinlat ** 2
+            - (2.0 * f1 - f1**2) * coslat**2
+            - (2.0 * f2 - f2**2) * sinlat**2
             - (1.0 - f1) ** 2
-            * (2.0 * f2 - f2 ** 2)
-            * coslat ** 2
+            * (2.0 * f2 - f2**2)
+            * coslat**2
             * np.cos(longitude_rad - longitude_semimajor_axis_rad) ** 2
         )
 

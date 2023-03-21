@@ -296,9 +296,9 @@ class Sphere:
         radial_distance = self.radius + height
         gravity_acceleration = self.geocentric_grav_const / (radial_distance) ** 2
         gamma = np.sqrt(
-            gravity_acceleration ** 2
-            + (self.angular_velocity ** 2 * radial_distance - 2 * gravity_acceleration)
-            * self.angular_velocity ** 2
+            gravity_acceleration**2
+            + (self.angular_velocity**2 * radial_distance - 2 * gravity_acceleration)
+            * self.angular_velocity**2
             * radial_distance
             # Use cos^2 = (1 - sin^2) for more accurate results on the pole
             * (1 - np.sin(np.radians(latitude)) ** 2)
