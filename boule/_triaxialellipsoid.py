@@ -185,7 +185,7 @@ class TriaxialEllipsoid:
             * self.semiminor_axis
         )
 
-    def geocentric_radius(self, latitude, longitude, longitude_semimajor_axis=0.0):
+    def geocentric_radius(self, longitude, latitude, longitude_semimajor_axis=0.0):
         r"""
         Radial distance from the center of the ellipsoid.
 
@@ -194,10 +194,10 @@ class TriaxialEllipsoid:
 
         Parameters
         ----------
-        latitude : float or array
-            Latitude coordinates on spherical coordinate system in degrees.
         longitude : float or array
             Longitude coordinates on spherical coordinate system in degrees.
+        latitude : float or array
+            Latitude coordinates on spherical coordinate system in degrees.
         longitude_semimajor_axis : float
             Longitude coordinate of the meridian containing the semi-major axis
             on spherical coordinate system in degrees. Optional, default value

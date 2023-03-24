@@ -210,7 +210,7 @@ def test_geocentric_radius_poles(triaxialellipsoid):
     longitude = np.array([0.0, 90.0, 0.0, 90.0])
     radius_true = np.full(latitude.shape, triaxialellipsoid.semiminor_axis)
     npt.assert_allclose(
-        radius_true, triaxialellipsoid.geocentric_radius(latitude, longitude)
+        radius_true, triaxialellipsoid.geocentric_radius(longitude, latitude)
     )
 
 
@@ -229,7 +229,7 @@ def test_geocentric_radius_equator(triaxialellipsoid):
         ]
     )
     npt.assert_allclose(
-        radius_true, triaxialellipsoid.geocentric_radius(latitude, longitude)
+        radius_true, triaxialellipsoid.geocentric_radius(longitude, latitude)
     )
 
 
@@ -248,7 +248,7 @@ def test_geocentric_radius_semimajor_axis_longitude(triaxialellipsoid):
         ]
     )
     npt.assert_allclose(
-        radius_true, triaxialellipsoid.geocentric_radius(latitude, longitude, 90.0)
+        radius_true, triaxialellipsoid.geocentric_radius(longitude, latitude, 90.0)
     )
 
 
@@ -280,5 +280,5 @@ def test_geocentric_radius_biaxialellipsoid(triaxialellipsoid):
     # ellipsoid
     radius_true = biaxialellipsoid_ref.geocentric_radius(latitude, geodetic=False)
     npt.assert_allclose(
-        radius_true, biaxialellipsoid.geocentric_radius(latitude, longitude)
+        radius_true, biaxialellipsoid.geocentric_radius(longitude, latitude)
     )
