@@ -262,14 +262,14 @@ def test_geocentric_radius_biaxialellipsoid(triaxialellipsoid):
     GM = triaxialellipsoid.geocentric_grav_const
     omega = triaxialellipsoid.angular_velocity
 
-    # Instantiate an "Ellipsoid" class using the following defining parameters
-    # of "triaxialellipsoid": semimajor axis "a", semiminor axis "c",
+    # Instantiate the "Ellipsoid" class using the following defining parameters
+    # from "triaxialellipsoid": semimajor axis "a", semiminor axis "c",
     # geocentric gravitational constant "GM" and angular velocity "omega"
     from .. import Ellipsoid
 
     biaxialellipsoid_ref = Ellipsoid("biaxell_ref", a, (a - c) / a, GM, omega)
 
-    # Instantiate a "TriaxialEllipsoid" class such that it in fact represents
+    # Instantiate the "TriaxialEllipsoid" class such that it in fact represents
     # "biaxialellipsoid_ref"
     biaxialellipsoid = TriaxialEllipsoid("biaxell", a, a, c, GM, omega)
 
