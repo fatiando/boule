@@ -185,6 +185,25 @@ class TriaxialEllipsoid:
             * self.semiminor_axis
         )
 
+    @property
+    def equatorial_flattening(self):
+        r"""
+        The equatorial flattening of the ellipsoid.
+        Definition: :math:`f_b = \frac{a - b}{a}`.
+        Units: adimensional.
+        """
+        return (self.semimajor_axis - self.semimedium_axis) / self.semimajor_axis
+
+    @property
+    def meridional_flattening(self):
+        r"""
+        The meridional flattening of the ellipsoid in the meridian plane
+        containing the semi-major axis.
+        Definition: :math:`f_c = \frac{a - c}{a}`.
+        Units: adimensional.
+        """
+        return (self.semimajor_axis - self.semiminor_axis) / self.semimajor_axis
+
     def geocentric_radius(self, longitude, latitude, longitude_semimajor_axis=0.0):
         r"""
         Radial distance from the center of the ellipsoid.
