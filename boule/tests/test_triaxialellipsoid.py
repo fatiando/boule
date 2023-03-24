@@ -218,7 +218,7 @@ def test_geocentric_radius_equator(triaxialellipsoid):
     """
     Check against values at the equator
     """
-    latitude = np.full((4,), 0.0)
+    latitude = np.zeros(4)
     longitude = np.array([0.0, 90.0, 180.0, 270.0])
     radius_true = np.array(
         [
@@ -237,7 +237,7 @@ def test_geocentric_radius_semimajor_axis_longitude(triaxialellipsoid):
     """
     Check against non-zero longitude of the semi-major axis
     """
-    latitude = np.full((4,), 0.0)
+    latitude = np.zeros(4)
     longitude = np.array([0.0, 90.0, 180.0, 270.0])
     radius_true = np.array(
         [
