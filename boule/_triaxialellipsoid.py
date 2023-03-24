@@ -243,22 +243,22 @@ class TriaxialEllipsoid:
 
         .. math::
 
-            R(\phi, \lambda) = \frac{a \, (1 - f_1) \, (1 - f_2)}{\sqrt{1 - (2
-            f_1 - f_1^2) \, \cos^2\phi - (2 f_2 - f_2^2) \, \sin^2\phi - (1
-            - f_1)^2 \, (2 f_2 - f_2^2) \, \cos^2\phi \, \cos^2(\lambda
+            R(\phi, \lambda) = \frac{a \, (1 - f_c) \, (1 - f_b)}{\sqrt{1 - (2
+            f_c - f_c^2) \, \cos^2\phi - (2 f_b - f_b^2) \, \sin^2\phi - (1
+            - f_c)^2 \, (2 f_b - f_b^2) \, \cos^2\phi \, \cos^2(\lambda
             - \lambda_a)}}{,}
 
         where
 
         .. math::
 
-            f_1 = \frac{a - c}{a}
+            f_c = \frac{a - c}{a}
 
         and
 
         .. math::
 
-            f_2 = \frac{a - b}{a}{,}
+            f_b = \frac{a - b}{a}{,}
 
         with :math:`a`, :math:`b` and :math:`c` being the semi-major,
         semi-medium and semi-minor axes of the ellipsoid and :math:`\lambda_a`
@@ -278,15 +278,15 @@ class TriaxialEllipsoid:
         b = self.semimedium_axis
         c = self.semiminor_axis
 
-        f1 = (a - c) / a
-        f2 = (a - b) / a
+        fc = self.meridional_flattening
+        fb = self.equatorial_flattening
 
-        radius = (a * (1.0 - f1) * (1.0 - f2)) / np.sqrt(
+        radius = (a * (1.0 - fc) * (1.0 - fb)) / np.sqrt(
             1.0
-            - (2.0 * f1 - f1**2) * coslat**2
-            - (2.0 * f2 - f2**2) * sinlat**2
-            - (1.0 - f1) ** 2
-            * (2.0 * f2 - f2**2)
+            - (2.0 * fc - fc**2) * coslat**2
+            - (2.0 * fb - fb**2) * sinlat**2
+            - (1.0 - fc) ** 2
+            * (2.0 * fb - fb**2)
             * coslat**2
             * np.cos(longitude_rad - longitude_semimajor_axis_rad) ** 2
         )
