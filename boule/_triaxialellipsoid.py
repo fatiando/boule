@@ -190,7 +190,7 @@ class TriaxialEllipsoid:
         Radial distance from the center of the ellipsoid.
 
         Assumes geocentric spherical latitude and geocentric spherical
-        longitudes.
+        longitudes.  The coordinates are converted following [Pec1983]_.
 
         Parameters
         ----------
@@ -220,7 +220,7 @@ class TriaxialEllipsoid:
 
         Given geocentric spherical latitude :math:`\phi` and geocentric
         spherical longitude :math:`\lambda`, the geocentric surface radius
-        :math:`R` is computed as (see Eq. 1 of [1]_)
+        :math:`R` is computed as (see Eq. 1 of [Pec1983]_)
 
         .. math::
 
@@ -246,16 +246,8 @@ class TriaxialEllipsoid:
         being the geocentric spherical longitude of the meridian containing the
         semi-major axis.
 
-        Note that the authors of [1]_ use geocentric spherical co-latitude,
-        while here we used geocentric spherical latitude.
-
-        References
-        ----------
-
-        .. [1] Pec, K., Martinec, Z. (1983). Expansion of geoid heights over
-            a triaxial Earth's ellipsoid into a spherical harmonic series.
-            Studia Geophysica et Geodaetica, 27
-
+        Note that [Pec1983]_ use geocentric spherical co-latitude, while here
+        we used geocentric spherical latitude.
         """
         latitude_rad = np.radians(latitude)
         longitude_rad = np.radians(longitude)
