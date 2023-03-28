@@ -209,7 +209,7 @@ class TriaxialEllipsoid:
         Radial distance from the center of the ellipsoid to its surface.
 
         Assumes geocentric spherical latitude and geocentric spherical
-        longitudes.  The coordinates are converted following [Pec1983]_.
+        longitudes. The geocentric radius is calculated following [Pec1983]_.
 
         Parameters
         ----------
