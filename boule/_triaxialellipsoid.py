@@ -217,7 +217,7 @@ class TriaxialEllipsoid:
             Longitude coordinates on spherical coordinate system in degrees.
         latitude : float or array
             Latitude coordinates on spherical coordinate system in degrees.
-        longitude_semimajor_axis : float
+        longitude_semimajor_axis : float (optional)
             Longitude coordinate of the meridian containing the semi-major axis
             on spherical coordinate system in degrees. Optional, default value
             is 0.0.
