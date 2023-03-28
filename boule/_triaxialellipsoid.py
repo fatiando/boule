@@ -206,7 +206,7 @@ class TriaxialEllipsoid:
 
     def geocentric_radius(self, longitude, latitude, longitude_semimajor_axis=0.0):
         r"""
-        Radial distance from the center of the ellipsoid.
+        Radial distance from the center of the ellipsoid to its surface.
 
         Assumes geocentric spherical latitude and geocentric spherical
         longitudes.  The coordinates are converted following [Pec1983]_.
