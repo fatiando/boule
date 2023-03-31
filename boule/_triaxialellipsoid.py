@@ -243,25 +243,33 @@ class TriaxialEllipsoid:
 
         .. math::
 
-            R(\phi, \lambda) = \frac{a \, (1 - f_c) \, (1 - f_b)}{\sqrt{1 - (2
-            f_c - f_c^2) \, \cos^2\phi - (2 f_b - f_b^2) \, \sin^2\phi - (1
-            - f_c)^2 \, (2 f_b - f_b^2) \, \cos^2\phi \, \cos^2(\lambda
-            - \lambda_a)}}{,}
+            R(\phi, \lambda) =
+            \frac{
+                a \, (1 - f_c) \, (1 - f_b)
+            }{
+                \sqrt{
+                    1
+                    - (2 f_c - f_c^2) \cos^2 \phi
+                    - (2 f_b - f_b^2) \sin^2 \phi
+                    - (1 - f_c)^2 (2 f_b - f_b^2)
+                        \cos^2 \phi \cos^2 (\lambda - \lambda_a)
+                }
+            },
 
-        where
+        where :math:`f_c` is the meridional flattening
 
         .. math::
 
-            f_c = \frac{a - c}{a}
+            f_c = \frac{a - c}{a},
 
-        and
+        :math:`f_b` is the equatorial flattening
 
         .. math::
 
-            f_b = \frac{a - b}{a}{,}
+            f_b = \frac{a - b}{a},
 
         with :math:`a`, :math:`b` and :math:`c` being the semi-major,
-        semi-medium and semi-minor axes of the ellipsoid and :math:`\lambda_a`
+        semi-medium and semi-minor axes of the ellipsoid, and :math:`\lambda_a`
         being the geocentric spherical longitude of the meridian containing the
         semi-major axis.
 
