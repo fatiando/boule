@@ -184,3 +184,114 @@ class TriaxialEllipsoid:
             * self.semimedium_axis
             * self.semiminor_axis
         )
+
+    @property
+    def equatorial_flattening(self):
+        r"""
+        The equatorial flattening of the ellipsoid.
+        Definition: :math:`f_b = \frac{a - b}{a}`.
+        Units: adimensional.
+        """
+        return (self.semimajor_axis - self.semimedium_axis) / self.semimajor_axis
+
+    @property
+    def meridional_flattening(self):
+        r"""
+        The meridional flattening of the ellipsoid in the meridian plane
+        containing the semi-major axis.
+        Definition: :math:`f_c = \frac{a - c}{a}`.
+        Units: adimensional.
+        """
+        return (self.semimajor_axis - self.semiminor_axis) / self.semimajor_axis
+
+    def geocentric_radius(self, longitude, latitude, longitude_semimajor_axis=0.0):
+        r"""
+        Radial distance from the center of the ellipsoid to its surface.
+
+        Assumes geocentric spherical latitude and geocentric spherical
+        longitudes. The geocentric radius is calculated following [Pec1983]_.
+
+        Parameters
+        ----------
+        longitude : float or array
+            Longitude coordinates on spherical coordinate system in degrees.
+        latitude : float or array
+            Latitude coordinates on spherical coordinate system in degrees.
+        longitude_semimajor_axis : float (optional)
+            Longitude coordinate of the meridian containing the semi-major axis
+            on spherical coordinate system in degrees. Optional, default value
+            is 0.0.
+
+        Returns
+        -------
+        geocentric_radius : float or array
+            The geocentric radius for the given spherical latitude(s) and
+            spherical longitude(s) in the same units as the axes of the
+            ellipsoid.
+
+
+        .. tip::
+
+            No elevation is taken into account.
+
+        Notes
+        -----
+
+        Given geocentric spherical latitude :math:`\phi` and geocentric
+        spherical longitude :math:`\lambda`, the geocentric surface radius
+        :math:`R` is computed as (see Eq. 1 of [Pec1983]_)
+
+        .. math::
+
+            R(\phi, \lambda) =
+            \frac{
+                a \, (1 - f_c) \, (1 - f_b)
+            }{
+                \sqrt{
+                    1
+                    - (2 f_c - f_c^2) \cos^2 \phi
+                    - (2 f_b - f_b^2) \sin^2 \phi
+                    - (1 - f_c)^2 (2 f_b - f_b^2)
+                        \cos^2 \phi \cos^2 (\lambda - \lambda_a)
+                }
+            },
+
+        where :math:`f_c` is the meridional flattening
+
+        .. math::
+
+            f_c = \frac{a - c}{a},
+
+        :math:`f_b` is the equatorial flattening
+
+        .. math::
+
+            f_b = \frac{a - b}{a},
+
+        with :math:`a`, :math:`b` and :math:`c` being the semi-major,
+        semi-medium and semi-minor axes of the ellipsoid, and :math:`\lambda_a`
+        being the geocentric spherical longitude of the meridian containing the
+        semi-major axis.
+
+        Note that [Pec1983]_ use geocentric spherical co-latitude, while here
+        we used geocentric spherical latitude.
+        """
+        latitude_rad = np.radians(latitude)
+        longitude_rad = np.radians(longitude)
+        longitude_semimajor_axis_rad = np.radians(longitude_semimajor_axis)
+
+        coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
+
+        fc = self.meridional_flattening
+        fb = self.equatorial_flattening
+
+        radius = (self.semimajor_axis * (1.0 - fc) * (1.0 - fb)) / np.sqrt(
+            1.0
+            - (2.0 * fc - fc**2) * coslat**2
+            - (2.0 * fb - fb**2) * sinlat**2
+            - (1.0 - fc) ** 2
+            * (2.0 * fb - fb**2)
+            * coslat**2
+            * np.cos(longitude_rad - longitude_semimajor_axis_rad) ** 2
+        )
+        return radius

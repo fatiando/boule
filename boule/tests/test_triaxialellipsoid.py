@@ -10,9 +10,10 @@ Test the base TriaxialEllipsoid class.
 import warnings
 
 import numpy as np
+import numpy.testing as npt
 import pytest
 
-from .. import TriaxialEllipsoid
+from .. import Ellipsoid, TriaxialEllipsoid
 
 
 @pytest.fixture
@@ -198,4 +199,84 @@ def test_volume_lt_majorsphere(triaxialellipsoid):
     """
     assert (
         triaxialellipsoid.volume < 4 * np.pi / 3 * triaxialellipsoid.semimajor_axis**3
+    )
+
+
+def test_geocentric_radius_poles(triaxialellipsoid):
+    """
+    Check against values at the poles
+    """
+    latitude = np.array([-90.0, -90.0, 90.0, 90.0])
+    longitude = np.array([0.0, 90.0, 0.0, 90.0])
+    radius_true = np.full(latitude.shape, triaxialellipsoid.semiminor_axis)
+    npt.assert_allclose(
+        radius_true, triaxialellipsoid.geocentric_radius(longitude, latitude)
+    )
+
+
+def test_geocentric_radius_equator(triaxialellipsoid):
+    """
+    Check against values at the equator
+    """
+    latitude = np.zeros(4)
+    longitude = np.array([0.0, 90.0, 180.0, 270.0])
+    radius_true = np.array(
+        [
+            triaxialellipsoid.semimajor_axis,
+            triaxialellipsoid.semimedium_axis,
+            triaxialellipsoid.semimajor_axis,
+            triaxialellipsoid.semimedium_axis,
+        ]
+    )
+    npt.assert_allclose(
+        radius_true, triaxialellipsoid.geocentric_radius(longitude, latitude)
+    )
+
+
+def test_geocentric_radius_semimajor_axis_longitude(triaxialellipsoid):
+    """
+    Check against non-zero longitude of the semi-major axis
+    """
+    latitude = np.zeros(4)
+    longitude = np.array([0.0, 90.0, 180.0, 270.0])
+    radius_true = np.array(
+        [
+            triaxialellipsoid.semimedium_axis,
+            triaxialellipsoid.semimajor_axis,
+            triaxialellipsoid.semimedium_axis,
+            triaxialellipsoid.semimajor_axis,
+        ]
+    )
+    npt.assert_allclose(
+        radius_true, triaxialellipsoid.geocentric_radius(longitude, latitude, 90.0)
+    )
+
+
+def test_geocentric_radius_biaxialellipsoid(triaxialellipsoid):
+    """
+    Check against values of a reference biaxial ellipsoid
+    """
+    # Get the defining parameters of "triaxialellipsoid"
+    a = triaxialellipsoid.semimajor_axis
+    c = triaxialellipsoid.semiminor_axis
+    gm = triaxialellipsoid.geocentric_grav_const
+    omega = triaxialellipsoid.angular_velocity
+
+    # Instantiate the "Ellipsoid" class using the following defining parameters
+    # from "triaxialellipsoid": semimajor axis "a", semiminor axis "c",
+    # geocentric gravitational constant "GM" and angular velocity "omega"
+    biaxialellipsoid_ref = Ellipsoid("biaxell_ref", a, (a - c) / a, gm, omega)
+
+    # Instantiate the "TriaxialEllipsoid" class such that it in fact represents
+    # "biaxialellipsoid_ref"
+    biaxialellipsoid = TriaxialEllipsoid("biaxell", a, a, c, gm, omega)
+
+    latitude = np.arange(-90.0, 90.0, 1.0)
+    longitude = np.linspace(0.0, 360.0, num=latitude.size, endpoint=False)
+
+    # Compute the reference geocentric radii using the reference biaxial
+    # ellipsoid
+    radius_true = biaxialellipsoid_ref.geocentric_radius(latitude, geodetic=False)
+    npt.assert_allclose(
+        radius_true, biaxialellipsoid.geocentric_radius(longitude, latitude)
     )
