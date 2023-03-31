@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REQUIREMENTS: env/requirements-docs.txt env/requirements-build.txt
-      PYTHON: 3.9
+      PYTHON: 3.11
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
