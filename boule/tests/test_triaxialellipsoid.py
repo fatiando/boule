@@ -13,7 +13,7 @@ import numpy as np
 import numpy.testing as npt
 import pytest
 
-from .. import TriaxialEllipsoid
+from .. import Ellipsoid, TriaxialEllipsoid
 
 
 @pytest.fixture
@@ -259,19 +259,17 @@ def test_geocentric_radius_biaxialellipsoid(triaxialellipsoid):
     # Get the defining parameters of "triaxialellipsoid"
     a = triaxialellipsoid.semimajor_axis
     c = triaxialellipsoid.semiminor_axis
-    GM = triaxialellipsoid.geocentric_grav_const
+    gm = triaxialellipsoid.geocentric_grav_const
     omega = triaxialellipsoid.angular_velocity
 
     # Instantiate the "Ellipsoid" class using the following defining parameters
     # from "triaxialellipsoid": semimajor axis "a", semiminor axis "c",
     # geocentric gravitational constant "GM" and angular velocity "omega"
-    from .. import Ellipsoid
-
-    biaxialellipsoid_ref = Ellipsoid("biaxell_ref", a, (a - c) / a, GM, omega)
+    biaxialellipsoid_ref = Ellipsoid("biaxell_ref", a, (a - c) / a, gm, omega)
 
     # Instantiate the "TriaxialEllipsoid" class such that it in fact represents
     # "biaxialellipsoid_ref"
-    biaxialellipsoid = TriaxialEllipsoid("biaxell", a, a, c, GM, omega)
+    biaxialellipsoid = TriaxialEllipsoid("biaxell", a, a, c, gm, omega)
 
     latitude = np.arange(-90.0, 90.0, 1.0)
     longitude = np.linspace(0.0, 360.0, num=latitude.size, endpoint=False)
