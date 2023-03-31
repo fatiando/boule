@@ -274,14 +274,10 @@ class TriaxialEllipsoid:
 
         coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
 
-        a = self.semimajor_axis
-        b = self.semimedium_axis
-        c = self.semiminor_axis
-
         fc = self.meridional_flattening
         fb = self.equatorial_flattening
 
-        radius = (a * (1.0 - fc) * (1.0 - fb)) / np.sqrt(
+        radius = (self.semimajor_axis * (1.0 - fc) * (1.0 - fb)) / np.sqrt(
             1.0
             - (2.0 * fc - fc**2) * coslat**2
             - (2.0 * fb - fb**2) * sinlat**2
@@ -290,5 +286,4 @@ class TriaxialEllipsoid:
             * coslat**2
             * np.cos(longitude_rad - longitude_semimajor_axis_rad) ** 2
         )
-
         return radius
