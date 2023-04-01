@@ -33,12 +33,12 @@ jobs:
     runs-on: ubuntu-latest
     env:
       REQUIREMENTS: env/requirements-docs.txt env/requirements-build.txt
-      PYTHON: 3.9
+      PYTHON: "3.10"
 
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           # Need to fetch more than the last commit so that setuptools-scm can
           # create the correct version string. If the number of commits since
@@ -120,7 +120,7 @@ jobs:
 
       # Store the docs as a build artifact so we can deploy it later
       - name: Upload HTML documentation as an artifact
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: docs-${{ github.sha }}
           path: doc/_build/html
@@ -134,11 +134,11 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       # Fetch the built docs from the "build" job
       - name: Download HTML documentation artifact
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: docs-${{ github.sha }}
           path: doc/_build/html
