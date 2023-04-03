@@ -3,6 +3,7 @@
 The following people have made contributions to the project (in alphabetical
 order by last name) and are considered "The Boule Developers":
 
+* [Blazej Bucha](https://github.com/blazej-bucha) - Slovak University of Technology in Bratislava, Department of Theoretical Geodesy and Geoinformatics
 * [Chris Dinneen](https://github.com/dabiged) - Unaffiliated (ORCID: [0000-0001-8615-5211](https://orcid.org/0000-0001-8615-5211))
 * [Mariana Gomez](https://github.com/MGomezN) - Centro de Investigación Científica y de Educación Superior de Ensenada (CICESE), Mexico (ORCID: [0000-0002-2587-5255](https://orcid.org/0000-0002-2587-5255))
 * [Lu Li](https://github.com/LL-Geo) - School of Earth Sciences, The University of Western Australia, Australia (ORCID: [0000-0001-6165-2828](https://www.orcid.org/0000-0001-6165-2828))
