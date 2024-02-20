@@ -248,9 +248,7 @@ def test_prime_vertical_radius(ellipsoid):
     )
     # Computed expected values
     prime_vertical_radius_equator = ellipsoid.semimajor_axis
-    prime_vertical_radius_pole = (
-        ellipsoid.semimajor_axis**2 / ellipsoid.semiminor_axis
-    )
+    prime_vertical_radius_pole = ellipsoid.semimajor_axis**2 / ellipsoid.semiminor_axis
     prime_vertical_radius_45 = ellipsoid.semimajor_axis**2 / np.sqrt(
         0.5 * ellipsoid.semimajor_axis**2 + 0.5 * ellipsoid.semiminor_axis**2
     )
