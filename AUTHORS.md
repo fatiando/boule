@@ -9,4 +9,4 @@ order by last name) and are considered "The Boule Developers":
 * [Lu Li](https://github.com/LL-Geo) - School of Earth Sciences, The University of Western Australia, Australia (ORCID: [0000-0001-6165-2828](https://www.orcid.org/0000-0001-6165-2828))
 * [Agustina Pesce](https://github.com/aguspesce) - Unaffiliated (ORCID: [0000-0002-5538-8845](https://orcid.org//0000-0002-5538-8845))
 * [Santiago Soler](https://github.com/santisoler) - CONICET, Argentina; Instituto Geofísico Sismológico Volponi, Universidad Nacional de San Juan, Argentina (ORCID: [0000-0001-9202-5317](https://www.orcid.org/0000-0001-9202-5317))
-* [Leonardo Uieda](https://github.com/leouieda) - University of Liverpool, UK (ORCID: 0000-0001-6123-9515)
+* [Leonardo Uieda](https://github.com/leouieda) - Universidade de São Paulo, Brazil (ORCID: 0000-0001-6123-9515)
