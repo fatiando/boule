@@ -97,6 +97,8 @@ class Sphere:
     0
     >>> print(sphere.thirdflattening)
     0
+    >>> print(f"{sphere.volume:.10f} m³")
+    4.1887902048 m³
 
     """
 
@@ -173,6 +175,15 @@ class Sphere:
         Units: adimensional.
         """
         return 0
+
+    @property
+    def volume(self):
+        r"""
+        The volume of the sphere.
+        Definition: :math:`V = \dfrac{4}{3} \pi r^3`.
+        Units: :math:`m^3`.
+        """
+        return (4 / 3 * np.pi) * self.radius**3
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""
