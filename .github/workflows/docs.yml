@@ -82,7 +82,7 @@ jobs:
           cat requirements-full.txt
 
       - name: Setup caching for conda packages
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ~/conda_pkgs_dir
           key: conda-${{ runner.os }}-${{ env.PYTHON }}-${{ hashFiles('requirements-full.txt') }}
@@ -104,7 +104,7 @@ jobs:
         run: pip install --no-deps dist/*.whl
 
       - name: Cache the Ensaio datasets
-        uses: actions/cache@v2
+        uses: actions/cache@v4
         with:
           path: ${{ runner.temp }}/cache/ensaio
           # Use a constant key to reuse the datasets across all jobs
