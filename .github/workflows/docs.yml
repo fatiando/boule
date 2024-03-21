@@ -78,10 +78,10 @@ jobs:
           cat requirements-full.txt
 
       - name: Install requirements
-        run: mamba install --quiet --file requirements-full.txt python==$PYTHON
+        run: conda install --quiet --file requirements-full.txt python==$PYTHON
 
       - name: List installed packages
-        run: mamba list
+        run: conda list
 
       - name: Build source and wheel distributions
         run: |
