@@ -58,6 +58,16 @@ Which can be put in a :class:`xarray.Dataset`:
 And plotted with :mod:`pygmt`:
 
 .. jupyter-execute::
+   :hide-code:
+
+   # Needed so that displaying works on jupyter-sphinx and sphinx-gallery at
+   # the same time. Using PYGMT_USE_EXTERNAL_DISPLAY="false" in the Makefile
+   # for sphinx-gallery to work means that fig.show won't display anything here
+   # either.
+   import pygmt
+   pygmt.set_display(method="notebook")
+
+.. jupyter-execute::
 
     import pygmt
 

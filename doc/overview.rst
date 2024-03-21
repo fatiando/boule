@@ -71,6 +71,15 @@ First, we need to import a few other packages:
     import pygmt         # For plotting maps
     import xarray as xr  # For manipulating grids
 
+.. jupyter-execute::
+   :hide-code:
+
+   # Needed so that displaying works on jupyter-sphinx and sphinx-gallery at
+   # the same time. Using PYGMT_USE_EXTERNAL_DISPLAY="false" in the Makefile
+   # for sphinx-gallery to work means that fig.show won't display anything here
+   # either.
+   pygmt.set_display(method="notebook")
+
 Now we can download and open :term:`co-located grids` of topography and geoid
 using :mod:`ensaio` and :mod:`xarray`:
 
