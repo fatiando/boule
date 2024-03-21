@@ -57,11 +57,7 @@ jobs:
         uses: conda-incubator/setup-miniconda@v3
         with:
           python-version: ${{ env.PYTHON }}
-          miniforge-variant: Mambaforge
-          use-mamba: true
           channels: conda-forge,defaults
-          # Needed for caching
-          use-only-tar-bz2: true
 
       - name: Collect requirements
         run: |
@@ -80,12 +76,6 @@ jobs:
           echo ""
           echo "Collected dependencies:"
           cat requirements-full.txt
-
-      - name: Setup caching for conda packages
-        uses: actions/cache@v4
-        with:
-          path: ~/conda_pkgs_dir
-          key: conda-${{ runner.os }}-${{ env.PYTHON }}-${{ hashFiles('requirements-full.txt') }}
 
       - name: Install requirements
         run: mamba install --quiet --file requirements-full.txt python==$PYTHON
