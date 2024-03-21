@@ -3,7 +3,7 @@ channels:
   - conda-forge
   - defaults
 dependencies:
-  - python==3.9
+  - python==3.11
   - pip
   - make
   # Run
@@ -18,19 +18,19 @@ dependencies:
   - coverage
   - pymap3d>=2.9
   # Documentation
-  - sphinx==4.5.*
-  - sphinx-book-theme==0.3.*
+  - sphinx==7.2.*
+  - sphinx-book-theme==1.1.*
   - sphinx-copybutton==0.5.*
-  - jupyter-sphinx==0.3.*
-  - sphinx-design==0.1.*
+  - sphinx-design==0.5.*
+  - jupyter-sphinx==0.5.*
   - ensaio
   - verde
   - pandas
   - matplotlib
   - xarray
   - netcdf4
-  - pygmt==0.6.*
-  - gmt==6.3.*
+  - pygmt==0.11.*
+  - gmt==6.5.*
   - ipython
   # Style
   - black
