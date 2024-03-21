@@ -21,7 +21,7 @@
 
         .. image:: ./_static/boule-logo.svg
             :width: 200px
-            :class: sd-m-auto
+            :class: sd-m-auto dark-light
 
 **Boule** is Python library for representing
 :term:`reference ellipsoids <reference ellipsoid>` geometrically, calculating
