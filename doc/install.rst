@@ -24,7 +24,7 @@ There are different ways to install Boule:
 
             conda install boule --channel conda-forge
 
-    .. tab-item:: Developement version
+    .. tab-item:: Development version
 
         You can use ``pip`` to install the latest **unreleased** version from
         GitHub (**not recommended** in most situations):
