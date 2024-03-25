@@ -167,8 +167,8 @@ class TriaxialEllipsoid:
     @property
     def mean_radius(self):
         r"""
-        The arithmetic mean radius of the ellipsoid.
-        Definition: :math:`R = \dfrac{a + b + c}{3}`.
+        The arithmetic mean radius of the ellipsoid semi-axes.
+        Definition: :math:`R_1 = \dfrac{a + b + c}{3}`.
         Units: :math:`m`.
         """
         return (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis) / 3
@@ -212,7 +212,7 @@ class TriaxialEllipsoid:
         Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
         Units: :math:`m`.
         """
-        return (self.volume * 3 / 4 / np.pi)**(1 / 3)
+        return (self.volume * 3 / 4 / np.pi) ** (1 / 3)
 
     @property
     def equatorial_flattening(self):

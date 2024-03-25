@@ -215,7 +215,7 @@ class Ellipsoid:
     @property
     def mean_radius(self):
         """
-        The arithmetic mean radius of the ellipsoid [Moritz1988]_.
+        The arithmetic mean radius of the ellipsoid semi-axes [Moritz1988]_.
         Definition: :math:`R_1 = (2a + b)/3`.
         Units: :math:`m`.
         """
@@ -255,7 +255,7 @@ class Ellipsoid:
         Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
         Units: :math:`m`.
         """
-        return (self.volume * 3 / 4 / np.pi)**(1 / 3)
+        return (self.volume * 3 / 4 / np.pi) ** (1 / 3)
 
     @property
     def _emm(self):
