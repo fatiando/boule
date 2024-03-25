@@ -197,6 +197,24 @@ class TriaxialEllipsoid:
         return self.geocentric_grav_const / G
 
     @property
+    def mean_density(self):
+        r"""
+        The mean density of the ellipsoid.
+        Definition: :math:`\rho = M / V`.
+        Units: :math:`kg / m^3`.
+        """
+        return self.mass / self.volume
+
+    @property
+    def volume_equivalent_radius(self):
+        r"""
+        The volume equivalent radius of the ellipsoid.
+        Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
+        Units: :math:`m`.
+        """
+        return (self.volume * 3 / 4 / np.pi)**(1 / 3)
+
+    @property
     def equatorial_flattening(self):
         r"""
         The equatorial flattening of the ellipsoid.

@@ -196,6 +196,25 @@ class Sphere:
         """
         return self.geocentric_grav_const / G
 
+    @property
+    def mean_density(self):
+        r"""
+        The mean density of the sphere.
+        Definition: :math:`\rho = M / V`.
+        Units: :math:`kg / m^3`.
+        """
+        return self.mass / self.volume
+
+    @property
+    def volume_equivalent_radius(self):
+        r"""
+        The volume equivalent radius of the sphere is equal to its radius.
+        Added for compatibility with pymap3d.
+        Definition: :math:`R_3 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
     def normal_gravity(self, latitude, height, si_units=False):
         r"""
         Normal gravity of the sphere at the given latitude and height.
