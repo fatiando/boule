@@ -12,6 +12,8 @@ from warnings import warn
 import attr
 import numpy as np
 
+from ._constants import G
+
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
 # accidentally.
@@ -177,6 +179,16 @@ class Sphere:
         return 0
 
     @property
+    def mean_radius(self):
+        """
+        The arithmetic mean radius of the ellipsoid semi-axes is equal to its
+        radius. Added for compatibility with pymap3d.
+        Definition: :math:`R_1 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
     def volume(self):
         r"""
         The volume of the sphere.
@@ -184,6 +196,34 @@ class Sphere:
         Units: :math:`m^3`.
         """
         return (4 / 3 * np.pi) * self.radius**3
+
+    @property
+    def mass(self):
+        r"""
+        The mass of the sphere.
+        Definition: :math:`M = GM / G`.
+        Units: :math:`kg`.
+        """
+        return self.geocentric_grav_const / G
+
+    @property
+    def mean_density(self):
+        r"""
+        The mean density of the sphere.
+        Definition: :math:`\rho = M / V`.
+        Units: :math:`kg / m^3`.
+        """
+        return self.mass / self.volume
+
+    @property
+    def volume_equivalent_radius(self):
+        r"""
+        The volume equivalent radius of the sphere is equal to its radius.
+        Added for compatibility with pymap3d.
+        Definition: :math:`R_3 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""

@@ -12,6 +12,8 @@ from warnings import warn
 import attr
 import numpy as np
 
+from ._constants import G
+
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
 # accidentally.
@@ -213,7 +215,7 @@ class Ellipsoid:
     @property
     def mean_radius(self):
         """
-        The arithmetic mean radius of the ellipsoid [Moritz1988]_.
+        The arithmetic mean radius of the ellipsoid semi-axes [Moritz1988]_.
         Definition: :math:`R_1 = (2a + b)/3`.
         Units: :math:`m`.
         """
@@ -227,6 +229,33 @@ class Ellipsoid:
         Units: :math:`m^3`.
         """
         return (4 / 3 * np.pi) * self.semimajor_axis**2 * self.semiminor_axis
+
+    @property
+    def mass(self):
+        r"""
+        The mass of the ellipsoid.
+        Definition: :math:`M = GM / G`.
+        Units: :math:`kg`.
+        """
+        return self.geocentric_grav_const / G
+
+    @property
+    def mean_density(self):
+        r"""
+        The mean density of the ellipsoid.
+        Definition: :math:`\rho = M / V`.
+        Units: :math:`kg / m^3`.
+        """
+        return self.mass / self.volume
+
+    @property
+    def volume_equivalent_radius(self):
+        r"""
+        The volume equivalent radius of the ellipsoid.
+        Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
+        Units: :math:`m`.
+        """
+        return (self.volume * 3 / 4 / np.pi) ** (1 / 3)
 
     @property
     def _emm(self):
