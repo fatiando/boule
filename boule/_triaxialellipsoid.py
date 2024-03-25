@@ -12,6 +12,8 @@ from warnings import warn
 import attr
 import numpy as np
 
+from ._constants import G
+
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
 # accidentally.
@@ -184,6 +186,15 @@ class TriaxialEllipsoid:
             * self.semimedium_axis
             * self.semiminor_axis
         )
+
+    @property
+    def mass(self):
+        r"""
+        The mass of the ellipsoid.
+        Definition: :math:`M = GM / G`.
+        Units: :math:`kg`.
+        """
+        return self.geocentric_grav_const / G
 
     @property
     def equatorial_flattening(self):
