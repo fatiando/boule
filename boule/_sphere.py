@@ -179,6 +179,16 @@ class Sphere:
         return 0
 
     @property
+    def mean_radius(self):
+        """
+        The mean radius of the sphere is by definition equal to its radius.
+        Added for compatibility with pymap3d.
+        Definition: :math:`R = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
     def volume(self):
         r"""
         The volume of the sphere.
