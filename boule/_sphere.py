@@ -177,6 +177,26 @@ class Sphere:
         return 0
 
     @property
+    def mean_radius(self):
+        """
+        The mean radius of the ellipsoid is equal to its radius. Added for
+        compatibility with pymap3d.
+        Definition: :math:`R_0 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
+    def semiaxes_mean_radius(self):
+        """
+        The arithmetic mean radius of the ellipsoid semi-axes is equal to its
+        radius. Added for compatibility with pymap3d.
+        Definition: :math:`R_1 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
     def volume(self):
         r"""
         The volume of the sphere.

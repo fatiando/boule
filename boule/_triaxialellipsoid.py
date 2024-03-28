@@ -164,9 +164,44 @@ class TriaxialEllipsoid:
 
     @property
     def mean_radius(self):
+        """
+        The mean radius of the ellipsoid. This is equivalent to the degree 0
+        spherical harmonic coefficient of the ellipsoid shape.
+        Definition: :math:`R_0`.
+        Units: :math:`m`.
+        """
+        # The mean radius is obtained by integration in spherical coordinates.
+        # Gauss-Legendre quadrature is used to perform the integration over
+        # both geocentric longitude and geocentric latitude. Experiments show
+        # that n = 16 will return the mean radius to machine precision for
+        # the asteroid (4) Vesta, and that machine precision results for a
+        # Vesta-like object with half the semiminor axis as Vesta are obtained
+        # for n = 38. In an abundance of caution, we chose to use n = 50.
+        n = 50
+        x_latitude, weights_latitude = np.polynomial.legendre.leggauss(n)
+        x_longitude, weights_longitude = np.polynomial.legendre.leggauss(2 * n)
+
+        geocentric_latitude = 90.0 - np.rad2deg(np.arccos(x_latitude))
+        # Rescale longitude integration limits from [-1, 1] to [0, 2 pi]
+        # https://en.wikipedia.org/wiki/Gaussian_quadrature#Change_of_interval
+        weights_longitude *= np.pi
+        geocentric_longitude = np.rad2deg(np.pi * x_longitude + np.pi)
+
+        lats, lons = np.meshgrid(
+            geocentric_latitude, geocentric_longitude, indexing="ij"
+        )
+        radius = self.geocentric_radius(lons, lats)
+
+        # Multiply the radius by the weights, and then sum the result
+        radius *= weights_latitude[:, np.newaxis]
+        radius *= weights_longitude[np.newaxis, :]
+        return np.sum(radius) / 4 / np.pi
+
+    @property
+    def semiaxes_mean_radius(self):
         r"""
-        The arithmetic mean radius of the ellipsoid.
-        Definition: :math:`R = \dfrac{a + b + c}{3}`.
+        The arithmetic mean radius of the ellipsoid semi-axes.
+        Definition: :math:`R_1 = \dfrac{a + b + c}{3}`.
         Units: :math:`m`.
         """
         return (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis) / 3
