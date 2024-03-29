@@ -97,6 +97,8 @@ class TriaxialEllipsoid:
     parameters:
 
     >>> print(f"{ellipsoid.mean_radius:.0f} m")
+    259813 m
+    >>> print(f"{ellipsoid.semiaxes_mean_radius:.0f} m")
     262700 m
     >>> print(f"{ellipsoid.volume * 1e-9:.0f} km³")
     74573626 km³

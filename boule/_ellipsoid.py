@@ -100,6 +100,8 @@ class Ellipsoid:
     >>> print(f"{ellipsoid.second_eccentricity:.13e}")
     8.2094437949696e-02
     >>> print(f"{ellipsoid.mean_radius:.4f} m")
+    6370994.4018 m
+    >>> print(f"{ellipsoid.semiaxes_mean_radius:.4f} m")
     6371008.7714 m
     >>> print(f"{ellipsoid.volume * 1e-9:.5e} km³")
     1.08321e+12 km³
