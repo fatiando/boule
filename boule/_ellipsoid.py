@@ -103,6 +103,10 @@ class Ellipsoid:
     6371008.7714 m
     >>> print(f"{ellipsoid.volume * 1e-9:.5e} km³")
     1.08321e+12 km³
+    >>> print(f"{ellipsoid.area:.10e} m²")
+    5.1006562172e+14 m²
+    >>> print(f"{ellipsoid.area_equivalent_radius:0.4f} m")
+    6371007.1809 m
     >>> print(f"{ellipsoid.gravity_equator:.10f} m/s²")
     9.7803253359 m/s²
     >>> print(f"{ellipsoid.gravity_pole:.10f} m/s²")
@@ -220,6 +224,27 @@ class Ellipsoid:
         return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
 
     @property
+    def area(self):
+        r"""
+        The area of the ellipsoid.
+        Definition: :math:`A = 2 \pi a^2 \left(1 + \dfrac{b^2}{e a^2}
+        \arctanh{e} \right)`.
+        Units: :math:`m^2`.
+        """
+        # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
+        return (
+            2
+            * np.pi
+            * self.semimajor_axis**2
+            * (
+                1
+                + (self.semiminor_axis / self.semimajor_axis) ** 2
+                / self.first_eccentricity
+                * np.arctanh(self.first_eccentricity)
+            )
+        )
+
+    @property
     def volume(self):
         r"""
         The volume bounded by the ellipsoid.
@@ -227,6 +252,15 @@ class Ellipsoid:
         Units: :math:`m^3`.
         """
         return (4 / 3 * np.pi) * self.semimajor_axis**2 * self.semiminor_axis
+
+    @property
+    def area_equivalent_radius(self):
+        r"""
+        The area equivalent radius of the ellipsoid.
+        Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.
+        Units: :math:`m`.
+        """
+        return np.sqrt(self.area / 4 / np.pi)
 
     @property
     def _emm(self):
