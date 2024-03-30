@@ -97,6 +97,10 @@ class Sphere:
     0
     >>> print(sphere.thirdflattening)
     0
+    >>> print(sphere.mean_radius)
+    1
+    >>> print(sphere.semiaxes_mean_radius)
+    1
     >>> print(f"{sphere.volume:.10f} m³")
     4.1887902048 m³
 
