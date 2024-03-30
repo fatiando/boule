@@ -103,6 +103,12 @@ class Ellipsoid:
     8.2094437949696e-02
     >>> print(f"{ellipsoid.mean_radius:.4f} m")
     6371008.7714 m
+    >>> print(f"{ellipsoid.volume_equivalent_radius:.4f} m")
+    6371000.7900 m
+    >>> print(f"{ellipsoid.mass:.10e} kg")
+    5.9721684941e+24 kg
+    >>> print(f"{ellipsoid.mean_density:.0f} kg/m³")
+    5513 kg/m³
     >>> print(f"{ellipsoid.volume * 1e-9:.5e} km³")
     1.08321e+12 km³
     >>> print(f"{ellipsoid.gravity_equator:.10f} m/s²")

@@ -99,8 +99,14 @@ class Sphere:
     0
     >>> print(sphere.thirdflattening)
     0
+    >>> print(f"{sphere.volume_equivalent_radius:.1f} m")
+    1.0 m
     >>> print(f"{sphere.volume:.10f} m³")
     4.1887902048 m³
+    >>> print(f"{sphere.mass:.12e} kg")
+    2.996568928577e+10 kg
+    >>> print(f"{sphere.mean_density:.0f} kg/m³")
+    7153781359 kg/m³
 
     """
 

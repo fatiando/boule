@@ -100,6 +100,12 @@ class TriaxialEllipsoid:
 
     >>> print(f"{ellipsoid.mean_radius:.0f} m")
     262700 m
+    >>> print(f"{ellipsoid.volume_equivalent_radius:.0f} m")
+    261115 m
+    >>> print(f"{ellipsoid.mass:.10e} kg")
+    2.5906746775e+20 kg
+    >>> print(f"{ellipsoid.mean_density:.0f} kg/m³")
+    3474 kg/m³
     >>> print(f"{ellipsoid.volume * 1e-9:.0f} km³")
     74573626 km³
 
