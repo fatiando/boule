@@ -11,6 +11,7 @@ from warnings import warn
 
 import attr
 import numpy as np
+from scipy.special import elliprd, elliprf
 
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
@@ -98,6 +99,10 @@ class TriaxialEllipsoid:
 
     >>> print(f"{ellipsoid.mean_radius:.0f} m")
     262700 m
+    >>> print(f"{ellipsoid.area:.10e} m²")
+    8.6562393883e+11 m²
+    >>> print(f"{ellipsoid.area_equivalent_radius:0.0f} m")
+    262458 m
     >>> print(f"{ellipsoid.volume * 1e-9:.0f} km³")
     74573626 km³
 
@@ -172,6 +177,25 @@ class TriaxialEllipsoid:
         return (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis) / 3
 
     @property
+    def area(self):
+        r"""
+        The area of the ellipsoid.
+        Definition: :math:`A`.
+        Units: :math:`m^2`.
+        """
+        # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
+        a = self.semimajor_axis
+        b = self.semimedium_axis
+        c = self.semiminor_axis
+        return 2 * np.pi * c**2 + 2 * np.pi * a * b * (
+            elliprf((c / a) ** 2, (c / b) ** 2, 1)
+            - (1 / 3)
+            * (1 - (c / a) ** 2)
+            * (1 - (c / b) ** 2)
+            * elliprd((c / a) ** 2, (c / b) ** 2, 1)
+        )
+
+    @property
     def volume(self):
         r"""
         The volume bounded by the ellipsoid.
@@ -184,6 +208,15 @@ class TriaxialEllipsoid:
             * self.semimedium_axis
             * self.semiminor_axis
         )
+
+    @property
+    def area_equivalent_radius(self):
+        r"""
+        The area equivalent radius of the ellipsoid.
+        Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.
+        Units: :math:`m`.
+        """
+        return np.sqrt(self.area / 4 / np.pi)
 
     @property
     def equatorial_flattening(self):
