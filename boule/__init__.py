@@ -9,7 +9,7 @@ from ._ellipsoid import Ellipsoid
 from ._realizations import (
     EGM96,
     GRS80,
-    MARS,
+    Mars2009,
     VESTA,
     WGS84,
     Mercury2015,

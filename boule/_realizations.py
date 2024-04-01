@@ -107,9 +107,9 @@ Moon2015 = Sphere(
     ),
 )
 
-MARS = Ellipsoid(
-    name="MARS",
-    long_name="Mars Ellipsoid",
+Mars2009 = Ellipsoid(
+    name="Mars2009",
+    long_name="Mars Ellipsoid (2009)",
     semimajor_axis=3_395_428,
     flattening=(3_395_428 - 3_377_678) / 3_395_428,
     geocentric_grav_const=42828.372e9,
