@@ -7,13 +7,15 @@
 """
 Ellipsoid and Sphere realizations for the Earth and other planetary bodies.
 """
+import numpy as np
+
 from ._ellipsoid import Ellipsoid
 from ._sphere import Sphere
 from ._triaxialellipsoid import TriaxialEllipsoid
 
 Mercury2015 = Sphere(
     name="Mercury2015",
-    long_name="Mercury Spheroid (2015)",
+    long_name="Mercury spheroid (2015)",
     radius=2_439_372,
     geocentric_grav_const=22.031839224e12,
     angular_velocity=1.2400172589e-6,
@@ -26,7 +28,7 @@ Mercury2015 = Sphere(
 
 Mercury2024 = Sphere(
     name="Mercury2024",
-    long_name="Mercury Spheroid (2023)",
+    long_name="Mercury spheroid (2023)",
     radius=2439472.7,
     geocentric_grav_const=22031815411154.895,
     angular_velocity=1.2400141739494342e-06,
@@ -42,7 +44,7 @@ Mercury2024 = Sphere(
 
 Venus2015 = Sphere(
     name="Venus2015",
-    long_name="Venus Spheroid (2015)",
+    long_name="Venus spheroid (2015)",
     radius=6_051_878,
     geocentric_grav_const=324.858592e12,
     angular_velocity=-299.24e-9,
@@ -55,7 +57,7 @@ Venus2015 = Sphere(
 
 WGS84 = Ellipsoid(
     name="WGS84",
-    long_name="World Geodetic System 1984",
+    long_name="World Geodetic System (1984)",
     semimajor_axis=6378137,
     flattening=1 / 298.257223563,
     geocentric_grav_const=3986004.418e8,
@@ -69,7 +71,7 @@ WGS84 = Ellipsoid(
 
 GRS80 = Ellipsoid(
     name="GRS80",
-    long_name="Geodetic Reference System 1980",
+    long_name="Geodetic Reference System (1980)",
     semimajor_axis=6378137,
     flattening=1 / 298.257222101,
     geocentric_grav_const=3986005.0e8,
@@ -82,7 +84,7 @@ GRS80 = Ellipsoid(
 
 EGM96 = Ellipsoid(
     name="EGM96",
-    long_name="Earth Gravitational Model 1996",
+    long_name="Earth Gravitational Model (1996)",
     semimajor_axis=6378136.3,
     flattening=1 / 0.298256415099e3,
     geocentric_grav_const=3986004.415e8,
@@ -96,7 +98,7 @@ EGM96 = Ellipsoid(
 
 Moon2015 = Sphere(
     name="Moon2015",
-    long_name="Moon Spheroid (2015)",
+    long_name="Moon spheroid (2015)",
     radius=1_737_151,
     geocentric_grav_const=4.90280007e12,
     angular_velocity=2.6617073e-6,
@@ -109,7 +111,7 @@ Moon2015 = Sphere(
 
 Mars2009 = Ellipsoid(
     name="Mars2009",
-    long_name="Mars Ellipsoid (2009)",
+    long_name="Mars ellipsoid (2009)",
     semimajor_axis=3_395_428,
     flattening=(3_395_428 - 3_377_678) / 3_395_428,
     geocentric_grav_const=42828.372e9,
@@ -122,9 +124,9 @@ Mars2009 = Ellipsoid(
     ),
 )
 
-Vesta2012 = TriaxialEllipsoid(
-    name="Vesta2012",
-    long_name="Vesta Triaxial Ellipsoid (2012)",
+Vesta2012_triaxial = TriaxialEllipsoid(
+    name="Vesta2012_triaxial",
+    long_name="Vesta triaxial ellipsoid (2012)",
     semimajor_axis=286_300,
     semimedium_axis=278_600,
     semiminor_axis=223_200,
@@ -134,5 +136,38 @@ Vesta2012 = TriaxialEllipsoid(
         "Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, "
         "M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the "
         "Protoplanetary Paradigm. Science. doi:10.1126/science.1219381"
+    ),
+)
+
+Vesta2017 = Ellipsoid(
+    name="Vesta2017",
+    long_name="Vesta reference ellipsoid (2017)",
+    semimajor_axis=278_556,
+    flattening=(278_556 - 229_921) / 278_556,
+    geocentric_grav_const=17.288e9,
+    angular_velocity=3.267e-4,
+    reference=(
+        "Karimi, R., Azmoudeh Ardalan, A., & Vasheghani Farahani, S. (2017). "
+        "The size, shape and orientation of the asteroid Vesta based on data "
+        "from the Dawn mission. Earth and Planetary Science Letters, 475, "
+        "71–82. https://doi.org/10.1016/j.epsl.2017.07.033"
+    ),
+)
+
+Vesta2017_triaxial = TriaxialEllipsoid(
+    # Note that this triaxial reference ellipsoid is rotated in longitude
+    # by 8.29 E with respect to the Vesta coordinate system.
+    name="Vesta2017_triaxial",
+    long_name="Vesta triaxial reference ellipsoid (2017)",
+    semimajor_axis=280_413,
+    semimedium_axis=274_572,
+    semiminor_axis=231_253,
+    geocentric_grav_const=17.288e9,
+    angular_velocity=3.267e-4,
+    reference=(
+        "Karimi, R., Azmoudeh Ardalan, A., & Vasheghani Farahani, S. (2017). "
+        "The size, shape and orientation of the asteroid Vesta based on data "
+        "from the Dawn mission. Earth and Planetary Science Letters, 475, "
+        "71–82. https://doi.org/10.1016/j.epsl.2017.07.033"
     ),
 )

@@ -16,6 +16,8 @@ from ._realizations import (
     Moon2015,
     Venus2015,
     Vesta2012,
+    Vesta2017_biaxial,
+    Vesta2017_triaxial,
 )
 from ._sphere import Sphere
 from ._triaxialellipsoid import TriaxialEllipsoid
