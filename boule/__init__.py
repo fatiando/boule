@@ -9,13 +9,13 @@ from ._ellipsoid import Ellipsoid
 from ._realizations import (
     EGM96,
     GRS80,
-    Mars2009,
-    VESTA,
     WGS84,
+    Mars2009,
     Mercury2015,
     Mercury2024,
     Moon2015,
     Venus2015,
+    Vesta2012,
 )
 from ._sphere import Sphere
 from ._triaxialellipsoid import TriaxialEllipsoid
