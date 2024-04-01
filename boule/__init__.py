@@ -6,7 +6,16 @@
 #
 # Import functions/classes to make the public API
 from ._ellipsoid import Ellipsoid
-from ._realizations import Mercury2015, GRS80, MARS, MOON, VENUS, VESTA, WGS84
+from ._realizations import (
+    GRS80,
+    MARS,
+    MOON,
+    VENUS,
+    VESTA,
+    WGS84,
+    Mercury2015,
+    Mercury2024,
+)
 from ._sphere import Sphere
 from ._triaxialellipsoid import TriaxialEllipsoid
 from ._version import __version__

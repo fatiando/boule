@@ -24,6 +24,22 @@ Mercury2015 = Sphere(
     ),
 )
 
+Mercury2024 = Sphere(
+    name="Mercury2024",
+    long_name="Mercury Spheroid (2023)",
+    radius=2439472.7,
+    geocentric_grav_const=22031815411154.895,
+    angular_velocity=1.2400141739494342e-06,
+    reference=(
+        "R: Maia, J. (2024). Spherical harmonic models of the shape of "
+        "Mercury [Data set]. Zenodo. https://doi.org/10.5281/zenodo.10809345; "
+        "GM, OMEGA: Mazarico, E., et al. (2014), The gravity field, "
+        "orientation, and ephemeris of Mercury from MESSENGER observations "
+        "after three years in orbit, J. Geophys. Res. Planets, 119, "
+        "2417-2436, doi:10.1002/2014JE004675."
+    ),
+)
+
 WGS84 = Ellipsoid(
     name="WGS84",
     long_name="World Geodetic System 1984",
