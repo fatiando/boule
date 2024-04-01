@@ -10,11 +10,11 @@ from ._realizations import (
     GRS80,
     MARS,
     MOON,
-    VENUS,
     VESTA,
     WGS84,
     Mercury2015,
     Mercury2024,
+    Venus2015,
 )
 from ._sphere import Sphere
 from ._triaxialellipsoid import TriaxialEllipsoid
