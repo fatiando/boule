@@ -80,6 +80,19 @@ GRS80 = Ellipsoid(
     ),
 )
 
+EGM96 = Ellipsoid(
+    name="EGM96",
+    long_name="Earth Gravitational Model 1996",
+    semimajor_axis=6378136.3,
+    flattening=1 / 0.298256415099e3,
+    geocentric_grav_const=3986004.415e8,
+    angular_velocity=7292115e-11,
+    reference=(
+        "Lemoine, F. G., et al. (1998). The Development of the Joint NASA "
+        "GSFC and the National Imagery and Mapping Agency (NIMA) Geopotential "
+        "Model EGM96. NASA Goddard Space Flight Center, NASA/TP 1998-206861."
+    ),
+)
 
 MARS = Ellipsoid(
     name="MARS",

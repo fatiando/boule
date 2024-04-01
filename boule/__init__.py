@@ -7,6 +7,7 @@
 # Import functions/classes to make the public API
 from ._ellipsoid import Ellipsoid
 from ._realizations import (
+    EGM96,
     GRS80,
     MARS,
     MOON,
