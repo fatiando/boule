@@ -94,6 +94,19 @@ EGM96 = Ellipsoid(
     ),
 )
 
+Moon2015 = Sphere(
+    name="Moon2015",
+    long_name="Moon Spheroid (2015)",
+    radius=1_737_151,
+    geocentric_grav_const=4.90280007e12,
+    angular_velocity=2.6617073e-6,
+    reference=(
+        "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
+        "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
+        "doi:10.1016/B978-0-444-53802-4.00169-X"
+    ),
+)
+
 MARS = Ellipsoid(
     name="MARS",
     long_name="Mars Ellipsoid",
@@ -106,19 +119,6 @@ MARS = Ellipsoid(
         "Equipotential Surface, and Reference Ellipsoid for the Planet Mars. "
         "Earth, Moon, and Planets, 106(1), 1. "
         "doi:10.1007/s11038-009-9342-7"
-    ),
-)
-
-MOON = Sphere(
-    name="MOON",
-    long_name="Moon Spheroid",
-    radius=1_737_151,
-    geocentric_grav_const=4.90280007e12,
-    angular_velocity=2.6617073e-6,
-    reference=(
-        "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
-        "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
-        "doi:10.1016/B978-0-444-53802-4.00169-X"
     ),
 )
 

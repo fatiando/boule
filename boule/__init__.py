@@ -10,11 +10,11 @@ from ._realizations import (
     EGM96,
     GRS80,
     MARS,
-    MOON,
     VESTA,
     WGS84,
     Mercury2015,
     Mercury2024,
+    Moon2015,
     Venus2015,
 )
 from ._sphere import Sphere
