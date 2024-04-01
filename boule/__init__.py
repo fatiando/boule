@@ -10,13 +10,14 @@ from ._realizations import (
     EGM96,
     GRS80,
     WGS84,
+    Ceres2018,
     Mars2009,
     Mercury2015,
     Mercury2024,
     Moon2015,
     Venus2015,
-    Vesta2012,
-    Vesta2017_biaxial,
+    Vesta2012_triaxial,
+    Vesta2017,
     Vesta2017_triaxial,
 )
 from ._sphere import Sphere
