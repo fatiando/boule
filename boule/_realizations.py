@@ -124,21 +124,6 @@ Mars2009 = Ellipsoid(
     ),
 )
 
-Vesta2012_triaxial = TriaxialEllipsoid(
-    name="Vesta2012_triaxial",
-    long_name="Vesta triaxial ellipsoid (2012)",
-    semimajor_axis=286_300,
-    semimedium_axis=278_600,
-    semiminor_axis=223_200,
-    geocentric_grav_const=2.59076e20 * 6.6743e-11,
-    angular_velocity=1617.333119 * 2 * np.pi / 360 / 24 / 60 / 60,
-    reference=(
-        "Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, "
-        "M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the "
-        "Protoplanetary Paradigm. Science. doi:10.1126/science.1219381"
-    ),
-)
-
 Vesta2017 = Ellipsoid(
     name="Vesta2017",
     long_name="Vesta reference ellipsoid (2017)",
