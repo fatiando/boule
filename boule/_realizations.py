@@ -299,3 +299,19 @@ Titan2024 = Sphere(
         "https://doi.org/10.3847/1538-3881/ac90c9"
     ),
 )
+
+Pluto2024 = Sphere(
+    name="Pluto2024",
+    long_name="Pluto spheroid (2024)",
+    radius=1_188_300,
+    geocentric_grav_const=869.6e9,
+    angular_velocity=1.1385591834674098e-05,
+    reference=(
+        "R: Nimmo, et al. (2017). Mean radius and shape of Pluto and Charon "
+        "from New Horizons images. Icarus, 287, 12–29. "
+        "https://doi.org/10.1016/j.icarus.2016.06.027; "
+        "GM, OMEGA: Brozović, M., et al. (2015). The orbits and masses of "
+        "satellites of Pluto. Icarus, 246, 317–329. "
+        "https://doi.org/10.1016/j.icarus.2014.03.015; "
+    ),
+)

@@ -20,6 +20,7 @@ from ._realizations import (
     Mercury2015,
     Mercury2024,
     Moon2015,
+    Pluto2024,
     Titan2024,
     Venus2015,
     Vesta2017,
