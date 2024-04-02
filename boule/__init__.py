@@ -12,6 +12,7 @@ from ._realizations import (
     WGS84,
     Ceres2018,
     Europa2024,
+    Ganymede2024,
     Io2024,
     Mars2009,
     Mercury2015,

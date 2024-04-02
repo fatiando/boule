@@ -207,7 +207,7 @@ Europa2024 = TriaxialEllipsoid(
     semimedium_axis=1_560_100,
     semiminor_axis=1_559_300,
     geocentric_grav_const=3202.72e9,
-    angular_velocity=2 * _np.pi / (3.525463 * 24 * 60 * 60),
+    angular_velocity=2 * np.pi / (3.525463 * 24 * 60 * 60),
     reference=(
         "A, B, C: Nimmo, F., et al. (2007). The global shape of Europa: "
         "Constraints on lateral shell thickness variations. Icarus, 191(1), "
@@ -216,6 +216,29 @@ Europa2024 = TriaxialEllipsoid(
         "GM: Anderson, J. D., et al. (1998). Europa's differentiated internal "
         "structure: Inferences from four Galileo encounters. Science, 281, "
         "2019–2022. https://doi.org/10.1126/science.281.5385.2019; "
+        "OMEGA: R. A. Jacobson (2021), The Orbits of the Regular Jovian "
+        "Satellites and the Orientation of the Pole of Jupiter, personal "
+        "communication to Horizons/NAIF. Accessed via JPL Solar System "
+        "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
+    ),
+)
+
+Ganymede2024 = TriaxialEllipsoid(
+    # Equilibrium ellipsoid III
+    name="Ganymede2024",
+    long_name="Ganymede equilibrium ellipsoid (2024)",
+    semimajor_axis=2_634_770,
+    semimedium_axis=2_632_380,
+    semiminor_axis=2_631_590,
+    geocentric_grav_const=9.8878041807018262e12,
+    angular_velocity=2 * np.pi / (7.155588 * 24 * 60 * 60),
+    reference=(
+        "A, B, C: Zubarev, A., et al. (2015). New Ganymede control point "
+        "network and global shape model. Planetary and Space Science, 117, "
+        "246–249. https://doi.org/10.1016/j.pss.2015.06.022; "
+        "GM: Gomez Casajus, L., et al. (2022). Gravity Field of Ganymede After "
+        "the Juno Extended Mission. Geophysical Research Letters, 49(24), "
+        "e2022GL099475, doi:10.1029/2022GL099475.; "
         "OMEGA: R. A. Jacobson (2021), The Orbits of the Regular Jovian "
         "Satellites and the Orientation of the Pole of Jupiter, personal "
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
