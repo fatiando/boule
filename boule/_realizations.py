@@ -188,10 +188,34 @@ Io2024 = TriaxialEllipsoid(
     reference=(
         "A, B, C: Thomas, P. C., et al. (1998). The Shape of Io from Galileo "
         "Limb Measurements. Icarus, 135(1), 175–180. "
-        "https://doi.org/10.1006/icar.1998.5987"
+        "https://doi.org/10.1006/icar.1998.5987; "
         "GM: Anderson, J. D., et al. (2001). Io's gravity field and interior "
         "structure. J. Geophys. Res., 106, 32963–32969. "
-        "https://doi.org/10.1029/2000JE001367"
+        "https://doi.org/10.1029/2000JE001367; "
+        "OMEGA: R. A. Jacobson (2021), The Orbits of the Regular Jovian "
+        "Satellites and the Orientation of the Pole of Jupiter, personal "
+        "communication to Horizons/NAIF. Accessed via JPL Solar System "
+        "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
+    ),
+)
+
+Europa2024 = TriaxialEllipsoid(
+    # Nominal hydrostatic ellipsoid
+    name="Europa2024",
+    long_name="Europa hydrostatic ellipsoid (2024)",
+    semimajor_axis=1_562_600,
+    semimedium_axis=1_560_100,
+    semiminor_axis=1_559_300,
+    geocentric_grav_const=3202.72e9,
+    angular_velocity=2 * _np.pi / (3.525463 * 24 * 60 * 60),
+    reference=(
+        "A, B, C: Nimmo, F., et al. (2007). The global shape of Europa: "
+        "Constraints on lateral shell thickness variations. Icarus, 191(1), "
+        "183–192. https://doi.org/10.1016/j.icarus.2007.04.021"
+        "https://doi.org/10.1006/icar.1998.5987; "
+        "GM: Anderson, J. D., et al. (1998). Europa's differentiated internal "
+        "structure: Inferences from four Galileo encounters. Science, 281, "
+        "2019–2022. https://doi.org/10.1126/science.281.5385.2019; "
         "OMEGA: R. A. Jacobson (2021), The Orbits of the Regular Jovian "
         "Satellites and the Orientation of the Pole of Jupiter, personal "
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
