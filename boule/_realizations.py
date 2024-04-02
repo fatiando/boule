@@ -174,3 +174,27 @@ Ceres2018 = Ellipsoid(
         "https://doi.org/10.1016/j.icarus.2017.08.005"
     ),
 )
+
+Io2024 = TriaxialEllipsoid(
+    # Best-fit equilibrium shape of Thomas et al. 1998. Their best fit
+    # ellipsoid shape differs by less than 300 m for each axis.
+    name="Io2024",
+    long_name="Io equilibrium ellipsoid (2024)",
+    semimajor_axis=1_829_700,
+    semimedium_axis=1_819_200,
+    semiminor_axis=1_815_800,
+    geocentric_grav_const=5959.91e9,
+    angular_velocity=2 * np.pi / (1.762732 * 24 * 60 * 60),
+    reference=(
+        "A, B, C: Thomas, P. C., et al. (1998). The Shape of Io from Galileo "
+        "Limb Measurements. Icarus, 135(1), 175–180. "
+        "https://doi.org/10.1006/icar.1998.5987"
+        "GM: Anderson, J. D., et al. (2001). Io's gravity field and interior "
+        "structure. J. Geophys. Res., 106, 32963–32969. "
+        "https://doi.org/10.1029/2000JE001367"
+        "OMEGA: R. A. Jacobson (2021), The Orbits of the Regular Jovian "
+        "Satellites and the Orientation of the Pole of Jupiter, personal "
+        "communication to Horizons/NAIF. Accessed via JPL Solar System "
+        "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
+    ),
+)

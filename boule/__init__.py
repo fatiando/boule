@@ -11,6 +11,7 @@ from ._realizations import (
     GRS80,
     WGS84,
     Ceres2018,
+    Io2024,
     Mars2009,
     Mercury2015,
     Mercury2024,
