@@ -12,6 +12,7 @@ from ._realizations import (
     WGS84,
     Callisto2024,
     Ceres2018,
+    Enceladus2024,
     Europa2024,
     Ganymede2024,
     Io2024,

@@ -179,7 +179,7 @@ Io2024 = TriaxialEllipsoid(
     # Best-fit equilibrium shape of Thomas et al. 1998. Their best fit
     # ellipsoid shape differs by less than 300 m for each axis.
     name="Io2024",
-    long_name="Io equilibrium ellipsoid (2024)",
+    long_name="Io equilibrium triaxial ellipsoid (2024)",
     semimajor_axis=1_829_700,
     semimedium_axis=1_819_200,
     semiminor_axis=1_815_800,
@@ -202,7 +202,7 @@ Io2024 = TriaxialEllipsoid(
 Europa2024 = TriaxialEllipsoid(
     # Nominal hydrostatic ellipsoid
     name="Europa2024",
-    long_name="Europa hydrostatic ellipsoid (2024)",
+    long_name="Europa equilibrium triaxial ellipsoid (2024)",
     semimajor_axis=1_562_600,
     semimedium_axis=1_560_100,
     semiminor_axis=1_559_300,
@@ -226,7 +226,7 @@ Europa2024 = TriaxialEllipsoid(
 Ganymede2024 = TriaxialEllipsoid(
     # Equilibrium ellipsoid III
     name="Ganymede2024",
-    long_name="Ganymede equilibrium ellipsoid (2024)",
+    long_name="Ganymede equilibrium triaxial ellipsoid (2024)",
     semimajor_axis=2_634_770,
     semimedium_axis=2_632_380,
     semiminor_axis=2_631_590,
@@ -259,5 +259,20 @@ Callisto2024 = Sphere(
         "OMEGA: Satellites and the Orientation of the Pole of Jupiter, "
         "personal communication to Horizons/NAIF. Accessed via JPL Solar "
         "System Dynamics, https://ssd.jpl.nasa.gov, JUP365."
+    ),
+)
+
+Enceladus2024 = TriaxialEllipsoid(
+    name="Enceladus2024",
+    long_name="Enceladus triaxial ellipsoid (2024)",
+    semimajor_axis=256_140,
+    semimedium_axis=251_160,
+    semiminor_axis=248_680,
+    geocentric_grav_const=7.210443e9,
+    angular_velocity=262.7318870466 * 2.0 * np.pi / 360.0 / (24.0 * 60.0 * 60.0),
+    reference=(
+        "Park, R. S., et al. (2024). The Global Shape, Gravity Field, and "
+        "Libration of Enceladus. Journal of Geophysical Research: Planets, "
+        "129(1), e2023JE008054. https://doi.org/10.1029/2023JE008054"
     ),
 )
