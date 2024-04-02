@@ -276,3 +276,26 @@ Enceladus2024 = TriaxialEllipsoid(
         "129(1), e2023JE008054. https://doi.org/10.1029/2023JE008054"
     ),
 )
+
+Titan2024 = Sphere(
+    # Ellispoid fit to data (not from spherical harmonic coefficients)
+    name="Titan2024",
+    long_name="Titan triaxial ellipsoid (2024)",
+    semimajor_axis=2_575_164,
+    semimedium_axis=2_574_720,
+    semiminor_axis=2_574_314,
+    geocentric_grav_const=8978.1383e9,
+    angular_velocity=2 * np.pi / (15.945448 * 24 * 60 * 60),
+    reference=(
+        "A, B, C: Corlies, P., et al. (2017). Titan’s Topography and Shape at "
+        "the End of the Cassini Mission. Geophysical Research Letters, 44(23), "
+        "11,754-11,761. https://doi.org/10.1002/2017GL075518; "
+        "GM: Durante, D., et al. (2019). Titan’s gravity field and interior "
+        "structure after Cassini. Icarus, 326, 123–132. "
+        "https://doi.org/10.1016/j.icarus.2019.03.003; "
+        "OMEGA: Jacobson, R. (2022). The Orbits of the Main Saturnian "
+        "Satellites, the Saturnian System Gravity Field, and the Orientation "
+        "of Saturn's Pole. The Astronomical Journal, 164, 199. "
+        "https://doi.org/10.3847/1538-3881/ac90c9"
+    ),
+)
