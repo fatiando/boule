@@ -245,3 +245,19 @@ Ganymede2024 = TriaxialEllipsoid(
         "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
     ),
 )
+
+Callisto2024 = Sphere(
+    name="Callisto2024",
+    long_name="Callisto spheroid (2024)",
+    radius=2_410_300,
+    geocentric_grav_const=7179.292e9,
+    angular_velocity=2 * np.pi / (16.690440 * 24 * 60 * 60),
+    reference=(
+        "R, GM: Anderson, J. D., et al. (2001). Shape, mean radius, gravity "
+        "field, and interior structure of Callisto. Icarus, 153(1), 157–161. "
+        "https://doi.org/10.1006/icar.2001.6664; "
+        "OMEGA: Satellites and the Orientation of the Pole of Jupiter, "
+        "personal communication to Horizons/NAIF. Accessed via JPL Solar "
+        "System Dynamics, https://ssd.jpl.nasa.gov, JUP365."
+    ),
+)

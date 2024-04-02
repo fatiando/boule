@@ -10,6 +10,7 @@ from ._realizations import (
     EGM96,
     GRS80,
     WGS84,
+    Callisto2024,
     Ceres2018,
     Europa2024,
     Ganymede2024,
