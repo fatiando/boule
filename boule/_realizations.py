@@ -277,7 +277,7 @@ Enceladus2024 = TriaxialEllipsoid(
     ),
 )
 
-Titan2024 = Sphere(
+Titan2024 = TriaxialEllipsoid(
     # Ellispoid fit to data (not from spherical harmonic coefficients)
     name="Titan2024",
     long_name="Titan triaxial ellipsoid (2024)",
