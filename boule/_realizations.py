@@ -29,7 +29,7 @@ Mercury2015 = Sphere(
 Mercury2024 = Sphere(
     name="Mercury2024",
     long_name="Mercury spheroid (2023)",
-    radius=2439472.7,
+    radius=2_439_472.7,
     geocentric_grav_const=22031815411154.895,
     angular_velocity=1.2400141739494342e-06,
     reference=(
@@ -124,6 +124,24 @@ Mars2009 = Ellipsoid(
     ),
 )
 
+Ceres2018 = Ellipsoid(
+    name="Ceres2018",
+    long_name="Ceres ellipsoid (2018)",
+    semimajor_axis=482_100,
+    flattening=(482_100 - 445.94) / 482_100,
+    geocentric_grav_const=62629053612.1,
+    angular_velocity=1.9234038694078873e-4,
+    reference=(
+        "A, F: Park, R. S., et al. (2019). High-resolution shape model of "
+        "Ceres from stereophotoclinometry using Dawn Imaging Data. Icarus, "
+        "319, 812–827. https://doi.org/10.1016/j.icarus.2018.10.024; "
+        "GM, OMEGA: Konopliv, A. S., et al. (2018). The Ceres gravity field, "
+        "spin pole, rotation period and orbit from the Dawn radiometric "
+        "tracking and optical data. Icarus, 299, 411–429. "
+        "https://doi.org/10.1016/j.icarus.2017.08.005"
+    ),
+)
+
 Vesta2017 = Ellipsoid(
     name="Vesta2017",
     long_name="Vesta reference ellipsoid (2017)",
@@ -154,24 +172,6 @@ Vesta2017_triaxial = TriaxialEllipsoid(
         "The size, shape and orientation of the asteroid Vesta based on data "
         "from the Dawn mission. Earth and Planetary Science Letters, 475, "
         "71–82. https://doi.org/10.1016/j.epsl.2017.07.033"
-    ),
-)
-
-Ceres2018 = Ellipsoid(
-    name="Ceres2018",
-    long_name="Ceres ellipsoid (2018)",
-    semimajor_axis=482_100,
-    flattening=(482_100 - 445.94) / 482_100,
-    geocentric_grav_const=62629053612.1,
-    angular_velocity=1.9234038694078873e-4,
-    reference=(
-        "A, F: Park, R. S., et al. (2019). High-resolution shape model of "
-        "Ceres from stereophotoclinometry using Dawn Imaging Data. Icarus, "
-        "319, 812–827. https://doi.org/10.1016/j.icarus.2018.10.024; "
-        "GM, OMEGA: Konopliv, A. S., et al. (2018). The Ceres gravity field, "
-        "spin pole, rotation period and orbit from the Dawn radiometric "
-        "tracking and optical data. Icarus, 299, 411–429. "
-        "https://doi.org/10.1016/j.icarus.2017.08.005"
     ),
 )
 

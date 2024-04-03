@@ -273,7 +273,7 @@ class TriaxialEllipsoid:
         being the geocentric spherical longitude of the meridian containing the
         semi-major axis.
 
-        Note that [Pec1983]_ use geocentric spherical co-latitude, while here
+        Note that [Pěč1983]_ use geocentric spherical co-latitude, while here
         we used geocentric spherical latitude.
         """
         latitude_rad = np.radians(latitude)
