@@ -54,6 +54,8 @@ class Sphere:
         (optional).
     reference : str or None
         Citation for the sphere parameter values (optional).
+    comments : str or None
+        Additional comments regarding the ellipsoid (optional).
 
 
     .. caution::
@@ -108,6 +110,7 @@ class Sphere:
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+    comments = attr.ib(default=None)
 
     @radius.validator
     def _check_radius(self, radius, value):

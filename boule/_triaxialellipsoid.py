@@ -67,6 +67,8 @@ class TriaxialEllipsoid:
         1984"`` (optional).
     reference : str or None
         Citation for the ellipsoid parameter values (optional).
+    comments : str or None
+        Additional comments regarding the ellipsoid (optional).
 
     Examples
     --------
@@ -111,6 +113,7 @@ class TriaxialEllipsoid:
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+    comments = attr.ib(default=None)
 
     def _raise_invalid_axis(self):
         "Raise a ValueError informing that the axis are invalid."
