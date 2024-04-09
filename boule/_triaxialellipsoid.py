@@ -22,10 +22,11 @@ class TriaxialEllipsoid:
 
     The ellipsoid is defined by five parameters: semimajor axis, semimedium
     axis, semiminor axis, geocentric gravitational constant, and angular
-    velocity. The ellipsoid spins around it's smallest semiminor axis, which
+    velocity. The ellipsoid spins around its smallest (semiminor) axis, which
     is aligned with the Cartesian z coordinate axis. The semimajor and
-    semimedium axes are in the x-y plane, and if not specified otherwise,
-    coincide with the Cartesian x and y axes.
+    semimedium axes are in the x-y plane, and by default coincide with the
+    Cartesian x and y coordinate axes. Optionally, the ellipsoid can be rotated
+    about the z axis by specifying the longitude of the semimajor axis.
 
     **This class is read-only:** Input parameters and attributes cannot be
     changed after instantiation.
