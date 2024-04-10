@@ -607,7 +607,8 @@ class Ellipsoid:
         # semimajor axis of the ellipsoid that passes through the input
         # coordinates
         a_p = np.sqrt(u**2 + self.linear_eccentricity**2)
-        # latitude = np.arctan(a_p / u * np.tan(np.radians(reduced_latitude)))
+
+        # geodetic latitude
         latitude = np.arctan(a_p / u * np.tan(np.radians(reduced_latitude)))
 
         # Compute height as the difference of the prime_vertical_radius of the
