@@ -529,7 +529,7 @@ class Ellipsoid:
             The coordinate u, which is the semiminor axis of the ellipsoid that
             passes through the input coordinates.
         """
-        if height == 0:
+        if np.array(height).all() == 0:
             # Use simple formula that relates geodetic and reduced latitude
             beta = np.degrees(
                 np.arctan(
