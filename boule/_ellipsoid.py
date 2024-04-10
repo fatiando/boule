@@ -435,8 +435,8 @@ class Ellipsoid:
         -------
         longitude : array
             Longitude coordinates on geocentric spherical coordinate system in
-            degrees.
-            The longitude coordinates are not modified during this conversion.
+            degrees. The longitude coordinates are not modified during this
+            conversion.
         spherical_latitude : array
             Converted latitude coordinates on geocentric spherical coordinate
             system in degrees.
@@ -500,6 +500,79 @@ class Ellipsoid:
         latitude = np.degrees(2 * np.arctan2(big_z, (big_d + hypot_dz)))
         height = (k + self.eccentricity**2 - 1) / k * hypot_dz
         return longitude, latitude, height
+
+    def geodetic_to_ellipsoidal_harmonic(self, longitude, latitude, height):
+        """
+        Convert from geodetic to ellipsoidal-harmonic coordinates.
+
+        The geodetic datum is defined by this ellipsoid, and the coordinates
+        are converted following [Lakshmanan1991]_ and [LiGotze2001].
+
+        Parameters
+        ----------
+        longitude : array
+            Longitude coordinates on geodetic coordinate system in degrees.
+        latitude : array
+            Latitude coordinates on geodetic coordinate system in degrees.
+        height : array
+            Ellipsoidal heights in meters.
+
+        Returns
+        -------
+        longitude : array
+            Longitude coordinates on ellipsoidal-harmonic coordinate system in
+            degrees. The longitude coordinates are not modified during this
+            conversion.
+        reduced_latitude : array
+            The reduced (or parametric) latitude in degrees.
+        u : array
+            The coordinate u, which is the semiminor axis of the ellipsoid that
+            passes through the input coordinates.
+        """
+        if height == 0:
+            # Use simple formula that relates geodetic and reduced latitude
+            beta = np.degrees(
+                np.arctan(
+                    self.semiminor_axis
+                    / self.semimajor_axis
+                    * np.tan(np.radians(latitude))
+                )
+            )
+            u = self.semiminor_axis
+
+        else:
+            # The variable names follow Li and Goetze (2001). The prime terms
+            # (*_p) refer to quantities on an ellipsoid passing through the
+            # computation point.
+            sinlat = np.sin(np.radians(latitude))
+            coslat = np.sqrt(1 - sinlat**2)
+
+            # Reduced latitude of the projection of the point on the
+            # reference ellipsoid
+            beta = np.arctan2(
+                self.semiminor_axis * sinlat, self.semimajor_axis * coslat
+            )
+            sinbeta = np.sin(beta)
+            cosbeta = np.sqrt(1 - sinbeta**2)
+
+            # Distance squared between computation point and equatorial plane
+            z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
+            # Distance squared between computation point and spin axis
+            r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
+
+            # Auxiliary variables
+            big_d = (r_p2 - z_p2) / self.linear_eccentricity**2
+            big_r = (r_p2 + z_p2) / self.linear_eccentricity**2
+
+            # cos(reduced latitude) squared of the computation point
+            cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
+
+            # Semiminor axis of ellipsoid passing through the computation point
+            u = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
+
+            beta = np.degrees(np.arccos(np.sqrt(cosbeta_p2)))
+
+        return longitude, beta, u
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""
