@@ -540,6 +540,8 @@ class Ellipsoid:
             )
             u = self.semiminor_axis
 
+            return longitude, beta, u
+
         else:
             # The variable names follow Li and Goetze (2001). The prime terms
             # (*_p) refer to quantities on an ellipsoid passing through the
@@ -568,11 +570,53 @@ class Ellipsoid:
             cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
 
             # Semiminor axis of ellipsoid passing through the computation point
-            u = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
+            b_p = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
 
-            beta = np.degrees(np.arccos(np.sqrt(cosbeta_p2)))
+            beta_p = np.degrees(np.arccos(np.sqrt(cosbeta_p2)))
 
-        return longitude, beta, u
+            return longitude, beta_p, b_p
+
+    def ellipsoidal_harmonic_to_geodetic(self, longitude, reduced_latitude, u):
+        """
+        Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.
+
+        The geodetic datum is defined by this ellipsoid.
+
+        Parameters
+        ----------
+        longitude : array
+            Longitude coordinates on ellipsoidal-harmonic coordinate system in
+            degrees.
+        latitude : array
+            Reduced (parametric) latitude coordinates on ellipsoidal-harmonic
+            coordinate system in degrees.
+        u : array
+            The coordinate u, which is the semiminor axes of the ellipsoid that
+            passes through the input coordinates.
+
+        Returns
+        -------
+        longitude : array
+            Longitude coordinates on geodetic coordinate system in degrees. The
+            longitude coordinates are not modified during this conversion.
+        latitude : array
+            Latitude coordinates on geodetic coordinate system in degrees.
+        height : array
+            Ellipsoidal heights in meters.
+        """
+        # semimajor axis of the ellipsoid that passes through the input
+        # coordinates
+        a_p = np.sqrt(u**2 + self.linear_eccentricity**2)
+        # latitude = np.arctan(a_p / u * np.tan(np.radians(reduced_latitude)))
+        latitude = np.arctan(a_p / u * np.tan(np.radians(reduced_latitude)))
+
+        # Compute height as the difference of the prime_vertical_radius of the
+        # input ellipsoid and reference ellipsoid
+        height = self.prime_vertical_radius(np.sin(latitude)) * (
+            a_p / self.semimajor_axis - 1
+        )
+
+        return longitude, np.degrees(latitude), height
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""
