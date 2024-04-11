@@ -529,7 +529,7 @@ class Ellipsoid:
             The coordinate u, which is the semiminor axis of the ellipsoid that
             passes through the input coordinates.
         """
-        if np.array(height).all() == 0:
+        if (np.array(height) == 0).all():
             # Use simple formula that relates geodetic and reduced latitude
             beta = np.degrees(
                 np.arctan(
@@ -538,7 +538,7 @@ class Ellipsoid:
                     * np.tan(np.radians(latitude))
                 )
             )
-            u = self.semiminor_axis
+            u = np.full_like(height, fill_value=self.semiminor_axis)
 
             return longitude, beta, u
 
@@ -569,12 +569,13 @@ class Ellipsoid:
             # cos(reduced latitude) squared of the computation point
             cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
 
-            # Semiminor axis of ellipsoid passing through the computation point
+            # Semiminor axis of the ellipsoid passing through the computation
+            # point. This is the coordinate u
             b_p = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
 
             # Note that the sign of beta_p needs to be fixed as it is defined
-            # from -90 to 90 degrees.
-            beta_p = np.sign(latitude) * np.degrees(np.arccos(np.sqrt(cosbeta_p2)))
+            # from -90 to 90 degrees, but arccos is from 0 to 180.
+            beta_p = np.copysign(np.degrees(np.arccos(np.sqrt(cosbeta_p2))), latitude)
 
             return longitude, beta_p, b_p
 
@@ -940,7 +941,7 @@ class Ellipsoid:
                 \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)
 
         in which :math:`N(\phi)` is the prime vertical radius of curvature of
-        the ellipsoid.
+        the ellipsoid and :math:`\omega` is the angular velocity.
         """
         # Pre-compute to avoid repeated calculations
         sinlat = np.sin(np.radians(latitude))
