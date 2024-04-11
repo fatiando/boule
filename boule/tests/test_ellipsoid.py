@@ -337,6 +337,24 @@ def test_normal_gravity_computed_on_internal_point(ellipsoid):
         assert len(warn) >= 1
 
 
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_normal_gravity_gravitational_centrifugal_potential(ellipsoid):
+    """
+    Test that the normal gravity potential is equal to the sum of the normal
+    gravitational potential and centrifugal potential.
+    """
+    latitude = np.array([-90, -45, 0, 45, 90])
+    big_u0 = ellipsoid.normal_gravity_potential(latitude, height=0)
+    big_v0 = ellipsoid.normal_gravitational_potential(latitude, height=0)
+    big_phi0 = ellipsoid.centrifugal_potential(latitude, height=0)
+    height = 1000
+    big_u = ellipsoid.normal_gravity_potential(latitude, height)
+    big_v = ellipsoid.normal_gravitational_potential(latitude, height)
+    big_phi = ellipsoid.centrifugal_potential(latitude, height)
+    npt.assert_allclose(big_u0, big_v0 + big_phi0)
+    npt.assert_allclose(big_u, big_v + big_phi)
+
+
 def test_emm_wgs84():
     "The _emm property should be equal this value for WGS84"
     npt.assert_allclose(WGS84._emm, 0.00344978650684)

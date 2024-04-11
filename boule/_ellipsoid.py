@@ -906,46 +906,46 @@ class Ellipsoid:
 
         return big_U
 
-def centrifugal_potential(self, latitude, height):
-    r"""
-    Centrifugal potential at the given geodetic latitude and height above
-    the ellipsoid.
+    def centrifugal_potential(self, latitude, height):
+        r"""
+        Centrifugal potential at the given geodetic latitude and height above
+        the ellipsoid.
 
-    Parameters
-    ----------
-    latitude : float or array
-        The geodetic latitude where the centrifugal potential will be
-        computed (in degrees).
-    height : float or array
-        The ellipsoidal (geometric) height of the computation point (in
-        meters).
+        Parameters
+        ----------
+        latitude : float or array
+            The geodetic latitude where the centrifugal potential will be
+            computed (in degrees).
+        height : float or array
+            The ellipsoidal (geometric) height of the computation point (in
+            meters).
 
-    Returns
-    -------
-    Phi : float or array
-        The centrifugal potential in m²/s².
+        Returns
+        -------
+        Phi : float or array
+            The centrifugal potential in m²/s².
 
-    Notes
-    -----
+        Notes
+        -----
 
-    The centrifugal potential :math:`\Phi` at geodetic latitude
-    :math:`\phi` and height above the ellipsoid :math:`h` (geometric
-    height) is
+        The centrifugal potential :math:`\Phi` at geodetic latitude
+        :math:`\phi` and height above the ellipsoid :math:`h` (geometric
+        height) is
 
-    .. math::
+        .. math::
 
-        \Phi(\phi, h) = \dfrac{1}{2}
-            \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)
+            \Phi(\phi, h) = \dfrac{1}{2}
+                \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)
 
-    in which :math:`N(\phi)` is the prime vertical radius of curvature of
-    the ellipsoid.
-    """
-    # Pre-compute to avoid repeated calculations
-    sinlat = np.sin(np.radians(latitude))
-    coslat = np.sqrt(1 - sinlat**2)
+        in which :math:`N(\phi)` is the prime vertical radius of curvature of
+        the ellipsoid.
+        """
+        # Pre-compute to avoid repeated calculations
+        sinlat = np.sin(np.radians(latitude))
+        coslat = np.sqrt(1 - sinlat**2)
 
-    return (1 / 2) * (
-        self.angular_velocity
-        * (self.prime_vertical_radius(sinlat) + height)
-        * coslat
-    ) ** 2
+        return (1 / 2) * (
+            self.angular_velocity
+            * (self.prime_vertical_radius(sinlat) + height)
+            * coslat
+        ) ** 2
