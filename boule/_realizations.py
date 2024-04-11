@@ -28,7 +28,7 @@ Mercury2015 = Sphere(
 
 Mercury2024 = Sphere(
     name="Mercury2024",
-    long_name="Mercury spheroid (2023)",
+    long_name="Mercury spheroid (2024)",
     radius=2_439_472.7,
     geocentric_grav_const=22031815411154.895,
     angular_velocity=1.2400141739494342e-06,
