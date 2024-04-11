@@ -809,13 +809,13 @@ class Ellipsoid:
             - 3 * u / self.linear_eccentricity
         )
 
-        big_V = self.geocentric_grav_const / self.linear_eccentricity * np.arctan(
+        big_v = self.geocentric_grav_const / self.linear_eccentricity * np.arctan(
             self.linear_eccentricity / u
         ) + (1 / 3) * (self.angular_velocity * self.semimajor_axis) ** 2 * q / q_0 * (
             1.5 * np.sin(np.radians(beta)) ** 2 - 0.5
         )
 
-        return big_V
+        return big_v
 
     def normal_gravity_potential(self, latitude, height):
         r"""
@@ -889,7 +889,7 @@ class Ellipsoid:
             - 3 * u / self.linear_eccentricity
         )
 
-        big_U = (
+        big_u = (
             self.geocentric_grav_const
             / self.linear_eccentricity
             * np.arctan(self.linear_eccentricity / u)
@@ -904,7 +904,7 @@ class Ellipsoid:
             * np.cos(np.radians(beta)) ** 2
         )
 
-        return big_U
+        return big_u
 
     def centrifugal_potential(self, latitude, height):
         r"""
