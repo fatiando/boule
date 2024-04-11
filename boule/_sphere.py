@@ -379,3 +379,39 @@ class Sphere:
             gamma *= 1e5
 
         return gamma
+
+    def centrifugal_potential(self, latitude, height):
+        r"""
+        Centrifugal potential at the given latitude and height.
+
+        Parameters
+        ----------
+        latitude : float or array
+            The latitude where the centrifugal potential will be computed
+            (in degrees).
+        height : float or array
+            The height above the sphere of the computation point (in meters).
+
+        Returns
+        -------
+        Phi : float or array
+            The centrifugal potential in m²/s².
+
+        Notes
+        -----
+
+        The centrifugal potential :math:`\Phi` at latitude :math:`\phi` and
+        height above the sphere :math:`h` is
+
+        .. math::
+
+            \Phi(\phi, h) = \dfrac{1}{2}
+                \omega^2 \left(R + h\right)^2 \cos^2(\phi)
+
+        in which :math:`R` is the sphere radius.
+        """
+        return (1 / 2) * (
+            self.angular_velocity
+            * (self.radius + height)
+            * np.cos(np.radians(latitude))
+        ) ** 2
