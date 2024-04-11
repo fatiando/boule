@@ -169,6 +169,35 @@ def test_spherical_to_geodetic_on_poles(ellipsoid):
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_geodetic_to_ellipsoidal_conversions(ellipsoid):
+    "Test the geodetic to ellipsoidal-harmonic coordinate conversions by
+    going from geodetic to ellipsoidal to geodetic."
+    rtol = 1e-6  #  The conversion is not too accurate for large height
+    size = 5
+    geodetic_latitude_in = np.linspace(-90, 90, size)
+    height_in = np.zeros(size)
+
+    longitude, reduced_latitude, u = ellipsoid.geodetic_to_ellipsoidal_harmonic(
+        None, geodetic_latitude_in, height_in
+    )
+    longitude, geodetic_latitude_out, height_out = ellipsoid.ellipsoidal_harmonic_to_geodetic(
+        None, reduced_latitude, u
+    )
+    npt.assert_allclose(geodetic_latitude_in, geodetic_latitude_out)
+    npt.assert_allclose(height_in, height_out)
+
+    height_in = np.array(size * [1000])
+    longitude, reduced_latitude, u = ellipsoid.geodetic_to_ellipsoidal_harmonic(
+        None, geodetic_latitude_in, height_in
+    )
+    longitude, geodetic_latitude_out, height_out = ellipsoid.ellipsoidal_harmonic_to_geodetic(
+        None, reduced_latitude, u
+    )
+    npt.assert_allclose(geodetic_latitude_in, geodetic_latitude_out, rtol=rtol)
+    npt.assert_allclose(height_in, height_out, rtol=rtol)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_spherical_to_geodetic_identity(ellipsoid):
     "Test if applying both conversions in series is the identity operator"
     rtol = 1e-10
@@ -329,11 +358,18 @@ def test_normal_gravity_against_somigliana(ellipsoid):
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_normal_gravity_computed_on_internal_point(ellipsoid):
     """
-    Check if warn is raised if height is negative
+    Check if warn is raised if height is negative for normal_gravity,
+    normal_gravity_potential, and normal_gravitational_potential.
     """
     latitude = np.linspace(-90, 90, 100)
     with warnings.catch_warnings(record=True) as warn:
         ellipsoid.normal_gravity(latitude, height=-10)
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        ellipsoid.normal_gravity_potential(latitude, height=-10)
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        ellipsoid.normal_gravitational_potential(latitude, height=-10)
         assert len(warn) >= 1
 
 

@@ -572,7 +572,9 @@ class Ellipsoid:
             # Semiminor axis of ellipsoid passing through the computation point
             b_p = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
 
-            beta_p = np.degrees(np.arccos(np.sqrt(cosbeta_p2)))
+            # Note that the sign of beta_p needs to be fixed as it is defined
+            # from -90 to 90 degrees.
+            beta_p = np.sign(latitude) * np.degrees(np.arccos(np.sqrt(cosbeta_p2)))
 
             return longitude, beta_p, b_p
 
