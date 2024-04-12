@@ -5,7 +5,8 @@
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
 """
-Ellipsoid and Sphere realizations for the Earth and other planetary bodies.
+Ellipsoid, Sphere and Triaxialellipsoid realizations for the Earth and other
+planetary bodies.
 """
 import numpy as np
 
@@ -140,6 +141,7 @@ Ceres2018 = Ellipsoid(
         "tracking and optical data. Icarus, 299, 411–429. "
         "https://doi.org/10.1016/j.icarus.2017.08.005"
     ),
+    comments="Geocentric ellipsoid with aligned semiminor and rotation axes",
 )
 
 Vesta2017 = Ellipsoid(
@@ -155,11 +157,10 @@ Vesta2017 = Ellipsoid(
         "from the Dawn mission. Earth and Planetary Science Letters, 475, "
         "71–82. https://doi.org/10.1016/j.epsl.2017.07.033"
     ),
+    comments="Geocentric biaxial ellipsoid",
 )
 
 Vesta2017_triaxial = TriaxialEllipsoid(
-    # Note that this triaxial reference ellipsoid is rotated in longitude
-    # by 8.29 E with respect to the Vesta coordinate system.
     name="Vesta2017_triaxial",
     long_name="Vesta triaxial reference ellipsoid (2017)",
     semimajor_axis=280_413,
@@ -167,17 +168,17 @@ Vesta2017_triaxial = TriaxialEllipsoid(
     semiminor_axis=231_253,
     geocentric_grav_const=17.288e9,
     angular_velocity=3.267e-4,
+    semimajor_axis_longitude=8.29,
     reference=(
         "Karimi, R., Azmoudeh Ardalan, A., & Vasheghani Farahani, S. (2017). "
         "The size, shape and orientation of the asteroid Vesta based on data "
         "from the Dawn mission. Earth and Planetary Science Letters, 475, "
         "71–82. https://doi.org/10.1016/j.epsl.2017.07.033"
     ),
+    comments="Geocentric triaxial ellipsoid",
 )
 
 Io2024 = TriaxialEllipsoid(
-    # Best-fit equilibrium shape of Thomas et al. 1998. Their best fit
-    # ellipsoid shape differs by less than 300 m for each axis.
     name="Io2024",
     long_name="Io equilibrium triaxial ellipsoid (2024)",
     semimajor_axis=1_829_700,
@@ -197,6 +198,7 @@ Io2024 = TriaxialEllipsoid(
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
         "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
     ),
+    comments="Best-fit equilibrium shape",
 )
 
 Europa2024 = TriaxialEllipsoid(
@@ -221,10 +223,10 @@ Europa2024 = TriaxialEllipsoid(
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
         "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
     ),
+    comments="Best-fit hydrostatic (nominal)",
 )
 
 Ganymede2024 = TriaxialEllipsoid(
-    # Equilibrium ellipsoid III
     name="Ganymede2024",
     long_name="Ganymede equilibrium triaxial ellipsoid (2024)",
     semimajor_axis=2_634_770,
@@ -244,6 +246,7 @@ Ganymede2024 = TriaxialEllipsoid(
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
         "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
     ),
+    comments="Equilibrium ellipsoid III",
 )
 
 Callisto2024 = Sphere(
@@ -297,6 +300,9 @@ Titan2024 = TriaxialEllipsoid(
         "Satellites, the Saturnian System Gravity Field, and the Orientation "
         "of Saturn's Pole. The Astronomical Journal, 164, 199. "
         "https://doi.org/10.3847/1538-3881/ac90c9"
+    ),
+    comments=(
+        "Fit to ellipsoid shape (not derived from spherical harmonic " "coefficients)"
     ),
 )
 
