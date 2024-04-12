@@ -538,7 +538,7 @@ class Ellipsoid:
                     * np.tan(np.radians(latitude))
                 )
             )
-            u = np.full_like(height, fill_value=self.semiminor_axis)
+            u = np.full_like(height, fill_value=self.semiminor_axis, dtype=np.float_)
 
             return longitude, beta, u
 
