@@ -607,7 +607,7 @@ class Ellipsoid:
         height : array
             Ellipsoidal heights in meters.
         """
-        # semimajor axis of the ellipsoid that passes through the input
+        # Semimajor axis of the ellipsoid that passes through the input
         # coordinates
         a_p = np.sqrt(u**2 + self.linear_eccentricity**2)
 
@@ -752,7 +752,7 @@ class Ellipsoid:
 
         .. math::
 
-            \V(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{3}
+            V(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{3}
             \omega^2 a^2 \dfrac{q}{q_0} P_2 (\sin \beta)
 
         in which :math:`V` is the gravitational potential of the
@@ -762,7 +762,7 @@ class Ellipsoid:
         are auxiliary functions, :math:`P_2` is the degree 2 unnormalized
         Legendre Polynomial, and :math:`u` and :math:`beta` are ellipsoidal-
         harmonic coordinates corresponding to the input geodetic latitude and
-        and ellipsoidal height. See eq. 2-124 of [HofmannWellenhofMoritz2006]_.
+        ellipsoidal height. See eq. 2-124 of [HofmannWellenhofMoritz2006]_.
 
         Assumes that the internal density distribution of the ellipsoid is such
         that the gravity potential is constant at its surface.
@@ -799,7 +799,7 @@ class Ellipsoid:
             None, latitude, height
         )
 
-        # compute the auxiliary functions q and q_0 (eq 2-113 of
+        # Compute the auxiliary functions q and q_0 (eq 2-113 of
         # HofmannWellenhofMoritz2006)
         q_0 = 0.5 * (
             (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
@@ -831,7 +831,7 @@ class Ellipsoid:
 
         .. math::
 
-            \U(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{2}
+            U(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{2}
             \omega^2 a^2 \dfrac{q}{q_0} \left(\sin^2 \beta
             - \dfrac{1}{3}\right) + \dfrac{1}{2} \omega^2 \left(u^2 + E^2)
             \cos^2 \beta
@@ -864,7 +864,7 @@ class Ellipsoid:
         Returns
         -------
         V : float or array
-            The normal gravitational potential in m²/s².
+            The normal gravity potential in m²/s².
 
         """
         # Warn if height is negative
@@ -879,7 +879,7 @@ class Ellipsoid:
             None, latitude, height
         )
 
-        # compute the auxiliary functions q and q_0 (eq 2-113 of
+        # Compute the auxiliary functions q and q_0 (eq 2-113 of
         # HofmannWellenhofMoritz2006)
         q_0 = 0.5 * (
             (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
@@ -914,6 +914,18 @@ class Ellipsoid:
         Centrifugal potential at the given geodetic latitude and height above
         the ellipsoid.
 
+        The centrifugal potential :math:`\Phi` at geodetic latitude
+        :math:`\phi` and height above the ellipsoid :math:`h` (geometric
+        height) is
+
+        .. math::
+
+            \Phi(\phi, h) = \dfrac{1}{2}
+                \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)
+
+        in which :math:`N(\phi)` is the prime vertical radius of curvature of
+        the ellipsoid and :math:`\omega` is the angular velocity.
+
         Parameters
         ----------
         latitude : float or array
@@ -928,20 +940,6 @@ class Ellipsoid:
         Phi : float or array
             The centrifugal potential in m²/s².
 
-        Notes
-        -----
-
-        The centrifugal potential :math:`\Phi` at geodetic latitude
-        :math:`\phi` and height above the ellipsoid :math:`h` (geometric
-        height) is
-
-        .. math::
-
-            \Phi(\phi, h) = \dfrac{1}{2}
-                \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)
-
-        in which :math:`N(\phi)` is the prime vertical radius of curvature of
-        the ellipsoid and :math:`\omega` is the angular velocity.
         """
         # Pre-compute to avoid repeated calculations
         sinlat = np.sin(np.radians(latitude))
