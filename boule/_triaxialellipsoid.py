@@ -12,6 +12,8 @@ from warnings import warn
 import attr
 import numpy as np
 
+from ._constants import G
+
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
 # accidentally.
@@ -100,6 +102,12 @@ class TriaxialEllipsoid:
     259813 m
     >>> print(f"{ellipsoid.semiaxes_mean_radius:.0f} m")
     262700 m
+    >>> print(f"{ellipsoid.volume_equivalent_radius:.0f} m")
+    261115 m
+    >>> print(f"{ellipsoid.mass:.10e} kg")
+    2.5906746775e+20 kg
+    >>> print(f"{ellipsoid.mean_density:.0f} kg/m³")
+    3474 kg/m³
     >>> print(f"{ellipsoid.volume * 1e-9:.0f} km³")
     74573626 km³
 
@@ -221,6 +229,33 @@ class TriaxialEllipsoid:
             * self.semimedium_axis
             * self.semiminor_axis
         )
+
+    @property
+    def mass(self):
+        r"""
+        The mass of the ellipsoid.
+        Definition: :math:`M = GM / G`.
+        Units: :math:`kg`.
+        """
+        return self.geocentric_grav_const / G
+
+    @property
+    def mean_density(self):
+        r"""
+        The mean density of the ellipsoid.
+        Definition: :math:`\rho = M / V`.
+        Units: :math:`kg / m^3`.
+        """
+        return self.mass / self.volume
+
+    @property
+    def volume_equivalent_radius(self):
+        r"""
+        The volume equivalent radius of the ellipsoid.
+        Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
+        Units: :math:`m`.
+        """
+        return (self.volume * 3 / 4 / np.pi) ** (1 / 3)
 
     @property
     def equatorial_flattening(self):
