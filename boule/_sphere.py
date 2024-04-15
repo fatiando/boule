@@ -215,7 +215,6 @@ class Sphere:
     def volume_equivalent_radius(self):
         r"""
         The volume equivalent radius of the sphere is equal to its radius.
-        Added for compatibility with pymap3d.
         Definition: :math:`R_3 = R`.
         Units: :math:`m`.
         """
