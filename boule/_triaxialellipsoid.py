@@ -13,6 +13,8 @@ import attr
 import numpy as np
 from scipy.special import elliprd, elliprf
 
+from ._constants import G
+
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
 # accidentally.
@@ -103,6 +105,12 @@ class TriaxialEllipsoid:
     8.6562393883e+11 m²
     >>> print(f"{ellipsoid.area_equivalent_radius:0.0f} m")
     262458 m
+    >>> print(f"{ellipsoid.volume_equivalent_radius:.0f} m")
+    261115 m
+    >>> print(f"{ellipsoid.mass:.10e} kg")
+    2.5906746775e+20 kg
+    >>> print(f"{ellipsoid.mean_density:.0f} kg/m³")
+    3474 kg/m³
     >>> print(f"{ellipsoid.volume * 1e-9:.0f} km³")
     74573626 km³
 
@@ -170,8 +178,8 @@ class TriaxialEllipsoid:
     @property
     def mean_radius(self):
         r"""
-        The arithmetic mean radius of the ellipsoid.
-        Definition: :math:`R = \dfrac{a + b + c}{3}`.
+        The arithmetic mean radius of the ellipsoid semi-axes.
+        Definition: :math:`R_1 = \dfrac{a + b + c}{3}`.
         Units: :math:`m`.
         """
         return (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis) / 3
@@ -216,7 +224,34 @@ class TriaxialEllipsoid:
         Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.
         Units: :math:`m`.
         """
-        return np.sqrt(self.area / 4 / np.pi)
+        return np.sqrt(self.area / (4 * np.pi))
+
+    @property
+    def mass(self):
+        r"""
+        The mass of the ellipsoid.
+        Definition: :math:`M = GM / G`.
+        Units: :math:`kg`.
+        """
+        return self.geocentric_grav_const / G
+
+    @property
+    def mean_density(self):
+        r"""
+        The mean density of the ellipsoid.
+        Definition: :math:`\rho = M / V`.
+        Units: :math:`kg / m^3`.
+        """
+        return self.mass / self.volume
+
+    @property
+    def volume_equivalent_radius(self):
+        r"""
+        The volume equivalent radius of the ellipsoid.
+        Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
+        Units: :math:`m`.
+        """
+        return (self.volume * 3 / (4 * np.pi)) ** (1 / 3)
 
     @property
     def equatorial_flattening(self):
