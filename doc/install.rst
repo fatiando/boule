@@ -42,7 +42,7 @@ There are different ways to install Boule:
 Which Python?
 -------------
 
-You'll need **Python >= 3.7**.
+You'll need **Python >= 3.8**.
 See :ref:`python-versions` if you require support for older versions.
 
 Dependencies
