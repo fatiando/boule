@@ -222,19 +222,24 @@ class Ellipsoid:
 
     @property
     def mean_radius(self):
-        """
+        r"""
         The mean radius of the ellipsoid. This is equivalent to the degree 0
         spherical harmonic coefficient of the ellipsoid shape.
-        Definition: :math:`R_0`.
+
+        Definition: :math:`R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}
+        \int_0^{2 \pi}} r(\theta) \sin \theta \, d\theta \, d\lambda`
+
+        in which :math:`r` is the ellipsoid spherical radius, :math:`\theta` is
+        spherical latitude, and :math:`\lambda` is spherical longitude.
+
         Units: :math:`m`.
         """
         # The mean radius is obtained by integration in spherical coordinates.
-        # The integral over longitude is computed analytically, and the
-        # integral over geocentric latitude is performed using Gauss-Legendre
-        # quadrature. Tests show that n = 30 will return the mean radius
-        # to machine precision for an object with a flattening of 0.5 (which
-        # is 100 times larger than that of Mars). In an abundance of caution,
-        # we chose to use n = 50.
+        # The integral over longitude is 2 pi, and the integral over spherical
+        # latitude is performed using Gauss-Legendre quadrature. Tests show
+        # that n = 30 will return the mean radius to machine precision for an
+        # object with a flattening of 0.5 (which is 100 times larger than that
+        # of Mars). In an abundance of caution, we chose to use n = 50.
         n = 50
         x, weights = np.polynomial.legendre.leggauss(n)
         geocentric_latitude = 90.0 - np.rad2deg(np.arccos(x))

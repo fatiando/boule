@@ -174,17 +174,23 @@ class TriaxialEllipsoid:
 
     @property
     def mean_radius(self):
-        """
+        r"""
         The mean radius of the ellipsoid. This is equivalent to the degree 0
         spherical harmonic coefficient of the ellipsoid shape.
-        Definition: :math:`R_0`.
+
+        Definition: :math:`R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}
+        \int_0^{2 \pi}} r(\theta, \lambda) \sin \theta \, d\theta \, d\lambda`
+
+        in which :math:`r` is the ellipsoid spherical radius, :math:`\theta` is
+        spherical latitude, and :math:`\lambda` is spherical longitude.
+
         Units: :math:`m`.
         """
         # The mean radius is obtained by integration in spherical coordinates.
         # Gauss-Legendre quadrature is used to perform the integration over
-        # both geocentric longitude and geocentric latitude. Experiments show
-        # that n = 16 will return the mean radius to machine precision for
-        # the asteroid (4) Vesta, and that machine precision results for a
+        # both spherical longitude and spherical latitude. Tests show that
+        # n = 16 will return the mean radius to machine precision for the
+        # asteroid (4) Vesta, and that machine precision results for a
         # Vesta-like object with half the semiminor axis as Vesta are obtained
         # for n = 38. In an abundance of caution, we chose to use n = 50.
         n = 50
@@ -205,7 +211,7 @@ class TriaxialEllipsoid:
         # Multiply the radius by the weights, and then sum the result
         radius *= weights_latitude[:, np.newaxis]
         radius *= weights_longitude[np.newaxis, :]
-        return np.sum(radius) / 4 / np.pi
+        return np.sum(radius) / (4 * np.pi)
 
     @property
     def semiaxes_mean_radius(self):
