@@ -99,6 +99,10 @@ class Sphere:
     0
     >>> print(sphere.thirdflattening)
     0
+    >>> print(sphere.mean_radius)
+    1
+    >>> print(sphere.semiaxes_mean_radius)
+    1
     >>> print(f"{sphere.volume_equivalent_radius:.1f} m")
     1.0 m
     >>> print(f"{sphere.volume:.10f} m³")
@@ -196,6 +200,26 @@ class Sphere:
         Units: :math:`m^2`.
         """
         return 4 * np.pi * self.radius**2
+
+    @property
+    def mean_radius(self):
+        """
+        The mean radius of the ellipsoid is equal to its radius. Added for
+        compatibility with pymap3d.
+        Definition: :math:`R_0 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
+    def semiaxes_mean_radius(self):
+        """
+        The arithmetic mean radius of the ellipsoid semi-axes is equal to its
+        radius. Added for compatibility with pymap3d.
+        Definition: :math:`R_1 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
 
     @property
     def volume(self):
