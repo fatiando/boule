@@ -38,11 +38,11 @@ jobs:
       fail-fast: false
       matrix:
         os: [ubuntu, macos, windows]
-        python: ["3.7", "3.11"]
+        python: ["3.8", "3.12"]
         include:
-          - python: "3.7"
+          - python: "3.8"
             dependencies: oldest
-          - python: "3.11"
+          - python: "3.12"
             dependencies: latest
     env:
       REQUIREMENTS: env/requirements-build.txt env/requirements-test.txt

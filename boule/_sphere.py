@@ -56,6 +56,8 @@ class Sphere:
         (optional).
     reference : str or None
         Citation for the sphere parameter values (optional).
+    comments : str or None
+        Additional comments regarding the ellipsoid (optional).
 
 
     .. caution::
@@ -99,14 +101,24 @@ class Sphere:
     0
     >>> print(sphere.thirdflattening)
     0
+    >>> print(sphere.mean_radius)
+    1
+    >>> print(sphere.semiaxes_mean_radius)
+    1
     >>> print(f"{sphere.volume_equivalent_radius:.1f} m")
     1.0 m
     >>> print(f"{sphere.volume:.10f} m³")
     4.1887902048 m³
+    >>> print(f"{sphere.area:.10f} m²")
+    12.5663706144 m²
+    >>> print(sphere.area_equivalent_radius)
+    1
     >>> print(f"{sphere.mass:.12e} kg")
     2.996568928577e+10 kg
     >>> print(f"{sphere.mean_density:.0f} kg/m³")
     7153781359 kg/m³
+    >>> print(f"{sphere.reference_normal_gravitational_potential:.3f} m²/s²")
+    2.000 m²/s²
 
     """
 
@@ -116,6 +128,7 @@ class Sphere:
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+    comments = attr.ib(default=None)
 
     @radius.validator
     def _check_radius(self, radius, value):
@@ -185,6 +198,35 @@ class Sphere:
         return 0
 
     @property
+    def area(self):
+        r"""
+        The area of the sphere.
+        Definition: :math:`A = 4 \pi r^2`.
+        Units: :math:`m^2`.
+        """
+        return 4 * np.pi * self.radius**2
+
+    @property
+    def mean_radius(self):
+        """
+        The mean radius of the ellipsoid is equal to its radius. Added for
+        compatibility with pymap3d.
+        Definition: :math:`R_0 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
+    def semiaxes_mean_radius(self):
+        """
+        The arithmetic mean radius of the ellipsoid semi-axes is equal to its
+        radius. Added for compatibility with pymap3d.
+        Definition: :math:`R_1 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
     def volume(self):
         r"""
         The volume of the sphere.
@@ -192,6 +234,15 @@ class Sphere:
         Units: :math:`m^3`.
         """
         return (4 / 3 * np.pi) * self.radius**3
+
+    @property
+    def area_equivalent_radius(self):
+        """
+        The area equivalent radius of the sphere is equal to its radius.
+        Definition: :math:`R_2 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
 
     @property
     def mass(self):
@@ -219,6 +270,15 @@ class Sphere:
         Units: :math:`m`.
         """
         return self.radius
+
+    @property
+    def reference_normal_gravitational_potential(self):
+        r"""
+        The normal gravitational potential on the surface of the sphere.
+        Definition: :math:`U_0 = \dfrac{GM}{R}`.
+        Units: :math:`m^2 / s^2`.
+        """
+        return self.geocentric_grav_const / self.radius
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""

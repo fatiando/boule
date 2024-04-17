@@ -13,17 +13,17 @@ import pymap3d
 import pymap3d.latitude
 import pytest
 
-from .. import MOON, VENUS, WGS84, Ellipsoid
+from .. import WGS84, Ellipsoid, Moon2015, Venus2015
 
 
 @pytest.mark.parametrize(
     "ellipsoid,coordinates",
     [
         (WGS84, (42.014671, -82.006479, 276.9)),
-        (MOON, (41.823366, -82.006479, 4631727)),
-        (VENUS, (41.823366, -82.006479, 317000)),
+        (Moon2015, (41.823366, -82.006479, 4631727)),
+        (Venus2015, (41.823366, -82.006479, 317000)),
     ],
-    ids=["WGS84", "Moon", "Venus"],
+    ids=["WGS84", "Moon2015", "Venus2015"],
 )
 def test_pymap3d_integration_different_ellipsoids(ellipsoid, coordinates):
     "Check that Boule Ellipsoids and Spheres work with pymap3d functions"
