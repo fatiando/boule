@@ -11,6 +11,7 @@ from warnings import warn
 
 import attr
 import numpy as np
+import scipy.special
 
 from ._constants import G
 
@@ -102,6 +103,10 @@ class TriaxialEllipsoid:
     259813 m
     >>> print(f"{ellipsoid.semiaxes_mean_radius:.0f} m")
     262700 m
+    >>> print(f"{ellipsoid.area:.10e} m²")
+    8.6562393883e+11 m²
+    >>> print(f"{ellipsoid.area_equivalent_radius:0.0f} m")
+    262458 m
     >>> print(f"{ellipsoid.volume_equivalent_radius:.0f} m")
     261115 m
     >>> print(f"{ellipsoid.mass:.10e} kg")
@@ -223,6 +228,26 @@ class TriaxialEllipsoid:
         return (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis) / 3
 
     @property
+    def area(self):
+        r"""
+        The area of the ellipsoid.
+        Definition: :math:`A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})`, in which
+        :math:`R_G` is the completely-symmetric elliptic integral of the second
+        kind.
+        Units: :math:`m^2`.
+        """
+        # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
+        return (
+            3
+            * self.volume
+            * scipy.special.elliprg(
+                1 / self.semimajor_axis**2,
+                1 / self.semimedium_axis**2,
+                1 / self.semiminor_axis**2,
+            )
+        )
+
+    @property
     def volume(self):
         r"""
         The volume bounded by the ellipsoid.
@@ -235,6 +260,15 @@ class TriaxialEllipsoid:
             * self.semimedium_axis
             * self.semiminor_axis
         )
+
+    @property
+    def area_equivalent_radius(self):
+        r"""
+        The area equivalent radius of the ellipsoid.
+        Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.
+        Units: :math:`m`.
+        """
+        return np.sqrt(self.area / (4 * np.pi))
 
     @property
     def mass(self):
@@ -261,7 +295,7 @@ class TriaxialEllipsoid:
         Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
         Units: :math:`m`.
         """
-        return (self.volume * 3 / 4 / np.pi) ** (1 / 3)
+        return (self.volume * 3 / (4 * np.pi)) ** (1 / 3)
 
     @property
     def equatorial_flattening(self):

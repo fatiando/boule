@@ -9,6 +9,7 @@ dependencies:
   # Run
   - numpy
   - attrs
+  - scipy
   # Build
   - build
   - twine

@@ -107,6 +107,10 @@ class Sphere:
     1.0 m
     >>> print(f"{sphere.volume:.10f} m³")
     4.1887902048 m³
+    >>> print(f"{sphere.area:.10f} m²")
+    12.5663706144 m²
+    >>> print(sphere.area_equivalent_radius)
+    1
     >>> print(f"{sphere.mass:.12e} kg")
     2.996568928577e+10 kg
     >>> print(f"{sphere.mean_density:.0f} kg/m³")
@@ -189,6 +193,15 @@ class Sphere:
         return 0
 
     @property
+    def area(self):
+        r"""
+        The area of the sphere.
+        Definition: :math:`A = 4 \pi r^2`.
+        Units: :math:`m^2`.
+        """
+        return 4 * np.pi * self.radius**2
+
+    @property
     def mean_radius(self):
         """
         The mean radius of the ellipsoid is equal to its radius. Added for
@@ -216,6 +229,15 @@ class Sphere:
         Units: :math:`m^3`.
         """
         return (4 / 3 * np.pi) * self.radius**3
+
+    @property
+    def area_equivalent_radius(self):
+        """
+        The area equivalent radius of the sphere is equal to its radius.
+        Definition: :math:`R_2 = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
 
     @property
     def mass(self):
