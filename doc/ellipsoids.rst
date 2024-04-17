@@ -105,11 +105,11 @@ Mars
 
     print(boule.Vesta2017)
 
-**Vesta2017_triaxial**: Vesta triaxial ellipsoid using parameters from [Karimi2017]_:
+**VestaTriaxial2017**: Vesta triaxial ellipsoid using parameters from [Karimi2017]_:
 
 .. jupyter-execute::
 
-    print(boule.Vesta2017_triaxial)
+    print(boule.VestaTriaxial2017)
 
 Jupiter system
 --------------

@@ -34,9 +34,9 @@ Mercury2024 = Sphere(
     geocentric_grav_const=22031815411154.895,
     angular_velocity=1.2400141739494342e-06,
     reference=(
-        "R: Maia, J. (2024). Spherical harmonic models of the shape of "
+        "Radius: Maia, J. (2024). Spherical harmonic models of the shape of "
         "Mercury [Data set]. Zenodo. https://doi.org/10.5281/zenodo.10809345; "
-        "GM, OMEGA: Mazarico, E., et al. (2014), The gravity field, "
+        "GM, angular velocity: Mazarico, E., et al. (2014), The gravity field, "
         "orientation, and ephemeris of Mercury from MESSENGER observations "
         "after three years in orbit, J. Geophys. Res. Planets, 119, "
         "2417-2436, doi:10.1002/2014JE004675."
@@ -133,11 +133,11 @@ Ceres2018 = Ellipsoid(
     geocentric_grav_const=62629053612.1,
     angular_velocity=1.9234038694078873e-4,
     reference=(
-        "A, F: Park, R. S., et al. (2019). High-resolution shape model of "
-        "Ceres from stereophotoclinometry using Dawn Imaging Data. Icarus, "
-        "319, 812–827. https://doi.org/10.1016/j.icarus.2018.10.024; "
-        "GM, OMEGA: Konopliv, A. S., et al. (2018). The Ceres gravity field, "
-        "spin pole, rotation period and orbit from the Dawn radiometric "
+        "Semimajor axis, flattening: Park, R. S., et al. (2019). High-resolution "
+        "shape model of Ceres from stereophotoclinometry using Dawn Imaging Data. "
+        "Icarus, 319, 812–827. https://doi.org/10.1016/j.icarus.2018.10.024; "
+        "GM, angular velocity: Konopliv, A. S., et al. (2018). The Ceres gravity "
+        "field, spin pole, rotation period and orbit from the Dawn radiometric "
         "tracking and optical data. Icarus, 299, 411–429. "
         "https://doi.org/10.1016/j.icarus.2017.08.005"
     ),
@@ -160,8 +160,8 @@ Vesta2017 = Ellipsoid(
     comments="Geocentric biaxial ellipsoid",
 )
 
-Vesta2017_triaxial = TriaxialEllipsoid(
-    name="Vesta2017_triaxial",
+VestaTriaxial2017 = TriaxialEllipsoid(
+    name="VestaTriaxial2017",
     long_name="Vesta triaxial reference ellipsoid (2017)",
     semimajor_axis=280_413,
     semimedium_axis=274_572,
@@ -187,14 +187,14 @@ Io2024 = TriaxialEllipsoid(
     geocentric_grav_const=5959.91e9,
     angular_velocity=2 * np.pi / (1.762732 * 24 * 60 * 60),
     reference=(
-        "A, B, C: Thomas, P. C., et al. (1998). The Shape of Io from Galileo "
+        "Semi-axis: Thomas, P. C., et al. (1998). The Shape of Io from Galileo "
         "Limb Measurements. Icarus, 135(1), 175–180. "
         "https://doi.org/10.1006/icar.1998.5987; "
         "GM: Anderson, J. D., et al. (2001). Io's gravity field and interior "
         "structure. J. Geophys. Res., 106, 32963–32969. "
         "https://doi.org/10.1029/2000JE001367; "
-        "OMEGA: R. A. Jacobson (2021), The Orbits of the Regular Jovian "
-        "Satellites and the Orientation of the Pole of Jupiter, personal "
+        "Angular velocity: R. A. Jacobson (2021), The Orbits of the Regular "
+        "Jovian Satellites and the Orientation of the Pole of Jupiter, personal "
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
         "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
     ),
@@ -202,7 +202,6 @@ Io2024 = TriaxialEllipsoid(
 )
 
 Europa2024 = TriaxialEllipsoid(
-    # Nominal hydrostatic ellipsoid
     name="Europa2024",
     long_name="Europa equilibrium triaxial ellipsoid (2024)",
     semimajor_axis=1_562_600,
@@ -211,19 +210,19 @@ Europa2024 = TriaxialEllipsoid(
     geocentric_grav_const=3202.72e9,
     angular_velocity=2 * np.pi / (3.525463 * 24 * 60 * 60),
     reference=(
-        "A, B, C: Nimmo, F., et al. (2007). The global shape of Europa: "
+        "Semi-axis: Nimmo, F., et al. (2007). The global shape of Europa: "
         "Constraints on lateral shell thickness variations. Icarus, 191(1), "
         "183–192. https://doi.org/10.1016/j.icarus.2007.04.021"
         "https://doi.org/10.1006/icar.1998.5987; "
         "GM: Anderson, J. D., et al. (1998). Europa's differentiated internal "
         "structure: Inferences from four Galileo encounters. Science, 281, "
         "2019–2022. https://doi.org/10.1126/science.281.5385.2019; "
-        "OMEGA: R. A. Jacobson (2021), The Orbits of the Regular Jovian "
-        "Satellites and the Orientation of the Pole of Jupiter, personal "
+        "Angular velocity: R. A. Jacobson (2021), The Orbits of the Regular "
+        "Jovian Satellites and the Orientation of the Pole of Jupiter, personal "
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
         "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
     ),
-    comments="Best-fit hydrostatic (nominal)",
+    comments="Best-fit hydrostatic ellipsoid (nominal)",
 )
 
 Ganymede2024 = TriaxialEllipsoid(
@@ -235,14 +234,14 @@ Ganymede2024 = TriaxialEllipsoid(
     geocentric_grav_const=9.8878041807018262e12,
     angular_velocity=2 * np.pi / (7.155588 * 24 * 60 * 60),
     reference=(
-        "A, B, C: Zubarev, A., et al. (2015). New Ganymede control point "
+        "Semi-axis: Zubarev, A., et al. (2015). New Ganymede control point "
         "network and global shape model. Planetary and Space Science, 117, "
         "246–249. https://doi.org/10.1016/j.pss.2015.06.022; "
         "GM: Gomez Casajus, L., et al. (2022). Gravity Field of Ganymede After "
         "the Juno Extended Mission. Geophysical Research Letters, 49(24), "
         "e2022GL099475, doi:10.1029/2022GL099475.; "
-        "OMEGA: R. A. Jacobson (2021), The Orbits of the Regular Jovian "
-        "Satellites and the Orientation of the Pole of Jupiter, personal "
+        "Angular velocity: R. A. Jacobson (2021), The Orbits of the Regular "
+        "Jovian Satellites and the Orientation of the Pole of Jupiter, personal "
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
         "Dynamics, https://ssd.jpl.nasa.gov, JUP365."
     ),
@@ -256,10 +255,10 @@ Callisto2024 = Sphere(
     geocentric_grav_const=7179.292e9,
     angular_velocity=2 * np.pi / (16.690440 * 24 * 60 * 60),
     reference=(
-        "R, GM: Anderson, J. D., et al. (2001). Shape, mean radius, gravity "
+        "Radius, GM: Anderson, J. D., et al. (2001). Shape, mean radius, gravity "
         "field, and interior structure of Callisto. Icarus, 153(1), 157–161. "
         "https://doi.org/10.1006/icar.2001.6664; "
-        "OMEGA: Satellites and the Orientation of the Pole of Jupiter, "
+        "Angular velocity: Satellites and the Orientation of the Pole of Jupiter, "
         "personal communication to Horizons/NAIF. Accessed via JPL Solar "
         "System Dynamics, https://ssd.jpl.nasa.gov, JUP365."
     ),
@@ -281,7 +280,6 @@ Enceladus2024 = TriaxialEllipsoid(
 )
 
 Titan2024 = TriaxialEllipsoid(
-    # Ellispoid fit to data (not from spherical harmonic coefficients)
     name="Titan2024",
     long_name="Titan triaxial ellipsoid (2024)",
     semimajor_axis=2_575_164,
@@ -290,19 +288,19 @@ Titan2024 = TriaxialEllipsoid(
     geocentric_grav_const=8978.1383e9,
     angular_velocity=2 * np.pi / (15.945448 * 24 * 60 * 60),
     reference=(
-        "A, B, C: Corlies, P., et al. (2017). Titan’s Topography and Shape at "
+        "Semi-axis: Corlies, P., et al. (2017). Titan’s Topography and Shape at "
         "the End of the Cassini Mission. Geophysical Research Letters, 44(23), "
         "11,754-11,761. https://doi.org/10.1002/2017GL075518; "
         "GM: Durante, D., et al. (2019). Titan’s gravity field and interior "
         "structure after Cassini. Icarus, 326, 123–132. "
         "https://doi.org/10.1016/j.icarus.2019.03.003; "
-        "OMEGA: Jacobson, R. (2022). The Orbits of the Main Saturnian "
+        "Angular velocity: Jacobson, R. (2022). The Orbits of the Main Saturnian "
         "Satellites, the Saturnian System Gravity Field, and the Orientation "
         "of Saturn's Pole. The Astronomical Journal, 164, 199. "
         "https://doi.org/10.3847/1538-3881/ac90c9"
     ),
     comments=(
-        "Fit to ellipsoid shape (not derived from spherical harmonic " "coefficients)"
+        "Fit to ellipsoid shape (not derived from spherical harmonic coefficients)"
     ),
 )
 
@@ -313,10 +311,10 @@ Pluto2024 = Sphere(
     geocentric_grav_const=869.6e9,
     angular_velocity=1.1385591834674098e-05,
     reference=(
-        "R: Nimmo, et al. (2017). Mean radius and shape of Pluto and Charon "
+        "Radius: Nimmo, et al. (2017). Mean radius and shape of Pluto and Charon "
         "from New Horizons images. Icarus, 287, 12–29. "
         "https://doi.org/10.1016/j.icarus.2016.06.027; "
-        "GM, OMEGA: Brozović, M., et al. (2015). The orbits and masses of "
+        "GM, angular velocity: Brozović, M., et al. (2015). The orbits and masses of "
         "satellites of Pluto. Icarus, 246, 317–329. "
         "https://doi.org/10.1016/j.icarus.2014.03.015; "
     ),
@@ -329,10 +327,10 @@ Charon2024 = Sphere(
     geocentric_grav_const=105.88e9,
     angular_velocity=1.1385591834674098e-055,
     reference=(
-        "R: Nimmo, et al. (2017). Mean radius and shape of Pluto and Charon "
+        "Radius: Nimmo, et al. (2017). Mean radius and shape of Pluto and Charon "
         "from New Horizons images. Icarus, 287, 12–29. "
         "https://doi.org/10.1016/j.icarus.2016.06.027; "
-        "GM, OMEGA: Brozović, M., et al. (2015). The orbits and masses of "
+        "GM, angular velocity: Brozović, M., et al. (2015). The orbits and masses of "
         "satellites of Pluto. Icarus, 246, 317–329. "
         "https://doi.org/10.1016/j.icarus.2014.03.015; "
     ),
