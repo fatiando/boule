@@ -117,6 +117,8 @@ class Sphere:
     2.996568928577e+10 kg
     >>> print(f"{sphere.mean_density:.0f} kg/m³")
     7153781359 kg/m³
+    >>> print(f"{sphere.reference_normal_gravitational_potential:.3f} m²/s²")
+    2.000 m²/s²
 
     """
 
@@ -268,6 +270,15 @@ class Sphere:
         Units: :math:`m`.
         """
         return self.radius
+
+    @property
+    def reference_normal_gravitational_potential(self):
+        r"""
+        The normal gravitational potential on the surface of the sphere.
+        Definition: :math:`U_0 = \dfrac{GM}{R}`.
+        Units: :math:`m^2 / s^2`.
+        """
+        return self.geocentric_grav_const / self.radius
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""

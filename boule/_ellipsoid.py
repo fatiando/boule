@@ -123,6 +123,8 @@ class Ellipsoid:
     9.7803253359 m/s²
     >>> print(f"{ellipsoid.gravity_pole:.10f} m/s²")
     9.8321849379 m/s²
+    >>> print(f"{ellipsoid.reference_normal_gravity_potential:.3f} m²/s²")
+    62636851.715 m²/s²
 
     Use the class methods for calculating normal gravity and other geometric
     quantities.
@@ -196,7 +198,7 @@ class Ellipsoid:
         r"""
         The linear eccentricity of the ellipsoid. The distance between the
         ellipsoid's center and one of its foci.
-        Definition: :math:`c = \sqrt{a^2 - b^2}`.
+        Definition: :math:`E = \sqrt{a^2 - b^2}`.
         Units: :math:`m`.
         """
         return np.sqrt(self.semimajor_axis**2 - self.semiminor_axis**2)
@@ -287,10 +289,25 @@ class Ellipsoid:
     def volume(self):
         r"""
         The volume bounded by the ellipsoid.
-        Definition: :math:`V = \dfrac{4}{3} \pi a^2 c`.
+        Definition: :math:`V = \dfrac{4}{3} \pi a^2 b`.
         Units: :math:`m^3`.
         """
         return (4 / 3 * np.pi) * self.semimajor_axis**2 * self.semiminor_axis
+
+    @property
+    def reference_normal_gravity_potential(self):
+        r"""
+        The normal gravity potential on the surface of the ellipsoid.
+        Definition: :math:`U_0 = \dfrac{GM}{E} \arctan{\dfrac{E}{b}}
+        + \dfrac{1}{3} \omega^2 a^2`.
+        Units: :math:`m^2 / s^2`.
+        """
+        return (
+            self.geocentric_grav_const
+            / self.linear_eccentricity
+            * np.arctan(self.linear_eccentricity / self.semiminor_axis)
+            + (1 / 3) * self.angular_velocity**2 * self.semimajor_axis**2
+        )
 
     @property
     def area_equivalent_radius(self):
