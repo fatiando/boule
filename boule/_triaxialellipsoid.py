@@ -25,8 +25,10 @@ class TriaxialEllipsoid:
 
     The ellipsoid is defined by five parameters: semimajor axis, semimedium
     axis, semiminor axis, geocentric gravitational constant, and angular
-    velocity The thee semi-axis are different and the ellipsoid spins around
-    it's largest moment of inertia.
+    velocity. The ellipsoid spins around it's smallest semiminor axis, which
+    is aligned with the Cartesian z coordinate axis. The semimajor and
+    semimedium axes are in the x-y plane, and if not specified otherwise,
+    coincide with the Cartesian x and y axes.
 
     **This class is read-only:** Input parameters and attributes cannot be
     changed after instantiation.
@@ -35,7 +37,7 @@ class TriaxialEllipsoid:
 
     .. attention::
 
-        Gravity calculations have not been implemented yet for triaxial
+        Most gravity calculations have not been implemented yet for triaxial
         ellipsoids. If you're interested in this feature or would like to help
         implement it, please
         `get in touch <https://www.fatiando.org/contact>`__.
@@ -65,11 +67,16 @@ class TriaxialEllipsoid:
         The angular velocity of the rotating ellipsoid.
         Definition: :math:`\omega`.
         Units: :math:`\\rad.s^{-1}`.
+    semimajor_axis_longitude : float
+        Longitude coordinate of the semimajor axis in the x-y plane. Optional,
+        default value is 0.0.
     long_name : str or None
         A long name for the ellipsoid, for example ``"World Geodetic System
         1984"`` (optional).
     reference : str or None
         Citation for the ellipsoid parameter values (optional).
+    comments : str or None
+        Additional comments regarding the ellipsoid (optional).
 
     Examples
     --------
@@ -124,8 +131,10 @@ class TriaxialEllipsoid:
     semiminor_axis = attr.ib()
     geocentric_grav_const = attr.ib()
     angular_velocity = attr.ib()
+    semimajor_axis_longitude = attr.ib(default=0.0)
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+    comments = attr.ib(default=None)
 
     def _raise_invalid_axis(self):
         "Raise a ValueError informing that the axis are invalid."
@@ -316,12 +325,12 @@ class TriaxialEllipsoid:
         """
         return (self.semimajor_axis - self.semiminor_axis) / self.semimajor_axis
 
-    def geocentric_radius(self, longitude, latitude, longitude_semimajor_axis=0.0):
+    def geocentric_radius(self, longitude, latitude):
         r"""
         Radial distance from the center of the ellipsoid to its surface.
 
         Assumes geocentric spherical latitude and geocentric spherical
-        longitudes. The geocentric radius is calculated following [Pec1983]_.
+        longitudes. The geocentric radius is calculated following [Pěč1983]_.
 
         Parameters
         ----------
@@ -329,10 +338,6 @@ class TriaxialEllipsoid:
             Longitude coordinates on spherical coordinate system in degrees.
         latitude : float or array
             Latitude coordinates on spherical coordinate system in degrees.
-        longitude_semimajor_axis : float (optional)
-            Longitude coordinate of the meridian containing the semi-major axis
-            on spherical coordinate system in degrees. Optional, default value
-            is 0.0.
 
         Returns
         -------
@@ -351,7 +356,7 @@ class TriaxialEllipsoid:
 
         Given geocentric spherical latitude :math:`\phi` and geocentric
         spherical longitude :math:`\lambda`, the geocentric surface radius
-        :math:`R` is computed as (see Eq. 1 of [Pec1983]_)
+        :math:`R` is computed as (see Eq. 1 of [Pěč1983]_)
 
         .. math::
 
@@ -385,12 +390,12 @@ class TriaxialEllipsoid:
         being the geocentric spherical longitude of the meridian containing the
         semi-major axis.
 
-        Note that [Pec1983]_ use geocentric spherical co-latitude, while here
+        Note that [Pěč1983]_ use geocentric spherical co-latitude, while here
         we used geocentric spherical latitude.
         """
         latitude_rad = np.radians(latitude)
         longitude_rad = np.radians(longitude)
-        longitude_semimajor_axis_rad = np.radians(longitude_semimajor_axis)
+        longitude_semimajor_axis_rad = np.radians(self.semimajor_axis_longitude)
 
         coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
 

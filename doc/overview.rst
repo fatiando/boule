@@ -25,16 +25,16 @@ The ellipsoids can be printed to view their defining attributes:
 .. jupyter-execute::
 
     print(bl.WGS84)
-    print(bl.MOON)
-    print(bl.VESTA)
+    print(bl.Moon2015)
+    print(bl.Vesta2017)
 
 Ellipsoids define a name (short and long version) and reference for the origin
 of the numbers used:
 
 .. jupyter-execute::
 
-    print(f"{bl.MARS.name}: {bl.MARS.long_name}")
-    print(bl.MARS.reference)
+    print(f"{bl.Mars2009.name}: {bl.Mars2009.long_name}")
+    print(bl.Mars2009.reference)
 
 Other derived properties of ellipsoids are calculated on demand when
 accessed:

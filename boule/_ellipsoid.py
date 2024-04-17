@@ -24,7 +24,7 @@ class Ellipsoid:
 
     The ellipsoid is defined by four parameters: semimajor axis, flattening,
     geocentric gravitational constant, and angular velocity. It spins around
-    it's semiminor axis and has constant gravity potential at its surface. The
+    its semiminor axis and has constant gravity potential at its surface. The
     internal density structure of the ellipsoid is unspecified but must be such
     that the constant potential condition is satisfied.
 
@@ -59,6 +59,8 @@ class Ellipsoid:
         1984"`` (optional).
     reference : str or None
         Citation for the ellipsoid parameter values (optional).
+    comments : str or None
+        Additional comments regarding the ellipsoid (optional).
 
 
     .. caution::
@@ -133,6 +135,7 @@ class Ellipsoid:
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+    comments = attr.ib(default=None)
 
     @flattening.validator
     def _check_flattening(self, flattening, value):
