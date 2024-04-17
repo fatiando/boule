@@ -264,7 +264,7 @@ class Ellipsoid:
         r"""
         The area of the ellipsoid.
         Definition: :math:`A = 2 \pi a^2 \left(1 + \dfrac{b^2}{e a^2}
-        \arctanh{e} \right)`.
+        \text{arctanh}\,e \right)`.
         Units: :math:`m^2`.
         """
         # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area

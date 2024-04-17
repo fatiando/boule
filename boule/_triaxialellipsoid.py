@@ -11,7 +11,7 @@ from warnings import warn
 
 import attr
 import numpy as np
-from scipy.special import elliprd, elliprf
+import scipy.special
 
 from ._constants import G
 
@@ -231,19 +231,20 @@ class TriaxialEllipsoid:
     def area(self):
         r"""
         The area of the ellipsoid.
-        Definition: :math:`A`.
+        Definition: :math:`A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})`, in which
+        :math:`R_G` is the completely-symmetric elliptic integral of the second
+        kind.
         Units: :math:`m^2`.
         """
         # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
-        a = self.semimajor_axis
-        b = self.semimedium_axis
-        c = self.semiminor_axis
-        return 2 * np.pi * c**2 + 2 * np.pi * a * b * (
-            elliprf((c / a) ** 2, (c / b) ** 2, 1)
-            - (1 / 3)
-            * (1 - (c / a) ** 2)
-            * (1 - (c / b) ** 2)
-            * elliprd((c / a) ** 2, (c / b) ** 2, 1)
+        return (
+            3
+            * self.volume
+            * scipy.special.elliprg(
+                1 / self.semimajor_axis**2,
+                1 / self.semimedium_axis**2,
+                1 / self.semiminor_axis**2,
+            )
         )
 
     @property
