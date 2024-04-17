@@ -218,7 +218,7 @@ class TriaxialEllipsoid:
         Radial distance from the center of the ellipsoid to its surface.
 
         Assumes geocentric spherical latitude and geocentric spherical
-        longitudes. The geocentric radius is calculated following [Pec1983]_.
+        longitudes. The geocentric radius is calculated following [Pěč1983]_.
 
         Parameters
         ----------
@@ -244,7 +244,7 @@ class TriaxialEllipsoid:
 
         Given geocentric spherical latitude :math:`\phi` and geocentric
         spherical longitude :math:`\lambda`, the geocentric surface radius
-        :math:`R` is computed as (see Eq. 1 of [Pec1983]_)
+        :math:`R` is computed as (see Eq. 1 of [Pěč1983]_)
 
         .. math::
 

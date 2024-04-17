@@ -72,7 +72,7 @@ given in [Lemoine1998]_:
 
     print(boule.EGM96)
 
-**Moon2015*: Spheroid of Earth's Moon using parameters from [Wieczorek2015]_:
+**Moon2015**: Spheroid of Earth's Moon using parameters from [Wieczorek2015]_:
 
 .. jupyter-execute::
 
@@ -90,7 +90,7 @@ Mars
 (1) Ceres
 ---------
 
-**Ceres2018**: Ceres ellipsoid using parameters from [Konoliv2018]_ and [Park2019]_:
+**Ceres2018**: Ceres ellipsoid using parameters from [Konopliv2018]_ and [Park2019]_:
 
 .. jupyter-execute::
 
