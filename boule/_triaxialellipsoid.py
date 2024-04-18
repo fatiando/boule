@@ -295,3 +295,43 @@ class TriaxialEllipsoid:
             * np.cos(longitude_rad - longitude_semimajor_axis_rad) ** 2
         )
         return radius
+
+    def centrifugal_potential(self, longitude, latitude, height):
+        r"""
+        Centrifugal potential at the given latitude and height above the
+        ellipsoid.
+
+        The centrifugal potential :math:`\Phi` at spherical latitude
+        :math:`\phi`, spherical longitude :math:`\lambda` and spherical height
+        above the ellipsoid :math:`h` is
+
+        .. math::
+
+            \Phi(\phi, \lambda, h) = \dfrac{1}{2}
+                \omega^2 \left(R(\phi, lambda) + h\right)^2 \cos^2(\phi)
+
+        in which :math:`R(\phi, \lambda)` is the radius of the ellipsoid and
+        :math:`\omega` is the angular velocity.
+
+        Parameters
+        ----------
+        longitude : float or array
+            The spherical longitude where the centrifugal potential will be
+            computed (in degrees).
+        latitude : float or array
+            The spherical latitude where the centrifugal potential will be
+            computed (in degrees).
+        height : float or array
+            The spherical height of the computation point (in meters).
+
+        Returns
+        -------
+        Phi : float or array
+            The centrifugal potential in m²/s².
+
+        """
+        return (1 / 2) * (
+            self.angular_velocity
+            * (self.geocentric_radius(longitude, latitude) + height)
+            * np.cos(np.radians(latitude))
+        ) ** 2
