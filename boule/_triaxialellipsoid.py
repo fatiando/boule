@@ -11,6 +11,9 @@ from warnings import warn
 
 import attr
 import numpy as np
+import scipy.special
+
+from ._constants import G
 
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
@@ -22,8 +25,10 @@ class TriaxialEllipsoid:
 
     The ellipsoid is defined by five parameters: semimajor axis, semimedium
     axis, semiminor axis, geocentric gravitational constant, and angular
-    velocity The thee semi-axis are different and the ellipsoid spins around
-    it's largest moment of inertia.
+    velocity. The ellipsoid spins around it's smallest semiminor axis, which
+    is aligned with the Cartesian z coordinate axis. The semimajor and
+    semimedium axes are in the x-y plane, and if not specified otherwise,
+    coincide with the Cartesian x and y axes.
 
     **This class is read-only:** Input parameters and attributes cannot be
     changed after instantiation.
@@ -32,7 +37,7 @@ class TriaxialEllipsoid:
 
     .. attention::
 
-        Gravity calculations have not been implemented yet for triaxial
+        Most gravity calculations have not been implemented yet for triaxial
         ellipsoids. If you're interested in this feature or would like to help
         implement it, please
         `get in touch <https://www.fatiando.org/contact>`__.
@@ -62,11 +67,16 @@ class TriaxialEllipsoid:
         The angular velocity of the rotating ellipsoid.
         Definition: :math:`\omega`.
         Units: :math:`\\rad.s^{-1}`.
+    semimajor_axis_longitude : float
+        Longitude coordinate of the semimajor axis in the x-y plane. Optional,
+        default value is 0.0.
     long_name : str or None
         A long name for the ellipsoid, for example ``"World Geodetic System
         1984"`` (optional).
     reference : str or None
         Citation for the ellipsoid parameter values (optional).
+    comments : str or None
+        Additional comments regarding the ellipsoid (optional).
 
     Examples
     --------
@@ -97,7 +107,19 @@ class TriaxialEllipsoid:
     parameters:
 
     >>> print(f"{ellipsoid.mean_radius:.0f} m")
+    259813 m
+    >>> print(f"{ellipsoid.semiaxes_mean_radius:.0f} m")
     262700 m
+    >>> print(f"{ellipsoid.area:.10e} m²")
+    8.6562393883e+11 m²
+    >>> print(f"{ellipsoid.area_equivalent_radius:0.0f} m")
+    262458 m
+    >>> print(f"{ellipsoid.volume_equivalent_radius:.0f} m")
+    261115 m
+    >>> print(f"{ellipsoid.mass:.10e} kg")
+    2.5906746775e+20 kg
+    >>> print(f"{ellipsoid.mean_density:.0f} kg/m³")
+    3474 kg/m³
     >>> print(f"{ellipsoid.volume * 1e-9:.0f} km³")
     74573626 km³
 
@@ -109,8 +131,10 @@ class TriaxialEllipsoid:
     semiminor_axis = attr.ib()
     geocentric_grav_const = attr.ib()
     angular_velocity = attr.ib()
+    semimajor_axis_longitude = attr.ib(default=0.0)
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+    comments = attr.ib(default=None)
 
     def _raise_invalid_axis(self):
         "Raise a ValueError informing that the axis are invalid."
@@ -165,11 +189,72 @@ class TriaxialEllipsoid:
     @property
     def mean_radius(self):
         r"""
-        The arithmetic mean radius of the ellipsoid.
-        Definition: :math:`R = \dfrac{a + b + c}{3}`.
+        The mean radius of the ellipsoid. This is equivalent to the degree 0
+        spherical harmonic coefficient of the ellipsoid shape.
+
+        Definition: :math:`R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}
+        \int_0^{2 \pi}} r(\theta, \lambda) \sin \theta \, d\theta \, d\lambda`
+
+        in which :math:`r` is the ellipsoid spherical radius, :math:`\theta` is
+        spherical latitude, and :math:`\lambda` is spherical longitude.
+
+        Units: :math:`m`.
+        """
+        # The mean radius is obtained by integration in spherical coordinates.
+        # Gauss-Legendre quadrature is used to perform the integration over
+        # both spherical longitude and spherical latitude. Tests show that
+        # n = 16 will return the mean radius to machine precision for the
+        # asteroid (4) Vesta, and that machine precision results for a
+        # Vesta-like object with half the semiminor axis as Vesta are obtained
+        # for n = 38. In an abundance of caution, we chose to use n = 50.
+        n = 50
+        x_latitude, weights_latitude = np.polynomial.legendre.leggauss(n)
+        x_longitude, weights_longitude = np.polynomial.legendre.leggauss(2 * n)
+
+        geocentric_latitude = 90.0 - np.rad2deg(np.arccos(x_latitude))
+        # Rescale longitude integration limits from [-1, 1] to [0, 2 pi]
+        # https://en.wikipedia.org/wiki/Gaussian_quadrature#Change_of_interval
+        weights_longitude *= np.pi
+        geocentric_longitude = np.rad2deg(np.pi * x_longitude + np.pi)
+
+        lats, lons = np.meshgrid(
+            geocentric_latitude, geocentric_longitude, indexing="ij"
+        )
+        radius = self.geocentric_radius(lons, lats)
+
+        # Multiply the radius by the weights, and then sum the result
+        radius *= weights_latitude[:, np.newaxis]
+        radius *= weights_longitude[np.newaxis, :]
+        return np.sum(radius) / (4 * np.pi)
+
+    @property
+    def semiaxes_mean_radius(self):
+        r"""
+        The arithmetic mean radius of the ellipsoid semi-axes.
+        Definition: :math:`R_1 = \dfrac{a + b + c}{3}`.
         Units: :math:`m`.
         """
         return (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis) / 3
+
+    @property
+    def area(self):
+        r"""
+        The area of the ellipsoid.
+        Definition: :math:`A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})`, in which
+        :math:`R_G` is the completely-symmetric elliptic integral of the second
+        kind.
+        Units: :math:`m^2`.
+        """
+        # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
+        return (
+            3
+            * self.volume
+            * scipy.special.elliprg(
+                1 / self.semimajor_axis**2,
+                1 / self.semimedium_axis**2,
+                1 / self.semiminor_axis**2,
+            )
+        )
 
     @property
     def volume(self):
@@ -184,6 +269,42 @@ class TriaxialEllipsoid:
             * self.semimedium_axis
             * self.semiminor_axis
         )
+
+    @property
+    def area_equivalent_radius(self):
+        r"""
+        The area equivalent radius of the ellipsoid.
+        Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.
+        Units: :math:`m`.
+        """
+        return np.sqrt(self.area / (4 * np.pi))
+
+    @property
+    def mass(self):
+        r"""
+        The mass of the ellipsoid.
+        Definition: :math:`M = GM / G`.
+        Units: :math:`kg`.
+        """
+        return self.geocentric_grav_const / G
+
+    @property
+    def mean_density(self):
+        r"""
+        The mean density of the ellipsoid.
+        Definition: :math:`\rho = M / V`.
+        Units: :math:`kg / m^3`.
+        """
+        return self.mass / self.volume
+
+    @property
+    def volume_equivalent_radius(self):
+        r"""
+        The volume equivalent radius of the ellipsoid.
+        Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
+        Units: :math:`m`.
+        """
+        return (self.volume * 3 / (4 * np.pi)) ** (1 / 3)
 
     @property
     def equatorial_flattening(self):
@@ -204,12 +325,12 @@ class TriaxialEllipsoid:
         """
         return (self.semimajor_axis - self.semiminor_axis) / self.semimajor_axis
 
-    def geocentric_radius(self, longitude, latitude, longitude_semimajor_axis=0.0):
+    def geocentric_radius(self, longitude, latitude):
         r"""
         Radial distance from the center of the ellipsoid to its surface.
 
         Assumes geocentric spherical latitude and geocentric spherical
-        longitudes. The geocentric radius is calculated following [Pec1983]_.
+        longitudes. The geocentric radius is calculated following [Pěč1983]_.
 
         Parameters
         ----------
@@ -217,10 +338,6 @@ class TriaxialEllipsoid:
             Longitude coordinates on spherical coordinate system in degrees.
         latitude : float or array
             Latitude coordinates on spherical coordinate system in degrees.
-        longitude_semimajor_axis : float (optional)
-            Longitude coordinate of the meridian containing the semi-major axis
-            on spherical coordinate system in degrees. Optional, default value
-            is 0.0.
 
         Returns
         -------
@@ -239,7 +356,7 @@ class TriaxialEllipsoid:
 
         Given geocentric spherical latitude :math:`\phi` and geocentric
         spherical longitude :math:`\lambda`, the geocentric surface radius
-        :math:`R` is computed as (see Eq. 1 of [Pec1983]_)
+        :math:`R` is computed as (see Eq. 1 of [Pěč1983]_)
 
         .. math::
 
@@ -273,12 +390,12 @@ class TriaxialEllipsoid:
         being the geocentric spherical longitude of the meridian containing the
         semi-major axis.
 
-        Note that [Pec1983]_ use geocentric spherical co-latitude, while here
+        Note that [Pěč1983]_ use geocentric spherical co-latitude, while here
         we used geocentric spherical latitude.
         """
         latitude_rad = np.radians(latitude)
         longitude_rad = np.radians(longitude)
-        longitude_semimajor_axis_rad = np.radians(longitude_semimajor_axis)
+        longitude_semimajor_axis_rad = np.radians(self.semimajor_axis_longitude)
 
         coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
 

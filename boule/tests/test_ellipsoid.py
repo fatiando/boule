@@ -13,10 +13,10 @@ import numpy as np
 import numpy.testing as npt
 import pytest
 
-from .. import GRS80, MARS, WGS84, Ellipsoid
+from .. import GRS80, WGS84, Ellipsoid, Mars2009
 from .utils import normal_gravity_surface
 
-ELLIPSOIDS = [WGS84, GRS80, MARS]
+ELLIPSOIDS = [WGS84, GRS80, Mars2009]
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
 
 

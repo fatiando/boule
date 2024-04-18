@@ -30,6 +30,21 @@ def triaxialellipsoid():
     return triaxial_ellipsoid
 
 
+@pytest.fixture
+def triaxialellipsoid_90():
+    "A triaxial ellipsoid rotated 90 degress about the z axis"
+    triaxial_ellipsoid = TriaxialEllipsoid(
+        name="Base triaxial Ellipsoid",
+        semimajor_axis=4,
+        semimedium_axis=2,
+        semiminor_axis=1,
+        geocentric_grav_const=2.0,
+        angular_velocity=1.3,
+        semimajor_axis_longitude=90.0,
+    )
+    return triaxial_ellipsoid
+
+
 def test_check_semimajor():
     """
     Check if error is raised after invalid semimajor axis
@@ -233,7 +248,7 @@ def test_geocentric_radius_equator(triaxialellipsoid):
     )
 
 
-def test_geocentric_radius_semimajor_axis_longitude(triaxialellipsoid):
+def test_geocentric_radius_semimajor_axis_longitude(triaxialellipsoid_90):
     """
     Check against non-zero longitude of the semi-major axis
     """
@@ -241,14 +256,14 @@ def test_geocentric_radius_semimajor_axis_longitude(triaxialellipsoid):
     longitude = np.array([0.0, 90.0, 180.0, 270.0])
     radius_true = np.array(
         [
-            triaxialellipsoid.semimedium_axis,
-            triaxialellipsoid.semimajor_axis,
-            triaxialellipsoid.semimedium_axis,
-            triaxialellipsoid.semimajor_axis,
+            triaxialellipsoid_90.semimedium_axis,
+            triaxialellipsoid_90.semimajor_axis,
+            triaxialellipsoid_90.semimedium_axis,
+            triaxialellipsoid_90.semimajor_axis,
         ]
     )
     npt.assert_allclose(
-        radius_true, triaxialellipsoid.geocentric_radius(longitude, latitude, 90.0)
+        radius_true, triaxialellipsoid_90.geocentric_radius(longitude, latitude)
     )
 
 

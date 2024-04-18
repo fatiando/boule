@@ -12,6 +12,8 @@ from warnings import warn
 import attr
 import numpy as np
 
+from ._constants import G
+
 
 # Don't let ellipsoid parameters be changed to avoid messing up calculations
 # accidentally.
@@ -22,7 +24,7 @@ class Ellipsoid:
 
     The ellipsoid is defined by four parameters: semimajor axis, flattening,
     geocentric gravitational constant, and angular velocity. It spins around
-    it's semiminor axis and has constant gravity potential at its surface. The
+    its semiminor axis and has constant gravity potential at its surface. The
     internal density structure of the ellipsoid is unspecified but must be such
     that the constant potential condition is satisfied.
 
@@ -57,6 +59,8 @@ class Ellipsoid:
         1984"`` (optional).
     reference : str or None
         Citation for the ellipsoid parameter values (optional).
+    comments : str or None
+        Additional comments regarding the ellipsoid (optional).
 
 
     .. caution::
@@ -100,13 +104,27 @@ class Ellipsoid:
     >>> print(f"{ellipsoid.second_eccentricity:.13e}")
     8.2094437949696e-02
     >>> print(f"{ellipsoid.mean_radius:.4f} m")
+    6370994.4018 m
+    >>> print(f"{ellipsoid.semiaxes_mean_radius:.4f} m")
     6371008.7714 m
+    >>> print(f"{ellipsoid.volume_equivalent_radius:.4f} m")
+    6371000.7900 m
+    >>> print(f"{ellipsoid.mass:.10e} kg")
+    5.9721684941e+24 kg
+    >>> print(f"{ellipsoid.mean_density:.0f} kg/m³")
+    5513 kg/m³
     >>> print(f"{ellipsoid.volume * 1e-9:.5e} km³")
     1.08321e+12 km³
+    >>> print(f"{ellipsoid.area:.10e} m²")
+    5.1006562172e+14 m²
+    >>> print(f"{ellipsoid.area_equivalent_radius:0.4f} m")
+    6371007.1809 m
     >>> print(f"{ellipsoid.gravity_equator:.10f} m/s²")
     9.7803253359 m/s²
     >>> print(f"{ellipsoid.gravity_pole:.10f} m/s²")
     9.8321849379 m/s²
+    >>> print(f"{ellipsoid.reference_normal_gravity_potential:.3f} m²/s²")
+    62636851.715 m²/s²
 
     Use the class methods for calculating normal gravity and other geometric
     quantities.
@@ -119,6 +137,7 @@ class Ellipsoid:
     angular_velocity = attr.ib()
     long_name = attr.ib(default=None)
     reference = attr.ib(default=None)
+    comments = attr.ib(default=None)
 
     @flattening.validator
     def _check_flattening(self, flattening, value):
@@ -179,7 +198,7 @@ class Ellipsoid:
         r"""
         The linear eccentricity of the ellipsoid. The distance between the
         ellipsoid's center and one of its foci.
-        Definition: :math:`c = \sqrt{a^2 - b^2}`.
+        Definition: :math:`E = \sqrt{a^2 - b^2}`.
         Units: :math:`m`.
         """
         return np.sqrt(self.semimajor_axis**2 - self.semiminor_axis**2)
@@ -212,21 +231,119 @@ class Ellipsoid:
 
     @property
     def mean_radius(self):
+        r"""
+        The mean radius of the ellipsoid. This is equivalent to the degree 0
+        spherical harmonic coefficient of the ellipsoid shape.
+
+        Definition: :math:`R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}
+        \int_0^{2 \pi}} r(\theta) \sin \theta \, d\theta \, d\lambda`
+
+        in which :math:`r` is the ellipsoid spherical radius, :math:`\theta` is
+        spherical latitude, and :math:`\lambda` is spherical longitude.
+
+        Units: :math:`m`.
         """
-        The arithmetic mean radius of the ellipsoid [Moritz1988]_.
+        # The mean radius is obtained by integration in spherical coordinates.
+        # The integral over longitude is 2 pi, and the integral over spherical
+        # latitude is performed using Gauss-Legendre quadrature. Tests show
+        # that n = 30 will return the mean radius to machine precision for an
+        # object with a flattening of 0.5 (which is 100 times larger than that
+        # of Mars). In an abundance of caution, we chose to use n = 50.
+        n = 50
+        x, weights = np.polynomial.legendre.leggauss(n)
+        geocentric_latitude = 90.0 - np.rad2deg(np.arccos(x))
+        radius = self.geocentric_radius(geocentric_latitude, geodetic=False)
+        return np.sum(radius * weights) / 2
+
+    @property
+    def semiaxes_mean_radius(self):
+        """
+        The arithmetic mean radius of the ellipsoid semi-axes [Moritz1988]_.
         Definition: :math:`R_1 = (2a + b)/3`.
         Units: :math:`m`.
         """
         return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
 
     @property
+    def area(self):
+        r"""
+        The area of the ellipsoid.
+        Definition: :math:`A = 2 \pi a^2 \left(1 + \dfrac{b^2}{e a^2}
+        \text{arctanh}\,e \right)`.
+        Units: :math:`m^2`.
+        """
+        # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
+        return (
+            2
+            * np.pi
+            * self.semimajor_axis**2
+            * (
+                1
+                + (self.semiminor_axis / self.semimajor_axis) ** 2
+                / self.first_eccentricity
+                * np.arctanh(self.first_eccentricity)
+            )
+        )
+
+    @property
     def volume(self):
         r"""
         The volume bounded by the ellipsoid.
-        Definition: :math:`V = \dfrac{4}{3} \pi a^2 c`.
+        Definition: :math:`V = \dfrac{4}{3} \pi a^2 b`.
         Units: :math:`m^3`.
         """
         return (4 / 3 * np.pi) * self.semimajor_axis**2 * self.semiminor_axis
+
+    @property
+    def reference_normal_gravity_potential(self):
+        r"""
+        The normal gravity potential on the surface of the ellipsoid.
+        Definition: :math:`U_0 = \dfrac{GM}{E} \arctan{\dfrac{E}{b}}
+        + \dfrac{1}{3} \omega^2 a^2`.
+        Units: :math:`m^2 / s^2`.
+        """
+        return (
+            self.geocentric_grav_const
+            / self.linear_eccentricity
+            * np.arctan(self.linear_eccentricity / self.semiminor_axis)
+            + (1 / 3) * self.angular_velocity**2 * self.semimajor_axis**2
+        )
+
+    @property
+    def area_equivalent_radius(self):
+        r"""
+        The area equivalent radius of the ellipsoid.
+        Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.
+        Units: :math:`m`.
+        """
+        return np.sqrt(self.area / (4 * np.pi))
+
+    @property
+    def mass(self):
+        r"""
+        The mass of the ellipsoid.
+        Definition: :math:`M = GM / G`.
+        Units: :math:`kg`.
+        """
+        return self.geocentric_grav_const / G
+
+    @property
+    def mean_density(self):
+        r"""
+        The mean density of the ellipsoid.
+        Definition: :math:`\rho = M / V`.
+        Units: :math:`kg / m^3`.
+        """
+        return self.mass / self.volume
+
+    @property
+    def volume_equivalent_radius(self):
+        r"""
+        The volume equivalent radius of the ellipsoid.
+        Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
+        Units: :math:`m`.
+        """
+        return (self.volume * 3 / (4 * np.pi)) ** (1 / 3)
 
     @property
     def _emm(self):

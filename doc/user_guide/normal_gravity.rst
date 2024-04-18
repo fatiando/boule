@@ -95,7 +95,7 @@ These calculations can be performed for any oblate ellipsoid (see
 
 .. jupyter-execute::
 
-    gamma_mars = bl.MARS.normal_gravity(latitude=latitude, height=10_000)
+    gamma_mars = bl.Mars2009.normal_gravity(latitude=latitude, height=10_000)
 
     grid_mars = vd.make_xarray_grid(
         (longitude, latitude), gamma_mars, data_names="normal_gravity",
@@ -138,14 +138,14 @@ of a geodetic latitude (for spheres they are actually the same thing).
 
 .. jupyter-execute::
 
-    gamma = bl.MOON.normal_gravity(latitude=45, height=height)
+    gamma = bl.Moon2015.normal_gravity(latitude=45, height=height)
     print(gamma)
 
 This is what the normal gravity of Moon looks like on a map:
 
 .. jupyter-execute::
 
-    gamma = bl.MOON.normal_gravity(latitude=latitude, height=10_000)
+    gamma = bl.Moon2015.normal_gravity(latitude=latitude, height=10_000)
 
     grid = vd.make_xarray_grid(
         (longitude, latitude), gamma, data_names="normal_gravity",
@@ -184,7 +184,7 @@ the centrifugal component) using :meth:`boule.Sphere.normal_gravitation`:
 
 .. jupyter-execute::
 
-    gravitation = bl.MOON.normal_gravitation(
+    gravitation = bl.Moon2015.normal_gravitation(
         height=np.full_like(latitude, 10_000)
     )
     grid = vd.make_xarray_grid(

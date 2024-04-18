@@ -93,7 +93,7 @@ The example below performs this conversion for the location of the
 .. jupyter-execute::
 
     X, Y, Z = pymap3d.geodetic2ecef(
-        lat=4.502384, lon=135.623447, alt=-2613.426, ell=bl.MARS,
+        lat=4.502384, lon=135.623447, alt=-2613.426, ell=bl.Mars2009,
     )
     print(f"X = {X} m")
     print(f"Y = {Y} m")
