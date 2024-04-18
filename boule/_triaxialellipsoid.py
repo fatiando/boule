@@ -415,8 +415,8 @@ class TriaxialEllipsoid:
 
     def centrifugal_potential(self, longitude, latitude, height):
         r"""
-        Centrifugal potential at the given latitude and height above the
-        ellipsoid.
+        Centrifugal potential at the given latitude, longitude and height above
+        the ellipsoid.
 
         The centrifugal potential :math:`\Phi` at spherical latitude
         :math:`\phi`, spherical longitude :math:`\lambda` and spherical height
