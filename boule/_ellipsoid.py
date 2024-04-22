@@ -183,6 +183,15 @@ class Ellipsoid:
         return self.semimajor_axis * (1 - self.flattening)
 
     @property
+    def semimedium_axis(self):
+        """
+        The semimedium axis of the ellipsoid is equal to its semimajor axis.
+        Definition: :math:`b = a`.
+        Units: :math:`m`.
+        """
+        return self.semimajor_axis
+
+    @property
     def thirdflattening(self):
         r"""
         The third flattening of the ellipsoid (used in geodetic calculations).

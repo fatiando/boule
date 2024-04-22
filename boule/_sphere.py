@@ -153,6 +153,16 @@ class Sphere:
         return self.radius
 
     @property
+    def semimedium_axis(self):
+        """
+        The semimedium axis of the sphere is equal to its radius. Added for
+        compatibility with pymap3d.
+        Definition: :math:`a = R`.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
     def semimajor_axis(self):
         """
         The semimajor axis of the sphere is equal to its radius. Added for
