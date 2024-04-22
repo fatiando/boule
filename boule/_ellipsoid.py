@@ -192,7 +192,7 @@ class Ellipsoid:
         return self.semimajor_axis
 
     @property
-    def semimajor_axis_longitide(self):
+    def semimajor_axis_longitude(self):
         r"""
         The semimajor axis longitude of the ellipsoid is equal to zero.
         Definition: :math:`\lambda_a = 0`.

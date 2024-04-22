@@ -170,7 +170,7 @@ class Sphere:
         return self.radius
 
     @property
-    def semimajor_axis_longitide(self):
+    def semimajor_axis_longitude(self):
         r"""
         The semimajor axis longitude of the sphere is equal to zero.
         Definition: :math:`\lambda_a = 0`.
