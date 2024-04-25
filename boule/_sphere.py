@@ -59,6 +59,8 @@ class Sphere:
     comments : str or None
         Additional comments regarding the ellipsoid (optional).
 
+    Notes
+    -----
 
     .. caution::
 
