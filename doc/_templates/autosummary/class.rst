@@ -4,39 +4,9 @@
 
 .. autoclass:: {{ objname }}
 
-{% if attributes %}
-
-Attributes
-----------
-
-{% for item in attributes %}
-
-.. autoattribute:: {{ objname }}.{{ item }}
-
-{% endfor %}
-
-{% endif %}
-
-Methods
--------
-
-.. rubric:: List of methods
-
-.. autosummary::
-    {% for item in methods %}
-    {% if item != "__init__" %}
-        {{ objname }}.{{ item }}
-    {% endif %}
-    {% endfor %}
-
-.. rubric:: Methods documentation
-
 {% for item in methods %}
 {% if item != '__init__' %}
 .. automethod:: {{ objname }}.{{ item }}
-
-----
-
 {% endif %}
 {% endfor %}
 
