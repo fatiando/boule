@@ -392,9 +392,7 @@ class Ellipsoid:
             / (1.5 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
         )
         result = (
-            self.geocentric_grav_const
-            * (1 + self._emm * aux)
-            / self.semimajor_axis**2
+            self.geocentric_grav_const * (1 + self._emm * aux) / self.semimajor_axis**2
         )
         return result
 
@@ -534,9 +532,7 @@ class Ellipsoid:
         .. [2] See https://en.wikipedia.org/wiki/Earth_radius#Prime_vertical
 
         """
-        return self.semimajor_axis / np.sqrt(
-            1 - self.first_eccentricity**2 * sinlat**2
-        )
+        return self.semimajor_axis / np.sqrt(1 - self.first_eccentricity**2 * sinlat**2)
 
     def geodetic_to_spherical(self, longitude, latitude, height):
         """
