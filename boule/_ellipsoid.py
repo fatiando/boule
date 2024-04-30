@@ -24,9 +24,9 @@ class Ellipsoid:
 
     The ellipsoid is defined by four parameters: semimajor axis, flattening,
     geocentric gravitational constant, and angular velocity. It spins around
-    its semiminor axis and has constant gravity potential at its surface. The
+    its semiminor axis and has a constant gravity potential at its surface. The
     internal density structure of the ellipsoid is unspecified but must be such
-    that the constant potential condition is satisfied.
+    that the constant gravity potential condition is satisfied.
 
     **This class is read-only:** Input parameters and attributes cannot be
     changed after instantiation.
@@ -65,9 +65,13 @@ class Ellipsoid:
 
     .. caution::
 
-        Use :class:`boule.Sphere` if you desire zero flattening because there
-        are singularities for this particular case in the normal gravity
-        calculations.
+        The :class:`boule.Ellipsoid` class with a flattening of zero is not
+        equivalent to the :class:`boule.Sphere` class. The internal density
+        structure of an Ellipsoid is unspecified, but must give rise to a
+        constant gravity potential on the Ellipsoid surface. For a Sphere, the
+        internal density depends only on radius, and when the angular velocity
+        is greater than zero, the gravity potential on the surface varies with
+        latitude.
 
     Examples
     --------
@@ -146,17 +150,6 @@ class Ellipsoid:
             raise ValueError(
                 f"Invalid flattening '{value}'. "
                 "Should be greater than zero and lower than 1."
-            )
-        if value == 0:
-            raise ValueError(
-                "Flattening equal to zero will lead to errors in normal gravity. "
-                "Use boule.Sphere for representing ellipsoids with zero flattening."
-            )
-        if value < 1e-7:
-            warn(
-                f"Flattening is too close to zero ('{value}'). "
-                "This may lead to inaccurate results and division by zero errors. "
-                "Use boule.Sphere for representing ellipsoids with zero flattening."
             )
 
     @semimajor_axis.validator
@@ -302,12 +295,20 @@ class Ellipsoid:
         + \dfrac{1}{3} \omega^2 a^2`.
         Units: :math:`m^2 / s^2`.
         """
-        return (
-            self.geocentric_grav_const
-            / self.linear_eccentricity
-            * np.arctan(self.linear_eccentricity / self.semiminor_axis)
-            + (1 / 3) * self.angular_velocity**2 * self.semimajor_axis**2
-        )
+        if self.flattening < 4.0e-16:
+            # Use the 3rd order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            var = self.geocentric_grav_const * (
+                1 / self.semiminor_axis
+                - self.linear_eccentricity**2 / (3 * self.semiminor_axis**3)
+            )
+        else:
+            var = (
+                self.geocentric_grav_const
+                / self.linear_eccentricity
+                * np.arctan(self.linear_eccentricity / self.semiminor_axis)
+            )
+        return var + (1 / 3) * (self.angular_velocity * self.semimajor_axis) ** 2
 
     @property
     def area_equivalent_radius(self):
