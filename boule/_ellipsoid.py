@@ -363,16 +363,24 @@ class Ellipsoid:
         centrifugal accelerations) at the equator on the surface of the
         ellipsoid. Units: :math:`m/s^2`.
         """
-        ratio = self.semiminor_axis / self.linear_eccentricity
-        arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-        aux = (
-            self.second_eccentricity
-            * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
-            / (3 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
-        )
+        if self.flattening < 1.25e-5:
+            # Use the 5th order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            aux = 3
+        else:
+            ratio = self.semiminor_axis / self.linear_eccentricity
+            arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
+            aux = (
+                self.second_eccentricity
+                * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
+                / (0.5 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
+            )
+
         axis_mul = self.semimajor_axis * self.semiminor_axis
         result = (
-            self.geocentric_grav_const * (1 - self._emm - self._emm * aux) / axis_mul
+            self.geocentric_grav_const
+            * (1 - self._emm - self._emm * aux / 6)
+            / axis_mul
         )
         return result
 
