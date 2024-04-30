@@ -1026,32 +1026,50 @@ class Ellipsoid:
                 "Height must be greater than or equal to zero."
             )
 
-        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
+        # Convert geodetic latitude and height to ellipsoidal-harmonic
+        # coordinates. Note that beta is in degrees.
         longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
             None, latitude, height
         )
 
-        # Compute the auxiliary functions q and q_0 (eq 2-113 of
+        # Compute the term GM * arctan(E/u) / E
+        if self.flattening < 4.0e-16:
+            # Use the 3rd order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            var = self.geocentric_grav_const * (
+                1 / u - self.linear_eccentricity**2 / (3 * u**3)
+            )
+        else:
+            var = (
+                self.geocentric_grav_const
+                / self.linear_eccentricity
+                * np.arctan(self.linear_eccentricity / u)
+            )
+
+        # Compute the ratio of the auxiliary functions q and q_0 (eq 2-113 of
         # HofmannWellenhofMoritz2006)
-        q_0 = 0.5 * (
-            (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
-            * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-            - 3 * self.semiminor_axis / self.linear_eccentricity
-        )
-        q = 0.5 * (
-            (1 + 3 * (u / self.linear_eccentricity) ** 2)
-            * np.arctan2(self.linear_eccentricity, u)
-            - 3 * u / self.linear_eccentricity
-        )
+        if self.flattening < 1.5e-5:
+            # Use the 5th order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            ratio = (self.semiminor_axis / u) ** 3
+        else:
+            q_0 = 0.5 * (
+                (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
+                * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
+                - 3 * self.semiminor_axis / self.linear_eccentricity
+            )
+            q = 0.5 * (
+                (1 + 3 * (u / self.linear_eccentricity) ** 2)
+                * np.arctan2(self.linear_eccentricity, u)
+                - 3 * u / self.linear_eccentricity
+            )
+            ratio = q / q_0
 
         big_u = (
-            self.geocentric_grav_const
-            / self.linear_eccentricity
-            * np.arctan(self.linear_eccentricity / u)
+            var
             + 0.5
             * (self.angular_velocity * self.semimajor_axis) ** 2
-            * q
-            / q_0
+            * ratio
             * (np.sin(np.radians(beta)) ** 2 - 1 / 3)
             + 0.5
             * self.angular_velocity**2
