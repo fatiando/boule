@@ -392,3 +392,26 @@ def test_normal_gravity_gravitational_centrifugal_potential(ellipsoid):
 def test_emm_wgs84():
     "The _emm property should be equal this value for WGS84"
     npt.assert_allclose(WGS84._emm, 0.00344978650684)
+
+
+def test_small_flattenings():
+    "Check that no errors arise when using small values for the flattening"
+    flattening = 10.**(-np.arange(1, 20, .5))
+    latitude = np.linspace(-90, 90, 13 )
+    height = np.array([[1.e3] * len(latitude)])
+    with warnings.catch_warnings(record=True) as warn:
+        for f in flattening:
+            ellipsoid = Ellipsoid(
+                name="WGS84 with small flattening",
+                semimajor_axis=WGS84.semimajor_axis,
+                flattening=f,
+                geocentric_grav_const=WGS84.geocentric_grav_const,
+                angular_velocity=WGS84.angular_velocity,
+            )
+            big_u_0 = ellipsoid.reference_normal_gravity_potential
+            g_b = ellipsoid.gravity_pole
+            g_a = ellipsoid.gravity_equator
+            big_v = ellipsoid.normal_gravitational_potential(latitude, height)
+            big_u = ellipsoid.normal_gravity_potential(latitude, height)
+            gamma = ellipsoid.normal_gravity(latitude, height)
+        assert warn == None

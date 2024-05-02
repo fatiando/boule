@@ -845,7 +845,7 @@ class Ellipsoid:
         z_pp2 = r_p2 - z_p2
         r_pp2 = r_p2 + z_p2
 
-        if self.flattening < 1.25e-5:
+        if self.flattening < 5.e-5:
             #  Use the Taylor series approximation for flattenings close to
             # zero to avoid numerical issues.
             cosbeta_p2 = (
@@ -870,33 +870,32 @@ class Ellipsoid:
         # point. This is the coordinate u
         b_p = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
 
-        # Auxiliary variables
-        q_0 = 0.5 * (
-            (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
-            * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-            - 3 * self.semiminor_axis / self.linear_eccentricity
-        )
-        q_p = (
-            3
-            * (1 + (b_p / self.linear_eccentricity) ** 2)
-            * (
-                1
-                - b_p
-                / self.linear_eccentricity
-                * np.arctan2(self.linear_eccentricity, b_p)
+        # Compute auxiliary variables and the ratio E q_p / q_0
+        if self.flattening <= 1.25e-5:
+            aux = 3 * self.semiminor_axis**3 / b_p**2
+        else:
+            q_0 = 0.5 * (
+                (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
+                * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
+                - 3 * self.semiminor_axis / self.linear_eccentricity
             )
-            - 1
-        )
+            q_p = (
+                3
+                * (1 + (b_p / self.linear_eccentricity) ** 2)
+                * (
+                    1
+                    - b_p
+                    / self.linear_eccentricity
+                    * np.arctan2(self.linear_eccentricity, b_p)
+                )
+                - 1
+            )
+            aux = self.linear_eccentricity * q_p / q_0
+
         big_w = np.sqrt(
             (b_p**2 + self.linear_eccentricity**2 * sinbeta_p2)
             / (b_p**2 + self.linear_eccentricity**2)
         )
-
-        # Compute the ratio E q_p / q_0
-        if self.flattening <= 1.25e-5:
-            aux = 3 * self.semiminor_axis**3 / b_p**2
-        else:
-            aux = self.linear_eccentricity * q_p / q_0
 
         # Put together gamma using 3 separate terms
         term1 = self.geocentric_grav_const / (b_p**2 + self.linear_eccentricity**2)
