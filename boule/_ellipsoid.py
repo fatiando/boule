@@ -694,13 +694,31 @@ class Ellipsoid:
             z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
             # Distance squared between computation point and spin axis
             r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
+            # Auxialiary variables
+            z_pp2 = r_p2 - z_p2
+            r_pp2 = r_p2 + z_p2
 
-            # Auxiliary variables
-            big_d = (r_p2 - z_p2) / self.linear_eccentricity**2
-            big_r = (r_p2 + z_p2) / self.linear_eccentricity**2
+            if self.flattening < 5.0e-5:
+                #  Use the Taylor series approximation for flattenings close to
+                # zero to avoid numerical issues.
+                cosbeta_p2 = (
+                    0.5
+                    + 0.5 * z_pp2 / r_pp2
+                    + self.linear_eccentricity**2
+                    * 0.25
+                    * (z_pp2**2 / r_pp2**3 - 1 / r_pp2)
+                )
+            else:
+                # Auxiliary variables
+                big_d = z_pp2 / self.linear_eccentricity**2
+                big_r = r_pp2 / self.linear_eccentricity**2
+                # cos(reduced latitude) squared of the computation point
+                cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
 
-            # cos(reduced latitude) squared of the computation point
-            cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
+            # Note that cosbeta_p2 can sometimes be less than 0 to within
+            # machine precision. To avoid taking the sqrt of a negative number,
+            # use the absolute value of this quantity.
+            cosbeta_p2 = np.abs(cosbeta_p2)
 
             # Semiminor axis of the ellipsoid passing through the computation
             # point. This is the coordinate u
