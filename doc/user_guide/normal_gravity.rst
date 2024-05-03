@@ -91,7 +91,8 @@ And plotted with :mod:`pygmt`:
     particularly useful for geophysics.
 
 These calculations can be performed for any oblate ellipsoid (see
-:ref:`ellipsoids`). Here is the normal gravity of the Martian ellipsoid:
+:ref:`ellipsoids`). Here is an example for the normal gravity of the Martian
+ellipsoid:
 
 .. jupyter-execute::
 
@@ -109,9 +110,17 @@ These calculations can be performed for any oblate ellipsoid (see
 
 
 Notice that the overall trend is the same as for the Earth (the Martian
-ellipsoid is also oblate) but the range of values is different. The mean
+ellipsoid is slightly more oblate than Earth) but the range of values
+is different. The mean
 gravity on Mars is much weaker than on the Earth: around 370,000 mGal or 3.7
 m/s² when compared to 970,000 mGal or 9.7 m/s² for the Earth.
+
+The computations of the gravimetric quantities in boule are accurate for oblate
+ellipsoids with flattenings that are arbitrarily small. In fact, even a
+flattening of zero is permissible. Whereas the standard textbook equations
+become numerically unstable when the flattening is less than about
+:math:`1-^{-7}`, boule makes use of approximate equations in the low flattening
+limit that do not suffer any numerical limitations.
 
 .. admonition:: Assumptions for oblate ellipsoids
     :class: important
@@ -132,16 +141,28 @@ Spheres
 -------
 
 Method :meth:`boule.Sphere.normal_gravity` performs the normal gravity
-calculations for spheres. It behaves mostly the same as the oblate ellipsoid
-version except that the latitude is a *geocentric spherical latitude* instead
-of a geodetic latitude (for spheres they are actually the same thing).
+calculations for spheres. This method behaves mostly the same as the oblate
+ellipsoid version, with two exceptions. First, spherical coordinates are
+used in the case of a sphere, and the latitude coordinate corresponds to
+*geocentric spherical latitude*. Geodetic and spherical latitude are, in fact,
+the same for an ellipsoid with zero flattening.
+
+Second, boule makes the assumption that the interior density distribution of
+the planet varies only as a function of radius. Because of this, the normal
+gravitation potential is constant on the sphere surface, but the normal gravity
+potential (which includes the centrifugal potential) is not.
+
+One planetary object that makes use of the Sphere class is the Moon. This
+example computes the normal gravity of the Moon at 45 degrees latitude
+and for heights between 0 and 1 km above the reference radius.
 
 .. jupyter-execute::
 
     gamma = bl.Moon2015.normal_gravity(latitude=45, height=height)
     print(gamma)
 
-This is what the normal gravity of Moon looks like on a map:
+This is what the normal gravity of Moon looks like in map form, 10 km above
+the surface:
 
 .. jupyter-execute::
 
@@ -162,22 +183,26 @@ This is what the normal gravity of Moon looks like on a map:
 
     Normal gravity of spheres is calculated under the following assumptions:
 
+    * The :term:`gravitational potential` is constant on the surface of the
+      ellipsoid.
+    * The internal density structure is unspecified but must be either
+        homogeneous or vary only as a function of radius (e.g., in concentric
+        layers).
     * The normal gravity is the magnitude of the gradient of the :term:`gravity
       potential` of the sphere.
-    * The internal density structure is unspecified but must be either
-      homogeneous or vary radially (e.g., in concentric layers).
 
-    A constant gravity potential on the surface of a rotating sphere is not
-    possible. Therefore, the normal gravity calculated for a sphere is
-    different than that of an oblate ellipsoid (hence why we need a separate
-    method of calculation).
+      **Important:** Unlike an ellipsoid, the normal gravity potential of a
+      sphere is not constant on its surface, and the normal gravity vector is
+      not perpendicular to the surface.
+
 
 Gravity versus gravitation
 ++++++++++++++++++++++++++
 
-Notice that the variation between poles and equator is much smaller than for
-the Earth or Mars.
-That's because the **variation is due solely to the centrifugal acceleration**.
+Notice that the variation of the normal gravity between the poles and equator
+for the Moon is much smaller than for the Earth or Mars.
+That's because the **variation is due solely to the centrifugal acceleration**,
+and the angular rotation rate of the Moon is small.
 
 We can see this clearly when we calculate the **normal gravitation** (without
 the centrifugal component) using :meth:`boule.Sphere.normal_gravitation`:

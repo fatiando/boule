@@ -42,29 +42,12 @@ def test_check_flattening():
         )
     with pytest.raises(ValueError):
         Ellipsoid(
-            name="zero_flattening",
-            semimajor_axis=1.0,
-            flattening=0,
-            geocentric_grav_const=0,
-            angular_velocity=0,
-        )
-    with pytest.raises(ValueError):
-        Ellipsoid(
             name="almost_zero_negative_flattening",
             semimajor_axis=1.0,
             flattening=-1e8,
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with warnings.catch_warnings(record=True) as warn:
-        Ellipsoid(
-            name="almost-zero-flattening",
-            semimajor_axis=1,
-            flattening=1e-8,
-            geocentric_grav_const=1,
-            angular_velocity=0,
-        )
-        assert len(warn) >= 1
 
 
 def test_check_semimajor_axis():
@@ -396,9 +379,9 @@ def test_emm_wgs84():
 
 def test_small_flattenings():
     "Check that no errors arise when using small values for the flattening"
-    flattening = 10.**(-np.arange(1, 20, .5))
-    latitude = np.linspace(-90, 90, 13 )
-    height = np.array([[1.e3] * len(latitude)])
+    flattening = 10.0 ** (-np.arange(1, 20, 0.5))
+    latitude = np.linspace(-90, 90, 13)
+    height = np.array([[1.0e3] * len(latitude)])
     with warnings.catch_warnings(record=True) as warn:
         for f in flattening:
             ellipsoid = Ellipsoid(
@@ -408,10 +391,10 @@ def test_small_flattenings():
                 geocentric_grav_const=WGS84.geocentric_grav_const,
                 angular_velocity=WGS84.angular_velocity,
             )
-            big_u_0 = ellipsoid.reference_normal_gravity_potential
-            g_b = ellipsoid.gravity_pole
-            g_a = ellipsoid.gravity_equator
-            big_v = ellipsoid.normal_gravitational_potential(latitude, height)
-            big_u = ellipsoid.normal_gravity_potential(latitude, height)
-            gamma = ellipsoid.normal_gravity(latitude, height)
-        assert warn == None
+            _ = ellipsoid.reference_normal_gravity_potential
+            _ = ellipsoid.gravity_pole
+            _ = ellipsoid.gravity_equator
+            _ = ellipsoid.normal_gravitational_potential(latitude, height)
+            _ = ellipsoid.normal_gravity_potential(latitude, height)
+            _ = ellipsoid.normal_gravity(latitude, height)
+        assert len(warn) == 0

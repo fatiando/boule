@@ -845,7 +845,7 @@ class Ellipsoid:
         z_pp2 = r_p2 - z_p2
         r_pp2 = r_p2 + z_p2
 
-        if self.flattening < 5.e-5:
+        if self.flattening < 5.0e-5:
             #  Use the Taylor series approximation for flattenings close to
             # zero to avoid numerical issues.
             cosbeta_p2 = (
