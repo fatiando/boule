@@ -48,7 +48,7 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools_scm]
 version_scheme =  "post-release"
 local_scheme =  "no-local-version"
-write_to =  "boule/_version_generated.py"
+write_to =  "boule/_version.py"
 
 # Make sure isort and Black are compatible
 [tool.isort]
