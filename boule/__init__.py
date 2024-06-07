@@ -30,3 +30,6 @@ from ._realizations import (
 from ._sphere import Sphere
 from ._triaxialellipsoid import TriaxialEllipsoid
 from ._version import __version__
+
+# Append a leading "v" to the generated version by setuptools_scm
+__version__ = f"v{__version__}"

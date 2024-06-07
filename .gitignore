@@ -14,7 +14,7 @@ MANIFEST
 dask-worker-space
 build/
 dist/
-boule/_version_generated.py
+boule/_version.py
 doc/_build
 doc/api/generated
 doc/tutorials
