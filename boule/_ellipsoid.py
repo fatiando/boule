@@ -874,12 +874,13 @@ class Ellipsoid:
 
         in which :math:`V` is the gravitational potential of the
         ellipsoid (no centrifugal term), :math:`GM` is the geocentric
-        gravitational constant, :math:`E` is the linear eccentricty,
+        gravitational constant, :math:`E` is the linear eccentricity,
         :math:`\omega` is the angular rotation rate, :math:`q` and :math:`q_0`
         are auxiliary functions, :math:`P_2` is the degree 2 unnormalized
-        Legendre Polynomial, and :math:`u` and :math:`beta` are ellipsoidal-
-        harmonic coordinates corresponding to the input geodetic latitude and
-        ellipsoidal height. See eq. 2-124 of [HofmannWellenhofMoritz2006]_.
+        Legendre Polynomial, and :math:`u` and :math:`\beta` are
+        ellipsoidal-harmonic coordinates corresponding to the input geodetic
+        latitude and ellipsoidal height. See eq. 2-124 of
+        [HofmannWellenhofMoritz2006]_.
 
         Assumes that the internal density distribution of the ellipsoid is such
         that the gravity potential is constant at its surface.
@@ -950,15 +951,15 @@ class Ellipsoid:
 
             U(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{2}
             \omega^2 a^2 \dfrac{q}{q_0} \left(\sin^2 \beta
-            - \dfrac{1}{3}\right) + \dfrac{1}{2} \omega^2 \left(u^2 + E^2)
+            - \dfrac{1}{3}\right) + \dfrac{1}{2} \omega^2 \left(u^2 + E^2\right)
             \cos^2 \beta
 
         in which :math:`U` is the gravity potential of the ellipsoid,
         :math:`GM` is the geocentric gravitational constant, :math:`E` is the
-        linear eccentricty, :math:`\omega` is the angular rotation rate,
+        linear eccentricity, :math:`\omega` is the angular rotation rate,
         :math:`q` and :math:`q_0` are auxiliary functions, and :math:`u` and
-        :math:`beta` are ellipsoidal-harmonic coordinates corresponding to the
-        input geodetic latitude and and ellipsoidal height. See eq. 2-126 of
+        :math:`\beta` are ellipsoidal-harmonic coordinates corresponding to the
+        input geodetic latitude and ellipsoidal height. See eq. 2-126 of
         [HofmannWellenhofMoritz2006]_.
 
         Assumes that the internal density distribution of the ellipsoid is such
