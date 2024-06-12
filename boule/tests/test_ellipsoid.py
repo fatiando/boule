@@ -229,6 +229,20 @@ def test_normal_gravity_non_zero_height(ellipsoid):
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_normal_gravity_geocentric_latitude(ellipsoid):
+    "Check equality of normal gravity using geodetic and geocentric latitude"
+    geodetic_lat = np.linspace(-90, 90, 9)
+    normal_grav = ellipsoid.normal_gravity(geodetic_lat, height=0)
+    longitude, geocentric_lat, radius = ellipsoid.geodetic_to_spherical(
+        0.0, geodetic_lat, 0.0
+    )
+    normal_grav_geocentric = ellipsoid.normal_gravity(
+        geocentric_lat, height=0, geodetic=False
+    )
+    npt.assert_allclose(normal_grav, normal_grav_geocentric)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_prime_vertical_radius(ellipsoid):
     r"""
     Check prime vertical radius on equator, poles and 45 degrees
