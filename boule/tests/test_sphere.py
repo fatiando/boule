@@ -56,6 +56,12 @@ def test_normal_gravity_computed_on_internal_point(sphere):
     with pytest.warns(UserWarning) as warn:
         sphere.normal_gravity(latitude, height=-10)
         assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        sphere.normal_gravity_potential(latitude, height=-10)
+        assert len(warn) >= 1
+    with warnings.catch_warnings(record=True) as warn:
+        sphere.normal_gravitational_potential(height=-10)
+        assert len(warn) >= 1
 
 
 def test_check_geocentric_grav_const():
@@ -146,3 +152,17 @@ def test_normal_gravity_only_rotation():
             expected_value,
             sphere.normal_gravity(latitude=45, height=height),
         )
+
+
+def test_normal_gravity_gravitational_centrifugal_potential(sphere):
+    """
+    Test that the normal gravity potential is equal to the sum of the normal
+    gravitational potential and centrifugal potential.
+    """
+    size = 5
+    latitude = np.array([np.linspace(-90, 90, size)] * 2)
+    height = np.array([[0] * size, [1000] * size])
+    big_u = sphere.normal_gravity_potential(latitude, height)
+    big_v = sphere.normal_gravitational_potential(height)
+    big_phi = sphere.centrifugal_potential(latitude, height)
+    npt.assert_allclose(big_u, big_v + big_phi)
