@@ -623,7 +623,7 @@ class Ellipsoid:
         Convert from geodetic to ellipsoidal-harmonic coordinates.
 
         The geodetic datum is defined by this ellipsoid, and the coordinates
-        are converted following [Lakshmanan1991]_ and [LiGotze2001].
+        are converted following [Lakshmanan1991]_ and [LiGotze2001]_.
 
         Parameters
         ----------
