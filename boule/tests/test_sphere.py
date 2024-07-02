@@ -72,6 +72,17 @@ def test_check_geocentric_grav_const():
         assert len(warn) >= 1
 
 
+def test_semiaxes(sphere):
+    """
+    Check that the semiaxes are all equal to the sphere radius and that
+    the longitude of the semimajor axis is zero.
+    """
+    assert sphere.semimajor_axis == sphere.radius
+    assert sphere.semimedium_axis == sphere.radius
+    assert sphere.semiminor_axis == sphere.radius
+    assert sphere.semimajor_axis_longitude == 0
+
+
 @pytest.mark.parametrize("si_units", [False, True], ids=["mGal", "SI"])
 def test_normal_gravity_pole_equator(sphere, si_units):
     """
