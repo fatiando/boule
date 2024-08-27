@@ -659,43 +659,42 @@ class Ellipsoid:
 
             return longitude, beta, u
 
-        else:
-            # The variable names follow Li and Goetze (2001). The prime terms
-            # (*_p) refer to quantities on an ellipsoid passing through the
-            # computation point.
-            sinlat = np.sin(np.radians(latitude))
-            coslat = np.sqrt(1 - sinlat**2)
-            big_e2 = self.linear_eccentricity**2
+        # The variable names follow Li and Goetze (2001). The prime terms
+        # (*_p) refer to quantities on an ellipsoid passing through the
+        # computation point.
+        sinlat = np.sin(np.radians(latitude))
+        coslat = np.sqrt(1 - sinlat**2)
+        big_e2 = self.linear_eccentricity**2
 
-            # Reduced latitude of the projection of the point on the
-            # reference ellipsoid
-            beta = np.arctan2(
-                self.semiminor_axis * sinlat, self.semimajor_axis * coslat
-            )
-            sinbeta = np.sin(beta)
-            cosbeta = np.sqrt(1 - sinbeta**2)
+        # Reduced latitude of the projection of the point on the
+        # reference ellipsoid
+        beta = np.arctan2(
+            self.semiminor_axis * sinlat, self.semimajor_axis * coslat
+        )
+        sinbeta = np.sin(beta)
+        cosbeta = np.sqrt(1 - sinbeta**2)
 
-            # Distance squared between computation point and equatorial plane
-            z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
-            # Distance squared between computation point and spin axis
-            r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
+        # Distance squared between computation point and equatorial plane
+        z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
+        # Distance squared between computation point and spin axis
+        r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
 
-            # Auxiliary variables
-            big_d = (r_p2 - z_p2) / big_e2
-            big_r = (r_p2 + z_p2) / big_e2
+        # Auxiliary variables
+        big_d = (r_p2 - z_p2) / big_e2
+        big_r = (r_p2 + z_p2) / big_e2
 
-            # cos(reduced latitude) squared of the computation point
-            cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
+        # cos(reduced latitude) squared of the computation point
+        cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
 
-            # Semiminor axis of the ellipsoid passing through the computation
-            # point. This is the coordinate u
-            b_p = np.sqrt(r_p2 + z_p2 - big_e2 * cosbeta_p2)
+        # Semiminor axis of the ellipsoid passing through the computation
+        # point. This is the coordinate u
+        b_p = np.sqrt(r_p2 + z_p2 - big_e2 * cosbeta_p2)
 
-            # Note that the sign of beta_p needs to be fixed as it is defined
-            # from -90 to 90 degrees, but arccos is from 0 to 180.
-            beta_p = np.copysign(np.degrees(np.arccos(np.sqrt(cosbeta_p2))), latitude)
+        # Note that the sign of beta_p needs to be fixed as it is defined
+        # from -90 to 90 degrees, but arccos is from 0 to 180.
+        beta_p = np.copysign(np.degrees(np.arccos(np.sqrt(cosbeta_p2))), latitude)
 
-            return longitude, beta_p, b_p
+        return longitude, beta_p, b_p
 
     def ellipsoidal_harmonic_to_geodetic(self, longitude, reduced_latitude, u):
         """
