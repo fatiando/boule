@@ -11,7 +11,7 @@ dependencies:
   - attrs
   - scipy
   # Build
-  - build
+  - python-build
   - twine
   # Test
   - pytest
