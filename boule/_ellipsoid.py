@@ -668,9 +668,7 @@ class Ellipsoid:
 
         # Reduced latitude of the projection of the point on the
         # reference ellipsoid
-        beta = np.arctan2(
-            self.semiminor_axis * sinlat, self.semimajor_axis * coslat
-        )
+        beta = np.arctan2(self.semiminor_axis * sinlat, self.semimajor_axis * coslat)
         sinbeta = np.sin(beta)
         cosbeta = np.sqrt(1 - sinbeta**2)
 
