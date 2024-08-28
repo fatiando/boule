@@ -38,7 +38,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
       - name: Checkout
-        uses: actions/checkout@v4.1.2
+        uses: actions/checkout@v4.1.7
         with:
           # Need to fetch more than the last commit so that setuptools-scm can
           # create the correct version string. If the number of commits since
@@ -75,6 +75,14 @@ jobs:
           done
           echo ""
           echo "Collected dependencies:"
+          cat requirements-full.txt
+
+      - name: Rename conda-forge packages
+        run: |
+          echo "Rename conda-forge packages in requirements-full.txt"
+          # Replace "build" for "python-build"
+          sed -s --in-place 's/^build$/python-build/' requirements-full.txt
+          echo "Renamed dependencies:"
           cat requirements-full.txt
 
       - name: Install requirements
@@ -124,7 +132,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.2
+        uses: actions/checkout@v4.1.7
 
       # Fetch the built docs from the "build" job
       - name: Download HTML documentation artifact
@@ -134,7 +142,7 @@ jobs:
           path: doc/_build/html
 
       - name: Checkout the gh-pages branch in a separate folder
-        uses: actions/checkout@8410ad0602e1e429cee44a835ae9f77f654a6694
+        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
         with:
           ref: gh-pages
           # Checkout to this folder instead of the current one
