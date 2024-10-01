@@ -38,7 +38,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
       - name: Checkout
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
         with:
           # Need to fetch more than the last commit so that setuptools-scm can
           # create the correct version string. If the number of commits since
@@ -132,7 +132,7 @@ jobs:
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
 
       # Fetch the built docs from the "build" job
       - name: Download HTML documentation artifact
@@ -142,7 +142,7 @@ jobs:
           path: doc/_build/html
 
       - name: Checkout the gh-pages branch in a separate folder
-        uses: actions/checkout@692973e3d937129bcbf40652eb9f2f61becf3332
+        uses: actions/checkout@d632683dd7b4114ad314bca15554477dd762a938
         with:
           ref: gh-pages
           # Checkout to this folder instead of the current one
