@@ -295,3 +295,26 @@ def test_geocentric_radius_biaxialellipsoid(triaxialellipsoid):
     npt.assert_allclose(
         radius_true, biaxialellipsoid.geocentric_radius(longitude, latitude)
     )
+
+
+def test_centrifugal_potential(triaxialellipsoid):
+    """
+    Test that the centrifugal potential on the surface is greater along the
+    semimajor axis than the semimedium axis, and that the centrifugal potential
+    is zero at the poles.
+    """
+    height = 2 * [0, 1, 1000]
+    latitude = 3 * [-90] + 3 * [90]
+    longitude = np.linspace(0, 360, 6)
+    assert (
+        triaxialellipsoid.centrifugal_potential(
+            longitude=longitude, latitude=latitude, height=height
+        )
+        < 1e-15
+    ).all()
+    assert (
+        triaxialellipsoid.centrifugal_potential(longitude=0, latitude=0, height=height)
+        >= triaxialellipsoid.centrifugal_potential(
+            longitude=90, latitude=0, height=height
+        )
+    ).all()
