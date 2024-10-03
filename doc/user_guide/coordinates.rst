@@ -46,8 +46,8 @@ Notice that:
     We used the WGS84 ellipsoid here but the workflow is the same for any
     other oblate ellipsoid. Checkout :ref:`ellipsoids` for options.
 
-Other conversions using pymap3d
--------------------------------
+Geodetic to geocentric spherical using pymap3d
+----------------------------------------------
 
 Boule's :class:`~boule.Ellipsoid` and :class:`~boule.Sphere` classes can be
 used with `pymap3d <https://github.com/geospace-code/pymap3d/>`__ for
@@ -57,13 +57,14 @@ Boule if:
 
 * You want to be certain that the parameters used for coordinate conversions
   and gravity calculations are consistent.
-* Need to :ref:`define your own ellipsoid <defining_ellipsoids>` either because
-  you need different parameters than the built-in ones or they aren't available
-  in either Boule or pymap3d.
+* You need to :ref:`define your own ellipsoid <defining_ellipsoids>`, either
+  because you need different parameters than the built-in ones or they aren't
+  available in either Boule or pymap3d.
 
 The example below converts between geodetic and geocentric spherical using
 ``pymap3d.geodetic2spherical`` instead of
-:meth:`boule.Ellipsoid.geodetic_to_spherical` to achieve the same outcome:
+:meth:`boule.Ellipsoid.geodetic_to_spherical` to achieve the same outcome as
+in the previous example.
 
 .. jupyter-execute::
 
@@ -84,17 +85,33 @@ The example below converts between geodetic and geocentric spherical using
     print("Height (m):", height)
     print("Radius (m):", radius)
 
-Another common coordinate conversion done in global studies is from geodetic
-latitude, longitude, and height to geocentric Cartesian X, Y, and Z.
-The example below performs this conversion for the location of the
-`Insight lander <https://en.wikipedia.org/wiki/InSight>`__ on Mars based on
-[Parker2019]_ using the Martian ellipsoid defined in Boule:
+Geocentric spherical to geodetic
+--------------------------------
+
+Another common coordinate conversion used in global studies is from geocentric
+spherical to geodetic coordinates. The example below demonstrate this
+conversion using the Cartesian coordinates of the
+`Insight lander <https://en.wikipedia.org/wiki/InSight>`__ on Mars from
+[LeMaistre2023]_ and the Martian ellipsoid defined in Boule.
 
 .. jupyter-execute::
 
-    X, Y, Z = pymap3d.geodetic2ecef(
-        lat=4.502384, lon=135.623447, alt=-2613.426, ell=bl.Mars2009,
-    )
-    print(f"X = {X} m")
-    print(f"Y = {Y} m")
-    print(f"Z = {Z} m")
+  import boule as bl
+  import numpy as np
+
+  xyz = [-2_417_504.5, 2_365_954.5, 266_266.7]  # InSight lander coordinates
+
+  # convert Cartesian to geocentric spherical
+  radius = np.linalg.norm(xyz)
+  latitude_sph = np.rad2deg(np.atan2(xyz[2], np.linalg.norm(xyz[0:2])))
+  longitude_sph = np.rad2deg(np.atan2(xyz[1], xyz[0]))
+
+  mars_ellipsoid = bl.Mars2009
+
+  longitude, latitude, height = mars_ellipsoid.spherical_to_geodetic(
+    longitude_sph, latitude_sph, radius,
+  )
+
+  print(f"Geodetic longitude: {longitude}")
+  print(f"Geodetic latitude: {latitude}")
+  print(f"Ellipsoidal height (m): {height}")
