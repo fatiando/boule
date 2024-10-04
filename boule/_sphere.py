@@ -7,6 +7,7 @@
 """
 Define the reference sphere (ellipsoid with 0 flattening).
 """
+import textwrap
 from warnings import warn
 
 import attr
@@ -279,6 +280,18 @@ class Sphere:
         Units: :math:`m^2 / s^2`.
         """
         return self.geocentric_grav_const / self.radius
+
+    def __str__(self):
+        str = self.name + " - " + self.long_name + "\n"
+        str += "Spheroid:\n"
+        str += f"  Radius: {self.radius} m\n"
+        str += f"  GM: {self.geocentric_grav_const} m³/s²\n"
+        str += f"  Angular velocity: {self.angular_velocity} rad/s\n"
+        str += "Source:\n"
+        str += textwrap.fill(
+            self.reference, width=72, initial_indent="  ", subsequent_indent="  "
+        )
+        return str
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""

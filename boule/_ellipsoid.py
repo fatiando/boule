@@ -7,6 +7,7 @@
 """
 Module for defining and setting the reference ellipsoid.
 """
+import textwrap
 from warnings import warn
 
 import attr
@@ -393,6 +394,19 @@ class Ellipsoid:
             self.geocentric_grav_const * (1 + self._emm * aux) / self.semimajor_axis**2
         )
         return result
+
+    def __str__(self):
+        str = self.name + " - " + self.long_name + "\n"
+        str += "Oblate ellipsoid:\n"
+        str += f"  Semimajor axis: {self.semimajor_axis} m\n"
+        str += f"  Flattening: {self.flattening}\n"
+        str += f"  GM: {self.geocentric_grav_const} m³/s²\n"
+        str += f"  Angular velocity: {self.angular_velocity} rad/s\n"
+        str += "Source:\n"
+        str += textwrap.fill(
+            self.reference, width=72, initial_indent="  ", subsequent_indent="  "
+        )
+        return str
 
     def geocentric_radius(self, latitude, geodetic=True):
         r"""

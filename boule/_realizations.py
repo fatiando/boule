@@ -65,7 +65,7 @@ WGS84 = Ellipsoid(
     angular_velocity=7292115e-11,
     reference=(
         "Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy "
-        "(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."
+        "(2nd, corr. ed. 2006 edition ed.). Wien; New York: Springer."
     ),
 )
 
@@ -79,7 +79,7 @@ GRS80 = Ellipsoid(
     angular_velocity=7292115e-11,
     reference=(
         "Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy "
-        "(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."
+        "(2nd, corr. ed. 2006 edition ed.). Wien; New York: Springer."
     ),
 )
 
@@ -120,7 +120,7 @@ Mars2009 = Ellipsoid(
     reference=(
         "Ardalan, A. A., Karimi, R., & Grafarend, E. W. (2009). A New Reference "
         "Equipotential Surface, and Reference Ellipsoid for the Planet Mars. "
-        "Earth, Moon, and Planets, 106(1), 1. "
+        "Earth, Moon, and Planets, 106, 1-13. "
         "doi:10.1007/s11038-009-9342-7"
     ),
 )

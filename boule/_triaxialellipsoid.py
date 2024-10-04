@@ -7,6 +7,7 @@
 """
 Define a reference triaxial ellipsoid.
 """
+import textwrap
 from warnings import warn
 
 import attr
@@ -324,6 +325,20 @@ class TriaxialEllipsoid:
         Units: adimensional.
         """
         return (self.semimajor_axis - self.semiminor_axis) / self.semimajor_axis
+
+    def __str__(self):
+        str = self.name + " - " + self.long_name + "\n"
+        str += "Triaxial ellipsoid:\n"
+        str += f"  Semimajor axis: {self.semimajor_axis} m\n"
+        str += f"  Semimedium axis: {self.semimedium_axis} m\n"
+        str += f"  Semiminor axis: {self.semiminor_axis} m\n"
+        str += f"  GM: {self.geocentric_grav_const} m³/s²\n"
+        str += f"  Angular velocity: {self.angular_velocity} rad/s\n"
+        str += "Source:\n"
+        str += textwrap.fill(
+            self.reference, width=72, initial_indent="  ", subsequent_indent="  "
+        )
+        return str
 
     def geocentric_radius(self, longitude, latitude):
         r"""
