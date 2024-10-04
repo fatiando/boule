@@ -82,7 +82,12 @@ class Sphere:
     ...     angular_velocity=0.5,
     ... )
     >>> print(sphere) # doctest: +ELLIPSIS
-    Sphere(name='Moon', ...)
+    Moon - That's no moon
+    Spheroid:
+      Radius: 1 m
+      GM: 2 m³/s²
+      Angular velocity: 0.5 rad/s
+
     >>> print(sphere.long_name)
     That's no moon
 
@@ -282,16 +287,22 @@ class Sphere:
         return self.geocentric_grav_const / self.radius
 
     def __str__(self):
-        str = self.name + " - " + self.long_name + "\n"
-        str += "Spheroid:\n"
-        str += f"  Radius: {self.radius} m\n"
-        str += f"  GM: {self.geocentric_grav_const} m³/s²\n"
-        str += f"  Angular velocity: {self.angular_velocity} rad/s\n"
-        str += "Source:\n"
-        str += textwrap.fill(
-            self.reference, width=72, initial_indent="  ", subsequent_indent="  "
-        )
-        return str
+        s = self.name + " - " + self.long_name + "\n"
+        s += "Spheroid:\n"
+        s += f"  Radius: {self.radius} m\n"
+        s += f"  GM: {self.geocentric_grav_const} m³/s²\n"
+        s += f"  Angular velocity: {self.angular_velocity} rad/s"
+        if self.reference is not None:
+            s += "\nSource:\n"
+            s += textwrap.fill(
+                self.reference, width=72, initial_indent="  ", subsequent_indent="  "
+            )
+        if self.comments is not None:
+            s += "\nComments:\n"
+            s += textwrap.fill(
+                self.comments, width=72, initial_indent="  ", subsequent_indent="  "
+            )
+        return s
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""

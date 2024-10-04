@@ -89,7 +89,16 @@ class Ellipsoid:
     ...     ),
     ... )
     >>> print(ellipsoid) # doctest: +ELLIPSIS
-    Ellipsoid(name='WGS84', ...)
+    WGS84 - World Geodetic System 1984
+    Oblate ellipsoid:
+      Semimajor axis: 6378137 m
+      Flattening: 0.0033528106647474805
+      GM: 398600441800000.0 m³/s²
+      Angular velocity: 7.292115e-05 rad/s
+    Source:
+      Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy (2nd,
+      corr. ed. 2006 edition ed.). Wien ; New York: Springer.
+
     >>> print(ellipsoid.long_name)
     World Geodetic System 1984
 
@@ -396,17 +405,23 @@ class Ellipsoid:
         return result
 
     def __str__(self):
-        str = self.name + " - " + self.long_name + "\n"
-        str += "Oblate ellipsoid:\n"
-        str += f"  Semimajor axis: {self.semimajor_axis} m\n"
-        str += f"  Flattening: {self.flattening}\n"
-        str += f"  GM: {self.geocentric_grav_const} m³/s²\n"
-        str += f"  Angular velocity: {self.angular_velocity} rad/s\n"
-        str += "Source:\n"
-        str += textwrap.fill(
-            self.reference, width=72, initial_indent="  ", subsequent_indent="  "
-        )
-        return str
+        s = self.name + " - " + self.long_name + "\n"
+        s += "Oblate ellipsoid:\n"
+        s += f"  Semimajor axis: {self.semimajor_axis} m\n"
+        s += f"  Flattening: {self.flattening}\n"
+        s += f"  GM: {self.geocentric_grav_const} m³/s²\n"
+        s += f"  Angular velocity: {self.angular_velocity} rad/s"
+        if self.reference is not None:
+            s += "\nSource:\n"
+            s += textwrap.fill(
+                self.reference, width=72, initial_indent="  ", subsequent_indent="  "
+            )
+        if self.comments is not None:
+            s += "\nComments:\n"
+            s += textwrap.fill(
+                self.comments, width=72, initial_indent="  ", subsequent_indent="  "
+            )
+        return s
 
     def geocentric_radius(self, latitude, geodetic=True):
         r"""
