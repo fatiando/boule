@@ -107,14 +107,14 @@ class TriaxialEllipsoid:
       Semimajor axis: 280413 m
       Semimedium axis: 274572 m
       Semiminor axis: 231253 m
-      Semiminor axis longitude: 8.29
+      Semimajor axis longitude: 8.29°
       GM: 17288000000.0 m³/s²
       Angular velocity: 0.0003267 rad/s
     Source:
       Karimi, R., Azmoudeh Ardalan, A., & Vasheghani Farahani, S. (2017).
-      The size, shape and orientation of the asteroid Vesta based on data
-      from the Dawn mission. Earth and Planetary Science Letters, 475,
-      71–82. https://doi.org/10.1016/j.epsl.2017.07.033
+        The size, shape and orientation of the asteroid Vesta based on data
+        from the Dawn mission. Earth and Planetary Science Letters, 475,
+        71–82. https://doi.org/10.1016/j.epsl.2017.07.033
 
     >>> print(ellipsoid.long_name)
     Vesta Triaxial Ellipsoid
@@ -351,10 +351,11 @@ class TriaxialEllipsoid:
         s += f"  GM: {self.geocentric_grav_const} m³/s²\n"
         s += f"  Angular velocity: {self.angular_velocity} rad/s"
         if self.reference is not None:
-            s += "\nSource:\n"
-            s += textwrap.fill(
-                self.reference, width=72, initial_indent="  ", subsequent_indent="  "
-            )
+            s += "\nSource:"
+            for ref in self.reference.splitlines():
+                s += "\n" + textwrap.fill(
+                    ref, width=72, initial_indent="  ", subsequent_indent="    "
+                )
         if self.comments is not None:
             s += "\nComments:\n"
             s += textwrap.fill(

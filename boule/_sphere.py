@@ -293,10 +293,11 @@ class Sphere:
         s += f"  GM: {self.geocentric_grav_const} m³/s²\n"
         s += f"  Angular velocity: {self.angular_velocity} rad/s"
         if self.reference is not None:
-            s += "\nSource:\n"
-            s += textwrap.fill(
-                self.reference, width=72, initial_indent="  ", subsequent_indent="  "
-            )
+            s += "\nSource:"
+            for ref in self.reference.splitlines():
+                s += "\n" + textwrap.fill(
+                    ref, width=72, initial_indent="  ", subsequent_indent="    "
+                )
         if self.comments is not None:
             s += "\nComments:\n"
             s += textwrap.fill(
