@@ -347,7 +347,7 @@ class TriaxialEllipsoid:
         s += f"  Semimajor axis: {self.semimajor_axis} m\n"
         s += f"  Semimedium axis: {self.semimedium_axis} m\n"
         s += f"  Semiminor axis: {self.semiminor_axis} m\n"
-        s += f"  Semiminor axis longitude: {self.semimajor_axis_longitude}\n"
+        s += f"  Semimajor axis longitude: {self.semimajor_axis_longitude}°\n"
         s += f"  GM: {self.geocentric_grav_const} m³/s²\n"
         s += f"  Angular velocity: {self.angular_velocity} rad/s"
         if self.reference is not None:
