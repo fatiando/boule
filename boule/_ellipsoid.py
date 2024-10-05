@@ -186,7 +186,6 @@ class Ellipsoid:
     def semimedium_axis(self):
         """
         The semimedium axis of the ellipsoid is equal to its semimajor axis.
-        Definition: :math:`b = a`.
         Units: :math:`m`.
         """
         return self.semimajor_axis

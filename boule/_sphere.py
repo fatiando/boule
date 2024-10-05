@@ -146,7 +146,6 @@ class Sphere:
     def semiminor_axis(self):
         """
         The semiminor axis of the sphere is equal to its radius.
-        Definition: :math:`b = R`.
         Units: :math:`m`.
         """
         return self.radius
@@ -155,7 +154,6 @@ class Sphere:
     def semimedium_axis(self):
         """
         The semimedium axis of the sphere is equal to its radius.
-        Definition: :math:`a = R`.
         Units: :math:`m`.
         """
         return self.radius
@@ -164,7 +162,6 @@ class Sphere:
     def semimajor_axis(self):
         """
         The semimajor axis of the sphere is equal to its radius.
-        Definition: :math:`a = R`.
         Units: :math:`m`.
         """
         return self.radius
