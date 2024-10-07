@@ -83,10 +83,8 @@ class Ellipsoid:
     ...     flattening=1 / 298.257223563,
     ...     geocentric_grav_const=3986004.418e8,
     ...     angular_velocity=7292115e-11,
-    ...     reference=(
-    ...         "Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy "
-    ...         "(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."
-    ...     ),
+    ...     reference="Hofmann-Wellenhof & Moritz (2006)",
+    ...     comments="This is the same as the boule WGS84 ellipsoid.",
     ... )
     >>> print(ellipsoid) # doctest: +ELLIPSIS
     WGS84 - World Geodetic System 1984
@@ -96,8 +94,9 @@ class Ellipsoid:
       GM: 398600441800000.0 m³/s²
       Angular velocity: 7.292115e-05 rad/s
     Source:
-      Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy (2nd,
-        corr. ed. 2006 edition ed.). Wien ; New York: Springer.
+      Hofmann-Wellenhof & Moritz (2006)
+    Comments:
+      This is the same as the boule WGS84 ellipsoid.
 
     >>> print(ellipsoid.long_name)
     World Geodetic System 1984

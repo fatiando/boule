@@ -93,13 +93,8 @@ class TriaxialEllipsoid:
     ...     geocentric_grav_const=17.288e9,
     ...     angular_velocity=3.267e-4,
     ...     semimajor_axis_longitude=8.29,
-    ...     reference=(
-    ...         "Karimi, R., Azmoudeh Ardalan, A., & Vasheghani Farahani, S. "
-    ...         "(2017). The size, shape and orientation of the asteroid "
-    ...         "Vesta based on data from the Dawn mission. Earth and "
-    ...         "Planetary Science Letters, 475, 71–82. "
-    ...         "https://doi.org/10.1016/j.epsl.2017.07.033"
-    ...     ),
+    ...     reference="Karimi et al. (2017)",
+    ...     comments="This is the same as the VestaTriaxial2017 ellipsoid."
     ... )
     >>> print(ellipsoid) # doctest: +ELLIPSIS
     Vesta - Vesta Triaxial Ellipsoid
@@ -111,10 +106,9 @@ class TriaxialEllipsoid:
       GM: 17288000000.0 m³/s²
       Angular velocity: 0.0003267 rad/s
     Source:
-      Karimi, R., Azmoudeh Ardalan, A., & Vasheghani Farahani, S. (2017).
-        The size, shape and orientation of the asteroid Vesta based on data
-        from the Dawn mission. Earth and Planetary Science Letters, 475,
-        71–82. https://doi.org/10.1016/j.epsl.2017.07.033
+      Karimi et al. (2017)
+    Comments:
+      This is the same as the VestaTriaxial2017 ellipsoid.
 
     >>> print(ellipsoid.long_name)
     Vesta Triaxial Ellipsoid
