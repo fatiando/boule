@@ -554,8 +554,8 @@ class Ellipsoid:
         -------
         longitude : array
             Longitude coordinates on geocentric spherical coordinate system in
-            degrees.
-            The longitude coordinates are not modified during this conversion.
+            degrees. The longitude coordinates are not modified during this
+            conversion.
         spherical_latitude : array
             Converted latitude coordinates on geocentric spherical coordinate
             system in degrees.
@@ -620,6 +620,125 @@ class Ellipsoid:
         height = (k + self.eccentricity**2 - 1) / k * hypot_dz
         return longitude, latitude, height
 
+    def geodetic_to_ellipsoidal_harmonic(self, longitude, latitude, height):
+        """
+        Convert from geodetic to ellipsoidal-harmonic coordinates.
+
+        The geodetic datum is defined by this ellipsoid, and the coordinates
+        are converted following [Lakshmanan1991]_ and [LiGotze2001]_.
+
+        Parameters
+        ----------
+        longitude : array
+            Longitude coordinates on geodetic coordinate system in degrees.
+        latitude : array
+            Latitude coordinates on geodetic coordinate system in degrees.
+        height : array
+            Ellipsoidal heights in meters.
+
+        Returns
+        -------
+        longitude : array
+            Longitude coordinates on ellipsoidal-harmonic coordinate system in
+            degrees. The longitude coordinates are not modified during this
+            conversion.
+        reduced_latitude : array
+            The reduced (or parametric) latitude in degrees.
+        u : array
+            The coordinate u, which is the semiminor axis of the ellipsoid that
+            passes through the input coordinates.
+        """
+        if (np.array(height) == 0).all():
+            # Use simple formula that relates geodetic and reduced latitude
+            beta = np.degrees(
+                np.arctan(
+                    self.semiminor_axis
+                    / self.semimajor_axis
+                    * np.tan(np.radians(latitude))
+                )
+            )
+            u = np.full_like(height, fill_value=self.semiminor_axis, dtype=np.float64)
+
+            return longitude, beta, u
+
+        # The variable names follow Li and Goetze (2001). The prime terms
+        # (*_p) refer to quantities on an ellipsoid passing through the
+        # computation point.
+        sinlat = np.sin(np.radians(latitude))
+        coslat = np.sqrt(1 - sinlat**2)
+        big_e2 = self.linear_eccentricity**2
+
+        # Reduced latitude of the projection of the point on the
+        # reference ellipsoid
+        beta = np.arctan2(self.semiminor_axis * sinlat, self.semimajor_axis * coslat)
+        sinbeta = np.sin(beta)
+        cosbeta = np.sqrt(1 - sinbeta**2)
+
+        # Distance squared between computation point and equatorial plane
+        z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
+        # Distance squared between computation point and spin axis
+        r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
+
+        # Auxiliary variables
+        big_d = (r_p2 - z_p2) / big_e2
+        big_r = (r_p2 + z_p2) / big_e2
+
+        # cos(reduced latitude) squared of the computation point
+        cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
+
+        # Semiminor axis of the ellipsoid passing through the computation
+        # point. This is the coordinate u
+        b_p = np.sqrt(r_p2 + z_p2 - big_e2 * cosbeta_p2)
+
+        # Note that the sign of beta_p needs to be fixed as it is defined
+        # from -90 to 90 degrees, but arccos is from 0 to 180.
+        beta_p = np.copysign(np.degrees(np.arccos(np.sqrt(cosbeta_p2))), latitude)
+
+        return longitude, beta_p, b_p
+
+    def ellipsoidal_harmonic_to_geodetic(self, longitude, reduced_latitude, u):
+        """
+        Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.
+
+        The geodetic datum is defined by this ellipsoid.
+
+        Parameters
+        ----------
+        longitude : array
+            Longitude coordinates on ellipsoidal-harmonic coordinate system in
+            degrees.
+        latitude : array
+            Reduced (parametric) latitude coordinates on ellipsoidal-harmonic
+            coordinate system in degrees.
+        u : array
+            The coordinate u, which is the semiminor axes of the ellipsoid that
+            passes through the input coordinates.
+
+        Returns
+        -------
+        longitude : array
+            Longitude coordinates on geodetic coordinate system in degrees. The
+            longitude coordinates are not modified during this conversion.
+        latitude : array
+            Latitude coordinates on geodetic coordinate system in degrees.
+        height : array
+            Ellipsoidal heights in meters.
+        """
+        # Semimajor axis of the ellipsoid that passes through the input
+        # coordinates
+        a_p = np.sqrt(u**2 + self.linear_eccentricity**2)
+
+        # geodetic latitude
+        latitude = np.arctan(a_p / u * np.tan(np.radians(reduced_latitude)))
+
+        # Compute height as the difference of the prime_vertical_radius of the
+        # input ellipsoid and reference ellipsoid
+        height = self.prime_vertical_radius(np.sin(latitude)) * (
+            a_p / self.semimajor_axis - 1
+        )
+
+        return longitude, np.degrees(latitude), height
+
     def normal_gravity(self, latitude, height, si_units=False):
         r"""
         Normal gravity of the ellipsoid at the given latitude and height.
@@ -672,65 +791,34 @@ class Ellipsoid:
                 "Height must be greater than or equal to zero."
             )
 
-        # Pre-compute to avoid repeated calculations
-        sinlat = np.sin(np.radians(latitude))
-        coslat = np.sqrt(1 - sinlat**2)
+        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
+        longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
+            None, latitude, height
+        )
+        sinbeta2 = np.sin(np.radians(beta)) ** 2
+        cosbeta2 = 1 - sinbeta2
+        big_e = self.linear_eccentricity
 
-        # The terms below follow the variable names from Li and Goetze (2001).
-        # The prime terms (*_p) refer to quantities on an ellipsoid passing
-        # through the computation point.
-
-        # The reduced latitude of the projection of the point on the ellipsoid
-        beta = np.arctan2(self.semiminor_axis * sinlat, self.semimajor_axis * coslat)
-        sinbeta = np.sin(beta)
-        cosbeta = np.sqrt(1 - sinbeta**2)
-
-        # Distance between the computation point and the equatorial plane
-        z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
-        # Distance between the computation point and the spin axis
-        r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
-
-        # Auxiliary variables
-        big_d = (r_p2 - z_p2) / self.linear_eccentricity**2
-        big_r = (r_p2 + z_p2) / self.linear_eccentricity**2
-
-        # Reduced latitude of the computation point
-        cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
-        sinbeta_p2 = 1 - cosbeta_p2
-
-        # Auxiliary variables
-        b_p = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
+        # Compute the auxiliary functions q and q_0 (eq 2-113 of
+        # HofmannWellenhofMoritz2006)
         q_0 = 0.5 * (
-            (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
-            * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-            - 3 * self.semiminor_axis / self.linear_eccentricity
+            (1 + 3 * (self.semiminor_axis / big_e) ** 2)
+            * np.arctan2(big_e, self.semiminor_axis)
+            - 3 * self.semiminor_axis / big_e
         )
-        q_p = (
-            3
-            * (1 + (b_p / self.linear_eccentricity) ** 2)
-            * (
-                1
-                - b_p
-                / self.linear_eccentricity
-                * np.arctan2(self.linear_eccentricity, b_p)
-            )
-            - 1
-        )
-        big_w = np.sqrt(
-            (b_p**2 + self.linear_eccentricity**2 * sinbeta_p2)
-            / (b_p**2 + self.linear_eccentricity**2)
-        )
+        q_p = 3 * (1 + (u / big_e) ** 2) * (1 - u / big_e * np.arctan2(big_e, u)) - 1
+        big_w = np.sqrt((u**2 + big_e**2 * sinbeta2) / (u**2 + big_e**2))
 
         # Put together gamma using 3 separate terms
-        term1 = self.geocentric_grav_const / (b_p**2 + self.linear_eccentricity**2)
-        term2 = (0.5 * sinbeta_p2 - 1 / 6) * (
+        term1 = self.geocentric_grav_const / (u**2 + big_e**2)
+        term2 = (0.5 * sinbeta2 - 1 / 6) * (
             self.semimajor_axis**2
-            * self.linear_eccentricity
+            * big_e
             * q_p
             * self.angular_velocity**2
-            / ((b_p**2 + self.linear_eccentricity**2) * q_0)
+            / ((u**2 + big_e**2) * q_0)
         )
-        term3 = -cosbeta_p2 * b_p * self.angular_velocity**2
+        term3 = -cosbeta2 * u * self.angular_velocity**2
         gamma = (term1 + term2 + term3) / big_w
 
         # Convert gamma from SI to mGal
@@ -738,3 +826,204 @@ class Ellipsoid:
             gamma *= 1e5
 
         return gamma
+
+    def normal_gravitational_potential(self, latitude, height):
+        r"""
+        Normal gravitational potential of the ellipsoid at the given latitude
+        and height.
+
+        Computes the gravitational potential generated by the ellipsoid at the
+        given geodetic latitude :math:`\phi` and height above the ellipsoid
+        :math:`h` (geometric height).
+
+        .. math::
+
+            V(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{3}
+            \omega^2 a^2 \dfrac{q}{q_0} P_2 (\sin \beta)
+
+        in which :math:`V` is the gravitational potential of the
+        ellipsoid (no centrifugal term), :math:`GM` is the geocentric
+        gravitational constant, :math:`E` is the linear eccentricity,
+        :math:`\omega` is the angular rotation rate, :math:`q` and :math:`q_0`
+        are auxiliary functions, :math:`P_2` is the degree 2 unnormalized
+        Legendre Polynomial, and :math:`u` and :math:`\beta` are
+        ellipsoidal-harmonic coordinates corresponding to the input geodetic
+        latitude and ellipsoidal height. See eq. 2-124 of
+        [HofmannWellenhofMoritz2006]_.
+
+        Assumes that the internal density distribution of the ellipsoid is such
+        that the gravity potential is constant at its surface.
+
+        .. caution::
+
+            These expressions are only valid for heights on or above the
+            surface of the ellipsoid.
+
+        Parameters
+        ----------
+        latitude : float or array
+            The geodetic latitude where the normal gravitational potential will
+            be computed (in degrees).
+        height : float or array
+            The ellipsoidal (geometric) height of the computation the point (in
+            meters).
+
+        Returns
+        -------
+        V : float or array
+            The normal gravitational potential in m²/s².
+
+        """
+        # Warn if height is negative
+        if np.any(height < 0):
+            warn(
+                "Formulas used are valid for points outside the ellipsoid."
+                "Height must be greater than or equal to zero."
+            )
+
+        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
+        longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
+            None, latitude, height
+        )
+        big_e = self.linear_eccentricity
+
+        # Compute the auxiliary functions q and q_0 (eq 2-113 of
+        # HofmannWellenhofMoritz2006)
+        q_0 = 0.5 * (
+            (1 + 3 * (self.semiminor_axis / big_e) ** 2)
+            * np.arctan2(big_e, self.semiminor_axis)
+            - 3 * self.semiminor_axis / big_e
+        )
+        q = 0.5 * ((1 + 3 * (u / big_e) ** 2) * np.arctan2(big_e, u) - 3 * u / big_e)
+
+        big_v = self.geocentric_grav_const / big_e * np.arctan(big_e / u) + (1 / 3) * (
+            self.angular_velocity * self.semimajor_axis
+        ) ** 2 * q / q_0 * (1.5 * np.sin(np.radians(beta)) ** 2 - 0.5)
+
+        return big_v
+
+    def normal_gravity_potential(self, latitude, height):
+        r"""
+        Normal gravity potential of the ellipsoid at the given latitude and
+        height.
+
+        Computes the gravity potential generated by the ellipsoid at the
+        given geodetic latitude :math:`\phi` and height above the ellipsoid
+        :math:`h` (geometric height).
+
+        .. math::
+
+            U(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{2}
+            \omega^2 a^2 \dfrac{q}{q_0} \left(\sin^2 \beta
+            - \dfrac{1}{3}\right) + \dfrac{1}{2} \omega^2 \left(u^2
+            + E^2\right) \cos^2 \beta
+
+        in which :math:`U` is the gravity potential of the ellipsoid,
+        :math:`GM` is the geocentric gravitational constant, :math:`E` is the
+        linear eccentricity, :math:`\omega` is the angular rotation rate,
+        :math:`q` and :math:`q_0` are auxiliary functions, and :math:`u` and
+        :math:`\beta` are ellipsoidal-harmonic coordinates corresponding to the
+        input geodetic latitude and ellipsoidal height. See eq. 2-126 of
+        [HofmannWellenhofMoritz2006]_.
+
+        Assumes that the internal density distribution of the ellipsoid is such
+        that the gravity potential is constant at its surface.
+
+        .. caution::
+
+            These expressions are only valid for heights on or above the
+            surface of the ellipsoid.
+
+        Parameters
+        ----------
+        latitude : float or array
+            The geodetic latitude where the normal gravity potential will be
+            computed (in degrees).
+        height : float or array
+            The ellipsoidal (geometric) height of the computation the point (in
+            meters).
+
+        Returns
+        -------
+        V : float or array
+            The normal gravity potential in m²/s².
+
+        """
+        # Warn if height is negative
+        if np.any(height < 0):
+            warn(
+                "Formulas used are valid for points outside the ellipsoid."
+                "Height must be greater than or equal to zero."
+            )
+
+        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
+        longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
+            None, latitude, height
+        )
+        big_e = self.linear_eccentricity
+
+        # Compute the auxiliary functions q and q_0 (eq 2-113 of
+        # HofmannWellenhofMoritz2006)
+        q_0 = 0.5 * (
+            (1 + 3 * (self.semiminor_axis / big_e) ** 2)
+            * np.arctan2(big_e, self.semiminor_axis)
+            - 3 * self.semiminor_axis / big_e
+        )
+        q = 0.5 * ((1 + 3 * (u / big_e) ** 2) * np.arctan2(big_e, u) - 3 * u / big_e)
+
+        big_u = (
+            self.geocentric_grav_const / big_e * np.arctan(big_e / u)
+            + 0.5
+            * (self.angular_velocity * self.semimajor_axis) ** 2
+            * q
+            / q_0
+            * (np.sin(np.radians(beta)) ** 2 - 1 / 3)
+            + 0.5
+            * self.angular_velocity**2
+            * (u**2 + big_e**2)
+            * np.cos(np.radians(beta)) ** 2
+        )
+
+        return big_u
+
+    def centrifugal_potential(self, latitude, height):
+        r"""
+        Centrifugal potential at the given geodetic latitude and height above
+        the ellipsoid.
+
+        The centrifugal potential :math:`\Phi` at geodetic latitude
+        :math:`\phi` and height above the ellipsoid :math:`h` (geometric
+        height) is
+
+        .. math::
+
+            \Phi(\phi, h) = \dfrac{1}{2}
+                \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)
+
+        in which :math:`N(\phi)` is the prime vertical radius of curvature of
+        the ellipsoid and :math:`\omega` is the angular velocity.
+
+        Parameters
+        ----------
+        latitude : float or array
+            The geodetic latitude where the centrifugal potential will be
+            computed (in degrees).
+        height : float or array
+            The ellipsoidal (geometric) height of the computation point (in
+            meters).
+
+        Returns
+        -------
+        Phi : float or array
+            The centrifugal potential in m²/s².
+
+        """
+        # Pre-compute to avoid repeated calculations
+        sinlat = np.sin(np.radians(latitude))
+        coslat = np.sqrt(1 - sinlat**2)
+
+        return (1 / 2) * (
+            self.angular_velocity
+            * (self.prime_vertical_radius(sinlat) + height)
+            * coslat
+        ) ** 2
