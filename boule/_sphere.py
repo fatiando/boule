@@ -145,9 +145,15 @@ class Sphere:
     @property
     def semiminor_axis(self):
         """
-        The semiminor axis of the sphere is equal to its radius. Added for
-        compatibility with pymap3d.
-        Definition: :math:`b = R`.
+        The semiminor axis of the sphere is equal to its radius.
+        Units: :math:`m`.
+        """
+        return self.radius
+
+    @property
+    def semimedium_axis(self):
+        """
+        The semimedium axis of the sphere is equal to its radius.
         Units: :math:`m`.
         """
         return self.radius
@@ -155,18 +161,24 @@ class Sphere:
     @property
     def semimajor_axis(self):
         """
-        The semimajor axis of the sphere is equal to its radius. Added for
-        compatibility with pymap3d.
-        Definition: :math:`a = R`.
+        The semimajor axis of the sphere is equal to its radius.
         Units: :math:`m`.
         """
         return self.radius
 
     @property
+    def semimajor_axis_longitude(self):
+        r"""
+        The semimajor axis longitude of the sphere is equal to zero.
+        Definition: :math:`\lambda_a = 0`.
+        Units: :math:`m`.
+        """
+        return 0
+
+    @property
     def flattening(self):
         r"""
-        The flattening of the sphere is equal to zero. Added for compatibility
-        with pymap3d.
+        The flattening of the sphere is equal to zero.
         Definition: :math:`f = \dfrac{a - b}{a}`.
         Units: adimensional.
         """
@@ -175,8 +187,7 @@ class Sphere:
     @property
     def thirdflattening(self):
         r"""
-        The third flattening of the sphere is equal to zero. Added for
-        compatibility with pymap3d
+        The third flattening of the sphere is equal to zero.
         Definition: :math:`f^{\prime\prime}= \dfrac{a -b}{a + b}`.
         Units: adimensional.
         """
@@ -190,8 +201,7 @@ class Sphere:
     @property
     def first_eccentricity(self):
         r"""
-        The (first) eccentricity of the sphere is equal to zero. Added for
-        compatibility with pymap3d.
+        The (first) eccentricity of the sphere is equal to zero.
         Definition: :math:`e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}`.
         Units: adimensional.
         """
@@ -209,8 +219,7 @@ class Sphere:
     @property
     def mean_radius(self):
         """
-        The mean radius of the ellipsoid is equal to its radius. Added for
-        compatibility with pymap3d.
+        The mean radius of the ellipsoid is equal to its radius.
         Definition: :math:`R_0 = R`.
         Units: :math:`m`.
         """
@@ -220,7 +229,7 @@ class Sphere:
     def semiaxes_mean_radius(self):
         """
         The arithmetic mean radius of the ellipsoid semi-axes is equal to its
-        radius. Added for compatibility with pymap3d.
+        radius.
         Definition: :math:`R_1 = R`.
         Units: :math:`m`.
         """
