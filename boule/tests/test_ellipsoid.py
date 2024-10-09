@@ -105,6 +105,16 @@ def test_check_geocentric_grav_const():
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_semiaxes(ellipsoid):
+    """
+    Check that the semimedium axis is equal to the semimajor axis and that
+    the longitude of the semimajor axis is zero.
+    """
+    assert ellipsoid.semimedium_axis == ellipsoid.semimajor_axis
+    assert ellipsoid.semimajor_axis_longitude == 0
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_geodetic_to_spherical_on_equator(ellipsoid):
     "Test geodetic to geocentric coordinates conversion on equator."
     rtol = 1e-10
