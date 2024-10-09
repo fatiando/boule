@@ -876,7 +876,7 @@ class Ellipsoid:
 
         in which :math:`V` is the gravitational potential of the
         ellipsoid (no centrifugal term), :math:`GM` is the geocentric
-        gravitational constant, :math:`E` is the linear eccentricty,
+        gravitational constant, :math:`E` is the linear eccentricity,
         :math:`\omega` is the angular rotation rate, :math:`q` and :math:`q_0`
         are auxiliary functions, :math:`P_2` is the degree 2 unnormalized
         Legendre Polynomial, and :math:`u` and :math:`beta` are ellipsoidal-
