@@ -89,10 +89,10 @@ class Ellipsoid:
     >>> print(ellipsoid) # doctest: +ELLIPSIS
     WGS84 - World Geodetic System 1984
     Oblate ellipsoid:
-      Semimajor axis: 6378137 m
-      Flattening: 0.0033528106647474805
-      GM: 398600441800000.0 m³/s²
-      Angular velocity: 7.292115e-05 rad/s
+      • Semimajor axis: 6378137 m
+      • Flattening: 0.0033528106647474805
+      • GM: 398600441800000.0 m³/s²
+      • Angular velocity: 7.292115e-05 rad/s
     Source:
       Hofmann-Wellenhof & Moritz (2006)
     Comments:
@@ -406,20 +406,23 @@ class Ellipsoid:
     def __str__(self):
         s = self.name + " - " + self.long_name + "\n"
         s += "Oblate ellipsoid:\n"
-        s += f"  Semimajor axis: {self.semimajor_axis} m\n"
-        s += f"  Flattening: {self.flattening}\n"
-        s += f"  GM: {self.geocentric_grav_const} m³/s²\n"
-        s += f"  Angular velocity: {self.angular_velocity} rad/s"
+        s += f"  • Semimajor axis: {self.semimajor_axis} m\n"
+        s += f"  • Flattening: {self.flattening}\n"
+        s += f"  • GM: {self.geocentric_grav_const} m³/s²\n"
+        s += f"  • Angular velocity: {self.angular_velocity} rad/s"
         if self.reference is not None:
             s += "\nSource:"
             for ref in self.reference.splitlines():
                 s += "\n" + textwrap.fill(
-                    ref, width=72, initial_indent="  ", subsequent_indent="    "
+                    ref, width=72, initial_indent=2 * " ", subsequent_indent=4 * " "
                 )
         if self.comments is not None:
             s += "\nComments:\n"
             s += textwrap.fill(
-                self.comments, width=72, initial_indent="  ", subsequent_indent="  "
+                self.comments,
+                width=72,
+                initial_indent=2 * " ",
+                subsequent_indent=2 * " ",
             )
         return s
 

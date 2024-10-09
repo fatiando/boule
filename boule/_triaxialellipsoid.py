@@ -99,12 +99,12 @@ class TriaxialEllipsoid:
     >>> print(ellipsoid) # doctest: +ELLIPSIS
     Vesta - Vesta Triaxial Ellipsoid
     Triaxial ellipsoid:
-      Semimajor axis: 280413 m
-      Semimedium axis: 274572 m
-      Semiminor axis: 231253 m
-      Semimajor axis longitude: 8.29°
-      GM: 17288000000.0 m³/s²
-      Angular velocity: 0.0003267 rad/s
+      • Semimajor axis: 280413 m
+      • Semimedium axis: 274572 m
+      • Semiminor axis: 231253 m
+      • Semimajor axis longitude: 8.29°
+      • GM: 17288000000.0 m³/s²
+      • Angular velocity: 0.0003267 rad/s
     Source:
       Karimi et al. (2017)
     Comments:
@@ -338,22 +338,25 @@ class TriaxialEllipsoid:
     def __str__(self):
         s = self.name + " - " + self.long_name + "\n"
         s += "Triaxial ellipsoid:\n"
-        s += f"  Semimajor axis: {self.semimajor_axis} m\n"
-        s += f"  Semimedium axis: {self.semimedium_axis} m\n"
-        s += f"  Semiminor axis: {self.semiminor_axis} m\n"
-        s += f"  Semimajor axis longitude: {self.semimajor_axis_longitude}°\n"
-        s += f"  GM: {self.geocentric_grav_const} m³/s²\n"
-        s += f"  Angular velocity: {self.angular_velocity} rad/s"
+        s += f"  • Semimajor axis: {self.semimajor_axis} m\n"
+        s += f"  • Semimedium axis: {self.semimedium_axis} m\n"
+        s += f"  • Semiminor axis: {self.semiminor_axis} m\n"
+        s += f"  • Semimajor axis longitude: {self.semimajor_axis_longitude}°\n"
+        s += f"  • GM: {self.geocentric_grav_const} m³/s²\n"
+        s += f"  • Angular velocity: {self.angular_velocity} rad/s"
         if self.reference is not None:
             s += "\nSource:"
             for ref in self.reference.splitlines():
                 s += "\n" + textwrap.fill(
-                    ref, width=72, initial_indent="  ", subsequent_indent="    "
+                    ref, width=72, initial_indent=2 * " ", subsequent_indent=4 * " "
                 )
         if self.comments is not None:
             s += "\nComments:\n"
             s += textwrap.fill(
-                self.comments, width=72, initial_indent="  ", subsequent_indent="  "
+                self.comments,
+                width=72,
+                initial_indent=2 * " ",
+                subsequent_indent=2 * " ",
             )
         return s
 

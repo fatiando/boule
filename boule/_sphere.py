@@ -86,9 +86,9 @@ class Sphere:
     >>> print(sphere) # doctest: +ELLIPSIS
     Moon - Moon Spheroid
     Spheroid:
-      Radius: 1737151 m
-      GM: 4902800070000.0 m³/s²
-      Angular velocity: 2.6617073e-06 rad/s
+      • Radius: 1737151 m
+      • GM: 4902800070000.0 m³/s²
+      • Angular velocity: 2.6617073e-06 rad/s
     Source:
       Wieczorek (2015)
     Comments:
@@ -294,19 +294,22 @@ class Sphere:
     def __str__(self):
         s = self.name + " - " + self.long_name + "\n"
         s += "Spheroid:\n"
-        s += f"  Radius: {self.radius} m\n"
-        s += f"  GM: {self.geocentric_grav_const} m³/s²\n"
-        s += f"  Angular velocity: {self.angular_velocity} rad/s"
+        s += f"  • Radius: {self.radius} m\n"
+        s += f"  • GM: {self.geocentric_grav_const} m³/s²\n"
+        s += f"  • Angular velocity: {self.angular_velocity} rad/s"
         if self.reference is not None:
             s += "\nSource:"
             for ref in self.reference.splitlines():
                 s += "\n" + textwrap.fill(
-                    ref, width=72, initial_indent="  ", subsequent_indent="    "
+                    ref, width=72, initial_indent=2 * " ", subsequent_indent=4 * " "
                 )
         if self.comments is not None:
             s += "\nComments:\n"
             s += textwrap.fill(
-                self.comments, width=72, initial_indent="  ", subsequent_indent="  "
+                self.comments,
+                width=72,
+                initial_indent=2 * " ",
+                subsequent_indent=2 * " ",
             )
         return s
 
