@@ -639,7 +639,7 @@ class Ellipsoid:
         Convert from geodetic to ellipsoidal-harmonic coordinates.
 
         The geodetic datum is defined by this ellipsoid, and the coordinates
-        are converted following [Lakshmanan1991]_ and [LiGotze2001].
+        are converted following [Lakshmanan1991]_ and [LiGotze2001]_.
 
         Parameters
         ----------
@@ -671,64 +671,60 @@ class Ellipsoid:
                     * np.tan(np.radians(latitude))
                 )
             )
-            u = np.full_like(height, fill_value=self.semiminor_axis, dtype=np.float_)
+            u = np.full_like(height, fill_value=self.semiminor_axis, dtype=np.float64)
 
             return longitude, beta, u
 
-        else:
-            # The variable names follow Li and Goetze (2001). The prime terms
-            # (*_p) refer to quantities on an ellipsoid passing through the
-            # computation point.
-            sinlat = np.sin(np.radians(latitude))
-            coslat = np.sqrt(1 - sinlat**2)
+        # The variable names follow Li and Goetze (2001). The prime terms
+        # (*_p) refer to quantities on an ellipsoid passing through the
+        # computation point.
+        sinlat = np.sin(np.radians(latitude))
+        coslat = np.sqrt(1 - sinlat**2)
+        big_e2 = self.linear_eccentricity**2
 
-            # Reduced latitude of the projection of the point on the
-            # reference ellipsoid
-            beta = np.arctan2(
-                self.semiminor_axis * sinlat, self.semimajor_axis * coslat
+        # Reduced latitude of the projection of the point on the
+        # reference ellipsoid
+        beta = np.arctan2(self.semiminor_axis * sinlat, self.semimajor_axis * coslat)
+        sinbeta = np.sin(beta)
+        cosbeta = np.sqrt(1 - sinbeta**2)
+
+        # Distance squared between computation point and equatorial plane
+        z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
+        # Distance squared between computation point and spin axis
+        r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
+        # Auxialiary variables
+        z_pp2 = r_p2 - z_p2
+        r_pp2 = r_p2 + z_p2
+
+        if self.flattening < 5.0e-5:
+            # Use the Taylor series approximation for flattenings close to
+            # zero to avoid numerical issues.
+            cosbeta_p2 = (
+                0.5
+                + 0.5 * z_pp2 / r_pp2
+                + big_e2 * 0.25 * (z_pp2**2 / r_pp2**3 - 1 / r_pp2)
             )
-            sinbeta = np.sin(beta)
-            cosbeta = np.sqrt(1 - sinbeta**2)
+        else:
+            # Auxiliary variables
+            big_d = z_pp2 / big_e2
+            big_r = r_pp2 / big_e2
+            # cos(reduced latitude) squared of the computation point
+            cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
 
-            # Distance squared between computation point and equatorial plane
-            z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
-            # Distance squared between computation point and spin axis
-            r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
-            # Auxialiary variables
-            z_pp2 = r_p2 - z_p2
-            r_pp2 = r_p2 + z_p2
+        # Note that cosbeta_p2 can sometimes be less than 0 to within
+        # machine precision. To avoid taking the square root of a negative
+        # number, use the absolute value of this quantity.
+        cosbeta_p2 = np.abs(cosbeta_p2)
 
-            if self.flattening < 5.0e-5:
-                #  Use the Taylor series approximation for flattenings close to
-                # zero to avoid numerical issues.
-                cosbeta_p2 = (
-                    0.5
-                    + 0.5 * z_pp2 / r_pp2
-                    + self.linear_eccentricity**2
-                    * 0.25
-                    * (z_pp2**2 / r_pp2**3 - 1 / r_pp2)
-                )
-            else:
-                # Auxiliary variables
-                big_d = z_pp2 / self.linear_eccentricity**2
-                big_r = r_pp2 / self.linear_eccentricity**2
-                # cos(reduced latitude) squared of the computation point
-                cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
+        # Semiminor axis of the ellipsoid passing through the computation
+        # point. This is the coordinate u
+        b_p = np.sqrt(r_p2 + z_p2 - big_e2 * cosbeta_p2)
 
-            # Note that cosbeta_p2 can sometimes be less than 0 to within
-            # machine precision. To avoid taking the square root of a negative
-            # number, use the absolute value of this quantity.
-            cosbeta_p2 = np.abs(cosbeta_p2)
+        # Note that the sign of beta_p needs to be fixed as it is defined
+        # from -90 to 90 degrees, but arccos is from 0 to 180.
+        beta_p = np.copysign(np.degrees(np.arccos(np.sqrt(cosbeta_p2))), latitude)
 
-            # Semiminor axis of the ellipsoid passing through the computation
-            # point. This is the coordinate u
-            b_p = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
-
-            # Note that the sign of beta_p needs to be fixed as it is defined
-            # from -90 to 90 degrees, but arccos is from 0 to 180.
-            beta_p = np.copysign(np.degrees(np.arccos(np.sqrt(cosbeta_p2))), latitude)
-
-            return longitude, beta_p, b_p
+        return longitude, beta_p, b_p
 
     def ellipsoidal_harmonic_to_geodetic(self, longitude, reduced_latitude, u):
         """
@@ -825,87 +821,37 @@ class Ellipsoid:
                 "Height must be greater than or equal to zero."
             )
 
-        # The variable names follow Li and Goetze (2001). The prime terms
-        # (*_p) refer to quantities on an ellipsoid passing through the
-        # computation point.
-        sinlat = np.sin(np.radians(latitude))
-        coslat = np.sqrt(1 - sinlat**2)
-
-        # Reduced latitude of the projection of the point on the
-        # reference ellipsoid
-        beta = np.arctan2(self.semiminor_axis * sinlat, self.semimajor_axis * coslat)
-        sinbeta = np.sin(beta)
-        cosbeta = np.sqrt(1 - sinbeta**2)
-
-        # Distance squared between computation point and equatorial plane
-        z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
-        # Distance squared between computation point and spin axis
-        r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
-        # Auxialiary variables
-        z_pp2 = r_p2 - z_p2
-        r_pp2 = r_p2 + z_p2
-
-        if self.flattening < 5.0e-5:
-            #  Use the Taylor series approximation for flattenings close to
-            # zero to avoid numerical issues.
-            cosbeta_p2 = (
-                0.5
-                + 0.5 * z_pp2 / r_pp2
-                + self.linear_eccentricity**2 * 0.25 * (z_pp2**2 / r_pp2**3 - 1 / r_pp2)
-            )
-        else:
-            # Auxiliary variables
-            big_d = z_pp2 / self.linear_eccentricity**2
-            big_r = r_pp2 / self.linear_eccentricity**2
-            # cos(reduced latitude) squared of the computation point
-            cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
-
-        # Note that cosbeta_p2 can sometimes be less than 0 to within
-        # machine precision. To avoid taking the square root of a negative
-        # number, use the absolute value of this quantity.
-        cosbeta_p2 = np.abs(cosbeta_p2)
-        sinbeta_p2 = 1 - cosbeta_p2
-
-        # Semiminor axis of the ellipsoid passing through the computation
-        # point. This is the coordinate u
-        b_p = np.sqrt(r_p2 + z_p2 - self.linear_eccentricity**2 * cosbeta_p2)
+        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
+        longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
+            None, latitude, height
+        )
+        sinbeta2 = np.sin(np.radians(beta)) ** 2
+        cosbeta2 = 1 - sinbeta2
+        big_e = self.linear_eccentricity
+        big_e2 = big_e**2
 
         # Compute auxiliary variables and the ratio E q_p / q_0
         if self.flattening <= 1.25e-5:
-            aux = 3 * self.semiminor_axis**3 / b_p**2
+            aux = 3 * self.semiminor_axis**3 / u**2
         else:
             q_0 = 0.5 * (
-                (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
-                * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-                - 3 * self.semiminor_axis / self.linear_eccentricity
+                (1 + 3 * (self.semiminor_axis / big_e) ** 2)
+                * np.arctan2(big_e, self.semiminor_axis)
+                - 3 * self.semiminor_axis / big_e
             )
             q_p = (
-                3
-                * (1 + (b_p / self.linear_eccentricity) ** 2)
-                * (
-                    1
-                    - b_p
-                    / self.linear_eccentricity
-                    * np.arctan2(self.linear_eccentricity, b_p)
-                )
-                - 1
+                3 * (1 + (u / big_e) ** 2) * (1 - u / big_e * np.arctan2(big_e, u)) - 1
             )
-            aux = self.linear_eccentricity * q_p / q_0
+            aux = big_e * q_p / q_0
 
-        big_w = np.sqrt(
-            (b_p**2 + self.linear_eccentricity**2 * sinbeta_p2)
-            / (b_p**2 + self.linear_eccentricity**2)
-        )
+        big_w = np.sqrt((u**2 + big_e2 * sinbeta2) / (u**2 + big_e2))
 
         # Put together gamma using 3 separate terms
-        term1 = self.geocentric_grav_const / (b_p**2 + self.linear_eccentricity**2)
-        term2 = (0.5 * sinbeta_p2 - 1 / 6) * (
-            self.semimajor_axis**2
-            * aux
-            * self.angular_velocity**2
-            / (b_p**2 + self.linear_eccentricity**2)
+        term1 = self.geocentric_grav_const / (u**2 + big_e2)
+        term2 = (0.5 * sinbeta2 - 1 / 6) * (
+            self.semimajor_axis**2 * aux * self.angular_velocity**2 / (u**2 + big_e2)
         )
-        term3 = -cosbeta_p2 * b_p * self.angular_velocity**2
+        term3 = -cosbeta2 * u * self.angular_velocity**2
         gamma = (term1 + term2 + term3) / big_w
 
         # Convert gamma from SI to mGal
@@ -972,20 +918,16 @@ class Ellipsoid:
         longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
             None, latitude, height
         )
+        big_e = self.linear_eccentricity
+        big_e2 = big_e**2
 
         # Compute the term GM * arctan(E/u) / E
         if self.flattening < 4.0e-16:
             # Use the 3rd order arctan small-angle approximation to avoid
             # numerical instabilities when the flattening is close to zero.
-            var = self.geocentric_grav_const * (
-                1 / u - self.linear_eccentricity**2 / (3 * u**3)
-            )
+            var = self.geocentric_grav_const * (1 / u - big_e2 / (3 * u**3))
         else:
-            var = (
-                self.geocentric_grav_const
-                / self.linear_eccentricity
-                * np.arctan(self.linear_eccentricity / u)
-            )
+            var = self.geocentric_grav_const / big_e * np.arctan(big_e / u)
 
         # Compute the ratio of the auxiliary functions q and q_0 (eq 2-113 of
         # HofmannWellenhofMoritz2006)
@@ -995,14 +937,12 @@ class Ellipsoid:
             ratio = (self.semiminor_axis / u) ** 3
         else:
             q_0 = 0.5 * (
-                (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
-                * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-                - 3 * self.semiminor_axis / self.linear_eccentricity
+                (1 + 3 * (self.semiminor_axis / big_e) ** 2)
+                * np.arctan2(big_e, self.semiminor_axis)
+                - 3 * self.semiminor_axis / big_e
             )
             q = 0.5 * (
-                (1 + 3 * (u / self.linear_eccentricity) ** 2)
-                * np.arctan2(self.linear_eccentricity, u)
-                - 3 * u / self.linear_eccentricity
+                (1 + 3 * (u / big_e) ** 2) * np.arctan2(big_e, u) - 3 * u / big_e
             )
             ratio = q / q_0
 
@@ -1025,15 +965,15 @@ class Ellipsoid:
 
             U(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{2}
             \omega^2 a^2 \dfrac{q}{q_0} \left(\sin^2 \beta
-            - \dfrac{1}{3}\right) + \dfrac{1}{2} \omega^2 \left(u^2 + E^2)
-            \cos^2 \beta
+            - \dfrac{1}{3}\right) + \dfrac{1}{2} \omega^2 \left(u^2
+            + E^2\right) \cos^2 \beta
 
         in which :math:`U` is the gravity potential of the ellipsoid,
         :math:`GM` is the geocentric gravitational constant, :math:`E` is the
-        linear eccentricty, :math:`\omega` is the angular rotation rate,
+        linear eccentricity, :math:`\omega` is the angular rotation rate,
         :math:`q` and :math:`q_0` are auxiliary functions, and :math:`u` and
-        :math:`beta` are ellipsoidal-harmonic coordinates corresponding to the
-        input geodetic latitude and and ellipsoidal height. See eq. 2-126 of
+        :math:`\beta` are ellipsoidal-harmonic coordinates corresponding to the
+        input geodetic latitude and ellipsoidal height. See eq. 2-126 of
         [HofmannWellenhofMoritz2006]_.
 
         Assumes that the internal density distribution of the ellipsoid is such
@@ -1071,20 +1011,16 @@ class Ellipsoid:
         longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
             None, latitude, height
         )
+        big_e = self.linear_eccentricity
+        big_e2 = big_e**2
 
         # Compute the term GM * arctan(E/u) / E
         if self.flattening < 4.0e-16:
             # Use the 3rd order arctan small-angle approximation to avoid
             # numerical instabilities when the flattening is close to zero.
-            var = self.geocentric_grav_const * (
-                1 / u - self.linear_eccentricity**2 / (3 * u**3)
-            )
+            var = self.geocentric_grav_const * (1 / u - big_e2 / (3 * u**3))
         else:
-            var = (
-                self.geocentric_grav_const
-                / self.linear_eccentricity
-                * np.arctan(self.linear_eccentricity / u)
-            )
+            var = self.geocentric_grav_const / big_e * np.arctan(big_e / u)
 
         # Compute the ratio of the auxiliary functions q and q_0 (eq 2-113 of
         # HofmannWellenhofMoritz2006)
@@ -1094,14 +1030,12 @@ class Ellipsoid:
             ratio = (self.semiminor_axis / u) ** 3
         else:
             q_0 = 0.5 * (
-                (1 + 3 * (self.semiminor_axis / self.linear_eccentricity) ** 2)
-                * np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-                - 3 * self.semiminor_axis / self.linear_eccentricity
+                (1 + 3 * (self.semiminor_axis / big_e) ** 2)
+                * np.arctan2(big_e, self.semiminor_axis)
+                - 3 * self.semiminor_axis / big_e
             )
             q = 0.5 * (
-                (1 + 3 * (u / self.linear_eccentricity) ** 2)
-                * np.arctan2(self.linear_eccentricity, u)
-                - 3 * u / self.linear_eccentricity
+                (1 + 3 * (u / big_e) ** 2) * np.arctan2(big_e, u) - 3 * u / big_e
             )
             ratio = q / q_0
 
@@ -1113,7 +1047,7 @@ class Ellipsoid:
             * (np.sin(np.radians(beta)) ** 2 - 1 / 3)
             + 0.5
             * self.angular_velocity**2
-            * (u**2 + self.linear_eccentricity**2)
+            * (u**2 + big_e2)
             * np.cos(np.radians(beta)) ** 2
         )
 
