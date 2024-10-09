@@ -7,6 +7,7 @@
 """
 Define the reference sphere (ellipsoid with 0 flattening).
 """
+import textwrap
 from warnings import warn
 
 import attr
@@ -75,24 +76,34 @@ class Sphere:
 
     >>> sphere = Sphere(
     ...     name="Moon",
-    ...     long_name="That's no moon",
-    ...     radius=1,
-    ...     geocentric_grav_const=2,
-    ...     angular_velocity=0.5,
+    ...     long_name="Moon Spheroid",
+    ...     radius=1737151,
+    ...     geocentric_grav_const=4902800070000.0,
+    ...     angular_velocity=2.6617073e-06,
+    ...     reference="Wieczorek (2015)",
+    ...     comments="This is the same as the boule Moon2015 spheroid."
     ... )
     >>> print(sphere) # doctest: +ELLIPSIS
-    Sphere(name='Moon', ...)
-    >>> print(sphere.long_name)
-    That's no moon
+    Moon - Moon Spheroid
+    Spheroid:
+      • Radius: 1737151 m
+      • GM: 4902800070000.0 m³/s²
+      • Angular velocity: 2.6617073e-06 rad/s
+    Source:
+      Wieczorek (2015)
+    Comments:
+      This is the same as the boule Moon2015 spheroid.
 
-    The sphere defines semi-axis, flattening, and some eccentricities similar
-    to :class:`~bould.Ellipsoid` for compatibility with the coordinate
-    conversion functions of pymap3d:
+    >>> print(sphere.long_name)
+    Moon Spheroid
+
+    The sphere defines semi-axess, flattening, and some eccentricities similar
+    to :class:`~bould.Ellipsoid` for compatibility:
 
     >>> print(sphere.semiminor_axis)
-    1
+    1737151
     >>> print(sphere.semimajor_axis)
-    1
+    1737151
     >>> print(sphere.first_eccentricity)
     0
     >>> print(sphere.eccentricity)
@@ -102,23 +113,23 @@ class Sphere:
     >>> print(sphere.thirdflattening)
     0
     >>> print(sphere.mean_radius)
-    1
+    1737151
     >>> print(sphere.semiaxes_mean_radius)
-    1
+    1737151
     >>> print(f"{sphere.volume_equivalent_radius:.1f} m")
-    1.0 m
-    >>> print(f"{sphere.volume:.10f} m³")
-    4.1887902048 m³
-    >>> print(f"{sphere.area:.10f} m²")
-    12.5663706144 m²
+    1737151.0 m
+    >>> print(f"{sphere.volume:.12e} m³")
+    2.195843181718e+19 m³
+    >>> print(f"{sphere.area:.12e} m²")
+    3.792145613798e+13 m²
     >>> print(sphere.area_equivalent_radius)
-    1
+    1737151
     >>> print(f"{sphere.mass:.12e} kg")
-    2.996568928577e+10 kg
+    7.345789176393e+22 kg
     >>> print(f"{sphere.mean_density:.0f} kg/m³")
-    7153781359 kg/m³
+    3345 kg/m³
     >>> print(f"{sphere.reference_normal_gravitational_potential:.3f} m²/s²")
-    2.000 m²/s²
+    2822322.337 m²/s²
 
     """
 
@@ -288,6 +299,28 @@ class Sphere:
         Units: :math:`m^2 / s^2`.
         """
         return self.geocentric_grav_const / self.radius
+
+    def __str__(self):
+        s = self.name + " - " + self.long_name + "\n"
+        s += "Spheroid:\n"
+        s += f"  • Radius: {self.radius} m\n"
+        s += f"  • GM: {self.geocentric_grav_const} m³/s²\n"
+        s += f"  • Angular velocity: {self.angular_velocity} rad/s"
+        if self.reference is not None:
+            s += "\nSource:"
+            for ref in self.reference.splitlines():
+                s += "\n" + textwrap.fill(
+                    ref, width=72, initial_indent=2 * " ", subsequent_indent=4 * " "
+                )
+        if self.comments is not None:
+            s += "\nComments:\n"
+            s += textwrap.fill(
+                self.comments,
+                width=72,
+                initial_indent=2 * " ",
+                subsequent_indent=2 * " ",
+            )
+        return s
 
     def normal_gravity(self, latitude, height, si_units=False):
         r"""

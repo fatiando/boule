@@ -7,6 +7,7 @@
 """
 Module for defining and setting the reference ellipsoid.
 """
+import textwrap
 from warnings import warn
 
 import attr
@@ -82,13 +83,21 @@ class Ellipsoid:
     ...     flattening=1 / 298.257223563,
     ...     geocentric_grav_const=3986004.418e8,
     ...     angular_velocity=7292115e-11,
-    ...     reference=(
-    ...         "Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy "
-    ...         "(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."
-    ...     ),
+    ...     reference="Hofmann-Wellenhof & Moritz (2006)",
+    ...     comments="This is the same as the boule WGS84 ellipsoid.",
     ... )
     >>> print(ellipsoid) # doctest: +ELLIPSIS
-    Ellipsoid(name='WGS84', ...)
+    WGS84 - World Geodetic System 1984
+    Oblate ellipsoid:
+      • Semimajor axis: 6378137 m
+      • Flattening: 0.0033528106647474805
+      • GM: 398600441800000.0 m³/s²
+      • Angular velocity: 7.292115e-05 rad/s
+    Source:
+      Hofmann-Wellenhof & Moritz (2006)
+    Comments:
+      This is the same as the boule WGS84 ellipsoid.
+
     >>> print(ellipsoid.long_name)
     World Geodetic System 1984
 
@@ -410,6 +419,29 @@ class Ellipsoid:
             self.geocentric_grav_const * (1 + self._emm * aux) / self.semimajor_axis**2
         )
         return result
+
+    def __str__(self):
+        s = self.name + " - " + self.long_name + "\n"
+        s += "Oblate ellipsoid:\n"
+        s += f"  • Semimajor axis: {self.semimajor_axis} m\n"
+        s += f"  • Flattening: {self.flattening}\n"
+        s += f"  • GM: {self.geocentric_grav_const} m³/s²\n"
+        s += f"  • Angular velocity: {self.angular_velocity} rad/s"
+        if self.reference is not None:
+            s += "\nSource:"
+            for ref in self.reference.splitlines():
+                s += "\n" + textwrap.fill(
+                    ref, width=72, initial_indent=2 * " ", subsequent_indent=4 * " "
+                )
+        if self.comments is not None:
+            s += "\nComments:\n"
+            s += textwrap.fill(
+                self.comments,
+                width=72,
+                initial_indent=2 * " ",
+                subsequent_indent=2 * " ",
+            )
+        return s
 
     def geocentric_radius(self, latitude, geodetic=True):
         r"""

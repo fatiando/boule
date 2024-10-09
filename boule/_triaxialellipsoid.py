@@ -7,6 +7,7 @@
 """
 Define a reference triaxial ellipsoid.
 """
+import textwrap
 from warnings import warn
 
 import attr
@@ -84,22 +85,31 @@ class TriaxialEllipsoid:
     We can define an ellipsoid by setting the 5 key numerical parameters:
 
     >>> ellipsoid = TriaxialEllipsoid(
-    ...     name="VESTA",
+    ...     name="Vesta",
     ...     long_name="Vesta Triaxial Ellipsoid",
-    ...     semimajor_axis=286_300,
-    ...     semimedium_axis=278_600,
-    ...     semiminor_axis=223_200,
-    ...     geocentric_grav_const=1.729094e10,
-    ...     angular_velocity=326.71050958367e-6,
-    ...     reference=(
-    ...         "Russell, C. T., Raymond, C. A., Coradini, A., McSween, "
-    ...         "H. Y., Zuber, M. T., Nathues, A., et al. (2012). Dawn at "
-    ...         "Vesta: Testing the Protoplanetary Paradigm. Science. "
-    ...         "doi:10.1126/science.1219381"
-    ...     ),
+    ...     semimajor_axis=280_413,
+    ...     semimedium_axis=274_572,
+    ...     semiminor_axis=231_253,
+    ...     geocentric_grav_const=17.288e9,
+    ...     angular_velocity=3.267e-4,
+    ...     semimajor_axis_longitude=8.29,
+    ...     reference="Karimi et al. (2017)",
+    ...     comments="This is the same as the VestaTriaxial2017 ellipsoid."
     ... )
     >>> print(ellipsoid) # doctest: +ELLIPSIS
-    TriaxialEllipsoid(name='VESTA', ...)
+    Vesta - Vesta Triaxial Ellipsoid
+    Triaxial ellipsoid:
+      • Semimajor axis: 280413 m
+      • Semimedium axis: 274572 m
+      • Semiminor axis: 231253 m
+      • Semimajor axis longitude: 8.29°
+      • GM: 17288000000.0 m³/s²
+      • Angular velocity: 0.0003267 rad/s
+    Source:
+      Karimi et al. (2017)
+    Comments:
+      This is the same as the VestaTriaxial2017 ellipsoid.
+
     >>> print(ellipsoid.long_name)
     Vesta Triaxial Ellipsoid
 
@@ -107,21 +117,21 @@ class TriaxialEllipsoid:
     parameters:
 
     >>> print(f"{ellipsoid.mean_radius:.0f} m")
-    259813 m
+    260344 m
     >>> print(f"{ellipsoid.semiaxes_mean_radius:.0f} m")
-    262700 m
+    262079 m
     >>> print(f"{ellipsoid.area:.10e} m²")
-    8.6562393883e+11 m²
+    8.6210266337e+11 m²
     >>> print(f"{ellipsoid.area_equivalent_radius:0.0f} m")
-    262458 m
+    261924 m
     >>> print(f"{ellipsoid.volume_equivalent_radius:.0f} m")
-    261115 m
+    261124 m
     >>> print(f"{ellipsoid.mass:.10e} kg")
-    2.5906746775e+20 kg
+    2.5902341819e+20 kg
     >>> print(f"{ellipsoid.mean_density:.0f} kg/m³")
-    3474 kg/m³
+    3473 kg/m³
     >>> print(f"{ellipsoid.volume * 1e-9:.0f} km³")
-    74573626 km³
+    74581373 km³
 
     """
 
@@ -324,6 +334,31 @@ class TriaxialEllipsoid:
         Units: adimensional.
         """
         return (self.semimajor_axis - self.semiminor_axis) / self.semimajor_axis
+
+    def __str__(self):
+        s = self.name + " - " + self.long_name + "\n"
+        s += "Triaxial ellipsoid:\n"
+        s += f"  • Semimajor axis: {self.semimajor_axis} m\n"
+        s += f"  • Semimedium axis: {self.semimedium_axis} m\n"
+        s += f"  • Semiminor axis: {self.semiminor_axis} m\n"
+        s += f"  • Semimajor axis longitude: {self.semimajor_axis_longitude}°\n"
+        s += f"  • GM: {self.geocentric_grav_const} m³/s²\n"
+        s += f"  • Angular velocity: {self.angular_velocity} rad/s"
+        if self.reference is not None:
+            s += "\nSource:"
+            for ref in self.reference.splitlines():
+                s += "\n" + textwrap.fill(
+                    ref, width=72, initial_indent=2 * " ", subsequent_indent=4 * " "
+                )
+        if self.comments is not None:
+            s += "\nComments:\n"
+            s += textwrap.fill(
+                self.comments,
+                width=72,
+                initial_indent=2 * " ",
+                subsequent_indent=2 * " ",
+            )
+        return s
 
     def geocentric_radius(self, longitude, latitude):
         r"""

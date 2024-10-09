@@ -23,7 +23,7 @@ Mercury2015 = Sphere(
     reference=(
         "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
         "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
-        "doi:10.1016/B978-0-444-53802-4.00169-X"
+        "https://doi.org/10.1016/B978-0-444-53802-4.00169-X"
     ),
 )
 
@@ -35,11 +35,12 @@ Mercury2024 = Sphere(
     angular_velocity=1.2400141739494342e-06,
     reference=(
         "Radius: Maia, J. (2024). Spherical harmonic models of the shape of "
-        "Mercury [Data set]. Zenodo. https://doi.org/10.5281/zenodo.10809345; "
+        "Mercury [Data set]. Zenodo. https://doi.org/10.5281/zenodo.10809345"
+        "\n"
         "GM, angular velocity: Mazarico, E., et al. (2014), The gravity field, "
         "orientation, and ephemeris of Mercury from MESSENGER observations "
         "after three years in orbit, J. Geophys. Res. Planets, 119, "
-        "2417-2436, doi:10.1002/2014JE004675."
+        "2417-2436. https://doi.org/10.1002/2014JE004675"
     ),
 )
 
@@ -52,7 +53,7 @@ Venus2015 = Sphere(
     reference=(
         "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
         "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
-        "doi:10.1016/B978-0-444-53802-4.00169-X"
+        "https://doi.org/10.1016/B978-0-444-53802-4.00169-X"
     ),
 )
 
@@ -65,7 +66,7 @@ WGS84 = Ellipsoid(
     angular_velocity=7292115e-11,
     reference=(
         "Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy "
-        "(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."
+        "(2nd, corr. ed. 2006 edition ed.). Wien; New York: Springer."
     ),
 )
 
@@ -79,7 +80,7 @@ GRS80 = Ellipsoid(
     angular_velocity=7292115e-11,
     reference=(
         "Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy "
-        "(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."
+        "(2nd, corr. ed. 2006 edition ed.). Wien; New York: Springer."
     ),
 )
 
@@ -106,7 +107,7 @@ Moon2015 = Sphere(
     reference=(
         "Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "
         "Planets, Treatise of Geophysics (Second Edition); Elsevier. "
-        "doi:10.1016/B978-0-444-53802-4.00169-X"
+        "https://doi.org/10.1016/B978-0-444-53802-4.00169-X"
     ),
 )
 
@@ -120,8 +121,8 @@ Mars2009 = Ellipsoid(
     reference=(
         "Ardalan, A. A., Karimi, R., & Grafarend, E. W. (2009). A New Reference "
         "Equipotential Surface, and Reference Ellipsoid for the Planet Mars. "
-        "Earth, Moon, and Planets, 106(1), 1. "
-        "doi:10.1007/s11038-009-9342-7"
+        "Earth, Moon, and Planets, 106, 1-13. "
+        "https://doi.org/10.1007/s11038-009-9342-7"
     ),
 )
 
@@ -135,7 +136,8 @@ Ceres2018 = Ellipsoid(
     reference=(
         "Semimajor axis, flattening: Park, R. S., et al. (2019). High-resolution "
         "shape model of Ceres from stereophotoclinometry using Dawn Imaging Data. "
-        "Icarus, 319, 812–827. https://doi.org/10.1016/j.icarus.2018.10.024; "
+        "Icarus, 319, 812–827. https://doi.org/10.1016/j.icarus.2018.10.024"
+        "\n"
         "GM, angular velocity: Konopliv, A. S., et al. (2018). The Ceres gravity "
         "field, spin pole, rotation period and orbit from the Dawn radiometric "
         "tracking and optical data. Icarus, 299, 411–429. "
@@ -189,10 +191,12 @@ Io2024 = TriaxialEllipsoid(
     reference=(
         "Semi-axis: Thomas, P. C., et al. (1998). The Shape of Io from Galileo "
         "Limb Measurements. Icarus, 135(1), 175–180. "
-        "https://doi.org/10.1006/icar.1998.5987; "
+        "https://doi.org/10.1006/icar.1998.5987"
+        "\n"
         "GM: Anderson, J. D., et al. (2001). Io's gravity field and interior "
         "structure. J. Geophys. Res., 106, 32963–32969. "
-        "https://doi.org/10.1029/2000JE001367; "
+        "https://doi.org/10.1029/2000JE001367"
+        "\n"
         "Angular velocity: R. A. Jacobson (2021), The Orbits of the Regular "
         "Jovian Satellites and the Orientation of the Pole of Jupiter, personal "
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
@@ -213,10 +217,11 @@ Europa2024 = TriaxialEllipsoid(
         "Semi-axis: Nimmo, F., et al. (2007). The global shape of Europa: "
         "Constraints on lateral shell thickness variations. Icarus, 191(1), "
         "183–192. https://doi.org/10.1016/j.icarus.2007.04.021"
-        "https://doi.org/10.1006/icar.1998.5987; "
+        "\n"
         "GM: Anderson, J. D., et al. (1998). Europa's differentiated internal "
         "structure: Inferences from four Galileo encounters. Science, 281, "
-        "2019–2022. https://doi.org/10.1126/science.281.5385.2019; "
+        "2019–2022. https://doi.org/10.1126/science.281.5385.2019"
+        "\n"
         "Angular velocity: R. A. Jacobson (2021), The Orbits of the Regular "
         "Jovian Satellites and the Orientation of the Pole of Jupiter, personal "
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
@@ -236,10 +241,12 @@ Ganymede2024 = TriaxialEllipsoid(
     reference=(
         "Semi-axis: Zubarev, A., et al. (2015). New Ganymede control point "
         "network and global shape model. Planetary and Space Science, 117, "
-        "246–249. https://doi.org/10.1016/j.pss.2015.06.022; "
+        "246–249. https://doi.org/10.1016/j.pss.2015.06.022"
+        "\n"
         "GM: Gomez Casajus, L., et al. (2022). Gravity Field of Ganymede After "
         "the Juno Extended Mission. Geophysical Research Letters, 49(24), "
-        "e2022GL099475, doi:10.1029/2022GL099475.; "
+        "e2022GL099475. https://doi.org/doi:10.1029/2022GL099475"
+        "\n"
         "Angular velocity: R. A. Jacobson (2021), The Orbits of the Regular "
         "Jovian Satellites and the Orientation of the Pole of Jupiter, personal "
         "communication to Horizons/NAIF. Accessed via JPL Solar System "
@@ -257,7 +264,8 @@ Callisto2024 = Sphere(
     reference=(
         "Radius, GM: Anderson, J. D., et al. (2001). Shape, mean radius, gravity "
         "field, and interior structure of Callisto. Icarus, 153(1), 157–161. "
-        "https://doi.org/10.1006/icar.2001.6664; "
+        "https://doi.org/10.1006/icar.2001.6664"
+        "\n"
         "Angular velocity: Satellites and the Orientation of the Pole of Jupiter, "
         "personal communication to Horizons/NAIF. Accessed via JPL Solar "
         "System Dynamics, https://ssd.jpl.nasa.gov, JUP365."
@@ -290,10 +298,12 @@ Titan2024 = TriaxialEllipsoid(
     reference=(
         "Semi-axis: Corlies, P., et al. (2017). Titan’s Topography and Shape at "
         "the End of the Cassini Mission. Geophysical Research Letters, 44(23), "
-        "11,754-11,761. https://doi.org/10.1002/2017GL075518; "
+        "11,754-11,761. https://doi.org/10.1002/2017GL075518"
+        "\n"
         "GM: Durante, D., et al. (2019). Titan’s gravity field and interior "
         "structure after Cassini. Icarus, 326, 123–132. "
-        "https://doi.org/10.1016/j.icarus.2019.03.003; "
+        "https://doi.org/10.1016/j.icarus.2019.03.003"
+        "\n"
         "Angular velocity: Jacobson, R. (2022). The Orbits of the Main Saturnian "
         "Satellites, the Saturnian System Gravity Field, and the Orientation "
         "of Saturn's Pole. The Astronomical Journal, 164, 199. "
@@ -313,10 +323,11 @@ Pluto2024 = Sphere(
     reference=(
         "Radius: Nimmo, et al. (2017). Mean radius and shape of Pluto and Charon "
         "from New Horizons images. Icarus, 287, 12–29. "
-        "https://doi.org/10.1016/j.icarus.2016.06.027; "
+        "https://doi.org/10.1016/j.icarus.2016.06.027"
+        "\n"
         "GM, angular velocity: Brozović, M., et al. (2015). The orbits and masses of "
         "satellites of Pluto. Icarus, 246, 317–329. "
-        "https://doi.org/10.1016/j.icarus.2014.03.015; "
+        "https://doi.org/10.1016/j.icarus.2014.03.015"
     ),
 )
 
@@ -329,9 +340,10 @@ Charon2024 = Sphere(
     reference=(
         "Radius: Nimmo, et al. (2017). Mean radius and shape of Pluto and Charon "
         "from New Horizons images. Icarus, 287, 12–29. "
-        "https://doi.org/10.1016/j.icarus.2016.06.027; "
+        "https://doi.org/10.1016/j.icarus.2016.06.027"
+        "\n"
         "GM, angular velocity: Brozović, M., et al. (2015). The orbits and masses of "
         "satellites of Pluto. Icarus, 246, 317–329. "
-        "https://doi.org/10.1016/j.icarus.2014.03.015; "
+        "https://doi.org/10.1016/j.icarus.2014.03.015"
     ),
 )
