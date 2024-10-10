@@ -33,6 +33,17 @@ class Ellipsoid:
 
     **Units:** All input parameters and derived attributes are in SI units.
 
+    .. caution::
+
+        The :class:`boule.Ellipsoid` class with a flattening of zero is not
+        equivalent to the :class:`boule.Sphere` class. The internal density
+        structure of an Ellipsoid is unspecified, but must give rise to a
+        constant gravity potential on the Ellipsoid surface. For a Sphere, the
+        internal density depends only on radius, and when the angular velocity
+        is greater than zero, the gravity potential on the surface varies with
+        latitude.
+
+
     Parameters
     ----------
     name : str
@@ -61,17 +72,6 @@ class Ellipsoid:
         Citation for the ellipsoid parameter values (optional).
     comments : str or None
         Additional comments regarding the ellipsoid (optional).
-
-
-    .. caution::
-
-        The :class:`boule.Ellipsoid` class with a flattening of zero is not
-        equivalent to the :class:`boule.Sphere` class. The internal density
-        structure of an Ellipsoid is unspecified, but must give rise to a
-        constant gravity potential on the Ellipsoid surface. For a Sphere, the
-        internal density depends only on radius, and when the angular velocity
-        is greater than zero, the gravity potential on the surface varies with
-        latitude.
 
     Examples
     --------
