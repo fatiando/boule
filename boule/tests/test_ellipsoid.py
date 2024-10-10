@@ -377,24 +377,27 @@ def test_emm_wgs84():
     npt.assert_allclose(WGS84._emm, 0.00344978650684)
 
 
-def test_small_flattenings():
-    "Check that no errors arise when using small values for the flattening"
-    flattening = 10.0 ** (-np.arange(1, 20, 0.5))
+@pytest.mark.parametrize(
+    "flattening", 10.0 ** (-np.arange(1, 20, 0.5)), ids=lambda f: f"{f:.1e}"
+)
+def test_no_warning_small_flattenings(flattening):
+    """
+    Check that no warnings arise when using small values for the flattening
+    """
     latitude = np.linspace(-90, 90, 13)
     height = np.array([[1.0e3] * len(latitude)])
-    with warnings.catch_warnings(record=True) as warn:
-        for f in flattening:
-            ellipsoid = Ellipsoid(
-                name="WGS84 with small flattening",
-                semimajor_axis=WGS84.semimajor_axis,
-                flattening=f,
-                geocentric_grav_const=WGS84.geocentric_grav_const,
-                angular_velocity=WGS84.angular_velocity,
-            )
-            _ = ellipsoid.reference_normal_gravity_potential
-            _ = ellipsoid.gravity_pole
-            _ = ellipsoid.gravity_equator
-            _ = ellipsoid.normal_gravitational_potential(latitude, height)
-            _ = ellipsoid.normal_gravity_potential(latitude, height)
-            _ = ellipsoid.normal_gravity(latitude, height)
-        assert len(warn) == 0
+    with warnings.catch_warnings():
+        warnings.simplefilter("error")  # raise error if warning is raised
+        ellipsoid = Ellipsoid(
+            name="WGS84 with small flattening",
+            semimajor_axis=WGS84.semimajor_axis,
+            flattening=flattening,
+            geocentric_grav_const=WGS84.geocentric_grav_const,
+            angular_velocity=WGS84.angular_velocity,
+        )
+        _ = ellipsoid.reference_normal_gravity_potential
+        _ = ellipsoid.gravity_pole
+        _ = ellipsoid.gravity_equator
+        _ = ellipsoid.normal_gravitational_potential(latitude, height)
+        _ = ellipsoid.normal_gravity_potential(latitude, height)
+        _ = ellipsoid.normal_gravity(latitude, height)
