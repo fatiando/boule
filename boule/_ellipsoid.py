@@ -25,14 +25,25 @@ class Ellipsoid:
 
     The ellipsoid is defined by four parameters: semimajor axis, flattening,
     geocentric gravitational constant, and angular velocity. It spins around
-    its semiminor axis and has constant gravity potential at its surface. The
+    its semiminor axis and has a constant gravity potential at its surface. The
     internal density structure of the ellipsoid is unspecified but must be such
-    that the constant potential condition is satisfied.
+    that the constant gravity potential condition is satisfied.
 
     **This class is read-only:** Input parameters and attributes cannot be
     changed after instantiation.
 
     **Units:** All input parameters and derived attributes are in SI units.
+
+    .. caution::
+
+        The :class:`boule.Ellipsoid` class with a flattening of zero is not
+        equivalent to the :class:`boule.Sphere` class. The internal density
+        structure of an Ellipsoid is unspecified, but must give rise to a
+        constant gravity potential on the Ellipsoid surface. For a Sphere, the
+        internal density depends only on radius, and when the angular velocity
+        is greater than zero, the gravity potential on the surface varies with
+        latitude.
+
 
     Parameters
     ----------
@@ -62,13 +73,6 @@ class Ellipsoid:
         Citation for the ellipsoid parameter values (optional).
     comments : str or None
         Additional comments regarding the ellipsoid (optional).
-
-
-    .. caution::
-
-        Use :class:`boule.Sphere` if you desire zero flattening because there
-        are singularities for this particular case in the normal gravity
-        calculations.
 
     Examples
     --------
@@ -155,17 +159,6 @@ class Ellipsoid:
             raise ValueError(
                 f"Invalid flattening '{value}'. "
                 "Should be greater than zero and lower than 1."
-            )
-        if value == 0:
-            raise ValueError(
-                "Flattening equal to zero will lead to errors in normal gravity. "
-                "Use boule.Sphere for representing ellipsoids with zero flattening."
-            )
-        if value < 1e-7:
-            warn(
-                f"Flattening is too close to zero ('{value}'). "
-                "This may lead to inaccurate results and division by zero errors. "
-                "Use boule.Sphere for representing ellipsoids with zero flattening."
             )
 
     @semimajor_axis.validator
@@ -328,12 +321,20 @@ class Ellipsoid:
         + \dfrac{1}{3} \omega^2 a^2`.
         Units: :math:`m^2 / s^2`.
         """
-        return (
-            self.geocentric_grav_const
-            / self.linear_eccentricity
-            * np.arctan(self.linear_eccentricity / self.semiminor_axis)
-            + (1 / 3) * self.angular_velocity**2 * self.semimajor_axis**2
-        )
+        if self.flattening < 4.0e-16:
+            # Use the 3rd order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            var = self.geocentric_grav_const * (
+                1 / self.semiminor_axis
+                - self.linear_eccentricity**2 / (3 * self.semiminor_axis**3)
+            )
+        else:
+            var = (
+                self.geocentric_grav_const
+                / self.linear_eccentricity
+                * np.arctan(self.linear_eccentricity / self.semiminor_axis)
+            )
+        return var + (1 / 3) * (self.angular_velocity * self.semimajor_axis) ** 2
 
     @property
     def area_equivalent_radius(self):
@@ -388,16 +389,24 @@ class Ellipsoid:
         centrifugal accelerations) at the equator on the surface of the
         ellipsoid. Units: :math:`m/s^2`.
         """
-        ratio = self.semiminor_axis / self.linear_eccentricity
-        arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-        aux = (
-            self.second_eccentricity
-            * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
-            / (3 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
-        )
+        if self.flattening < 1.25e-5:
+            # Use the 5th order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            aux = 3
+        else:
+            ratio = self.semiminor_axis / self.linear_eccentricity
+            arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
+            aux = (
+                self.second_eccentricity
+                * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
+                / (0.5 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
+            )
+
         axis_mul = self.semimajor_axis * self.semiminor_axis
         result = (
-            self.geocentric_grav_const * (1 - self._emm - self._emm * aux) / axis_mul
+            self.geocentric_grav_const
+            * (1 - self._emm - self._emm * aux / 6)
+            / axis_mul
         )
         return result
 
@@ -408,15 +417,22 @@ class Ellipsoid:
         centrifugal accelerations) at the poles on the surface of the
         ellipsoid. Units: :math:`m/s^2`.
         """
-        ratio = self.semiminor_axis / self.linear_eccentricity
-        arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-        aux = (
-            self.second_eccentricity
-            * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
-            / (1.5 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
-        )
+        if self.flattening < 1.25e-5:
+            # Use the 5th order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            aux = 3
+        else:
+            ratio = self.semiminor_axis / self.linear_eccentricity
+            arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
+            aux = (
+                self.second_eccentricity
+                * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
+                / (0.5 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
+            )
         result = (
-            self.geocentric_grav_const * (1 + self._emm * aux) / self.semimajor_axis**2
+            self.geocentric_grav_const
+            * (1 + self._emm * aux / 3)
+            / self.semimajor_axis**2
         )
         return result
 
@@ -725,13 +741,29 @@ class Ellipsoid:
         z_p2 = (self.semiminor_axis * sinbeta + height * sinlat) ** 2
         # Distance squared between computation point and spin axis
         r_p2 = (self.semimajor_axis * cosbeta + height * coslat) ** 2
+        # Auxialiary variables
+        z_pp2 = r_p2 - z_p2
+        r_pp2 = r_p2 + z_p2
 
-        # Auxiliary variables
-        big_d = (r_p2 - z_p2) / big_e2
-        big_r = (r_p2 + z_p2) / big_e2
+        if self.flattening < 5.0e-5:
+            # Use the Taylor series approximation for flattenings close to
+            # zero to avoid numerical issues.
+            cosbeta_p2 = (
+                0.5
+                + 0.5 * z_pp2 / r_pp2
+                + big_e2 * 0.25 * (z_pp2**2 / r_pp2**3 - 1 / r_pp2)
+            )
+        else:
+            # Auxiliary variables
+            big_d = z_pp2 / big_e2
+            big_r = r_pp2 / big_e2
+            # cos(reduced latitude) squared of the computation point
+            cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
 
-        # cos(reduced latitude) squared of the computation point
-        cosbeta_p2 = 0.5 + big_r / 2 - np.sqrt(0.25 + big_r**2 / 4 - big_d / 2)
+        # Note that cosbeta_p2 can sometimes be less than 0 to within
+        # machine precision. To avoid taking the square root of a negative
+        # number, use the absolute value of this quantity.
+        cosbeta_p2 = np.abs(cosbeta_p2)
 
         # Semiminor axis of the ellipsoid passing through the computation
         # point. This is the coordinate u
@@ -845,25 +877,28 @@ class Ellipsoid:
         sinbeta2 = np.sin(np.radians(beta)) ** 2
         cosbeta2 = 1 - sinbeta2
         big_e = self.linear_eccentricity
+        big_e2 = big_e**2
 
-        # Compute the auxiliary functions q and q_0 (eq 2-113 of
-        # HofmannWellenhofMoritz2006)
-        q_0 = 0.5 * (
-            (1 + 3 * (self.semiminor_axis / big_e) ** 2)
-            * np.arctan2(big_e, self.semiminor_axis)
-            - 3 * self.semiminor_axis / big_e
-        )
-        q_p = 3 * (1 + (u / big_e) ** 2) * (1 - u / big_e * np.arctan2(big_e, u)) - 1
-        big_w = np.sqrt((u**2 + big_e**2 * sinbeta2) / (u**2 + big_e**2))
+        # Compute auxiliary variables and the ratio E q_p / q_0
+        if self.flattening <= 1.25e-5:
+            aux = 3 * self.semiminor_axis**3 / u**2
+        else:
+            q_0 = 0.5 * (
+                (1 + 3 * (self.semiminor_axis / big_e) ** 2)
+                * np.arctan2(big_e, self.semiminor_axis)
+                - 3 * self.semiminor_axis / big_e
+            )
+            q_p = (
+                3 * (1 + (u / big_e) ** 2) * (1 - u / big_e * np.arctan2(big_e, u)) - 1
+            )
+            aux = big_e * q_p / q_0
+
+        big_w = np.sqrt((u**2 + big_e2 * sinbeta2) / (u**2 + big_e2))
 
         # Put together gamma using 3 separate terms
-        term1 = self.geocentric_grav_const / (u**2 + big_e**2)
+        term1 = self.geocentric_grav_const / (u**2 + big_e2)
         term2 = (0.5 * sinbeta2 - 1 / 6) * (
-            self.semimajor_axis**2
-            * big_e
-            * q_p
-            * self.angular_velocity**2
-            / ((u**2 + big_e**2) * q_0)
+            self.semimajor_axis**2 * aux * self.angular_velocity**2 / (u**2 + big_e2)
         )
         term3 = -cosbeta2 * u * self.angular_velocity**2
         gamma = (term1 + term2 + term3) / big_w
@@ -893,10 +928,9 @@ class Ellipsoid:
         gravitational constant, :math:`E` is the linear eccentricity,
         :math:`\omega` is the angular rotation rate, :math:`q` and :math:`q_0`
         are auxiliary functions, :math:`P_2` is the degree 2 unnormalized
-        Legendre Polynomial, and :math:`u` and :math:`\beta` are
-        ellipsoidal-harmonic coordinates corresponding to the input geodetic
-        latitude and ellipsoidal height. See eq. 2-124 of
-        [HofmannWellenhofMoritz2006]_.
+        Legendre Polynomial, and :math:`u` and :math:`beta` are ellipsoidal-
+        harmonic coordinates corresponding to the input geodetic latitude and
+        ellipsoidal height. See eq. 2-124 of [HofmannWellenhofMoritz2006]_.
 
         Assumes that the internal density distribution of the ellipsoid is such
         that the gravity potential is constant at its surface.
@@ -928,24 +962,42 @@ class Ellipsoid:
                 "Height must be greater than or equal to zero."
             )
 
-        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
+        # Convert geodetic latitude and height to ellipsoidal-harmonic
+        # coordinates. Note that beta is in degrees.
         longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
             None, latitude, height
         )
         big_e = self.linear_eccentricity
+        big_e2 = big_e**2
 
-        # Compute the auxiliary functions q and q_0 (eq 2-113 of
+        # Compute the term GM * arctan(E/u) / E
+        if self.flattening < 4.0e-16:
+            # Use the 3rd order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            var = self.geocentric_grav_const * (1 / u - big_e2 / (3 * u**3))
+        else:
+            var = self.geocentric_grav_const / big_e * np.arctan(big_e / u)
+
+        # Compute the ratio of the auxiliary functions q and q_0 (eq 2-113 of
         # HofmannWellenhofMoritz2006)
-        q_0 = 0.5 * (
-            (1 + 3 * (self.semiminor_axis / big_e) ** 2)
-            * np.arctan2(big_e, self.semiminor_axis)
-            - 3 * self.semiminor_axis / big_e
-        )
-        q = 0.5 * ((1 + 3 * (u / big_e) ** 2) * np.arctan2(big_e, u) - 3 * u / big_e)
+        if self.flattening < 1.5e-5:
+            # Use the 5th order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            ratio = (self.semiminor_axis / u) ** 3
+        else:
+            q_0 = 0.5 * (
+                (1 + 3 * (self.semiminor_axis / big_e) ** 2)
+                * np.arctan2(big_e, self.semiminor_axis)
+                - 3 * self.semiminor_axis / big_e
+            )
+            q = 0.5 * (
+                (1 + 3 * (u / big_e) ** 2) * np.arctan2(big_e, u) - 3 * u / big_e
+            )
+            ratio = q / q_0
 
-        big_v = self.geocentric_grav_const / big_e * np.arctan(big_e / u) + (1 / 3) * (
+        big_v = var + (1 / 3) * (
             self.angular_velocity * self.semimajor_axis
-        ) ** 2 * q / q_0 * (1.5 * np.sin(np.radians(beta)) ** 2 - 0.5)
+        ) ** 2 * ratio * (1.5 * np.sin(np.radians(beta)) ** 2 - 0.5)
 
         return big_v
 
@@ -1003,31 +1055,48 @@ class Ellipsoid:
                 "Height must be greater than or equal to zero."
             )
 
-        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
+        # Convert geodetic latitude and height to ellipsoidal-harmonic
+        # coordinates. Note that beta is in degrees.
         longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
             None, latitude, height
         )
         big_e = self.linear_eccentricity
+        big_e2 = big_e**2
 
-        # Compute the auxiliary functions q and q_0 (eq 2-113 of
+        # Compute the term GM * arctan(E/u) / E
+        if self.flattening < 4.0e-16:
+            # Use the 3rd order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            var = self.geocentric_grav_const * (1 / u - big_e2 / (3 * u**3))
+        else:
+            var = self.geocentric_grav_const / big_e * np.arctan(big_e / u)
+
+        # Compute the ratio of the auxiliary functions q and q_0 (eq 2-113 of
         # HofmannWellenhofMoritz2006)
-        q_0 = 0.5 * (
-            (1 + 3 * (self.semiminor_axis / big_e) ** 2)
-            * np.arctan2(big_e, self.semiminor_axis)
-            - 3 * self.semiminor_axis / big_e
-        )
-        q = 0.5 * ((1 + 3 * (u / big_e) ** 2) * np.arctan2(big_e, u) - 3 * u / big_e)
+        if self.flattening < 1.5e-5:
+            # Use the 5th order arctan small-angle approximation to avoid
+            # numerical instabilities when the flattening is close to zero.
+            ratio = (self.semiminor_axis / u) ** 3
+        else:
+            q_0 = 0.5 * (
+                (1 + 3 * (self.semiminor_axis / big_e) ** 2)
+                * np.arctan2(big_e, self.semiminor_axis)
+                - 3 * self.semiminor_axis / big_e
+            )
+            q = 0.5 * (
+                (1 + 3 * (u / big_e) ** 2) * np.arctan2(big_e, u) - 3 * u / big_e
+            )
+            ratio = q / q_0
 
         big_u = (
-            self.geocentric_grav_const / big_e * np.arctan(big_e / u)
+            var
             + 0.5
             * (self.angular_velocity * self.semimajor_axis) ** 2
-            * q
-            / q_0
+            * ratio
             * (np.sin(np.radians(beta)) ** 2 - 1 / 3)
             + 0.5
             * self.angular_velocity**2
-            * (u**2 + big_e**2)
+            * (u**2 + big_e2)
             * np.cos(np.radians(beta)) ** 2
         )
 
