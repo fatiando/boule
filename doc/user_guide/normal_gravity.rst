@@ -119,7 +119,7 @@ The computations of the gravimetric quantities in boule are accurate for oblate
 ellipsoids with flattenings that are arbitrarily small. In fact, even a
 flattening of zero is permissible. Whereas the standard textbook equations
 become numerically unstable when the flattening is less than about
-:math:`1-^{-7}`, boule makes use of approximate equations in the low flattening
+:math:`10-^{-7}`, boule makes use of approximate equations in the low flattening
 limit that do not suffer any numerical limitations.
 
 .. admonition:: Assumptions for oblate ellipsoids
