@@ -20,6 +20,7 @@ dependencies:
   - pymap3d>=2.9
   # Documentation
   - sphinx==7.2.*
+  - numpydoc==1.7.*
   - sphinx-book-theme==1.1.*
   - sphinx-copybutton==0.5.*
   - sphinx-design==0.5.*
