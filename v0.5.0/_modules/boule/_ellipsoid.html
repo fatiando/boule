@@ -1,0 +1,1530 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+        <title>boule._ellipsoid | Boule v0.5.0</title>
+    
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=12168cd1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/boule/_ellipsoid';</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <!-- Plausible analytics for anonymous usage statistics -->
+    <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+        
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Boule <span class="project-version">v0.5.0</span></p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/normal_gravity.html">Normal gravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/gravity_disturbance.html">Gravity disturbances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/coordinates.html">Coordinate conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/defining_ellipsoids.html">Defining custom ellipsoids</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api/index.html">List of functions and classes (API)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/generated/boule.Sphere.html">boule.Sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ellipsoids.html">Available ellipsoids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Boule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compatibility.html">Version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../versions.html">Documentation for other versions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2F_modules/boule/_ellipsoid.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <h1>Source code for boule._ellipsoid</h1><div class="highlight"><pre>
+<span></span><span class="c1"># Copyright (c) 2019 The Boule Developers.</span>
+<span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
+<span class="c1"># SPDX-License-Identifier: BSD-3-Clause</span>
+<span class="c1">#</span>
+<span class="c1"># This code is part of the Fatiando a Terra project (https://www.fatiando.org)</span>
+<span class="c1">#</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Module for defining and setting the reference ellipsoid.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
+<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+
+<span class="kn">import</span> <span class="nn">attr</span>
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="kn">from</span> <span class="nn">._constants</span> <span class="kn">import</span> <span class="n">G</span>
+
+
+<span class="c1"># Don&#39;t let ellipsoid parameters be changed to avoid messing up calculations</span>
+<span class="c1"># accidentally.</span>
+<div class="viewcode-block" id="Ellipsoid">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid">[docs]</a>
+<span class="nd">@attr</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">Ellipsoid</span><span class="p">:</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A rotating oblate ellipsoid.</span>
+
+<span class="sd">    The ellipsoid is defined by four parameters: semimajor axis, flattening,</span>
+<span class="sd">    geocentric gravitational constant, and angular velocity. It spins around</span>
+<span class="sd">    its semiminor axis and has constant gravity potential at its surface. The</span>
+<span class="sd">    internal density structure of the ellipsoid is unspecified but must be such</span>
+<span class="sd">    that the constant potential condition is satisfied.</span>
+
+<span class="sd">    **This class is read-only:** Input parameters and attributes cannot be</span>
+<span class="sd">    changed after instantiation.</span>
+
+<span class="sd">    **Units:** All input parameters and derived attributes are in SI units.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    name : str</span>
+<span class="sd">        A short name for the ellipsoid, for example ``&quot;WGS84&quot;``.</span>
+<span class="sd">    semimajor_axis : float</span>
+<span class="sd">        The semimajor axis of the ellipsoid. The equatorial (large) radius.</span>
+<span class="sd">        Definition: :math:`a`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">    flattening : float</span>
+<span class="sd">        The (first) flattening of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`f = (a - b)/a`.</span>
+<span class="sd">        Units: adimensional.</span>
+<span class="sd">    geocentric_grav_const : float</span>
+<span class="sd">        The geocentric gravitational constant. The product of the mass of the</span>
+<span class="sd">        ellipsoid :math:`M` and the gravitational constant :math:`G`.</span>
+<span class="sd">        Definition: :math:`GM`. Units:</span>
+<span class="sd">        :math:`m^3.s^{-2}`.</span>
+<span class="sd">    angular_velocity : float</span>
+<span class="sd">        The angular velocity of the rotating ellipsoid.</span>
+<span class="sd">        Definition: :math:`\omega`.</span>
+<span class="sd">        Units: :math:`\\rad.s^{-1}`.</span>
+<span class="sd">    long_name : str or None</span>
+<span class="sd">        A long name for the ellipsoid, for example ``&quot;World Geodetic System</span>
+<span class="sd">        1984&quot;`` (optional).</span>
+<span class="sd">    reference : str or None</span>
+<span class="sd">        Citation for the ellipsoid parameter values (optional).</span>
+<span class="sd">    comments : str or None</span>
+<span class="sd">        Additional comments regarding the ellipsoid (optional).</span>
+
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
+
+<span class="sd">    .. caution::</span>
+
+<span class="sd">        Use :class:`boule.Sphere` if you desire zero flattening because there</span>
+<span class="sd">        are singularities for this particular case in the normal gravity</span>
+<span class="sd">        calculations.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    We can define an ellipsoid by setting the 4 key numerical parameters and</span>
+<span class="sd">    some metadata about where they came from:</span>
+
+<span class="sd">    &gt;&gt;&gt; ellipsoid = Ellipsoid(</span>
+<span class="sd">    ...     name=&quot;WGS84&quot;,</span>
+<span class="sd">    ...     long_name=&quot;World Geodetic System 1984&quot;,</span>
+<span class="sd">    ...     semimajor_axis=6378137,</span>
+<span class="sd">    ...     flattening=1 / 298.257223563,</span>
+<span class="sd">    ...     geocentric_grav_const=3986004.418e8,</span>
+<span class="sd">    ...     angular_velocity=7292115e-11,</span>
+<span class="sd">    ...     reference=&quot;Hofmann-Wellenhof &amp; Moritz (2006)&quot;,</span>
+<span class="sd">    ...     comments=&quot;This is the same as the boule WGS84 ellipsoid.&quot;,</span>
+<span class="sd">    ... )</span>
+<span class="sd">    &gt;&gt;&gt; print(ellipsoid) # doctest: +ELLIPSIS</span>
+<span class="sd">    WGS84 - World Geodetic System 1984</span>
+<span class="sd">    Oblate ellipsoid:</span>
+<span class="sd">      • Semimajor axis: 6378137 m</span>
+<span class="sd">      • Flattening: 0.0033528106647474805</span>
+<span class="sd">      • GM: 398600441800000.0 m³/s²</span>
+<span class="sd">      • Angular velocity: 7.292115e-05 rad/s</span>
+<span class="sd">    Source:</span>
+<span class="sd">      Hofmann-Wellenhof &amp; Moritz (2006)</span>
+<span class="sd">    Comments:</span>
+<span class="sd">      This is the same as the boule WGS84 ellipsoid.</span>
+
+<span class="sd">    &gt;&gt;&gt; print(ellipsoid.long_name)</span>
+<span class="sd">    World Geodetic System 1984</span>
+
+<span class="sd">    The class then defines several derived attributes based on the input</span>
+<span class="sd">    parameters:</span>
+
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.semiminor_axis:.4f} m&quot;)</span>
+<span class="sd">    6356752.3142 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.linear_eccentricity:.8f} m&quot;)</span>
+<span class="sd">    521854.00842339 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.first_eccentricity:.13e}&quot;)</span>
+<span class="sd">    8.1819190842621e-02</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.second_eccentricity:.13e}&quot;)</span>
+<span class="sd">    8.2094437949696e-02</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.mean_radius:.4f} m&quot;)</span>
+<span class="sd">    6370994.4018 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.semiaxes_mean_radius:.4f} m&quot;)</span>
+<span class="sd">    6371008.7714 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.volume_equivalent_radius:.4f} m&quot;)</span>
+<span class="sd">    6371000.7900 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.mass:.10e} kg&quot;)</span>
+<span class="sd">    5.9721684941e+24 kg</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.mean_density:.0f} kg/m³&quot;)</span>
+<span class="sd">    5513 kg/m³</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.volume * 1e-9:.5e} km³&quot;)</span>
+<span class="sd">    1.08321e+12 km³</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.area:.10e} m²&quot;)</span>
+<span class="sd">    5.1006562172e+14 m²</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.area_equivalent_radius:0.4f} m&quot;)</span>
+<span class="sd">    6371007.1809 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.gravity_equator:.10f} m/s²&quot;)</span>
+<span class="sd">    9.7803253359 m/s²</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.gravity_pole:.10f} m/s²&quot;)</span>
+<span class="sd">    9.8321849379 m/s²</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.reference_normal_gravity_potential:.3f} m²/s²&quot;)</span>
+<span class="sd">    62636851.715 m²/s²</span>
+
+<span class="sd">    Use the class methods for calculating normal gravity and other geometric</span>
+<span class="sd">    quantities.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">name</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">semimajor_axis</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">flattening</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">geocentric_grav_const</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">long_name</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">reference</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+
+    <span class="nd">@flattening</span><span class="o">.</span><span class="n">validator</span>
+    <span class="k">def</span> <span class="nf">_check_flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">flattening</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="s2">&quot;Check if flattening is valid&quot;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">value</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid flattening &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;. &quot;</span>
+                <span class="s2">&quot;Should be greater than zero and lower than 1.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Flattening equal to zero will lead to errors in normal gravity. &quot;</span>
+                <span class="s2">&quot;Use boule.Sphere for representing ellipsoids with zero flattening.&quot;</span>
+            <span class="p">)</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mf">1e-7</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Flattening is too close to zero (&#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;). &quot;</span>
+                <span class="s2">&quot;This may lead to inaccurate results and division by zero errors. &quot;</span>
+                <span class="s2">&quot;Use boule.Sphere for representing ellipsoids with zero flattening.&quot;</span>
+            <span class="p">)</span>
+
+    <span class="nd">@semimajor_axis</span><span class="o">.</span><span class="n">validator</span>
+    <span class="k">def</span> <span class="nf">_check_semimajor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semimajor_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="s2">&quot;Check if semimajor_axis is valid&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="sa">f</span><span class="s2">&quot;Invalid semi-major axis &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;. Should be greater than zero.&quot;</span>
+            <span class="p">)</span>
+
+    <span class="nd">@geocentric_grav_const</span><span class="o">.</span><span class="n">validator</span>
+    <span class="k">def</span> <span class="nf">_check_geocentric_grav_const</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geocentric_grav_const</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+        <span class="s2">&quot;Warn if geocentric_grav_const is negative&quot;</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The geocentric gravitational constant is negative: &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">semiminor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The semiminor (small/polar) axis of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`b = a (1 - f)`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">flattening</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">semimedium_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The semimedium axis of the ellipsoid is equal to its semimajor axis.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">semimajor_axis_longitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The semimajor axis longitude of the ellipsoid is equal to zero.</span>
+<span class="sd">        Definition: :math:`\lambda_a = 0`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">thirdflattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The third flattening of the ellipsoid (used in geodetic calculations).</span>
+<span class="sd">        Definition: :math:`f^{\prime\prime}= \dfrac{a -b}{a + b}`.</span>
+<span class="sd">        Units: adimensional.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">linear_eccentricity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The linear eccentricity of the ellipsoid. The distance between the</span>
+<span class="sd">        ellipsoid&#39;s center and one of its foci.</span>
+<span class="sd">        Definition: :math:`E = \sqrt{a^2 - b^2}`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">eccentricity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Alias for the first eccentricity.&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_eccentricity</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">first_eccentricity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The (first) eccentricity of the ellipsoid. The ratio between the linear</span>
+<span class="sd">        eccentricity and the semimajor axis.</span>
+<span class="sd">        Definition: :math:`e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}`.</span>
+<span class="sd">        Units: adimensional.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">flattening</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">flattening</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">second_eccentricity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The second eccentricity of the ellipsoid. The ratio between the linear</span>
+<span class="sd">        eccentricity and the semiminor axis.</span>
+<span class="sd">        Definition: :math:`e^\prime = \dfrac{\sqrt{a^2 - b^2}}{b}</span>
+<span class="sd">        = \dfrac{\sqrt{2f - f^2}}{1 - f}`.</span>
+<span class="sd">        Units: adimensional.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_eccentricity</span> <span class="o">/</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">flattening</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The mean radius of the ellipsoid. This is equivalent to the degree 0</span>
+<span class="sd">        spherical harmonic coefficient of the ellipsoid shape.</span>
+
+<span class="sd">        Definition: :math:`R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}</span>
+<span class="sd">        \int_0^{2 \pi}} r(\theta) \sin \theta \, d\theta \, d\lambda`</span>
+
+<span class="sd">        in which :math:`r` is the ellipsoid spherical radius, :math:`\theta` is</span>
+<span class="sd">        spherical latitude, and :math:`\lambda` is spherical longitude.</span>
+
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># The mean radius is obtained by integration in spherical coordinates.</span>
+        <span class="c1"># The integral over longitude is 2 pi, and the integral over spherical</span>
+        <span class="c1"># latitude is performed using Gauss-Legendre quadrature. Tests show</span>
+        <span class="c1"># that n = 30 will return the mean radius to machine precision for an</span>
+        <span class="c1"># object with a flattening of 0.5 (which is 100 times larger than that</span>
+        <span class="c1"># of Mars). In an abundance of caution, we chose to use n = 50.</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
+        <span class="n">x</span><span class="p">,</span> <span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polynomial</span><span class="o">.</span><span class="n">legendre</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">geocentric_latitude</span> <span class="o">=</span> <span class="mf">90.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">x</span><span class="p">))</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_radius</span><span class="p">(</span><span class="n">geocentric_latitude</span><span class="p">,</span> <span class="n">geodetic</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">radius</span> <span class="o">*</span> <span class="n">weights</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">semiaxes_mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The arithmetic mean radius of the ellipsoid semi-axes [Moritz1988]_.</span>
+<span class="sd">        Definition: :math:`R_1 = (2a + b)/3`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The area of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`A = 2 \pi a^2 \left(1 + \dfrac{b^2}{e a^2}</span>
+<span class="sd">        \text{arctanh}\,e \right)`.</span>
+<span class="sd">        Units: :math:`m^2`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="mi">2</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span>
+            <span class="o">*</span> <span class="p">(</span>
+                <span class="mi">1</span>
+                <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_eccentricity</span>
+                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctanh</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">first_eccentricity</span><span class="p">)</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The volume bounded by the ellipsoid.</span>
+<span class="sd">        Definition: :math:`V = \dfrac{4}{3} \pi a^2 b`.</span>
+<span class="sd">        Units: :math:`m^3`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reference_normal_gravity_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The normal gravity potential on the surface of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`U_0 = \dfrac{GM}{E} \arctan{\dfrac{E}{b}}</span>
+<span class="sd">        + \dfrac{1}{3} \omega^2 a^2`.</span>
+<span class="sd">        Units: :math:`m^2 / s^2`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span>
+            <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
+            <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The area equivalent radius of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The mass of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`M = GM / G`.</span>
+<span class="sd">        Units: :math:`kg`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="n">G</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mean_density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The mean density of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`\rho = M / V`.</span>
+<span class="sd">        Units: :math:`kg / m^3`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">volume_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The volume equivalent radius of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">_emm</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="s2">&quot;Auxiliary quantity used to calculate gravity at the pole and equator&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span><span class="o">**</span><span class="mi">2</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span>
+            <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gravity_equator</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The norm of the gravity acceleration vector (gravitational +</span>
+<span class="sd">        centrifugal accelerations) at the equator on the surface of the</span>
+<span class="sd">        ellipsoid. Units: :math:`m/s^2`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span>
+        <span class="n">arctan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">second_eccentricity</span>
+            <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">ratio</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ratio</span> <span class="o">*</span> <span class="n">arctan</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="o">/</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">ratio</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">arctan</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="n">axis_mul</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_emm</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">_emm</span> <span class="o">*</span> <span class="n">aux</span><span class="p">)</span> <span class="o">/</span> <span class="n">axis_mul</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">gravity_pole</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The norm of the gravity acceleration vector (gravitational +</span>
+<span class="sd">        centrifugal accelerations) at the poles on the surface of the</span>
+<span class="sd">        ellipsoid. Units: :math:`m/s^2`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">ratio</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span>
+        <span class="n">arctan</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
+        <span class="n">aux</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">second_eccentricity</span>
+            <span class="o">*</span> <span class="p">(</span><span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">ratio</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">ratio</span> <span class="o">*</span> <span class="n">arctan</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span>
+            <span class="o">/</span> <span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">ratio</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">arctan</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">ratio</span><span class="p">))</span>
+        <span class="p">)</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">_emm</span> <span class="o">*</span> <span class="n">aux</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">result</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">long_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;Oblate ellipsoid:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Semimajor axis: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="si">}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Flattening: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">flattening</span><span class="si">}</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • GM: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span><span class="si">}</span><span class="s2"> m³/s²</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Angular velocity: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span><span class="si">}</span><span class="s2"> rad/s&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Source:&quot;</span>
+            <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
+                    <span class="n">ref</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span> <span class="n">initial_indent</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">subsequent_indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span>
+                <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comments</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Comments:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">comments</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
+                <span class="n">initial_indent</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>
+                <span class="n">subsequent_indent</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+<div class="viewcode-block" id="Ellipsoid.geocentric_radius">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geocentric_radius">[docs]</a>
+    <span class="k">def</span> <span class="nf">geocentric_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">geodetic</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Radial distance from the center of the ellipsoid to its surface.</span>
+
+<span class="sd">        Can be calculated from either geocentric geodetic or geocentric</span>
+<span class="sd">        spherical latitudes.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            Latitude coordinates on geodetic coordinate system in degrees.</span>
+<span class="sd">        geodetic : bool</span>
+<span class="sd">            If True (default), will assume that latitudes are geodetic</span>
+<span class="sd">            latitudes. Otherwise, will assume that they are geocentric</span>
+<span class="sd">            spherical latitudes.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        geocentric_radius : float or array</span>
+<span class="sd">            The geocentric radius for the given latitude(s) in the same units</span>
+<span class="sd">            as the ellipsoid axis.</span>
+
+
+<span class="sd">        .. tip::</span>
+
+<span class="sd">            No elevation is taken into account. If you need the geocentric</span>
+<span class="sd">            radius at a height other than zero, use</span>
+<span class="sd">            ``pymap3d.geodetic2spherical`` instead.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        ------</span>
+
+<span class="sd">        The geocentric surface radius :math:`R` is a function of the geocentric</span>
+<span class="sd">        geodetic latitude :math:`\phi` and the semimajor and semiminor axis,</span>
+<span class="sd">        :math:`a` and :math:`b` [1]_:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            R(\phi) = \sqrt{</span>
+<span class="sd">                \dfrac{</span>
+<span class="sd">                    (a^2\cos\phi)^2 + (b^2\sin\phi)^2</span>
+<span class="sd">                }{</span>
+<span class="sd">                    (a\cos\phi)^2 + (b\sin\phi)^2</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        Alternatively, the geocentric surface radius can also be calculated</span>
+<span class="sd">        using the geocentric spherical latitude :math:`\theta` by passing</span>
+<span class="sd">        ``geodetic=False``:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            R(\theta) = \sqrt{</span>
+<span class="sd">                \dfrac{</span>
+<span class="sd">                    1</span>
+<span class="sd">                }{</span>
+<span class="sd">                    (\frac{\cos\theta}{a})^2 + (\frac{\sin\theta}{b})^2</span>
+<span class="sd">                }</span>
+<span class="sd">            }</span>
+
+<span class="sd">        This can be useful if you already have the geocentric spherical</span>
+<span class="sd">        latitudes and need the geocentric radius of the ellipsoid (for example,</span>
+<span class="sd">        in spherical harmonic synthesis). In these cases, the coordinate</span>
+<span class="sd">        conversion route is not possible since we need the radial coordinates</span>
+<span class="sd">        to do that in the first place.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        .. [1] See https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">latitude_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span>
+        <span class="n">coslat</span><span class="p">,</span> <span class="n">sinlat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">)</span>
+        <span class="c1"># Avoid doing this in favour of having the user do the conversions when</span>
+        <span class="c1"># possible. It&#39;s not the case here, so we made an exception.</span>
+        <span class="k">if</span> <span class="n">geodetic</span><span class="p">:</span>
+            <span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+                <span class="p">(</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">coslat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sinlat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="p">)</span>
+                <span class="o">/</span> <span class="p">(</span>
+                    <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">*</span> <span class="n">coslat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">+</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">*</span> <span class="n">sinlat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+                <span class="mi">1</span>
+                <span class="o">/</span> <span class="p">(</span>
+                    <span class="p">(</span><span class="n">coslat</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                    <span class="o">+</span> <span class="p">(</span><span class="n">sinlat</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">radius</span></div>
+
+
+<div class="viewcode-block" id="Ellipsoid.prime_vertical_radius">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.prime_vertical_radius">[docs]</a>
+    <span class="k">def</span> <span class="nf">prime_vertical_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sinlat</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The prime vertical radius of curvature for a given geodetic latitude.</span>
+
+<span class="sd">        .. note::</span>
+
+<span class="sd">            This function receives the sine of the latitude as input to avoid</span>
+<span class="sd">            repeated computations of trigonometric functions in</span>
+<span class="sd">            methods/functions that rely on it.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        sinlat : float or array-like</span>
+<span class="sd">            Sine of the geocentric geodetic latitude.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        prime_vertical_radius : float or array-like</span>
+<span class="sd">            Prime vertical radius given in the same units as the semi-major</span>
+<span class="sd">            axis</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+
+<span class="sd">        The prime vertical radius of curvature :math:`N` is defined as [2]_:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}</span>
+
+<span class="sd">        Where :math:`a` is the semimajor axis and :math:`e` is the first</span>
+<span class="sd">        eccentricity.</span>
+
+<span class="sd">        References</span>
+<span class="sd">        ----------</span>
+
+<span class="sd">        .. [2] See https://en.wikipedia.org/wiki/Earth_radius#Prime_vertical</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_eccentricity</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sinlat</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Ellipsoid.geodetic_to_spherical">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical">[docs]</a>
+    <span class="k">def</span> <span class="nf">geodetic_to_spherical</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert from geodetic to geocentric spherical coordinates.</span>
+
+<span class="sd">        The geodetic datum is defined by this ellipsoid. The coordinates are</span>
+<span class="sd">        converted following [Vermeille2002]_.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        longitude : array</span>
+<span class="sd">            Longitude coordinates on geodetic coordinate system in degrees.</span>
+<span class="sd">        latitude : array</span>
+<span class="sd">            Latitude coordinates on geodetic coordinate system in degrees.</span>
+<span class="sd">        height : array</span>
+<span class="sd">            Ellipsoidal heights in meters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        longitude : array</span>
+<span class="sd">            Longitude coordinates on geocentric spherical coordinate system in</span>
+<span class="sd">            degrees. The longitude coordinates are not modified during this</span>
+<span class="sd">            conversion.</span>
+<span class="sd">        spherical_latitude : array</span>
+<span class="sd">            Converted latitude coordinates on geocentric spherical coordinate</span>
+<span class="sd">            system in degrees.</span>
+<span class="sd">        radius : array</span>
+<span class="sd">            Converted spherical radius coordinates in meters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sinlat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
+        <span class="n">coslat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sinlat</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">prime_radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prime_vertical_radius</span><span class="p">(</span><span class="n">sinlat</span><span class="p">)</span>
+        <span class="c1"># Instead of computing X and Y, we only compute the projection on the</span>
+        <span class="c1"># XY plane: xy_projection = sqrt( X**2 + Y**2 )</span>
+        <span class="n">xy_projection</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span> <span class="o">+</span> <span class="n">prime_radius</span><span class="p">)</span> <span class="o">*</span> <span class="n">coslat</span>
+        <span class="n">z_cartesian</span> <span class="o">=</span> <span class="p">(</span><span class="n">height</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">prime_radius</span><span class="p">)</span> <span class="o">*</span> <span class="n">sinlat</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">xy_projection</span><span class="p">,</span> <span class="n">z_cartesian</span><span class="p">)</span>
+        <span class="n">spherical_latitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arcsin</span><span class="p">(</span><span class="n">z_cartesian</span> <span class="o">/</span> <span class="n">radius</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">spherical_latitude</span><span class="p">,</span> <span class="n">radius</span></div>
+
+
+<div class="viewcode-block" id="Ellipsoid.spherical_to_geodetic">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.spherical_to_geodetic">[docs]</a>
+    <span class="k">def</span> <span class="nf">spherical_to_geodetic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">spherical_latitude</span><span class="p">,</span> <span class="n">radius</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert from geocentric spherical to geodetic coordinates.</span>
+
+<span class="sd">        The geodetic datum is defined by this ellipsoid. The coordinates are</span>
+<span class="sd">        converted following [Vermeille2002]_.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        longitude : array</span>
+<span class="sd">            Longitude coordinates on geocentric spherical coordinate system in</span>
+<span class="sd">            degrees.</span>
+<span class="sd">        spherical_latitude : array</span>
+<span class="sd">            Latitude coordinates on geocentric spherical coordinate system in</span>
+<span class="sd">            degrees.</span>
+<span class="sd">        radius : array</span>
+<span class="sd">            Spherical radius coordinates in meters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        longitude : array</span>
+<span class="sd">            Longitude coordinates on geodetic coordinate system in degrees.</span>
+<span class="sd">            The longitude coordinates are not modified during this conversion.</span>
+<span class="sd">        latitude : array</span>
+<span class="sd">            Converted latitude coordinates on geodetic coordinate system in</span>
+<span class="sd">            degrees.</span>
+<span class="sd">        height : array</span>
+<span class="sd">            Converted ellipsoidal height coordinates in meters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sinlat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">spherical_latitude</span><span class="p">))</span>
+        <span class="n">coslat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sinlat</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">big_z</span> <span class="o">=</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">sinlat</span>
+        <span class="n">p_0</span> <span class="o">=</span> <span class="n">radius</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">coslat</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">q_0</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">big_z</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">r_0</span> <span class="o">=</span> <span class="p">(</span><span class="n">p_0</span> <span class="o">+</span> <span class="n">q_0</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span> <span class="o">/</span> <span class="mi">6</span>
+        <span class="n">s_0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">**</span><span class="mi">4</span> <span class="o">*</span> <span class="n">p_0</span> <span class="o">*</span> <span class="n">q_0</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">/</span> <span class="n">r_0</span><span class="o">**</span><span class="mi">3</span>
+        <span class="n">t_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cbrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">s_0</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">s_0</span> <span class="o">+</span> <span class="n">s_0</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+        <span class="n">u_0</span> <span class="o">=</span> <span class="n">r_0</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="n">t_0</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">t_0</span><span class="p">)</span>
+        <span class="n">v_0</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u_0</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">q_0</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">**</span><span class="mi">4</span><span class="p">)</span>
+        <span class="n">w_0</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="p">(</span><span class="n">u_0</span> <span class="o">+</span> <span class="n">v_0</span> <span class="o">-</span> <span class="n">q_0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">/</span> <span class="n">v_0</span>
+        <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u_0</span> <span class="o">+</span> <span class="n">v_0</span> <span class="o">+</span> <span class="n">w_0</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="n">w_0</span>
+        <span class="n">big_d</span> <span class="o">=</span> <span class="n">k</span> <span class="o">*</span> <span class="n">radius</span> <span class="o">*</span> <span class="n">coslat</span> <span class="o">/</span> <span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">hypot_dz</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hypot</span><span class="p">(</span><span class="n">big_d</span><span class="p">,</span> <span class="n">big_z</span><span class="p">)</span>
+        <span class="n">latitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">big_z</span><span class="p">,</span> <span class="p">(</span><span class="n">big_d</span> <span class="o">+</span> <span class="n">hypot_dz</span><span class="p">)))</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="p">(</span><span class="n">k</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">eccentricity</span><span class="o">**</span><span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)</span> <span class="o">/</span> <span class="n">k</span> <span class="o">*</span> <span class="n">hypot_dz</span>
+        <span class="k">return</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span></div>
+
+
+<div class="viewcode-block" id="Ellipsoid.geodetic_to_ellipsoidal_harmonic">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic">[docs]</a>
+    <span class="k">def</span> <span class="nf">geodetic_to_ellipsoidal_harmonic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert from geodetic to ellipsoidal-harmonic coordinates.</span>
+
+<span class="sd">        The geodetic datum is defined by this ellipsoid, and the coordinates</span>
+<span class="sd">        are converted following [Lakshmanan1991]_ and [LiGotze2001]_.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        longitude : array</span>
+<span class="sd">            Longitude coordinates on geodetic coordinate system in degrees.</span>
+<span class="sd">        latitude : array</span>
+<span class="sd">            Latitude coordinates on geodetic coordinate system in degrees.</span>
+<span class="sd">        height : array</span>
+<span class="sd">            Ellipsoidal heights in meters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        longitude : array</span>
+<span class="sd">            Longitude coordinates on ellipsoidal-harmonic coordinate system in</span>
+<span class="sd">            degrees. The longitude coordinates are not modified during this</span>
+<span class="sd">            conversion.</span>
+<span class="sd">        reduced_latitude : array</span>
+<span class="sd">            The reduced (or parametric) latitude in degrees.</span>
+<span class="sd">        u : array</span>
+<span class="sd">            The coordinate u, which is the semiminor axis of the ellipsoid that</span>
+<span class="sd">            passes through the input coordinates.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">height</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+            <span class="c1"># Use simple formula that relates geodetic and reduced latitude</span>
+            <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span>
+                <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span>
+                    <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
+                    <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
+                <span class="p">)</span>
+            <span class="p">)</span>
+            <span class="n">u</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">height</span><span class="p">,</span> <span class="n">fill_value</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+            <span class="k">return</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">u</span>
+
+        <span class="c1"># The variable names follow Li and Goetze (2001). The prime terms</span>
+        <span class="c1"># (*_p) refer to quantities on an ellipsoid passing through the</span>
+        <span class="c1"># computation point.</span>
+        <span class="n">sinlat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
+        <span class="n">coslat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sinlat</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">big_e2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span><span class="o">**</span><span class="mi">2</span>
+
+        <span class="c1"># Reduced latitude of the projection of the point on the</span>
+        <span class="c1"># reference ellipsoid</span>
+        <span class="n">beta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">*</span> <span class="n">sinlat</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">*</span> <span class="n">coslat</span><span class="p">)</span>
+        <span class="n">sinbeta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">beta</span><span class="p">)</span>
+        <span class="n">cosbeta</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sinbeta</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># Distance squared between computation point and equatorial plane</span>
+        <span class="n">z_p2</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">*</span> <span class="n">sinbeta</span> <span class="o">+</span> <span class="n">height</span> <span class="o">*</span> <span class="n">sinlat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="c1"># Distance squared between computation point and spin axis</span>
+        <span class="n">r_p2</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">*</span> <span class="n">cosbeta</span> <span class="o">+</span> <span class="n">height</span> <span class="o">*</span> <span class="n">coslat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+        <span class="c1"># Auxiliary variables</span>
+        <span class="n">big_d</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_p2</span> <span class="o">-</span> <span class="n">z_p2</span><span class="p">)</span> <span class="o">/</span> <span class="n">big_e2</span>
+        <span class="n">big_r</span> <span class="o">=</span> <span class="p">(</span><span class="n">r_p2</span> <span class="o">+</span> <span class="n">z_p2</span><span class="p">)</span> <span class="o">/</span> <span class="n">big_e2</span>
+
+        <span class="c1"># cos(reduced latitude) squared of the computation point</span>
+        <span class="n">cosbeta_p2</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">+</span> <span class="n">big_r</span> <span class="o">/</span> <span class="mi">2</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mf">0.25</span> <span class="o">+</span> <span class="n">big_r</span><span class="o">**</span><span class="mi">2</span> <span class="o">/</span> <span class="mi">4</span> <span class="o">-</span> <span class="n">big_d</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># Semiminor axis of the ellipsoid passing through the computation</span>
+        <span class="c1"># point. This is the coordinate u</span>
+        <span class="n">b_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">r_p2</span> <span class="o">+</span> <span class="n">z_p2</span> <span class="o">-</span> <span class="n">big_e2</span> <span class="o">*</span> <span class="n">cosbeta_p2</span><span class="p">)</span>
+
+        <span class="c1"># Note that the sign of beta_p needs to be fixed as it is defined</span>
+        <span class="c1"># from -90 to 90 degrees, but arccos is from 0 to 180.</span>
+        <span class="n">beta_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">copysign</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">cosbeta_p2</span><span class="p">))),</span> <span class="n">latitude</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">beta_p</span><span class="p">,</span> <span class="n">b_p</span></div>
+
+
+<div class="viewcode-block" id="Ellipsoid.ellipsoidal_harmonic_to_geodetic">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic">[docs]</a>
+    <span class="k">def</span> <span class="nf">ellipsoidal_harmonic_to_geodetic</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">reduced_latitude</span><span class="p">,</span> <span class="n">u</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.</span>
+
+<span class="sd">        The geodetic datum is defined by this ellipsoid.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        longitude : array</span>
+<span class="sd">            Longitude coordinates on ellipsoidal-harmonic coordinate system in</span>
+<span class="sd">            degrees.</span>
+<span class="sd">        latitude : array</span>
+<span class="sd">            Reduced (parametric) latitude coordinates on ellipsoidal-harmonic</span>
+<span class="sd">            coordinate system in degrees.</span>
+<span class="sd">        u : array</span>
+<span class="sd">            The coordinate u, which is the semiminor axes of the ellipsoid that</span>
+<span class="sd">            passes through the input coordinates.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        longitude : array</span>
+<span class="sd">            Longitude coordinates on geodetic coordinate system in degrees. The</span>
+<span class="sd">            longitude coordinates are not modified during this conversion.</span>
+<span class="sd">        latitude : array</span>
+<span class="sd">            Latitude coordinates on geodetic coordinate system in degrees.</span>
+<span class="sd">        height : array</span>
+<span class="sd">            Ellipsoidal heights in meters.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Semimajor axis of the ellipsoid that passes through the input</span>
+        <span class="c1"># coordinates</span>
+        <span class="n">a_p</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="c1"># geodetic latitude</span>
+        <span class="n">latitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">a_p</span> <span class="o">/</span> <span class="n">u</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">tan</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">reduced_latitude</span><span class="p">)))</span>
+
+        <span class="c1"># Compute height as the difference of the prime_vertical_radius of the</span>
+        <span class="c1"># input ellipsoid and reference ellipsoid</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">prime_vertical_radius</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="n">a_p</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">degrees</span><span class="p">(</span><span class="n">latitude</span><span class="p">),</span> <span class="n">height</span></div>
+
+
+<div class="viewcode-block" id="Ellipsoid.normal_gravity">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.normal_gravity">[docs]</a>
+    <span class="k">def</span> <span class="nf">normal_gravity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normal gravity of the ellipsoid at the given latitude and height.</span>
+
+<span class="sd">        Computes the magnitude of the gradient of the gravity potential</span>
+<span class="sd">        (gravitational + centrifugal; see [HofmannWellenhofMoritz2006]_)</span>
+<span class="sd">        generated by the ellipsoid at the given geodetic latitude :math:`\phi`</span>
+<span class="sd">        and height above the ellipsoid :math:`h` (geometric height).</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \gamma(\phi, h) = \|\vec{\nabla}U(\phi, h)\|</span>
+
+<span class="sd">        in which :math:`U = V + \Phi` is the gravity potential of the</span>
+<span class="sd">        ellipsoid, :math:`V` is the gravitational potential of the ellipsoid,</span>
+<span class="sd">        and :math:`\Phi` is the centrifugal potential.</span>
+
+<span class="sd">        Assumes that the internal density distribution of the ellipsoid is such</span>
+<span class="sd">        that the gravity potential is constant at its surface.</span>
+
+<span class="sd">        Based on closed-form expressions by [Lakshmanan1991]_ and corrected by</span>
+<span class="sd">        [LiGotze2001]_ which don&#39;t require the free-air correction.</span>
+
+<span class="sd">        .. caution::</span>
+
+<span class="sd">            These expressions are only valid for heights on or above the</span>
+<span class="sd">            surface of the ellipsoid.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            The geodetic latitude where the normal gravity will be computed (in</span>
+<span class="sd">            degrees).</span>
+<span class="sd">        height : float or array</span>
+<span class="sd">            The ellipsoidal (geometric) height of computation the point (in</span>
+<span class="sd">            meters).</span>
+<span class="sd">        si_units : bool</span>
+<span class="sd">            Return the value in mGal (False, default) or m/s² (True)</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        gamma : float or array</span>
+<span class="sd">            The normal gravity in mGal or m/s².</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Warn if height is negative</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Formulas used are valid for points outside the ellipsoid.&quot;</span>
+                <span class="s2">&quot;Height must be greater than or equal to zero.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Convert geodetic latitude and height to ellipsoidal-harmonic coords</span>
+        <span class="n">longitude</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geodetic_to_ellipsoidal_harmonic</span><span class="p">(</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span>
+        <span class="p">)</span>
+        <span class="n">sinbeta2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="n">cosbeta2</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="n">sinbeta2</span>
+        <span class="n">big_e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span>
+
+        <span class="c1"># Compute the auxiliary functions q and q_0 (eq 2-113 of</span>
+        <span class="c1"># HofmannWellenhofMoritz2006)</span>
+        <span class="n">q_0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">/</span> <span class="n">big_e</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">big_e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
+            <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">/</span> <span class="n">big_e</span>
+        <span class="p">)</span>
+        <span class="n">q_p</span> <span class="o">=</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">u</span> <span class="o">/</span> <span class="n">big_e</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">u</span> <span class="o">/</span> <span class="n">big_e</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">big_e</span><span class="p">,</span> <span class="n">u</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="n">big_w</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">((</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">big_e</span><span class="o">**</span><span class="mi">2</span> <span class="o">*</span> <span class="n">sinbeta2</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">big_e</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+
+        <span class="c1"># Put together gamma using 3 separate terms</span>
+        <span class="n">term1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">big_e</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+        <span class="n">term2</span> <span class="o">=</span> <span class="p">(</span><span class="mf">0.5</span> <span class="o">*</span> <span class="n">sinbeta2</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">6</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span>
+            <span class="o">*</span> <span class="n">big_e</span>
+            <span class="o">*</span> <span class="n">q_p</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span><span class="o">**</span><span class="mi">2</span>
+            <span class="o">/</span> <span class="p">((</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">big_e</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">q_0</span><span class="p">)</span>
+        <span class="p">)</span>
+        <span class="n">term3</span> <span class="o">=</span> <span class="o">-</span><span class="n">cosbeta2</span> <span class="o">*</span> <span class="n">u</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span><span class="o">**</span><span class="mi">2</span>
+        <span class="n">gamma</span> <span class="o">=</span> <span class="p">(</span><span class="n">term1</span> <span class="o">+</span> <span class="n">term2</span> <span class="o">+</span> <span class="n">term3</span><span class="p">)</span> <span class="o">/</span> <span class="n">big_w</span>
+
+        <span class="c1"># Convert gamma from SI to mGal</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">si_units</span><span class="p">:</span>
+            <span class="n">gamma</span> <span class="o">*=</span> <span class="mf">1e5</span>
+
+        <span class="k">return</span> <span class="n">gamma</span></div>
+
+
+<div class="viewcode-block" id="Ellipsoid.normal_gravitational_potential">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.normal_gravitational_potential">[docs]</a>
+    <span class="k">def</span> <span class="nf">normal_gravitational_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normal gravitational potential of the ellipsoid at the given latitude</span>
+<span class="sd">        and height.</span>
+
+<span class="sd">        Computes the gravitational potential generated by the ellipsoid at the</span>
+<span class="sd">        given geodetic latitude :math:`\phi` and height above the ellipsoid</span>
+<span class="sd">        :math:`h` (geometric height).</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            V(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{3}</span>
+<span class="sd">            \omega^2 a^2 \dfrac{q}{q_0} P_2 (\sin \beta)</span>
+
+<span class="sd">        in which :math:`V` is the gravitational potential of the</span>
+<span class="sd">        ellipsoid (no centrifugal term), :math:`GM` is the geocentric</span>
+<span class="sd">        gravitational constant, :math:`E` is the linear eccentricity,</span>
+<span class="sd">        :math:`\omega` is the angular rotation rate, :math:`q` and :math:`q_0`</span>
+<span class="sd">        are auxiliary functions, :math:`P_2` is the degree 2 unnormalized</span>
+<span class="sd">        Legendre Polynomial, and :math:`u` and :math:`\beta` are</span>
+<span class="sd">        ellipsoidal-harmonic coordinates corresponding to the input geodetic</span>
+<span class="sd">        latitude and ellipsoidal height. See eq. 2-124 of</span>
+<span class="sd">        [HofmannWellenhofMoritz2006]_.</span>
+
+<span class="sd">        Assumes that the internal density distribution of the ellipsoid is such</span>
+<span class="sd">        that the gravity potential is constant at its surface.</span>
+
+<span class="sd">        .. caution::</span>
+
+<span class="sd">            These expressions are only valid for heights on or above the</span>
+<span class="sd">            surface of the ellipsoid.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            The geodetic latitude where the normal gravitational potential will</span>
+<span class="sd">            be computed (in degrees).</span>
+<span class="sd">        height : float or array</span>
+<span class="sd">            The ellipsoidal (geometric) height of the computation the point (in</span>
+<span class="sd">            meters).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        V : float or array</span>
+<span class="sd">            The normal gravitational potential in m²/s².</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Warn if height is negative</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Formulas used are valid for points outside the ellipsoid.&quot;</span>
+                <span class="s2">&quot;Height must be greater than or equal to zero.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Convert geodetic latitude and height to ellipsoidal-harmonic coords</span>
+        <span class="n">longitude</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geodetic_to_ellipsoidal_harmonic</span><span class="p">(</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span>
+        <span class="p">)</span>
+        <span class="n">big_e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span>
+
+        <span class="c1"># Compute the auxiliary functions q and q_0 (eq 2-113 of</span>
+        <span class="c1"># HofmannWellenhofMoritz2006)</span>
+        <span class="n">q_0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">/</span> <span class="n">big_e</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">big_e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
+            <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">/</span> <span class="n">big_e</span>
+        <span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">u</span> <span class="o">/</span> <span class="n">big_e</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">big_e</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">u</span> <span class="o">/</span> <span class="n">big_e</span><span class="p">)</span>
+
+        <span class="n">big_v</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="n">big_e</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">big_e</span> <span class="o">/</span> <span class="n">u</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
+        <span class="p">)</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">q</span> <span class="o">/</span> <span class="n">q_0</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.5</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mf">0.5</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">big_v</span></div>
+
+
+<div class="viewcode-block" id="Ellipsoid.normal_gravity_potential">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.normal_gravity_potential">[docs]</a>
+    <span class="k">def</span> <span class="nf">normal_gravity_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normal gravity potential of the ellipsoid at the given latitude and</span>
+<span class="sd">        height.</span>
+
+<span class="sd">        Computes the gravity potential generated by the ellipsoid at the</span>
+<span class="sd">        given geodetic latitude :math:`\phi` and height above the ellipsoid</span>
+<span class="sd">        :math:`h` (geometric height).</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            U(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{2}</span>
+<span class="sd">            \omega^2 a^2 \dfrac{q}{q_0} \left(\sin^2 \beta</span>
+<span class="sd">            - \dfrac{1}{3}\right) + \dfrac{1}{2} \omega^2 \left(u^2</span>
+<span class="sd">            + E^2\right) \cos^2 \beta</span>
+
+<span class="sd">        in which :math:`U` is the gravity potential of the ellipsoid,</span>
+<span class="sd">        :math:`GM` is the geocentric gravitational constant, :math:`E` is the</span>
+<span class="sd">        linear eccentricity, :math:`\omega` is the angular rotation rate,</span>
+<span class="sd">        :math:`q` and :math:`q_0` are auxiliary functions, and :math:`u` and</span>
+<span class="sd">        :math:`\beta` are ellipsoidal-harmonic coordinates corresponding to the</span>
+<span class="sd">        input geodetic latitude and ellipsoidal height. See eq. 2-126 of</span>
+<span class="sd">        [HofmannWellenhofMoritz2006]_.</span>
+
+<span class="sd">        Assumes that the internal density distribution of the ellipsoid is such</span>
+<span class="sd">        that the gravity potential is constant at its surface.</span>
+
+<span class="sd">        .. caution::</span>
+
+<span class="sd">            These expressions are only valid for heights on or above the</span>
+<span class="sd">            surface of the ellipsoid.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            The geodetic latitude where the normal gravity potential will be</span>
+<span class="sd">            computed (in degrees).</span>
+<span class="sd">        height : float or array</span>
+<span class="sd">            The ellipsoidal (geometric) height of the computation the point (in</span>
+<span class="sd">            meters).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        V : float or array</span>
+<span class="sd">            The normal gravity potential in m²/s².</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Warn if height is negative</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Formulas used are valid for points outside the ellipsoid.&quot;</span>
+                <span class="s2">&quot;Height must be greater than or equal to zero.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="c1"># Convert geodetic latitude and height to ellipsoidal-harmonic coords</span>
+        <span class="n">longitude</span><span class="p">,</span> <span class="n">beta</span><span class="p">,</span> <span class="n">u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geodetic_to_ellipsoidal_harmonic</span><span class="p">(</span>
+            <span class="kc">None</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span>
+        <span class="p">)</span>
+        <span class="n">big_e</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">linear_eccentricity</span>
+
+        <span class="c1"># Compute the auxiliary functions q and q_0 (eq 2-113 of</span>
+        <span class="c1"># HofmannWellenhofMoritz2006)</span>
+        <span class="n">q_0</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">/</span> <span class="n">big_e</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">big_e</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span>
+            <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span> <span class="o">/</span> <span class="n">big_e</span>
+        <span class="p">)</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">((</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">3</span> <span class="o">*</span> <span class="p">(</span><span class="n">u</span> <span class="o">/</span> <span class="n">big_e</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan2</span><span class="p">(</span><span class="n">big_e</span><span class="p">,</span> <span class="n">u</span><span class="p">)</span> <span class="o">-</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">u</span> <span class="o">/</span> <span class="n">big_e</span><span class="p">)</span>
+
+        <span class="n">big_u</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="n">big_e</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">arctan</span><span class="p">(</span><span class="n">big_e</span> <span class="o">/</span> <span class="n">u</span><span class="p">)</span>
+            <span class="o">+</span> <span class="mf">0.5</span>
+            <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">*</span> <span class="n">q</span>
+            <span class="o">/</span> <span class="n">q_0</span>
+            <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">-</span> <span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+            <span class="o">+</span> <span class="mf">0.5</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span><span class="o">**</span><span class="mi">2</span>
+            <span class="o">*</span> <span class="p">(</span><span class="n">u</span><span class="o">**</span><span class="mi">2</span> <span class="o">+</span> <span class="n">big_e</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">beta</span><span class="p">))</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">big_u</span></div>
+
+
+<div class="viewcode-block" id="Ellipsoid.centrifugal_potential">
+<a class="viewcode-back" href="../../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.centrifugal_potential">[docs]</a>
+    <span class="k">def</span> <span class="nf">centrifugal_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Centrifugal potential at the given geodetic latitude and height above</span>
+<span class="sd">        the ellipsoid.</span>
+
+<span class="sd">        The centrifugal potential :math:`\Phi` at geodetic latitude</span>
+<span class="sd">        :math:`\phi` and height above the ellipsoid :math:`h` (geometric</span>
+<span class="sd">        height) is</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \Phi(\phi, h) = \dfrac{1}{2}</span>
+<span class="sd">                \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)</span>
+
+<span class="sd">        in which :math:`N(\phi)` is the prime vertical radius of curvature of</span>
+<span class="sd">        the ellipsoid and :math:`\omega` is the angular velocity.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            The geodetic latitude where the centrifugal potential will be</span>
+<span class="sd">            computed (in degrees).</span>
+<span class="sd">        height : float or array</span>
+<span class="sd">            The ellipsoidal (geometric) height of the computation point (in</span>
+<span class="sd">            meters).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Phi : float or array</span>
+<span class="sd">            The centrifugal potential in m²/s².</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># Pre-compute to avoid repeated calculations</span>
+        <span class="n">sinlat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
+        <span class="n">coslat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">sinlat</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span>
+            <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prime_vertical_radius</span><span class="p">(</span><span class="n">sinlat</span><span class="p">)</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">coslat</span>
+        <span class="p">)</span> <span class="o">**</span> <span class="mi">2</span></div>
+</div>
+
+</pre></div>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, The Boule Developers.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Oct 22, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

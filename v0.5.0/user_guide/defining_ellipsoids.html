@@ -1,0 +1,747 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+        <title>Defining custom ellipsoids | Boule v0.5.0</title>
+    
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=12168cd1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/thebelab-helper.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/defining_ellipsoids';</script>
+    <link rel="icon" href="../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="List of functions and classes (API)" href="../api/index.html" />
+    <link rel="prev" title="Coordinate conversions" href="coordinates.html" />
+    <!-- Plausible analytics for anonymous usage statistics -->
+    <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Boule <span class="project-version">v0.5.0</span></p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="normal_gravity.html">Normal gravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gravity_disturbance.html">Gravity disturbances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinates.html">Coordinate conversions</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Defining custom ellipsoids</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference Documentation</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">List of functions and classes (API)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.Sphere.html">boule.Sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../ellipsoids.html">Available ellipsoids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing Boule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility.html">Version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../versions.html">Documentation for other versions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/edit/main/doc/user_guide/defining_ellipsoids.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2Fuser_guide/defining_ellipsoids.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/user_guide/defining_ellipsoids.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Defining custom ellipsoids</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblate-ellipsoids">Oblate ellipsoids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spheres">Spheres</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#triaxial-ellipsoids">Triaxial ellipsoids</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="defining-custom-ellipsoids">
+<span id="defining-ellipsoids"></span><h1>Defining custom ellipsoids<a class="headerlink" href="#defining-custom-ellipsoids" title="Link to this heading">#</a></h1>
+<p>Boule comes with a range of <a class="reference internal" href="../ellipsoids.html#ellipsoids"><span class="std std-ref">built-in ellipsoids</span></a> already but
+you may want to define your own.
+If that’s the case, then you have the following options to choose from:</p>
+<div class="sd-container-fluid sd-sphinx-override sd-mt-2 sd-mb-5 sd-ml-0 sd-mr-0 sd-pt-0 sd-pb-0 sd-pl-0 sd-pr-0 docutils">
+<div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-1 sd-row-cols-lg-2 sd-g-4 sd-g-xs-4 sd-g-sm-4 sd-g-md-4 sd-g-lg-4 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold sd-fs-4 text-center docutils">
+Oblate ellipsoid</div>
+<p class="sd-card-text"><strong>Class:</strong> <a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a></p>
+<p class="sd-card-text"><strong>When to use:</strong> Your model has 2 semi-axis and non-zero flattening.</p>
+<p class="sd-card-text"><strong>Caveat:</strong> Assumes constant <a class="reference internal" href="../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> on its surface
+and has no specified density distribution.</p>
+<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary sd-stretched-link reference internal" href="#defining-ellipsoids-oblate"><span class="std std-ref">Example</span></a></span></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold sd-fs-4 text-center docutils">
+Sphere</div>
+<p class="sd-card-text"><strong>Class:</strong> <a class="reference internal" href="../api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Sphere</span></code></a></p>
+<p class="sd-card-text"><strong>When to use:</strong> Your model has zero flattening.</p>
+<p class="sd-card-text"><strong>Caveat:</strong> Definition of <a class="reference internal" href="../glossary.html#term-Normal-gravity"><span class="xref std std-term">normal gravity</span></a> is slightly different
+since it’s not possible for a rotating sphere to have constant gravity
+potential on its surface.</p>
+<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary sd-stretched-link reference internal" href="#defining-ellipsoids-sphere"><span class="std std-ref">Example</span></a></span></p>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold sd-fs-4 text-center docutils">
+Triaxial ellipsoid</div>
+<p class="sd-card-text"><strong>Class:</strong> <a class="reference internal" href="../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid" title="boule.TriaxialEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.TriaxialEllipsoid</span></code></a></p>
+<p class="sd-card-text"><strong>When to use:</strong> Your model has 3 distinct semi-axis.</p>
+<p class="sd-card-text"><strong>Caveat:</strong> Definition of <a class="reference internal" href="../glossary.html#term-Normal-gravity"><span class="xref std std-term">normal gravity</span></a> is the same as the
+case for the sphere. Gravity calculations are not yet available.</p>
+<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary sd-stretched-link reference internal" href="#defining-ellipsoids-triaxial"><span class="std std-ref">Example</span></a></span></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<hr class="docutils" />
+<section id="oblate-ellipsoids">
+<span id="defining-ellipsoids-oblate"></span><h2>Oblate ellipsoids<a class="headerlink" href="#oblate-ellipsoids" title="Link to this heading">#</a></h2>
+<p>Oblate ellipsoids are defined by 4 numerical parameters:</p>
+<ol class="arabic simple">
+<li><p>The semi-major axis (<span class="math notranslate nohighlight">\(a\)</span>): the equatorial radius.</p></li>
+<li><p>The flattening (<span class="math notranslate nohighlight">\(f = (a - b)/a\)</span>): the ratio between the equatorial and
+polar radii.</p></li>
+<li><p>The <a class="reference internal" href="../glossary.html#term-Geocentric-gravitational-constant"><span class="xref std std-term">geocentric gravitational constant</span></a> (<span class="math notranslate nohighlight">\(GM\)</span>).</p></li>
+<li><p>The angular velocity (<span class="math notranslate nohighlight">\(\omega\)</span>): spin rate of the ellipsoid which
+defines the centrifugal potential.</p></li>
+</ol>
+<p>You can also include metadata about where the defining parameters came from (a
+citation) and a long descriptive name for the ellipsoid. For example, this is
+how the WGS84 ellipsoid can be defined with <a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a> using
+parameters from <a class="reference internal" href="../references.html#hofmannwellenhofmoritz2006" id="id1"><span>[HofmannWellenhofMoritz2006]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
+
+
+<span class="n">WGS84</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Ellipsoid</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;WGS84&quot;</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;World Geodetic System 1984&quot;</span><span class="p">,</span>
+    <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">6378137</span><span class="p">,</span>
+    <span class="n">flattening</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">298.257223563</span><span class="p">,</span>
+    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">3986004.418e8</span><span class="p">,</span>
+    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">7292115e-11</span><span class="p">,</span>
+    <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy &quot;</span>
+        <span class="s2">&quot;(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer.&quot;</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">WGS84</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>WGS84 - World Geodetic System 1984
+Oblate ellipsoid:
+  • Semimajor axis: 6378137 m
+  • Flattening: 0.0033528106647474805
+  • GM: 398600441800000.0 m³/s²
+  • Angular velocity: 7.292115e-05 rad/s
+Source:
+  Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy (2nd,
+    corr. ed. 2006 edition ed.). Wien ; New York: Springer.
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You <strong>must</strong> use <a class="reference internal" href="../api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Sphere</span></code></a> to represent ellipsoids with
+<strong>zero flattening</strong>. This is because normal gravity calculations in
+<a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a> make assumptions that fail for the case of
+<code class="docutils literal notranslate"><span class="pre">flattening=0</span></code> (mainly that the <a class="reference internal" href="../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> is constant on
+the surface of the ellipsoid).</p>
+</div>
+</section>
+<section id="spheres">
+<span id="defining-ellipsoids-sphere"></span><h2>Spheres<a class="headerlink" href="#spheres" title="Link to this heading">#</a></h2>
+<p>Spheres are defined by 3 numerical parameters:</p>
+<ol class="arabic simple">
+<li><p>The radius (<span class="math notranslate nohighlight">\(R\)</span>).</p></li>
+<li><p>The <a class="reference internal" href="../glossary.html#term-Geocentric-gravitational-constant"><span class="xref std std-term">geocentric gravitational constant</span></a> (<span class="math notranslate nohighlight">\(GM\)</span>).</p></li>
+<li><p>The angular velocity (<span class="math notranslate nohighlight">\(\omega\)</span>): spin rate of the sphere which defines
+the centrifugal potential.</p></li>
+</ol>
+<p>As with oblate ellipsoids, <a class="reference internal" href="../api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Sphere</span></code></a> also takes the same metadata
+as input.
+For example, here is the definition of the Mercury spheroid from parameters
+found in <a class="reference internal" href="../references.html#wieczorek2015" id="id2"><span>[Wieczorek2015]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MERCURY</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MERCURY&quot;</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Mercury Spheroid&quot;</span><span class="p">,</span>
+    <span class="n">radius</span><span class="o">=</span><span class="mi">2_439_372</span><span class="p">,</span>
+    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">22.031839221e12</span><span class="p">,</span>
+    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">1.2400172589e-6</span><span class="p">,</span>
+    <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial &quot;</span>
+        <span class="s2">&quot;Planets, Treatise of Geophysics (Second Edition); Elsevier. &quot;</span>
+        <span class="s2">&quot;doi:10.1016/B978-0-444-53802-4.00169-X&quot;</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">MERCURY</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>MERCURY - Mercury Spheroid
+Spheroid:
+  • Radius: 2439372 m
+  • GM: 22031839221000.0 m³/s²
+  • Angular velocity: 1.2400172589e-06 rad/s
+Source:
+  Wieczorek, MA (2015). 10.05 - Gravity and Topography of the
+    Terrestrial Planets, Treatise of Geophysics (Second Edition);
+    Elsevier. doi:10.1016/B978-0-444-53802-4.00169-X
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="triaxial-ellipsoids">
+<span id="defining-ellipsoids-triaxial"></span><h2>Triaxial ellipsoids<a class="headerlink" href="#triaxial-ellipsoids" title="Link to this heading">#</a></h2>
+<p>Triaxial ellipsoids are defined by 5 numerical parameters:</p>
+<ol class="arabic simple">
+<li><p>The semi-major axis (<span class="math notranslate nohighlight">\(a\)</span>): the largest radius.</p></li>
+<li><p>The semi-medium axis (<span class="math notranslate nohighlight">\(b\)</span>): the middle radius.</p></li>
+<li><p>The semi-minor axis (<span class="math notranslate nohighlight">\(c\)</span>): the smallest radius.</p></li>
+<li><p>The <a class="reference internal" href="../glossary.html#term-Geocentric-gravitational-constant"><span class="xref std std-term">geocentric gravitational constant</span></a> (<span class="math notranslate nohighlight">\(GM\)</span>).</p></li>
+<li><p>The angular velocity (<span class="math notranslate nohighlight">\(\omega\)</span>): spin rate of the ellipsoid which
+defines the centrifugal potential.</p></li>
+</ol>
+<p><a class="reference internal" href="../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid" title="boule.TriaxialEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.TriaxialEllipsoid</span></code></a> also takes the same metadata attributes as
+input.
+For example, here is the definition of the Vesta ellipsoid using parameters
+from <a class="reference internal" href="../references.html#russell2012" id="id3"><span>[Russell2012]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VESTA</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">TriaxialEllipsoid</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;VESTA&quot;</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Vesta Triaxial Ellipsoid&quot;</span><span class="p">,</span>
+    <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">286_300</span><span class="p">,</span>
+    <span class="n">semimedium_axis</span><span class="o">=</span><span class="mi">278_600</span><span class="p">,</span>
+    <span class="n">semiminor_axis</span><span class="o">=</span><span class="mi">223_200</span><span class="p">,</span>
+    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">1.729094e10</span><span class="p">,</span>
+    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">326.71050958367e-6</span><span class="p">,</span>
+    <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">&quot;Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, &quot;</span>
+        <span class="s2">&quot;M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the &quot;</span>
+        <span class="s2">&quot;Protoplanetary Paradigm. Science. doi:10.1126/science.1219381&quot;</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">VESTA</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>VESTA - Vesta Triaxial Ellipsoid
+Triaxial ellipsoid:
+  • Semimajor axis: 286300 m
+  • Semimedium axis: 278600 m
+  • Semiminor axis: 223200 m
+  • Semimajor axis longitude: 0.0°
+  • GM: 17290940000.0 m³/s²
+  • Angular velocity: 0.00032671050958367 rad/s
+Source:
+  Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber,
+    M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the
+    Protoplanetary Paradigm. Science. doi:10.1126/science.1219381
+</pre></div>
+</div>
+</div>
+</div>
+<div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>Gravity calculations have not been implemented yet for triaxial ellipsoids.
+If you’re interested in this feature or would like to help implement it,
+please <a class="reference external" href="https://www.fatiando.org/contact">get in touch</a>.</p>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="coordinates.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Coordinate conversions</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../api/index.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">List of functions and classes (API)</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblate-ellipsoids">Oblate ellipsoids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spheres">Spheres</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#triaxial-ellipsoids">Triaxial ellipsoids</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, The Boule Developers.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Oct 22, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

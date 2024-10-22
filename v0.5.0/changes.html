@@ -1,0 +1,790 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+        <title>Changelog | Boule v0.5.0</title>
+    
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=12168cd1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/thebelab-helper.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'changes';</script>
+    <link rel="icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Version compatibility" href="compatibility.html" />
+    <link rel="prev" title="References" href="references.html" />
+    <!-- Plausible analytics for anonymous usage statistics -->
+    <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Boule <span class="project-version">v0.5.0</span></p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="user_guide/normal_gravity.html">Normal gravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/gravity_disturbance.html">Gravity disturbances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/coordinates.html">Coordinate conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/defining_ellipsoids.html">Defining custom ellipsoids</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference Documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/index.html">List of functions and classes (API)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Sphere.html">boule.Sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="ellipsoids.html">Available ellipsoids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Boule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compatibility.html">Version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Documentation for other versions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/edit/main/doc/changes.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2Fchanges.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/changes.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Changelog</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-5-0">Version 0.5.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-1">Version 0.4.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-0">Version 0.4.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-3-1">Version 0.3.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-3-0">Version 0.3.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-2-0">Version 0.2.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-1-1">Version 0.1.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-1-0">Version 0.1.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-0-1">Version 0.0.1</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="changelog">
+<span id="changes"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
+<section id="version-0-5-0">
+<h2>Version 0.5.0<a class="headerlink" href="#version-0-5-0" title="Link to this heading">#</a></h2>
+<p>Released on: 2024/10/22</p>
+<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.13975491">https://doi.org/10.5281/zenodo.13975491</a></p>
+<p>Breaking changes:</p>
+<ul class="simple">
+<li><p>Drop support for Python 3.7 (<a class="reference external" href="https://github.com/fatiando/boule/pull/188">#188</a>)</p></li>
+</ul>
+<p>New features:</p>
+<ul class="simple">
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">geocentric_radius</span></code> to <code class="docutils literal notranslate"><span class="pre">TriaxialEllipsoid</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/146">#146</a>)</p></li>
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">volume</span></code> property for the Sphere (<a class="reference external" href="https://github.com/fatiando/boule/pull/152">#152</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">mass</span></code>, <code class="docutils literal notranslate"><span class="pre">mean_density</span></code>, and <code class="docutils literal notranslate"><span class="pre">volume_equivalent_radius</span></code> properties to classes (<a class="reference external" href="https://github.com/fatiando/boule/pull/173">#173</a>)</p></li>
+<li><p>Add true mean radius for <code class="docutils literal notranslate"><span class="pre">Sphere</span></code>, <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> and <code class="docutils literal notranslate"><span class="pre">TriaxialEllipsoid</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/177">#177</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">area</span></code> and <code class="docutils literal notranslate"><span class="pre">area_equivalent_radius</span></code> to all three ellipsoid classes (<a class="reference external" href="https://github.com/fatiando/boule/pull/178">#178</a>)</p></li>
+<li><p>Add new planetary ellipsoids and new naming scheme (<a class="reference external" href="https://github.com/fatiando/boule/pull/180">#180</a>)</p></li>
+<li><p>Add attributes for the normal potential to <code class="docutils literal notranslate"><span class="pre">Sphere</span></code> and <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/184">#184</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">normal_gravitational_potential</span></code>, <code class="docutils literal notranslate"><span class="pre">normal_gravity_potential</span></code>, and <code class="docutils literal notranslate"><span class="pre">centrifugal_potential</span></code> methods to <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> and <code class="docutils literal notranslate"><span class="pre">Sphere</span></code> classes (<a class="reference external" href="https://github.com/fatiando/boule/pull/187">#187</a>)</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">semimedium_axis</span></code> and <code class="docutils literal notranslate"><span class="pre">semimajor_axis_longitude</span></code> to the Sphere and Ellipsoid classes for compatibility with the <code class="docutils literal notranslate"><span class="pre">TriaxialEllipsoid</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/192">#192</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">__str__</span></code> method to Ellipsoid classes (<a class="reference external" href="https://github.com/fatiando/boule/pull/213">#213</a>)</p></li>
+</ul>
+<p>Maintenance:</p>
+<ul class="simple">
+<li><p>Extend support for Python 3.11 (<a class="reference external" href="https://github.com/fatiando/boule/pull/147">#147</a>)</p></li>
+<li><p>Add Blazej Bucha to <code class="docutils literal notranslate"><span class="pre">AUTHORS.md</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/148">#148</a>)</p></li>
+<li><p>Update Leo’s affiliation from Liverpool to São Paulo (<a class="reference external" href="https://github.com/fatiando/boule/pull/149">#149</a>)</p></li>
+<li><p>Update Black format to version 24.2 (<a class="reference external" href="https://github.com/fatiando/boule/pull/150">#150</a>)</p></li>
+<li><p>Use Burocrata to check/add license notices (<a class="reference external" href="https://github.com/fatiando/boule/pull/153">#153</a>)</p></li>
+<li><p>Use Dependabot to manage updates to GitHub Actions (<a class="reference external" href="https://github.com/fatiando/boule/pull/154">#154</a>)</p></li>
+<li><p>Use Trusted Publisher to deploy to PyPI (<a class="reference external" href="https://github.com/fatiando/boule/pull/160">#160</a>)</p></li>
+<li><p>Move package configuration to <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/171">#171</a>)</p></li>
+<li><p>Add link to Leo’s ORCID (<a class="reference external" href="https://github.com/fatiando/boule/pull/190">#190</a>)</p></li>
+<li><p>Extend support to Python 3.12 (<a class="reference external" href="https://github.com/fatiando/boule/pull/189">#189</a>)</p></li>
+<li><p>Run tests with oldest dependencies on x86 macos (<a class="reference external" href="https://github.com/fatiando/boule/pull/200">#200</a>)</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">_version_generated.py</span></code> for <code class="docutils literal notranslate"><span class="pre">_version.py</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/199">#199</a>)</p></li>
+<li><p>Move push to codecov to its own job in Actions (<a class="reference external" href="https://github.com/fatiando/boule/pull/203">#203</a>)</p></li>
+<li><p>Update how output variables are stored in Actions (<a class="reference external" href="https://github.com/fatiando/boule/pull/206">#206</a>)</p></li>
+<li><p>Replace <code class="docutils literal notranslate"><span class="pre">build</span></code> for <code class="docutils literal notranslate"><span class="pre">python-build</span></code> in environment.yml (<a class="reference external" href="https://github.com/fatiando/boule/pull/207">#207</a>)</p></li>
+</ul>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Update the version of Sphinx and its plugins (<a class="reference external" href="https://github.com/fatiando/boule/pull/170">#170</a>)</p></li>
+<li><p>Fix typo in installation instructions (<a class="reference external" href="https://github.com/fatiando/boule/pull/172">#172</a>)</p></li>
+<li><p>Update coordinate conversions web documentation (<a class="reference external" href="https://github.com/fatiando/boule/pull/212">#212</a>)</p></li>
+<li><p>Replace sphinx napoleon for numpydoc (<a class="reference external" href="https://github.com/fatiando/boule/pull/195">#195</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Leonardo Uieda</p></li>
+<li><p>Mark Wieczorek</p></li>
+<li><p>Santiago Soler</p></li>
+<li><p>Blazej Bucha</p></li>
+</ul>
+</section>
+<section id="version-0-4-1">
+<h2>Version 0.4.1<a class="headerlink" href="#version-0-4-1" title="Link to this heading">#</a></h2>
+<p>Released on: 2022/10/27</p>
+<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.7258175">https://doi.org/10.5281/zenodo.7258175</a></p>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Update contact link in the docs side bar (<a class="reference external" href="https://github.com/fatiando/boule/pull/141">#141</a>)</p></li>
+<li><p>Add definition of “co-located grids” to the glossary (<a class="reference external" href="https://github.com/fatiando/boule/pull/139">#139</a>)</p></li>
+<li><p>Fix typo in overview docs page (<a class="reference external" href="https://github.com/fatiando/boule/pull/137">#137</a>)</p></li>
+</ul>
+<p>Maintenance:</p>
+<ul class="simple">
+<li><p>Undo deprecation of coordinate conversion methods (<a class="reference external" href="https://github.com/fatiando/boule/pull/142">#142</a>)</p></li>
+<li><p>Drop support for Python 3.6 (<a class="reference external" href="https://github.com/fatiando/boule/pull/144">#144</a>)</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">serve</span></code> target in <code class="docutils literal notranslate"><span class="pre">doc/Makefile</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/136">#136</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Mariana Gomez</p></li>
+<li><p>Santiago Soler</p></li>
+<li><p>Leonardo Uieda</p></li>
+</ul>
+</section>
+<section id="version-0-4-0">
+<h2>Version 0.4.0<a class="headerlink" href="#version-0-4-0" title="Link to this heading">#</a></h2>
+<p>Released on: 2022/08/09</p>
+<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.6779998">https://doi.org/10.5281/zenodo.6779998</a></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p><strong>Boule v0.4.0 is the last release that is compatible with Python 3.6.</strong></p>
+</div>
+<p><strong>Backwards incompatible changes:</strong></p>
+<ul class="simple">
+<li><p>Refactor the <code class="docutils literal notranslate"><span class="pre">Sphere</span></code> class to not inherit from <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code>. Breaks backwards compatibility due to the removal of inherited methods and attributes (<a class="reference external" href="https://github.com/fatiando/boule/pull/129">#129</a>)</p></li>
+<li><p>Make all package modules private by adding a leading <code class="docutils literal notranslate"><span class="pre">_</span></code> to their name (<a class="reference external" href="https://github.com/fatiando/boule/pull/119">#119</a>)</p></li>
+<li><p>Rename the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.emm</span></code> attribute to <code class="docutils literal notranslate"><span class="pre">Ellipsoid._emm</span></code> to make it private (<a class="reference external" href="https://github.com/fatiando/boule/pull/123">#123</a>)</p></li>
+<li><p>Remove the <code class="docutils literal notranslate"><span class="pre">boule.test</span></code> function (<a class="reference external" href="https://github.com/fatiando/boule/pull/116">#116</a>)</p></li>
+</ul>
+<p>Deprecations:</p>
+<ul class="simple">
+<li><p>Deprecate the coordinate conversion methods which have been ported to the pymap3d library v2.9.0 (<a class="reference external" href="https://github.com/fatiando/boule/pull/126">#126</a>)</p></li>
+</ul>
+<p>New features:</p>
+<ul class="simple">
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">volume</span></code> property to <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/132">#132</a>)</p></li>
+<li><p>Add missing attributes to <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> for pymap3 compatibility (<a class="reference external" href="https://github.com/fatiando/boule/pull/121">#121</a>)</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">TriaxialEllipsoid</span></code> class with geometric parameters (<a class="reference external" href="https://github.com/fatiando/boule/pull/72">#72</a>)</p></li>
+<li><p>Add a normal gravitation method to <code class="docutils literal notranslate"><span class="pre">Sphere</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/73">#73</a>)</p></li>
+</ul>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Add a logo for Boule (<a class="reference external" href="https://github.com/fatiando/boule/pull/125">#125</a>)</p></li>
+<li><p>Refactor the documentation tutorials to shift the focus to how to do things with Boule and point to other pages for more of the theory (<a class="reference external" href="https://github.com/fatiando/boule/pull/130">#130</a>)</p></li>
+<li><p>Refactor documentation of <code class="docutils literal notranslate"><span class="pre">TriaxialEllipsoid</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/128">#128</a>)</p></li>
+<li><p>Refactor the documentation of <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/127">#127</a>)</p></li>
+<li><p>Fix formatting for code to pip install from GitHub (<a class="reference external" href="https://github.com/fatiando/boule/pull/118">#118</a>)</p></li>
+<li><p>Fix license link and compatibility warning in the README (<a class="reference external" href="https://github.com/fatiando/boule/pull/117">#117</a>)</p></li>
+<li><p>Use jupyter-sphinx instead of sphinx-gallery and update the documentation front page (<a class="reference external" href="https://github.com/fatiando/boule/pull/112">#112</a>)</p></li>
+<li><p>Point to our organization wide guides in the documentation (<a class="reference external" href="https://github.com/fatiando/boule/pull/108">#108</a>)</p></li>
+<li><p>Add an example calculating global gravity disturbances (<a class="reference external" href="https://github.com/fatiando/boule/pull/102">#102</a>)</p></li>
+<li><p>Update Sphinx version to 4.5.0 (<a class="reference external" href="https://github.com/fatiando/boule/pull/103">#103</a>)</p></li>
+</ul>
+<p>Maintenance:</p>
+<ul class="simple">
+<li><p>Convert the README to Markdown (<a class="reference external" href="https://github.com/fatiando/boule/pull/113">#113</a>)</p></li>
+<li><p>Specify oldest supported version of each dependency (<a class="reference external" href="https://github.com/fatiando/boule/pull/111">#111</a>)</p></li>
+<li><p>Move to <code class="docutils literal notranslate"><span class="pre">pyproject.toml/setup.cfg</span></code> with <code class="docutils literal notranslate"><span class="pre">build</span></code> instead of <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/110">#110</a>)</p></li>
+<li><p>Replace pylint with flake8 and some extensions (<a class="reference external" href="https://github.com/fatiando/boule/pull/109">#109</a>)</p></li>
+<li><p>Rename the git “master” branch to “main” (<a class="reference external" href="https://github.com/fatiando/boule/pull/107">#107</a>)</p></li>
+<li><p>Update code style to Black 22.3.0 (<a class="reference external" href="https://github.com/fatiando/boule/pull/104">#104</a>)</p></li>
+<li><p>Replace Google Analytics with Plausible for page visit statistics (<a class="reference external" href="https://github.com/fatiando/boule/pull/99">#99</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Agustina Pesce</p></li>
+<li><p>Chris Dinneen</p></li>
+<li><p>Leonardo Uieda</p></li>
+<li><p>Santiago Soler</p></li>
+</ul>
+</section>
+<section id="version-0-3-1">
+<h2>Version 0.3.1<a class="headerlink" href="#version-0-3-1" title="Link to this heading">#</a></h2>
+<p>Released on: 2021/10/19</p>
+<p>doi:<a class="reference external" href="https://doi.org/10.5281/zenodo.5577885">10.5281/zenodo.5577885</a></p>
+<p>Bug fix:</p>
+<ul class="simple">
+<li><p>Package the missing <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file in source distributions (<a class="reference external" href="https://github.com/fatiando/boule/pull/96">#96</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Leonardo Uieda</p></li>
+</ul>
+</section>
+<section id="version-0-3-0">
+<h2>Version 0.3.0<a class="headerlink" href="#version-0-3-0" title="Link to this heading">#</a></h2>
+<p>Released on: 2021/10/18</p>
+<p>doi:<a class="reference external" href="https://doi.org/10.5281/zenodo.5575827">10.5281/zenodo.5575827</a></p>
+<p>Highlights:</p>
+<ul class="simple">
+<li><p>Add support for Python 3.9 and 3.10 (<a class="reference external" href="https://github.com/fatiando/boule/pull/87">#87</a>)</p></li>
+<li><p>Add reference <code class="docutils literal notranslate"><span class="pre">Sphere</span></code> class for bodies with zero flattening (<a class="reference external" href="https://github.com/fatiando/boule/pull/42">#42</a>)</p></li>
+<li><p>Add spheroids for Venus (<a class="reference external" href="https://github.com/fatiando/boule/pull/68">#68</a>), Mercury, and the Earth’s Moon (<a class="reference external" href="https://github.com/fatiando/boule/pull/71">#71</a>)</p></li>
+</ul>
+<p>Enhancements:</p>
+<ul class="simple">
+<li><p>Warn users if normal gravity is being computed on internal point (<a class="reference external" href="https://github.com/fatiando/boule/pull/83">#83</a>)</p></li>
+<li><p>Add option to return normal gravity in SI units (<a class="reference external" href="https://github.com/fatiando/boule/pull/69">#69</a>)</p></li>
+<li><p>Add parameter validation for the <code class="docutils literal notranslate"><span class="pre">Sphere</span></code> class (<a class="reference external" href="https://github.com/fatiando/boule/pull/56">#56</a>)</p></li>
+<li><p>Add parameter validation for the <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> class (<a class="reference external" href="https://github.com/fatiando/boule/pull/45">#45</a>)</p></li>
+<li><p>Make parameter validation methods private (<a class="reference external" href="https://github.com/fatiando/boule/pull/55">#55</a>)</p></li>
+<li><p>Tests normal gravity against Somigliana equation (<a class="reference external" href="https://github.com/fatiando/boule/pull/51">#51</a>)</p></li>
+<li><p>Fix normal gravity equation of <code class="docutils literal notranslate"><span class="pre">Sphere</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/52">#52</a>)</p></li>
+<li><p>Fix missing centrifugal term for spheres at the equator (<a class="reference external" href="https://github.com/fatiando/boule/pull/48">#48</a>)</p></li>
+</ul>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Update documentation theme to sphinx-book-theme (<a class="reference external" href="https://github.com/fatiando/boule/pull/92">#92</a>)</p></li>
+<li><p>Add tutorial for geodetic to geocentric coordinate transformations (<a class="reference external" href="https://github.com/fatiando/boule/pull/84">#84</a>)</p></li>
+<li><p>Improvements to docstrings of Ellipsoid and Sphere (<a class="reference external" href="https://github.com/fatiando/boule/pull/49">#49</a>)</p></li>
+</ul>
+<p>Maintenance:</p>
+<ul class="simple">
+<li><p>Add Mariana Gomez to <code class="docutils literal notranslate"><span class="pre">AUTHORS.md</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/90">#90</a>)</p></li>
+<li><p>Add Chris Dinneen to <code class="docutils literal notranslate"><span class="pre">AUTHORS.md</span></code> (<a class="reference external" href="https://github.com/fatiando/boule/pull/74">#74</a>)</p></li>
+<li><p>Only run CI for Python 3.6 and 3.10 now that it’s out (<a class="reference external" href="https://github.com/fatiando/boule/pull/89">#89</a>)</p></li>
+<li><p>Update <code class="docutils literal notranslate"><span class="pre">setuptools_scm</span></code> configuration to save a <code class="docutils literal notranslate"><span class="pre">boule/_version.py</span></code> file instead of relying on <code class="docutils literal notranslate"><span class="pre">pkg_resources</span></code> to get the version number (<a class="reference external" href="https://github.com/fatiando/boule/pull/91">#91</a>)</p></li>
+<li><p>Use the OSI version of item 3 in the license (<a class="reference external" href="https://github.com/fatiando/boule/pull/70">#70</a>)</p></li>
+<li><p>Add license and copyright notice to every <code class="docutils literal notranslate"><span class="pre">.py</span></code> file (<a class="reference external" href="https://github.com/fatiando/boule/pull/67">#67</a>)</p></li>
+<li><p>Refactor GitHub Actions workflows to separate building the docs (<a class="reference external" href="https://github.com/fatiando/boule/pull/65">#65</a>)</p></li>
+<li><p>Replace versioneer with setuptools-scm (<a class="reference external" href="https://github.com/fatiando/boule/pull/61">#61</a>)</p></li>
+<li><p>Remove configuration files for unused CI (<a class="reference external" href="https://github.com/fatiando/boule/pull/60">#60</a>)</p></li>
+<li><p>Replace Travis and Azure with GitHub Actions (<a class="reference external" href="https://github.com/fatiando/boule/pull/57">#57</a>)</p></li>
+<li><p>Add conda-forge badge to the README (<a class="reference external" href="https://github.com/fatiando/boule/pull/40">#40</a>)</p></li>
+<li><p>Format the <code class="docutils literal notranslate"><span class="pre">doc/conf.py</span></code> file with Black (<a class="reference external" href="https://github.com/fatiando/boule/pull/41">#41</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Chris Dinneen</p></li>
+<li><p>Mariana Gomez</p></li>
+<li><p>Hugo van Kemenade</p></li>
+<li><p>Lu Li</p></li>
+<li><p>Santiago Soler</p></li>
+<li><p>Leonardo Uieda</p></li>
+</ul>
+</section>
+<section id="version-0-2-0">
+<h2>Version 0.2.0<a class="headerlink" href="#version-0-2-0" title="Link to this heading">#</a></h2>
+<p>Released on: 2020/07/10</p>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3939204"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3939204.svg" /></a>
+<ul class="simple">
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.geocentric_radius</span></code> method to calculate the distance from the center of the ellipsoid to its surface as a function of latitude (geodetic or geocentric). (<a class="reference external" href="https://github.com/fatiando/boule/pull/37">#37</a>)</p></li>
+<li><p>Add the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.prime_vertical_radius</span></code> method for computing the prime vertical radius (usually represented by N in equations) as a function of geodetic latitude. (<a class="reference external" href="https://github.com/fatiando/boule/pull/35">#35</a>)</p></li>
+<li><p>Fix typo in README contributing section (<a class="reference external" href="https://github.com/fatiando/boule/pull/32">#32</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Leonardo Uieda</p></li>
+<li><p>Rowan Cockett</p></li>
+<li><p>Santiago Soler</p></li>
+</ul>
+</section>
+<section id="version-0-1-1">
+<h2>Version 0.1.1<a class="headerlink" href="#version-0-1-1" title="Link to this heading">#</a></h2>
+<p>Released on: 2020/01/10</p>
+<p>This release contains only a documentation fix: include install instructions
+for conda and pip. No functionality has been changed (hence, no DOI was
+issued).</p>
+</section>
+<section id="version-0-1-0">
+<h2>Version 0.1.0<a class="headerlink" href="#version-0-1-0" title="Link to this heading">#</a></h2>
+<p>Released on: 2020/01/10</p>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3603997"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3603997.svg" /></a>
+<p>First release of <em>Boule</em> including basic functionality:</p>
+<ul class="simple">
+<li><p>Definition of the <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> class: based on the semi-major axis,
+flattening, geocentric gravitational constant, and angular velocity. Other
+quantities are derived from these 4.</p></li>
+<li><p>Computation of normal gravity and coordinate conversions between geodetic and
+geocentric.</p></li>
+<li><p>Ellipsoid realizations for the Earth (WGS84 and GRS80) and Mars.</p></li>
+</ul>
+</section>
+<section id="version-0-0-1">
+<h2>Version 0.0.1<a class="headerlink" href="#version-0-0-1" title="Link to this heading">#</a></h2>
+<p>Released on: 2019/11/06</p>
+<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3530750"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3530750.svg" /></a>
+<p>This release is a placeholder that serves as a marker for the start of this
+project. It is used to register the project on PyPI and test the continuous
+integration deployment process.</p>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="references.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">References</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="compatibility.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Version compatibility</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-5-0">Version 0.5.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-1">Version 0.4.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-0">Version 0.4.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-3-1">Version 0.3.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-3-0">Version 0.3.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-2-0">Version 0.2.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-1-1">Version 0.1.1</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-1-0">Version 0.1.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-0-1">Version 0.0.1</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, The Boule Developers.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Oct 22, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,1083 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="./" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    
+        <title>Available ellipsoids | Boule v0.5.0</title>
+    
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/custom.css?v=12168cd1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=888ff710"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/thebelab-helper.js"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'ellipsoids';</script>
+    <link rel="icon" href="_static/favicon.png"/>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Citing Boule" href="citing.html" />
+    <link rel="prev" title="boule.TriaxialEllipsoid" href="api/generated/boule.TriaxialEllipsoid.html" />
+    <!-- Plausible analytics for anonymous usage statistics -->
+    <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Boule <span class="project-version">v0.5.0</span></p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="user_guide/normal_gravity.html">Normal gravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/gravity_disturbance.html">Gravity disturbances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/coordinates.html">Coordinate conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="user_guide/defining_ellipsoids.html">Defining custom ellipsoids</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference Documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="api/index.html">List of functions and classes (API)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Sphere.html">boule.Sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Available ellipsoids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing Boule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compatibility.html">Version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="versions.html">Documentation for other versions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/edit/main/doc/ellipsoids.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2Fellipsoids.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="_sources/ellipsoids.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Available ellipsoids</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mercury">Mercury</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#venus">Venus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#earth-moon-system">Earth-Moon system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mars">Mars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ceres">(1) Ceres</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vesta">(4) Vesta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupiter-system">Jupiter system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saturn-system">Saturn system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pluto-system">Pluto system</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="available-ellipsoids">
+<span id="ellipsoids"></span><h1>Available ellipsoids<a class="headerlink" href="#available-ellipsoids" title="Link to this heading">#</a></h1>
+<p>These are the available ellipsoids and their corresponding defining parameters.</p>
+<p>All ellipsoids are instances of the <a class="reference internal" href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ellipsoid</span></code></a>,
+<a class="reference internal" href="api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphere</span></code></a>, or <a class="reference internal" href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid" title="boule.TriaxialEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">TriaxialEllipsoid</span></code></a> classes. See the
+class documentations for a list their derived physical properties (attributes)
+and computations/transformations that they can perform (methods).</p>
+<div class="hint admonition">
+<p class="admonition-title">Help!</p>
+<p>If an ellipsoid you need isn’t in Boule yet, please <a class="reference external" href="https://www.fatiando.org/contact">reach out</a> to the team and consider adding it
+yourself. It requires no special knowledge of the code and is a great way
+to help the project!</p>
+</div>
+<div class="jupyter_cell docutils container">
+<div class="cell_output docutils container">
+</div>
+</div>
+<section id="mercury">
+<h2>Mercury<a class="headerlink" href="#mercury" title="Link to this heading">#</a></h2>
+<p><strong>Mercury2015</strong>: Mercury spheroid using parameters from <a class="reference internal" href="references.html#wieczorek2015" id="id1"><span>[Wieczorek2015]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Mercury2015</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mercury2015 - Mercury spheroid (2015)
+Spheroid:
+  • Radius: 2439372 m
+  • GM: 22031839224000.0 m³/s²
+  • Angular velocity: 1.2400172589e-06 rad/s
+Source:
+  Wieczorek, MA (2015). 10.05 - Gravity and Topography of the
+    Terrestrial Planets, Treatise of Geophysics (Second Edition);
+    Elsevier. https://doi.org/10.1016/B978-0-444-53802-4.00169-X
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Mercury2024</strong>: Mercury spheroid using parameters from <a class="reference internal" href="references.html#maia2024" id="id2"><span>[Maia2024]</span></a> and
+<a class="reference internal" href="references.html#mazarico2014" id="id3"><span>[Mazarico2014]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Mercury2024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mercury2024 - Mercury spheroid (2024)
+Spheroid:
+  • Radius: 2439472.7 m
+  • GM: 22031815411154.895 m³/s²
+  • Angular velocity: 1.2400141739494342e-06 rad/s
+Source:
+  Radius: Maia, J. (2024). Spherical harmonic models of the shape of
+    Mercury [Data set]. Zenodo. https://doi.org/10.5281/zenodo.10809345
+  GM, angular velocity: Mazarico, E., et al. (2014), The gravity field,
+    orientation, and ephemeris of Mercury from MESSENGER observations
+    after three years in orbit, J. Geophys. Res. Planets, 119,
+    2417-2436. https://doi.org/10.1002/2014JE004675
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="venus">
+<h2>Venus<a class="headerlink" href="#venus" title="Link to this heading">#</a></h2>
+<p><strong>Venus2015</strong>: Venus spheroid using parameters from <a class="reference internal" href="references.html#wieczorek2015" id="id4"><span>[Wieczorek2015]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Venus2015</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Venus2015 - Venus spheroid (2015)
+Spheroid:
+  • Radius: 6051878 m
+  • GM: 324858592000000.0 m³/s²
+  • Angular velocity: -2.9924e-07 rad/s
+Source:
+  Wieczorek, MA (2015). 10.05 - Gravity and Topography of the
+    Terrestrial Planets, Treatise of Geophysics (Second Edition);
+    Elsevier. https://doi.org/10.1016/B978-0-444-53802-4.00169-X
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="earth-moon-system">
+<h2>Earth-Moon system<a class="headerlink" href="#earth-moon-system" title="Link to this heading">#</a></h2>
+<p><strong>GRS80</strong>: The Geodetic Reference System (1980) ellipsoid as defined by the
+values given in <a class="reference internal" href="references.html#hofmannwellenhofmoritz2006" id="id5"><span>[HofmannWellenhofMoritz2006]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">GRS80</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>GRS80 - Geodetic Reference System (1980)
+Oblate ellipsoid:
+  • Semimajor axis: 6378137 m
+  • Flattening: 0.003352810681182319
+  • GM: 398600500000000.0 m³/s²
+  • Angular velocity: 7.292115e-05 rad/s
+Source:
+  Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy (2nd,
+    corr. ed. 2006 edition ed.). Wien; New York: Springer.
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>WGS84</strong>: The World Geodetic System (1984) ellipsoid as defined by the values
+given in <a class="reference internal" href="references.html#hofmannwellenhofmoritz2006" id="id6"><span>[HofmannWellenhofMoritz2006]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">WGS84</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>WGS84 - World Geodetic System (1984)
+Oblate ellipsoid:
+  • Semimajor axis: 6378137 m
+  • Flattening: 0.0033528106647474805
+  • GM: 398600441800000.0 m³/s²
+  • Angular velocity: 7.292115e-05 rad/s
+Source:
+  Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy (2nd,
+    corr. ed. 2006 edition ed.). Wien; New York: Springer.
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>EGM96</strong>: Earth Gravitational Model (1996) ellipsoid as defined by the values
+given in <a class="reference internal" href="references.html#lemoine1998" id="id7"><span>[Lemoine1998]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">EGM96</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>EGM96 - Earth Gravitational Model (1996)
+Oblate ellipsoid:
+  • Semimajor axis: 6378136.3 m
+  • Flattening: 0.003352819752990295
+  • GM: 398600441500000.0 m³/s²
+  • Angular velocity: 7.292115e-05 rad/s
+Source:
+  Lemoine, F. G., et al. (1998). The Development of the Joint NASA GSFC
+    and the National Imagery and Mapping Agency (NIMA) Geopotential
+    Model EGM96. NASA Goddard Space Flight Center, NASA/TP 1998-206861.
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Moon2015</strong>: Spheroid of Earth’s Moon using parameters from <a class="reference internal" href="references.html#wieczorek2015" id="id8"><span>[Wieczorek2015]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Moon2015</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Moon2015 - Moon spheroid (2015)
+Spheroid:
+  • Radius: 1737151 m
+  • GM: 4902800070000.0 m³/s²
+  • Angular velocity: 2.6617073e-06 rad/s
+Source:
+  Wieczorek, MA (2015). 10.05 - Gravity and Topography of the
+    Terrestrial Planets, Treatise of Geophysics (Second Edition);
+    Elsevier. https://doi.org/10.1016/B978-0-444-53802-4.00169-X
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="mars">
+<h2>Mars<a class="headerlink" href="#mars" title="Link to this heading">#</a></h2>
+<p><strong>Mars2009</strong>: Mars ellipsoid using parameters from <a class="reference internal" href="references.html#ardalan2009" id="id9"><span>[Ardalan2009]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Mars2009</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Mars2009 - Mars ellipsoid (2009)
+Oblate ellipsoid:
+  • Semimajor axis: 3395428 m
+  • Flattening: 0.005227617843759314
+  • GM: 42828372000000.0 m³/s²
+  • Angular velocity: 7.0882181e-05 rad/s
+Source:
+  Ardalan, A. A., Karimi, R., &amp; Grafarend, E. W. (2009). A New Reference
+    Equipotential Surface, and Reference Ellipsoid for the Planet Mars.
+    Earth, Moon, and Planets, 106, 1-13.
+    https://doi.org/10.1007/s11038-009-9342-7
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="ceres">
+<h2>(1) Ceres<a class="headerlink" href="#ceres" title="Link to this heading">#</a></h2>
+<p><strong>Ceres2018</strong>: Ceres ellipsoid using parameters from <a class="reference internal" href="references.html#konopliv2018" id="id10"><span>[Konopliv2018]</span></a> and <a class="reference internal" href="references.html#park2019" id="id11"><span>[Park2019]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Ceres2018</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Ceres2018 - Ceres ellipsoid (2018)
+Oblate ellipsoid:
+  • Semimajor axis: 482100 m
+  • Flattening: 0.9990750051856462
+  • GM: 62629053612.1 m³/s²
+  • Angular velocity: 0.00019234038694078873 rad/s
+Source:
+  Semimajor axis, flattening: Park, R. S., et al. (2019). High-
+    resolution shape model of Ceres from stereophotoclinometry using
+    Dawn Imaging Data. Icarus, 319, 812–827.
+    https://doi.org/10.1016/j.icarus.2018.10.024
+  GM, angular velocity: Konopliv, A. S., et al. (2018). The Ceres
+    gravity field, spin pole, rotation period and orbit from the Dawn
+    radiometric tracking and optical data. Icarus, 299, 411–429.
+    https://doi.org/10.1016/j.icarus.2017.08.005
+Comments:
+  Geocentric ellipsoid with aligned semiminor and rotation axes
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="vesta">
+<h2>(4) Vesta<a class="headerlink" href="#vesta" title="Link to this heading">#</a></h2>
+<p><strong>Vesta2017</strong>: Vesta ellipsoid using parameters from <a class="reference internal" href="references.html#karimi2017" id="id12"><span>[Karimi2017]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Vesta2017</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Vesta2017 - Vesta reference ellipsoid (2017)
+Oblate ellipsoid:
+  • Semimajor axis: 278556 m
+  • Flattening: 0.17459684946653456
+  • GM: 17288000000.0 m³/s²
+  • Angular velocity: 0.0003267 rad/s
+Source:
+  Karimi, R., Azmoudeh Ardalan, A., &amp; Vasheghani Farahani, S. (2017).
+    The size, shape and orientation of the asteroid Vesta based on data
+    from the Dawn mission. Earth and Planetary Science Letters, 475,
+    71–82. https://doi.org/10.1016/j.epsl.2017.07.033
+Comments:
+  Geocentric biaxial ellipsoid
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>VestaTriaxial2017</strong>: Vesta triaxial ellipsoid using parameters from <a class="reference internal" href="references.html#karimi2017" id="id13"><span>[Karimi2017]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">VestaTriaxial2017</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>VestaTriaxial2017 - Vesta triaxial reference ellipsoid (2017)
+Triaxial ellipsoid:
+  • Semimajor axis: 280413 m
+  • Semimedium axis: 274572 m
+  • Semiminor axis: 231253 m
+  • Semimajor axis longitude: 8.29°
+  • GM: 17288000000.0 m³/s²
+  • Angular velocity: 0.0003267 rad/s
+Source:
+  Karimi, R., Azmoudeh Ardalan, A., &amp; Vasheghani Farahani, S. (2017).
+    The size, shape and orientation of the asteroid Vesta based on data
+    from the Dawn mission. Earth and Planetary Science Letters, 475,
+    71–82. https://doi.org/10.1016/j.epsl.2017.07.033
+Comments:
+  Geocentric triaxial ellipsoid
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="jupiter-system">
+<h2>Jupiter system<a class="headerlink" href="#jupiter-system" title="Link to this heading">#</a></h2>
+<p><strong>Io2024</strong>: Io triaxial ellipsoid using parameters from <a class="reference internal" href="references.html#thomas1998" id="id14"><span>[Thomas1998]</span></a>,
+<a class="reference internal" href="references.html#anderson2001" id="id15"><span>[Anderson2001]</span></a>, and <a class="reference internal" href="references.html#jacobson2021" id="id16"><span>[Jacobson2021]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Io2024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Io2024 - Io equilibrium triaxial ellipsoid (2024)
+Triaxial ellipsoid:
+  • Semimajor axis: 1829700 m
+  • Semimedium axis: 1819200 m
+  • Semiminor axis: 1815800 m
+  • Semimajor axis longitude: 0.0°
+  • GM: 5959910000000.0 m³/s²
+  • Angular velocity: 4.125530833185668e-05 rad/s
+Source:
+  Semi-axis: Thomas, P. C., et al. (1998). The Shape of Io from Galileo
+    Limb Measurements. Icarus, 135(1), 175–180.
+    https://doi.org/10.1006/icar.1998.5987
+  GM: Anderson, J. D., et al. (2001). Io&#39;s gravity field and interior
+    structure. J. Geophys. Res., 106, 32963–32969.
+    https://doi.org/10.1029/2000JE001367
+  Angular velocity: R. A. Jacobson (2021), The Orbits of the Regular
+    Jovian Satellites and the Orientation of the Pole of Jupiter,
+    personal communication to Horizons/NAIF. Accessed via JPL Solar
+    System Dynamics, https://ssd.jpl.nasa.gov, JUP365.
+Comments:
+  Best-fit equilibrium shape
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Europa2024</strong>: Europa triaxial ellipsoid using parameters from <a class="reference internal" href="references.html#nimmo2007" id="id17"><span>[Nimmo2007]</span></a>,
+<a class="reference internal" href="references.html#anderson1998" id="id18"><span>[Anderson1998]</span></a>, and <a class="reference internal" href="references.html#jacobson2021" id="id19"><span>[Jacobson2021]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Europa2024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Europa2024 - Europa equilibrium triaxial ellipsoid (2024)
+Triaxial ellipsoid:
+  • Semimajor axis: 1562600 m
+  • Semimedium axis: 1560100 m
+  • Semiminor axis: 1559300 m
+  • Semimajor axis longitude: 0.0°
+  • GM: 3202720000000.0 m³/s²
+  • Angular velocity: 2.0627660016976607e-05 rad/s
+Source:
+  Semi-axis: Nimmo, F., et al. (2007). The global shape of Europa:
+    Constraints on lateral shell thickness variations. Icarus, 191(1),
+    183–192. https://doi.org/10.1016/j.icarus.2007.04.021
+  GM: Anderson, J. D., et al. (1998). Europa&#39;s differentiated internal
+    structure: Inferences from four Galileo encounters. Science, 281,
+    2019–2022. https://doi.org/10.1126/science.281.5385.2019
+  Angular velocity: R. A. Jacobson (2021), The Orbits of the Regular
+    Jovian Satellites and the Orientation of the Pole of Jupiter,
+    personal communication to Horizons/NAIF. Accessed via JPL Solar
+    System Dynamics, https://ssd.jpl.nasa.gov, JUP365.
+Comments:
+  Best-fit hydrostatic ellipsoid (nominal)
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Ganymede2024</strong>: Ganymede triaxial ellipsoid using parameters from <a class="reference internal" href="references.html#zubarev2015" id="id20"><span>[Zubarev2015]</span></a>,
+<a class="reference internal" href="references.html#gomezcasajus2022" id="id21"><span>[GomezCasajus2022]</span></a>, and <a class="reference internal" href="references.html#jacobson2021" id="id22"><span>[Jacobson2021]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Ganymede2024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Ganymede2024 - Ganymede equilibrium triaxial ellipsoid (2024)
+Triaxial ellipsoid:
+  • Semimajor axis: 2634770 m
+  • Semimedium axis: 2632380 m
+  • Semiminor axis: 2631590 m
+  • Semimajor axis longitude: 0.0°
+  • GM: 9887804180701.826 m³/s²
+  • Angular velocity: 1.0162973632136227e-05 rad/s
+Source:
+  Semi-axis: Zubarev, A., et al. (2015). New Ganymede control point
+    network and global shape model. Planetary and Space Science, 117,
+    246–249. https://doi.org/10.1016/j.pss.2015.06.022
+  GM: Gomez Casajus, L., et al. (2022). Gravity Field of Ganymede After
+    the Juno Extended Mission. Geophysical Research Letters, 49(24),
+    e2022GL099475. https://doi.org/doi:10.1029/2022GL099475
+  Angular velocity: R. A. Jacobson (2021), The Orbits of the Regular
+    Jovian Satellites and the Orientation of the Pole of Jupiter,
+    personal communication to Horizons/NAIF. Accessed via JPL Solar
+    System Dynamics, https://ssd.jpl.nasa.gov, JUP365.
+Comments:
+  Equilibrium ellipsoid III
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Callisto2024</strong>: Callisto spheroid using parameters from <a class="reference internal" href="references.html#anderson2001b" id="id23"><span>[Anderson2001b]</span></a>
+and <a class="reference internal" href="references.html#jacobson2021" id="id24"><span>[Jacobson2021]</span></a>:</p>
+<blockquote>
+<div><div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Callisto2024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Callisto2024 - Callisto spheroid (2024)
+Spheroid:
+  • Radius: 2410300 m
+  • GM: 7179292000000.0 m³/s²
+  • Angular velocity: 4.357108150919352e-06 rad/s
+Source:
+  Radius, GM: Anderson, J. D., et al. (2001). Shape, mean radius,
+    gravity field, and interior structure of Callisto. Icarus, 153(1),
+    157–161. https://doi.org/10.1006/icar.2001.6664
+  Angular velocity: Satellites and the Orientation of the Pole of
+    Jupiter, personal communication to Horizons/NAIF. Accessed via JPL
+    Solar System Dynamics, https://ssd.jpl.nasa.gov, JUP365.
+</pre></div>
+</div>
+</div>
+</div>
+</div></blockquote>
+</section>
+<section id="saturn-system">
+<h2>Saturn system<a class="headerlink" href="#saturn-system" title="Link to this heading">#</a></h2>
+<p><strong>Enceladus2024</strong>: Enceladus triaxial ellipsoid using parameters from <a class="reference internal" href="references.html#park2024" id="id25"><span>[Park2024]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Enceladus2024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Enceladus2024 - Enceladus triaxial ellipsoid (2024)
+Triaxial ellipsoid:
+  • Semimajor axis: 256140 m
+  • Semimedium axis: 251160 m
+  • Semiminor axis: 248680 m
+  • Semimajor axis longitude: 0.0°
+  • GM: 7210443000.0 m³/s²
+  • Angular velocity: 5.3073338876632056e-05 rad/s
+Source:
+  Park, R. S., et al. (2024). The Global Shape, Gravity Field, and
+    Libration of Enceladus. Journal of Geophysical Research: Planets,
+    129(1), e2023JE008054. https://doi.org/10.1029/2023JE008054
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Titan2024</strong>: Titan triaxial ellipsoid using parameters from <a class="reference internal" href="references.html#corlies2017" id="id26"><span>[Corlies2017]</span></a>,
+<a class="reference internal" href="references.html#durante2019" id="id27"><span>[Durante2019]</span></a>, and <a class="reference internal" href="references.html#jacobson2022" id="id28"><span>[Jacobson2022]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Titan2024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Titan2024 - Titan triaxial ellipsoid (2024)
+Triaxial ellipsoid:
+  • Semimajor axis: 2575164 m
+  • Semimedium axis: 2574720 m
+  • Semiminor axis: 2574314 m
+  • Semimajor axis longitude: 0.0°
+  • GM: 8978138300000.0 m³/s²
+  • Angular velocity: 4.56067789167356e-06 rad/s
+Source:
+  Semi-axis: Corlies, P., et al. (2017). Titan’s Topography and Shape at
+    the End of the Cassini Mission. Geophysical Research Letters,
+    44(23), 11,754-11,761. https://doi.org/10.1002/2017GL075518
+  GM: Durante, D., et al. (2019). Titan’s gravity field and interior
+    structure after Cassini. Icarus, 326, 123–132.
+    https://doi.org/10.1016/j.icarus.2019.03.003
+  Angular velocity: Jacobson, R. (2022). The Orbits of the Main
+    Saturnian Satellites, the Saturnian System Gravity Field, and the
+    Orientation of Saturn&#39;s Pole. The Astronomical Journal, 164, 199.
+    https://doi.org/10.3847/1538-3881/ac90c9
+Comments:
+  Fit to ellipsoid shape (not derived from spherical harmonic
+  coefficients)
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="pluto-system">
+<h2>Pluto system<a class="headerlink" href="#pluto-system" title="Link to this heading">#</a></h2>
+<p><strong>Pluto2024</strong>: Pluto spheroid using parameters from <a class="reference internal" href="references.html#nimmo2017" id="id29"><span>[Nimmo2017]</span></a> and <a class="reference internal" href="references.html#brozovic2015" id="id30"><span>[Brozović2015]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Pluto2024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Pluto2024 - Pluto spheroid (2024)
+Spheroid:
+  • Radius: 1188300 m
+  • GM: 869600000000.0 m³/s²
+  • Angular velocity: 1.1385591834674098e-05 rad/s
+Source:
+  Radius: Nimmo, et al. (2017). Mean radius and shape of Pluto and
+    Charon from New Horizons images. Icarus, 287, 12–29.
+    https://doi.org/10.1016/j.icarus.2016.06.027
+  GM, angular velocity: Brozović, M., et al. (2015). The orbits and
+    masses of satellites of Pluto. Icarus, 246, 317–329.
+    https://doi.org/10.1016/j.icarus.2014.03.015
+</pre></div>
+</div>
+</div>
+</div>
+<p><strong>Charon2024</strong>: Charon spheroid using parameters from <a class="reference internal" href="references.html#nimmo2017" id="id31"><span>[Nimmo2017]</span></a> and <a class="reference internal" href="references.html#brozovic2015" id="id32"><span>[Brozović2015]</span></a>:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="n">boule</span><span class="o">.</span><span class="n">Charon2024</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Charon2024 - Charon spheroid (2024)
+Spheroid:
+  • Radius: 606000 m
+  • GM: 105880000000.0 m³/s²
+  • Angular velocity: 1.1385591834674097e-55 rad/s
+Source:
+  Radius: Nimmo, et al. (2017). Mean radius and shape of Pluto and
+    Charon from New Horizons images. Icarus, 287, 12–29.
+    https://doi.org/10.1016/j.icarus.2016.06.027
+  GM, angular velocity: Brozović, M., et al. (2015). The orbits and
+    masses of satellites of Pluto. Icarus, 246, 317–329.
+    https://doi.org/10.1016/j.icarus.2014.03.015
+</pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="api/generated/boule.TriaxialEllipsoid.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">boule.TriaxialEllipsoid</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="citing.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Citing Boule</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mercury">Mercury</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#venus">Venus</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#earth-moon-system">Earth-Moon system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#mars">Mars</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#ceres">(1) Ceres</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#vesta">(4) Vesta</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#jupiter-system">Jupiter system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#saturn-system">Saturn system</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pluto-system">Pluto system</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, The Boule Developers.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Oct 22, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
