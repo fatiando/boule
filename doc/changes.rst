@@ -3,6 +3,63 @@
 Changelog
 =========
 
+Version 0.5.0
+-------------
+
+Released on: 2024/10/22
+
+doi: https://doi.org/10.5281/zenodo.13975491
+
+Breaking changes:
+
+-  Drop support for Python 3.7 (`#188 <https://github.com/fatiando/boule/pull/188>`__)
+
+New features:
+
+-  Add ``geocentric_radius`` to ``TriaxialEllipsoid`` (`#146 <https://github.com/fatiando/boule/pull/146>`__)
+-  Add a ``volume`` property for the Sphere (`#152 <https://github.com/fatiando/boule/pull/152>`__)
+-  Add ``mass``, ``mean_density``, and ``volume_equivalent_radius`` properties to classes (`#173 <https://github.com/fatiando/boule/pull/173>`__)
+-  Add true mean radius for ``Sphere``, ``Ellipsoid`` and ``TriaxialEllipsoid`` (`#177 <https://github.com/fatiando/boule/pull/177>`__)
+-  Add ``area`` and ``area_equivalent_radius`` to all three ellipsoid classes (`#178 <https://github.com/fatiando/boule/pull/178>`__)
+-  Add new planetary ellipsoids and new naming scheme (`#180 <https://github.com/fatiando/boule/pull/180>`__)
+-  Add attributes for the normal potential to ``Sphere`` and ``Ellipsoid`` (`#184 <https://github.com/fatiando/boule/pull/184>`__)
+-  Add ``normal_gravitational_potential``, ``normal_gravity_potential``, and ``centrifugal_potential`` methods to ``Ellipsoid`` and ``Sphere`` classes (`#187 <https://github.com/fatiando/boule/pull/187>`__)
+-  Add the ``semimedium_axis`` and ``semimajor_axis_longitude`` to the Sphere and Ellipsoid classes for compatibility with the ``TriaxialEllipsoid`` (`#192 <https://github.com/fatiando/boule/pull/192>`__)
+-  Add ``__str__`` method to Ellipsoid classes (`#213 <https://github.com/fatiando/boule/pull/213>`__)
+
+Maintenance:
+
+-  Extend support for Python 3.11 (`#147 <https://github.com/fatiando/boule/pull/147>`__)
+-  Add Blazej Bucha to ``AUTHORS.md`` (`#148 <https://github.com/fatiando/boule/pull/148>`__)
+-  Update Leo’s affiliation from Liverpool to São Paulo (`#149 <https://github.com/fatiando/boule/pull/149>`__)
+-  Update Black format to version 24.2 (`#150 <https://github.com/fatiando/boule/pull/150>`__)
+-  Use Burocrata to check/add license notices (`#153 <https://github.com/fatiando/boule/pull/153>`__)
+-  Use Dependabot to manage updates to GitHub Actions (`#154 <https://github.com/fatiando/boule/pull/154>`__)
+-  Use Trusted Publisher to deploy to PyPI (`#160 <https://github.com/fatiando/boule/pull/160>`__)
+-  Move package configuration to ``pyproject.toml`` (`#171 <https://github.com/fatiando/boule/pull/171>`__)
+-  Add link to Leo’s ORCID (`#190 <https://github.com/fatiando/boule/pull/190>`__)
+-  Extend support to Python 3.12 (`#189 <https://github.com/fatiando/boule/pull/189>`__)
+-  Run tests with oldest dependencies on x86 macos (`#200 <https://github.com/fatiando/boule/pull/200>`__)
+-  Replace ``_version_generated.py`` for ``_version.py`` (`#199 <https://github.com/fatiando/boule/pull/199>`__)
+-  Move push to codecov to its own job in Actions (`#203 <https://github.com/fatiando/boule/pull/203>`__)
+-  Update how output variables are stored in Actions (`#206 <https://github.com/fatiando/boule/pull/206>`__)
+-  Replace ``build`` for ``python-build`` in environment.yml (`#207 <https://github.com/fatiando/boule/pull/207>`__)
+
+Documentation:
+
+-  Update the version of Sphinx and its plugins (`#170 <https://github.com/fatiando/boule/pull/170>`__)
+-  Fix typo in installation instructions (`#172 <https://github.com/fatiando/boule/pull/172>`__)
+-  Update coordinate conversions web documentation (`#212 <https://github.com/fatiando/boule/pull/212>`__)
+-  Replace sphinx napoleon for numpydoc (`#195 <https://github.com/fatiando/boule/pull/195>`__)
+
+This release contains contributions from:
+
+-  Leonardo Uieda
+-  Mark Wieczorek
+-  Santiago Soler
+-  Blazej Bucha
+
+
 Version 0.4.1
 -------------
 
