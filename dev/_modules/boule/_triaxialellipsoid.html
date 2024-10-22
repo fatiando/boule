@@ -2,7 +2,9 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../../" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,369 +12,342 @@
         <title>boule._triaxialellipsoid | Boule dev</title>
     
 
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=12168cd1" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/thebelab-helper.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/boule/_triaxialellipsoid';</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <!-- Plausible analytics for anonymous usage statistics -->
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
         
       
-      
-      <img src="../../_static/boule-logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Boule <span class="project-version">dev</span></h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Getting Started
- </span>
-</p>
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Boule <span class="project-version">dev</span></p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../overview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../install.html">
-   Installing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  User Guide
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/normal_gravity.html">
-   Normal gravity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/gravity_disturbance.html">
-   Gravity disturbances
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/coordinates.html">
-   Coordinate conversions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/defining_ellipsoids.html">
-   Defining custom ellipsoids
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/normal_gravity.html">Normal gravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/gravity_disturbance.html">Gravity disturbances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/coordinates.html">Coordinate conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/defining_ellipsoids.html">Defining custom ellipsoids</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference Documentation
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference Documentation</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../api/index.html">
-   List of functions and classes (API)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/boule.Ellipsoid.html">
-     boule.Ellipsoid
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/boule.Sphere.html">
-     boule.Sphere
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/boule.TriaxialEllipsoid.html">
-     boule.TriaxialEllipsoid
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../ellipsoids.html">
-   Available ellipsoids
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../citing.html">
-   Citing Boule
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../references.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../changes.html">
-   Changelog
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../compatibility.html">
-   Version compatibility
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../versions.html">
-   Documentation for other versions
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api/index.html">List of functions and classes (API)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/generated/boule.Sphere.html">boule.Sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Community
- </span>
-</p>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ellipsoids.html">Available ellipsoids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Boule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compatibility.html">Version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../versions.html">Documentation for other versions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://www.fatiando.org/contact">
-   Join the community
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">
-   How to contribute
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">
-   Code of Conduct
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule">
-   Source code on GitHub
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://www.fatiando.org">
-   The Fatiando a Terra project
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2F_modules/boule/_triaxialellipsoid.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
 
 
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/fatiando/boule"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
       
-      <li>
-        <a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2F_modules/boule/_triaxialellipsoid.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
+    </div>
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
 </div>
+</div>
+              
+              
 
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <h1>Source code for boule._triaxialellipsoid</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Copyright (c) 2019 The Boule Developers.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
@@ -383,23 +358,31 @@ title="Open an issue"
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Define a reference triaxial ellipsoid.</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
 
 <span class="kn">import</span> <span class="nn">attr</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">scipy.special</span>
+
+<span class="kn">from</span> <span class="nn">._constants</span> <span class="kn">import</span> <span class="n">G</span>
 
 
 <span class="c1"># Don&#39;t let ellipsoid parameters be changed to avoid messing up calculations</span>
 <span class="c1"># accidentally.</span>
-<div class="viewcode-block" id="TriaxialEllipsoid"><a class="viewcode-back" href="../../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid">[docs]</a><span class="nd">@attr</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="viewcode-block" id="TriaxialEllipsoid">
+<a class="viewcode-back" href="../../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid">[docs]</a>
+<span class="nd">@attr</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">TriaxialEllipsoid</span><span class="p">:</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A rotating triaxial ellipsoid.</span>
 
 <span class="sd">    The ellipsoid is defined by five parameters: semimajor axis, semimedium</span>
 <span class="sd">    axis, semiminor axis, geocentric gravitational constant, and angular</span>
-<span class="sd">    velocity The thee semi-axis are different and the ellipsoid spins around</span>
-<span class="sd">    it&#39;s largest moment of inertia.</span>
+<span class="sd">    velocity. The ellipsoid spins around it&#39;s smallest semiminor axis, which</span>
+<span class="sd">    is aligned with the Cartesian z coordinate axis. The semimajor and</span>
+<span class="sd">    semimedium axes are in the x-y plane, and if not specified otherwise,</span>
+<span class="sd">    coincide with the Cartesian x and y axes.</span>
 
 <span class="sd">    **This class is read-only:** Input parameters and attributes cannot be</span>
 <span class="sd">    changed after instantiation.</span>
@@ -408,7 +391,7 @@ title="Open an issue"
 
 <span class="sd">    .. attention::</span>
 
-<span class="sd">        Gravity calculations have not been implemented yet for triaxial</span>
+<span class="sd">        Most gravity calculations have not been implemented yet for triaxial</span>
 <span class="sd">        ellipsoids. If you&#39;re interested in this feature or would like to help</span>
 <span class="sd">        implement it, please</span>
 <span class="sd">        `get in touch &lt;https://www.fatiando.org/contact&gt;`__.</span>
@@ -438,11 +421,16 @@ title="Open an issue"
 <span class="sd">        The angular velocity of the rotating ellipsoid.</span>
 <span class="sd">        Definition: :math:`\omega`.</span>
 <span class="sd">        Units: :math:`\\rad.s^{-1}`.</span>
+<span class="sd">    semimajor_axis_longitude : float</span>
+<span class="sd">        Longitude coordinate of the semimajor axis in the x-y plane. Optional,</span>
+<span class="sd">        default value is 0.0.</span>
 <span class="sd">    long_name : str or None</span>
 <span class="sd">        A long name for the ellipsoid, for example ``&quot;World Geodetic System</span>
 <span class="sd">        1984&quot;`` (optional).</span>
 <span class="sd">    reference : str or None</span>
 <span class="sd">        Citation for the ellipsoid parameter values (optional).</span>
+<span class="sd">    comments : str or None</span>
+<span class="sd">        Additional comments regarding the ellipsoid (optional).</span>
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
@@ -450,22 +438,31 @@ title="Open an issue"
 <span class="sd">    We can define an ellipsoid by setting the 5 key numerical parameters:</span>
 
 <span class="sd">    &gt;&gt;&gt; ellipsoid = TriaxialEllipsoid(</span>
-<span class="sd">    ...     name=&quot;VESTA&quot;,</span>
+<span class="sd">    ...     name=&quot;Vesta&quot;,</span>
 <span class="sd">    ...     long_name=&quot;Vesta Triaxial Ellipsoid&quot;,</span>
-<span class="sd">    ...     semimajor_axis=286_300,</span>
-<span class="sd">    ...     semimedium_axis=278_600,</span>
-<span class="sd">    ...     semiminor_axis=223_200,</span>
-<span class="sd">    ...     geocentric_grav_const=1.729094e10,</span>
-<span class="sd">    ...     angular_velocity=326.71050958367e-6,</span>
-<span class="sd">    ...     reference=(</span>
-<span class="sd">    ...         &quot;Russell, C. T., Raymond, C. A., Coradini, A., McSween, &quot;</span>
-<span class="sd">    ...         &quot;H. Y., Zuber, M. T., Nathues, A., et al. (2012). Dawn at &quot;</span>
-<span class="sd">    ...         &quot;Vesta: Testing the Protoplanetary Paradigm. Science. &quot;</span>
-<span class="sd">    ...         &quot;doi:10.1126/science.1219381&quot;</span>
-<span class="sd">    ...     ),</span>
+<span class="sd">    ...     semimajor_axis=280_413,</span>
+<span class="sd">    ...     semimedium_axis=274_572,</span>
+<span class="sd">    ...     semiminor_axis=231_253,</span>
+<span class="sd">    ...     geocentric_grav_const=17.288e9,</span>
+<span class="sd">    ...     angular_velocity=3.267e-4,</span>
+<span class="sd">    ...     semimajor_axis_longitude=8.29,</span>
+<span class="sd">    ...     reference=&quot;Karimi et al. (2017)&quot;,</span>
+<span class="sd">    ...     comments=&quot;This is the same as the VestaTriaxial2017 ellipsoid.&quot;</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; print(ellipsoid) # doctest: +ELLIPSIS</span>
-<span class="sd">    TriaxialEllipsoid(name=&#39;VESTA&#39;, ...)</span>
+<span class="sd">    Vesta - Vesta Triaxial Ellipsoid</span>
+<span class="sd">    Triaxial ellipsoid:</span>
+<span class="sd">      • Semimajor axis: 280413 m</span>
+<span class="sd">      • Semimedium axis: 274572 m</span>
+<span class="sd">      • Semiminor axis: 231253 m</span>
+<span class="sd">      • Semimajor axis longitude: 8.29°</span>
+<span class="sd">      • GM: 17288000000.0 m³/s²</span>
+<span class="sd">      • Angular velocity: 0.0003267 rad/s</span>
+<span class="sd">    Source:</span>
+<span class="sd">      Karimi et al. (2017)</span>
+<span class="sd">    Comments:</span>
+<span class="sd">      This is the same as the VestaTriaxial2017 ellipsoid.</span>
+
 <span class="sd">    &gt;&gt;&gt; print(ellipsoid.long_name)</span>
 <span class="sd">    Vesta Triaxial Ellipsoid</span>
 
@@ -473,9 +470,21 @@ title="Open an issue"
 <span class="sd">    parameters:</span>
 
 <span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.mean_radius:.0f} m&quot;)</span>
-<span class="sd">    262700 m</span>
+<span class="sd">    260344 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.semiaxes_mean_radius:.0f} m&quot;)</span>
+<span class="sd">    262079 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.area:.10e} m²&quot;)</span>
+<span class="sd">    8.6210266337e+11 m²</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.area_equivalent_radius:0.0f} m&quot;)</span>
+<span class="sd">    261924 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.volume_equivalent_radius:.0f} m&quot;)</span>
+<span class="sd">    261124 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.mass:.10e} kg&quot;)</span>
+<span class="sd">    2.5902341819e+20 kg</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.mean_density:.0f} kg/m³&quot;)</span>
+<span class="sd">    3473 kg/m³</span>
 <span class="sd">    &gt;&gt;&gt; print(f&quot;{ellipsoid.volume * 1e-9:.0f} km³&quot;)</span>
-<span class="sd">    74573626 km³</span>
+<span class="sd">    74581373 km³</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -485,8 +494,10 @@ title="Open an issue"
     <span class="n">semiminor_axis</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
     <span class="n">geocentric_grav_const</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
     <span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
+    <span class="n">semimajor_axis_longitude</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="mf">0.0</span><span class="p">)</span>
     <span class="n">long_name</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">reference</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">_raise_invalid_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s2">&quot;Raise a ValueError informing that the axis are invalid.&quot;</span>
@@ -500,7 +511,7 @@ title="Open an issue"
 
     <span class="nd">@semimajor_axis</span><span class="o">.</span><span class="n">validator</span>
     <span class="k">def</span> <span class="nf">_check_semimajor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semimajor_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if semimajor_axis is positive and is the largest of the axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -512,7 +523,7 @@ title="Open an issue"
 
     <span class="nd">@semimedium_axis</span><span class="o">.</span><span class="n">validator</span>
     <span class="k">def</span> <span class="nf">_check_semimedium_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semimedium_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if semimedium_axis is positive and larger than semi-minor axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -540,16 +551,77 @@ title="Open an issue"
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The arithmetic mean radius of the ellipsoid.</span>
-<span class="sd">        Definition: :math:`R = \dfrac{a + b + c}{3}`.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The mean radius of the ellipsoid. This is equivalent to the degree 0</span>
+<span class="sd">        spherical harmonic coefficient of the ellipsoid shape.</span>
+
+<span class="sd">        Definition: :math:`R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}</span>
+<span class="sd">        \int_0^{2 \pi}} r(\theta, \lambda) \sin \theta \, d\theta \, d\lambda`</span>
+
+<span class="sd">        in which :math:`r` is the ellipsoid spherical radius, :math:`\theta` is</span>
+<span class="sd">        spherical latitude, and :math:`\lambda` is spherical longitude.</span>
+
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># The mean radius is obtained by integration in spherical coordinates.</span>
+        <span class="c1"># Gauss-Legendre quadrature is used to perform the integration over</span>
+        <span class="c1"># both spherical longitude and spherical latitude. Tests show that</span>
+        <span class="c1"># n = 16 will return the mean radius to machine precision for the</span>
+        <span class="c1"># asteroid (4) Vesta, and that machine precision results for a</span>
+        <span class="c1"># Vesta-like object with half the semiminor axis as Vesta are obtained</span>
+        <span class="c1"># for n = 38. In an abundance of caution, we chose to use n = 50.</span>
+        <span class="n">n</span> <span class="o">=</span> <span class="mi">50</span>
+        <span class="n">x_latitude</span><span class="p">,</span> <span class="n">weights_latitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polynomial</span><span class="o">.</span><span class="n">legendre</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+        <span class="n">x_longitude</span><span class="p">,</span> <span class="n">weights_longitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">polynomial</span><span class="o">.</span><span class="n">legendre</span><span class="o">.</span><span class="n">leggauss</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">n</span><span class="p">)</span>
+
+        <span class="n">geocentric_latitude</span> <span class="o">=</span> <span class="mf">90.0</span> <span class="o">-</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">arccos</span><span class="p">(</span><span class="n">x_latitude</span><span class="p">))</span>
+        <span class="c1"># Rescale longitude integration limits from [-1, 1] to [0, 2 pi]</span>
+        <span class="c1"># https://en.wikipedia.org/wiki/Gaussian_quadrature#Change_of_interval</span>
+        <span class="n">weights_longitude</span> <span class="o">*=</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span>
+        <span class="n">geocentric_longitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">x_longitude</span> <span class="o">+</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+        <span class="n">lats</span><span class="p">,</span> <span class="n">lons</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span>
+            <span class="n">geocentric_latitude</span><span class="p">,</span> <span class="n">geocentric_longitude</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="s2">&quot;ij&quot;</span>
+        <span class="p">)</span>
+        <span class="n">radius</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_radius</span><span class="p">(</span><span class="n">lons</span><span class="p">,</span> <span class="n">lats</span><span class="p">)</span>
+
+        <span class="c1"># Multiply the radius by the weights, and then sum the result</span>
+        <span class="n">radius</span> <span class="o">*=</span> <span class="n">weights_latitude</span><span class="p">[:,</span> <span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">]</span>
+        <span class="n">radius</span> <span class="o">*=</span> <span class="n">weights_longitude</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">newaxis</span><span class="p">,</span> <span class="p">:]</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">semiaxes_mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The arithmetic mean radius of the ellipsoid semi-axes.</span>
+<span class="sd">        Definition: :math:`R_1 = \dfrac{a + b + c}{3}`.</span>
 <span class="sd">        Units: :math:`m`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The area of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})`, in which</span>
+<span class="sd">        :math:`R_G` is the completely-symmetric elliptic integral of the second</span>
+<span class="sd">        kind.</span>
+<span class="sd">        Units: :math:`m^2`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="mi">3</span>
+            <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span>
+            <span class="o">*</span> <span class="n">scipy</span><span class="o">.</span><span class="n">special</span><span class="o">.</span><span class="n">elliprg</span><span class="p">(</span>
+                <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+                <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+                <span class="mi">1</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="o">**</span><span class="mi">2</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The volume bounded by the ellipsoid.</span>
 <span class="sd">        Definition: :math:`V = \dfrac{4}{3} \pi a b c`.</span>
 <span class="sd">        Units: :math:`m^3`.</span>
@@ -559,38 +631,287 @@ title="Open an issue"
             <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
             <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span>
             <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span>
-        <span class="p">)</span></div>
+        <span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The area equivalent radius of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The mass of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`M = GM / G`.</span>
+<span class="sd">        Units: :math:`kg`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="n">G</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mean_density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The mean density of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`\rho = M / V`.</span>
+<span class="sd">        Units: :math:`kg / m^3`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">volume_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The volume equivalent radius of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">equatorial_flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The equatorial flattening of the ellipsoid.</span>
+<span class="sd">        Definition: :math:`f_b = \frac{a - b}{a}`.</span>
+<span class="sd">        Units: adimensional.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">meridional_flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The meridional flattening of the ellipsoid in the meridian plane</span>
+<span class="sd">        containing the semi-major axis.</span>
+<span class="sd">        Definition: :math:`f_c = \frac{a - c}{a}`.</span>
+<span class="sd">        Units: adimensional.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">long_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;Triaxial ellipsoid:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Semimajor axis: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="si">}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Semimedium axis: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span><span class="si">}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Semiminor axis: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="si">}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Semimajor axis longitude: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis_longitude</span><span class="si">}</span><span class="s2">°</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • GM: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span><span class="si">}</span><span class="s2"> m³/s²</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Angular velocity: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span><span class="si">}</span><span class="s2"> rad/s&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Source:&quot;</span>
+            <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
+                    <span class="n">ref</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span> <span class="n">initial_indent</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">subsequent_indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span>
+                <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comments</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Comments:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">comments</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
+                <span class="n">initial_indent</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>
+                <span class="n">subsequent_indent</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+<div class="viewcode-block" id="TriaxialEllipsoid.geocentric_radius">
+<a class="viewcode-back" href="../../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.geocentric_radius">[docs]</a>
+    <span class="k">def</span> <span class="nf">geocentric_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Radial distance from the center of the ellipsoid to its surface.</span>
+
+<span class="sd">        Assumes geocentric spherical latitude and geocentric spherical</span>
+<span class="sd">        longitudes. The geocentric radius is calculated following [Pěč1983]_.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        longitude : float or array</span>
+<span class="sd">            Longitude coordinates on spherical coordinate system in degrees.</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            Latitude coordinates on spherical coordinate system in degrees.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        geocentric_radius : float or array</span>
+<span class="sd">            The geocentric radius for the given spherical latitude(s) and</span>
+<span class="sd">            spherical longitude(s) in the same units as the axes of the</span>
+<span class="sd">            ellipsoid.</span>
+
+
+<span class="sd">        .. tip::</span>
+
+<span class="sd">            No elevation is taken into account.</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+
+<span class="sd">        Given geocentric spherical latitude :math:`\phi` and geocentric</span>
+<span class="sd">        spherical longitude :math:`\lambda`, the geocentric surface radius</span>
+<span class="sd">        :math:`R` is computed as (see Eq. 1 of [Pěč1983]_)</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            R(\phi, \lambda) =</span>
+<span class="sd">            \frac{</span>
+<span class="sd">                a \, (1 - f_c) \, (1 - f_b)</span>
+<span class="sd">            }{</span>
+<span class="sd">                \sqrt{</span>
+<span class="sd">                    1</span>
+<span class="sd">                    - (2 f_c - f_c^2) \cos^2 \phi</span>
+<span class="sd">                    - (2 f_b - f_b^2) \sin^2 \phi</span>
+<span class="sd">                    - (1 - f_c)^2 (2 f_b - f_b^2)</span>
+<span class="sd">                        \cos^2 \phi \cos^2 (\lambda - \lambda_a)</span>
+<span class="sd">                }</span>
+<span class="sd">            },</span>
+
+<span class="sd">        where :math:`f_c` is the meridional flattening</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            f_c = \frac{a - c}{a},</span>
+
+<span class="sd">        :math:`f_b` is the equatorial flattening</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            f_b = \frac{a - b}{a},</span>
+
+<span class="sd">        with :math:`a`, :math:`b` and :math:`c` being the semi-major,</span>
+<span class="sd">        semi-medium and semi-minor axes of the ellipsoid, and :math:`\lambda_a`</span>
+<span class="sd">        being the geocentric spherical longitude of the meridian containing the</span>
+<span class="sd">        semi-major axis.</span>
+
+<span class="sd">        Note that [Pěč1983]_ use geocentric spherical co-latitude, while here</span>
+<span class="sd">        we used geocentric spherical latitude.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">latitude_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">)</span>
+        <span class="n">longitude_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">longitude</span><span class="p">)</span>
+        <span class="n">longitude_semimajor_axis_rad</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis_longitude</span><span class="p">)</span>
+
+        <span class="n">coslat</span><span class="p">,</span> <span class="n">sinlat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">latitude_rad</span><span class="p">)</span>
+
+        <span class="n">fc</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">meridional_flattening</span>
+        <span class="n">fb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">equatorial_flattening</span>
+
+        <span class="n">radius</span> <span class="o">=</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">fc</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">fb</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span>
+            <span class="mf">1.0</span>
+            <span class="o">-</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">fc</span> <span class="o">-</span> <span class="n">fc</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">coslat</span><span class="o">**</span><span class="mi">2</span>
+            <span class="o">-</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">fb</span> <span class="o">-</span> <span class="n">fb</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">sinlat</span><span class="o">**</span><span class="mi">2</span>
+            <span class="o">-</span> <span class="p">(</span><span class="mf">1.0</span> <span class="o">-</span> <span class="n">fc</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+            <span class="o">*</span> <span class="p">(</span><span class="mf">2.0</span> <span class="o">*</span> <span class="n">fb</span> <span class="o">-</span> <span class="n">fb</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">coslat</span><span class="o">**</span><span class="mi">2</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">longitude_rad</span> <span class="o">-</span> <span class="n">longitude_semimajor_axis_rad</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span>
+        <span class="k">return</span> <span class="n">radius</span></div>
+
+
+<div class="viewcode-block" id="TriaxialEllipsoid.centrifugal_potential">
+<a class="viewcode-back" href="../../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.centrifugal_potential">[docs]</a>
+    <span class="k">def</span> <span class="nf">centrifugal_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Centrifugal potential at the given latitude, longitude and height above</span>
+<span class="sd">        the ellipsoid.</span>
+
+<span class="sd">        The centrifugal potential :math:`\Phi` at spherical latitude</span>
+<span class="sd">        :math:`\phi`, spherical longitude :math:`\lambda` and spherical height</span>
+<span class="sd">        above the ellipsoid :math:`h` is</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \Phi(\phi, \lambda, h) = \dfrac{1}{2}</span>
+<span class="sd">                \omega^2 \left(R(\phi, lambda) + h\right)^2 \cos^2(\phi)</span>
+
+<span class="sd">        in which :math:`R(\phi, \lambda)` is the radius of the ellipsoid and</span>
+<span class="sd">        :math:`\omega` is the angular velocity.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        longitude : float or array</span>
+<span class="sd">            The spherical longitude where the centrifugal potential will be</span>
+<span class="sd">            computed (in degrees).</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            The spherical latitude where the centrifugal potential will be</span>
+<span class="sd">            computed (in degrees).</span>
+<span class="sd">        height : float or array</span>
+<span class="sd">            The spherical height of the computation point (in meters).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Phi : float or array</span>
+<span class="sd">            The centrifugal potential in m²/s².</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span>
+            <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geocentric_radius</span><span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">)</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span>
+            <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
+        <span class="p">)</span> <span class="o">**</span> <span class="mi">2</span></div>
+</div>
+
 </pre></div>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-      &copy; Copyright 2022, The Boule Developers.<br/>
-    Last updated on Oct 27, 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, The Boule Developers.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Oct 22, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

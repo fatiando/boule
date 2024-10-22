@@ -2,51 +2,61 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     
         <title>Gravity disturbances | Boule dev</title>
     
 
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=12168cd1" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/thebelab-helper.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script src="../_static/design-tabs.js"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <link rel="shortcut icon" href="../_static/favicon.png"/>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/gravity_disturbance';</script>
+    <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Coordinate conversions" href="coordinates.html" />
@@ -55,392 +65,357 @@
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../index.html">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
         
-      
-      
-      <img src="../_static/boule-logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Boule <span class="project-version">dev</span></h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Getting Started
- </span>
-</p>
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Boule <span class="project-version">dev</span></p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../overview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../install.html">
-   Installing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">Installing</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  User Guide
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="normal_gravity.html">
-   Normal gravity
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Gravity disturbances
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="coordinates.html">
-   Coordinate conversions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="defining_ellipsoids.html">
-   Defining custom ellipsoids
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="normal_gravity.html">Normal gravity</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Gravity disturbances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="coordinates.html">Coordinate conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="defining_ellipsoids.html">Defining custom ellipsoids</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference Documentation
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference Documentation</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../api/index.html">
-   List of functions and classes (API)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../api/generated/boule.Ellipsoid.html">
-     boule.Ellipsoid
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../api/generated/boule.Sphere.html">
-     boule.Sphere
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../api/generated/boule.TriaxialEllipsoid.html">
-     boule.TriaxialEllipsoid
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../ellipsoids.html">
-   Available ellipsoids
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../citing.html">
-   Citing Boule
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../references.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../changes.html">
-   Changelog
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../compatibility.html">
-   Version compatibility
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../versions.html">
-   Documentation for other versions
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../api/index.html">List of functions and classes (API)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.Sphere.html">boule.Sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Community
- </span>
-</p>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../ellipsoids.html">Available ellipsoids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../citing.html">Citing Boule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../compatibility.html">Version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../versions.html">Documentation for other versions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://www.fatiando.org/contact">
-   Join the community
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">
-   How to contribute
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">
-   Code of Conduct
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule">
-   Source code on GitHub
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://www.fatiando.org">
-   The Fatiando a Terra project
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/edit/main/doc/user_guide/gravity_disturbance.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2Fuser_guide/gravity_disturbance.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
-
-
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
 
 
 
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/user_guide/gravity_disturbance.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
   </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
-<button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/fatiando/boule"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
-      
-      <li>
-        <a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2Fuser_guide/gravity_disturbance.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-      <li>
-        <a href="https://github.com/fatiando/boule/edit/main/doc/user_guide/gravity_disturbance.rst"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Edit this page"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-pencil-alt"></i>
-  </span>
-<span class="headerbtn__text-container">suggest edit</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
-</div>
-
-<div class="menu-dropdown menu-dropdown-download-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Download this page">
-      <i class="fas fa-download"></i>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="../_sources/user_guide/gravity_disturbance.rst.txt"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Download source file"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file"></i>
-  </span>
-<span class="headerbtn__text-container">.rst</span>
-</a>
-
-      </li>
+</div></div>
       
-      <li>
-        
-<button onclick="printPdf(this)"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="left"
-title="Print to PDF"
->
+    </div>
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-file-pdf"></i>
-  </span>
-<span class="headerbtn__text-container">.pdf</span>
-</button>
-
-      </li>
-      
-    </ul>
-  </div>
 </div>
+</div>
+              
+              
 
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Gravity disturbances</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1>Gravity disturbances</h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <section id="gravity-disturbances">
-<span id="gravity-disturbance"></span><h1>Gravity disturbances<a class="headerlink" href="#gravity-disturbances" title="Permalink to this headline">#</a></h1>
+<span id="gravity-disturbance"></span><h1>Gravity disturbances<a class="headerlink" href="#gravity-disturbances" title="Link to this heading">#</a></h1>
 <p>One of the main uses of Boule in geophysics is the calculation of
 <a class="reference internal" href="../glossary.html#term-Gravity-disturbance"><span class="xref std std-term">gravity disturbances</span></a>.
 Our closed-form implementation of <a class="reference internal" href="normal_gravity.html#normal-gravity"><span class="std std-ref">normal gravity</span></a> allows
@@ -453,7 +428,7 @@ at a height of 10 km.</p>
 <p>First off, we import the required packages to do this:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
 <span class="kn">import</span> <span class="nn">ensaio</span>
 <span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>  <span class="c1"># For loading the grid data</span>
 <span class="kn">import</span> <span class="nn">pygmt</span>         <span class="c1"># For plotting nice maps</span>
@@ -463,11 +438,15 @@ at a height of 10 km.</p>
 <div class="cell_output docutils container">
 </div>
 </div>
-<p>Next, we can download and cache the gravity grid using <a class="reference external" href="https://www.fatiando.org/ensaio/latest/api/index.html#module-ensaio" title="(in Ensaio vv0.4.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ensaio</span></code></a> and load
-it with <a class="reference external" href="https://docs.xarray.dev/en/stable/index.html#module-xarray" title="(in xarray v2022.10.1.dev0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xarray</span></code></a>:</p>
+<div class="jupyter_cell docutils container">
+<div class="cell_output docutils container">
+</div>
+</div>
+<p>Next, we can download and cache the gravity grid using <a class="reference external" href="https://www.fatiando.org/ensaio/latest/api/index.html#module-ensaio" title="(in Ensaio vv0.6.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ensaio</span></code></a> and load
+it with <a class="reference external" href="https://docs.xarray.dev/en/stable/index.html#module-xarray" title="(in xarray v2024.9.1.dev0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xarray</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="n">ensaio</span><span class="o">.</span><span class="n">fetch_earth_gravity</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="n">ensaio</span><span class="o">.</span><span class="n">fetch_earth_gravity</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">observed_gravity</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">load_dataarray</span><span class="p">(</span><span class="n">fname</span><span class="p">)</span>
 <span class="n">observed_gravity</span>
 </pre></div>
@@ -505,6 +484,7 @@ it with <a class="reference external" href="https://docs.xarray.dev/en/stable/in
 }
 
 html[theme=dark],
+html[data-theme=dark],
 body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
@@ -555,7 +535,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
 }
 
 .xr-section-item {
@@ -563,7 +543,8 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: none;
+  display: inline-block;
+  opacity: 0;
 }
 
 .xr-section-item input + label {
@@ -573,6 +554,10 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -735,6 +720,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -756,14 +746,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -773,13 +765,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -817,7 +812,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -826,24 +822,24 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;gravity&#x27; (latitude: 1081, longitude: 2161)&gt;
-array([[980106.5 , 980106.5 , 980106.5 , ..., 980106.5 , 980106.5 ,
-        980106.5 ],
-       [980108.25, 980108.25, 980108.25, ..., 980108.25, 980108.25,
-        980108.25],
-       [980108.8 , 980108.8 , 980108.8 , ..., 980108.75, 980108.75,
-        980108.8 ],
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;gravity&#x27; (latitude: 1081, longitude: 2161)&gt; Size: 19MB
+array([[980106.525, 980106.525, 980106.525, ..., 980106.525, 980106.525,
+        980106.525],
+       [980108.225, 980108.225, 980108.225, ..., 980108.225, 980108.225,
+        980108.225],
+       [980108.825, 980108.825, 980108.825, ..., 980108.725, 980108.725,
+        980108.825],
        ...,
-       [980153.8 , 980153.75, 980153.6 , ..., 980153.94, 980153.8 ,
-        980153.8 ],
-       [980160.44, 980160.44, 980160.44, ..., 980160.44, 980160.44,
-        980160.44],
-       [980157.5 , 980157.5 , 980157.5 , ..., 980157.5 , 980157.5 ,
-        980157.5 ]], dtype=float32)
+       [980153.825, 980153.725, 980153.625, ..., 980153.925, 980153.825,
+        980153.825],
+       [980160.425, 980160.425, 980160.425, ..., 980160.425, 980160.425,
+        980160.425],
+       [980157.525, 980157.525, 980157.525, ..., 980157.525, 980157.525,
+        980157.525]])
 Coordinates:
-  * longitude  (longitude) float64 -180.0 -179.8 -179.7 ... 179.7 179.8 180.0
-  * latitude   (latitude) float64 -90.0 -89.83 -89.67 -89.5 ... 89.67 89.83 90.0
-    height     (latitude, longitude) float32 1e+04 1e+04 1e+04 ... 1e+04 1e+04
+  * longitude  (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
+  * latitude   (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
+    height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04
 Attributes:
     Conventions:     CF-1.8
     title:           Gravity acceleration (EIGEN-6C4) at a constant geometric...
@@ -855,28 +851,46 @@ Attributes:
     description:     magnitude of the gravity acceleration vector (gravitatio...
     units:           mGal
     actual_range:    [974748.6 980201.9]
-    icgem_metadata:  generating_institute: gfz-potsdam\ngenerating_date: 2021...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'gravity'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-43e90e43-1393-4e17-be49-0869aa1f81fe' class='xr-array-in' type='checkbox' checked><label for='section-43e90e43-1393-4e17-be49-0869aa1f81fe' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>9.801e+05 9.801e+05 9.801e+05 ... 9.802e+05 9.802e+05 9.802e+05</span></div><div class='xr-array-data'><pre>array([[980106.5 , 980106.5 , 980106.5 , ..., 980106.5 , 980106.5 ,
-        980106.5 ],
-       [980108.25, 980108.25, 980108.25, ..., 980108.25, 980108.25,
-        980108.25],
-       [980108.8 , 980108.8 , 980108.8 , ..., 980108.75, 980108.75,
-        980108.8 ],
+    icgem_metadata:  generating_institute: gfz-potsdam\ngenerating_date: 2021...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'gravity'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-a7a8fb19-8ea6-4def-986c-8fbc8db9d4b4' class='xr-array-in' type='checkbox' checked><label for='section-a7a8fb19-8ea6-4def-986c-8fbc8db9d4b4' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>9.801e+05 9.801e+05 9.801e+05 ... 9.802e+05 9.802e+05 9.802e+05</span></div><div class='xr-array-data'><pre>array([[980106.525, 980106.525, 980106.525, ..., 980106.525, 980106.525,
+        980106.525],
+       [980108.225, 980108.225, 980108.225, ..., 980108.225, 980108.225,
+        980108.225],
+       [980108.825, 980108.825, 980108.825, ..., 980108.725, 980108.725,
+        980108.825],
        ...,
-       [980153.8 , 980153.75, 980153.6 , ..., 980153.94, 980153.8 ,
-        980153.8 ],
-       [980160.44, 980160.44, 980160.44, ..., 980160.44, 980160.44,
-        980160.44],
-       [980157.5 , 980157.5 , 980157.5 , ..., 980157.5 , 980157.5 ,
-        980157.5 ]], dtype=float32)</pre></div></div></li><li class='xr-section-item'><input id='section-0d83da3f-ed2b-4078-9b46-ff58c8aef652' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0d83da3f-ed2b-4078-9b46-ff58c8aef652' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-49fad5db-90be-4e2b-b0af-f7c373a18f2b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-49fad5db-90be-4e2b-b0af-f7c373a18f2b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-183f2686-a471-4361-94d2-77cf5ac64f32' class='xr-var-data-in' type='checkbox'><label for='data-183f2686-a471-4361-94d2-77cf5ac64f32' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
-        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-cb83d732-b797-4658-b0b8-fa3beeec8d66' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-cb83d732-b797-4658-b0b8-fa3beeec8d66' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-71a1333b-4a72-4753-a0c6-54391cb0f701' class='xr-var-data-in' type='checkbox'><label for='data-71a1333b-4a72-4753-a0c6-54391cb0f701' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
-        90.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-017ec6ee-3ce7-4b1c-b6b4-ed34140cd934' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-017ec6ee-3ce7-4b1c-b6b4-ed34140cd934' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ccb68c85-4aee-42c3-ab74-5015c36efdca' class='xr-var-data-in' type='checkbox'><label for='data-ccb68c85-4aee-42c3-ab74-5015c36efdca' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
+       [980153.825, 980153.725, 980153.625, ..., 980153.925, 980153.825,
+        980153.825],
+       [980160.425, 980160.425, 980160.425, ..., 980160.425, 980160.425,
+        980160.425],
+       [980157.525, 980157.525, 980157.525, ..., 980157.525, 980157.525,
+        980157.525]])</pre></div></div></li><li class='xr-section-item'><input id='section-d2dc1f43-8501-48f7-86cd-db131c0e4ea6' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d2dc1f43-8501-48f7-86cd-db131c0e4ea6' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-d25bdcce-9cf1-472e-8bfc-d194eee2c3c1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d25bdcce-9cf1-472e-8bfc-d194eee2c3c1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4709a965-8df0-4e0f-8415-9895d7f11286' class='xr-var-data-in' type='checkbox'><label for='data-4709a965-8df0-4e0f-8415-9895d7f11286' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
+        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-d3666ce9-3712-424a-800b-f04ddc334a7e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d3666ce9-3712-424a-800b-f04ddc334a7e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e7aa2207-acf9-459a-b639-f81d3223b394' class='xr-var-data-in' type='checkbox'><label for='data-e7aa2207-acf9-459a-b639-f81d3223b394' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
+        90.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-26f04280-ca48-487b-8804-fbc1a586cfda' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-26f04280-ca48-487b-8804-fbc1a586cfda' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-73bd710f-c634-4524-8838-c6b55e52746f' class='xr-var-data-in' type='checkbox'><label for='data-73bd710f-c634-4524-8838-c6b55e52746f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        ...,
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.]],
-      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-36d868fc-dd76-4a93-b35b-a6ae44707213' class='xr-section-summary-in' type='checkbox'  ><label for='section-36d868fc-dd76-4a93-b35b-a6ae44707213' class='xr-section-summary' >Attributes: <span>(11)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.8</dd><dt><span>title :</span></dt><dd>Gravity acceleration (EIGEN-6C4) at a constant geometric height</dd><dt><span>crs :</span></dt><dd>WGS84</dd><dt><span>source :</span></dt><dd>Generated from the EIGEN-6C4 model by the ICGEM Calculation Service (http://icgem.gfz-potsdam.de)</dd><dt><span>license :</span></dt><dd>Creative Commons Attribution 4.0 International Licence</dd><dt><span>references :</span></dt><dd>https://doi.org/10.5880/icgem.2015.1</dd><dt><span>long_name :</span></dt><dd>gravity acceleration</dd><dt><span>description :</span></dt><dd>magnitude of the gravity acceleration vector (gravitational + centrifugal)</dd><dt><span>units :</span></dt><dd>mGal</dd><dt><span>actual_range :</span></dt><dd>[974748.6 980201.9]</dd><dt><span>icgem_metadata :</span></dt><dd>generating_institute: gfz-potsdam
+      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c33ee0f5-81c2-46f7-b26e-122357246b4e' class='xr-section-summary-in' type='checkbox'  ><label for='section-c33ee0f5-81c2-46f7-b26e-122357246b4e' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-edbc132b-d576-4c24-8f3f-01fdf510b064' class='xr-index-data-in' type='checkbox'/><label for='index-edbc132b-d576-4c24-8f3f-01fdf510b064' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
+                    -179.5, -179.33333333333334, -179.16666666666666,
+                    -179.0, -178.83333333333334, -178.66666666666666,
+                    -178.5,
+       ...
+                     178.5,  178.66666666666663,  178.83333333333331,
+                     179.0,  179.16666666666663,  179.33333333333331,
+                     179.5,  179.66666666666663,  179.83333333333331,
+                     180.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-53cb219d-84b8-4765-9aff-84b5dea8063c' class='xr-index-data-in' type='checkbox'/><label for='index-53cb219d-84b8-4765-9aff-84b5dea8063c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
+                    -89.5, -89.33333333333333, -89.16666666666667,
+                    -89.0, -88.83333333333333, -88.66666666666667,
+                    -88.5,
+       ...
+                     88.5,  88.66666666666666,  88.83333333333331,
+                     89.0,  89.16666666666666,  89.33333333333331,
+                     89.5,  89.66666666666666,  89.83333333333331,
+                     90.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a587673f-2eb3-45e7-a93d-8f088265385e' class='xr-section-summary-in' type='checkbox'  ><label for='section-a587673f-2eb3-45e7-a93d-8f088265385e' class='xr-section-summary' >Attributes: <span>(11)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.8</dd><dt><span>title :</span></dt><dd>Gravity acceleration (EIGEN-6C4) at a constant geometric height</dd><dt><span>crs :</span></dt><dd>WGS84</dd><dt><span>source :</span></dt><dd>Generated from the EIGEN-6C4 model by the ICGEM Calculation Service (http://icgem.gfz-potsdam.de)</dd><dt><span>license :</span></dt><dd>Creative Commons Attribution 4.0 International Licence</dd><dt><span>references :</span></dt><dd>https://doi.org/10.5880/icgem.2015.1</dd><dt><span>long_name :</span></dt><dd>gravity acceleration</dd><dt><span>description :</span></dt><dd>magnitude of the gravity acceleration vector (gravitational + centrifugal)</dd><dt><span>units :</span></dt><dd>mGal</dd><dt><span>actual_range :</span></dt><dd>[974748.6 980201.9]</dd><dt><span>icgem_metadata :</span></dt><dd>generating_institute: gfz-potsdam
 generating_date: 2021/06/11
 product_type: gravity_field
 body: earth
@@ -910,10 +924,10 @@ grid_format: long_lat_value
 attributes: longitude latitude gravity_ell
 attributes_units: deg. deg. mgal</dd></dl></div></li></ul></div></div></div></div>
 </div>
-<p>Let’s plot this data on a map using <a class="reference external" href="https://www.pygmt.org/latest/api/index.html#module-pygmt" title="(in PyGMT vv0.7.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygmt</span></code></a> to see what it looks like:</p>
+<p>Let’s plot this data on a map using <a class="reference external" href="https://www.pygmt.org/latest/api/index.html#module-pygmt" title="(in PyGMT vv0.13.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygmt</span></code></a> to see what it looks like:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
     <span class="n">observed_gravity</span><span class="p">,</span>
     <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span>
@@ -931,14 +945,14 @@ attributes_units: deg. deg. mgal</dd></dl></div></li></ul></div></div></div></di
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/gravity_disturbance_2_0.png" src="../_images/gravity_disturbance_2_0.png" />
+<img alt="../_images/gravity_disturbance_3_0.png" src="../_images/gravity_disturbance_3_0.png" />
 </div>
 </div>
 <p>Now we can calculate the WGS84 normal gravity at the same points as the
 observed gravity using <a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid.normal_gravity" title="boule.Ellipsoid.normal_gravity"><code class="xref py py-meth docutils literal notranslate"><span class="pre">boule.Ellipsoid.normal_gravity</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">normal_gravity</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">normal_gravity</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span>
     <span class="n">observed_gravity</span><span class="o">.</span><span class="n">latitude</span><span class="p">,</span> <span class="n">observed_gravity</span><span class="o">.</span><span class="n">height</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">normal_gravity</span>
@@ -977,6 +991,7 @@ observed gravity using <a class="reference internal" href="../api/generated/boul
 }
 
 html[theme=dark],
+html[data-theme=dark],
 body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
@@ -1027,7 +1042,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
 }
 
 .xr-section-item {
@@ -1035,7 +1050,8 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: none;
+  display: inline-block;
+  opacity: 0;
 }
 
 .xr-section-item input + label {
@@ -1045,6 +1061,10 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -1207,6 +1227,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -1228,14 +1253,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -1245,13 +1272,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -1289,7 +1319,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -1298,49 +1329,67 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (latitude: 1081, longitude: 2161)&gt;
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (latitude: 1081, longitude: 2161)&gt; Size: 19MB
 array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
         980142.33509235, 980142.33509235, 980142.33509235],
        [980142.29097894, 980142.29097894, 980142.29097894, ...,
         980142.29097894, 980142.29097894, 980142.29097894],
-       [980142.15864029, 980142.15864029, 980142.15864029, ...,
-        980142.15864029, 980142.15864029, 980142.15864029],
+       [980142.15864042, 980142.15864042, 980142.15864042, ...,
+        980142.15864042, 980142.15864042, 980142.15864042],
        ...,
-       [980142.15864035, 980142.15864035, 980142.15864035, ...,
-        980142.15864035, 980142.15864035, 980142.15864035],
+       [980142.15864042, 980142.15864042, 980142.15864042, ...,
+        980142.15864042, 980142.15864042, 980142.15864042],
        [980142.29097894, 980142.29097894, 980142.29097894, ...,
         980142.29097894, 980142.29097894, 980142.29097894],
        [980142.33509235, 980142.33509235, 980142.33509235, ...,
         980142.33509235, 980142.33509235, 980142.33509235]])
 Coordinates:
-  * latitude   (latitude) float64 -90.0 -89.83 -89.67 -89.5 ... 89.67 89.83 90.0
-  * longitude  (longitude) float64 -180.0 -179.8 -179.7 ... 179.7 179.8 180.0
-    height     (latitude, longitude) float32 1e+04 1e+04 1e+04 ... 1e+04 1e+04</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-14bcb246-ba1b-44f3-8842-53bb10fa5a8e' class='xr-array-in' type='checkbox' checked><label for='section-14bcb246-ba1b-44f3-8842-53bb10fa5a8e' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>9.801e+05 9.801e+05 9.801e+05 ... 9.801e+05 9.801e+05 9.801e+05</span></div><div class='xr-array-data'><pre>array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
+  * latitude   (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
+  * longitude  (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
+    height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-4373a191-55d0-41d8-bb73-0b4b822749b4' class='xr-array-in' type='checkbox' checked><label for='section-4373a191-55d0-41d8-bb73-0b4b822749b4' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>9.801e+05 9.801e+05 9.801e+05 ... 9.801e+05 9.801e+05 9.801e+05</span></div><div class='xr-array-data'><pre>array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
         980142.33509235, 980142.33509235, 980142.33509235],
        [980142.29097894, 980142.29097894, 980142.29097894, ...,
         980142.29097894, 980142.29097894, 980142.29097894],
-       [980142.15864029, 980142.15864029, 980142.15864029, ...,
-        980142.15864029, 980142.15864029, 980142.15864029],
+       [980142.15864042, 980142.15864042, 980142.15864042, ...,
+        980142.15864042, 980142.15864042, 980142.15864042],
        ...,
-       [980142.15864035, 980142.15864035, 980142.15864035, ...,
-        980142.15864035, 980142.15864035, 980142.15864035],
+       [980142.15864042, 980142.15864042, 980142.15864042, ...,
+        980142.15864042, 980142.15864042, 980142.15864042],
        [980142.29097894, 980142.29097894, 980142.29097894, ...,
         980142.29097894, 980142.29097894, 980142.29097894],
        [980142.33509235, 980142.33509235, 980142.33509235, ...,
-        980142.33509235, 980142.33509235, 980142.33509235]])</pre></div></div></li><li class='xr-section-item'><input id='section-6a0dedc0-d715-492e-89ce-592c54af7be0' class='xr-section-summary-in' type='checkbox'  checked><label for='section-6a0dedc0-d715-492e-89ce-592c54af7be0' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-4aa50f7c-fff9-4df2-8529-8216fea6f9f0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-4aa50f7c-fff9-4df2-8529-8216fea6f9f0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d037ee5f-6e8d-4c6d-b848-62b9767aa7d2' class='xr-var-data-in' type='checkbox'><label for='data-d037ee5f-6e8d-4c6d-b848-62b9767aa7d2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
-        90.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-f93bfeda-5005-4533-abfa-499a1cd3b08f' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f93bfeda-5005-4533-abfa-499a1cd3b08f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7aee6f8e-f1ec-4c56-87e6-a09f469d2f75' class='xr-var-data-in' type='checkbox'><label for='data-7aee6f8e-f1ec-4c56-87e6-a09f469d2f75' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
-        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-7c7c2d37-cf81-4856-85c3-99fe38c415df' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7c7c2d37-cf81-4856-85c3-99fe38c415df' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e27590c9-d1bd-4844-8adb-1b80f9f947fd' class='xr-var-data-in' type='checkbox'><label for='data-e27590c9-d1bd-4844-8adb-1b80f9f947fd' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
+        980142.33509235, 980142.33509235, 980142.33509235]])</pre></div></div></li><li class='xr-section-item'><input id='section-3c7a2e47-a239-4a9d-b895-214653e4aa90' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3c7a2e47-a239-4a9d-b895-214653e4aa90' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-e777d951-5d66-49d2-bfe4-eeb3521535c3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e777d951-5d66-49d2-bfe4-eeb3521535c3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-844af668-af64-4da3-8186-e31b940a85fb' class='xr-var-data-in' type='checkbox'><label for='data-844af668-af64-4da3-8186-e31b940a85fb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
+        90.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-3ec99271-1254-4433-931f-e62d0d0db5bd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3ec99271-1254-4433-931f-e62d0d0db5bd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-84a1aea5-8295-4905-8f2d-bcb69391edad' class='xr-var-data-in' type='checkbox'><label for='data-84a1aea5-8295-4905-8f2d-bcb69391edad' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
+        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-3a710620-0b1f-40da-ab26-c3f51681a223' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3a710620-0b1f-40da-ab26-c3f51681a223' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a3785db7-0872-4a0d-94b3-96b0b944f41a' class='xr-var-data-in' type='checkbox'><label for='data-a3785db7-0872-4a0d-94b3-96b0b944f41a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        ...,
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.]],
-      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-f4deac43-b509-456e-b394-a525cce764c0' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-f4deac43-b509-456e-b394-a525cce764c0' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b3abc5f2-4135-4e33-a759-0236da267aa4' class='xr-section-summary-in' type='checkbox'  ><label for='section-b3abc5f2-4135-4e33-a759-0236da267aa4' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-a37725ce-df6d-4160-bab9-07407f2b272e' class='xr-index-data-in' type='checkbox'/><label for='index-a37725ce-df6d-4160-bab9-07407f2b272e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
+                    -89.5, -89.33333333333333, -89.16666666666667,
+                    -89.0, -88.83333333333333, -88.66666666666667,
+                    -88.5,
+       ...
+                     88.5,  88.66666666666666,  88.83333333333331,
+                     89.0,  89.16666666666666,  89.33333333333331,
+                     89.5,  89.66666666666666,  89.83333333333331,
+                     90.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-175a2a93-cee3-4370-871d-d9e98b1778c2' class='xr-index-data-in' type='checkbox'/><label for='index-175a2a93-cee3-4370-871d-d9e98b1778c2' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
+                    -179.5, -179.33333333333334, -179.16666666666666,
+                    -179.0, -178.83333333333334, -178.66666666666666,
+                    -178.5,
+       ...
+                     178.5,  178.66666666666663,  178.83333333333331,
+                     179.0,  179.16666666666663,  179.33333333333331,
+                     179.5,  179.66666666666663,  179.83333333333331,
+                     180.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0bfe6017-bee9-44da-8f59-db2377478e1c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-0bfe6017-bee9-44da-8f59-db2377478e1c' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
     <span class="n">normal_gravity</span><span class="p">,</span>
     <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span>
@@ -1358,14 +1407,14 @@ Coordinates:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/gravity_disturbance_4_2.png" src="../_images/gravity_disturbance_4_2.png" />
+<img alt="../_images/gravity_disturbance_5_2.png" src="../_images/gravity_disturbance_5_2.png" />
 </div>
 </div>
 <p>We can arrive at a grid of gravity disturbances by subtracting normal gravity
 from the data grid:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">disturbance</span> <span class="o">=</span> <span class="n">observed_gravity</span> <span class="o">-</span> <span class="n">normal_gravity</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">disturbance</span> <span class="o">=</span> <span class="n">observed_gravity</span> <span class="o">-</span> <span class="n">normal_gravity</span>
 <span class="n">disturbance</span>
 </pre></div>
 </div>
@@ -1402,6 +1451,7 @@ from the data grid:</p>
 }
 
 html[theme=dark],
+html[data-theme=dark],
 body[data-theme=dark],
 body.vscode-dark {
   --xr-font-color0: rgba(255, 255, 255, 1);
@@ -1452,7 +1502,7 @@ body.vscode-dark {
 .xr-sections {
   padding-left: 0 !important;
   display: grid;
-  grid-template-columns: 150px auto auto 1fr 20px 20px;
+  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
 }
 
 .xr-section-item {
@@ -1460,7 +1510,8 @@ body.vscode-dark {
 }
 
 .xr-section-item input {
-  display: none;
+  display: inline-block;
+  opacity: 0;
 }
 
 .xr-section-item input + label {
@@ -1470,6 +1521,10 @@ body.vscode-dark {
 .xr-section-item input:enabled + label {
   cursor: pointer;
   color: var(--xr-font-color2);
+}
+
+.xr-section-item input:focus + label {
+  border: 2px solid var(--xr-font-color0);
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -1632,6 +1687,11 @@ body.vscode-dark {
   grid-column: 4;
 }
 
+.xr-index-preview {
+  grid-column: 2 / 5;
+  color: var(--xr-font-color2);
+}
+
 .xr-var-name,
 .xr-var-dims,
 .xr-var-dtype,
@@ -1653,14 +1713,16 @@ body.vscode-dark {
 }
 
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   display: none;
   background-color: var(--xr-background-color) !important;
   padding-bottom: 5px !important;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data {
+.xr-var-data-in:checked ~ .xr-var-data,
+.xr-index-data-in:checked ~ .xr-index-data {
   display: block;
 }
 
@@ -1670,13 +1732,16 @@ body.vscode-dark {
 
 .xr-var-name span,
 .xr-var-data,
+.xr-index-name div,
+.xr-index-data,
 .xr-attrs {
   padding-left: 25px !important;
 }
 
 .xr-attrs,
 .xr-var-attrs,
-.xr-var-data {
+.xr-var-data,
+.xr-index-data {
   grid-column: 1 / -1;
 }
 
@@ -1714,7 +1779,8 @@ dl.xr-attrs {
 }
 
 .xr-icon-database,
-.xr-icon-file-text2 {
+.xr-icon-file-text2,
+.xr-no-icon {
   display: inline-block;
   vertical-align: middle;
   width: 1em;
@@ -1723,50 +1789,68 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (latitude: 1081, longitude: 2161)&gt;
-array([[-35.83509235, -35.83509235, -35.83509235, ..., -35.83509235,
-        -35.83509235, -35.83509235],
-       [-34.04097894, -34.04097894, -34.04097894, ..., -34.04097894,
-        -34.04097894, -34.04097894],
-       [-33.34614029, -33.34614029, -33.34614029, ..., -33.40864029,
-        -33.40864029, -33.34614029],
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (latitude: 1081, longitude: 2161)&gt; Size: 19MB
+array([[-35.81009235, -35.81009235, -35.81009235, ..., -35.81009235,
+        -35.81009235, -35.81009235],
+       [-34.06597894, -34.06597894, -34.06597894, ..., -34.06597894,
+        -34.06597894, -34.06597894],
+       [-33.33364042, -33.33364042, -33.33364042, ..., -33.43364042,
+        -33.43364042, -33.33364042],
        ...,
-       [ 11.65385965,  11.59135965,  11.46635965, ...,  11.77885965,
-         11.65385965,  11.65385965],
-       [ 18.14652106,  18.14652106,  18.14652106, ...,  18.14652106,
-         18.14652106,  18.14652106],
-       [ 15.16490765,  15.16490765,  15.16490765, ...,  15.16490765,
-         15.16490765,  15.16490765]])
+       [ 11.66635958,  11.56635958,  11.46635958, ...,  11.76635958,
+         11.66635958,  11.66635958],
+       [ 18.13402106,  18.13402106,  18.13402106, ...,  18.13402106,
+         18.13402106,  18.13402106],
+       [ 15.18990765,  15.18990765,  15.18990765, ...,  15.18990765,
+         15.18990765,  15.18990765]])
 Coordinates:
-  * longitude  (longitude) float64 -180.0 -179.8 -179.7 ... 179.7 179.8 180.0
-  * latitude   (latitude) float64 -90.0 -89.83 -89.67 -89.5 ... 89.67 89.83 90.0
-    height     (latitude, longitude) float32 1e+04 1e+04 1e+04 ... 1e+04 1e+04</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-48489a56-b340-4b34-81ba-067a34114f2d' class='xr-array-in' type='checkbox' checked><label for='section-48489a56-b340-4b34-81ba-067a34114f2d' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-35.84 -35.84 -35.84 -35.84 -35.84 ... 15.16 15.16 15.16 15.16 15.16</span></div><div class='xr-array-data'><pre>array([[-35.83509235, -35.83509235, -35.83509235, ..., -35.83509235,
-        -35.83509235, -35.83509235],
-       [-34.04097894, -34.04097894, -34.04097894, ..., -34.04097894,
-        -34.04097894, -34.04097894],
-       [-33.34614029, -33.34614029, -33.34614029, ..., -33.40864029,
-        -33.40864029, -33.34614029],
+  * longitude  (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
+  * latitude   (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
+    height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-1cfafd4e-7d56-444a-b1cf-23ea610336f4' class='xr-array-in' type='checkbox' checked><label for='section-1cfafd4e-7d56-444a-b1cf-23ea610336f4' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-35.81 -35.81 -35.81 -35.81 -35.81 ... 15.19 15.19 15.19 15.19 15.19</span></div><div class='xr-array-data'><pre>array([[-35.81009235, -35.81009235, -35.81009235, ..., -35.81009235,
+        -35.81009235, -35.81009235],
+       [-34.06597894, -34.06597894, -34.06597894, ..., -34.06597894,
+        -34.06597894, -34.06597894],
+       [-33.33364042, -33.33364042, -33.33364042, ..., -33.43364042,
+        -33.43364042, -33.33364042],
        ...,
-       [ 11.65385965,  11.59135965,  11.46635965, ...,  11.77885965,
-         11.65385965,  11.65385965],
-       [ 18.14652106,  18.14652106,  18.14652106, ...,  18.14652106,
-         18.14652106,  18.14652106],
-       [ 15.16490765,  15.16490765,  15.16490765, ...,  15.16490765,
-         15.16490765,  15.16490765]])</pre></div></div></li><li class='xr-section-item'><input id='section-dbf4b5fb-07ab-4f0b-b3f5-f39d1afa337d' class='xr-section-summary-in' type='checkbox'  checked><label for='section-dbf4b5fb-07ab-4f0b-b3f5-f39d1afa337d' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-fc199894-dff8-4418-823d-4ee6ea2d66f1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-fc199894-dff8-4418-823d-4ee6ea2d66f1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d2689c7e-e6d9-4e22-9303-4da8b58c87ff' class='xr-var-data-in' type='checkbox'><label for='data-d2689c7e-e6d9-4e22-9303-4da8b58c87ff' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
-        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-df70c8db-8aff-4445-b2f4-95a00b0c4484' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-df70c8db-8aff-4445-b2f4-95a00b0c4484' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7f768749-1c07-4c00-a7c6-e263c2580393' class='xr-var-data-in' type='checkbox'><label for='data-7f768749-1c07-4c00-a7c6-e263c2580393' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
-        90.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-953cab79-eebd-4596-b88e-1cf28f21a708' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-953cab79-eebd-4596-b88e-1cf28f21a708' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a3442060-5680-4364-8666-42d744502a1c' class='xr-var-data-in' type='checkbox'><label for='data-a3442060-5680-4364-8666-42d744502a1c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
+       [ 11.66635958,  11.56635958,  11.46635958, ...,  11.76635958,
+         11.66635958,  11.66635958],
+       [ 18.13402106,  18.13402106,  18.13402106, ...,  18.13402106,
+         18.13402106,  18.13402106],
+       [ 15.18990765,  15.18990765,  15.18990765, ...,  15.18990765,
+         15.18990765,  15.18990765]])</pre></div></div></li><li class='xr-section-item'><input id='section-0ca868a7-a2fa-43aa-bc68-2cfeb4df0d61' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0ca868a7-a2fa-43aa-bc68-2cfeb4df0d61' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-22c5041e-59a4-48c0-8a9d-a60816664859' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-22c5041e-59a4-48c0-8a9d-a60816664859' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-decb8b1b-0ec9-498f-99c4-03e04b2bd79d' class='xr-var-data-in' type='checkbox'><label for='data-decb8b1b-0ec9-498f-99c4-03e04b2bd79d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
+        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-7cbdac70-ccd7-400a-b380-ceafe6eb2fe1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7cbdac70-ccd7-400a-b380-ceafe6eb2fe1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3e58b752-6358-47ac-a0c5-b12ff38fadf2' class='xr-var-data-in' type='checkbox'><label for='data-3e58b752-6358-47ac-a0c5-b12ff38fadf2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
+        90.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-de79002f-771d-4d30-844d-c7eb246cc37c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-de79002f-771d-4d30-844d-c7eb246cc37c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5fe32e73-958e-4d5e-8225-a10db8200e36' class='xr-var-data-in' type='checkbox'><label for='data-5fe32e73-958e-4d5e-8225-a10db8200e36' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        ...,
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.]],
-      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-92082ed4-974e-4e01-977e-697bf0376b58' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-92082ed4-974e-4e01-977e-697bf0376b58' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-afdf9657-18a5-4dba-9c45-8a3e9076731e' class='xr-section-summary-in' type='checkbox'  ><label for='section-afdf9657-18a5-4dba-9c45-8a3e9076731e' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e3b5229b-3634-4bc1-ab27-32d09f2bf479' class='xr-index-data-in' type='checkbox'/><label for='index-e3b5229b-3634-4bc1-ab27-32d09f2bf479' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
+                    -179.5, -179.33333333333334, -179.16666666666666,
+                    -179.0, -178.83333333333334, -178.66666666666666,
+                    -178.5,
+       ...
+                     178.5,  178.66666666666663,  178.83333333333331,
+                     179.0,  179.16666666666663,  179.33333333333331,
+                     179.5,  179.66666666666663,  179.83333333333331,
+                     180.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-c9792cd1-0ff3-44fc-8a60-5f34357d9f2e' class='xr-index-data-in' type='checkbox'/><label for='index-c9792cd1-0ff3-44fc-8a60-5f34357d9f2e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
+                    -89.5, -89.33333333333333, -89.16666666666667,
+                    -89.0, -88.83333333333333, -88.66666666666667,
+                    -88.5,
+       ...
+                     88.5,  88.66666666666666,  88.83333333333331,
+                     89.0,  89.16666666666666,  89.33333333333331,
+                     89.5,  89.66666666666666,  89.83333333333331,
+                     90.0],
+      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-750965cf-4a81-423a-b920-ca8df9503a61' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-750965cf-4a81-423a-b920-ca8df9503a61' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Finally, we can display the disturbance in a nice global map:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span>
     <span class="n">disturbance</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;polar+h&quot;</span><span class="p">,</span> <span class="n">shading</span><span class="o">=</span><span class="s2">&quot;+a45+nt0.2&quot;</span><span class="p">,</span>
 <span class="p">)</span>
@@ -1781,7 +1865,7 @@ Coordinates:
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/gravity_disturbance_6_2.png" src="../_images/gravity_disturbance_6_2.png" />
+<img alt="../_images/gravity_disturbance_7_2.png" src="../_images/gravity_disturbance_7_2.png" />
 </div>
 </div>
 <p>Gravity disturbances can be interpreted geophysically as the <strong>gravitational
@@ -1797,49 +1881,87 @@ other ellipsoid. Checkout <a class="reference internal" href="../ellipsoids.html
 </section>
 
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
-    <a class='left-prev' id="prev-link" href="normal_gravity.html" title="previous page">
-        <i class="fas fa-angle-left"></i>
-        <div class="prev-next-info">
-            <p class="prev-next-subtitle">previous</p>
-            <p class="prev-next-title">Normal gravity</p>
-        </div>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="normal_gravity.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Normal gravity</p>
+      </div>
     </a>
-    <a class='right-next' id="next-link" href="coordinates.html" title="next page">
-    <div class="prev-next-info">
+    <a class="right-next"
+       href="coordinates.html"
+       title="next page">
+      <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
         <p class="prev-next-title">Coordinate conversions</p>
-    </div>
-    <i class="fas fa-angle-right"></i>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
     </a>
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-      &copy; Copyright 2022, The Boule Developers.<br/>
-    Last updated on Oct 27, 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, The Boule Developers.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Oct 22, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

@@ -2,7 +2,9 @@
 
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" data-content_root="../../" >
+
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,369 +12,342 @@
         <title>boule._sphere | Boule dev</title>
     
 
-    
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=1999514e3f237ded88cf" rel="stylesheet">
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
 
-    
-  <link rel="stylesheet"
-    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
-    <link rel="stylesheet" href="../../_static/styles/sphinx-book-theme.css?digest=5115cc725059bd94278eecd172e13a965bf8f5a9" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
-    
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=12168cd1" />
+  
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf">
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-    <script src="../../_static/jquery.js"></script>
-    <script src="../../_static/underscore.js"></script>
-    <script src="../../_static/doctools.js"></script>
-    <script src="../../_static/clipboard.min.js"></script>
-    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/thebelab-helper.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?digest=9c920249402e914e316237a7dbc6769907cce411"></script>
-    <script src="../../_static/design-tabs.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <link rel="shortcut icon" href="../../_static/favicon.png"/>
+    <script>DOCUMENTATION_OPTIONS.pagename = '_modules/boule/_sphere';</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
     <!-- Plausible analytics for anonymous usage statistics -->
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="60">
-<!-- Checkboxes to toggle the left sidebar -->
-<input type="checkbox" class="sidebar-toggle" name="__navigation" id="__navigation" aria-label="Toggle navigation sidebar">
-<label class="overlay overlay-navbar" for="__navigation">
-    <div class="visually-hidden">Toggle navigation sidebar</div>
-</label>
-<!-- Checkboxes to toggle the in-page toc -->
-<input type="checkbox" class="sidebar-toggle" name="__page-toc" id="__page-toc" aria-label="Toggle in-page Table of Contents">
-<label class="overlay overlay-pagetoc" for="__page-toc">
-    <div class="visually-hidden">Toggle in-page Table of Contents</div>
-</label>
-<!-- Headers at the top -->
-<div class="announcement header-item noprint"></div>
-<div class="header header-item noprint"></div>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    
-    <div class="container-fluid" id="banner"></div>
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
-    
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
 
-    <div class="container-xl">
-      <div class="row">
-          
-<!-- Sidebar -->
-<div class="bd-sidebar noprint" id="site-navigation">
-    <div class="bd-sidebar__content">
-        <div class="bd-sidebar__top"><div class="navbar-brand-box">
-    <a class="navbar-brand text-wrap" href="../../index.html">
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
       
-        <!-- `logo` is deprecated in Sphinx 4.0, so remove this when we stop supporting 3 -->
+      
+      
         
       
-      
-      <img src="../../_static/boule-logo.png" class="logo" alt="logo">
-      
-      
-      <h1 class="site-logo" id="site-title">Boule <span class="project-version">dev</span></h1>
-      
-    </a>
-</div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search the docs ..." aria-label="Search the docs ..." autocomplete="off" >
-</form><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
-    <div class="bd-toc-item active">
-        <p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Getting Started
- </span>
-</p>
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Boule <span class="project-version">dev</span></p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../overview.html">
-   Overview
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../install.html">
-   Installing
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  User Guide
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/normal_gravity.html">
-   Normal gravity
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/gravity_disturbance.html">
-   Gravity disturbances
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/coordinates.html">
-   Coordinate conversions
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../user_guide/defining_ellipsoids.html">
-   Defining custom ellipsoids
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/normal_gravity.html">Normal gravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/gravity_disturbance.html">Gravity disturbances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/coordinates.html">Coordinate conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/defining_ellipsoids.html">Defining custom ellipsoids</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Reference Documentation
- </span>
-</p>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference Documentation</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1 has-children">
-  <a class="reference internal" href="../../api/index.html">
-   List of functions and classes (API)
-  </a>
-  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
-  <label for="toctree-checkbox-1">
-   <i class="fas fa-chevron-down">
-   </i>
-  </label>
-  <ul>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/boule.Ellipsoid.html">
-     boule.Ellipsoid
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/boule.Sphere.html">
-     boule.Sphere
-    </a>
-   </li>
-   <li class="toctree-l2">
-    <a class="reference internal" href="../../api/generated/boule.TriaxialEllipsoid.html">
-     boule.TriaxialEllipsoid
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../ellipsoids.html">
-   Available ellipsoids
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../citing.html">
-   Citing Boule
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../glossary.html">
-   Glossary
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../references.html">
-   References
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../changes.html">
-   Changelog
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../compatibility.html">
-   Version compatibility
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="../../versions.html">
-   Documentation for other versions
-  </a>
- </li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../api/index.html">List of functions and classes (API)</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/generated/boule.Sphere.html">boule.Sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
 </ul>
-<p aria-level="2" class="caption" role="heading">
- <span class="caption-text">
-  Community
- </span>
-</p>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ellipsoids.html">Available ellipsoids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Boule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compatibility.html">Version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../versions.html">Documentation for other versions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul class="nav bd-sidenav">
- <li class="toctree-l1">
-  <a class="reference external" href="https://www.fatiando.org/contact">
-   Join the community
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">
-   How to contribute
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">
-   Code of Conduct
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://github.com/fatiando/boule">
-   Source code on GitHub
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference external" href="https://www.fatiando.org">
-   The Fatiando a Terra project
-  </a>
- </li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
     </div>
 </nav></div>
-        <div class="bd-sidebar__bottom">
-             <!-- To handle the deprecated key -->
-            
-            <div class="navbar_extra_footer">
-            Theme by the <a href="https://ebp.jupyterbook.org">Executable Book Project</a>
-            </div>
-            
-        </div>
     </div>
-    <div id="rtd-footer-container"></div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2F_modules/boule/_sphere.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
 </div>
 
 
-          
 
 
-          
-<!-- A tiny helper pixel to detect if we've scrolled -->
-<div class="sbt-scroll-pixel-helper"></div>
-<!-- Main content -->
-<div class="col py-0 content-container">
-    
-    <div class="header-article row sticky-top noprint">
-        
-
-
-
-<div class="col py-1 d-flex header-article-main">
-    <div class="header-article__left">
-        
-        <label for="__navigation"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="right"
-title="Toggle navigation"
->
-  
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-bars"></i>
-  </span>
-
-</label>
-
-        
-    </div>
-    <div class="header-article__right">
 <button onclick="toggleFullScreen()"
-  class="headerbtn"
-  data-toggle="tooltip"
-data-placement="bottom"
-title="Fullscreen mode"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
   
 
-<span class="headerbtn__icon-container">
+<span class="btn__icon-container">
   <i class="fas fa-expand"></i>
   </span>
 
 </button>
 
-<div class="menu-dropdown menu-dropdown-repository-buttons">
-  <button class="headerbtn menu-dropdown__trigger"
-      aria-label="Source repositories">
-      <i class="fab fa-github"></i>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
   </button>
-  <div class="menu-dropdown__content">
-    <ul>
-      <li>
-        <a href="https://github.com/fatiando/boule"
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Source repository"
->
-  
+`);
+</script>
 
-<span class="headerbtn__icon-container">
-  <i class="fab fa-github"></i>
-  </span>
-<span class="headerbtn__text-container">repository</span>
-</a>
 
-      </li>
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+
+</div></div>
       
-      <li>
-        <a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2F_modules/boule/_sphere.html&body=Your%20issue%20content%20here."
-   class="headerbtn"
-   data-toggle="tooltip"
-data-placement="left"
-title="Open an issue"
->
+    </div>
   
-
-<span class="headerbtn__icon-container">
-  <i class="fas fa-lightbulb"></i>
-  </span>
-<span class="headerbtn__text-container">open issue</span>
-</a>
-
-      </li>
-      
-    </ul>
-  </div>
 </div>
+</div>
+              
+              
 
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1></h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+        </div>
     </div>
 </div>
 
-<!-- Table of contents -->
-<div class="col-md-3 bd-toc show noprint">
-</div>
-    </div>
-    <div class="article row">
-        <div class="col pl-md-3 pl-lg-5 content-container">
-            <!-- Table of contents that is only displayed when printing the page -->
-            <div id="jb-print-docs-body" class="onlyprint">
-                <h1></h1>
-                <!-- Table of contents -->
-                <div id="print-main-content">
-                    <div id="jb-print-toc">
-                        
-                    </div>
-                </div>
-            </div>
-            <main id="main-content" role="main">
+              
                 
-              <div>
-                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
   <h1>Source code for boule._sphere</h1><div class="highlight"><pre>
 <span></span><span class="c1"># Copyright (c) 2019 The Boule Developers.</span>
 <span class="c1"># Distributed under the terms of the BSD 3-Clause License.</span>
@@ -383,17 +358,22 @@ title="Open an issue"
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Define the reference sphere (ellipsoid with 0 flattening).</span>
 <span class="sd">&quot;&quot;&quot;</span>
+<span class="kn">import</span> <span class="nn">textwrap</span>
 <span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
 
 <span class="kn">import</span> <span class="nn">attr</span>
 <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
 
+<span class="kn">from</span> <span class="nn">._constants</span> <span class="kn">import</span> <span class="n">G</span>
+
 
 <span class="c1"># Don&#39;t let ellipsoid parameters be changed to avoid messing up calculations</span>
 <span class="c1"># accidentally.</span>
-<div class="viewcode-block" id="Sphere"><a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere">[docs]</a><span class="nd">@attr</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="viewcode-block" id="Sphere">
+<a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere">[docs]</a>
+<span class="nd">@attr</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 <span class="k">class</span> <span class="nc">Sphere</span><span class="p">:</span>
-    <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A rotating sphere (zero-flattening ellipsoid).</span>
 
 <span class="sd">    The ellipsoid is defined by three parameters: radius, geocentric</span>
@@ -430,7 +410,11 @@ title="Open an issue"
 <span class="sd">        (optional).</span>
 <span class="sd">    reference : str or None</span>
 <span class="sd">        Citation for the sphere parameter values (optional).</span>
+<span class="sd">    comments : str or None</span>
+<span class="sd">        Additional comments regarding the ellipsoid (optional).</span>
 
+<span class="sd">    Notes</span>
+<span class="sd">    -----</span>
 
 <span class="sd">    .. caution::</span>
 
@@ -447,24 +431,34 @@ title="Open an issue"
 
 <span class="sd">    &gt;&gt;&gt; sphere = Sphere(</span>
 <span class="sd">    ...     name=&quot;Moon&quot;,</span>
-<span class="sd">    ...     long_name=&quot;That&#39;s no moon&quot;,</span>
-<span class="sd">    ...     radius=1,</span>
-<span class="sd">    ...     geocentric_grav_const=2,</span>
-<span class="sd">    ...     angular_velocity=0.5,</span>
+<span class="sd">    ...     long_name=&quot;Moon Spheroid&quot;,</span>
+<span class="sd">    ...     radius=1737151,</span>
+<span class="sd">    ...     geocentric_grav_const=4902800070000.0,</span>
+<span class="sd">    ...     angular_velocity=2.6617073e-06,</span>
+<span class="sd">    ...     reference=&quot;Wieczorek (2015)&quot;,</span>
+<span class="sd">    ...     comments=&quot;This is the same as the boule Moon2015 spheroid.&quot;</span>
 <span class="sd">    ... )</span>
 <span class="sd">    &gt;&gt;&gt; print(sphere) # doctest: +ELLIPSIS</span>
-<span class="sd">    Sphere(name=&#39;Moon&#39;, ...)</span>
-<span class="sd">    &gt;&gt;&gt; print(sphere.long_name)</span>
-<span class="sd">    That&#39;s no moon</span>
+<span class="sd">    Moon - Moon Spheroid</span>
+<span class="sd">    Spheroid:</span>
+<span class="sd">      • Radius: 1737151 m</span>
+<span class="sd">      • GM: 4902800070000.0 m³/s²</span>
+<span class="sd">      • Angular velocity: 2.6617073e-06 rad/s</span>
+<span class="sd">    Source:</span>
+<span class="sd">      Wieczorek (2015)</span>
+<span class="sd">    Comments:</span>
+<span class="sd">      This is the same as the boule Moon2015 spheroid.</span>
 
-<span class="sd">    The sphere defines semi-axis, flattening, and some eccentricities similar</span>
-<span class="sd">    to :class:`~bould.Ellipsoid` for compatibility with the coordinate</span>
-<span class="sd">    conversion functions of pymap3d:</span>
+<span class="sd">    &gt;&gt;&gt; print(sphere.long_name)</span>
+<span class="sd">    Moon Spheroid</span>
+
+<span class="sd">    The sphere defines semi-axess, flattening, and some eccentricities similar</span>
+<span class="sd">    to :class:`~bould.Ellipsoid` for compatibility:</span>
 
 <span class="sd">    &gt;&gt;&gt; print(sphere.semiminor_axis)</span>
-<span class="sd">    1</span>
+<span class="sd">    1737151</span>
 <span class="sd">    &gt;&gt;&gt; print(sphere.semimajor_axis)</span>
-<span class="sd">    1</span>
+<span class="sd">    1737151</span>
 <span class="sd">    &gt;&gt;&gt; print(sphere.first_eccentricity)</span>
 <span class="sd">    0</span>
 <span class="sd">    &gt;&gt;&gt; print(sphere.eccentricity)</span>
@@ -473,6 +467,24 @@ title="Open an issue"
 <span class="sd">    0</span>
 <span class="sd">    &gt;&gt;&gt; print(sphere.thirdflattening)</span>
 <span class="sd">    0</span>
+<span class="sd">    &gt;&gt;&gt; print(sphere.mean_radius)</span>
+<span class="sd">    1737151</span>
+<span class="sd">    &gt;&gt;&gt; print(sphere.semiaxes_mean_radius)</span>
+<span class="sd">    1737151</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{sphere.volume_equivalent_radius:.1f} m&quot;)</span>
+<span class="sd">    1737151.0 m</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{sphere.volume:.12e} m³&quot;)</span>
+<span class="sd">    2.195843181718e+19 m³</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{sphere.area:.12e} m²&quot;)</span>
+<span class="sd">    3.792145613798e+13 m²</span>
+<span class="sd">    &gt;&gt;&gt; print(sphere.area_equivalent_radius)</span>
+<span class="sd">    1737151</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{sphere.mass:.12e} kg&quot;)</span>
+<span class="sd">    7.345789176393e+22 kg</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{sphere.mean_density:.0f} kg/m³&quot;)</span>
+<span class="sd">    3345 kg/m³</span>
+<span class="sd">    &gt;&gt;&gt; print(f&quot;{sphere.reference_normal_gravitational_potential:.3f} m²/s²&quot;)</span>
+<span class="sd">    2822322.337 m²/s²</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
 
@@ -482,6 +494,7 @@ title="Open an issue"
     <span class="n">angular_velocity</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">()</span>
     <span class="n">long_name</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">reference</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="nd">@radius</span><span class="o">.</span><span class="n">validator</span>
     <span class="k">def</span> <span class="nf">_check_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
@@ -497,29 +510,41 @@ title="Open an issue"
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">semiminor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The semiminor axis of the sphere is equal to its radius. Added for</span>
-<span class="sd">        compatibility with pymap3d.</span>
-<span class="sd">        Definition: :math:`b = R`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The semiminor axis of the sphere is equal to its radius.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">semimedium_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The semimedium axis of the sphere is equal to its radius.</span>
 <span class="sd">        Units: :math:`m`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">semimajor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The semimajor axis of the sphere is equal to its radius. Added for</span>
-<span class="sd">        compatibility with pymap3d.</span>
-<span class="sd">        Definition: :math:`a = R`.</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The semimajor axis of the sphere is equal to its radius.</span>
 <span class="sd">        Units: :math:`m`.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
     <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">semimajor_axis_longitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The semimajor axis longitude of the sphere is equal to zero.</span>
+<span class="sd">        Definition: :math:`\lambda_a = 0`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">0</span>
+
+    <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The flattening of the sphere is equal to zero. Added for compatibility</span>
-<span class="sd">        with pymap3d.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The flattening of the sphere is equal to zero.</span>
 <span class="sd">        Definition: :math:`f = \dfrac{a - b}{a}`.</span>
 <span class="sd">        Units: adimensional.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -527,9 +552,8 @@ title="Open an issue"
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">thirdflattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The third flattening of the sphere is equal to zero. Added for</span>
-<span class="sd">        compatibility with pymap3d</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The third flattening of the sphere is equal to zero.</span>
 <span class="sd">        Definition: :math:`f^{\prime\prime}= \dfrac{a -b}{a + b}`.</span>
 <span class="sd">        Units: adimensional.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -542,16 +566,121 @@ title="Open an issue"
 
     <span class="nd">@property</span>
     <span class="k">def</span> <span class="nf">first_eccentricity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        The (first) eccentricity of the sphere is equal to zero. Added for</span>
-<span class="sd">        compatibility with pymap3d.</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The (first) eccentricity of the sphere is equal to zero.</span>
 <span class="sd">        Definition: :math:`e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}`.</span>
 <span class="sd">        Units: adimensional.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="mi">0</span>
 
-<div class="viewcode-block" id="Sphere.normal_gravity"><a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravity">[docs]</a>    <span class="k">def</span> <span class="nf">normal_gravity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The area of the sphere.</span>
+<span class="sd">        Definition: :math:`A = 4 \pi r^2`.</span>
+<span class="sd">        Units: :math:`m^2`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="o">**</span><span class="mi">2</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The mean radius of the ellipsoid is equal to its radius.</span>
+<span class="sd">        Definition: :math:`R_0 = R`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">semiaxes_mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The arithmetic mean radius of the ellipsoid semi-axes is equal to its</span>
+<span class="sd">        radius.</span>
+<span class="sd">        Definition: :math:`R_1 = R`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The volume of the sphere.</span>
+<span class="sd">        Definition: :math:`V = \dfrac{4}{3} \pi r^3`.</span>
+<span class="sd">        Units: :math:`m^3`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="o">**</span><span class="mi">3</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">area_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The area equivalent radius of the sphere is equal to its radius.</span>
+<span class="sd">        Definition: :math:`R_2 = R`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The mass of the sphere.</span>
+<span class="sd">        Definition: :math:`M = GM / G`.</span>
+<span class="sd">        Units: :math:`kg`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="n">G</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">mean_density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The mean density of the sphere.</span>
+<span class="sd">        Definition: :math:`\rho = M / V`.</span>
+<span class="sd">        Units: :math:`kg / m^3`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">volume_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The volume equivalent radius of the sphere is equal to its radius.</span>
+<span class="sd">        Definition: :math:`R_3 = R`.</span>
+<span class="sd">        Units: :math:`m`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+
+    <span class="nd">@property</span>
+    <span class="k">def</span> <span class="nf">reference_normal_gravitational_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The normal gravitational potential on the surface of the sphere.</span>
+<span class="sd">        Definition: :math:`U_0 = \dfrac{GM}{R}`.</span>
+<span class="sd">        Units: :math:`m^2 / s^2`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
+
+    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">long_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;Spheroid:</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Radius: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="si">}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • GM: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span><span class="si">}</span><span class="s2"> m³/s²</span><span class="se">\n</span><span class="s2">&quot;</span>
+        <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Angular velocity: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span><span class="si">}</span><span class="s2"> rad/s&quot;</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Source:&quot;</span>
+            <span class="k">for</span> <span class="n">ref</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">reference</span><span class="o">.</span><span class="n">splitlines</span><span class="p">():</span>
+                <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
+                    <span class="n">ref</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span> <span class="n">initial_indent</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span><span class="p">,</span> <span class="n">subsequent_indent</span><span class="o">=</span><span class="mi">4</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span>
+                <span class="p">)</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">comments</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">Comments:</span><span class="se">\n</span><span class="s2">&quot;</span>
+            <span class="n">s</span> <span class="o">+=</span> <span class="n">textwrap</span><span class="o">.</span><span class="n">fill</span><span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">comments</span><span class="p">,</span>
+                <span class="n">width</span><span class="o">=</span><span class="mi">72</span><span class="p">,</span>
+                <span class="n">initial_indent</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>
+                <span class="n">subsequent_indent</span><span class="o">=</span><span class="mi">2</span> <span class="o">*</span> <span class="s2">&quot; &quot;</span><span class="p">,</span>
+            <span class="p">)</span>
+        <span class="k">return</span> <span class="n">s</span>
+
+<div class="viewcode-block" id="Sphere.normal_gravity">
+<a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravity">[docs]</a>
+    <span class="k">def</span> <span class="nf">normal_gravity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Normal gravity of the sphere at the given latitude and height.</span>
 
 <span class="sd">        Computes the magnitude of the gradient of the gravity potential</span>
@@ -569,8 +698,8 @@ title="Open an issue"
 
 <span class="sd">        .. caution::</span>
 
-<span class="sd">            The current implementation is only valid for heights on or above</span>
-<span class="sd">            the surface of the sphere.</span>
+<span class="sd">            These expressions are only valid for heights on or above the</span>
+<span class="sd">            surface of the sphere.</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
@@ -657,10 +786,9 @@ title="Open an issue"
 <span class="sd">            }</span>
 
 <span class="sd">        It&#39;s worth noting that a sphere under rotation is not in hydrostatic</span>
-<span class="sd">        equilibrium. Therefore unlike the oblate ellipsoid, it is not it&#39;s own</span>
-<span class="sd">        equipotential gravity surface (as is the case for the ellipsoid), the</span>
-<span class="sd">        gravity potential is not constant at the surface, and  the normal</span>
-<span class="sd">        gravity vector is not normal to the surface of the sphere.</span>
+<span class="sd">        equilibrium. Therefore, unlike the oblate ellipsoid, the gravity</span>
+<span class="sd">        potential is not constant at the surface, and the normal gravity vector</span>
+<span class="sd">        is not normal to the surface of the sphere.</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
@@ -686,8 +814,11 @@ title="Open an issue"
 
         <span class="k">return</span> <span class="n">gamma</span></div>
 
-<div class="viewcode-block" id="Sphere.normal_gravitation"><a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravitation">[docs]</a>    <span class="k">def</span> <span class="nf">normal_gravitation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
-        <span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+
+<div class="viewcode-block" id="Sphere.normal_gravitation">
+<a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravitation">[docs]</a>
+    <span class="k">def</span> <span class="nf">normal_gravitation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Calculate normal gravitation at any height.</span>
 
 <span class="sd">        Computes the magnitude of the gradient of the gravitational potential</span>
@@ -743,38 +874,227 @@ title="Open an issue"
         <span class="k">if</span> <span class="ow">not</span> <span class="n">si_units</span><span class="p">:</span>
             <span class="n">gamma</span> <span class="o">*=</span> <span class="mf">1e5</span>
 
-        <span class="k">return</span> <span class="n">gamma</span></div></div>
+        <span class="k">return</span> <span class="n">gamma</span></div>
+
+
+<div class="viewcode-block" id="Sphere.normal_gravity_potential">
+<a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravity_potential">[docs]</a>
+    <span class="k">def</span> <span class="nf">normal_gravity_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normal gravity potential of the sphere at the given latitude and</span>
+<span class="sd">        height.</span>
+
+<span class="sd">        Computes the normal gravity potential (gravitational + centrifugal)</span>
+<span class="sd">        generated by the sphere at the given spherical latitude :math:`\theta`</span>
+<span class="sd">        and height above the surface of the sphere :math:`h`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            U(\theta, h) = V(h) + \Phi(\theta, h) = \dfrac{GM}{(R + h)}</span>
+<span class="sd">            + \dfrac{1}{2} \omega^2 \left(R + h\right)^2 \cos^2(\theta)</span>
+
+<span class="sd">        in which :math:`U = V + \Phi` is the gravity potential of the sphere,</span>
+<span class="sd">        :math:`V` is the gravitational potential of the sphere, and</span>
+<span class="sd">        :math:`\Phi` is the centrifugal potential.</span>
+
+<span class="sd">        .. caution::</span>
+
+<span class="sd">            These expressions are only valid for heights on or above the</span>
+<span class="sd">            surface of the sphere.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            The spherical latitude where the normal gravity will be computed</span>
+<span class="sd">            (in degrees).</span>
+<span class="sd">        height : float or array</span>
+<span class="sd">            The height above the surface of the sphere of the computation point</span>
+<span class="sd">            (in meters).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        U : float or array</span>
+<span class="sd">            The normal gravity potential in m²/s².</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        A sphere under rotation is not in hydrostatic equilibrium. Therefore,</span>
+<span class="sd">        unlike the oblate ellipsoid, the gravity potential is not constant at</span>
+<span class="sd">        the surface, and the normal gravity vector is not normal to the surface</span>
+<span class="sd">        of the sphere.</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Formulas used are valid for points outside the sphere. &quot;</span>
+                <span class="s2">&quot;Height must be greater than or equal to zero.&quot;</span>
+            <span class="p">)</span>
+
+        <span class="n">radial_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">+</span> <span class="n">height</span>
+        <span class="n">big_u</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="n">radial_distance</span>
+        <span class="n">big_phi</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="mf">0.5</span>
+            <span class="o">*</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span>
+                <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span>
+                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
+            <span class="p">)</span>
+            <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">big_u</span> <span class="o">+</span> <span class="n">big_phi</span></div>
+
+
+<div class="viewcode-block" id="Sphere.normal_gravitational_potential">
+<a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravitational_potential">[docs]</a>
+    <span class="k">def</span> <span class="nf">normal_gravitational_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Normal gravitational potential at the given height above a sphere.</span>
+
+<span class="sd">        Computes the normal gravitational potential generated by the sphere</span>
+<span class="sd">        at the given height above the surface of the sphere :math:`h`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            V(h) = \dfrac{GM}{(R + h)}</span>
+
+<span class="sd">        in which :math:`R` is the sphere radius and :math:`GM` is the</span>
+<span class="sd">        geocentric gravitational constant of the sphere.</span>
+
+<span class="sd">        .. caution::</span>
+
+<span class="sd">            These expressions are only valid for heights on or above the</span>
+<span class="sd">            surface of the sphere.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        height : float or array</span>
+<span class="sd">            The height above the surface of the sphere of the computation point</span>
+<span class="sd">            (in meters).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        V : float or array</span>
+<span class="sd">            The normal gravitational potential in m²/s².</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
+            <span class="n">warn</span><span class="p">(</span>
+                <span class="s2">&quot;Formulas used are valid for points outside the sphere. &quot;</span>
+                <span class="s2">&quot;Height must be greater than or equal to zero.&quot;</span>
+            <span class="p">)</span>
+        <span class="n">radial_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">+</span> <span class="n">height</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="n">radial_distance</span></div>
+
+
+<div class="viewcode-block" id="Sphere.centrifugal_potential">
+<a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.centrifugal_potential">[docs]</a>
+    <span class="k">def</span> <span class="nf">centrifugal_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+<span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Centrifugal potential at the given latitude and height above the</span>
+<span class="sd">        sphere.</span>
+
+<span class="sd">        The centrifugal potential :math:`\Phi` at latitude :math:`\theta` and</span>
+<span class="sd">        height above the sphere :math:`h` is</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \Phi(\theta, h) = \dfrac{1}{2}</span>
+<span class="sd">                \omega^2 \left(R + h\right)^2 \cos^2(\theta)</span>
+
+<span class="sd">        in which :math:`R` is the sphere radius and :math:`\omega` is the</span>
+<span class="sd">        angular velocity.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        latitude : float or array</span>
+<span class="sd">            The latitude where the centrifugal potential will be computed</span>
+<span class="sd">            (in degrees).</span>
+<span class="sd">        height : float or array</span>
+<span class="sd">            The height above the sphere of the computation point (in meters).</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Phi : float or array</span>
+<span class="sd">            The centrifugal potential in m²/s².</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="p">(</span>
+            <span class="mf">0.5</span>
+            <span class="o">*</span> <span class="p">(</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span>
+                <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span>
+                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
+            <span class="p">)</span>
+            <span class="o">**</span> <span class="mi">2</span>
+        <span class="p">)</span></div>
+</div>
+
 </pre></div>
 
-              </div>
+                </article>
               
-            </main>
-            <footer class="footer-article noprint">
-                
-    <!-- Previous / next buttons -->
-<div class='prev-next-area'>
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
 </div>
-            </footer>
-        </div>
-    </div>
-    <div class="footer-content row">
-        <footer class="col footer"><p>
+                </footer>
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
   
-      &copy; Copyright 2022, The Boule Developers.<br/>
-    Last updated on Oct 27, 2022.<br/>
-</p>
-        </footer>
-    </div>
+  <div class="footer-item">
     
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2024, The Boule Developers.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Oct 22, 2024.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
 </div>
+          </footer>
+        
 
-
-      </div>
+      </main>
     </div>
+  </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=1999514e3f237ded88cf"></script>
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
 
-
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>
