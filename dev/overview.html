@@ -20,17 +20,19 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
     <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=a3416100" />
@@ -40,10 +42,11 @@
     <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=12168cd1" />
   
+  <!-- So that users can add custom icons -->
+  <script src="_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
     <script src="_static/doctools.js?v=888ff710"></script>
@@ -79,19 +82,8 @@
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
 
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
-  
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
-  
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -99,7 +91,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -107,8 +98,8 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
@@ -124,7 +115,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +146,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
@@ -371,24 +359,16 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
-  </button>
-`);
-</script>
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
+</button>
 <button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
@@ -561,7 +541,7 @@ geoid in the oceans).</p>
 </div>
 </div>
 <p>Now we can download and open <a class="reference internal" href="glossary.html#term-Co-located-grids"><span class="xref std std-term">co-located grids</span></a> of topography and geoid
-using <a class="reference external" href="https://www.fatiando.org/ensaio/latest/api/index.html#module-ensaio" title="(in Ensaio vv0.6.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ensaio</span></code></a> and <a class="reference external" href="https://docs.xarray.dev/en/stable/index.html#module-xarray" title="(in xarray v2024.9.1.dev0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xarray</span></code></a>:</p>
+using <a class="reference external" href="https://www.fatiando.org/ensaio/latest/api/index.html#module-ensaio" title="(in Ensaio vv0.6.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ensaio</span></code></a> and <a class="reference external" href="https://docs.xarray.dev/en/stable/index.html#module-xarray" title="(in xarray v2024.10.1.dev0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xarray</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname_topo</span> <span class="o">=</span> <span class="n">ensaio</span><span class="o">.</span><span class="n">fetch_earth_topography</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -965,15 +945,15 @@ Attributes:
     description:     height of the geoid with respect to the WGS84 ellipsoid
     units:           m
     actual_range:    [-106.5   86. ]
-    icgem_metadata:  generating_institute: gfz-potsdam\ngenerating_date: 2021...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'geoid'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-cff90589-b42a-41ee-a129-d1d4534795ef' class='xr-array-in' type='checkbox' checked><label for='section-cff90589-b42a-41ee-a129-d1d4534795ef' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-29.5 -29.5 -29.5 -29.5 -29.5 -29.5 ... 15.4 15.4 15.4 15.4 15.4 15.4</span></div><div class='xr-array-data'><pre>array([[-29.5, -29.5, -29.5, ..., -29.5, -29.5, -29.5],
+    icgem_metadata:  generating_institute: gfz-potsdam\ngenerating_date: 2021...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'geoid'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-e3c51b5c-0cd7-4980-8f28-3c522a7d9f2a' class='xr-array-in' type='checkbox' checked><label for='section-e3c51b5c-0cd7-4980-8f28-3c522a7d9f2a' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-29.5 -29.5 -29.5 -29.5 -29.5 -29.5 ... 15.4 15.4 15.4 15.4 15.4 15.4</span></div><div class='xr-array-data'><pre>array([[-29.5, -29.5, -29.5, ..., -29.5, -29.5, -29.5],
        [-29.5, -29.5, -29.5, ..., -29.5, -29.5, -29.5],
        [-29.6, -29.6, -29.6, ..., -29.6, -29.6, -29.6],
        ...,
        [ 14.7,  14.7,  14.7, ...,  14.7,  14.7,  14.7],
        [ 15.2,  15.2,  15.2, ...,  15.2,  15.2,  15.2],
-       [ 15.4,  15.4,  15.4, ...,  15.4,  15.4,  15.4]])</pre></div></div></li><li class='xr-section-item'><input id='section-51f158f5-9ee5-4925-b5eb-56949d4d8ff1' class='xr-section-summary-in' type='checkbox'  checked><label for='section-51f158f5-9ee5-4925-b5eb-56949d4d8ff1' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-da57522d-5375-45f0-893e-6f4cb6411f55' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-da57522d-5375-45f0-893e-6f4cb6411f55' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-7ef6e613-6339-4820-ac62-ca4f583e33cf' class='xr-var-data-in' type='checkbox'><label for='data-7ef6e613-6339-4820-ac62-ca4f583e33cf' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
-        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-56f9bc99-507a-4622-94b0-006234a85bf9' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-56f9bc99-507a-4622-94b0-006234a85bf9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-efab9780-68c9-40f7-8d6c-41d9aa3f7cae' class='xr-var-data-in' type='checkbox'><label for='data-efab9780-68c9-40f7-8d6c-41d9aa3f7cae' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
-        90.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-289f6a24-dee2-44b9-8aad-c29cb1326b5d' class='xr-section-summary-in' type='checkbox'  ><label for='section-289f6a24-dee2-44b9-8aad-c29cb1326b5d' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e3b965bf-f8af-4f80-b801-86c6c40e5428' class='xr-index-data-in' type='checkbox'/><label for='index-e3b965bf-f8af-4f80-b801-86c6c40e5428' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
+       [ 15.4,  15.4,  15.4, ...,  15.4,  15.4,  15.4]])</pre></div></div></li><li class='xr-section-item'><input id='section-25542583-ece8-4a9d-8509-76af155962e1' class='xr-section-summary-in' type='checkbox'  checked><label for='section-25542583-ece8-4a9d-8509-76af155962e1' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-42f67a5d-3a0a-4266-93a6-3b20ce37b33b' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-42f67a5d-3a0a-4266-93a6-3b20ce37b33b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e0696a9d-6d0a-4a27-8bb2-e2e6997e25b4' class='xr-var-data-in' type='checkbox'><label for='data-e0696a9d-6d0a-4a27-8bb2-e2e6997e25b4' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
+        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-f2ea241e-2447-4c32-a4af-9dce5059cdf3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-f2ea241e-2447-4c32-a4af-9dce5059cdf3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6ea6e92c-6de3-410e-a8bf-1a5bc2a602f6' class='xr-var-data-in' type='checkbox'><label for='data-6ea6e92c-6de3-410e-a8bf-1a5bc2a602f6' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
+        90.      ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-88bfe1f3-b926-488d-af76-d0c34de751a5' class='xr-section-summary-in' type='checkbox'  ><label for='section-88bfe1f3-b926-488d-af76-d0c34de751a5' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-27c00523-5526-4b68-964a-68ce07566374' class='xr-index-data-in' type='checkbox'/><label for='index-27c00523-5526-4b68-964a-68ce07566374' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
                     -179.5, -179.33333333333334, -179.16666666666666,
                     -179.0, -178.83333333333334, -178.66666666666666,
                     -178.5,
@@ -982,7 +962,7 @@ Attributes:
                      179.0,  179.16666666666663,  179.33333333333331,
                      179.5,  179.66666666666663,  179.83333333333331,
                      180.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-3a92df04-9b90-4cdd-b527-68e400825402' class='xr-index-data-in' type='checkbox'/><label for='index-3a92df04-9b90-4cdd-b527-68e400825402' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
+      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-66d3aceb-ed7e-4ab0-9c78-403c006951b0' class='xr-index-data-in' type='checkbox'/><label for='index-66d3aceb-ed7e-4ab0-9c78-403c006951b0' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
                     -89.5, -89.33333333333333, -89.16666666666667,
                     -89.0, -88.83333333333333, -88.66666666666667,
                     -88.5,
@@ -991,7 +971,7 @@ Attributes:
                      89.0,  89.16666666666666,  89.33333333333331,
                      89.5,  89.66666666666666,  89.83333333333331,
                      90.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0a9b6d48-6705-48d0-88c2-aa015cd53b5c' class='xr-section-summary-in' type='checkbox'  ><label for='section-0a9b6d48-6705-48d0-88c2-aa015cd53b5c' class='xr-section-summary' >Attributes: <span>(12)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.8</dd><dt><span>title :</span></dt><dd>Geoid height (EIGEN-6C4) with respect to WGS84</dd><dt><span>crs :</span></dt><dd>WGS84</dd><dt><span>source :</span></dt><dd>Generated from the EIGEN-6C4 model by the ICGEM Calculation Service (http://icgem.gfz-potsdam.de)</dd><dt><span>license :</span></dt><dd>Creative Commons Attribution 4.0 International Licence</dd><dt><span>references :</span></dt><dd>https://doi.org/10.5880/icgem.2015.1</dd><dt><span>long_name :</span></dt><dd>geoid height</dd><dt><span>standard_name :</span></dt><dd>geoid_height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of the geoid with respect to the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[-106.5   86. ]</dd><dt><span>icgem_metadata :</span></dt><dd>generating_institute: gfz-potsdam
+      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c3a39518-0bc7-4dc9-89f4-efea261f96ab' class='xr-section-summary-in' type='checkbox'  ><label for='section-c3a39518-0bc7-4dc9-89f4-efea261f96ab' class='xr-section-summary' >Attributes: <span>(12)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.8</dd><dt><span>title :</span></dt><dd>Geoid height (EIGEN-6C4) with respect to WGS84</dd><dt><span>crs :</span></dt><dd>WGS84</dd><dt><span>source :</span></dt><dd>Generated from the EIGEN-6C4 model by the ICGEM Calculation Service (http://icgem.gfz-potsdam.de)</dd><dt><span>license :</span></dt><dd>Creative Commons Attribution 4.0 International Licence</dd><dt><span>references :</span></dt><dd>https://doi.org/10.5880/icgem.2015.1</dd><dt><span>long_name :</span></dt><dd>geoid height</dd><dt><span>standard_name :</span></dt><dd>geoid_height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of the geoid with respect to the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[-106.5   86. ]</dd><dt><span>icgem_metadata :</span></dt><dd>generating_institute: gfz-potsdam
 generating_date: 2021/06/11
 product_type: gravity_field
 body: earth
@@ -1104,7 +1084,8 @@ different definitions of normal gravity for each ellipsoid type.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
   <div class="sidebar-secondary-item">
@@ -1145,7 +1126,7 @@ different definitions of normal gravity for each ellipsoid type.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Oct 22, 2024.
+  Last updated on Nov 18, 2024.
   <br/>
 </p>
   </div>
@@ -1163,8 +1144,8 @@ different definitions of normal gravity for each ellipsoid type.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
 
   <footer class="bd-footer">
   </footer>
