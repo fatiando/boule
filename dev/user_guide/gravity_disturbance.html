@@ -32,8 +32,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
@@ -428,10 +428,10 @@ at a height of 10 km.</p>
 <p>First off, we import the required packages to do this:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
-<span class="kn">import</span> <span class="nn">ensaio</span>
-<span class="kn">import</span> <span class="nn">xarray</span> <span class="k">as</span> <span class="nn">xr</span>  <span class="c1"># For loading the grid data</span>
-<span class="kn">import</span> <span class="nn">pygmt</span>         <span class="c1"># For plotting nice maps</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">boule</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ensaio</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>  <span class="c1"># For loading the grid data</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pygmt</span>         <span class="c1"># For plotting nice maps</span>
 </pre></div>
 </div>
 </div>
@@ -442,8 +442,8 @@ at a height of 10 km.</p>
 <div class="cell_output docutils container">
 </div>
 </div>
-<p>Next, we can download and cache the gravity grid using <a class="reference external" href="https://www.fatiando.org/ensaio/latest/api/index.html#module-ensaio" title="(in Ensaio vv0.6.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ensaio</span></code></a> and load
-it with <a class="reference external" href="https://docs.xarray.dev/en/stable/index.html#module-xarray" title="(in xarray v2024.9.1.dev0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xarray</span></code></a>:</p>
+<p>Next, we can download and cache the gravity grid using <a class="reference external" href="https://www.fatiando.org/ensaio/latest/api/index.html#module-ensaio" title="(in Ensaio vv0.7.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">ensaio</span></code></a> and load
+it with <a class="reference external" href="https://docs.xarray.dev/en/stable/index.html#module-xarray" title="(in xarray v2025.7.2)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">xarray</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fname</span> <span class="o">=</span> <span class="n">ensaio</span><span class="o">.</span><span class="n">fetch_earth_gravity</span><span class="p">(</span><span class="n">version</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
@@ -473,28 +473,76 @@ it with <a class="reference external" href="https://docs.xarray.dev/en/stable/in
  */
 
 :root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
 }
 
-html[theme=dark],
-html[data-theme=dark],
-body[data-theme=dark],
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
 body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
 }
 
 .xr-wrap {
@@ -545,10 +593,12 @@ body.vscode-dark {
 .xr-section-item input {
   display: inline-block;
   opacity: 0;
+  height: 0;
 }
 
 .xr-section-item input + label {
   color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
 }
 
 .xr-section-item input:enabled + label {
@@ -557,7 +607,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
+  border: 2px solid var(--xr-font-color0) !important;
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -581,7 +631,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: '►';
+  content: "►";
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -592,7 +642,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: '▼';
+  content: "▼";
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -664,15 +714,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: '(';
+  content: "(";
 }
 
 .xr-dim-list:after {
-  content: ')';
+  content: ")";
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ',';
+  content: ",";
   padding-right: 5px;
 }
 
@@ -689,7 +739,9 @@ body.vscode-dark {
 .xr-var-item label,
 .xr-var-item > .xr-var-name span {
   background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
   margin-bottom: 0;
+  padding-top: 2px;
 }
 
 .xr-var-item > .xr-var-name:hover span {
@@ -700,6 +752,7 @@ body.vscode-dark {
 .xr-var-list > li:nth-child(odd) > label,
 .xr-var-list > li:nth-child(odd) > .xr-var-name span {
   background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
 }
 
 .xr-var-name {
@@ -749,8 +802,15 @@ body.vscode-dark {
 .xr-var-data,
 .xr-index-data {
   display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
@@ -761,6 +821,12 @@ body.vscode-dark {
 
 .xr-var-data > table {
   float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
 }
 
 .xr-var-name span,
@@ -822,6 +888,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray &#x27;gravity&#x27; (latitude: 1081, longitude: 2161)&gt; Size: 19MB
 array([[980106.525, 980106.525, 980106.525, ..., 980106.525, 980106.525,
         980106.525],
@@ -835,7 +909,7 @@ array([[980106.525, 980106.525, 980106.525, ..., 980106.525, 980106.525,
        [980160.425, 980160.425, 980160.425, ..., 980160.425, 980160.425,
         980160.425],
        [980157.525, 980157.525, 980157.525, ..., 980157.525, 980157.525,
-        980157.525]])
+        980157.525]], shape=(1081, 2161))
 Coordinates:
   * longitude  (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
   * latitude   (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
@@ -851,7 +925,7 @@ Attributes:
     description:     magnitude of the gravity acceleration vector (gravitatio...
     units:           mGal
     actual_range:    [974748.6 980201.9]
-    icgem_metadata:  generating_institute: gfz-potsdam\ngenerating_date: 2021...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'gravity'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-a7a8fb19-8ea6-4def-986c-8fbc8db9d4b4' class='xr-array-in' type='checkbox' checked><label for='section-a7a8fb19-8ea6-4def-986c-8fbc8db9d4b4' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>9.801e+05 9.801e+05 9.801e+05 ... 9.802e+05 9.802e+05 9.802e+05</span></div><div class='xr-array-data'><pre>array([[980106.525, 980106.525, 980106.525, ..., 980106.525, 980106.525,
+    icgem_metadata:  generating_institute: gfz-potsdam\ngenerating_date: 2021...</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'>'gravity'</div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-74e90fe8-8804-475e-aa79-5ee833b9129f' class='xr-array-in' type='checkbox' checked><label for='section-74e90fe8-8804-475e-aa79-5ee833b9129f' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>9.801e+05 9.801e+05 9.801e+05 ... 9.802e+05 9.802e+05 9.802e+05</span></div><div class='xr-array-data'><pre>array([[980106.525, 980106.525, 980106.525, ..., 980106.525, 980106.525,
         980106.525],
        [980108.225, 980108.225, 980108.225, ..., 980108.225, 980108.225,
         980108.225],
@@ -863,16 +937,16 @@ Attributes:
        [980160.425, 980160.425, 980160.425, ..., 980160.425, 980160.425,
         980160.425],
        [980157.525, 980157.525, 980157.525, ..., 980157.525, 980157.525,
-        980157.525]])</pre></div></div></li><li class='xr-section-item'><input id='section-d2dc1f43-8501-48f7-86cd-db131c0e4ea6' class='xr-section-summary-in' type='checkbox'  checked><label for='section-d2dc1f43-8501-48f7-86cd-db131c0e4ea6' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-d25bdcce-9cf1-472e-8bfc-d194eee2c3c1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d25bdcce-9cf1-472e-8bfc-d194eee2c3c1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4709a965-8df0-4e0f-8415-9895d7f11286' class='xr-var-data-in' type='checkbox'><label for='data-4709a965-8df0-4e0f-8415-9895d7f11286' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
-        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-d3666ce9-3712-424a-800b-f04ddc334a7e' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-d3666ce9-3712-424a-800b-f04ddc334a7e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-e7aa2207-acf9-459a-b639-f81d3223b394' class='xr-var-data-in' type='checkbox'><label for='data-e7aa2207-acf9-459a-b639-f81d3223b394' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
-        90.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-26f04280-ca48-487b-8804-fbc1a586cfda' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-26f04280-ca48-487b-8804-fbc1a586cfda' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-73bd710f-c634-4524-8838-c6b55e52746f' class='xr-var-data-in' type='checkbox'><label for='data-73bd710f-c634-4524-8838-c6b55e52746f' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
+        980157.525]], shape=(1081, 2161))</pre></div></div></li><li class='xr-section-item'><input id='section-fa6364e4-bf3a-4dbf-b030-000ec696d000' class='xr-section-summary-in' type='checkbox'  checked><label for='section-fa6364e4-bf3a-4dbf-b030-000ec696d000' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-5fae3806-ec81-4221-8879-15328b4d6a32' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5fae3806-ec81-4221-8879-15328b4d6a32' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-2db72cf0-2859-4a14-8f1c-781009a208c3' class='xr-var-data-in' type='checkbox'><label for='data-2db72cf0-2859-4a14-8f1c-781009a208c3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
+        180.      ], shape=(2161,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-71b98741-b71c-4743-8700-b646348a619c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-71b98741-b71c-4743-8700-b646348a619c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4d55218b-bf51-4505-8f83-70491e9ef086' class='xr-var-data-in' type='checkbox'><label for='data-4d55218b-bf51-4505-8f83-70491e9ef086' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
+        90.      ], shape=(1081,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-e7b6825d-6257-4071-b9ad-00e46b6a1dcc' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e7b6825d-6257-4071-b9ad-00e46b6a1dcc' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-9edf496e-d31e-4ec4-a6a1-8252f49e1139' class='xr-var-data-in' type='checkbox'><label for='data-9edf496e-d31e-4ec4-a6a1-8252f49e1139' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        ...,
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.]],
-      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-c33ee0f5-81c2-46f7-b26e-122357246b4e' class='xr-section-summary-in' type='checkbox'  ><label for='section-c33ee0f5-81c2-46f7-b26e-122357246b4e' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-edbc132b-d576-4c24-8f3f-01fdf510b064' class='xr-index-data-in' type='checkbox'/><label for='index-edbc132b-d576-4c24-8f3f-01fdf510b064' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
+      shape=(1081, 2161), dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-714bc530-ca19-4103-992f-52d64b3d6664' class='xr-section-summary-in' type='checkbox'  ><label for='section-714bc530-ca19-4103-992f-52d64b3d6664' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-4544e895-9596-4c1f-af2f-827f07d87e69' class='xr-index-data-in' type='checkbox'/><label for='index-4544e895-9596-4c1f-af2f-827f07d87e69' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
                     -179.5, -179.33333333333334, -179.16666666666666,
                     -179.0, -178.83333333333334, -178.66666666666666,
                     -178.5,
@@ -881,7 +955,7 @@ Attributes:
                      179.0,  179.16666666666663,  179.33333333333331,
                      179.5,  179.66666666666663,  179.83333333333331,
                      180.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-53cb219d-84b8-4765-9aff-84b5dea8063c' class='xr-index-data-in' type='checkbox'/><label for='index-53cb219d-84b8-4765-9aff-84b5dea8063c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
+      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-9bfa4eec-ebd1-4e69-8ec2-e7461beef125' class='xr-index-data-in' type='checkbox'/><label for='index-9bfa4eec-ebd1-4e69-8ec2-e7461beef125' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
                     -89.5, -89.33333333333333, -89.16666666666667,
                     -89.0, -88.83333333333333, -88.66666666666667,
                     -88.5,
@@ -890,7 +964,7 @@ Attributes:
                      89.0,  89.16666666666666,  89.33333333333331,
                      89.5,  89.66666666666666,  89.83333333333331,
                      90.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a587673f-2eb3-45e7-a93d-8f088265385e' class='xr-section-summary-in' type='checkbox'  ><label for='section-a587673f-2eb3-45e7-a93d-8f088265385e' class='xr-section-summary' >Attributes: <span>(11)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.8</dd><dt><span>title :</span></dt><dd>Gravity acceleration (EIGEN-6C4) at a constant geometric height</dd><dt><span>crs :</span></dt><dd>WGS84</dd><dt><span>source :</span></dt><dd>Generated from the EIGEN-6C4 model by the ICGEM Calculation Service (http://icgem.gfz-potsdam.de)</dd><dt><span>license :</span></dt><dd>Creative Commons Attribution 4.0 International Licence</dd><dt><span>references :</span></dt><dd>https://doi.org/10.5880/icgem.2015.1</dd><dt><span>long_name :</span></dt><dd>gravity acceleration</dd><dt><span>description :</span></dt><dd>magnitude of the gravity acceleration vector (gravitational + centrifugal)</dd><dt><span>units :</span></dt><dd>mGal</dd><dt><span>actual_range :</span></dt><dd>[974748.6 980201.9]</dd><dt><span>icgem_metadata :</span></dt><dd>generating_institute: gfz-potsdam
+      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-52de31c0-457a-43bb-8d0e-d33d05a7f5ad' class='xr-section-summary-in' type='checkbox'  ><label for='section-52de31c0-457a-43bb-8d0e-d33d05a7f5ad' class='xr-section-summary' >Attributes: <span>(11)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'><dt><span>Conventions :</span></dt><dd>CF-1.8</dd><dt><span>title :</span></dt><dd>Gravity acceleration (EIGEN-6C4) at a constant geometric height</dd><dt><span>crs :</span></dt><dd>WGS84</dd><dt><span>source :</span></dt><dd>Generated from the EIGEN-6C4 model by the ICGEM Calculation Service (http://icgem.gfz-potsdam.de)</dd><dt><span>license :</span></dt><dd>Creative Commons Attribution 4.0 International Licence</dd><dt><span>references :</span></dt><dd>https://doi.org/10.5880/icgem.2015.1</dd><dt><span>long_name :</span></dt><dd>gravity acceleration</dd><dt><span>description :</span></dt><dd>magnitude of the gravity acceleration vector (gravitational + centrifugal)</dd><dt><span>units :</span></dt><dd>mGal</dd><dt><span>actual_range :</span></dt><dd>[974748.6 980201.9]</dd><dt><span>icgem_metadata :</span></dt><dd>generating_institute: gfz-potsdam
 generating_date: 2021/06/11
 product_type: gravity_field
 body: earth
@@ -924,7 +998,7 @@ grid_format: long_lat_value
 attributes: longitude latitude gravity_ell
 attributes_units: deg. deg. mgal</dd></dl></div></li></ul></div></div></div></div>
 </div>
-<p>Let’s plot this data on a map using <a class="reference external" href="https://www.pygmt.org/latest/api/index.html#module-pygmt" title="(in PyGMT vv0.13.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygmt</span></code></a> to see what it looks like:</p>
+<p>Let’s plot this data on a map using <code class="xref py py-mod docutils literal notranslate"><span class="pre">pygmt</span></code> to see what it looks like:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -980,28 +1054,76 @@ observed gravity using <a class="reference internal" href="../api/generated/boul
  */
 
 :root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
 }
 
-html[theme=dark],
-html[data-theme=dark],
-body[data-theme=dark],
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
 body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
 }
 
 .xr-wrap {
@@ -1052,10 +1174,12 @@ body.vscode-dark {
 .xr-section-item input {
   display: inline-block;
   opacity: 0;
+  height: 0;
 }
 
 .xr-section-item input + label {
   color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
 }
 
 .xr-section-item input:enabled + label {
@@ -1064,7 +1188,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
+  border: 2px solid var(--xr-font-color0) !important;
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -1088,7 +1212,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: '►';
+  content: "►";
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -1099,7 +1223,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: '▼';
+  content: "▼";
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -1171,15 +1295,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: '(';
+  content: "(";
 }
 
 .xr-dim-list:after {
-  content: ')';
+  content: ")";
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ',';
+  content: ",";
   padding-right: 5px;
 }
 
@@ -1196,7 +1320,9 @@ body.vscode-dark {
 .xr-var-item label,
 .xr-var-item > .xr-var-name span {
   background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
   margin-bottom: 0;
+  padding-top: 2px;
 }
 
 .xr-var-item > .xr-var-name:hover span {
@@ -1207,6 +1333,7 @@ body.vscode-dark {
 .xr-var-list > li:nth-child(odd) > label,
 .xr-var-list > li:nth-child(odd) > .xr-var-name span {
   background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
 }
 
 .xr-var-name {
@@ -1256,8 +1383,15 @@ body.vscode-dark {
 .xr-var-data,
 .xr-index-data {
   display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
@@ -1268,6 +1402,12 @@ body.vscode-dark {
 
 .xr-var-data > table {
   float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
 }
 
 .xr-var-name span,
@@ -1329,6 +1469,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (latitude: 1081, longitude: 2161)&gt; Size: 19MB
 array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
         980142.33509235, 980142.33509235, 980142.33509235],
@@ -1342,11 +1490,12 @@ array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
        [980142.29097894, 980142.29097894, 980142.29097894, ...,
         980142.29097894, 980142.29097894, 980142.29097894],
        [980142.33509235, 980142.33509235, 980142.33509235, ...,
-        980142.33509235, 980142.33509235, 980142.33509235]])
+        980142.33509235, 980142.33509235, 980142.33509235]],
+      shape=(1081, 2161))
 Coordinates:
   * latitude   (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
   * longitude  (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
-    height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-4373a191-55d0-41d8-bb73-0b4b822749b4' class='xr-array-in' type='checkbox' checked><label for='section-4373a191-55d0-41d8-bb73-0b4b822749b4' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>9.801e+05 9.801e+05 9.801e+05 ... 9.801e+05 9.801e+05 9.801e+05</span></div><div class='xr-array-data'><pre>array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
+    height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-85da38ab-256e-4aa7-84c1-cd25490cffcf' class='xr-array-in' type='checkbox' checked><label for='section-85da38ab-256e-4aa7-84c1-cd25490cffcf' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>9.801e+05 9.801e+05 9.801e+05 ... 9.801e+05 9.801e+05 9.801e+05</span></div><div class='xr-array-data'><pre>array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
         980142.33509235, 980142.33509235, 980142.33509235],
        [980142.29097894, 980142.29097894, 980142.29097894, ...,
         980142.29097894, 980142.29097894, 980142.29097894],
@@ -1358,16 +1507,17 @@ Coordinates:
        [980142.29097894, 980142.29097894, 980142.29097894, ...,
         980142.29097894, 980142.29097894, 980142.29097894],
        [980142.33509235, 980142.33509235, 980142.33509235, ...,
-        980142.33509235, 980142.33509235, 980142.33509235]])</pre></div></div></li><li class='xr-section-item'><input id='section-3c7a2e47-a239-4a9d-b895-214653e4aa90' class='xr-section-summary-in' type='checkbox'  checked><label for='section-3c7a2e47-a239-4a9d-b895-214653e4aa90' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-e777d951-5d66-49d2-bfe4-eeb3521535c3' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-e777d951-5d66-49d2-bfe4-eeb3521535c3' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-844af668-af64-4da3-8186-e31b940a85fb' class='xr-var-data-in' type='checkbox'><label for='data-844af668-af64-4da3-8186-e31b940a85fb' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
-        90.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-3ec99271-1254-4433-931f-e62d0d0db5bd' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3ec99271-1254-4433-931f-e62d0d0db5bd' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-84a1aea5-8295-4905-8f2d-bcb69391edad' class='xr-var-data-in' type='checkbox'><label for='data-84a1aea5-8295-4905-8f2d-bcb69391edad' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
-        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-3a710620-0b1f-40da-ab26-c3f51681a223' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3a710620-0b1f-40da-ab26-c3f51681a223' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-a3785db7-0872-4a0d-94b3-96b0b944f41a' class='xr-var-data-in' type='checkbox'><label for='data-a3785db7-0872-4a0d-94b3-96b0b944f41a' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
+        980142.33509235, 980142.33509235, 980142.33509235]],
+      shape=(1081, 2161))</pre></div></div></li><li class='xr-section-item'><input id='section-252b78b1-c488-42d1-af4e-3e971391cefb' class='xr-section-summary-in' type='checkbox'  checked><label for='section-252b78b1-c488-42d1-af4e-3e971391cefb' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-0e3fa566-cc72-4897-8d4f-a05c40bba5d4' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-0e3fa566-cc72-4897-8d4f-a05c40bba5d4' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-576576c5-9e2a-4f65-9e69-6a153f7d118e' class='xr-var-data-in' type='checkbox'><label for='data-576576c5-9e2a-4f65-9e69-6a153f7d118e' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
+        90.      ], shape=(1081,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-5b751ae2-5aed-485b-a248-f4dbeddc5dc9' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-5b751ae2-5aed-485b-a248-f4dbeddc5dc9' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4e0b4ae6-9746-498d-a88d-6aa0a4401cf0' class='xr-var-data-in' type='checkbox'><label for='data-4e0b4ae6-9746-498d-a88d-6aa0a4401cf0' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
+        180.      ], shape=(2161,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-19ad11af-d311-4d27-bbd5-208d4a3d2603' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-19ad11af-d311-4d27-bbd5-208d4a3d2603' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-76a72051-36c3-4c7d-9dd7-2b71d14f7df8' class='xr-var-data-in' type='checkbox'><label for='data-76a72051-36c3-4c7d-9dd7-2b71d14f7df8' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        ...,
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.]],
-      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b3abc5f2-4135-4e33-a759-0236da267aa4' class='xr-section-summary-in' type='checkbox'  ><label for='section-b3abc5f2-4135-4e33-a759-0236da267aa4' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-a37725ce-df6d-4160-bab9-07407f2b272e' class='xr-index-data-in' type='checkbox'/><label for='index-a37725ce-df6d-4160-bab9-07407f2b272e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
+      shape=(1081, 2161), dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-76d74251-c47f-4569-81e9-a82fd7a5e87e' class='xr-section-summary-in' type='checkbox'  ><label for='section-76d74251-c47f-4569-81e9-a82fd7a5e87e' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-b106ed8b-a0a7-4a33-a606-708b5314305a' class='xr-index-data-in' type='checkbox'/><label for='index-b106ed8b-a0a7-4a33-a606-708b5314305a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
                     -89.5, -89.33333333333333, -89.16666666666667,
                     -89.0, -88.83333333333333, -88.66666666666667,
                     -88.5,
@@ -1376,7 +1526,7 @@ Coordinates:
                      89.0,  89.16666666666666,  89.33333333333331,
                      89.5,  89.66666666666666,  89.83333333333331,
                      90.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-175a2a93-cee3-4370-871d-d9e98b1778c2' class='xr-index-data-in' type='checkbox'/><label for='index-175a2a93-cee3-4370-871d-d9e98b1778c2' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
+      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-7943abeb-3ce8-4427-a467-195571695794' class='xr-index-data-in' type='checkbox'/><label for='index-7943abeb-3ce8-4427-a467-195571695794' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
                     -179.5, -179.33333333333334, -179.16666666666666,
                     -179.0, -178.83333333333334, -178.66666666666666,
                     -178.5,
@@ -1385,7 +1535,7 @@ Coordinates:
                      179.0,  179.16666666666663,  179.33333333333331,
                      179.5,  179.66666666666663,  179.83333333333331,
                      180.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-0bfe6017-bee9-44da-8f59-db2377478e1c' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-0bfe6017-bee9-44da-8f59-db2377478e1c' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-3a4af4a6-8552-4e1a-853f-091bc75b1963' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3a4af4a6-8552-4e1a-853f-091bc75b1963' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
@@ -1440,28 +1590,76 @@ from the data grid:</p>
  */
 
 :root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
 }
 
-html[theme=dark],
-html[data-theme=dark],
-body[data-theme=dark],
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
 body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
 }
 
 .xr-wrap {
@@ -1512,10 +1710,12 @@ body.vscode-dark {
 .xr-section-item input {
   display: inline-block;
   opacity: 0;
+  height: 0;
 }
 
 .xr-section-item input + label {
   color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
 }
 
 .xr-section-item input:enabled + label {
@@ -1524,7 +1724,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
+  border: 2px solid var(--xr-font-color0) !important;
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -1548,7 +1748,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: '►';
+  content: "►";
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -1559,7 +1759,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: '▼';
+  content: "▼";
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -1631,15 +1831,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: '(';
+  content: "(";
 }
 
 .xr-dim-list:after {
-  content: ')';
+  content: ")";
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ',';
+  content: ",";
   padding-right: 5px;
 }
 
@@ -1656,7 +1856,9 @@ body.vscode-dark {
 .xr-var-item label,
 .xr-var-item > .xr-var-name span {
   background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
   margin-bottom: 0;
+  padding-top: 2px;
 }
 
 .xr-var-item > .xr-var-name:hover span {
@@ -1667,6 +1869,7 @@ body.vscode-dark {
 .xr-var-list > li:nth-child(odd) > label,
 .xr-var-list > li:nth-child(odd) > .xr-var-name span {
   background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
 }
 
 .xr-var-name {
@@ -1716,8 +1919,15 @@ body.vscode-dark {
 .xr-var-data,
 .xr-index-data {
   display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
@@ -1728,6 +1938,12 @@ body.vscode-dark {
 
 .xr-var-data > table {
   float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
 }
 
 .xr-var-name span,
@@ -1789,6 +2005,14 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (latitude: 1081, longitude: 2161)&gt; Size: 19MB
 array([[-35.81009235, -35.81009235, -35.81009235, ..., -35.81009235,
         -35.81009235, -35.81009235],
@@ -1802,11 +2026,11 @@ array([[-35.81009235, -35.81009235, -35.81009235, ..., -35.81009235,
        [ 18.13402106,  18.13402106,  18.13402106, ...,  18.13402106,
          18.13402106,  18.13402106],
        [ 15.18990765,  15.18990765,  15.18990765, ...,  15.18990765,
-         15.18990765,  15.18990765]])
+         15.18990765,  15.18990765]], shape=(1081, 2161))
 Coordinates:
   * longitude  (longitude) float64 17kB -180.0 -179.8 -179.7 ... 179.8 180.0
   * latitude   (latitude) float64 9kB -90.0 -89.83 -89.67 ... 89.67 89.83 90.0
-    height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-1cfafd4e-7d56-444a-b1cf-23ea610336f4' class='xr-array-in' type='checkbox' checked><label for='section-1cfafd4e-7d56-444a-b1cf-23ea610336f4' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-35.81 -35.81 -35.81 -35.81 -35.81 ... 15.19 15.19 15.19 15.19 15.19</span></div><div class='xr-array-data'><pre>array([[-35.81009235, -35.81009235, -35.81009235, ..., -35.81009235,
+    height     (latitude, longitude) float32 9MB 1e+04 1e+04 ... 1e+04 1e+04</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-array-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 1081</li><li><span class='xr-has-index'>longitude</span>: 2161</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-6b17f23d-1d5a-4175-8ea5-a0f8c09f6ddc' class='xr-array-in' type='checkbox' checked><label for='section-6b17f23d-1d5a-4175-8ea5-a0f8c09f6ddc' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>-35.81 -35.81 -35.81 -35.81 -35.81 ... 15.19 15.19 15.19 15.19 15.19</span></div><div class='xr-array-data'><pre>array([[-35.81009235, -35.81009235, -35.81009235, ..., -35.81009235,
         -35.81009235, -35.81009235],
        [-34.06597894, -34.06597894, -34.06597894, ..., -34.06597894,
         -34.06597894, -34.06597894],
@@ -1818,16 +2042,16 @@ Coordinates:
        [ 18.13402106,  18.13402106,  18.13402106, ...,  18.13402106,
          18.13402106,  18.13402106],
        [ 15.18990765,  15.18990765,  15.18990765, ...,  15.18990765,
-         15.18990765,  15.18990765]])</pre></div></div></li><li class='xr-section-item'><input id='section-0ca868a7-a2fa-43aa-bc68-2cfeb4df0d61' class='xr-section-summary-in' type='checkbox'  checked><label for='section-0ca868a7-a2fa-43aa-bc68-2cfeb4df0d61' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-22c5041e-59a4-48c0-8a9d-a60816664859' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-22c5041e-59a4-48c0-8a9d-a60816664859' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-decb8b1b-0ec9-498f-99c4-03e04b2bd79d' class='xr-var-data-in' type='checkbox'><label for='data-decb8b1b-0ec9-498f-99c4-03e04b2bd79d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
-        180.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-7cbdac70-ccd7-400a-b380-ceafe6eb2fe1' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-7cbdac70-ccd7-400a-b380-ceafe6eb2fe1' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-3e58b752-6358-47ac-a0c5-b12ff38fadf2' class='xr-var-data-in' type='checkbox'><label for='data-3e58b752-6358-47ac-a0c5-b12ff38fadf2' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
-        90.      ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-de79002f-771d-4d30-844d-c7eb246cc37c' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-de79002f-771d-4d30-844d-c7eb246cc37c' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5fe32e73-958e-4d5e-8225-a10db8200e36' class='xr-var-data-in' type='checkbox'><label for='data-5fe32e73-958e-4d5e-8225-a10db8200e36' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
+         15.18990765,  15.18990765]], shape=(1081, 2161))</pre></div></div></li><li class='xr-section-item'><input id='section-257c9e03-6f49-4349-b882-ad16e0f2b324' class='xr-section-summary-in' type='checkbox'  checked><label for='section-257c9e03-6f49-4349-b882-ad16e0f2b324' class='xr-section-summary' >Coordinates: <span>(3)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-180.0 -179.8 ... 179.8 180.0</div><input id='attrs-3851d207-9363-4b28-8338-2cee7a01c1c0' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-3851d207-9363-4b28-8338-2cee7a01c1c0' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-0488aa6d-38db-4cad-a225-4b5b0aadb83d' class='xr-var-data-in' type='checkbox'><label for='data-0488aa6d-38db-4cad-a225-4b5b0aadb83d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>longitude</dd><dt><span>standard_name :</span></dt><dd>longitude</dd><dt><span>units :</span></dt><dd>degrees_east</dd><dt><span>actual_range :</span></dt><dd>[-180.  180.]</dd></dl></div><div class='xr-var-data'><pre>array([-180.      , -179.833333, -179.666667, ...,  179.666667,  179.833333,
+        180.      ], shape=(2161,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.83 -89.67 ... 89.83 90.0</div><input id='attrs-792285d3-e69f-499b-91fb-39e92f081f51' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-792285d3-e69f-499b-91fb-39e92f081f51' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d2d89f79-2d28-417a-a77a-8e178620bf3d' class='xr-var-data-in' type='checkbox'><label for='data-d2d89f79-2d28-417a-a77a-8e178620bf3d' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>latitude</dd><dt><span>standard_name :</span></dt><dd>latitude</dd><dt><span>units :</span></dt><dd>degrees_north</dd><dt><span>actual_range :</span></dt><dd>[-90.  90.]</dd></dl></div><div class='xr-var-data'><pre>array([-90.      , -89.833333, -89.666667, ...,  89.666667,  89.833333,
+        90.      ], shape=(1081,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span>height</span></div><div class='xr-var-dims'>(latitude, longitude)</div><div class='xr-var-dtype'>float32</div><div class='xr-var-preview xr-preview'>1e+04 1e+04 1e+04 ... 1e+04 1e+04</div><input id='attrs-58d98e1a-91f8-4807-83d2-c9bccfe16267' class='xr-var-attrs-in' type='checkbox' ><label for='attrs-58d98e1a-91f8-4807-83d2-c9bccfe16267' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4613a36c-b0d3-4006-ad10-73054736dfc3' class='xr-var-data-in' type='checkbox'><label for='data-4613a36c-b0d3-4006-ad10-73054736dfc3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'><dt><span>long_name :</span></dt><dd>geometric height</dd><dt><span>standard_name :</span></dt><dd>height_above_reference_ellipsoid</dd><dt><span>description :</span></dt><dd>height of gravity computation points above the WGS84 ellipsoid</dd><dt><span>units :</span></dt><dd>m</dd><dt><span>actual_range :</span></dt><dd>[10000. 10000.]</dd></dl></div><div class='xr-var-data'><pre>array([[10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        ...,
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.],
        [10000., 10000., 10000., ..., 10000., 10000., 10000.]],
-      dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-afdf9657-18a5-4dba-9c45-8a3e9076731e' class='xr-section-summary-in' type='checkbox'  ><label for='section-afdf9657-18a5-4dba-9c45-8a3e9076731e' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e3b5229b-3634-4bc1-ab27-32d09f2bf479' class='xr-index-data-in' type='checkbox'/><label for='index-e3b5229b-3634-4bc1-ab27-32d09f2bf479' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
+      shape=(1081, 2161), dtype=float32)</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-5d977ab4-299d-463e-8e37-33a661cc79ba' class='xr-section-summary-in' type='checkbox'  ><label for='section-5d977ab4-299d-463e-8e37-33a661cc79ba' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>longitude</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-e230d863-e4bd-4040-be67-54da8c402c5d' class='xr-index-data-in' type='checkbox'/><label for='index-e230d863-e4bd-4040-be67-54da8c402c5d' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -180.0, -179.83333333333334, -179.66666666666666,
                     -179.5, -179.33333333333334, -179.16666666666666,
                     -179.0, -178.83333333333334, -178.66666666666666,
                     -178.5,
@@ -1836,7 +2060,7 @@ Coordinates:
                      179.0,  179.16666666666663,  179.33333333333331,
                      179.5,  179.66666666666663,  179.83333333333331,
                      180.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-c9792cd1-0ff3-44fc-8a60-5f34357d9f2e' class='xr-index-data-in' type='checkbox'/><label for='index-c9792cd1-0ff3-44fc-8a60-5f34357d9f2e' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
+      dtype=&#x27;float64&#x27;, name=&#x27;longitude&#x27;, length=2161))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>latitude</div></div><div class='xr-index-preview'>PandasIndex</div><input type='checkbox' disabled/><label></label><input id='index-18549914-803c-4165-9296-ea1edfb61093' class='xr-index-data-in' type='checkbox'/><label for='index-18549914-803c-4165-9296-ea1edfb61093' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([             -90.0, -89.83333333333333, -89.66666666666667,
                     -89.5, -89.33333333333333, -89.16666666666667,
                     -89.0, -88.83333333333333, -88.66666666666667,
                     -88.5,
@@ -1845,7 +2069,7 @@ Coordinates:
                      89.0,  89.16666666666666,  89.33333333333331,
                      89.5,  89.66666666666666,  89.83333333333331,
                      90.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-750965cf-4a81-423a-b920-ca8df9503a61' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-750965cf-4a81-423a-b920-ca8df9503a61' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+      dtype=&#x27;float64&#x27;, name=&#x27;latitude&#x27;, length=1081))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-951195f9-6442-452b-81ad-946bcb8cb451' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-951195f9-6442-452b-81ad-946bcb8cb451' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
 </div>
 <p>Finally, we can display the disturbance in a nice global map:</p>
 <div class="jupyter_cell jupyter_container docutils container">
@@ -1931,7 +2155,7 @@ other ellipsoid. Checkout <a class="reference internal" href="../ellipsoids.html
 
   <p class="copyright">
     
-      © Copyright 2024, The Boule Developers.
+      © Copyright 2025, The Boule Developers.
       <br/>
     
   </p>
@@ -1940,7 +2164,7 @@ other ellipsoid. Checkout <a class="reference internal" href="../ellipsoids.html
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Oct 22, 2024.
+  Last updated on Aug 12, 2025.
   <br/>
 </p>
   </div>
