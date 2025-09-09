@@ -574,7 +574,7 @@ class Ellipsoid:
         """
         return self.semimajor_axis / np.sqrt(1 - self.first_eccentricity**2 * sinlat**2)
 
-    def geodetic_to_spherical(self, longitude, latitude, height):
+    def geodetic_to_spherical(self, coordinates):
         """
         Convert from geodetic to geocentric spherical coordinates.
 
@@ -583,25 +583,24 @@ class Ellipsoid:
 
         Parameters
         ----------
-        longitude : array
-            Longitude coordinates on geodetic coordinate system in degrees.
-        latitude : array
-            Latitude coordinates on geodetic coordinate system in degrees.
-        height : array
-            Ellipsoidal heights in meters.
+        coordinates : tuple = (longitude, latitude_geodetic, height)
+            Longitude, latitude, and geometric height coordinates of the points
+            in a geodetic coordinate system. Each element can be a single
+            number or an array. The shape of the arrays must be compatible.
+            Longitude and latitude must be in degrees and height in meters.
+            Since longitude is not affected by conversions, it can be assigned
+            ``None``.
 
         Returns
         -------
-        longitude : array
-            Longitude coordinates on geocentric spherical coordinate system in
-            degrees. The longitude coordinates are not modified during this
-            conversion.
-        spherical_latitude : array
-            Converted latitude coordinates on geocentric spherical coordinate
-            system in degrees.
-        radius : array
-            Converted spherical radius coordinates in meters.
+        converted_coordinates : tuple = (longitude, latitude_spherical, radius)
+            The converted longitude, geocentric spherical latitude, and radius
+            in a geocentric spherical coordinate system. The shape of each
+            element will be compatible with the shape of the inputs. If the
+            input longitude is ``None``, the output will also be ``None``.
+            Longitude and latitude will be in degrees and radius in meters.
         """
+        longitude, latitude, height = coordinates
         sinlat = np.sin(np.radians(latitude))
         coslat = np.sqrt(1 - sinlat**2)
         prime_radius = self.prime_vertical_radius(sinlat)
@@ -613,7 +612,7 @@ class Ellipsoid:
         spherical_latitude = np.degrees(np.arcsin(z_cartesian / radius))
         return longitude, spherical_latitude, radius
 
-    def spherical_to_geodetic(self, longitude, spherical_latitude, radius):
+    def spherical_to_geodetic(self, coordinates):
         """
         Convert from geocentric spherical to geodetic coordinates.
 
@@ -622,26 +621,24 @@ class Ellipsoid:
 
         Parameters
         ----------
-        longitude : array
-            Longitude coordinates on geocentric spherical coordinate system in
-            degrees.
-        spherical_latitude : array
-            Latitude coordinates on geocentric spherical coordinate system in
-            degrees.
-        radius : array
-            Spherical radius coordinates in meters.
+        coordinates : tuple = (longitude, latitude_spherical, height)
+            Longitude, latitude, and radius coordinates of the points in
+            a geocentric spherical coordinate system. Each element can be
+            a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitude must be in degrees and radius in
+            meters. Since longitude is not affected by conversions, it can be
+            assigned ``None``.
 
         Returns
         -------
-        longitude : array
-            Longitude coordinates on geodetic coordinate system in degrees.
-            The longitude coordinates are not modified during this conversion.
-        latitude : array
-            Converted latitude coordinates on geodetic coordinate system in
-            degrees.
-        height : array
-            Converted ellipsoidal height coordinates in meters.
+        converted_coordinates : tuple = (longitude, latitude_geodetic, height)
+            The converted longitude, geodetic latitude, and geometric height in
+            a geodetic coordinate system. The shape of each element will be
+            compatible with the shape of the inputs. If the input longitude is
+            ``None``, the output will also be ``None``. Longitude and latitude
+            will be in degrees and height in meters.
         """
+        longitude, spherical_latitude, radius = coordinates
         sinlat = np.sin(np.radians(spherical_latitude))
         coslat = np.sqrt(1 - sinlat**2)
         big_z = radius * sinlat
@@ -660,34 +657,35 @@ class Ellipsoid:
         height = (k + self.eccentricity**2 - 1) / k * hypot_dz
         return longitude, latitude, height
 
-    def geodetic_to_ellipsoidal_harmonic(self, longitude, latitude, height):
+    def geodetic_to_ellipsoidal_harmonic(self, coordinates):
         """
-        Convert from geodetic to ellipsoidal-harmonic coordinates.
+        Convert from geodetic to ellipsoidal harmonic coordinates.
 
         The geodetic datum is defined by this ellipsoid, and the coordinates
         are converted following [Lakshmanan1991]_ and [LiGotze2001]_.
 
         Parameters
         ----------
-        longitude : array
-            Longitude coordinates on geodetic coordinate system in degrees.
-        latitude : array
-            Latitude coordinates on geodetic coordinate system in degrees.
-        height : array
-            Ellipsoidal heights in meters.
+        coordinates : tuple = (longitude, latitude_geodetic, height)
+            Longitude, latitude, and geometric height coordinates of the points
+            in a geodetic coordinate system. Each element can be a single
+            number or an array. The shape of the arrays must be compatible.
+            Longitude and latitude must be in degrees and height in meters.
+            Since longitude is not affected by conversions, it can be assigned
+            ``None``.
 
         Returns
         -------
-        longitude : array
-            Longitude coordinates on ellipsoidal-harmonic coordinate system in
-            degrees. The longitude coordinates are not modified during this
-            conversion.
-        reduced_latitude : array
-            The reduced (or parametric) latitude in degrees.
-        u : array
-            The coordinate u, which is the semiminor axis of the ellipsoid that
-            passes through the input coordinates.
+        converted_coordinates : tuple = (longitude, latitude_reduced, u)
+            The converted longitude, reduced (or parametric) latitude, and the
+            coordinate u (the semiminor axis of the ellipsoid that passes
+            through the input coordinates) in a ellipsoidal harmonic coordinate
+            system. The shape of each element will be compatible with the shape
+            of the inputs. If the input longitude is ``None``, the output will
+            also be ``None``. Longitude and latitude will be in degrees and
+            u in meters.
         """
+        longitude, latitude, height = coordinates
         if (np.array(height) == 0).all():
             # Use simple formula that relates geodetic and reduced latitude
             beta = np.degrees(
@@ -736,7 +734,7 @@ class Ellipsoid:
 
         return longitude, beta_p, b_p
 
-    def ellipsoidal_harmonic_to_geodetic(self, longitude, reduced_latitude, u):
+    def ellipsoidal_harmonic_to_geodetic(self, coordinates):
         """
         Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.
 
@@ -744,26 +742,25 @@ class Ellipsoid:
 
         Parameters
         ----------
-        longitude : array
-            Longitude coordinates on ellipsoidal-harmonic coordinate system in
-            degrees.
-        latitude : array
-            Reduced (parametric) latitude coordinates on ellipsoidal-harmonic
-            coordinate system in degrees.
-        u : array
-            The coordinate u, which is the semiminor axes of the ellipsoid that
-            passes through the input coordinates.
+        coordinates : tuple = (longitude, latitude_reduced, u)
+            Longitude, reduced (or parametric) latitude, and u (the semiminor
+            axis of the ellipsoid that passes through the input coordinates)
+            coordinates of the points in a ellipsoidal harmonic coordinate
+            system. Each element can be a single number or an array. The shape
+            of the arrays must be compatible. Longitude and latitude must be in
+            degrees and u in meters. Since longitude is not affected by
+            conversions, it can be assigned ``None``.
 
         Returns
         -------
-        longitude : array
-            Longitude coordinates on geodetic coordinate system in degrees. The
-            longitude coordinates are not modified during this conversion.
-        latitude : array
-            Latitude coordinates on geodetic coordinate system in degrees.
-        height : array
-            Ellipsoidal heights in meters.
+        converted_coordinates : tuple = (longitude, latitude_geodetic, height)
+            The converted longitude, geodetic latitude, and geometric height in
+            a geodetic coordinate system. The shape of each element will be
+            compatible with the shape of the inputs. If the input longitude is
+            ``None``, the output will also be ``None``. Longitude and latitude
+            will be in degrees and height in meters.
         """
+        longitude, reduced_latitude, u = coordinates
         # Semimajor axis of the ellipsoid that passes through the input
         # coordinates
         a_p = np.sqrt(u**2 + self.linear_eccentricity**2)
@@ -779,14 +776,44 @@ class Ellipsoid:
 
         return longitude, np.degrees(latitude), height
 
-    def normal_gravity(self, latitude, height, si_units=False):
+    def normal_gravity(self, coordinates, si_units=False):
         r"""
-        Normal gravity of the ellipsoid at the given latitude and height.
+        Normal gravity of the ellipsoid.
 
-        Computes the magnitude of the gradient of the gravity potential
-        (gravitational + centrifugal; see [HofmannWellenhofMoritz2006]_)
-        generated by the ellipsoid at the given geodetic latitude :math:`\phi`
-        and height above the ellipsoid :math:`h` (geometric height).
+        Computes the magnitude of the gradient of the :term:`gravity potential`
+        generated by this ellipsoid at **any point outside the ellipsoid**.
+        Based on the closed-form expressions by [Lakshmanan1991]_ and corrected
+        by [LiGotze2001]_. This means that the **free-air correction is not
+        necessary** to calculate normal gravity at the observation points.
+
+        .. caution::
+
+            These expressions are only valid for heights on or above the
+            surface of the ellipsoid.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_geodetic, height)
+            Longitude, latitude, and geometric height coordinates of the
+            computation points in a geodetic coordinate system. Each element
+            can be a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitude must be in degrees and height in
+            meters. Since longitude is not used in computations (the field is
+            symmetric with longitude), it can be assigned ``None``.
+        si_units : bool
+            Return the value in mGal (False, default) or m/s² (True)
+
+        Returns
+        -------
+        gamma : float or array
+            The normal gravity in mGal or m/s².
+
+        Notes
+        -----
+        :term:`Normal gravity` is defined as the magnitude of the gradient of
+        the gravity potential generated by a :term:`reference ellipsoid` at the
+        given geodetic latitude :math:`\phi` and height above the ellipsoid
+        :math:`h` (geometric height).
 
         .. math::
 
@@ -796,45 +823,19 @@ class Ellipsoid:
         ellipsoid, :math:`V` is the gravitational potential of the ellipsoid,
         and :math:`\Phi` is the centrifugal potential.
 
-        Assumes that the internal density distribution of the ellipsoid is such
-        that the gravity potential is constant at its surface.
-
-        Based on closed-form expressions by [Lakshmanan1991]_ and corrected by
-        [LiGotze2001]_ which don't require the free-air correction.
-
-        .. caution::
-
-            These expressions are only valid for heights on or above the
-            surface of the ellipsoid.
-
-        Parameters
-        ----------
-        latitude : float or array
-            The geodetic latitude where the normal gravity will be computed (in
-            degrees).
-        height : float or array
-            The ellipsoidal (geometric) height of computation the point (in
-            meters).
-        si_units : bool
-            Return the value in mGal (False, default) or m/s² (True)
-
-        Returns
-        -------
-        gamma : float or array
-            The normal gravity in mGal or m/s².
-
+        The equations used here assume that the internal density distribution
+        of the ellipsoid is such that the gravity potential is constant at its
+        surface. The specific internal density distribution is undefined.
         """
         # Warn if height is negative
-        if np.any(height < 0):
+        if np.any(coordinates[2] < 0):
             warn(
                 "Formulas used are valid for points outside the ellipsoid."
                 "Height must be greater than or equal to zero."
             )
 
         # Convert geodetic latitude and height to ellipsoidal-harmonic coords
-        longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(
-            None, latitude, height
-        )
+        longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
         sinbeta2 = np.sin(np.radians(beta)) ** 2
         cosbeta2 = 1 - sinbeta2
         big_e = self.linear_eccentricity
@@ -867,10 +868,9 @@ class Ellipsoid:
 
         return gamma
 
-    def normal_gravitational_potential(self, latitude, height):
+    def normal_gravitational_potential(self, coordinates):
         r"""
-        Normal gravitational potential of the ellipsoid at the given latitude
-        and height.
+        Normal gravitational potential of the ellipsoid.
 
         Computes the gravitational potential generated by the ellipsoid at the
         given geodetic latitude :math:`\phi` and height above the ellipsoid
