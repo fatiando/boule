@@ -467,16 +467,8 @@ class Ellipsoid:
             The geocentric radius for the given latitude(s) in the same units
             as the ellipsoid axis.
 
-
-        .. tip::
-
-            No elevation is taken into account. If you need the geocentric
-            radius at a height other than zero, use
-            ``pymap3d.geodetic2spherical`` instead.
-
         Notes
         ------
-
         The geocentric surface radius :math:`R` is a function of the geocentric
         geodetic latitude :math:`\phi` and the semimajor and semiminor axis,
         :math:`a` and :math:`b` [1]_:
@@ -513,7 +505,6 @@ class Ellipsoid:
 
         References
         ----------
-
         .. [1] See https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius
 
         """
