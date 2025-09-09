@@ -291,7 +291,9 @@ def test_geocentric_radius_biaxialellipsoid(triaxialellipsoid):
 
     # Compute the reference geocentric radii using the reference biaxial
     # ellipsoid
-    radius_true = biaxialellipsoid_ref.geocentric_radius(latitude, geodetic=False)
+    radius_true = biaxialellipsoid_ref.geocentric_radius(
+        latitude, coordinate_system="spherical"
+    )
     npt.assert_allclose(
         radius_true, biaxialellipsoid.geocentric_radius(longitude, latitude)
     )

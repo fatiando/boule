@@ -14,10 +14,24 @@ import numpy.testing as npt
 import pytest
 
 from .. import GRS80, WGS84, Ellipsoid, Mars2009
+from .._ellipsoid import check_coordinate_system
 from .utils import normal_gravity_surface
 
 ELLIPSOIDS = [WGS84, GRS80, Mars2009]
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
+
+
+@pytest.mark.parametrize("coordinate_system", ("geocentric", "bla", "ellipsoidal"))
+def test_check_coordinate_system_fails(coordinate_system):
+    "Make sure an exception is raised for invalid inputs"
+    with pytest.raises(ValueError, match="Invalid coordinate system"):
+        check_coordinate_system(coordinate_system)
+
+
+@pytest.mark.parametrize("coordinate_system", ("geodetic", "spherical"))
+def test_check_coordinate_system_passes(coordinate_system):
+    "Make sure no exception is raised for valid inputs"
+    check_coordinate_system(coordinate_system)
 
 
 def test_check_flattening():
@@ -335,7 +349,7 @@ def test_geocentric_radius_geocentric(ellipsoid):
     )[1:]
     npt.assert_allclose(
         radius_conversion,
-        ellipsoid.geocentric_radius(latitude_spherical, geodetic=False),
+        ellipsoid.geocentric_radius(latitude_spherical, coordinate_system="spherical"),
     )
 
 
@@ -347,7 +361,8 @@ def test_geocentric_radius_geocentric_pole_equator(ellipsoid):
         [ellipsoid.semiminor_axis, ellipsoid.semiminor_axis, ellipsoid.semimajor_axis]
     )
     npt.assert_allclose(
-        radius_true, ellipsoid.geocentric_radius(latitude, geodetic=False)
+        radius_true,
+        ellipsoid.geocentric_radius(latitude, coordinate_system="spherical"),
     )
 
 
