@@ -32,6 +32,7 @@ rst-roles =
     mod,
     meth,
     ref,
+    term,
 # Ignore "Unknown target name" raised on citations
 extend-ignore = RST306
 
