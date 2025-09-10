@@ -123,7 +123,7 @@ def test_geodetic_to_spherical_on_equator(ellipsoid):
     height = np.linspace(-1e4, 1e4, size)
     latitude = np.zeros_like(size)
     sph_longitude, sph_latitude, radius = ellipsoid.geodetic_to_spherical(
-        longitude, latitude, height
+        (longitude, latitude, height)
     )
     npt.assert_allclose(sph_longitude, longitude, rtol=rtol)
     npt.assert_allclose(sph_latitude, latitude, rtol=rtol)
@@ -139,7 +139,7 @@ def test_geodetic_to_spherical_on_poles(ellipsoid):
     height = np.hstack([np.linspace(-1e4, 1e4, size)] * 2)
     latitude = np.array([90.0] * size + [-90.0] * size)
     sph_longitude, sph_latitude, radius = ellipsoid.geodetic_to_spherical(
-        longitude, latitude, height
+        (longitude, latitude, height)
     )
     npt.assert_allclose(sph_longitude, longitude, rtol=rtol)
     npt.assert_allclose(sph_latitude, latitude, rtol=rtol)
@@ -155,7 +155,7 @@ def test_spherical_to_geodetic_on_equator(ellipsoid):
     spherical_longitude = np.linspace(0, 180, size)
     radius = np.linspace(-1e4, 1e4, size) + ellipsoid.semimajor_axis
     longitude, latitude, height = ellipsoid.spherical_to_geodetic(
-        spherical_longitude, spherical_latitude, radius
+        (spherical_longitude, spherical_latitude, radius)
     )
     npt.assert_allclose(spherical_longitude, longitude, rtol=rtol)
     npt.assert_allclose(spherical_latitude, latitude, rtol=rtol)
@@ -171,7 +171,7 @@ def test_spherical_to_geodetic_on_poles(ellipsoid):
     spherical_latitude = np.array([90.0] * size + [-90.0] * size)
     radius = np.hstack([np.linspace(-1e4, 1e4, size) + ellipsoid.semiminor_axis] * 2)
     longitude, latitude, height = ellipsoid.spherical_to_geodetic(
-        spherical_longitude, spherical_latitude, radius
+        (spherical_longitude, spherical_latitude, radius)
     )
     npt.assert_allclose(spherical_longitude, longitude, rtol=rtol)
     npt.assert_allclose(spherical_latitude, latitude, rtol=rtol)
@@ -188,10 +188,10 @@ def test_geodetic_to_ellipsoidal_conversions(ellipsoid):
     geodetic_latitude_in = np.linspace(-90, 90, size)
     height_in = np.zeros(size)
     longitude, reduced_latitude, u = ellipsoid.geodetic_to_ellipsoidal_harmonic(
-        None, geodetic_latitude_in, height_in
+        (None, geodetic_latitude_in, height_in)
     )
     longitude, geodetic_latitude_out, height_out = (
-        ellipsoid.ellipsoidal_harmonic_to_geodetic(None, reduced_latitude, u)
+        ellipsoid.ellipsoidal_harmonic_to_geodetic((None, reduced_latitude, u))
     )
     npt.assert_allclose(geodetic_latitude_in, geodetic_latitude_out)
     npt.assert_allclose(height_in, height_out)
@@ -199,10 +199,10 @@ def test_geodetic_to_ellipsoidal_conversions(ellipsoid):
     rtol = 1e-5  # The conversion is not too accurate for large heights
     height_in = np.array(size * [1000])
     longitude, reduced_latitude, u = ellipsoid.geodetic_to_ellipsoidal_harmonic(
-        None, geodetic_latitude_in, height_in
+        (None, geodetic_latitude_in, height_in)
     )
     longitude, geodetic_latitude_out, height_out = (
-        ellipsoid.ellipsoidal_harmonic_to_geodetic(None, reduced_latitude, u)
+        ellipsoid.ellipsoidal_harmonic_to_geodetic((None, reduced_latitude, u))
     )
     npt.assert_allclose(geodetic_latitude_in, geodetic_latitude_out, rtol=rtol)
     npt.assert_allclose(height_in, height_out, rtol=rtol)
@@ -216,8 +216,8 @@ def test_spherical_to_geodetic_identity(ellipsoid):
     latitude = np.linspace(-90, 90, 19)
     height = np.linspace(-1e4, 1e4, 8)
     coordinates = np.meshgrid(longitude, latitude, height)
-    spherical_coordinates = ellipsoid.geodetic_to_spherical(*coordinates)
-    reconverted_coordinates = ellipsoid.spherical_to_geodetic(*spherical_coordinates)
+    spherical_coordinates = ellipsoid.geodetic_to_spherical(coordinates)
+    reconverted_coordinates = ellipsoid.spherical_to_geodetic(spherical_coordinates)
     npt.assert_allclose(coordinates, reconverted_coordinates, rtol=rtol)
 
 
@@ -229,9 +229,15 @@ def test_normal_gravity_pole_equator(ellipsoid):
     # Convert gamma to mGal
     gamma_pole = ellipsoid.gravity_pole * 1e5
     gamma_eq = ellipsoid.gravity_equator * 1e5
-    npt.assert_allclose(gamma_pole, ellipsoid.normal_gravity(-90, height), rtol=rtol)
-    npt.assert_allclose(gamma_pole, ellipsoid.normal_gravity(90, height), rtol=rtol)
-    npt.assert_allclose(gamma_eq, ellipsoid.normal_gravity(0, height), rtol=rtol)
+    npt.assert_allclose(
+        gamma_pole, ellipsoid.normal_gravity((None, -90, height)), rtol=rtol
+    )
+    npt.assert_allclose(
+        gamma_pole, ellipsoid.normal_gravity((None, 90, height)), rtol=rtol
+    )
+    npt.assert_allclose(
+        gamma_eq, ellipsoid.normal_gravity((None, 0, height)), rtol=rtol
+    )
 
 
 @pytest.mark.parametrize("si_units", [False, True], ids=["mGal", "SI"])
@@ -249,7 +255,7 @@ def test_normal_gravity_arrays(ellipsoid, si_units):
         gammas *= 1e5
     npt.assert_allclose(
         gammas,
-        ellipsoid.normal_gravity(latitudes, heights, si_units=si_units),
+        ellipsoid.normal_gravity((None, latitudes, heights), si_units=si_units),
         rtol=rtol,
     )
 
@@ -260,12 +266,12 @@ def test_normal_gravity_non_zero_height(ellipsoid):
     # Convert gamma to mGal
     gamma_pole = ellipsoid.gravity_pole * 1e5
     gamma_eq = ellipsoid.gravity_equator * 1e5
-    assert gamma_pole > ellipsoid.normal_gravity(90, 1000)
-    assert gamma_pole > ellipsoid.normal_gravity(-90, 1000)
-    assert gamma_eq > ellipsoid.normal_gravity(0, 1000)
-    assert gamma_pole < ellipsoid.normal_gravity(90, -1000)
-    assert gamma_pole < ellipsoid.normal_gravity(-90, -1000)
-    assert gamma_eq < ellipsoid.normal_gravity(0, -1000)
+    assert gamma_pole > ellipsoid.normal_gravity((None, 90, 1000))
+    assert gamma_pole > ellipsoid.normal_gravity((None, -90, 1000))
+    assert gamma_eq > ellipsoid.normal_gravity((None, 0, 1000))
+    assert gamma_pole < ellipsoid.normal_gravity((None, 90, -1000))
+    assert gamma_pole < ellipsoid.normal_gravity((None, -90, -1000))
+    assert gamma_eq < ellipsoid.normal_gravity((None, 0, -1000))
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
@@ -310,7 +316,9 @@ def test_geocentric_radius(ellipsoid):
     latitude = np.linspace(-80, 80, 100)
     longitude = np.linspace(-180, 180, latitude.size)
     height = np.zeros(latitude.size)
-    radius_conversion = ellipsoid.geodetic_to_spherical(longitude, latitude, height)[2]
+    radius_conversion = ellipsoid.geodetic_to_spherical((longitude, latitude, height))[
+        2
+    ]
     npt.assert_allclose(radius_conversion, ellipsoid.geocentric_radius(latitude))
 
 
@@ -331,7 +339,7 @@ def test_geocentric_radius_geocentric(ellipsoid):
     longitude = np.linspace(-180, 180, latitude.size)
     height = np.zeros(latitude.size)
     latitude_spherical, radius_conversion = ellipsoid.geodetic_to_spherical(
-        longitude, latitude, height
+        (longitude, latitude, height)
     )[1:]
     npt.assert_allclose(
         radius_conversion,
@@ -361,7 +369,7 @@ def test_normal_gravity_against_somigliana(ellipsoid):
     # equipotential gravity surface. Spheres (with zero flattening) aren't.
     if ellipsoid.flattening != 0:
         npt.assert_allclose(
-            ellipsoid.normal_gravity(latitude, height=0),
+            ellipsoid.normal_gravity((None, latitude, 0)),
             normal_gravity_surface(latitude, ellipsoid),
         )
 
@@ -374,13 +382,13 @@ def test_normal_gravity_computed_on_internal_point(ellipsoid):
     """
     latitude = np.linspace(-90, 90, 100)
     with warnings.catch_warnings(record=True) as warn:
-        ellipsoid.normal_gravity(latitude, height=-10)
+        ellipsoid.normal_gravity((None, latitude, -10))
         assert len(warn) >= 1
     with warnings.catch_warnings(record=True) as warn:
-        ellipsoid.normal_gravity_potential(latitude, height=-10)
+        ellipsoid.normal_gravity_potential((None, latitude, -10))
         assert len(warn) >= 1
     with warnings.catch_warnings(record=True) as warn:
-        ellipsoid.normal_gravitational_potential(latitude, height=-10)
+        ellipsoid.normal_gravitational_potential((None, latitude, -10))
         assert len(warn) >= 1
 
 
@@ -393,9 +401,9 @@ def test_normal_gravity_gravitational_centrifugal_potential(ellipsoid):
     size = 5
     latitude = np.array([np.linspace(-90, 90, size)] * 2)
     height = np.array([[0] * size, [1000] * size])
-    big_u = ellipsoid.normal_gravity_potential(latitude, height)
-    big_v = ellipsoid.normal_gravitational_potential(latitude, height)
-    big_phi = ellipsoid.centrifugal_potential(latitude, height)
+    big_u = ellipsoid.normal_gravity_potential((None, latitude, height))
+    big_v = ellipsoid.normal_gravitational_potential((None, latitude, height))
+    big_phi = ellipsoid.centrifugal_potential((None, latitude, height))
     npt.assert_allclose(big_u, big_v + big_phi)
 
 
