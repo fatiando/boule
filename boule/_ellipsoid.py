@@ -801,7 +801,7 @@ class Ellipsoid:
             meters. Since longitude is not used in computations (the field is
             symmetric with longitude), it can be assigned ``None``.
         si_units : bool
-            Return the value in mGal (False, default) or m/s² (True)
+            Return the value in mGal (False, default) or m/s² (True).
 
         Returns
         -------
