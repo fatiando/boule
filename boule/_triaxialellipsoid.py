@@ -81,7 +81,6 @@ class TriaxialEllipsoid:
 
     Examples
     --------
-
     We can define an ellipsoid by setting the 5 key numerical parameters:
 
     >>> ellipsoid = TriaxialEllipsoid(
@@ -381,14 +380,8 @@ class TriaxialEllipsoid:
             spherical longitude(s) in the same units as the axes of the
             ellipsoid.
 
-
-        .. tip::
-
-            No elevation is taken into account.
-
         Notes
         -----
-
         Given geocentric spherical latitude :math:`\phi` and geocentric
         spherical longitude :math:`\lambda`, the geocentric surface radius
         :math:`R` is computed as (see Eq. 1 of [Pěč1983]_)
@@ -448,14 +441,33 @@ class TriaxialEllipsoid:
         )
         return radius
 
-    def centrifugal_potential(self, longitude, latitude, height):
+    def centrifugal_potential(self, coordinates):
         r"""
-        Centrifugal potential at the given latitude, longitude and height above
-        the ellipsoid.
+        Centrifugal potential of the rotating ellipsoid.
 
+        Calculate the centrifugal potential due to the rotation of the
+        ellipsoid about its semiminor axis at the given points.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_spherical, height)
+            Longitude, latitude, and height coordinates of the computation
+            points in a geocentric spherical coordinate system. The height is
+            measured from the surface of the ellipsoid. Each element can be
+            a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitude must be in degrees and height in
+            meters.
+
+        Returns
+        -------
+        Phi : float or array
+            The centrifugal potential in m²/s².
+
+        Notes
+        -----
         The centrifugal potential :math:`\Phi` at spherical latitude
-        :math:`\phi`, spherical longitude :math:`\lambda` and spherical height
-        above the ellipsoid :math:`h` is
+        :math:`\phi`, spherical longitude :math:`\lambda` and height above the
+        ellipsoid :math:`h` is
 
         .. math::
 
@@ -464,24 +476,8 @@ class TriaxialEllipsoid:
 
         in which :math:`R(\phi, \lambda)` is the radius of the ellipsoid and
         :math:`\omega` is the angular velocity.
-
-        Parameters
-        ----------
-        longitude : float or array
-            The spherical longitude where the centrifugal potential will be
-            computed (in degrees).
-        latitude : float or array
-            The spherical latitude where the centrifugal potential will be
-            computed (in degrees).
-        height : float or array
-            The spherical height of the computation point (in meters).
-
-        Returns
-        -------
-        Phi : float or array
-            The centrifugal potential in m²/s².
-
         """
+        longitude, latitude, height = coordinates
         return (1 / 2) * (
             self.angular_velocity
             * (self.geocentric_radius(longitude, latitude) + height)

@@ -307,14 +307,9 @@ def test_centrifugal_potential(triaxialellipsoid):
     latitude = 3 * [-90] + 3 * [90]
     longitude = np.linspace(0, 360, 6)
     assert (
-        triaxialellipsoid.centrifugal_potential(
-            longitude=longitude, latitude=latitude, height=height
-        )
-        < 1e-15
+        triaxialellipsoid.centrifugal_potential((longitude, latitude, height)) < 1e-15
     ).all()
     assert (
-        triaxialellipsoid.centrifugal_potential(longitude=0, latitude=0, height=height)
-        >= triaxialellipsoid.centrifugal_potential(
-            longitude=90, latitude=0, height=height
-        )
+        triaxialellipsoid.centrifugal_potential((0, 0, height))
+        >= triaxialellipsoid.centrifugal_potential((90, 0, height))
     ).all()

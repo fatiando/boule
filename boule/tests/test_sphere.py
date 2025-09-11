@@ -54,13 +54,13 @@ def test_normal_gravity_computed_on_internal_point(sphere):
     """
     latitude = np.linspace(-90, 90, 100)
     with pytest.warns(UserWarning) as warn:
-        sphere.normal_gravity(latitude, height=-10)
+        sphere.normal_gravity((None, latitude, -10))
         assert len(warn) >= 1
     with warnings.catch_warnings(record=True) as warn:
-        sphere.normal_gravity_potential(latitude, height=-10)
+        sphere.normal_gravity_potential((None, latitude, -10))
         assert len(warn) >= 1
     with warnings.catch_warnings(record=True) as warn:
-        sphere.normal_gravitational_potential(height=-10)
+        sphere.normal_gravitational_potential((None, None, -10))
         assert len(warn) >= 1
 
 
@@ -96,9 +96,11 @@ def test_normal_gravity_pole_equator(sphere, si_units):
     """
     rtol = 1e-10
     height = 0
-    gamma_pole = sphere.normal_gravity(90, height, si_units=si_units)
-    gamma_eq = sphere.normal_gravity(0, height, si_units=si_units)
-    gravitation_pole = sphere.normal_gravitation(height, si_units=si_units)
+    gamma_pole = sphere.normal_gravity((None, 90, height), si_units=si_units)
+    gamma_eq = sphere.normal_gravity((None, 0, height), si_units=si_units)
+    gravitation_pole = sphere.normal_gravitation(
+        (None, None, height), si_units=si_units
+    )
     centrifugal = sphere.angular_velocity**2 * (sphere.radius + height)
     if not si_units:
         centrifugal *= 1e5
@@ -128,7 +130,9 @@ def test_normal_gravity_no_rotation():
         heights = height * np.ones_like(latitudes)
         # Check if normal gravity is equal on every point (rotational symmetry)
         expected_gravity = 1e5 * gm_constant / (radius + height) ** 2
-        npt.assert_allclose(expected_gravity, sphere.normal_gravity(latitudes, heights))
+        npt.assert_allclose(
+            expected_gravity, sphere.normal_gravity((None, latitudes, heights))
+        )
 
 
 def test_normal_gravity_only_rotation():
@@ -148,12 +152,12 @@ def test_normal_gravity_only_rotation():
         expected_value = 1e5 * (omega**2) * (radius + height)
         npt.assert_allclose(
             expected_value,
-            sphere.normal_gravity(latitude=0, height=height),
+            sphere.normal_gravity((None, 0, height)),
         )
     # Check normal gravity on the poles (must be equal to zero)
     for height in heights:
-        assert sphere.normal_gravity(latitude=90, height=height) < 1e-15
-        assert sphere.normal_gravity(latitude=-90, height=height) < 1e-15
+        assert sphere.normal_gravity((None, 90, height)) < 1e-15
+        assert sphere.normal_gravity((None, -90, height)) < 1e-15
     # Check normal gravity at 45 degrees latitude
     # Expected value is positive because normal gravity is the norm of the
     # vector.
@@ -161,7 +165,7 @@ def test_normal_gravity_only_rotation():
         expected_value = 1e5 * (omega**2) * (radius + height) * np.sqrt(2) / 2
         npt.assert_allclose(
             expected_value,
-            sphere.normal_gravity(latitude=45, height=height),
+            sphere.normal_gravity((None, 45, height)),
         )
 
 
@@ -173,7 +177,7 @@ def test_normal_gravity_gravitational_centrifugal_potential(sphere):
     size = 5
     latitude = np.array([np.linspace(-90, 90, size)] * 2)
     height = np.array([[0] * size, [1000] * size])
-    big_u = sphere.normal_gravity_potential(latitude, height)
-    big_v = sphere.normal_gravitational_potential(height)
-    big_phi = sphere.centrifugal_potential(latitude, height)
+    big_u = sphere.normal_gravity_potential((None, latitude, height))
+    big_v = sphere.normal_gravitational_potential((None, None, height))
+    big_phi = sphere.centrifugal_potential((None, latitude, height))
     npt.assert_allclose(big_u, big_v + big_phi)
