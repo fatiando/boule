@@ -57,10 +57,10 @@ def test_normal_gravity_computed_on_internal_point(sphere):
         sphere.normal_gravity((None, latitude, -10))
         assert len(warn) >= 1
     with warnings.catch_warnings(record=True) as warn:
-        sphere.normal_gravity_potential(latitude, height=-10)
+        sphere.normal_gravity_potential((None, latitude, -10))
         assert len(warn) >= 1
     with warnings.catch_warnings(record=True) as warn:
-        sphere.normal_gravitational_potential(height=-10)
+        sphere.normal_gravitational_potential((None, None, -10))
         assert len(warn) >= 1
 
 
@@ -177,7 +177,7 @@ def test_normal_gravity_gravitational_centrifugal_potential(sphere):
     size = 5
     latitude = np.array([np.linspace(-90, 90, size)] * 2)
     height = np.array([[0] * size, [1000] * size])
-    big_u = sphere.normal_gravity_potential(latitude, height)
-    big_v = sphere.normal_gravitational_potential(height)
-    big_phi = sphere.centrifugal_potential(latitude, height)
+    big_u = sphere.normal_gravity_potential((None, latitude, height))
+    big_v = sphere.normal_gravitational_potential((None, None, height))
+    big_phi = sphere.centrifugal_potential((None, latitude, height))
     npt.assert_allclose(big_u, big_v + big_phi)

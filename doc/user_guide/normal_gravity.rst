@@ -139,18 +139,21 @@ of a geodetic latitude (for spheres they are actually the same thing).
 
 .. jupyter-execute::
 
-    gamma = bl.Moon2015.normal_gravity(latitude=45, height=height)
+    # coordiantes = longitude, latitude, height (m)
+    gamma = bl.Moon2015.normal_gravity(coordinates=(None, 45, height))
     print(gamma)
 
 This is what the normal gravity of Moon looks like on a map:
 
 .. jupyter-execute::
 
-    longitude, latitude = coordinates[:2]
-    gamma = bl.Moon2015.normal_gravity(latitude=latitude, height=10_000)
+    coordinates = vd.grid_coordinates(
+        region=[0, 360, -90, 90], spacing=0.5, extra_coords=10_000,
+    )
+    gamma = bl.Moon2015.normal_gravity(coordinates)
 
     grid = vd.make_xarray_grid(
-        (longitude, latitude), gamma, data_names="normal_gravity",
+        coordinates[:2], gamma, data_names="normal_gravity",
     )
 
     fig = pygmt.Figure()
@@ -187,12 +190,9 @@ the centrifugal component) using :meth:`boule.Sphere.normal_gravitation`:
 .. jupyter-execute::
 
     gravitation = bl.Moon2015.normal_gravitation(
-        height=np.full_like(latitude, 10_000)
+        coordinates=(None, np.linspace(-90, 90, 100), np.full(100, 10_000))
     )
-    grid = vd.make_xarray_grid(
-        (longitude, latitude), gravitation, data_names="normal_gravitation",
-    )
-    grid
+    gravitation
 
 Since there is no centrifugal acceleration, the normal gravitation is due
 solely to the mass of a sphere and depends only on the height above the sphere
