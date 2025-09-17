@@ -280,7 +280,9 @@ class Ellipsoid:
         n = 50
         x, weights = np.polynomial.legendre.leggauss(n)
         geocentric_latitude = 90.0 - np.rad2deg(np.arccos(x))
-        radius = self.geocentric_radius(geocentric_latitude, geodetic=False)
+        radius = self.geocentric_radius(
+            geocentric_latitude, coordinate_system="spherical"
+        )
         return np.sum(radius * weights) / 2
 
     @property
@@ -445,7 +447,7 @@ class Ellipsoid:
             )
         return s
 
-    def geocentric_radius(self, latitude, geodetic=True):
+    def geocentric_radius(self, latitude, coordinate_system="geodetic"):
         r"""
         Radial distance from the center of the ellipsoid to its surface.
 
@@ -456,10 +458,10 @@ class Ellipsoid:
         ----------
         latitude : float or array
             Latitude coordinates on geodetic coordinate system in degrees.
-        geodetic : bool
-            If True (default), will assume that latitudes are geodetic
-            latitudes. Otherwise, will assume that they are geocentric
-            spherical latitudes.
+        coordinate_system : str
+            The coordinate system that will be assumed for the given latitude.
+            Should be one of: ``"geodetic"`` (default) for geodetic latitudes
+            or ``"spherical"`` for geocentric spherical latitudes.
 
         Returns
         -------
@@ -508,11 +510,10 @@ class Ellipsoid:
         .. [1] See https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius
 
         """
+        check_coordinate_system(coordinate_system)
         latitude_rad = np.radians(latitude)
         coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
-        # Avoid doing this in favour of having the user do the conversions when
-        # possible. It's not the case here, so we made an exception.
-        if geodetic:
+        if coordinate_system == "geodetic":
             radius = np.sqrt(
                 (
                     (self.semimajor_axis**2 * coslat) ** 2
@@ -1079,3 +1080,26 @@ class Ellipsoid:
             * np.cos(latitude_radians)
         ) ** 2
         return result
+
+
+def check_coordinate_system(coordinate_system, valid=("geodetic", "spherical")):
+    """
+    Make sure the coordinate system is valid.
+
+    Parameters
+    ----------
+    coordinate_system : str
+        A string specifying the coordinate system to use.
+    valid : list of str
+        List of valid values for the coordinate system.
+
+    Raises
+    ------
+    ValueError
+        If the coordinate system is not in the valid list.
+    """
+    if coordinate_system not in valid:
+        message = (
+            f"Invalid coordinate system '{coordinate_system}'. Must be one of {valid}."
+        )
+        raise ValueError(message)
