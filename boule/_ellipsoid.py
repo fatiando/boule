@@ -150,6 +150,9 @@ class Ellipsoid:
     reference = attr.ib(default=None)
     comments = attr.ib(default=None)
 
+    # Attribute validation
+    # ##################################################################################
+
     @flattening.validator
     def _check_flattening(self, flattening, value):
         "Check if flattening is valid"
@@ -183,6 +186,9 @@ class Ellipsoid:
         "Warn if geocentric_grav_const is negative"
         if value < 0:
             warn(f"The geocentric gravitational constant is negative: '{value}'")
+
+    # Properties
+    # ##################################################################################
 
     @property
     def semiminor_axis(self):
@@ -446,6 +452,9 @@ class Ellipsoid:
                 subsequent_indent=2 * " ",
             )
         return s
+
+    # Coordinates and conversions
+    # ##################################################################################
 
     def geocentric_radius(self, latitude, coordinate_system="geodetic"):
         r"""
@@ -776,6 +785,46 @@ class Ellipsoid:
         )
 
         return longitude, np.degrees(latitude), height
+
+    def spherical_to_cartesian(self, coordinates):
+        """
+        Convert from spherical coordinates to geocentric Cartesian coordinates.
+
+        In the geocentric Cartesian system, z is aligned with the Earth's axis
+        of rotation and points towards the North pole, x and y are contained in
+        the equatorial plane, x coincides with the Greenwich meridian, and
+        y completes right-handed coordinate system.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_spherical, height)
+            Longitude, latitude, and radius coordinates of the points in
+            a geocentric spherical coordinate system. Each element can be
+            a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitude must be in degrees and radius in
+            meters.
+
+        Returns
+        -------
+        converted_coordinates : tuple = (x, y, z)
+            The converted x, y, z coordinates in a geocentric Cartesian
+            coordinate system. The shape of each element will be compatible
+            with the shape of the inputs. All coordinates are in meters.
+        """
+        longitude, latitude, radius = coordinates
+        latitude_radians = np.radians(latitude)
+        longitude_radians = np.radians(longitude)
+        sinlat = np.sin(latitude_radians)
+        coslat = np.cos(latitude_radians)
+        sinlon = np.sin(longitude_radians)
+        coslon = np.cos(longitude_radians)
+        x = radius * coslat * coslon
+        y = radius * coslat * sinlon
+        z = radius * sinlat
+        return x, y, z
+
+    # Gravity
+    # ##################################################################################
 
     def normal_gravity(self, coordinates, si_units=False):
         r"""
