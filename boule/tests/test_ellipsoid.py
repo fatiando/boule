@@ -12,6 +12,7 @@ import warnings
 import numpy as np
 import numpy.testing as npt
 import pytest
+import pymap3d
 
 from .. import GRS80, WGS84, Ellipsoid, Mars2009
 from .._ellipsoid import check_coordinate_system
@@ -190,6 +191,41 @@ def test_spherical_to_geodetic_on_poles(ellipsoid):
     npt.assert_allclose(spherical_longitude, longitude, rtol=rtol)
     npt.assert_allclose(spherical_latitude, latitude, rtol=rtol)
     npt.assert_allclose(radius, height + ellipsoid.semiminor_axis, rtol=rtol)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_spherical_to_cartesian_on_equator(ellipsoid):
+    "Test spherical to cartesian coordinates conversion on equator."
+    rtol = 1e-10
+    atol = 1e-8
+    longitude = np.array([0, 90, 180, 270])
+    spherical_latitude = np.zeros_like(longitude)
+    radius = 1000 + ellipsoid.semimajor_axis
+    x, y, z = ellipsoid.spherical_to_cartesian((longitude, spherical_latitude, radius))
+    npt.assert_allclose(radius, x[0], rtol=rtol)
+    npt.assert_allclose(-radius, x[2], rtol=rtol)
+    npt.assert_allclose(0, x[1], rtol=0, atol=atol)
+    npt.assert_allclose(0, x[3], rtol=0, atol=atol)
+    npt.assert_allclose(radius, y[1], rtol=rtol)
+    npt.assert_allclose(-radius, y[3], rtol=rtol)
+    npt.assert_allclose(0, y[0], rtol=0, atol=atol)
+    npt.assert_allclose(0, y[2], rtol=0, atol=atol)
+    npt.assert_allclose(0, z, rtol=0, atol=atol)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_spherical_to_cartesian_on_pole(ellipsoid):
+    "Test spherical to cartesian coordinates conversion on the pole."
+    rtol = 1e-10
+    atol = 1e-8
+    spherical_latitude = np.array([90, -90])
+    longitude = np.zeros_like(spherical_latitude)
+    radius = 1000 + ellipsoid.semiminor_axis
+    x, y, z = ellipsoid.spherical_to_cartesian((longitude, spherical_latitude, radius))
+    npt.assert_allclose(radius, z[0], rtol=rtol)
+    npt.assert_allclose(-radius, z[1], rtol=rtol)
+    npt.assert_allclose(0, x, rtol=0, atol=atol)
+    npt.assert_allclose(0, y, rtol=0, atol=atol)
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
