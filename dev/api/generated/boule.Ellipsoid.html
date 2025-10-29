@@ -32,8 +32,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
@@ -477,31 +477,31 @@ changed after instantiation.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;WGS84&quot;</span></code>.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;WGS84&quot;</span></code>.</p>
 </dd>
-<dt><strong>semimajor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimajor axis of the ellipsoid. The equatorial (large) radius.
+<dt><strong>semimajor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimajor axis of the ellipsoid. The equatorial (large) radius.
 Definition: <span class="math notranslate nohighlight">\(a\)</span>.
 Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd>
-<dt><strong>flattening</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The (first) flattening of the ellipsoid.
+<dt><strong>flattening</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The (first) flattening of the ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(f = (a - b)/a\)</span>.
 Units: adimensional.</p>
 </dd>
-<dt><strong>geocentric_grav_const</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The geocentric gravitational constant. The product of the mass of the
+<dt><strong>geocentric_grav_const</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The geocentric gravitational constant. The product of the mass of the
 ellipsoid <span class="math notranslate nohighlight">\(M\)</span> and the gravitational constant <span class="math notranslate nohighlight">\(G\)</span>.
 Definition: <span class="math notranslate nohighlight">\(GM\)</span>. Units:
 <span class="math notranslate nohighlight">\(m^3.s^{-2}\)</span>.</p>
 </dd>
-<dt><strong>angular_velocity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The angular velocity of the rotating ellipsoid.
+<dt><strong>angular_velocity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The angular velocity of the rotating ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(\omega\)</span>.
 Units: <span class="math notranslate nohighlight">\(\\rad.s^{-1}\)</span>.</p>
 </dd>
-<dt><strong>long_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
+<dt><strong>long_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
 <span class="pre">1984&quot;</span></code> (optional).</p>
 </dd>
-<dt><strong>reference</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Citation for the ellipsoid parameter values (optional).</p>
+<dt><strong>reference</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Citation for the ellipsoid parameter values (optional).</p>
 </dd>
-<dt><strong>comments</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Additional comments regarding the ellipsoid (optional).</p>
+<dt><strong>comments</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Additional comments regarding the ellipsoid (optional).</p>
 </dd>
 </dl>
 </dd>
@@ -626,34 +626,34 @@ quantities.</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.centrifugal_potential" title="boule.Ellipsoid.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(latitude, height)</p></td>
-<td><p>Centrifugal potential at the given geodetic latitude and height above the ellipsoid.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.centrifugal_potential" title="boule.Ellipsoid.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(coordinates)</p></td>
+<td><p>Centrifugal potential of the rotating ellipsoid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic" title="boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ellipsoidal_harmonic_to_geodetic</span></code></a>(longitude, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic" title="boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ellipsoidal_harmonic_to_geodetic</span></code></a>(coordinates)</p></td>
 <td><p>Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.geocentric_radius" title="boule.Ellipsoid.geocentric_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geocentric_radius</span></code></a>(latitude[, geodetic])</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.geocentric_radius" title="boule.Ellipsoid.geocentric_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geocentric_radius</span></code></a>(latitude[, coordinate_system])</p></td>
 <td><p>Radial distance from the center of the ellipsoid to its surface.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic" title="boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geodetic_to_ellipsoidal_harmonic</span></code></a>(longitude, ...)</p></td>
-<td><p>Convert from geodetic to ellipsoidal-harmonic coordinates.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic" title="boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geodetic_to_ellipsoidal_harmonic</span></code></a>(coordinates)</p></td>
+<td><p>Convert from geodetic to ellipsoidal harmonic coordinates.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.geodetic_to_spherical" title="boule.Ellipsoid.geodetic_to_spherical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geodetic_to_spherical</span></code></a>(longitude, latitude, ...)</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.geodetic_to_spherical" title="boule.Ellipsoid.geodetic_to_spherical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geodetic_to_spherical</span></code></a>(coordinates)</p></td>
 <td><p>Convert from geodetic to geocentric spherical coordinates.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.normal_gravitational_potential" title="boule.Ellipsoid.normal_gravitational_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitational_potential</span></code></a>(latitude, height)</p></td>
-<td><p>Normal gravitational potential of the ellipsoid at the given latitude and height.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.normal_gravitational_potential" title="boule.Ellipsoid.normal_gravitational_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitational_potential</span></code></a>(coordinates)</p></td>
+<td><p>Normal gravitational potential of the ellipsoid.</p></td>
 </tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.normal_gravity" title="boule.Ellipsoid.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity</span></code></a>(latitude, height[, si_units])</p></td>
-<td><p>Normal gravity of the ellipsoid at the given latitude and height.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.normal_gravity" title="boule.Ellipsoid.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity</span></code></a>(coordinates[, si_units])</p></td>
+<td><p>Normal gravity of the ellipsoid.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.normal_gravity_potential" title="boule.Ellipsoid.normal_gravity_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity_potential</span></code></a>(latitude, height)</p></td>
-<td><p>Normal gravity potential of the ellipsoid at the given latitude and height.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.normal_gravity_potential" title="boule.Ellipsoid.normal_gravity_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity_potential</span></code></a>(coordinates)</p></td>
+<td><p>Normal gravity potential of the ellipsoid.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#boule.Ellipsoid.prime_vertical_radius" title="boule.Ellipsoid.prime_vertical_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prime_vertical_radius</span></code></a>(sinlat)</p></td>
 <td><p>The prime vertical radius of curvature for a given geodetic latitude.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.spherical_to_geodetic" title="boule.Ellipsoid.spherical_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spherical_to_geodetic</span></code></a>(longitude, ...)</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Ellipsoid.spherical_to_geodetic" title="boule.Ellipsoid.spherical_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spherical_to_geodetic</span></code></a>(coordinates)</p></td>
 <td><p>Convert from geocentric spherical to geodetic coordinates.</p></td>
 </tr>
 </tbody>
@@ -827,9 +827,30 @@ Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 <h2>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h2>
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Ellipsoid.centrifugal_potential">
-<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">centrifugal_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.centrifugal_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.centrifugal_potential" title="Link to this definition">#</a></dt>
-<dd><p>Centrifugal potential at the given geodetic latitude and height above
-the ellipsoid.</p>
+<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">centrifugal_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.centrifugal_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.centrifugal_potential" title="Link to this definition">#</a></dt>
+<dd><p>Centrifugal potential of the rotating ellipsoid.</p>
+<p>Calculate the centrifugal potential due to the rotation of the
+ellipsoid about its semiminor axis at the given points.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and geometric height coordinates of the
+computation points in a geodetic coordinate system. Each element
+can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitude must be in degrees and height in
+meters. Since longitude is not used in computations (the field is
+symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>Phi</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The centrifugal potential in m²/s².</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
 <p>The centrifugal potential <span class="math notranslate nohighlight">\(\Phi\)</span> at geodetic latitude
 <span class="math notranslate nohighlight">\(\phi\)</span> and height above the ellipsoid <span class="math notranslate nohighlight">\(h\)</span> (geometric
 height) is</p>
@@ -838,53 +859,33 @@ height) is</p>
     \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)\]</div>
 <p>in which <span class="math notranslate nohighlight">\(N(\phi)\)</span> is the prime vertical radius of curvature of
 the ellipsoid and <span class="math notranslate nohighlight">\(\omega\)</span> is the angular velocity.</p>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geodetic latitude where the centrifugal potential will be
-computed (in degrees).</p>
-</dd>
-<dt><strong>height</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The ellipsoidal (geometric) height of the computation point (in
-meters).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl>
-<dt><strong>Phi</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The centrifugal potential in m²/s².</p>
-</dd>
-</dl>
-</dd>
-</dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic">
-<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">ellipsoidal_harmonic_to_geodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reduced_latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">u</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.ellipsoidal_harmonic_to_geodetic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">ellipsoidal_harmonic_to_geodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.ellipsoidal_harmonic_to_geodetic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic" title="Link to this definition">#</a></dt>
 <dd><p>Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.</p>
 <p>The geodetic datum is defined by this ellipsoid.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on ellipsoidal-harmonic coordinate system in
-degrees.</p>
-</dd>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Reduced (parametric) latitude coordinates on ellipsoidal-harmonic
-coordinate system in degrees.</p>
-</dd>
-<dt><strong>u</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The coordinate u, which is the semiminor axes of the ellipsoid that
-passes through the input coordinates.</p>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_reduced</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">u</span></code>)</span></dt><dd><p>Longitude, reduced (or parametric) latitude, and u (the semiminor
+axis of the ellipsoid that passes through the input coordinates)
+coordinates of the points in a ellipsoidal harmonic coordinate
+system. Each element can be a single number or an array. The shape
+of the arrays must be compatible. Longitude and latitude must be in
+degrees and u in meters. Since longitude is not affected by
+conversions, it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on geodetic coordinate system in degrees. The
-longitude coordinates are not modified during this conversion.</p>
-</dd>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on geodetic coordinate system in degrees.</p>
-</dd>
-<dt><strong>height</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Ellipsoidal heights in meters.</p>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>The converted longitude, geodetic latitude, and geometric height in
+a geodetic coordinate system. The shape of each element will be
+compatible with the shape of the inputs. If the input longitude is
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. Longitude and latitude
+will be in degrees and height in meters.</p>
 </dd>
 </dl>
 </dd>
@@ -893,33 +894,27 @@ longitude coordinates are not modified during this conversion.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Ellipsoid.geocentric_radius">
-<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">geocentric_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geodetic</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.geocentric_radius"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.geocentric_radius" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">geocentric_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'geodetic'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.geocentric_radius"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.geocentric_radius" title="Link to this definition">#</a></dt>
 <dd><p>Radial distance from the center of the ellipsoid to its surface.</p>
 <p>Can be calculated from either geocentric geodetic or geocentric
 spherical latitudes.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on geodetic coordinate system in degrees.</p>
+<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on geodetic coordinate system in degrees.</p>
 </dd>
-<dt><strong>geodetic</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.13)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>If True (default), will assume that latitudes are geodetic
-latitudes. Otherwise, will assume that they are geocentric
-spherical latitudes.</p>
+<dt><strong>coordinate_system</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The coordinate system that will be assumed for the given latitude.
+Should be one of: <code class="docutils literal notranslate"><span class="pre">&quot;geodetic&quot;</span></code> (default) for geodetic latitudes
+or <code class="docutils literal notranslate"><span class="pre">&quot;spherical&quot;</span></code> for geocentric spherical latitudes.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>geocentric_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geocentric radius for the given latitude(s) in the same units
+<dt><strong>geocentric_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geocentric radius for the given latitude(s) in the same units
 as the ellipsoid axis.</p>
 </dd>
 </dl>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>No elevation is taken into account. If you need the geocentric
-radius at a height other than zero, use
-<code class="docutils literal notranslate"><span class="pre">pymap3d.geodetic2spherical</span></code> instead.</p>
-</div>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -961,31 +956,31 @@ to do that in the first place.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic">
-<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">geodetic_to_ellipsoidal_harmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.geodetic_to_ellipsoidal_harmonic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic" title="Link to this definition">#</a></dt>
-<dd><p>Convert from geodetic to ellipsoidal-harmonic coordinates.</p>
+<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">geodetic_to_ellipsoidal_harmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.geodetic_to_ellipsoidal_harmonic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic" title="Link to this definition">#</a></dt>
+<dd><p>Convert from geodetic to ellipsoidal harmonic coordinates.</p>
 <p>The geodetic datum is defined by this ellipsoid, and the coordinates
 are converted following <a class="reference internal" href="../../references.html#lakshmanan1991" id="id5"><span>[Lakshmanan1991]</span></a> and <a class="reference internal" href="../../references.html#ligotze2001" id="id6"><span>[LiGotze2001]</span></a>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on geodetic coordinate system in degrees.</p>
-</dd>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on geodetic coordinate system in degrees.</p>
-</dd>
-<dt><strong>height</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Ellipsoidal heights in meters.</p>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and geometric height coordinates of the points
+in a geodetic coordinate system. Each element can be a single
+number or an array. The shape of the arrays must be compatible.
+Longitude and latitude must be in degrees and height in meters.
+Since longitude is not affected by conversions, it can be assigned
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on ellipsoidal-harmonic coordinate system in
-degrees. The longitude coordinates are not modified during this
-conversion.</p>
-</dd>
-<dt><strong>reduced_latitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The reduced (or parametric) latitude in degrees.</p>
-</dd>
-<dt><strong>u</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The coordinate u, which is the semiminor axis of the ellipsoid that
-passes through the input coordinates.</p>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_reduced</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">u</span></code>)</span></dt><dd><p>The converted longitude, reduced (or parametric) latitude, and the
+coordinate u (the semiminor axis of the ellipsoid that passes
+through the input coordinates) in a ellipsoidal harmonic coordinate
+system. The shape of each element will be compatible with the shape
+of the inputs. If the input longitude is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will
+also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. Longitude and latitude will be in degrees and
+u in meters.</p>
 </dd>
 </dl>
 </dd>
@@ -994,31 +989,29 @@ passes through the input coordinates.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Ellipsoid.geodetic_to_spherical">
-<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">geodetic_to_spherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.geodetic_to_spherical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.geodetic_to_spherical" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">geodetic_to_spherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.geodetic_to_spherical"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.geodetic_to_spherical" title="Link to this definition">#</a></dt>
 <dd><p>Convert from geodetic to geocentric spherical coordinates.</p>
 <p>The geodetic datum is defined by this ellipsoid. The coordinates are
 converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id7"><span>[Vermeille2002]</span></a>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on geodetic coordinate system in degrees.</p>
-</dd>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on geodetic coordinate system in degrees.</p>
-</dd>
-<dt><strong>height</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Ellipsoidal heights in meters.</p>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and geometric height coordinates of the points
+in a geodetic coordinate system. Each element can be a single
+number or an array. The shape of the arrays must be compatible.
+Longitude and latitude must be in degrees and height in meters.
+Since longitude is not affected by conversions, it can be assigned
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on geocentric spherical coordinate system in
-degrees. The longitude coordinates are not modified during this
-conversion.</p>
-</dd>
-<dt><strong>spherical_latitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Converted latitude coordinates on geocentric spherical coordinate
-system in degrees.</p>
-</dd>
-<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Converted spherical radius coordinates in meters.</p>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">radius</span></code>)</span></dt><dd><p>The converted longitude, geocentric spherical latitude, and radius
+in a geocentric spherical coordinate system. The shape of each
+element will be compatible with the shape of the inputs. If the
+input longitude is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will also be <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Longitude and latitude will be in degrees and radius in meters.</p>
 </dd>
 </dl>
 </dd>
@@ -1027,12 +1020,40 @@ system in degrees.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Ellipsoid.normal_gravitational_potential">
-<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravitational_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.normal_gravitational_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.normal_gravitational_potential" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravitational potential of the ellipsoid at the given latitude
-and height.</p>
-<p>Computes the gravitational potential generated by the ellipsoid at the
-given geodetic latitude <span class="math notranslate nohighlight">\(\phi\)</span> and height above the ellipsoid
-<span class="math notranslate nohighlight">\(h\)</span> (geometric height).</p>
+<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravitational_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.normal_gravitational_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.normal_gravitational_potential" title="Link to this definition">#</a></dt>
+<dd><p>Normal gravitational potential of the ellipsoid.</p>
+<p>Computes the <a class="reference internal" href="../../glossary.html#term-Gravitational-potential"><span class="xref std std-term">gravitational potential</span></a> generated by the ellipsoid
+at the given points. Does not include the centrifugal potential. See
+<a class="reference internal" href="#boule.Ellipsoid.normal_gravity_potential" title="boule.Ellipsoid.normal_gravity_potential"><code class="xref py py-meth docutils literal notranslate"><span class="pre">normal_gravity_potential</span></code></a> for a version that
+includes the centrifugal component.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>These expressions are only valid for heights on or above the
+surface of the ellipsoid.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and geometric height coordinates of the
+computation points in a geodetic coordinate system. Each element
+can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitude must be in degrees and height in
+meters. Since longitude is not used in computations (the field is
+symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>V</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravitational potential in m²/s².</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>Computes the <a class="reference internal" href="../../glossary.html#term-Gravitational-potential"><span class="xref std std-term">gravitational potential</span></a> generated by the ellipsoid
+at the given geodetic latitude <span class="math notranslate nohighlight">\(\phi\)</span> and height above the
+ellipsoid <span class="math notranslate nohighlight">\(h\)</span> (geometric height).</p>
 <div class="math notranslate nohighlight">
 \[V(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{3}
 \omega^2 a^2 \dfrac{q}{q_0} P_2 (\sin \beta)\]</div>
@@ -1046,7 +1067,18 @@ ellipsoidal-harmonic coordinates corresponding to the input geodetic
 latitude and ellipsoidal height. See eq. 2-124 of
 <a class="reference internal" href="../../references.html#hofmannwellenhofmoritz2006" id="id8"><span>[HofmannWellenhofMoritz2006]</span></a>.</p>
 <p>Assumes that the internal density distribution of the ellipsoid is such
-that the gravity potential is constant at its surface.</p>
+that the <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> is constant at its surface.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.Ellipsoid.normal_gravity">
+<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.normal_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.normal_gravity" title="Link to this definition">#</a></dt>
+<dd><p>Normal gravity of the ellipsoid.</p>
+<p>Computes the magnitude of the gradient of the <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a>
+generated by this ellipsoid at <strong>any point outside the ellipsoid</strong>.
+Based on the closed-form expressions by <a class="reference internal" href="../../references.html#lakshmanan1991" id="id9"><span>[Lakshmanan1991]</span></a> and corrected
+by <a class="reference internal" href="../../references.html#ligotze2001" id="id10"><span>[LiGotze2001]</span></a>. This means that the <strong>free-air correction is not
+necessary</strong> to calculate normal gravity at the observation points.</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>These expressions are only valid for heights on or above the
@@ -1055,40 +1087,47 @@ surface of the ellipsoid.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geodetic latitude where the normal gravitational potential will
-be computed (in degrees).</p>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and geometric height coordinates of the
+computation points in a geodetic coordinate system. Each element
+can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitude must be in degrees and height in
+meters. Since longitude is not used in computations (the field is
+symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
-<dt><strong>height</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The ellipsoidal (geometric) height of the computation the point (in
-meters).</p>
+<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.14)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True).</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>V</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravitational potential in m²/s².</p>
+<dt><strong>gamma</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravity in mGal or m/s².</p>
 </dd>
 </dl>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="boule.Ellipsoid.normal_gravity">
-<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.normal_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.normal_gravity" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravity of the ellipsoid at the given latitude and height.</p>
-<p>Computes the magnitude of the gradient of the gravity potential
-(gravitational + centrifugal; see <a class="reference internal" href="../../references.html#hofmannwellenhofmoritz2006" id="id9"><span>[HofmannWellenhofMoritz2006]</span></a>)
-generated by the ellipsoid at the given geodetic latitude <span class="math notranslate nohighlight">\(\phi\)</span>
-and height above the ellipsoid <span class="math notranslate nohighlight">\(h\)</span> (geometric height).</p>
+<p class="rubric">Notes</p>
+<p><a class="reference internal" href="../../glossary.html#term-Normal-gravity"><span class="xref std std-term">Normal gravity</span></a> is defined as the magnitude of the gradient of
+the gravity potential generated by a <a class="reference internal" href="../../glossary.html#term-Reference-ellipsoid"><span class="xref std std-term">reference ellipsoid</span></a> at the
+given geodetic latitude <span class="math notranslate nohighlight">\(\phi\)</span> and height above the ellipsoid
+<span class="math notranslate nohighlight">\(h\)</span> (geometric height).</p>
 <div class="math notranslate nohighlight">
 \[\gamma(\phi, h) = \|\vec{\nabla}U(\phi, h)\|\]</div>
 <p>in which <span class="math notranslate nohighlight">\(U = V + \Phi\)</span> is the gravity potential of the
 ellipsoid, <span class="math notranslate nohighlight">\(V\)</span> is the gravitational potential of the ellipsoid,
 and <span class="math notranslate nohighlight">\(\Phi\)</span> is the centrifugal potential.</p>
-<p>Assumes that the internal density distribution of the ellipsoid is such
-that the gravity potential is constant at its surface.</p>
-<p>Based on closed-form expressions by <a class="reference internal" href="../../references.html#lakshmanan1991" id="id10"><span>[Lakshmanan1991]</span></a> and corrected by
-<a class="reference internal" href="../../references.html#ligotze2001" id="id11"><span>[LiGotze2001]</span></a> which don’t require the free-air correction.</p>
+<p>The equations used here assume that the internal density distribution
+of the ellipsoid is such that the gravity potential is constant at its
+surface. The specific internal density distribution is undefined.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.Ellipsoid.normal_gravity_potential">
+<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravity_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.normal_gravity_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.normal_gravity_potential" title="Link to this definition">#</a></dt>
+<dd><p>Normal gravity potential of the ellipsoid.</p>
+<p>Computes the <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> (gravitational + centrifugal)
+generated by the ellipsoid at the given points. See
+<a class="reference internal" href="#boule.Ellipsoid.normal_gravitational_potential" title="boule.Ellipsoid.normal_gravitational_potential"><code class="xref py py-meth docutils literal notranslate"><span class="pre">normal_gravitational_potential</span></code></a> for a version
+that is purely gravitational.</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
 <p>These expressions are only valid for heights on or above the
@@ -1097,32 +1136,25 @@ surface of the ellipsoid.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geodetic latitude where the normal gravity will be computed (in
-degrees).</p>
-</dd>
-<dt><strong>height</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The ellipsoidal (geometric) height of computation the point (in
-meters).</p>
-</dd>
-<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.13)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True)</p>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and geometric height coordinates of the
+computation points in a geodetic coordinate system. Each element
+can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitude must be in degrees and height in
+meters. Since longitude is not used in computations (the field is
+symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>gamma</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravity in mGal or m/s².</p>
+<dt><strong>V</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravity potential in m²/s².</p>
 </dd>
 </dl>
 </dd>
 </dl>
-</dd></dl>
-
-<dl class="py method">
-<dt class="sig sig-object py" id="boule.Ellipsoid.normal_gravity_potential">
-<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravity_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.normal_gravity_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.normal_gravity_potential" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravity potential of the ellipsoid at the given latitude and
-height.</p>
-<p>Computes the gravity potential generated by the ellipsoid at the
-given geodetic latitude <span class="math notranslate nohighlight">\(\phi\)</span> and height above the ellipsoid
+<p class="rubric">Notes</p>
+<p>Computes the <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> generated by the ellipsoid at
+the given geodetic latitude <span class="math notranslate nohighlight">\(\phi\)</span> and height above the ellipsoid
 <span class="math notranslate nohighlight">\(h\)</span> (geometric height).</p>
 <div class="math notranslate nohighlight">
 \[U(\beta, u) = \dfrac{GM}{E} \arctan{\dfrac{E}{u}} + \dfrac{1}{2}
@@ -1135,32 +1167,9 @@ linear eccentricity, <span class="math notranslate nohighlight">\(\omega\)</span
 <span class="math notranslate nohighlight">\(q\)</span> and <span class="math notranslate nohighlight">\(q_0\)</span> are auxiliary functions, and <span class="math notranslate nohighlight">\(u\)</span> and
 <span class="math notranslate nohighlight">\(\beta\)</span> are ellipsoidal-harmonic coordinates corresponding to the
 input geodetic latitude and ellipsoidal height. See eq. 2-126 of
-<a class="reference internal" href="../../references.html#hofmannwellenhofmoritz2006" id="id12"><span>[HofmannWellenhofMoritz2006]</span></a>.</p>
+<a class="reference internal" href="../../references.html#hofmannwellenhofmoritz2006" id="id11"><span>[HofmannWellenhofMoritz2006]</span></a>.</p>
 <p>Assumes that the internal density distribution of the ellipsoid is such
-that the gravity potential is constant at its surface.</p>
-<div class="admonition caution">
-<p class="admonition-title">Caution</p>
-<p>These expressions are only valid for heights on or above the
-surface of the ellipsoid.</p>
-</div>
-<dl class="field-list">
-<dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><dl>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geodetic latitude where the normal gravity potential will be
-computed (in degrees).</p>
-</dd>
-<dt><strong>height</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The ellipsoidal (geometric) height of the computation the point (in
-meters).</p>
-</dd>
-</dl>
-</dd>
-<dt class="field-even">Returns<span class="colon">:</span></dt>
-<dd class="field-even"><dl>
-<dt><strong>V</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravity potential in m²/s².</p>
-</dd>
-</dl>
-</dd>
-</dl>
+that the <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> is constant at its surface.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -1176,20 +1185,20 @@ methods/functions that rely on it.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>sinlat</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like" title="(in NumPy v2.1)"><span>array_like</span></a></span></dt><dd><p>Sine of the geocentric geodetic latitude.</p>
+<dt><strong>sinlat</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like" title="(in NumPy v2.3)"><span>array_like</span></a></span></dt><dd><p>Sine of the geocentric geodetic latitude.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>prime_vertical_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like" title="(in NumPy v2.1)"><span>array_like</span></a></span></dt><dd><p>Prime vertical radius given in the same units as the semi-major
+<dt><strong>prime_vertical_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like" title="(in NumPy v2.3)"><span>array_like</span></a></span></dt><dd><p>Prime vertical radius given in the same units as the semi-major
 axis</p>
 </dd>
 </dl>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
-<p>The prime vertical radius of curvature <span class="math notranslate nohighlight">\(N\)</span> is defined as <a class="reference internal" href="#rf1bd9c736d7c-2" id="id13">[2]</a>:</p>
+<p>The prime vertical radius of curvature <span class="math notranslate nohighlight">\(N\)</span> is defined as <a class="reference internal" href="#rf1bd9c736d7c-2" id="id12">[2]</a>:</p>
 <div class="math notranslate nohighlight">
 \[N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}\]</div>
 <p>Where <span class="math notranslate nohighlight">\(a\)</span> is the semimajor axis and <span class="math notranslate nohighlight">\(e\)</span> is the first
@@ -1197,7 +1206,7 @@ eccentricity.</p>
 <p class="rubric">References</p>
 <div role="list" class="citation-list">
 <div class="citation" id="rf1bd9c736d7c-2" role="doc-biblioentry">
-<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id13">2</a><span class="fn-bracket">]</span></span>
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id12">2</a><span class="fn-bracket">]</span></span>
 <p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Earth_radius#Prime_vertical">https://en.wikipedia.org/wiki/Earth_radius#Prime_vertical</a></p>
 </div>
 </div>
@@ -1205,32 +1214,29 @@ eccentricity.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Ellipsoid.spherical_to_geodetic">
-<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">spherical_to_geodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">spherical_latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.spherical_to_geodetic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.spherical_to_geodetic" title="Link to this definition">#</a></dt>
+<span class="sig-prename descclassname"><span class="pre">Ellipsoid.</span></span><span class="sig-name descname"><span class="pre">spherical_to_geodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_ellipsoid.html#Ellipsoid.spherical_to_geodetic"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Ellipsoid.spherical_to_geodetic" title="Link to this definition">#</a></dt>
 <dd><p>Convert from geocentric spherical to geodetic coordinates.</p>
 <p>The geodetic datum is defined by this ellipsoid. The coordinates are
-converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id15"><span>[Vermeille2002]</span></a>.</p>
+converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id14"><span>[Vermeille2002]</span></a>.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on geocentric spherical coordinate system in
-degrees.</p>
-</dd>
-<dt><strong>spherical_latitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on geocentric spherical coordinate system in
-degrees.</p>
-</dd>
-<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Spherical radius coordinates in meters.</p>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and radius coordinates of the points in
+a geocentric spherical coordinate system. Each element can be
+a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitude must be in degrees and radius in
+meters. Since longitude is not affected by conversions, it can be
+assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on geodetic coordinate system in degrees.
-The longitude coordinates are not modified during this conversion.</p>
-</dd>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Converted latitude coordinates on geodetic coordinate system in
-degrees.</p>
-</dd>
-<dt><strong>height</strong><span class="classifier"><a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Converted ellipsoidal height coordinates in meters.</p>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>The converted longitude, geodetic latitude, and geometric height in
+a geodetic coordinate system. The shape of each element will be
+compatible with the shape of the inputs. If the input longitude is
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. Longitude and latitude
+will be in degrees and height in meters.</p>
 </dd>
 </dl>
 </dd>
@@ -1341,7 +1347,7 @@ degrees.</p>
 
   <p class="copyright">
     
-      © Copyright 2024, The Boule Developers.
+      © Copyright 2025, The Boule Developers.
       <br/>
     
   </p>
@@ -1350,7 +1356,7 @@ degrees.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Oct 22, 2024.
+  Last updated on Oct 29, 2025.
   <br/>
 </p>
   </div>

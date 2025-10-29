@@ -32,8 +32,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
@@ -468,38 +468,38 @@ implement it, please
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;WGS84&quot;</span></code>.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;WGS84&quot;</span></code>.</p>
 </dd>
-<dt><strong>semimajor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimajor (largest) axis of the ellipsoid.
+<dt><strong>semimajor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimajor (largest) axis of the ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(a\)</span>.
 Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd>
-<dt><strong>semimedium_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimedium (middle) axis of the ellipsoid.
+<dt><strong>semimedium_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimedium (middle) axis of the ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(b\)</span>.
 Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd>
-<dt><strong>semiminor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semiminor (smallest) axis of the ellipsoid.
+<dt><strong>semiminor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semiminor (smallest) axis of the ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(c\)</span>.
 Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd>
-<dt><strong>geocentric_grav_const</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The geocentric gravitational constant. The product of the mass of the
+<dt><strong>geocentric_grav_const</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The geocentric gravitational constant. The product of the mass of the
 ellipsoid <span class="math notranslate nohighlight">\(M\)</span> and the gravitational constant <span class="math notranslate nohighlight">\(G\)</span>.
 Definition: <span class="math notranslate nohighlight">\(GM\)</span>. Units:
 <span class="math notranslate nohighlight">\(m^3.s^{-2}\)</span>.</p>
 </dd>
-<dt><strong>angular_velocity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The angular velocity of the rotating ellipsoid.
+<dt><strong>angular_velocity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The angular velocity of the rotating ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(\omega\)</span>.
 Units: <span class="math notranslate nohighlight">\(\\rad.s^{-1}\)</span>.</p>
 </dd>
-<dt><strong>semimajor_axis_longitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Longitude coordinate of the semimajor axis in the x-y plane. Optional,
+<dt><strong>semimajor_axis_longitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Longitude coordinate of the semimajor axis in the x-y plane. Optional,
 default value is 0.0.</p>
 </dd>
-<dt><strong>long_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
+<dt><strong>long_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
 <span class="pre">1984&quot;</span></code> (optional).</p>
 </dd>
-<dt><strong>reference</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Citation for the ellipsoid parameter values (optional).</p>
+<dt><strong>reference</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Citation for the ellipsoid parameter values (optional).</p>
 </dd>
-<dt><strong>comments</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Additional comments regarding the ellipsoid (optional).</p>
+<dt><strong>comments</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Additional comments regarding the ellipsoid (optional).</p>
 </dd>
 </dl>
 </dd>
@@ -586,8 +586,8 @@ parameters:</p>
 <p class="rubric">Methods</p>
 <div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
 <tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.TriaxialEllipsoid.centrifugal_potential" title="boule.TriaxialEllipsoid.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(longitude, latitude, ...)</p></td>
-<td><p>Centrifugal potential at the given latitude, longitude and height above the ellipsoid.</p></td>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.TriaxialEllipsoid.centrifugal_potential" title="boule.TriaxialEllipsoid.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(coordinates)</p></td>
+<td><p>Centrifugal potential of the rotating ellipsoid.</p></td>
 </tr>
 <tr class="row-even"><td><p><a class="reference internal" href="#boule.TriaxialEllipsoid.geocentric_radius" title="boule.TriaxialEllipsoid.geocentric_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geocentric_radius</span></code></a>(longitude, latitude)</p></td>
 <td><p>Radial distance from the center of the ellipsoid to its surface.</p></td>
@@ -691,37 +691,38 @@ Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 <h2>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h2>
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.centrifugal_potential">
-<span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">centrifugal_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">longitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">height</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_triaxialellipsoid.html#TriaxialEllipsoid.centrifugal_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.TriaxialEllipsoid.centrifugal_potential" title="Link to this definition">#</a></dt>
-<dd><p>Centrifugal potential at the given latitude, longitude and height above
-the ellipsoid.</p>
-<p>The centrifugal potential <span class="math notranslate nohighlight">\(\Phi\)</span> at spherical latitude
-<span class="math notranslate nohighlight">\(\phi\)</span>, spherical longitude <span class="math notranslate nohighlight">\(\lambda\)</span> and spherical height
-above the ellipsoid <span class="math notranslate nohighlight">\(h\)</span> is</p>
-<div class="math notranslate nohighlight">
-\[\Phi(\phi, \lambda, h) = \dfrac{1}{2}
-    \omega^2 \left(R(\phi, lambda) + h\right)^2 \cos^2(\phi)\]</div>
-<p>in which <span class="math notranslate nohighlight">\(R(\phi, \lambda)\)</span> is the radius of the ellipsoid and
-<span class="math notranslate nohighlight">\(\omega\)</span> is the angular velocity.</p>
+<span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">centrifugal_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_triaxialellipsoid.html#TriaxialEllipsoid.centrifugal_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.TriaxialEllipsoid.centrifugal_potential" title="Link to this definition">#</a></dt>
+<dd><p>Centrifugal potential of the rotating ellipsoid.</p>
+<p>Calculate the centrifugal potential due to the rotation of the
+ellipsoid about its semiminor axis at the given points.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The spherical longitude where the centrifugal potential will be
-computed (in degrees).</p>
-</dd>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The spherical latitude where the centrifugal potential will be
-computed (in degrees).</p>
-</dd>
-<dt><strong>height</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The spherical height of the computation point (in meters).</p>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
+points in a geocentric spherical coordinate system. The height is
+measured from the surface of the ellipsoid. Each element can be
+a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitude must be in degrees and height in
+meters.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>Phi</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The centrifugal potential in m²/s².</p>
+<dt><strong>Phi</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The centrifugal potential in m²/s².</p>
 </dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Notes</p>
+<p>The centrifugal potential <span class="math notranslate nohighlight">\(\Phi\)</span> at spherical latitude
+<span class="math notranslate nohighlight">\(\phi\)</span>, spherical longitude <span class="math notranslate nohighlight">\(\lambda\)</span> and height above the
+ellipsoid <span class="math notranslate nohighlight">\(h\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\Phi(\phi, \lambda, h) = \dfrac{1}{2}
+    \omega^2 \left(R(\phi, lambda) + h\right)^2 \cos^2(\phi)\]</div>
+<p>in which <span class="math notranslate nohighlight">\(R(\phi, \lambda)\)</span> is the radius of the ellipsoid and
+<span class="math notranslate nohighlight">\(\omega\)</span> is the angular velocity.</p>
 </dd></dl>
 
 <dl class="py method">
@@ -733,23 +734,19 @@ longitudes. The geocentric radius is calculated following <a class="reference in
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on spherical coordinate system in degrees.</p>
+<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on spherical coordinate system in degrees.</p>
 </dd>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on spherical coordinate system in degrees.</p>
+<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on spherical coordinate system in degrees.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>geocentric_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.13)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.1)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geocentric radius for the given spherical latitude(s) and
+<dt><strong>geocentric_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.3)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geocentric radius for the given spherical latitude(s) and
 spherical longitude(s) in the same units as the axes of the
 ellipsoid.</p>
 </dd>
 </dl>
-<div class="admonition tip">
-<p class="admonition-title">Tip</p>
-<p>No elevation is taken into account.</p>
-</div>
 </dd>
 </dl>
 <p class="rubric">Notes</p>
@@ -870,7 +867,7 @@ we used geocentric spherical latitude.</p>
 
   <p class="copyright">
     
-      © Copyright 2024, The Boule Developers.
+      © Copyright 2025, The Boule Developers.
       <br/>
     
   </p>
@@ -879,7 +876,7 @@ we used geocentric spherical latitude.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Oct 22, 2024.
+  Last updated on Oct 29, 2025.
   <br/>
 </p>
   </div>

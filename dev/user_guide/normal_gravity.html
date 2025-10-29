@@ -32,8 +32,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
@@ -442,15 +442,16 @@ calculations.
 It can operate on single values:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">boule</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bl</span>
 
-<span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span>
+<span class="c1"># coordiantes = longitude, latitude, height (m)</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">500</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">gamma</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>980604.35 mGal
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>980465.52 mGal
 </pre></div>
 </div>
 </div>
@@ -459,10 +460,10 @@ It can operate on single values:</p>
 <code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code>):</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
 <span class="n">height</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
-<span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">)</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -479,12 +480,12 @@ It can operate on single values:</p>
 grid of normal gravity:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">verde</span> <span class="k">as</span> <span class="nn">vd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">verde</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vd</span>
 
-<span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
-    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">spacing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">spacing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">extra_coords</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -507,11 +508,11 @@ grid of normal gravity:</p>
 </div>
 </div>
 </div>
-<p>Which can be put in a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2024.9.1.dev0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>:</p>
+<p>Which can be put in a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2025.10.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
-    <span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">),</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravity&quot;</span><span class="p">,</span>
+    <span class="n">coordinates</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravity&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">grid</span>
 </pre></div>
@@ -533,39 +534,86 @@ grid of normal gravity:</p>
 </symbol>
 </defs>
 </svg>
-<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
- *
- */
+<style>/* CSS stylesheet for displaying xarray objects in notebooks */
 
 :root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base rgba(0, 0, 0, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(0, 0, 0, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, white)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, white) h s calc(l - 15))
+  );
 }
 
-html[theme=dark],
-html[data-theme=dark],
-body[data-theme=dark],
+html[theme="dark"],
+html[data-theme="dark"],
+body[data-theme="dark"],
 body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
+  --xr-font-color0: var(
+    --jp-content-font-color0,
+    var(--pst-color-text-base, rgba(255, 255, 255, 1))
+  );
+  --xr-font-color2: var(
+    --jp-content-font-color2,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.54))
+  );
+  --xr-font-color3: var(
+    --jp-content-font-color3,
+    var(--pst-color-text-base, rgba(255, 255, 255, 0.38))
+  );
+  --xr-border-color: var(
+    --jp-border-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 10))
+  );
+  --xr-disabled-color: var(
+    --jp-layout-color3,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 40))
+  );
+  --xr-background-color: var(
+    --jp-layout-color0,
+    var(--pst-color-on-background, #111111)
+  );
+  --xr-background-color-row-even: var(
+    --jp-layout-color1,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 5))
+  );
+  --xr-background-color-row-odd: var(
+    --jp-layout-color2,
+    hsl(from var(--pst-color-on-background, #111111) h s calc(l + 15))
+  );
 }
 
 .xr-wrap {
   display: block !important;
   min-width: 300px;
   max-width: 700px;
+  line-height: 1.6;
 }
 
 .xr-text-repr-fallback {
@@ -588,11 +636,18 @@ body.vscode-dark {
 }
 
 .xr-obj-type,
-.xr-array-name {
+.xr-obj-name,
+.xr-group-name {
   margin-left: 2px;
   margin-right: 10px;
 }
 
+.xr-group-name::before {
+  content: "📁";
+  padding-right: 0.3em;
+}
+
+.xr-group-name,
 .xr-obj-type {
   color: var(--xr-font-color2);
 }
@@ -601,6 +656,8 @@ body.vscode-dark {
   padding-left: 0 !important;
   display: grid;
   grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
+  margin-block-start: 0;
+  margin-block-end: 0;
 }
 
 .xr-section-item {
@@ -610,10 +667,13 @@ body.vscode-dark {
 .xr-section-item input {
   display: inline-block;
   opacity: 0;
+  height: 0;
+  margin: 0;
 }
 
 .xr-section-item input + label {
   color: var(--xr-disabled-color);
+  border: 2px solid transparent !important;
 }
 
 .xr-section-item input:enabled + label {
@@ -622,7 +682,7 @@ body.vscode-dark {
 }
 
 .xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
+  border: 2px solid var(--xr-font-color0) !important;
 }
 
 .xr-section-item input:enabled + label:hover {
@@ -646,7 +706,7 @@ body.vscode-dark {
 
 .xr-section-summary-in + label:before {
   display: inline-block;
-  content: '►';
+  content: "►";
   font-size: 11px;
   width: 15px;
   text-align: center;
@@ -657,7 +717,7 @@ body.vscode-dark {
 }
 
 .xr-section-summary-in:checked + label:before {
-  content: '▼';
+  content: "▼";
 }
 
 .xr-section-summary-in:checked + label > span {
@@ -667,7 +727,6 @@ body.vscode-dark {
 .xr-section-summary,
 .xr-section-inline-details {
   padding-top: 4px;
-  padding-bottom: 4px;
 }
 
 .xr-section-inline-details {
@@ -677,11 +736,38 @@ body.vscode-dark {
 .xr-section-details {
   display: none;
   grid-column: 1 / -1;
+  margin-top: 4px;
   margin-bottom: 5px;
 }
 
 .xr-section-summary-in:checked ~ .xr-section-details {
   display: contents;
+}
+
+.xr-group-box {
+  display: inline-grid;
+  grid-template-columns: 0px 20px auto;
+  width: 100%;
+}
+
+.xr-group-box-vline {
+  grid-column-start: 1;
+  border-right: 0.2em solid;
+  border-color: var(--xr-border-color);
+  width: 0px;
+}
+
+.xr-group-box-hline {
+  grid-column-start: 2;
+  grid-row-start: 1;
+  height: 1em;
+  width: 20px;
+  border-bottom: 0.2em solid;
+  border-color: var(--xr-border-color);
+}
+
+.xr-group-box-contents {
+  grid-column-start: 3;
 }
 
 .xr-array-wrap {
@@ -729,15 +815,15 @@ body.vscode-dark {
 }
 
 .xr-dim-list:before {
-  content: '(';
+  content: "(";
 }
 
 .xr-dim-list:after {
-  content: ')';
+  content: ")";
 }
 
 .xr-dim-list li:not(:last-child):after {
-  content: ',';
+  content: ",";
   padding-right: 5px;
 }
 
@@ -754,7 +840,9 @@ body.vscode-dark {
 .xr-var-item label,
 .xr-var-item > .xr-var-name span {
   background-color: var(--xr-background-color-row-even);
+  border-color: var(--xr-background-color-row-odd);
   margin-bottom: 0;
+  padding-top: 2px;
 }
 
 .xr-var-item > .xr-var-name:hover span {
@@ -765,6 +853,7 @@ body.vscode-dark {
 .xr-var-list > li:nth-child(odd) > label,
 .xr-var-list > li:nth-child(odd) > .xr-var-name span {
   background-color: var(--xr-background-color-row-odd);
+  border-color: var(--xr-background-color-row-even);
 }
 
 .xr-var-name {
@@ -814,8 +903,15 @@ body.vscode-dark {
 .xr-var-data,
 .xr-index-data {
   display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
+  border-top: 2px dotted var(--xr-background-color);
+  padding-bottom: 20px !important;
+  padding-top: 10px !important;
+}
+
+.xr-var-attrs-in + label,
+.xr-var-data-in + label,
+.xr-index-data-in + label {
+  padding: 0 1px;
 }
 
 .xr-var-attrs-in:checked ~ .xr-var-attrs,
@@ -826,6 +922,12 @@ body.vscode-dark {
 
 .xr-var-data > table {
   float: right;
+}
+
+.xr-var-data > pre,
+.xr-index-data > pre,
+.xr-var-data > table > tbody > tr {
+  background-color: transparent !important;
 }
 
 .xr-var-name span,
@@ -887,13 +989,21 @@ dl.xr-attrs {
   stroke: currentColor;
   fill: currentColor;
 }
+
+.xr-var-attrs-in:checked + label > .xr-icon-file-text2,
+.xr-var-data-in:checked + label > .xr-icon-database,
+.xr-index-data-in:checked + label > .xr-icon-database {
+  color: var(--xr-font-color0);
+  filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
+  stroke-width: 0.8px;
+}
 </style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 2MB
 Dimensions:         (northing: 361, easting: 721)
 Coordinates:
-  * easting         (easting) float64 6kB 0.0 0.5 1.0 1.5 ... 359.0 359.5 360.0
   * northing        (northing) float64 3kB -90.0 -89.5 -89.0 ... 89.0 89.5 90.0
+  * easting         (easting) float64 6kB 0.0 0.5 1.0 1.5 ... 359.0 359.5 360.0
 Data variables:
-    normal_gravity  (northing, easting) float64 2MB 9.801e+05 ... 9.801e+05</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-935cf141-8906-4598-b418-3f44f1e9e5bc' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-935cf141-8906-4598-b418-3f44f1e9e5bc' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>northing</span>: 361</li><li><span class='xr-has-index'>easting</span>: 721</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-43ebb347-079f-4fc5-b2f6-7bb35052a182' class='xr-section-summary-in' type='checkbox'  checked><label for='section-43ebb347-079f-4fc5-b2f6-7bb35052a182' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>easting</span></div><div class='xr-var-dims'>(easting)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0 0.5 1.0 ... 359.0 359.5 360.0</div><input id='attrs-385a7fb8-6759-4e73-bfd0-d410263b4d52' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-385a7fb8-6759-4e73-bfd0-d410263b4d52' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-071c4a9f-d671-4586-aa73-fb9ea635b7af' class='xr-var-data-in' type='checkbox'><label for='data-071c4a9f-d671-4586-aa73-fb9ea635b7af' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0. ,   0.5,   1. , ..., 359. , 359.5, 360. ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>northing</span></div><div class='xr-var-dims'>(northing)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.5 -89.0 ... 89.5 90.0</div><input id='attrs-0e3b9bfd-f058-4389-94a4-4570455b5191' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0e3b9bfd-f058-4389-94a4-4570455b5191' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-5fcbe529-7796-4aff-9d77-2c7f0a17e9d3' class='xr-var-data-in' type='checkbox'><label for='data-5fcbe529-7796-4aff-9d77-2c7f0a17e9d3' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-90. , -89.5, -89. , ...,  89. ,  89.5,  90. ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-24ca4e05-fee9-4f3b-affa-61d5c975056b' class='xr-section-summary-in' type='checkbox'  checked><label for='section-24ca4e05-fee9-4f3b-affa-61d5c975056b' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>normal_gravity</span></div><div class='xr-var-dims'>(northing, easting)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.801e+05 9.801e+05 ... 9.801e+05</div><input id='attrs-c3c25458-da27-42de-9575-cef1b0193bfe' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c3c25458-da27-42de-9575-cef1b0193bfe' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-4901e839-6f79-466b-8c99-3143110fdf0c' class='xr-var-data-in' type='checkbox'><label for='data-4901e839-6f79-466b-8c99-3143110fdf0c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
+    normal_gravity  (northing, easting) float64 2MB 9.801e+05 ... 9.801e+05</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-3831a8ac-e36a-4f0e-b54a-924c69974ab9' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-3831a8ac-e36a-4f0e-b54a-924c69974ab9' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>northing</span>: 361</li><li><span class='xr-has-index'>easting</span>: 721</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-cddf3c22-0563-4d0c-8c84-cf39e32e4e6c' class='xr-section-summary-in' type='checkbox'  checked><label for='section-cddf3c22-0563-4d0c-8c84-cf39e32e4e6c' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>northing</span></div><div class='xr-var-dims'>(northing)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.5 -89.0 ... 89.5 90.0</div><input id='attrs-d9009f12-0c60-4b30-9221-1b65ad5a8e81' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-d9009f12-0c60-4b30-9221-1b65ad5a8e81' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-ca2f8d0d-629b-4615-874b-1d18627209ac' class='xr-var-data-in' type='checkbox'><label for='data-ca2f8d0d-629b-4615-874b-1d18627209ac' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-90. , -89.5, -89. , ...,  89. ,  89.5,  90. ], shape=(361,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>easting</span></div><div class='xr-var-dims'>(easting)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0 0.5 1.0 ... 359.0 359.5 360.0</div><input id='attrs-c9b66640-2d66-4140-811b-4ba929eb724b' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-c9b66640-2d66-4140-811b-4ba929eb724b' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-d5ea88e2-4b16-4159-b0ec-df900f34b580' class='xr-var-data-in' type='checkbox'><label for='data-d5ea88e2-4b16-4159-b0ec-df900f34b580' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0. ,   0.5,   1. , ..., 359. , 359.5, 360. ], shape=(721,))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-50b8ad2d-1110-4a92-a0e9-c05d0ef2a538' class='xr-section-summary-in' type='checkbox'  checked><label for='section-50b8ad2d-1110-4a92-a0e9-c05d0ef2a538' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>normal_gravity</span></div><div class='xr-var-dims'>(northing, easting)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.801e+05 9.801e+05 ... 9.801e+05</div><input id='attrs-3990c693-1ce2-4e8b-8465-3790c4a6c751' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-3990c693-1ce2-4e8b-8465-3790c4a6c751' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-933f96c7-c7ad-4128-ba25-1c2210411360' class='xr-var-data-in' type='checkbox'><label for='data-933f96c7-c7ad-4128-ba25-1c2210411360' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
         980142.33509235, 980142.33509235, 980142.33509235],
        [980141.93808117, 980141.93808117, 980141.93808117, ...,
         980141.93808117, 980141.93808117, 980141.93808117],
@@ -905,22 +1015,17 @@ Data variables:
        [980141.93808117, 980141.93808117, 980141.93808117, ...,
         980141.93808117, 980141.93808117, 980141.93808117],
        [980142.33509235, 980142.33509235, 980142.33509235, ...,
-        980142.33509235, 980142.33509235, 980142.33509235]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d0026dc5-83f7-4330-bf77-d5e2f09f9835' class='xr-section-summary-in' type='checkbox'  ><label for='section-d0026dc5-83f7-4330-bf77-d5e2f09f9835' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>easting</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-e25c98d0-4dff-4da4-a474-7a0ed8b257e9' class='xr-index-data-in' type='checkbox'/><label for='index-e25c98d0-4dff-4da4-a474-7a0ed8b257e9' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0.0,   0.5,   1.0,   1.5,   2.0,   2.5,   3.0,   3.5,   4.0,   4.5,
-       ...
-       355.5, 356.0, 356.5, 357.0, 357.5, 358.0, 358.5, 359.0, 359.5, 360.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;easting&#x27;, length=721))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>northing</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-498b8821-8869-4e65-9ddf-c719ddb30f8c' class='xr-index-data-in' type='checkbox'/><label for='index-498b8821-8869-4e65-9ddf-c719ddb30f8c' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-90.0, -89.5, -89.0, -88.5, -88.0, -87.5, -87.0, -86.5, -86.0, -85.5,
-       ...
-        85.5,  86.0,  86.5,  87.0,  87.5,  88.0,  88.5,  89.0,  89.5,  90.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;northing&#x27;, length=361))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4a257f88-a936-4c1f-9283-e3fb6ec0852b' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-4a257f88-a936-4c1f-9283-e3fb6ec0852b' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+        980142.33509235, 980142.33509235, 980142.33509235]],
+      shape=(361, 721))</pre></div></li></ul></div></li></ul></div></div></div></div>
 </div>
-<p>And plotted with <a class="reference external" href="https://www.pygmt.org/latest/api/index.html#module-pygmt" title="(in PyGMT vv0.13.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pygmt</span></code></a>:</p>
+<p>And plotted with <code class="xref py py-mod docutils literal notranslate"><span class="pre">pygmt</span></code>:</p>
 <div class="jupyter_cell docutils container">
 <div class="cell_output docutils container">
 </div>
 </div>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pygmt</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pygmt</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
@@ -949,10 +1054,10 @@ particularly useful for geophysics.</p>
 <a class="reference internal" href="../ellipsoids.html#ellipsoids"><span class="std std-ref">Available ellipsoids</span></a>). Here is the normal gravity of the Martian ellipsoid:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma_mars</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Mars2009</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma_mars</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Mars2009</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
 
 <span class="n">grid_mars</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
-    <span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">),</span> <span class="n">gamma_mars</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravity&quot;</span><span class="p">,</span>
+    <span class="n">coordinates</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">gamma_mars</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravity&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -993,7 +1098,8 @@ version except that the latitude is a <em>geocentric spherical latitude</em> ins
 of a geodetic latitude (for spheres they are actually the same thing).</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Moon2015</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="mi">45</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="n">height</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># coordiantes = longitude, latitude, height (m)</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Moon2015</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="n">height</span><span class="p">))</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -1009,10 +1115,13 @@ of a geodetic latitude (for spheres they are actually the same thing).</p>
 <p>This is what the normal gravity of Moon looks like on a map:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Moon2015</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">latitude</span><span class="o">=</span><span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">10_000</span><span class="p">)</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">spacing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">extra_coords</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+<span class="p">)</span>
+<span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Moon2015</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
 
 <span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
-    <span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">),</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravity&quot;</span><span class="p">,</span>
+    <span class="n">coordinates</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravity&quot;</span><span class="p">,</span>
 <span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
@@ -1051,410 +1160,41 @@ the centrifugal component) using <a class="reference internal" href="../api/gene
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gravitation</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Moon2015</span><span class="o">.</span><span class="n">normal_gravitation</span><span class="p">(</span>
-    <span class="n">height</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">full_like</span><span class="p">(</span><span class="n">latitude</span><span class="p">,</span> <span class="mi">10_000</span><span class="p">)</span>
+    <span class="n">coordinates</span><span class="o">=</span><span class="p">(</span><span class="kc">None</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">100</span><span class="p">),</span> <span class="n">np</span><span class="o">.</span><span class="n">full</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">10_000</span><span class="p">))</span>
 <span class="p">)</span>
-<span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
-    <span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">),</span> <span class="n">gravitation</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravitation&quot;</span><span class="p">,</span>
-<span class="p">)</span>
-<span class="n">grid</span>
+<span class="n">gravitation</span>
 </pre></div>
 </div>
 </div>
 <div class="cell_output docutils container">
-<div class="output text_html"><div><svg style="position: absolute; width: 0; height: 0; overflow: hidden">
-<defs>
-<symbol id="icon-database" viewBox="0 0 32 32">
-<path d="M16 0c-8.837 0-16 2.239-16 5v4c0 2.761 7.163 5 16 5s16-2.239 16-5v-4c0-2.761-7.163-5-16-5z"></path>
-<path d="M16 17c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
-<path d="M16 26c-8.837 0-16-2.239-16-5v6c0 2.761 7.163 5 16 5s16-2.239 16-5v-6c0 2.761-7.163 5-16 5z"></path>
-</symbol>
-<symbol id="icon-file-text2" viewBox="0 0 32 32">
-<path d="M28.681 7.159c-0.694-0.947-1.662-2.053-2.724-3.116s-2.169-2.030-3.116-2.724c-1.612-1.182-2.393-1.319-2.841-1.319h-15.5c-1.378 0-2.5 1.121-2.5 2.5v27c0 1.378 1.122 2.5 2.5 2.5h23c1.378 0 2.5-1.122 2.5-2.5v-19.5c0-0.448-0.137-1.23-1.319-2.841zM24.543 5.457c0.959 0.959 1.712 1.825 2.268 2.543h-4.811v-4.811c0.718 0.556 1.584 1.309 2.543 2.268zM28 29.5c0 0.271-0.229 0.5-0.5 0.5h-23c-0.271 0-0.5-0.229-0.5-0.5v-27c0-0.271 0.229-0.5 0.5-0.5 0 0 15.499-0 15.5 0v7c0 0.552 0.448 1 1 1h7v19.5z"></path>
-<path d="M23 26h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-<path d="M23 22h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-<path d="M23 18h-14c-0.552 0-1-0.448-1-1s0.448-1 1-1h14c0.552 0 1 0.448 1 1s-0.448 1-1 1z"></path>
-</symbol>
-</defs>
-</svg>
-<style>/* CSS stylesheet for displaying xarray objects in jupyterlab.
- *
- */
-
-:root {
-  --xr-font-color0: var(--jp-content-font-color0, rgba(0, 0, 0, 1));
-  --xr-font-color2: var(--jp-content-font-color2, rgba(0, 0, 0, 0.54));
-  --xr-font-color3: var(--jp-content-font-color3, rgba(0, 0, 0, 0.38));
-  --xr-border-color: var(--jp-border-color2, #e0e0e0);
-  --xr-disabled-color: var(--jp-layout-color3, #bdbdbd);
-  --xr-background-color: var(--jp-layout-color0, white);
-  --xr-background-color-row-even: var(--jp-layout-color1, white);
-  --xr-background-color-row-odd: var(--jp-layout-color2, #eeeeee);
-}
-
-html[theme=dark],
-html[data-theme=dark],
-body[data-theme=dark],
-body.vscode-dark {
-  --xr-font-color0: rgba(255, 255, 255, 1);
-  --xr-font-color2: rgba(255, 255, 255, 0.54);
-  --xr-font-color3: rgba(255, 255, 255, 0.38);
-  --xr-border-color: #1F1F1F;
-  --xr-disabled-color: #515151;
-  --xr-background-color: #111111;
-  --xr-background-color-row-even: #111111;
-  --xr-background-color-row-odd: #313131;
-}
-
-.xr-wrap {
-  display: block !important;
-  min-width: 300px;
-  max-width: 700px;
-}
-
-.xr-text-repr-fallback {
-  /* fallback to plain text repr when CSS is not injected (untrusted notebook) */
-  display: none;
-}
-
-.xr-header {
-  padding-top: 6px;
-  padding-bottom: 6px;
-  margin-bottom: 4px;
-  border-bottom: solid 1px var(--xr-border-color);
-}
-
-.xr-header > div,
-.xr-header > ul {
-  display: inline;
-  margin-top: 0;
-  margin-bottom: 0;
-}
-
-.xr-obj-type,
-.xr-array-name {
-  margin-left: 2px;
-  margin-right: 10px;
-}
-
-.xr-obj-type {
-  color: var(--xr-font-color2);
-}
-
-.xr-sections {
-  padding-left: 0 !important;
-  display: grid;
-  grid-template-columns: 150px auto auto 1fr 0 20px 0 20px;
-}
-
-.xr-section-item {
-  display: contents;
-}
-
-.xr-section-item input {
-  display: inline-block;
-  opacity: 0;
-}
-
-.xr-section-item input + label {
-  color: var(--xr-disabled-color);
-}
-
-.xr-section-item input:enabled + label {
-  cursor: pointer;
-  color: var(--xr-font-color2);
-}
-
-.xr-section-item input:focus + label {
-  border: 2px solid var(--xr-font-color0);
-}
-
-.xr-section-item input:enabled + label:hover {
-  color: var(--xr-font-color0);
-}
-
-.xr-section-summary {
-  grid-column: 1;
-  color: var(--xr-font-color2);
-  font-weight: 500;
-}
-
-.xr-section-summary > span {
-  display: inline-block;
-  padding-left: 0.5em;
-}
-
-.xr-section-summary-in:disabled + label {
-  color: var(--xr-font-color2);
-}
-
-.xr-section-summary-in + label:before {
-  display: inline-block;
-  content: '►';
-  font-size: 11px;
-  width: 15px;
-  text-align: center;
-}
-
-.xr-section-summary-in:disabled + label:before {
-  color: var(--xr-disabled-color);
-}
-
-.xr-section-summary-in:checked + label:before {
-  content: '▼';
-}
-
-.xr-section-summary-in:checked + label > span {
-  display: none;
-}
-
-.xr-section-summary,
-.xr-section-inline-details {
-  padding-top: 4px;
-  padding-bottom: 4px;
-}
-
-.xr-section-inline-details {
-  grid-column: 2 / -1;
-}
-
-.xr-section-details {
-  display: none;
-  grid-column: 1 / -1;
-  margin-bottom: 5px;
-}
-
-.xr-section-summary-in:checked ~ .xr-section-details {
-  display: contents;
-}
-
-.xr-array-wrap {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 20px auto;
-}
-
-.xr-array-wrap > label {
-  grid-column: 1;
-  vertical-align: top;
-}
-
-.xr-preview {
-  color: var(--xr-font-color3);
-}
-
-.xr-array-preview,
-.xr-array-data {
-  padding: 0 5px !important;
-  grid-column: 2;
-}
-
-.xr-array-data,
-.xr-array-in:checked ~ .xr-array-preview {
-  display: none;
-}
-
-.xr-array-in:checked ~ .xr-array-data,
-.xr-array-preview {
-  display: inline-block;
-}
-
-.xr-dim-list {
-  display: inline-block !important;
-  list-style: none;
-  padding: 0 !important;
-  margin: 0;
-}
-
-.xr-dim-list li {
-  display: inline-block;
-  padding: 0;
-  margin: 0;
-}
-
-.xr-dim-list:before {
-  content: '(';
-}
-
-.xr-dim-list:after {
-  content: ')';
-}
-
-.xr-dim-list li:not(:last-child):after {
-  content: ',';
-  padding-right: 5px;
-}
-
-.xr-has-index {
-  font-weight: bold;
-}
-
-.xr-var-list,
-.xr-var-item {
-  display: contents;
-}
-
-.xr-var-item > div,
-.xr-var-item label,
-.xr-var-item > .xr-var-name span {
-  background-color: var(--xr-background-color-row-even);
-  margin-bottom: 0;
-}
-
-.xr-var-item > .xr-var-name:hover span {
-  padding-right: 5px;
-}
-
-.xr-var-list > li:nth-child(odd) > div,
-.xr-var-list > li:nth-child(odd) > label,
-.xr-var-list > li:nth-child(odd) > .xr-var-name span {
-  background-color: var(--xr-background-color-row-odd);
-}
-
-.xr-var-name {
-  grid-column: 1;
-}
-
-.xr-var-dims {
-  grid-column: 2;
-}
-
-.xr-var-dtype {
-  grid-column: 3;
-  text-align: right;
-  color: var(--xr-font-color2);
-}
-
-.xr-var-preview {
-  grid-column: 4;
-}
-
-.xr-index-preview {
-  grid-column: 2 / 5;
-  color: var(--xr-font-color2);
-}
-
-.xr-var-name,
-.xr-var-dims,
-.xr-var-dtype,
-.xr-preview,
-.xr-attrs dt {
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  padding-right: 10px;
-}
-
-.xr-var-name:hover,
-.xr-var-dims:hover,
-.xr-var-dtype:hover,
-.xr-attrs dt:hover {
-  overflow: visible;
-  width: auto;
-  z-index: 1;
-}
-
-.xr-var-attrs,
-.xr-var-data,
-.xr-index-data {
-  display: none;
-  background-color: var(--xr-background-color) !important;
-  padding-bottom: 5px !important;
-}
-
-.xr-var-attrs-in:checked ~ .xr-var-attrs,
-.xr-var-data-in:checked ~ .xr-var-data,
-.xr-index-data-in:checked ~ .xr-index-data {
-  display: block;
-}
-
-.xr-var-data > table {
-  float: right;
-}
-
-.xr-var-name span,
-.xr-var-data,
-.xr-index-name div,
-.xr-index-data,
-.xr-attrs {
-  padding-left: 25px !important;
-}
-
-.xr-attrs,
-.xr-var-attrs,
-.xr-var-data,
-.xr-index-data {
-  grid-column: 1 / -1;
-}
-
-dl.xr-attrs {
-  padding: 0;
-  margin: 0;
-  display: grid;
-  grid-template-columns: 125px auto;
-}
-
-.xr-attrs dt,
-.xr-attrs dd {
-  padding: 0;
-  margin: 0;
-  float: left;
-  padding-right: 10px;
-  width: auto;
-}
-
-.xr-attrs dt {
-  font-weight: normal;
-  grid-column: 1;
-}
-
-.xr-attrs dt:hover span {
-  display: inline-block;
-  background: var(--xr-background-color);
-  padding-right: 10px;
-}
-
-.xr-attrs dd {
-  grid-column: 2;
-  white-space: pre-wrap;
-  word-break: break-all;
-}
-
-.xr-icon-database,
-.xr-icon-file-text2,
-.xr-no-icon {
-  display: inline-block;
-  vertical-align: middle;
-  width: 1em;
-  height: 1.5em !important;
-  stroke-width: 0;
-  stroke: currentColor;
-  fill: currentColor;
-}
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 2MB
-Dimensions:             (northing: 361, easting: 721)
-Coordinates:
-  * easting             (easting) float64 6kB 0.0 0.5 1.0 ... 359.0 359.5 360.0
-  * northing            (northing) float64 3kB -90.0 -89.5 -89.0 ... 89.5 90.0
-Data variables:
-    normal_gravitation  (northing, easting) float64 2MB 1.606e+05 ... 1.606e+05</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-c466e622-1624-4b04-a2d4-3a4cb119d2f7' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-c466e622-1624-4b04-a2d4-3a4cb119d2f7' class='xr-section-summary'  title='Expand/collapse section'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>northing</span>: 361</li><li><span class='xr-has-index'>easting</span>: 721</li></ul></div><div class='xr-section-details'></div></li><li class='xr-section-item'><input id='section-cfb6f48a-4908-4b2f-9784-5fe3380f0b70' class='xr-section-summary-in' type='checkbox'  checked><label for='section-cfb6f48a-4908-4b2f-9784-5fe3380f0b70' class='xr-section-summary' >Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>easting</span></div><div class='xr-var-dims'>(easting)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0 0.5 1.0 ... 359.0 359.5 360.0</div><input id='attrs-daa09e7f-cd91-4f24-91b0-53f09f0c6447' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-daa09e7f-cd91-4f24-91b0-53f09f0c6447' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-23f07689-cd1c-4230-88c0-32ab93f082c5' class='xr-var-data-in' type='checkbox'><label for='data-23f07689-cd1c-4230-88c0-32ab93f082c5' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0. ,   0.5,   1. , ..., 359. , 359.5, 360. ])</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>northing</span></div><div class='xr-var-dims'>(northing)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.5 -89.0 ... 89.5 90.0</div><input id='attrs-1d1d3804-59e3-4648-80dd-95254c7fe81e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-1d1d3804-59e3-4648-80dd-95254c7fe81e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-40336688-47a5-47f4-9042-116c73fd2fe7' class='xr-var-data-in' type='checkbox'><label for='data-40336688-47a5-47f4-9042-116c73fd2fe7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-90. , -89.5, -89. , ...,  89. ,  89.5,  90. ])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-4a92a332-2799-41b6-b5b1-14e703e4d740' class='xr-section-summary-in' type='checkbox'  checked><label for='section-4a92a332-2799-41b6-b5b1-14e703e4d740' class='xr-section-summary' >Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>normal_gravitation</span></div><div class='xr-var-dims'>(northing, easting)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>1.606e+05 1.606e+05 ... 1.606e+05</div><input id='attrs-0f9fd77c-ba05-4d0d-92b9-3ece293dc57e' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-0f9fd77c-ba05-4d0d-92b9-3ece293dc57e' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-66161bbc-2e05-4e35-9665-f879f0cf406c' class='xr-var-data-in' type='checkbox'><label for='data-66161bbc-2e05-4e35-9665-f879f0cf406c' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[160613.96423601, 160613.96423601, 160613.96423601, ...,
-        160613.96423601, 160613.96423601, 160613.96423601],
-       [160613.96423601, 160613.96423601, 160613.96423601, ...,
-        160613.96423601, 160613.96423601, 160613.96423601],
-       [160613.96423601, 160613.96423601, 160613.96423601, ...,
-        160613.96423601, 160613.96423601, 160613.96423601],
-       ...,
-       [160613.96423601, 160613.96423601, 160613.96423601, ...,
-        160613.96423601, 160613.96423601, 160613.96423601],
-       [160613.96423601, 160613.96423601, 160613.96423601, ...,
-        160613.96423601, 160613.96423601, 160613.96423601],
-       [160613.96423601, 160613.96423601, 160613.96423601, ...,
-        160613.96423601, 160613.96423601, 160613.96423601]])</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-d5021ced-30e4-474c-b3b9-76c1f2fefa5f' class='xr-section-summary-in' type='checkbox'  ><label for='section-d5021ced-30e4-474c-b3b9-76c1f2fefa5f' class='xr-section-summary' >Indexes: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-index-name'><div>easting</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-3bf9ff49-72a0-4415-8da8-9d1f86e36da3' class='xr-index-data-in' type='checkbox'/><label for='index-3bf9ff49-72a0-4415-8da8-9d1f86e36da3' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([  0.0,   0.5,   1.0,   1.5,   2.0,   2.5,   3.0,   3.5,   4.0,   4.5,
-       ...
-       355.5, 356.0, 356.5, 357.0, 357.5, 358.0, 358.5, 359.0, 359.5, 360.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;easting&#x27;, length=721))</pre></div></li><li class='xr-var-item'><div class='xr-index-name'><div>northing</div></div><div class='xr-index-preview'>PandasIndex</div><div></div><input id='index-2d0f66b6-fe01-4836-af34-053970238e0a' class='xr-index-data-in' type='checkbox'/><label for='index-2d0f66b6-fe01-4836-af34-053970238e0a' title='Show/Hide index repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-index-data'><pre>PandasIndex(Index([-90.0, -89.5, -89.0, -88.5, -88.0, -87.5, -87.0, -86.5, -86.0, -85.5,
-       ...
-        85.5,  86.0,  86.5,  87.0,  87.5,  88.0,  88.5,  89.0,  89.5,  90.0],
-      dtype=&#x27;float64&#x27;, name=&#x27;northing&#x27;, length=361))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-b7a703ec-1938-406f-a702-ec57c7fe66e3' class='xr-section-summary-in' type='checkbox' disabled ><label for='section-b7a703ec-1938-406f-a702-ec57c7fe66e3' class='xr-section-summary'  title='Expand/collapse section'>Attributes: <span>(0)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><dl class='xr-attrs'></dl></div></li></ul></div></div></div></div>
+<div class="output text_plain highlight-none notranslate"><div class="highlight"><pre><span></span>array([160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601,
+       160613.96423601, 160613.96423601, 160613.96423601, 160613.96423601])
+</pre></div>
+</div>
+</div>
 </div>
 <p>Since there is no centrifugal acceleration, the normal gravitation is due
 solely to the mass of a sphere and depends only on the height above the sphere
@@ -1540,7 +1280,7 @@ grids of observed gravitation (without the centrifugal component).</p>
 
   <p class="copyright">
     
-      © Copyright 2024, The Boule Developers.
+      © Copyright 2025, The Boule Developers.
       <br/>
     
   </p>
@@ -1549,7 +1289,7 @@ grids of observed gravitation (without the centrifugal component).</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Oct 22, 2024.
+  Last updated on Oct 29, 2025.
   <br/>
 </p>
   </div>

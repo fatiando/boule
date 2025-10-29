@@ -107,7 +107,8 @@ map with :mod:`pygmt`:
 
 .. jupyter-execute::
 
-    gamma = bl.WGS84.normal_gravity(topography.latitude, height)
+    coordinates = (topography.longitude, topography.latitude, height)
+    gamma = bl.WGS84.normal_gravity(coordinates)
 
     fig = pygmt.Figure()
     fig.grdimage(gamma, projection="W20c", cmap="viridis", shading="+a45+nt0.3")

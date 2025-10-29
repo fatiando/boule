@@ -31,8 +31,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
@@ -358,13 +358,13 @@ document.write(`
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Define the reference sphere (ellipsoid with 0 flattening).</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">textwrap</span>
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
 
-<span class="kn">import</span> <span class="nn">attr</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">attr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
 
-<span class="kn">from</span> <span class="nn">._constants</span> <span class="kn">import</span> <span class="n">G</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">G</span>
 
 
 <span class="c1"># Don&#39;t let ellipsoid parameters be changed to avoid messing up calculations</span>
@@ -372,7 +372,7 @@ document.write(`
 <div class="viewcode-block" id="Sphere">
 <a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere">[docs]</a>
 <span class="nd">@attr</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">Sphere</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Sphere</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A rotating sphere (zero-flattening ellipsoid).</span>
 
@@ -497,19 +497,19 @@ document.write(`
     <span class="n">comments</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
     <span class="nd">@radius</span><span class="o">.</span><span class="n">validator</span>
-    <span class="k">def</span> <span class="nf">_check_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="s2">&quot;Check if the radius is positive.&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Invalid radius &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;. Should be greater than zero.&quot;</span><span class="p">)</span>
 
     <span class="nd">@geocentric_grav_const</span><span class="o">.</span><span class="n">validator</span>
-    <span class="k">def</span> <span class="nf">_check_geocentric_grav_const</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geocentric_grav_const</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_geocentric_grav_const</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geocentric_grav_const</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="s2">&quot;Warn if geocentric_grav_const is negative.&quot;</span>
         <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The geocentric gravitational constant is negative: &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">semiminor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">semiminor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The semiminor axis of the sphere is equal to its radius.</span>
 <span class="sd">        Units: :math:`m`.</span>
@@ -517,7 +517,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">semimedium_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">semimedium_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The semimedium axis of the sphere is equal to its radius.</span>
 <span class="sd">        Units: :math:`m`.</span>
@@ -525,7 +525,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">semimajor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">semimajor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The semimajor axis of the sphere is equal to its radius.</span>
 <span class="sd">        Units: :math:`m`.</span>
@@ -533,7 +533,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">semimajor_axis_longitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">semimajor_axis_longitude</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The semimajor axis longitude of the sphere is equal to zero.</span>
 <span class="sd">        Definition: :math:`\lambda_a = 0`.</span>
@@ -542,7 +542,7 @@ document.write(`
         <span class="k">return</span> <span class="mi">0</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The flattening of the sphere is equal to zero.</span>
 <span class="sd">        Definition: :math:`f = \dfrac{a - b}{a}`.</span>
@@ -551,7 +551,7 @@ document.write(`
         <span class="k">return</span> <span class="mi">0</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">thirdflattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">thirdflattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The third flattening of the sphere is equal to zero.</span>
 <span class="sd">        Definition: :math:`f^{\prime\prime}= \dfrac{a -b}{a + b}`.</span>
@@ -560,12 +560,12 @@ document.write(`
         <span class="k">return</span> <span class="mi">0</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">eccentricity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">eccentricity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s2">&quot;Alias for the first eccentricity.&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">first_eccentricity</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">first_eccentricity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">first_eccentricity</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The (first) eccentricity of the sphere is equal to zero.</span>
 <span class="sd">        Definition: :math:`e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}`.</span>
@@ -574,7 +574,7 @@ document.write(`
         <span class="k">return</span> <span class="mi">0</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The area of the sphere.</span>
 <span class="sd">        Definition: :math:`A = 4 \pi r^2`.</span>
@@ -583,7 +583,7 @@ document.write(`
         <span class="k">return</span> <span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="o">**</span><span class="mi">2</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The mean radius of the ellipsoid is equal to its radius.</span>
 <span class="sd">        Definition: :math:`R_0 = R`.</span>
@@ -592,7 +592,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">semiaxes_mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">semiaxes_mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The arithmetic mean radius of the ellipsoid semi-axes is equal to its</span>
 <span class="sd">        radius.</span>
@@ -602,7 +602,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The volume of the sphere.</span>
 <span class="sd">        Definition: :math:`V = \dfrac{4}{3} \pi r^3`.</span>
@@ -611,7 +611,7 @@ document.write(`
         <span class="k">return</span> <span class="p">(</span><span class="mi">4</span> <span class="o">/</span> <span class="mi">3</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span> <span class="o">*</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="o">**</span><span class="mi">3</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">area_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">area_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The area equivalent radius of the sphere is equal to its radius.</span>
 <span class="sd">        Definition: :math:`R_2 = R`.</span>
@@ -620,7 +620,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The mass of the sphere.</span>
 <span class="sd">        Definition: :math:`M = GM / G`.</span>
@@ -629,7 +629,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="n">G</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">mean_density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mean_density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The mean density of the sphere.</span>
 <span class="sd">        Definition: :math:`\rho = M / V`.</span>
@@ -638,7 +638,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">volume_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">volume_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The volume equivalent radius of the sphere is equal to its radius.</span>
 <span class="sd">        Definition: :math:`R_3 = R`.</span>
@@ -647,7 +647,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">reference_normal_gravitational_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">reference_normal_gravitational_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The normal gravitational potential on the surface of the sphere.</span>
 <span class="sd">        Definition: :math:`U_0 = \dfrac{GM}{R}`.</span>
@@ -655,7 +655,7 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">long_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;Spheroid:</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Radius: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span><span class="si">}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -679,22 +679,21 @@ document.write(`
 
 <div class="viewcode-block" id="Sphere.normal_gravity">
 <a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravity">[docs]</a>
-    <span class="k">def</span> <span class="nf">normal_gravity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">normal_gravity</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Normal gravity of the sphere at the given latitude and height.</span>
+<span class="sd">        Normal gravity of the sphere.</span>
 
-<span class="sd">        Computes the magnitude of the gradient of the gravity potential</span>
-<span class="sd">        (gravitational + centrifugal; see [HofmannWellenhofMoritz2006]_)</span>
-<span class="sd">        generated by the sphere at the given spherical latitude :math:`\theta`</span>
-<span class="sd">        and height above the surface of the sphere :math:`h`:</span>
+<span class="sd">        Computes the magnitude of the gradient of the :term:`gravity potential`</span>
+<span class="sd">        generated by the sphere at the given points.</span>
 
-<span class="sd">        .. math::</span>
+<span class="sd">        .. note::</span>
 
-<span class="sd">            \gamma(\theta, h) = \|\vec{\nabla}U(\theta, h)\|</span>
-
-<span class="sd">        in which :math:`U = V + \Phi` is the gravity potential of the sphere,</span>
-<span class="sd">        :math:`V` is the gravitational potential of the sphere, and</span>
-<span class="sd">        :math:`\Phi` is the centrifugal potential.</span>
+<span class="sd">            Unlike the :class:`boule.Ellipsoid`, the :term:`gravitational</span>
+<span class="sd">            potential` of the sphere assumes a homogeneous density</span>
+<span class="sd">            distribution. There is no requirement that the gravity potential at</span>
+<span class="sd">            the surface of the sphere be constant, like for the ellipsoid. This</span>
+<span class="sd">            is because the ellipsoid equations have a singularity when the</span>
+<span class="sd">            flattening tends to zero.</span>
 
 <span class="sd">        .. caution::</span>
 
@@ -703,14 +702,16 @@ document.write(`
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        latitude : float or array</span>
-<span class="sd">            The spherical latitude where the normal gravity will be computed</span>
-<span class="sd">            (in degrees).</span>
-<span class="sd">        height : float or array</span>
-<span class="sd">            The height above the surface of the sphere of the computation point</span>
-<span class="sd">            (in meters).</span>
+<span class="sd">        coordinates : tuple = (longitude, latitude_spherical, height)</span>
+<span class="sd">            Longitude, latitude, and height coordinates of the computation</span>
+<span class="sd">            points in a geocentric spherical coordinate system. The height is</span>
+<span class="sd">            measured from the surface of the sphere. Each element can be</span>
+<span class="sd">            a single number or an array. The shape of the arrays must be</span>
+<span class="sd">            compatible. Longitude and latitude must be in degrees and height in</span>
+<span class="sd">            meters. Since longitude is not used in computations (the field is</span>
+<span class="sd">            symmetric with longitude), it can be assigned ``None``.</span>
 <span class="sd">        si_units : bool</span>
-<span class="sd">            Return the value in mGal (False, default) or m/s² (True)</span>
+<span class="sd">            Return the value in mGal (False, default) or m/s² (True).</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -719,7 +720,6 @@ document.write(`
 
 <span class="sd">        Examples</span>
 <span class="sd">        --------</span>
-
 <span class="sd">        Normal gravity can be calculated at any spherical latitude and height</span>
 <span class="sd">        above the sphere:</span>
 
@@ -730,15 +730,27 @@ document.write(`
 <span class="sd">        ...     geocentric_grav_const=2,</span>
 <span class="sd">        ...     angular_velocity=0.5,</span>
 <span class="sd">        ... )</span>
-<span class="sd">        &gt;&gt;&gt; gamma_equator = sphere.normal_gravity(latitude=0, height=0)</span>
+<span class="sd">        &gt;&gt;&gt; gamma_equator = sphere.normal_gravity((None, 0, 0))</span>
 <span class="sd">        &gt;&gt;&gt; print(f&quot;{gamma_equator:.2f} mGal&quot;)</span>
 <span class="sd">        175000.00 mGal</span>
-<span class="sd">        &gt;&gt;&gt; gamma_pole = sphere.normal_gravity(latitude=90, height=0)</span>
+<span class="sd">        &gt;&gt;&gt; gamma_pole = sphere.normal_gravity((None, 90, 0))</span>
 <span class="sd">        &gt;&gt;&gt; print(f&quot;{gamma_pole:.2f} mGal&quot;)</span>
 <span class="sd">        200000.00 mGal</span>
 
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
+<span class="sd">        Computes the magnitude of the gradient of the :term:`gravity potential`</span>
+<span class="sd">        (gravitational + centrifugal) generated by the sphere at the given</span>
+<span class="sd">        spherical latitude :math:`\theta` and height above the surface of the</span>
+<span class="sd">        sphere :math:`h`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \gamma(\theta, h) = \|\vec{\nabla}U(\theta, h)\|</span>
+
+<span class="sd">        in which :math:`U = V + \Phi` is the gravity potential of the sphere,</span>
+<span class="sd">        :math:`V` is the gravitational potential of the sphere, and</span>
+<span class="sd">        :math:`\Phi` is the centrifugal potential.</span>
 
 <span class="sd">        The gradient of the gravity potential is the sum of the gravitational</span>
 <span class="sd">        :math:`\vec{g}` and centrifugal :math:`\vec{f}` accelerations for a</span>
@@ -789,8 +801,8 @@ document.write(`
 <span class="sd">        equilibrium. Therefore, unlike the oblate ellipsoid, the gravity</span>
 <span class="sd">        potential is not constant at the surface, and the normal gravity vector</span>
 <span class="sd">        is not normal to the surface of the sphere.</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
             <span class="n">warn</span><span class="p">(</span>
                 <span class="s2">&quot;Formulas used are valid for points outside the sphere. &quot;</span>
@@ -817,19 +829,13 @@ document.write(`
 
 <div class="viewcode-block" id="Sphere.normal_gravitation">
 <a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravitation">[docs]</a>
-    <span class="k">def</span> <span class="nf">normal_gravitation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">normal_gravitation</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">,</span> <span class="n">si_units</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Calculate normal gravitation at any height.</span>
+<span class="sd">        Normal gravitation of the sphere.</span>
 
-<span class="sd">        Computes the magnitude of the gradient of the gravitational potential</span>
-<span class="sd">        generated by the sphere at the given height :math:`h`:</span>
-
-<span class="sd">        .. math::</span>
-
-<span class="sd">            \gamma(h) = \|\vec{\nabla}V(h)\| = \dfrac{GM}{(R + h)^2}</span>
-
-<span class="sd">        in which :math:`R` is the sphere radius, :math:`G` is the gravitational</span>
-<span class="sd">        constant, and :math:`M` is the mass of the sphere.</span>
+<span class="sd">        Computes the magnitude of the gradient of the :term:`gravitational</span>
+<span class="sd">        potential` generated by the sphere at the points. Assumes a homogeneous</span>
+<span class="sd">        internal density distribution for the sphere.</span>
 
 <span class="sd">        .. caution::</span>
 
@@ -838,9 +844,14 @@ document.write(`
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        height : float or array</span>
-<span class="sd">            The height above the surface of the sphere of the computation point</span>
-<span class="sd">            (in meters).</span>
+<span class="sd">        coordinates : tuple = (longitude, latitude_spherical, height)</span>
+<span class="sd">            Longitude, latitude, and height coordinates of the computation</span>
+<span class="sd">            points in a geocentric spherical coordinate system. The height is</span>
+<span class="sd">            measured from the surface of the sphere. Each element can be</span>
+<span class="sd">            a single number or an array. The shape of the arrays must be</span>
+<span class="sd">            compatible. Longitude and latitude must be in degrees and height in</span>
+<span class="sd">            meters. Since longitude and latitude are not used in computations</span>
+<span class="sd">            (the field is symmetric), they can be assigned ``None``.</span>
 <span class="sd">        si_units : bool</span>
 <span class="sd">            Return the value in mGal (False, default) or m/s² (True)</span>
 
@@ -862,11 +873,23 @@ document.write(`
 <span class="sd">        ...     geocentric_grav_const=2,</span>
 <span class="sd">        ...     angular_velocity=0.5,</span>
 <span class="sd">        ... )</span>
-<span class="sd">        &gt;&gt;&gt; g = sphere.normal_gravitation(height=1)</span>
+<span class="sd">        &gt;&gt;&gt; g = sphere.normal_gravitation((None, None, 1))</span>
 <span class="sd">        &gt;&gt;&gt; print(f&quot;{g:.2f} mGal&quot;)</span>
 <span class="sd">        50000.00 mGal</span>
 
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Computes the magnitude of the gradient of the :term:`gravitational</span>
+<span class="sd">        potential` generated by the sphere at the given height :math:`h`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            \gamma(h) = \|\vec{\nabla}V(h)\| = \dfrac{GM}{(R + h)^2}</span>
+
+<span class="sd">        in which :math:`R` is the sphere radius, :math:`G` is the gravitational</span>
+<span class="sd">        constant, and :math:`M` is the mass of the sphere.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="n">radial_distance</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">+</span> <span class="n">height</span>
         <span class="n">gamma</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="p">(</span><span class="n">radial_distance</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
 
@@ -879,11 +902,37 @@ document.write(`
 
 <div class="viewcode-block" id="Sphere.normal_gravity_potential">
 <a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravity_potential">[docs]</a>
-    <span class="k">def</span> <span class="nf">normal_gravity_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">normal_gravity_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Normal gravity potential of the sphere at the given latitude and</span>
-<span class="sd">        height.</span>
+<span class="sd">        Normal gravity potential of the sphere.</span>
 
+<span class="sd">        Computes the normal :term:`gravity potential` (gravitational</span>
+<span class="sd">        + centrifugal) generated by the sphere at the given points. Assumes</span>
+<span class="sd">        a homogeneous internal density distribution for the sphere.</span>
+
+<span class="sd">        .. caution::</span>
+
+<span class="sd">            These expressions are only valid for heights on or above the</span>
+<span class="sd">            surface of the sphere.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        coordinates : tuple = (longitude, latitude_spherical, height)</span>
+<span class="sd">            Longitude, latitude, and height coordinates of the computation</span>
+<span class="sd">            points in a geocentric spherical coordinate system. The height is</span>
+<span class="sd">            measured from the surface of the sphere. Each element can be</span>
+<span class="sd">            a single number or an array. The shape of the arrays must be</span>
+<span class="sd">            compatible. Longitude and latitude must be in degrees and height in</span>
+<span class="sd">            meters. Since longitude is not used in computations (the field is</span>
+<span class="sd">            symmetric with longitude), it can be assigned ``None``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        U : float or array</span>
+<span class="sd">            The normal gravity potential in m²/s².</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
 <span class="sd">        Computes the normal gravity potential (gravitational + centrifugal)</span>
 <span class="sd">        generated by the sphere at the given spherical latitude :math:`\theta`</span>
 <span class="sd">        and height above the surface of the sphere :math:`h`:</span>
@@ -897,33 +946,12 @@ document.write(`
 <span class="sd">        :math:`V` is the gravitational potential of the sphere, and</span>
 <span class="sd">        :math:`\Phi` is the centrifugal potential.</span>
 
-<span class="sd">        .. caution::</span>
-
-<span class="sd">            These expressions are only valid for heights on or above the</span>
-<span class="sd">            surface of the sphere.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        latitude : float or array</span>
-<span class="sd">            The spherical latitude where the normal gravity will be computed</span>
-<span class="sd">            (in degrees).</span>
-<span class="sd">        height : float or array</span>
-<span class="sd">            The height above the surface of the sphere of the computation point</span>
-<span class="sd">            (in meters).</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        U : float or array</span>
-<span class="sd">            The normal gravity potential in m²/s².</span>
-
-<span class="sd">        Notes</span>
-<span class="sd">        -----</span>
 <span class="sd">        A sphere under rotation is not in hydrostatic equilibrium. Therefore,</span>
-<span class="sd">        unlike the oblate ellipsoid, the gravity potential is not constant at</span>
-<span class="sd">        the surface, and the normal gravity vector is not normal to the surface</span>
-<span class="sd">        of the sphere.</span>
-
+<span class="sd">        unlike the oblate ellipsoid, the :term:`gravity potential` is not</span>
+<span class="sd">        constant at the surface, and the normal gravity vector is not normal to</span>
+<span class="sd">        the surface of the sphere.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
             <span class="n">warn</span><span class="p">(</span>
                 <span class="s2">&quot;Formulas used are valid for points outside the sphere. &quot;</span>
@@ -947,19 +975,13 @@ document.write(`
 
 <div class="viewcode-block" id="Sphere.normal_gravitational_potential">
 <a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.normal_gravitational_potential">[docs]</a>
-    <span class="k">def</span> <span class="nf">normal_gravitational_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">normal_gravitational_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Normal gravitational potential at the given height above a sphere.</span>
+<span class="sd">        Normal gravitational potential of the sphere.</span>
 
-<span class="sd">        Computes the normal gravitational potential generated by the sphere</span>
-<span class="sd">        at the given height above the surface of the sphere :math:`h`:</span>
-
-<span class="sd">        .. math::</span>
-
-<span class="sd">            V(h) = \dfrac{GM}{(R + h)}</span>
-
-<span class="sd">        in which :math:`R` is the sphere radius and :math:`GM` is the</span>
-<span class="sd">        geocentric gravitational constant of the sphere.</span>
+<span class="sd">        Computes the normal :term:`gravitational potential` generated by the</span>
+<span class="sd">        sphere at the given points. Assumes a homogeneous internal density</span>
+<span class="sd">        distribution for the sphere.</span>
 
 <span class="sd">        .. caution::</span>
 
@@ -968,16 +990,33 @@ document.write(`
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        height : float or array</span>
-<span class="sd">            The height above the surface of the sphere of the computation point</span>
-<span class="sd">            (in meters).</span>
+<span class="sd">        coordinates : tuple = (longitude, latitude_spherical, height)</span>
+<span class="sd">            Longitude, latitude, and height coordinates of the computation</span>
+<span class="sd">            points in a geocentric spherical coordinate system. The height is</span>
+<span class="sd">            measured from the surface of the sphere. Each element can be</span>
+<span class="sd">            a single number or an array. The shape of the arrays must be</span>
+<span class="sd">            compatible. Longitude and latitude must be in degrees and height in</span>
+<span class="sd">            meters. Since longitude and latitude are not used in computations</span>
+<span class="sd">            (the field is symmetric), they can be assigned ``None``.</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
 <span class="sd">        V : float or array</span>
 <span class="sd">            The normal gravitational potential in m²/s².</span>
 
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
+<span class="sd">        Computes the normal :term:`gravitational potential` generated by the</span>
+<span class="sd">        sphere at the given height above the surface of the sphere :math:`h`:</span>
+
+<span class="sd">        .. math::</span>
+
+<span class="sd">            V(h) = \dfrac{GM}{(R + h)}</span>
+
+<span class="sd">        in which :math:`R` is the sphere radius and :math:`GM` is the</span>
+<span class="sd">        geocentric gravitational constant of the sphere.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">height</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span>
         <span class="k">if</span> <span class="n">np</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">height</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">):</span>
             <span class="n">warn</span><span class="p">(</span>
                 <span class="s2">&quot;Formulas used are valid for points outside the sphere. &quot;</span>
@@ -989,11 +1028,31 @@ document.write(`
 
 <div class="viewcode-block" id="Sphere.centrifugal_potential">
 <a class="viewcode-back" href="../../api/generated/boule.Sphere.html#boule.Sphere.centrifugal_potential">[docs]</a>
-    <span class="k">def</span> <span class="nf">centrifugal_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">centrifugal_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Centrifugal potential at the given latitude and height above the</span>
-<span class="sd">        sphere.</span>
+<span class="sd">        Centrifugal potential of the rotating sphere.</span>
 
+<span class="sd">        Calculate the centrifugal potential due to the rotation of the</span>
+<span class="sd">        sphere about its z-axis at the given points.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        coordinates : tuple = (longitude, latitude_spherical, height)</span>
+<span class="sd">            Longitude, latitude, and height coordinates of the computation</span>
+<span class="sd">            points in a geocentric spherical coordinate system. The height is</span>
+<span class="sd">            measured from the surface of the sphere. Each element can be</span>
+<span class="sd">            a single number or an array. The shape of the arrays must be</span>
+<span class="sd">            compatible. Longitude and latitude must be in degrees and height in</span>
+<span class="sd">            meters. Since longitude is not used in computations (the field is</span>
+<span class="sd">            symmetric with longitude), it can be assigned ``None``.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Phi : float or array</span>
+<span class="sd">            The centrifugal potential in m²/s².</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
 <span class="sd">        The centrifugal potential :math:`\Phi` at latitude :math:`\theta` and</span>
 <span class="sd">        height above the sphere :math:`h` is</span>
 
@@ -1004,30 +1063,11 @@ document.write(`
 
 <span class="sd">        in which :math:`R` is the sphere radius and :math:`\omega` is the</span>
 <span class="sd">        angular velocity.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        latitude : float or array</span>
-<span class="sd">            The latitude where the centrifugal potential will be computed</span>
-<span class="sd">            (in degrees).</span>
-<span class="sd">        height : float or array</span>
-<span class="sd">            The height above the sphere of the computation point (in meters).</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        Phi : float or array</span>
-<span class="sd">            The centrifugal potential in m²/s².</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="p">(</span>
-            <span class="mf">0.5</span>
-            <span class="o">*</span> <span class="p">(</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span>
-                <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span>
-                <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
-            <span class="p">)</span>
-            <span class="o">**</span> <span class="mi">2</span>
-        <span class="p">)</span></div>
+        <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">:]</span>
+        <span class="n">coslat</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">cos</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">radians</span><span class="p">(</span><span class="n">latitude</span><span class="p">))</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="mf">0.5</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span> <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">radius</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span> <span class="o">*</span> <span class="n">coslat</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+        <span class="k">return</span> <span class="n">result</span></div>
 </div>
 
 </pre></div>
@@ -1064,7 +1104,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The Boule Developers.
+      © Copyright 2025, The Boule Developers.
       <br/>
     
   </p>
@@ -1073,7 +1113,7 @@ document.write(`
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Oct 22, 2024.
+  Last updated on Oct 29, 2025.
   <br/>
 </p>
   </div>

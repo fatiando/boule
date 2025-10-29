@@ -32,8 +32,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
@@ -413,8 +413,8 @@ document.write(`
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geodetic-to-geocentric-spherical">Geodetic to geocentric spherical</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geodetic-to-geocentric-spherical-using-pymap3d">Geodetic to geocentric spherical using pymap3d</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geocentric-spherical-to-geodetic">Geocentric spherical to geodetic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geodetic-to-geocentric-spherical-using-pymap3d">Geodetic to geocentric spherical using pymap3d</a></li>
 </ul>
             </nav>
         </div>
@@ -428,6 +428,20 @@ document.write(`
                   
   <section id="coordinate-conversions">
 <span id="coordinates"></span><h1>Coordinate conversions<a class="headerlink" href="#coordinate-conversions" title="Link to this heading">#</a></h1>
+<p>The <a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a> class has methods to convert coordinates between
+different coordinate systems. Boule ellipsoids are also compatible with the
+<a class="reference external" href="https://github.com/geospace-code/pymap3d/">pymap3d</a> package and be given to
+its functions as inputs.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">boule</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bl</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+</div>
+</div>
 <section id="geodetic-to-geocentric-spherical">
 <h2>Geodetic to geocentric spherical<a class="headerlink" href="#geodetic-to-geocentric-spherical" title="Link to this heading">#</a></h2>
 <p>The <a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a> class implements coordinate conversions between
@@ -438,15 +452,12 @@ spherical modeling of topography.</p>
 into geocentric spherical latitude and radius.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">longitude</span> <span class="o">=</span> <span class="mi">40</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">longitude</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="n">latitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">)</span>
 <span class="n">height</span> <span class="o">=</span> <span class="mi">481_000</span>  <span class="c1"># ICESat-2 orbit height in meters</span>
 
 <span class="n">longitude_sph</span><span class="p">,</span> <span class="n">latitude_sph</span><span class="p">,</span> <span class="n">radius</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">geodetic_to_spherical</span><span class="p">(</span>
-    <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">,</span>
+    <span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">),</span>
 <span class="p">)</span>
 
 <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Geodetic longitude:&quot;</span><span class="p">,</span> <span class="n">longitude</span><span class="p">)</span>
@@ -509,6 +520,41 @@ the height is constant.</p></li>
 other oblate ellipsoid. Checkout <a class="reference internal" href="../ellipsoids.html#ellipsoids"><span class="std std-ref">Available ellipsoids</span></a> for options.</p>
 </div>
 </section>
+<section id="geocentric-spherical-to-geodetic">
+<h2>Geocentric spherical to geodetic<a class="headerlink" href="#geocentric-spherical-to-geodetic" title="Link to this heading">#</a></h2>
+<p>Another common coordinate conversion used in global studies is from geocentric
+spherical to geodetic coordinates. The example below demonstrate this
+conversion using the Cartesian coordinates of the
+<a class="reference external" href="https://en.wikipedia.org/wiki/InSight">Insight lander</a> on Mars from
+<a class="reference internal" href="../references.html#lemaistre2023" id="id1"><span>[LeMaistre2023]</span></a> and the Martian ellipsoid defined in Boule.</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">xyz</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">2_417_504.5</span><span class="p">,</span> <span class="mf">2_365_954.5</span><span class="p">,</span> <span class="mf">266_266.7</span><span class="p">]</span>  <span class="c1"># InSight lander coordinates</span>
+
+<span class="c1"># Convert Cartesian to geocentric spherical</span>
+<span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
+<span class="n">latitude_sph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])))</span>
+<span class="n">longitude_sph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
+
+<span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Mars2009</span><span class="o">.</span><span class="n">spherical_to_geodetic</span><span class="p">(</span>
+    <span class="p">(</span><span class="n">longitude_sph</span><span class="p">,</span> <span class="n">latitude_sph</span><span class="p">,</span> <span class="n">radius</span><span class="p">),</span>
+<span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Geodetic longitude: </span><span class="si">{</span><span class="n">longitude</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Geodetic latitude: </span><span class="si">{</span><span class="n">latitude</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ellipsoidal height (m): </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Geodetic longitude: 135.6174366918431
+Geodetic latitude: 4.548092430561262
+Ellipsoidal height (m): -2241.5527252679644
+</pre></div>
+</div>
+</div>
+</div>
+</section>
 <section id="geodetic-to-geocentric-spherical-using-pymap3d">
 <h2>Geodetic to geocentric spherical using pymap3d<a class="headerlink" href="#geodetic-to-geocentric-spherical-using-pymap3d" title="Link to this heading">#</a></h2>
 <p>Boule’s <a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">Ellipsoid</span></code></a> and <a class="reference internal" href="../api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">Sphere</span></code></a> classes can be
@@ -529,7 +575,7 @@ available in either Boule or pymap3d.</p></li>
 in the previous example.</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pymap3d</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pymap3d</span>
 
 <span class="n">longitude</span> <span class="o">=</span> <span class="mi">40</span>
 <span class="n">latitude</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">45</span><span class="p">)</span>
@@ -587,46 +633,6 @@ Radius (m): [6837752.31424518 6837862.00852276 6838188.80559622 6838725.89905453
 </div>
 </div>
 </section>
-<section id="geocentric-spherical-to-geodetic">
-<h2>Geocentric spherical to geodetic<a class="headerlink" href="#geocentric-spherical-to-geodetic" title="Link to this heading">#</a></h2>
-<p>Another common coordinate conversion used in global studies is from geocentric
-spherical to geodetic coordinates. The example below demonstrate this
-conversion using the Cartesian coordinates of the
-<a class="reference external" href="https://en.wikipedia.org/wiki/InSight">Insight lander</a> on Mars from
-<a class="reference internal" href="../references.html#lemaistre2023" id="id1"><span>[LeMaistre2023]</span></a> and the Martian ellipsoid defined in Boule.</p>
-<div class="jupyter_cell jupyter_container docutils container">
-<div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">boule</span> <span class="k">as</span> <span class="nn">bl</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-
-<span class="n">xyz</span> <span class="o">=</span> <span class="p">[</span><span class="o">-</span><span class="mf">2_417_504.5</span><span class="p">,</span> <span class="mf">2_365_954.5</span><span class="p">,</span> <span class="mf">266_266.7</span><span class="p">]</span>  <span class="c1"># InSight lander coordinates</span>
-
-<span class="c1"># convert Cartesian to geocentric spherical</span>
-<span class="n">radius</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xyz</span><span class="p">)</span>
-<span class="n">latitude_sph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">xyz</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">2</span><span class="p">])))</span>
-<span class="n">longitude_sph</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">rad2deg</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">atan2</span><span class="p">(</span><span class="n">xyz</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">xyz</span><span class="p">[</span><span class="mi">0</span><span class="p">]))</span>
-
-<span class="n">mars_ellipsoid</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Mars2009</span>
-
-<span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">mars_ellipsoid</span><span class="o">.</span><span class="n">spherical_to_geodetic</span><span class="p">(</span>
-  <span class="n">longitude_sph</span><span class="p">,</span> <span class="n">latitude_sph</span><span class="p">,</span> <span class="n">radius</span><span class="p">,</span>
-<span class="p">)</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Geodetic longitude: </span><span class="si">{</span><span class="n">longitude</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Geodetic latitude: </span><span class="si">{</span><span class="n">latitude</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Ellipsoidal height (m): </span><span class="si">{</span><span class="n">height</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
-</pre></div>
-</div>
-</div>
-<div class="cell_output docutils container">
-<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Geodetic longitude: 135.6174366918431
-Geodetic latitude: 4.548092430561262
-Ellipsoidal height (m): -2241.5527252679644
-</pre></div>
-</div>
-</div>
-</div>
-</section>
 </section>
 
 
@@ -675,8 +681,8 @@ Ellipsoidal height (m): -2241.5527252679644
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geodetic-to-geocentric-spherical">Geodetic to geocentric spherical</a></li>
-<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geodetic-to-geocentric-spherical-using-pymap3d">Geodetic to geocentric spherical using pymap3d</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geocentric-spherical-to-geodetic">Geocentric spherical to geodetic</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#geodetic-to-geocentric-spherical-using-pymap3d">Geodetic to geocentric spherical using pymap3d</a></li>
 </ul>
   </nav></div>
 
@@ -697,7 +703,7 @@ Ellipsoidal height (m): -2241.5527252679644
 
   <p class="copyright">
     
-      © Copyright 2024, The Boule Developers.
+      © Copyright 2025, The Boule Developers.
       <br/>
     
   </p>
@@ -706,7 +712,7 @@ Ellipsoidal height (m): -2241.5527252679644
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Oct 22, 2024.
+  Last updated on Oct 29, 2025.
   <br/>
 </p>
   </div>

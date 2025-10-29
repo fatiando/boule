@@ -65,9 +65,12 @@ observed gravity using :meth:`boule.Ellipsoid.normal_gravity`:
 
 .. jupyter-execute::
 
-    normal_gravity = bl.WGS84.normal_gravity(
-        observed_gravity.latitude, observed_gravity.height,
+    coordinates = (
+       observed_gravity.longitude,
+       observed_gravity.latitude,
+       observed_gravity.height,
     )
+    normal_gravity = bl.WGS84.normal_gravity(coordinates)
     normal_gravity
 
 .. jupyter-execute::

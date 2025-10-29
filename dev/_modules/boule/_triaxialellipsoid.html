@@ -31,8 +31,8 @@
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
 <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
@@ -358,14 +358,14 @@ document.write(`
 <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">Define a reference triaxial ellipsoid.</span>
 <span class="sd">&quot;&quot;&quot;</span>
-<span class="kn">import</span> <span class="nn">textwrap</span>
-<span class="kn">from</span> <span class="nn">warnings</span> <span class="kn">import</span> <span class="n">warn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">textwrap</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">warnings</span><span class="w"> </span><span class="kn">import</span> <span class="n">warn</span>
 
-<span class="kn">import</span> <span class="nn">attr</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">scipy.special</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">attr</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">scipy.special</span>
 
-<span class="kn">from</span> <span class="nn">._constants</span> <span class="kn">import</span> <span class="n">G</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">._constants</span><span class="w"> </span><span class="kn">import</span> <span class="n">G</span>
 
 
 <span class="c1"># Don&#39;t let ellipsoid parameters be changed to avoid messing up calculations</span>
@@ -373,7 +373,7 @@ document.write(`
 <div class="viewcode-block" id="TriaxialEllipsoid">
 <a class="viewcode-back" href="../../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid">[docs]</a>
 <span class="nd">@attr</span><span class="o">.</span><span class="n">s</span><span class="p">(</span><span class="n">frozen</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="k">class</span> <span class="nc">TriaxialEllipsoid</span><span class="p">:</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">TriaxialEllipsoid</span><span class="p">:</span>
 <span class="w">    </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    A rotating triaxial ellipsoid.</span>
 
@@ -434,7 +434,6 @@ document.write(`
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-
 <span class="sd">    We can define an ellipsoid by setting the 5 key numerical parameters:</span>
 
 <span class="sd">    &gt;&gt;&gt; ellipsoid = TriaxialEllipsoid(</span>
@@ -499,7 +498,7 @@ document.write(`
     <span class="n">reference</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
     <span class="n">comments</span> <span class="o">=</span> <span class="n">attr</span><span class="o">.</span><span class="n">ib</span><span class="p">(</span><span class="n">default</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">_raise_invalid_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_raise_invalid_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s2">&quot;Raise a ValueError informing that the axis are invalid.&quot;</span>
         <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
             <span class="s2">&quot;Invalid triaxial ellipsoid axis: &quot;</span>
@@ -510,7 +509,7 @@ document.write(`
         <span class="p">)</span>
 
     <span class="nd">@semimajor_axis</span><span class="o">.</span><span class="n">validator</span>
-    <span class="k">def</span> <span class="nf">_check_semimajor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semimajor_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_semimajor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semimajor_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if semimajor_axis is positive and is the largest of the axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -522,7 +521,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_raise_invalid_axis</span><span class="p">()</span>
 
     <span class="nd">@semimedium_axis</span><span class="o">.</span><span class="n">validator</span>
-    <span class="k">def</span> <span class="nf">_check_semimedium_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semimedium_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_semimedium_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semimedium_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Check if semimedium_axis is positive and larger than semi-minor axis.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
@@ -534,7 +533,7 @@ document.write(`
             <span class="bp">self</span><span class="o">.</span><span class="n">_raise_invalid_axis</span><span class="p">()</span>
 
     <span class="nd">@semiminor_axis</span><span class="o">.</span><span class="n">validator</span>
-    <span class="k">def</span> <span class="nf">_check_semiminor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semiminor_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_semiminor_axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">semiminor_axis</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="s2">&quot;Check if semiminor_axis is positive.&quot;</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">value</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
@@ -544,13 +543,13 @@ document.write(`
         <span class="c1"># medium pass it means that this is the smallest.</span>
 
     <span class="nd">@geocentric_grav_const</span><span class="o">.</span><span class="n">validator</span>
-    <span class="k">def</span> <span class="nf">_check_geocentric_grav_const</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geocentric_grav_const</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">_check_geocentric_grav_const</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">geocentric_grav_const</span><span class="p">,</span> <span class="n">value</span><span class="p">):</span>
         <span class="s2">&quot;Warn if geocentric_grav_const is negative.&quot;</span>
         <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
             <span class="n">warn</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The geocentric gravitational constant is negative: &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39;&quot;</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The mean radius of the ellipsoid. This is equivalent to the degree 0</span>
 <span class="sd">        spherical harmonic coefficient of the ellipsoid shape.</span>
@@ -591,7 +590,7 @@ document.write(`
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">radius</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">semiaxes_mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">semiaxes_mean_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The arithmetic mean radius of the ellipsoid semi-axes.</span>
 <span class="sd">        Definition: :math:`R_1 = \dfrac{a + b + c}{3}`.</span>
@@ -600,7 +599,7 @@ document.write(`
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span> <span class="o">/</span> <span class="mi">3</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">area</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The area of the ellipsoid.</span>
 <span class="sd">        Definition: :math:`A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})`, in which</span>
@@ -620,7 +619,7 @@ document.write(`
         <span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">volume</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The volume bounded by the ellipsoid.</span>
 <span class="sd">        Definition: :math:`V = \dfrac{4}{3} \pi a b c`.</span>
@@ -634,7 +633,7 @@ document.write(`
         <span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">area_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">area_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The area equivalent radius of the ellipsoid.</span>
 <span class="sd">        Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.</span>
@@ -643,7 +642,7 @@ document.write(`
         <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">area</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mass</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The mass of the ellipsoid.</span>
 <span class="sd">        Definition: :math:`M = GM / G`.</span>
@@ -652,7 +651,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">geocentric_grav_const</span> <span class="o">/</span> <span class="n">G</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">mean_density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">mean_density</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The mean density of the ellipsoid.</span>
 <span class="sd">        Definition: :math:`\rho = M / V`.</span>
@@ -661,7 +660,7 @@ document.write(`
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">mass</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">volume</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">volume_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">volume_equivalent_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The volume equivalent radius of the ellipsoid.</span>
 <span class="sd">        Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.</span>
@@ -670,7 +669,7 @@ document.write(`
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">volume</span> <span class="o">*</span> <span class="mi">3</span> <span class="o">/</span> <span class="p">(</span><span class="mi">4</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">))</span> <span class="o">**</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">3</span><span class="p">)</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">equatorial_flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">equatorial_flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The equatorial flattening of the ellipsoid.</span>
 <span class="sd">        Definition: :math:`f_b = \frac{a - b}{a}`.</span>
@@ -679,7 +678,7 @@ document.write(`
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimedium_axis</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
 
     <span class="nd">@property</span>
-    <span class="k">def</span> <span class="nf">meridional_flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">meridional_flattening</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        The meridional flattening of the ellipsoid in the meridian plane</span>
 <span class="sd">        containing the semi-major axis.</span>
@@ -688,7 +687,7 @@ document.write(`
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">return</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="p">)</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span>
 
-    <span class="k">def</span> <span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__str__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="n">s</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">name</span> <span class="o">+</span> <span class="s2">&quot; - &quot;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">long_name</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="s2">&quot;Triaxial ellipsoid:</span><span class="se">\n</span><span class="s2">&quot;</span>
         <span class="n">s</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;  • Semimajor axis: </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">semimajor_axis</span><span class="si">}</span><span class="s2"> m</span><span class="se">\n</span><span class="s2">&quot;</span>
@@ -715,7 +714,7 @@ document.write(`
 
 <div class="viewcode-block" id="TriaxialEllipsoid.geocentric_radius">
 <a class="viewcode-back" href="../../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.geocentric_radius">[docs]</a>
-    <span class="k">def</span> <span class="nf">geocentric_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">geocentric_radius</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Radial distance from the center of the ellipsoid to its surface.</span>
 
@@ -736,14 +735,8 @@ document.write(`
 <span class="sd">            spherical longitude(s) in the same units as the axes of the</span>
 <span class="sd">            ellipsoid.</span>
 
-
-<span class="sd">        .. tip::</span>
-
-<span class="sd">            No elevation is taken into account.</span>
-
 <span class="sd">        Notes</span>
 <span class="sd">        -----</span>
-
 <span class="sd">        Given geocentric spherical latitude :math:`\phi` and geocentric</span>
 <span class="sd">        spherical longitude :math:`\lambda`, the geocentric surface radius</span>
 <span class="sd">        :math:`R` is computed as (see Eq. 1 of [Pěč1983]_)</span>
@@ -806,14 +799,33 @@ document.write(`
 
 <div class="viewcode-block" id="TriaxialEllipsoid.centrifugal_potential">
 <a class="viewcode-back" href="../../api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.centrifugal_potential">[docs]</a>
-    <span class="k">def</span> <span class="nf">centrifugal_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">centrifugal_potential</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">coordinates</span><span class="p">):</span>
 <span class="w">        </span><span class="sa">r</span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Centrifugal potential at the given latitude, longitude and height above</span>
-<span class="sd">        the ellipsoid.</span>
+<span class="sd">        Centrifugal potential of the rotating ellipsoid.</span>
 
+<span class="sd">        Calculate the centrifugal potential due to the rotation of the</span>
+<span class="sd">        ellipsoid about its semiminor axis at the given points.</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        coordinates : tuple = (longitude, latitude_spherical, height)</span>
+<span class="sd">            Longitude, latitude, and height coordinates of the computation</span>
+<span class="sd">            points in a geocentric spherical coordinate system. The height is</span>
+<span class="sd">            measured from the surface of the ellipsoid. Each element can be</span>
+<span class="sd">            a single number or an array. The shape of the arrays must be</span>
+<span class="sd">            compatible. Longitude and latitude must be in degrees and height in</span>
+<span class="sd">            meters.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        Phi : float or array</span>
+<span class="sd">            The centrifugal potential in m²/s².</span>
+
+<span class="sd">        Notes</span>
+<span class="sd">        -----</span>
 <span class="sd">        The centrifugal potential :math:`\Phi` at spherical latitude</span>
-<span class="sd">        :math:`\phi`, spherical longitude :math:`\lambda` and spherical height</span>
-<span class="sd">        above the ellipsoid :math:`h` is</span>
+<span class="sd">        :math:`\phi`, spherical longitude :math:`\lambda` and height above the</span>
+<span class="sd">        ellipsoid :math:`h` is</span>
 
 <span class="sd">        .. math::</span>
 
@@ -822,24 +834,8 @@ document.write(`
 
 <span class="sd">        in which :math:`R(\phi, \lambda)` is the radius of the ellipsoid and</span>
 <span class="sd">        :math:`\omega` is the angular velocity.</span>
-
-<span class="sd">        Parameters</span>
-<span class="sd">        ----------</span>
-<span class="sd">        longitude : float or array</span>
-<span class="sd">            The spherical longitude where the centrifugal potential will be</span>
-<span class="sd">            computed (in degrees).</span>
-<span class="sd">        latitude : float or array</span>
-<span class="sd">            The spherical latitude where the centrifugal potential will be</span>
-<span class="sd">            computed (in degrees).</span>
-<span class="sd">        height : float or array</span>
-<span class="sd">            The spherical height of the computation point (in meters).</span>
-
-<span class="sd">        Returns</span>
-<span class="sd">        -------</span>
-<span class="sd">        Phi : float or array</span>
-<span class="sd">            The centrifugal potential in m²/s².</span>
-
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">,</span> <span class="n">height</span> <span class="o">=</span> <span class="n">coordinates</span>
         <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">angular_velocity</span>
             <span class="o">*</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">geocentric_radius</span><span class="p">(</span><span class="n">longitude</span><span class="p">,</span> <span class="n">latitude</span><span class="p">)</span> <span class="o">+</span> <span class="n">height</span><span class="p">)</span>
@@ -881,7 +877,7 @@ document.write(`
 
   <p class="copyright">
     
-      © Copyright 2024, The Boule Developers.
+      © Copyright 2025, The Boule Developers.
       <br/>
     
   </p>
@@ -890,7 +886,7 @@ document.write(`
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Oct 22, 2024.
+  Last updated on Oct 29, 2025.
   <br/>
 </p>
   </div>
