@@ -7,6 +7,7 @@
 """
 Module for defining and setting the reference ellipsoid.
 """
+
 import textwrap
 from warnings import warn
 
