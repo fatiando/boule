@@ -7,6 +7,7 @@
 """
 Define a reference triaxial ellipsoid.
 """
+
 import textwrap
 from warnings import warn
 

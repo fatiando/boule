@@ -7,6 +7,7 @@
 """
 Define the reference sphere (ellipsoid with 0 flattening).
 """
+
 import textwrap
 from warnings import warn
 

@@ -16,4 +16,5 @@ CODATA Recommended Values of the Fundamental Physical Constants (Web Version
 Available at http://physics.nist.gov/constants, National Institute of
 Standards and Technology, Gaithersburg, MD 20899.
 """
+
 G = 6.67430e-11
