@@ -7,13 +7,14 @@
 """
 Test the base TriaxialEllipsoid class.
 """
+
 import warnings
 
 import numpy as np
 import numpy.testing as npt
 import pytest
 
-from .. import Ellipsoid, TriaxialEllipsoid
+from boule import Ellipsoid, TriaxialEllipsoid
 
 
 @pytest.fixture

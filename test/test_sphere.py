@@ -7,13 +7,14 @@
 """
 Test the base Sphere class.
 """
+
 import warnings
 
 import numpy as np
 import numpy.testing as npt
 import pytest
 
-from .. import Sphere
+from boule import Sphere
 
 
 @pytest.fixture

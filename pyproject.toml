@@ -9,24 +9,23 @@ maintainers = [
   {name = "Leonardo Uieda", email = "leo@uieda.com"}
 ]
 readme = "README.md"
-license = {text = "BSD 3-Clause"}
+license = "BSD-3-Clause"
 keywords = ["geophysics", "geodesy", "gravity", "ellipsoid"]
 classifiers = [
     "Development Status :: 5 - Production/Stable",
-    "License :: OSI Approved :: BSD License",
-    "Operating System :: OS Independent",
     "Intended Audience :: Science/Research",
     "Intended Audience :: Developers",
     "Intended Audience :: Education",
-    "Topic :: Scientific/Engineering",
-    "Topic :: Software Development :: Libraries",
-    "Programming Language :: Python",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Programming Language :: Python :: 3.13",
     "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering",
+    "Topic :: Software Development :: Libraries",
 ]
 requires-python = ">=3.10"
 dependencies = [
@@ -48,7 +47,7 @@ build-backend = "setuptools.build_meta"
 [tool.setuptools_scm]
 version_scheme =  "post-release"
 local_scheme =  "no-local-version"
-write_to =  "boule/_version.py"
+write_to =  "src/boule/_version.py"
 
 # Make sure isort and Black are compatible
 [tool.isort]
