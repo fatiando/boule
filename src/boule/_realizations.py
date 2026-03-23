@@ -8,6 +8,7 @@
 Ellipsoid, Sphere and Triaxialellipsoid realizations for the Earth and other
 planetary bodies.
 """
+
 import numpy as np
 
 from ._ellipsoid import Ellipsoid

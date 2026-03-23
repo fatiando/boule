@@ -19,6 +19,7 @@ exclude =
     __pycache__,
     .ipynb_checkpoints,
     doc/_build,
+    src/boule/_version.py,
 per-file-ignores =
     # disable unused-imports errors on __init__.py
     __init__.py: F401

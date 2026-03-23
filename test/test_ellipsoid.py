@@ -7,18 +7,39 @@
 """
 Test the base Ellipsoid class.
 """
+
 import warnings
 
 import numpy as np
 import numpy.testing as npt
 import pytest
 
-from .. import GRS80, WGS84, Ellipsoid, Mars2009
-from .._ellipsoid import check_coordinate_system
-from .utils import normal_gravity_surface
+from boule import GRS80, WGS84, Ellipsoid, Mars2009
+from boule._ellipsoid import check_coordinate_system
 
 ELLIPSOIDS = [WGS84, GRS80, Mars2009]
 ELLIPSOID_NAMES = [e.name for e in ELLIPSOIDS]
+
+
+def normal_gravity_surface(latitude, ellipsoid):
+    """
+    Computes normal gravity on the surface of the ellipsoid [mGal]
+
+    Uses the closed-form Somigliana equation [Hofmann-WellenhofMoritz2006]_.
+    Use this function to test against the closed-form formula.
+    """
+    latitude_radians = np.radians(latitude)
+    coslat = np.cos(latitude_radians)
+    sinlat = np.sin(latitude_radians)
+    gravity = (
+        ellipsoid.semimajor_axis * ellipsoid.gravity_equator * coslat**2
+        + ellipsoid.semiminor_axis * ellipsoid.gravity_pole * sinlat**2
+    ) / np.sqrt(
+        ellipsoid.semimajor_axis**2 * coslat**2
+        + ellipsoid.semiminor_axis**2 * sinlat**2
+    )
+    # Convert to mGal
+    return 1e5 * gravity
 
 
 @pytest.mark.parametrize("coordinate_system", ("geocentric", "bla", "ellipsoidal"))

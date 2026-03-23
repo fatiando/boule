@@ -2,7 +2,9 @@
 PROJECT=boule
 TESTDIR=tmp-test-dir-with-unique-name
 PYTEST_ARGS=--cov-config=../.coveragerc --cov-report=term-missing --cov=$(PROJECT) --doctest-modules -v --pyargs
-CHECK_STYLE=$(PROJECT) doc
+CHECK_STYLE=src/$(PROJECT) doc test
+
+.PHONY: help build install test format check check-format check-style check-actions clean
 
 help:
 	@echo "Commands:"
@@ -19,14 +21,10 @@ build:
 	python -m build .
 
 install:
-	python -m pip install --no-deps -e .
+	python -m pip install --no-deps --editable .
 
 test:
-	# Run a tmp folder to make sure the tests are run on the installed version
-	mkdir -p $(TESTDIR)
-	cd $(TESTDIR); pytest $(PYTEST_ARGS) $(PROJECT)
-	cp $(TESTDIR)/.coverage* .
-	rm -r $(TESTDIR)
+	pytest --cov-report=term-missing --cov --doctest-modules --verbose test src/$(PROJECT)
 
 format:
 	isort $(CHECK_STYLE)
@@ -47,5 +45,6 @@ clean:
 	find . -name "*.pyc" -exec rm -v {} \;
 	find . -name "*.orig" -exec rm -v {} \;
 	find . -name ".coverage.*" -exec rm -v {} \;
-	rm -rvf build dist MANIFEST *.egg-info __pycache__ .coverage .cache .pytest_cache $(PROJECT)/_version.py
-	rm -rvf $(TESTDIR) dask-worker-space
+	find . -name "__pycache__" -exec rm -v {} \;
+	find . -name "*.egg-info " -exec rm -v {} \;
+	rm -rvf build dist MANIFEST .coverage .cache .pytest_cache src/$(PROJECT)/_version.py

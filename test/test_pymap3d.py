@@ -7,13 +7,14 @@
 """
 Test the pymap3d integration.
 """
+
 import numpy as np
 import numpy.testing as npt
 import pymap3d
 import pymap3d.latitude
 import pytest
 
-from .. import WGS84, Ellipsoid, Moon2015, Venus2015
+from boule import WGS84, Ellipsoid, Moon2015, Venus2015
 
 
 @pytest.mark.parametrize(
