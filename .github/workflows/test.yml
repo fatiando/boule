@@ -18,13 +18,16 @@ on:
     types:
       - published
 
+permissions: {}
+
 # Use bash by default in all jobs
 defaults:
   run:
-    # Using "-l {0}" is necessary for conda environments to be activated
+    # The -l {0} is necessary for conda environments to be activated
     # But this breaks on MacOS if using actions/setup-python:
     # https://github.com/actions/setup-python/issues/132
-    shell: bash
+    # -e makes sure builds fail if any command fails
+    shell: bash -e -o pipefail -l {0}
 
 jobs:
   #############################################################################
@@ -52,17 +55,10 @@ jobs:
       PYTHON: ${{ matrix.python }}
 
     steps:
-      # Cancel any previous run of the test job
-      # We pin the commit hash corresponding to v0.5.0, and not pinning the tag
-      # because we are giving full access through the github.token.
-      - name: Cancel Previous Runs
-        uses: styfle/cancel-workflow-action@3155a141048f8f89c06b4cdae32e7853e97536bc
-        with:
-          access_token: ${{ github.token }}
 
       # Checks-out your repository under $GITHUB_WORKSPACE
       - name: Checkout
-        uses: actions/checkout@v6.0.2
+        uses: actions/checkout@v6
         with:
           # Need to fetch more than the last commit so that setuptools_scm can
           # create the correct version string. If the number of commits since
@@ -122,15 +118,8 @@ jobs:
       - name: List installed packages
         run: python -m pip freeze
 
-      - name: Build source and wheel distributions
-        run: |
-          make build
-          echo ""
-          echo "Generated files:"
-          ls -lh dist/
-
-      - name: Install the package
-        run: python -m pip install --no-deps dist/*.whl
+      - name: Install the package in editable mode
+        run: python -m pip install --no-deps --editable .
 
       - name: Run the tests
         run: make test
@@ -154,7 +143,7 @@ jobs:
     steps:
 
       - name: Checkout
-        uses: actions/checkout@v5.0.0
+        uses: actions/checkout@v5
         with:
           # Need to fetch more than the last commit so that setuptools_scm can
           # create the correct version string. If the number of commits since
