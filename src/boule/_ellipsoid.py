@@ -75,7 +75,6 @@ class Ellipsoid:
 
     Examples
     --------
-
     We can define an ellipsoid by setting the 4 key numerical parameters and
     some metadata about where they came from:
 
@@ -152,44 +151,55 @@ class Ellipsoid:
     comments = attr.ib(default=None)
 
     @flattening.validator
-    def _check_flattening(self, flattening, value):
-        "Check if flattening is valid"
+    def _check_flattening(self, flattening, value):  # noqa: ARG002
+        """
+        Check if flattening is valid.
+        """
         if value < 0 or value >= 1:
-            raise ValueError(
+            message = (
                 f"Invalid flattening '{value}'. "
                 "Should be greater than zero and lower than 1."
             )
+            raise ValueError(message)
         if value == 0:
-            raise ValueError(
+            message = (
                 "Flattening equal to zero will lead to errors in normal gravity. "
                 "Use boule.Sphere for representing ellipsoids with zero flattening."
             )
+            raise ValueError(message)
         if value < 1e-7:
-            warn(
+            message = (
                 f"Flattening is too close to zero ('{value}'). "
                 "This may lead to inaccurate results and division by zero errors. "
                 "Use boule.Sphere for representing ellipsoids with zero flattening."
             )
+            warn(message, stacklevel=2)
 
     @semimajor_axis.validator
-    def _check_semimajor_axis(self, semimajor_axis, value):
-        "Check if semimajor_axis is valid"
+    def _check_semimajor_axis(self, semimajor_axis, value):  # noqa: ARG002
+        """
+        Check if semimajor_axis is valid.
+        """
         if not value > 0:
-            raise ValueError(
-                f"Invalid semi-major axis '{value}'. Should be greater than zero."
-            )
+            message = f"Invalid semi-major axis '{value}'. Should be greater than zero."
+            raise ValueError(message)
 
     @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(self, geocentric_grav_const, value):
-        "Warn if geocentric_grav_const is negative"
+    def _check_geocentric_grav_const(self, geocentric_grav_const, value):  # noqa: ARG002
+        """
+        Warn if geocentric_grav_const is negative.
+        """
         if value < 0:
-            warn(f"The geocentric gravitational constant is negative: '{value}'")
+            message = f"The geocentric gravitational constant is negative: '{value}'"
+            warn(message, stacklevel=2)
 
     @property
     def semiminor_axis(self):
         """
         The semiminor (small/polar) axis of the ellipsoid.
+
         Definition: :math:`b = a (1 - f)`.
+
         Units: :math:`m`.
         """
         return self.semimajor_axis * (1 - self.flattening)
@@ -198,6 +208,7 @@ class Ellipsoid:
     def semimedium_axis(self):
         """
         The semimedium axis of the ellipsoid is equal to its semimajor axis.
+
         Units: :math:`m`.
         """
         return self.semimajor_axis
@@ -206,7 +217,9 @@ class Ellipsoid:
     def semimajor_axis_longitude(self):
         r"""
         The semimajor axis longitude of the ellipsoid is equal to zero.
+
         Definition: :math:`\lambda_a = 0`.
+
         Units: :math:`m`.
         """
         return 0
@@ -215,7 +228,9 @@ class Ellipsoid:
     def thirdflattening(self):
         r"""
         The third flattening of the ellipsoid (used in geodetic calculations).
+
         Definition: :math:`f^{\prime\prime}= \dfrac{a -b}{a + b}`.
+
         Units: adimensional.
         """
         return (self.semimajor_axis - self.semiminor_axis) / (
@@ -225,24 +240,32 @@ class Ellipsoid:
     @property
     def linear_eccentricity(self):
         r"""
-        The linear eccentricity of the ellipsoid. The distance between the
-        ellipsoid's center and one of its foci.
+        The linear eccentricity of the ellipsoid.
+
+        The distance between the ellipsoid's center and one of its foci.
+
         Definition: :math:`E = \sqrt{a^2 - b^2}`.
+
         Units: :math:`m`.
         """
         return np.sqrt(self.semimajor_axis**2 - self.semiminor_axis**2)
 
     @property
     def eccentricity(self):
-        "Alias for the first eccentricity."
+        """
+        Alias for the first eccentricity.
+        """
         return self.first_eccentricity
 
     @property
     def first_eccentricity(self):
         r"""
-        The (first) eccentricity of the ellipsoid. The ratio between the linear
-        eccentricity and the semimajor axis.
+        The (first) eccentricity of the ellipsoid.
+
+        The ratio between the linear eccentricity and the semimajor axis.
+
         Definition: :math:`e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}`.
+
         Units: adimensional.
         """
         return np.sqrt(2 * self.flattening - self.flattening**2)
@@ -250,10 +273,13 @@ class Ellipsoid:
     @property
     def second_eccentricity(self):
         r"""
-        The second eccentricity of the ellipsoid. The ratio between the linear
-        eccentricity and the semiminor axis.
+        The second eccentricity of the ellipsoid.
+
+        The ratio between the linear eccentricity and the semiminor axis.
+
         Definition: :math:`e^\prime = \dfrac{\sqrt{a^2 - b^2}}{b}
         = \dfrac{\sqrt{2f - f^2}}{1 - f}`.
+
         Units: adimensional.
         """
         return self.first_eccentricity / (1 - self.flattening)
@@ -261,8 +287,10 @@ class Ellipsoid:
     @property
     def mean_radius(self):
         r"""
-        The mean radius of the ellipsoid. This is equivalent to the degree 0
-        spherical harmonic coefficient of the ellipsoid shape.
+        The mean radius of the ellipsoid.
+
+        This is equivalent to the degree 0 spherical harmonic coefficient of the
+        ellipsoid shape.
 
         Definition: :math:`R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}
         \int_0^{2 \pi}} r(\theta) \sin \theta \, d\theta \, d\lambda`
@@ -290,7 +318,9 @@ class Ellipsoid:
     def semiaxes_mean_radius(self):
         """
         The arithmetic mean radius of the ellipsoid semi-axes [Moritz1988]_.
+
         Definition: :math:`R_1 = (2a + b)/3`.
+
         Units: :math:`m`.
         """
         return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
@@ -299,8 +329,10 @@ class Ellipsoid:
     def area(self):
         r"""
         The area of the ellipsoid.
+
         Definition: :math:`A = 2 \pi a^2 \left(1 + \dfrac{b^2}{e a^2}
         \text{arctanh}\,e \right)`.
+
         Units: :math:`m^2`.
         """
         # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
@@ -320,7 +352,9 @@ class Ellipsoid:
     def volume(self):
         r"""
         The volume bounded by the ellipsoid.
+
         Definition: :math:`V = \dfrac{4}{3} \pi a^2 b`.
+
         Units: :math:`m^3`.
         """
         return (4 / 3 * np.pi) * self.semimajor_axis**2 * self.semiminor_axis
@@ -329,8 +363,10 @@ class Ellipsoid:
     def reference_normal_gravity_potential(self):
         r"""
         The normal gravity potential on the surface of the ellipsoid.
+
         Definition: :math:`U_0 = \dfrac{GM}{E} \arctan{\dfrac{E}{b}}
         + \dfrac{1}{3} \omega^2 a^2`.
+
         Units: :math:`m^2 / s^2`.
         """
         return (
@@ -344,7 +380,9 @@ class Ellipsoid:
     def area_equivalent_radius(self):
         r"""
         The area equivalent radius of the ellipsoid.
+
         Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.
+
         Units: :math:`m`.
         """
         return np.sqrt(self.area / (4 * np.pi))
@@ -353,7 +391,9 @@ class Ellipsoid:
     def mass(self):
         r"""
         The mass of the ellipsoid.
+
         Definition: :math:`M = GM / G`.
+
         Units: :math:`kg`.
         """
         return self.geocentric_grav_const / G
@@ -362,7 +402,9 @@ class Ellipsoid:
     def mean_density(self):
         r"""
         The mean density of the ellipsoid.
+
         Definition: :math:`\rho = M / V`.
+
         Units: :math:`kg / m^3`.
         """
         return self.mass / self.volume
@@ -371,14 +413,18 @@ class Ellipsoid:
     def volume_equivalent_radius(self):
         r"""
         The volume equivalent radius of the ellipsoid.
+
         Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
+
         Units: :math:`m`.
         """
         return (self.volume * 3 / (4 * np.pi)) ** (1 / 3)
 
     @property
     def _emm(self):
-        "Auxiliary quantity used to calculate gravity at the pole and equator"
+        """
+        Auxiliary quantity used to calculate gravity at the pole and equator.
+        """
         return (
             self.angular_velocity**2
             * self.semimajor_axis**2
@@ -389,9 +435,13 @@ class Ellipsoid:
     @property
     def gravity_equator(self):
         """
-        The norm of the gravity acceleration vector (gravitational +
-        centrifugal accelerations) at the equator on the surface of the
-        ellipsoid. Units: :math:`m/s^2`.
+        The normal gravity at the equator.
+
+        This is the norm of the gravity acceleration vector (gravitational
+        + centrifugal accelerations) at the equator on the surface of the
+        ellipsoid.
+
+        Units: :math:`m/s^2`.
         """
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
@@ -409,9 +459,12 @@ class Ellipsoid:
     @property
     def gravity_pole(self):
         """
-        The norm of the gravity acceleration vector (gravitational +
-        centrifugal accelerations) at the poles on the surface of the
-        ellipsoid. Units: :math:`m/s^2`.
+        The normal gravity at the pole.
+
+        This is the norm of the gravity acceleration vector (gravitational +
+        centrifugal accelerations) at the poles on the surface of the ellipsoid.
+
+        Units: :math:`m/s^2`.
         """
         ratio = self.semiminor_axis / self.linear_eccentricity
         arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
@@ -471,7 +524,7 @@ class Ellipsoid:
             as the ellipsoid axis.
 
         Notes
-        ------
+        -----
         The geocentric surface radius :math:`R` is a function of the geocentric
         geodetic latitude :math:`\phi` and the semimajor and semiminor axis,
         :math:`a` and :math:`b` [1]_:
@@ -537,7 +590,7 @@ class Ellipsoid:
 
     def prime_vertical_radius(self, sinlat):
         r"""
-        The prime vertical radius of curvature for a given geodetic latitude.
+        Calculate the prime vertical radius of curvature for a given geodetic latitude.
 
         .. note::
 
@@ -558,7 +611,6 @@ class Ellipsoid:
 
         Notes
         -----
-
         The prime vertical radius of curvature :math:`N` is defined as [2]_:
 
         .. math::
@@ -780,7 +832,7 @@ class Ellipsoid:
 
     def normal_gravity(self, coordinates, si_units=False):
         r"""
-        Normal gravity of the ellipsoid.
+        Calculate the normal gravity of the ellipsoid.
 
         Computes the magnitude of the gradient of the :term:`gravity potential`
         generated by this ellipsoid at **any point outside the ellipsoid**.
@@ -831,13 +883,14 @@ class Ellipsoid:
         """
         # Warn if height is negative
         if np.any(coordinates[2] < 0):
-            warn(
+            message = (
                 "Formulas used are valid for points outside the ellipsoid."
                 "Height must be greater than or equal to zero."
             )
+            warn(message, stacklevel=1)
 
         # Convert geodetic latitude and height to ellipsoidal-harmonic coords
-        longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
+        _, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
         sinbeta2 = np.sin(np.radians(beta)) ** 2
         cosbeta2 = 1 - sinbeta2
         big_e = self.linear_eccentricity
@@ -872,7 +925,7 @@ class Ellipsoid:
 
     def normal_gravitational_potential(self, coordinates):
         r"""
-        Normal gravitational potential of the ellipsoid.
+        Calculate the normal gravitational potential of the ellipsoid.
 
         Computes the :term:`gravitational potential` generated by the ellipsoid
         at the given points. Does not include the centrifugal potential. See
@@ -925,13 +978,14 @@ class Ellipsoid:
         """
         # Warn if height is negative
         if np.any(coordinates[2] < 0):
-            warn(
+            message = (
                 "Formulas used are valid for points outside the ellipsoid."
                 "Height must be greater than or equal to zero."
             )
+            warn(message, stacklevel=1)
 
         # Convert geodetic latitude and height to ellipsoidal-harmonic coords
-        longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
+        _, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
         big_e = self.linear_eccentricity
 
         # Compute the auxiliary functions q and q_0 (eq 2-113 of
@@ -951,7 +1005,7 @@ class Ellipsoid:
 
     def normal_gravity_potential(self, coordinates):
         r"""
-        Normal gravity potential of the ellipsoid.
+        Calculate the normal gravity potential of the ellipsoid.
 
         Computes the :term:`gravity potential` (gravitational + centrifugal)
         generated by the ellipsoid at the given points. See
@@ -1004,13 +1058,14 @@ class Ellipsoid:
         """
         # Warn if height is negative
         if np.any(coordinates[2] < 0):
-            warn(
+            message = (
                 "Formulas used are valid for points outside the ellipsoid."
                 "Height must be greater than or equal to zero."
             )
+            warn(message, stacklevel=1)
 
         # Convert geodetic latitude and height to ellipsoidal-harmonic coords
-        longitude, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
+        _, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
         big_e = self.linear_eccentricity
 
         # Compute the auxiliary functions q and q_0 (eq 2-113 of

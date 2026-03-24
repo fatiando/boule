@@ -201,7 +201,7 @@ class TriaxialEllipsoid:
         """
         if value < 0:
             message = f"The geocentric gravitational constant is negative: '{value}'"
-            warn(message, stacklevel=1)
+            warn(message, stacklevel=2)
 
     @property
     def mean_radius(self):
