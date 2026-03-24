@@ -13,7 +13,6 @@ import warnings
 import numpy as np
 import numpy.testing as npt
 import pytest
-import pymap3d
 
 from boule import GRS80, WGS84, Ellipsoid, Mars2009
 from boule._ellipsoid import check_coordinate_system
