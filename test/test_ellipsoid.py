@@ -42,14 +42,14 @@ def normal_gravity_surface(latitude, ellipsoid):
     return 1e5 * gravity
 
 
-@pytest.mark.parametrize("coordinate_system", ("geocentric", "bla", "ellipsoidal"))
+@pytest.mark.parametrize("coordinate_system", ["geocentric", "bla", "ellipsoidal"])
 def test_check_coordinate_system_fails(coordinate_system):
     "Make sure an exception is raised for invalid inputs"
     with pytest.raises(ValueError, match="Invalid coordinate system"):
         check_coordinate_system(coordinate_system)
 
 
-@pytest.mark.parametrize("coordinate_system", ("geodetic", "spherical"))
+@pytest.mark.parametrize("coordinate_system", ["geodetic", "spherical"])
 def test_check_coordinate_system_passes(coordinate_system):
     "Make sure no exception is raised for valid inputs"
     check_coordinate_system(coordinate_system)
@@ -59,7 +59,7 @@ def test_check_flattening():
     """
     Check if error/warns is raised after invalid flattening
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid flattening"):
         Ellipsoid(
             name="negative_flattening",
             semimajor_axis=1.0,
@@ -67,7 +67,7 @@ def test_check_flattening():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid flattening"):
         Ellipsoid(
             name="flattening_greater_than_one",
             semimajor_axis=1.0,
@@ -75,7 +75,7 @@ def test_check_flattening():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Flattening equal to zero"):
         Ellipsoid(
             name="zero_flattening",
             semimajor_axis=1.0,
@@ -83,7 +83,7 @@ def test_check_flattening():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid flattening"):
         Ellipsoid(
             name="almost_zero_negative_flattening",
             semimajor_axis=1.0,
@@ -106,7 +106,7 @@ def test_check_semimajor_axis():
     """
     Check if error is raised after invalid semimajor_axis
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid semi-major"):
         Ellipsoid(
             name="zero_semimajor_axis",
             semimajor_axis=0,
@@ -114,7 +114,7 @@ def test_check_semimajor_axis():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid semi-major"):
         Ellipsoid(
             name="negative_semimajor_axis",
             semimajor_axis=-1,
@@ -241,6 +241,7 @@ def test_geodetic_to_ellipsoidal_conversions(ellipsoid):
     )
     npt.assert_allclose(geodetic_latitude_in, geodetic_latitude_out, rtol=rtol)
     npt.assert_allclose(height_in, height_out, rtol=rtol)
+    assert longitude is None
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)

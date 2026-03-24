@@ -74,7 +74,6 @@ class Sphere:
 
     Examples
     --------
-
     We can define a sphere by specifying the 3 key numerical parameters:
 
     >>> sphere = Sphere(
@@ -145,21 +144,28 @@ class Sphere:
     comments = attr.ib(default=None)
 
     @radius.validator
-    def _check_radius(self, radius, value):
-        "Check if the radius is positive."
+    def _check_radius(self, radius, value):  # noqa: ARG002
+        """
+        Check if the radius is positive.
+        """
         if not value > 0:
-            raise ValueError(f"Invalid radius '{value}'. Should be greater than zero.")
+            message = f"Invalid radius '{value}'. Should be greater than zero."
+            raise ValueError(message)
 
     @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(self, geocentric_grav_const, value):
-        "Warn if geocentric_grav_const is negative."
+    def _check_geocentric_grav_const(self, geocentric_grav_const, value):  # noqa: ARG002
+        """
+        Warn if geocentric_grav_const is negative.
+        """
         if value < 0:
-            warn(f"The geocentric gravitational constant is negative: '{value}'")
+            message = f"The geocentric gravitational constant is negative: '{value}'"
+            warn(message, stacklevel=2)
 
     @property
     def semiminor_axis(self):
         """
         The semiminor axis of the sphere is equal to its radius.
+
         Units: :math:`m`.
         """
         return self.radius
@@ -168,6 +174,7 @@ class Sphere:
     def semimedium_axis(self):
         """
         The semimedium axis of the sphere is equal to its radius.
+
         Units: :math:`m`.
         """
         return self.radius
@@ -176,6 +183,7 @@ class Sphere:
     def semimajor_axis(self):
         """
         The semimajor axis of the sphere is equal to its radius.
+
         Units: :math:`m`.
         """
         return self.radius
@@ -184,7 +192,9 @@ class Sphere:
     def semimajor_axis_longitude(self):
         r"""
         The semimajor axis longitude of the sphere is equal to zero.
+
         Definition: :math:`\lambda_a = 0`.
+
         Units: :math:`m`.
         """
         return 0
@@ -193,7 +203,9 @@ class Sphere:
     def flattening(self):
         r"""
         The flattening of the sphere is equal to zero.
+
         Definition: :math:`f = \dfrac{a - b}{a}`.
+
         Units: adimensional.
         """
         return 0
@@ -202,21 +214,27 @@ class Sphere:
     def thirdflattening(self):
         r"""
         The third flattening of the sphere is equal to zero.
+
         Definition: :math:`f^{\prime\prime}= \dfrac{a -b}{a + b}`.
+
         Units: adimensional.
         """
         return 0
 
     @property
     def eccentricity(self):
-        "Alias for the first eccentricity."
+        """
+        Alias for the first eccentricity.
+        """
         return self.first_eccentricity
 
     @property
     def first_eccentricity(self):
         r"""
         The (first) eccentricity of the sphere is equal to zero.
+
         Definition: :math:`e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}`.
+
         Units: adimensional.
         """
         return 0
@@ -225,7 +243,9 @@ class Sphere:
     def area(self):
         r"""
         The area of the sphere.
+
         Definition: :math:`A = 4 \pi r^2`.
+
         Units: :math:`m^2`.
         """
         return 4 * np.pi * self.radius**2
@@ -234,7 +254,9 @@ class Sphere:
     def mean_radius(self):
         """
         The mean radius of the ellipsoid is equal to its radius.
+
         Definition: :math:`R_0 = R`.
+
         Units: :math:`m`.
         """
         return self.radius
@@ -242,9 +264,10 @@ class Sphere:
     @property
     def semiaxes_mean_radius(self):
         """
-        The arithmetic mean radius of the ellipsoid semi-axes is equal to its
-        radius.
+        The arithmetic mean radius of the ellipsoid (equal to its radius).
+
         Definition: :math:`R_1 = R`.
+
         Units: :math:`m`.
         """
         return self.radius
@@ -253,7 +276,9 @@ class Sphere:
     def volume(self):
         r"""
         The volume of the sphere.
+
         Definition: :math:`V = \dfrac{4}{3} \pi r^3`.
+
         Units: :math:`m^3`.
         """
         return (4 / 3 * np.pi) * self.radius**3
@@ -262,7 +287,9 @@ class Sphere:
     def area_equivalent_radius(self):
         """
         The area equivalent radius of the sphere is equal to its radius.
+
         Definition: :math:`R_2 = R`.
+
         Units: :math:`m`.
         """
         return self.radius
@@ -271,7 +298,9 @@ class Sphere:
     def mass(self):
         r"""
         The mass of the sphere.
+
         Definition: :math:`M = GM / G`.
+
         Units: :math:`kg`.
         """
         return self.geocentric_grav_const / G
@@ -280,7 +309,9 @@ class Sphere:
     def mean_density(self):
         r"""
         The mean density of the sphere.
+
         Definition: :math:`\rho = M / V`.
+
         Units: :math:`kg / m^3`.
         """
         return self.mass / self.volume
@@ -289,7 +320,9 @@ class Sphere:
     def volume_equivalent_radius(self):
         r"""
         The volume equivalent radius of the sphere is equal to its radius.
+
         Definition: :math:`R_3 = R`.
+
         Units: :math:`m`.
         """
         return self.radius
@@ -298,7 +331,9 @@ class Sphere:
     def reference_normal_gravitational_potential(self):
         r"""
         The normal gravitational potential on the surface of the sphere.
+
         Definition: :math:`U_0 = \dfrac{GM}{R}`.
+
         Units: :math:`m^2 / s^2`.
         """
         return self.geocentric_grav_const / self.radius
@@ -327,7 +362,7 @@ class Sphere:
 
     def normal_gravity(self, coordinates, si_units=False):
         r"""
-        Normal gravity of the sphere.
+        Calculate the normal gravity of the sphere.
 
         Computes the magnitude of the gradient of the :term:`gravity potential`
         generated by the sphere at the given points.
@@ -450,10 +485,11 @@ class Sphere:
         """
         latitude, height = coordinates[1:]
         if np.any(height < 0):
-            warn(
+            message = (
                 "Formulas used are valid for points outside the sphere. "
                 "Height must be greater than or equal to zero."
             )
+            warn(message, stacklevel=1)
 
         radial_distance = self.radius + height
         gravity_acceleration = self.geocentric_grav_const / (radial_distance) ** 2
@@ -474,7 +510,7 @@ class Sphere:
 
     def normal_gravitation(self, coordinates, si_units=False):
         r"""
-        Normal gravitation of the sphere.
+        Calculate the normal gravitation of the sphere.
 
         Computes the magnitude of the gradient of the :term:`gravitational
         potential` generated by the sphere at the points. Assumes a homogeneous
@@ -505,7 +541,6 @@ class Sphere:
 
         Examples
         --------
-
         Normal gravitation can be calculated at any point. However as this is a
         sphere, only the height is used in the calculation.
 
@@ -544,7 +579,7 @@ class Sphere:
 
     def normal_gravity_potential(self, coordinates):
         r"""
-        Normal gravity potential of the sphere.
+        Calculate the normal gravity potential of the sphere.
 
         Computes the normal :term:`gravity potential` (gravitational
         + centrifugal) generated by the sphere at the given points. Assumes
@@ -593,10 +628,11 @@ class Sphere:
         """
         latitude, height = coordinates[1:]
         if np.any(height < 0):
-            warn(
+            message = (
                 "Formulas used are valid for points outside the sphere. "
                 "Height must be greater than or equal to zero."
             )
+            warn(message, stacklevel=1)
 
         radial_distance = self.radius + height
         big_u = self.geocentric_grav_const / radial_distance
@@ -614,7 +650,7 @@ class Sphere:
 
     def normal_gravitational_potential(self, coordinates):
         r"""
-        Normal gravitational potential of the sphere.
+        Calculate the normal gravitational potential of the sphere.
 
         Computes the normal :term:`gravitational potential` generated by the
         sphere at the given points. Assumes a homogeneous internal density
@@ -655,10 +691,11 @@ class Sphere:
         """
         height = coordinates[2]
         if np.any(height < 0):
-            warn(
+            message = (
                 "Formulas used are valid for points outside the sphere. "
                 "Height must be greater than or equal to zero."
             )
+            warn(message, stacklevel=1)
         radial_distance = self.radius + height
         return self.geocentric_grav_const / radial_distance
 
