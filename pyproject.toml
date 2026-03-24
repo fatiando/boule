@@ -99,6 +99,7 @@ ignore = [
   "RET504",   # Allow variable assignment only for return
   "PT001",    # Conventions for parenthesis on pytest.fixture
   "D200",     # Allow single line docstrings in their own line
+  "PT031",    # Allow multiple statements in pytest.warns block
 ]
 
 [tool.ruff.lint.per-file-ignores]
