@@ -19,7 +19,8 @@ It can operate on single values:
 
     import boule as bl
 
-    gamma = bl.WGS84.normal_gravity(latitude=45, height=50)
+    # coordiantes = longitude, latitude, height (m)
+    gamma = bl.WGS84.normal_gravity(coordinates=(0, 45, 500))
     print(f"{gamma:.2f} mGal")
 
 Or on numpy array-like data (including ``pandas.DataFrame`` and
@@ -30,7 +31,7 @@ Or on numpy array-like data (including ``pandas.DataFrame`` and
     import numpy as np
 
     height = np.linspace(0, 1000, 10)
-    gamma = bl.WGS84.normal_gravity(latitude=45, height=height)
+    gamma = bl.WGS84.normal_gravity(coordinates=(0, 45, height))
     print(gamma)
 
 The arrays can be multi-dimensional so we can use :mod:`verde` to generate a
@@ -40,10 +41,10 @@ grid of normal gravity:
 
     import verde as vd
 
-    longitude, latitude = vd.grid_coordinates(
-        region=[0, 360, -90, 90], spacing=0.5,
+    coordinates = vd.grid_coordinates(
+        region=[0, 360, -90, 90], spacing=0.5, extra_coords=10_000,
     )
-    gamma = bl.WGS84.normal_gravity(latitude=latitude, height=10_000)
+    gamma = bl.WGS84.normal_gravity(coordinates)
     print(gamma)
 
 Which can be put in a :class:`xarray.Dataset`:
@@ -51,7 +52,7 @@ Which can be put in a :class:`xarray.Dataset`:
 .. jupyter-execute::
 
     grid = vd.make_xarray_grid(
-        (longitude, latitude), gamma, data_names="normal_gravity",
+        coordinates[:2], gamma, data_names="normal_gravity",
     )
     grid
 
@@ -95,10 +96,10 @@ These calculations can be performed for any oblate ellipsoid (see
 
 .. jupyter-execute::
 
-    gamma_mars = bl.Mars2009.normal_gravity(latitude=latitude, height=10_000)
+    gamma_mars = bl.Mars2009.normal_gravity(coordinates)
 
     grid_mars = vd.make_xarray_grid(
-        (longitude, latitude), gamma_mars, data_names="normal_gravity",
+        coordinates[:2], gamma_mars, data_names="normal_gravity",
     )
 
     fig = pygmt.Figure()
@@ -138,17 +139,21 @@ of a geodetic latitude (for spheres they are actually the same thing).
 
 .. jupyter-execute::
 
-    gamma = bl.Moon2015.normal_gravity(latitude=45, height=height)
+    # coordiantes = longitude, latitude, height (m)
+    gamma = bl.Moon2015.normal_gravity(coordinates=(None, 45, height))
     print(gamma)
 
 This is what the normal gravity of Moon looks like on a map:
 
 .. jupyter-execute::
 
-    gamma = bl.Moon2015.normal_gravity(latitude=latitude, height=10_000)
+    coordinates = vd.grid_coordinates(
+        region=[0, 360, -90, 90], spacing=0.5, extra_coords=10_000,
+    )
+    gamma = bl.Moon2015.normal_gravity(coordinates)
 
     grid = vd.make_xarray_grid(
-        (longitude, latitude), gamma, data_names="normal_gravity",
+        coordinates[:2], gamma, data_names="normal_gravity",
     )
 
     fig = pygmt.Figure()
@@ -185,12 +190,9 @@ the centrifugal component) using :meth:`boule.Sphere.normal_gravitation`:
 .. jupyter-execute::
 
     gravitation = bl.Moon2015.normal_gravitation(
-        height=np.full_like(latitude, 10_000)
+        coordinates=(None, np.linspace(-90, 90, 100), np.full(100, 10_000))
     )
-    grid = vd.make_xarray_grid(
-        (longitude, latitude), gravitation, data_names="normal_gravitation",
-    )
-    grid
+    gravitation
 
 Since there is no centrifugal acceleration, the normal gravitation is due
 solely to the mass of a sphere and depends only on the height above the sphere

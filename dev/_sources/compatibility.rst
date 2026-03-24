@@ -64,3 +64,7 @@ following releases to ensure compatibility:
       - 0.4.0
     * - 3.7
       - 0.4.1
+    * - 3.8
+      - 0.5.0
+    * - 3.9
+      - 0.5.0
