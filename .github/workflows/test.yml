@@ -138,6 +138,7 @@ jobs:
   # Upload coverage report to codecov
   codecov-upload:
     runs-on: ubuntu-latest
+    environment: codecov
     needs: test
 
     steps:
@@ -167,7 +168,7 @@ jobs:
         run: ls -l -R .
 
       - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@671740ac38dd9b0130fbe1cec585b89eea48d3de
         with:
           # Upload all coverage report files
           files: ./coverage_*/coverage.xml
