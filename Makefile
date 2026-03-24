@@ -1,8 +1,7 @@
 # Build, package, test, and clean
 PROJECT=boule
-TESTDIR=tmp-test-dir-with-unique-name
-PYTEST_ARGS=--cov-config=../.coveragerc --cov-report=term-missing --cov=$(PROJECT) --doctest-modules -v --pyargs
 CHECK_STYLE=src/$(PROJECT) doc test
+GITHUB_ACTIONS=.github/workflows
 
 .PHONY: help build install test format check check-format check-style check-actions clean
 
@@ -27,19 +26,21 @@ test:
 	pytest --cov-report=term-missing --cov --doctest-modules --verbose test src/$(PROJECT)
 
 format:
-	isort $(CHECK_STYLE)
-	black $(CHECK_STYLE)
+	ruff check --select I --fix $(CHECK_STYLE) # fix isort errors
+	ruff format $(CHECK_STYLE)
 	burocrata --extension=py $(CHECK_STYLE)
 
-check: check-format check-style
+check: check-format check-style check-actions
 
 check-format:
-	isort --check $(CHECK_STYLE)
-	black --check $(CHECK_STYLE)
+	ruff format --check $(CHECK_STYLE)
 	burocrata --check --extension=py $(CHECK_STYLE)
 
 check-style:
-	flake8 $(CHECK_STYLE)
+	ruff check $(CHECK_STYLE)
+
+check-actions:
+	zizmor $(GITHUB_ACTIONS)
 
 clean:
 	find . -name "*.pyc" -exec rm -v {} \;
