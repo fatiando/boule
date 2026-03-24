@@ -11,11 +11,8 @@ import boule
 # Project information
 # -----------------------------------------------------------------------------
 project = "Boule"
-copyright = f"{datetime.date.today().year}, The {project} Developers"  # noqa: A001
-if len(boule.__version__.split(".")) > 3:
-    version = "dev"
-else:
-    version = boule.__version__
+copyright = f"{datetime.date.today().year}, The {project} Developers"
+version = "dev" if len(boule.__version__.split(".")) > 3 else boule.__version__
 
 # General configuration
 # -----------------------------------------------------------------------------
