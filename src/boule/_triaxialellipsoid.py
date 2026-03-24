@@ -7,6 +7,7 @@
 """
 Define a reference triaxial ellipsoid.
 """
+
 import textwrap
 from warnings import warn
 
@@ -146,60 +147,69 @@ class TriaxialEllipsoid:
     comments = attr.ib(default=None)
 
     def _raise_invalid_axis(self):
-        "Raise a ValueError informing that the axis are invalid."
-        raise ValueError(
+        """
+        Raise a ValueError informing that the axis are invalid.
+        """
+        message = (
             "Invalid triaxial ellipsoid axis: "
             f"major={self.semimajor_axis} "
             f"medium={self.semimedium_axis} "
             f"minor={self.semiminor_axis}. "
             "Must be major > medium > minor."
         )
+        raise ValueError(message)
 
     @semimajor_axis.validator
-    def _check_semimajor_axis(self, semimajor_axis, value):
+    def _check_semimajor_axis(self, semimajor_axis, value):  # noqa: ARG002
         """
         Check if semimajor_axis is positive and is the largest of the axis.
         """
         if not value > 0:
-            raise ValueError(
-                f"Invalid semi-major axis '{value}'. Should be greater than zero."
-            )
+            message = f"Invalid semi-major axis '{value}'. Should be greater than zero."
+            raise ValueError(message)
         if self.semimedium_axis > value:
             self._raise_invalid_axis()
 
     @semimedium_axis.validator
-    def _check_semimedium_axis(self, semimedium_axis, value):
+    def _check_semimedium_axis(self, semimedium_axis, value):  # noqa: ARG002
         """
         Check if semimedium_axis is positive and larger than semi-minor axis.
         """
         if not value > 0:
-            raise ValueError(
+            message = (
                 f"Invalid semi-medium axis '{value}'. Should be greater than zero."
             )
+            raise ValueError(message)
         if self.semiminor_axis > value:
             self._raise_invalid_axis()
 
     @semiminor_axis.validator
-    def _check_semiminor_axis(self, semiminor_axis, value):
-        "Check if semiminor_axis is positive."
+    def _check_semiminor_axis(self, semiminor_axis, value):  # noqa: ARG002
+        """
+        Check if semiminor_axis is positive.
+        """
         if not value > 0:
-            raise ValueError(
-                f"Invalid semi-minor axis '{value}'. Should be greater than zero."
-            )
+            message = f"Invalid semi-minor axis '{value}'. Should be greater than zero."
+            raise ValueError(message)
         # Don't need to check here because if the two checks for major and
         # medium pass it means that this is the smallest.
 
     @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(self, geocentric_grav_const, value):
-        "Warn if geocentric_grav_const is negative."
+    def _check_geocentric_grav_const(self, geocentric_grav_const, value):  # noqa: ARG002
+        """
+        Warn if geocentric_grav_const is negative.
+        """
         if value < 0:
-            warn(f"The geocentric gravitational constant is negative: '{value}'")
+            message = f"The geocentric gravitational constant is negative: '{value}'"
+            warn(message, stacklevel=2)
 
     @property
     def mean_radius(self):
         r"""
-        The mean radius of the ellipsoid. This is equivalent to the degree 0
-        spherical harmonic coefficient of the ellipsoid shape.
+        The mean radius of the ellipsoid.
+
+        This is equivalent to the degree 0 spherical harmonic coefficient of the
+        ellipsoid shape.
 
         Definition: :math:`R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}
         \int_0^{2 \pi}} r(\theta, \lambda) \sin \theta \, d\theta \, d\lambda`
@@ -240,7 +250,9 @@ class TriaxialEllipsoid:
     def semiaxes_mean_radius(self):
         r"""
         The arithmetic mean radius of the ellipsoid semi-axes.
+
         Definition: :math:`R_1 = \dfrac{a + b + c}{3}`.
+
         Units: :math:`m`.
         """
         return (self.semimajor_axis + self.semimedium_axis + self.semiminor_axis) / 3
@@ -249,9 +261,12 @@ class TriaxialEllipsoid:
     def area(self):
         r"""
         The area of the ellipsoid.
-        Definition: :math:`A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})`, in which
-        :math:`R_G` is the completely-symmetric elliptic integral of the second
-        kind.
+
+        Definition: :math:`A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})`
+
+        in which :math:`R_G` is the completely-symmetric elliptic integral of
+        the second kind.
+
         Units: :math:`m^2`.
         """
         # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
@@ -269,7 +284,9 @@ class TriaxialEllipsoid:
     def volume(self):
         r"""
         The volume bounded by the ellipsoid.
+
         Definition: :math:`V = \dfrac{4}{3} \pi a b c`.
+
         Units: :math:`m^3`.
         """
         return (
@@ -283,7 +300,9 @@ class TriaxialEllipsoid:
     def area_equivalent_radius(self):
         r"""
         The area equivalent radius of the ellipsoid.
+
         Definition: :math:`R_2 = \sqrt{A / (4 \pi)}`.
+
         Units: :math:`m`.
         """
         return np.sqrt(self.area / (4 * np.pi))
@@ -292,7 +311,9 @@ class TriaxialEllipsoid:
     def mass(self):
         r"""
         The mass of the ellipsoid.
+
         Definition: :math:`M = GM / G`.
+
         Units: :math:`kg`.
         """
         return self.geocentric_grav_const / G
@@ -301,7 +322,9 @@ class TriaxialEllipsoid:
     def mean_density(self):
         r"""
         The mean density of the ellipsoid.
+
         Definition: :math:`\rho = M / V`.
+
         Units: :math:`kg / m^3`.
         """
         return self.mass / self.volume
@@ -310,7 +333,9 @@ class TriaxialEllipsoid:
     def volume_equivalent_radius(self):
         r"""
         The volume equivalent radius of the ellipsoid.
+
         Definition: :math:`R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}`.
+
         Units: :math:`m`.
         """
         return (self.volume * 3 / (4 * np.pi)) ** (1 / 3)
@@ -319,7 +344,9 @@ class TriaxialEllipsoid:
     def equatorial_flattening(self):
         r"""
         The equatorial flattening of the ellipsoid.
+
         Definition: :math:`f_b = \frac{a - b}{a}`.
+
         Units: adimensional.
         """
         return (self.semimajor_axis - self.semimedium_axis) / self.semimajor_axis
@@ -327,9 +354,13 @@ class TriaxialEllipsoid:
     @property
     def meridional_flattening(self):
         r"""
-        The meridional flattening of the ellipsoid in the meridian plane
-        containing the semi-major axis.
+        The meridional flattening of the ellipsoid.
+
+        This is the flattening in the meridian plane containing the semi-major
+        axis.
+
         Definition: :math:`f_c = \frac{a - c}{a}`.
+
         Units: adimensional.
         """
         return (self.semimajor_axis - self.semiminor_axis) / self.semimajor_axis

@@ -7,13 +7,14 @@
 """
 Test the base TriaxialEllipsoid class.
 """
+
 import warnings
 
 import numpy as np
 import numpy.testing as npt
 import pytest
 
-from .. import Ellipsoid, TriaxialEllipsoid
+from boule import Ellipsoid, TriaxialEllipsoid
 
 
 @pytest.fixture
@@ -49,7 +50,7 @@ def test_check_semimajor():
     """
     Check if error is raised after invalid semimajor axis
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid semi-major"):
         TriaxialEllipsoid(
             name="zero_semimajor_axis",
             semimajor_axis=0,
@@ -58,7 +59,7 @@ def test_check_semimajor():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid semi-major"):
         TriaxialEllipsoid(
             name="negative_semimajor_axis",
             semimajor_axis=-4,
@@ -73,7 +74,7 @@ def test_check_semimedium():
     """
     Check if error is raised after invalid semimedium axis
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid semi-medium"):
         TriaxialEllipsoid(
             name="zero_semimedium_axis",
             semimajor_axis=4,
@@ -82,7 +83,7 @@ def test_check_semimedium():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid semi-medium"):
         TriaxialEllipsoid(
             name="negative_semimedium_axis",
             semimajor_axis=4,
@@ -97,7 +98,7 @@ def test_check_semiminor():
     """
     Check if error is raised after invalid semiminor axis
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid semi-minor"):
         TriaxialEllipsoid(
             name="zero_semiminor_axis",
             semimajor_axis=4,
@@ -106,7 +107,7 @@ def test_check_semiminor():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid semi-minor"):
         TriaxialEllipsoid(
             name="negative_semiminor_axis",
             semimajor_axis=4,
@@ -122,7 +123,7 @@ def test_check_semimajor_is_largest():
     Check if error is raised after invalid semimajor is not the
     largest axis length
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid triaxial ellipsoid axis"):
         TriaxialEllipsoid(
             name="largest_axis_is_semiminor_axis",
             semimajor_axis=1,
@@ -131,7 +132,7 @@ def test_check_semimajor_is_largest():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid triaxial ellipsoid axis"):
         TriaxialEllipsoid(
             name="largest_axis_is_semimedium_axis",
             semimajor_axis=2,
@@ -147,7 +148,7 @@ def test_check_semiminor_is_smallest():
     Check if error is raised after invalid semiminor is not the
     smallest axis length
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid triaxial ellipsoid axis"):
         TriaxialEllipsoid(
             name="largest_axis_is_semiminor_axis",
             semimajor_axis=1,
@@ -156,7 +157,7 @@ def test_check_semiminor_is_smallest():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid triaxial ellipsoid axis"):
         TriaxialEllipsoid(
             name="medium_larger",
             semimajor_axis=4,
@@ -172,7 +173,7 @@ def test_check_semimedium_larger_than_semiminor():
     Check if error is raised if semiminor axis length is larger than
     semimedium axis length
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid triaxial ellipsoid axis"):
         TriaxialEllipsoid(
             name="smallest_axis_is_semimedium_axis",
             semimajor_axis=4,

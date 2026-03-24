@@ -5,9 +5,12 @@
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
 """
-Ellipsoid, Sphere and Triaxialellipsoid realizations for the Earth and other
-planetary bodies.
+Reference ellipsoid realizations for the Earth and other planetary bodies.
 """
+# Disable checks for ambiguous characters which flags the hyphen in the citations below.
+# This file doesn't contain any calculations so there's no risk to doing it globally.
+# ruff: noqa: RUF001
+
 import numpy as np
 
 from ._ellipsoid import Ellipsoid

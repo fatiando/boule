@@ -5,7 +5,12 @@
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
 """
-Gravitational constant
+Defines constants and other values used throughout the project.
+"""
+
+"""
+Gravitational constant.
+
 units:  m3 / (kg s2)
 
 Reference

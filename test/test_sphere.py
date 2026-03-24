@@ -7,13 +7,14 @@
 """
 Test the base Sphere class.
 """
+
 import warnings
 
 import numpy as np
 import numpy.testing as npt
 import pytest
 
-from .. import Sphere
+from boule import Sphere
 
 
 @pytest.fixture
@@ -32,14 +33,14 @@ def test_check_radius():
     """
     Check if error is raised after invalid radius
     """
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid radius"):
         Sphere(
             name="zero_radius",
             radius=0,
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError):
+    with pytest.raises(ValueError, match="Invalid radius"):
         Sphere(
             name="negative_radius",
             radius=-1,
@@ -53,7 +54,7 @@ def test_normal_gravity_computed_on_internal_point(sphere):
     Check if warn is raised if height is negative
     """
     latitude = np.linspace(-90, 90, 100)
-    with pytest.warns(UserWarning) as warn:
+    with pytest.warns(UserWarning, match="Formulas used are valid") as warn:
         sphere.normal_gravity((None, latitude, -10))
         assert len(warn) >= 1
     with warnings.catch_warnings(record=True) as warn:

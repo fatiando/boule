@@ -4,7 +4,10 @@
 #
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
-# Import functions/classes to make the public API
+"""
+These are the functions and classes that make up the Boule API.
+"""
+
 from ._ellipsoid import Ellipsoid
 from ._realizations import (
     EGM96,
