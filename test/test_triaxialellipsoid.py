@@ -46,6 +46,56 @@ def triaxialellipsoid_90():
     return triaxial_ellipsoid
 
 
+def test_triaxialellipsoid_str():
+    "Make sure the str repr is corrent when some things are missing"
+    ellipsoid = TriaxialEllipsoid(
+        name="bla",
+        long_name="blabla",
+        semimajor_axis=3,
+        semimedium_axis=2,
+        semiminor_axis=1,
+        semimajor_axis_longitude=0,
+        geocentric_grav_const=1,
+        angular_velocity=2,
+    )
+    assert str(ellipsoid) == (
+        "bla - blabla\n"
+        "Triaxial ellipsoid:\n"
+        "  • Semimajor axis: 3 m\n"
+        "  • Semimedium axis: 2 m\n"
+        "  • Semiminor axis: 1 m\n"
+        "  • Semimajor axis longitude: 0°\n"
+        "  • GM: 1 m³/s²\n"
+        "  • Angular velocity: 2 rad/s"
+    )
+    ellipsoid = TriaxialEllipsoid(
+        name="bla",
+        long_name="blabla",
+        semimajor_axis=3,
+        semimedium_axis=2,
+        semiminor_axis=1,
+        semimajor_axis_longitude=0,
+        geocentric_grav_const=1,
+        angular_velocity=2,
+        reference="Someone smart",
+        comments="A great ellipsoid",
+    )
+    assert str(ellipsoid) == (
+        "bla - blabla\n"
+        "Triaxial ellipsoid:\n"
+        "  • Semimajor axis: 3 m\n"
+        "  • Semimedium axis: 2 m\n"
+        "  • Semiminor axis: 1 m\n"
+        "  • Semimajor axis longitude: 0°\n"
+        "  • GM: 1 m³/s²\n"
+        "  • Angular velocity: 2 rad/s\n"
+        "Source:\n"
+        "  Someone smart\n"
+        "Comments:\n"
+        "  A great ellipsoid"
+    )
+
+
 def test_check_semimajor():
     """
     Check if error is raised after invalid semimajor axis
