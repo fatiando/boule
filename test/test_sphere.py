@@ -29,6 +29,44 @@ def sphere():
     return ellipsoid
 
 
+def test_sphere_str():
+    "Make sure the str repr is corrent when some things are missing"
+    sphere = Sphere(
+        name="bla",
+        long_name="blabla",
+        radius=1,
+        geocentric_grav_const=1,
+        angular_velocity=2,
+    )
+    assert str(sphere) == (
+        "bla - blabla\n"
+        "Spheroid:\n"
+        "  • Radius: 1 m\n"
+        "  • GM: 1 m³/s²\n"
+        "  • Angular velocity: 2 rad/s"
+    )
+    sphere = Sphere(
+        name="bla",
+        long_name="blabla",
+        radius=1,
+        geocentric_grav_const=1,
+        angular_velocity=2,
+        reference="Someone smart",
+        comments="A great sphere",
+    )
+    assert str(sphere) == (
+        "bla - blabla\n"
+        "Spheroid:\n"
+        "  • Radius: 1 m\n"
+        "  • GM: 1 m³/s²\n"
+        "  • Angular velocity: 2 rad/s\n"
+        "Source:\n"
+        "  Someone smart\n"
+        "Comments:\n"
+        "  A great sphere"
+    )
+
+
 def test_check_radius():
     """
     Check if error is raised after invalid radius
