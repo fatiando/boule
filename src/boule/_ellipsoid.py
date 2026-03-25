@@ -908,6 +908,45 @@ class Ellipsoid:
         longitude = np.degrees(np.arctan2(y, x))
         return longitude, latitude, radius
 
+    def geodetic_to_cartesian(self, coordinates):
+        """
+        Convert from geodetic to geocentric Cartesian coordinates.
+
+        The geodetic datum is defined by this ellipsoid. In the geocentric Cartesian
+        system, z is aligned with the Earth's axis of rotation and points towards the
+        North pole, x and y are contained in the equatorial plane, x coincides with the
+        Greenwich meridian, and y completes right-handed coordinate system.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_geodetic, height)
+            Longitude, latitude, and geometric height coordinates of the points
+            in a geodetic coordinate system. Each element can be a single
+            number or an array. The shape of the arrays must be compatible.
+            Longitude and latitude must be in degrees and height in meters.
+
+        Returns
+        -------
+        converted_coordinates : tuple = (x, y, z)
+            The converted x, y, z coordinates in a geocentric Cartesian
+            coordinate system. The shape of each element will be compatible
+            with the shape of the inputs. All coordinates are in meters.
+        """
+        longitude, latitude, height = coordinates
+        latitude_radians = np.radians(latitude)
+        longitude_radians = np.radians(longitude)
+        sinlat = np.sin(latitude_radians)
+        coslat = np.cos(latitude_radians)
+        sinlon = np.sin(longitude_radians)
+        coslon = np.cos(longitude_radians)
+        prime_radius = self.prime_vertical_radius(sinlat)
+        x = (prime_radius + height) * coslat * coslon
+        y = (prime_radius + height) * coslat * sinlon
+        z = (
+            self.semiminor_axis**2 / self.semimajor_axis**2 * prime_radius + height
+        ) * sinlat
+        return x, y, z
+
     # Gravity
     # ##################################################################################
 
