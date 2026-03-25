@@ -42,6 +42,48 @@ def normal_gravity_surface(latitude, ellipsoid):
     return 1e5 * gravity
 
 
+def test_ellipsoid_str():
+    "Make sure the str repr is corrent when some things are missing"
+    ellipsoid = Ellipsoid(
+        name="bla",
+        long_name="blabla",
+        semimajor_axis=1,
+        flattening=0.5,
+        geocentric_grav_const=1,
+        angular_velocity=2,
+    )
+    assert str(ellipsoid) == (
+        "bla - blabla\n"
+        "Oblate ellipsoid:\n"
+        "  • Semimajor axis: 1 m\n"
+        "  • Flattening: 0.5\n"
+        "  • GM: 1 m³/s²\n"
+        "  • Angular velocity: 2 rad/s"
+    )
+    ellipsoid = Ellipsoid(
+        name="bla",
+        long_name="blabla",
+        semimajor_axis=1,
+        flattening=0.5,
+        geocentric_grav_const=1,
+        angular_velocity=2,
+        reference="Someone smart",
+        comments="A great ellipsoid",
+    )
+    assert str(ellipsoid) == (
+        "bla - blabla\n"
+        "Oblate ellipsoid:\n"
+        "  • Semimajor axis: 1 m\n"
+        "  • Flattening: 0.5\n"
+        "  • GM: 1 m³/s²\n"
+        "  • Angular velocity: 2 rad/s\n"
+        "Source:\n"
+        "  Someone smart\n"
+        "Comments:\n"
+        "  A great ellipsoid"
+    )
+
+
 @pytest.mark.parametrize("coordinate_system", ["geocentric", "bla", "ellipsoidal"])
 def test_check_coordinate_system_fails(coordinate_system):
     "Make sure an exception is raised for invalid inputs"
