@@ -112,3 +112,23 @@ ignore = [
 
 [tool.ruff.lint.pydocstyle]
 convention = "numpy"
+
+[tool.coverage.run]
+source = ["boule"]
+omit = [
+    "**/_version.py",
+    "**/__init__.py",
+]
+branch = true
+# Needed to combine coverage data from multiple OSs on CI
+relative_files = true
+
+[tool.coverage.paths]
+source = [
+    "src/boule",
+    "*/boule",
+    "*\\boule",
+]
+
+[tool.coverage.report]
+show_missing = true
