@@ -900,8 +900,8 @@ class Ellipsoid:
             be compatible with the shape of the inputs. Longitude and latitude are in
             degrees and radius in meters
         """
-        x, y, z = coordinates
-        radius = np.sqrt(np.abs(x**2 + y**2 + z**2))
+        x, y, z = (np.float64(c) for c in coordinates)
+        radius = np.sqrt(x**2 + y**2 + z**2)
         latitude = np.degrees(np.arcsin(z / radius))
         longitude = np.degrees(np.arctan2(y, x))
         return longitude, latitude, radius
