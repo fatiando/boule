@@ -876,6 +876,36 @@ class Ellipsoid:
         z = radius * sinlat
         return x, y, z
 
+    def cartesian_to_spherical(self, coordinates):
+        """
+        Convert from geocentric Cartesian coordinates to spherical coordinates.
+
+        In the geocentric Cartesian system, z is aligned with the Earth's axis
+        of rotation and points towards the North pole, x and y are contained in
+        the equatorial plane, x coincides with the Greenwich meridian, and
+        y completes right-handed coordinate system.
+
+        Parameters
+        ----------
+        coordinates : tuple = (x, y, z)
+            The x, y, z coordinates of the points in a geocentric Cartesian coordinate
+            system. Each element can be a single number or an array. The shape of the
+            arrays must be compatible. All coordinates must be in meters.
+
+        Returns
+        -------
+        converted_coordinates : tuple = (longitude, latitude_spherical, radius)
+            The converted longitude, spherical latitude, and radius coordinates in
+            a geocentric spherical coordinate system. The shape of each element will
+            be compatible with the shape of the inputs. Longitude and latitude are in
+            degrees and radius in meters
+        """
+        x, y, z = coordinates
+        radius = np.sqrt(x**2 + y**2 + z**2)
+        latitude = np.degrees(np.arcsin(z / radius))
+        longitude = np.degrees(np.atan2(y, x))
+        return longitude, latitude, radius
+
     # Gravity
     # ##################################################################################
 

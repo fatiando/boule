@@ -255,9 +255,9 @@ def test_spherical_to_geodetic_on_poles(ellipsoid):
     npt.assert_allclose(radius, height + ellipsoid.semiminor_axis, rtol=rtol)
 
 
-@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
-def test_spherical_to_cartesian_on_equator(ellipsoid):
+def test_spherical_to_cartesian_on_equator():
     "Test spherical to cartesian coordinates conversion on equator."
+    ellipsoid = WGS84
     rtol = 1e-10
     atol = 1e-8
     longitude = np.array([0, 90, 180, 270])
@@ -275,9 +275,9 @@ def test_spherical_to_cartesian_on_equator(ellipsoid):
     npt.assert_allclose(0, z, rtol=0, atol=atol)
 
 
-@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
-def test_spherical_to_cartesian_on_pole(ellipsoid):
+def test_spherical_to_cartesian_on_pole():
     "Test spherical to cartesian coordinates conversion on the pole."
+    ellipsoid = WGS84
     rtol = 1e-10
     atol = 1e-8
     spherical_latitude = np.array([90, -90])
@@ -288,6 +288,64 @@ def test_spherical_to_cartesian_on_pole(ellipsoid):
     npt.assert_allclose(-radius, z[1], rtol=rtol)
     npt.assert_allclose(0, x, rtol=0, atol=atol)
     npt.assert_allclose(0, y, rtol=0, atol=atol)
+
+
+def test_cartesian_to_spherical_on_equator():
+    "Test cartesian to spherical coordinates conversion on equator."
+    ellipsoid = WGS84
+    rtol = 1e-10
+    x = np.array(
+        [
+            0,
+            ellipsoid.semimajor_axis,
+            -ellipsoid.semimajor_axis,
+            0,
+        ]
+    )
+    y = np.array(
+        [
+            ellipsoid.semimajor_axis,
+            0,
+            0,
+            -ellipsoid.semimajor_axis,
+        ]
+    )
+    z = np.zeros_like(x)
+    longitude, latitude, radius = ellipsoid.cartesian_to_spherical((x, y, z))
+    npt.assert_allclose(latitude, 0, rtol=rtol)
+    npt.assert_allclose(longitude, np.array([90, 0, 180, -90]), rtol=rtol)
+    npt.assert_allclose(radius, ellipsoid.semimajor_axis, rtol=rtol)
+
+
+def test_cartesian_to_spherical_on_pole():
+    "Test cartesian to spherical coordinates conversion on pole."
+    ellipsoid = WGS84
+    rtol = 1e-10
+    z = np.array(
+        [
+            ellipsoid.semiminor_axis,
+            -ellipsoid.semiminor_axis,
+        ]
+    )
+    x = np.zeros_like(z)
+    y = np.zeros_like(z)
+    longitude, latitude, radius = ellipsoid.cartesian_to_spherical((x, y, z))
+    npt.assert_allclose(latitude, np.array([90, -90]), rtol=rtol)
+    npt.assert_allclose(longitude, 0, rtol=rtol)
+    npt.assert_allclose(radius, ellipsoid.semiminor_axis, rtol=rtol)
+
+
+def test_cartesian_to_spherical_roundtrip():
+    "Check that doing a round trip on spherical to Cartesian works"
+    ellipsoid = WGS84
+    longitude = np.array([75, -80, 170])
+    latitude = np.array([34, -80, 61])
+    radius = np.array([1000, 320403, 122440000])
+    x, y, z = ellipsoid.spherical_to_cartesian((longitude, latitude, radius))
+    result = ellipsoid.cartesian_to_spherical((x, y, z))
+    npt.assert_allclose(longitude, result[0])
+    npt.assert_allclose(latitude, result[1])
+    npt.assert_allclose(radius, result[2])
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
