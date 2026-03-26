@@ -908,6 +908,111 @@ class Ellipsoid:
         longitude = np.degrees(np.arctan2(y, x))
         return longitude, latitude, radius
 
+    def geodetic_to_cartesian(self, coordinates):
+        """
+        Convert from geodetic to geocentric Cartesian coordinates.
+
+        The geodetic datum is defined by this ellipsoid. In the geocentric Cartesian
+        system, z is aligned with the Earth's axis of rotation and points towards the
+        North pole, x and y are contained in the equatorial plane, x coincides with the
+        Greenwich meridian, and y completes right-handed coordinate system.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_geodetic, height)
+            Longitude, latitude, and geometric height coordinates of the points
+            in a geodetic coordinate system. Each element can be a single
+            number or an array. The shape of the arrays must be compatible.
+            Longitude and latitude must be in degrees and height in meters.
+
+        Returns
+        -------
+        converted_coordinates : tuple = (x, y, z)
+            The converted x, y, z coordinates in a geocentric Cartesian
+            coordinate system. The shape of each element will be compatible
+            with the shape of the inputs. All coordinates are in meters.
+        """
+        longitude, latitude, height = coordinates
+        latitude_radians = np.radians(latitude)
+        longitude_radians = np.radians(longitude)
+        sinlat = np.sin(latitude_radians)
+        coslat = np.cos(latitude_radians)
+        sinlon = np.sin(longitude_radians)
+        coslon = np.cos(longitude_radians)
+        prime_radius = self.prime_vertical_radius(sinlat)
+        x = (prime_radius + height) * coslat * coslon
+        y = (prime_radius + height) * coslat * sinlon
+        z = (
+            self.semiminor_axis**2 / self.semimajor_axis**2 * prime_radius + height
+        ) * sinlat
+        return x, y, z
+
+    def cartesian_to_geodetic(self, coordinates):
+        """
+        Convert from geocentric Cartesian to geodetic coordinates.
+
+        The geodetic datum is defined by this ellipsoid. In the geocentric Cartesian
+        system, z is aligned with the Earth's axis of rotation and points towards the
+        North pole, x and y are contained in the equatorial plane, x coincides with the
+        Greenwich meridian, and y completes right-handed coordinate system.
+
+        Uses the non-iterative method of [Zhu1993]_ to make the conversion. This is
+        accurate for points further than 43 km from the center of the ellipsoid.
+
+        Parameters
+        ----------
+        coordinates : tuple = (x, y, z)
+            The x, y, z coordinates of the points in a geocentric Cartesian coordinate
+            system. Each element can be a single number or an array. The shape of the
+            arrays must be compatible. All coordinates must be in meters.
+
+        Returns
+        -------
+        converted_coordinates : tuple = (longitude, latitude_geodetic, height)
+            The converted longitude, geodetic latitude, and geometric height in a
+            geodetic coordinate system. The shape of each element will be compatible
+            with the shape of the inputs. Longitude and latitude will be in degrees and
+            height in meters.
+
+        References
+        ----------
+        [Zhu1993]_
+        """
+        # Make sure everything is a float to avoid overflows in the radius calculation
+        # if things are integers (happens on windows sometimes).
+        x, y, z = (np.float64(c) for c in coordinates)
+        cast = np.broadcast(x, y, z)
+        w = np.sqrt(x**2 + y**2)
+        ell = self.eccentricity**2 / 2
+        m = (w / self.semimajor_axis) ** 2
+        n = ((1 - self.eccentricity**2) * z / self.semiminor_axis) ** 2
+        i = -(2 * ell**2 + m + n) / 2
+        k = ell**2 * (ell**2 - m - n)
+        q = (m + n - 4 * ell**2) ** 3 / 216 + m * n * ell**2
+        D = np.sqrt((2 * q - m * n * ell**2) * m * n * ell**2)
+        beta = i / 3 - np.cbrt(q + D) - np.cbrt(q - D)
+        t = np.sqrt(np.sqrt(beta**2 - k) - (beta + i) / 2) - np.sign(m - n) * np.sqrt(
+            (beta - i) / 2
+        )
+        w1 = w / (t + ell)
+        z1 = (1 - self.eccentricity**2) * z / (t - ell)
+        longitude = np.degrees(2 * np.arctan2(w - x, y))
+        latitude = np.empty(cast.shape)
+        height = np.empty(cast.shape)
+        polar_axis = w == 0
+        latitude[~polar_axis] = np.degrees(
+            np.arctan2(z1[~polar_axis], (1 - self.eccentricity**2) * w1[~polar_axis])
+        )
+        latitude[polar_axis] = np.degrees(np.sign(z[polar_axis]) * np.pi / 2)
+        height[~polar_axis] = np.sign(t[~polar_axis] - 1 + ell) * np.sqrt(
+            (w[~polar_axis] - w1[~polar_axis]) ** 2
+            + (z[~polar_axis] - z1[~polar_axis]) ** 2
+        )
+        height[polar_axis] = (
+            np.sign(z[polar_axis]) * z[polar_axis] - self.semiminor_axis
+        )
+        return longitude, latitude, height
+
     # Gravity
     # ##################################################################################
 
