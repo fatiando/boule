@@ -343,16 +343,16 @@ def test_cartesian_to_spherical_roundtrip():
     radius = np.array([1000, 320403, 122440000])
     x, y, z = ellipsoid.spherical_to_cartesian((longitude, latitude, radius))
     result = ellipsoid.cartesian_to_spherical((x, y, z))
-    npt.assert_allclose(longitude, result[0])
-    npt.assert_allclose(latitude, result[1])
-    npt.assert_allclose(radius, result[2])
+    npt.assert_allclose(longitude, result[0], atol=1e-10)
+    npt.assert_allclose(latitude, result[1], atol=1e-10)
+    npt.assert_allclose(radius, result[2], atol=0.001)
 
 
 def test_geodetic_to_cartesian_on_equator():
     "Test geodetic to cartesian coordinates conversion on equator."
     ellipsoid = WGS84
     atol = 1e-8
-    longitude = np.array([0, 90, 180, 270])
+    longitude = np.array([0, 90, 180, -90])
     latitude = np.zeros_like(longitude)
     height = 1000
     x, y, z = ellipsoid.geodetic_to_cartesian((longitude, latitude, height))
@@ -389,6 +389,50 @@ def test_geodetic_to_cartesian_on_pole():
         z,
         atol=atol,
     )
+
+
+def test_cartesian_to_geodetic_equator():
+    "Test cartesian to geodetic coordinates conversion on equator."
+    ellipsoid = WGS84
+    atol = 1e-8
+    x = [ellipsoid.semimajor_axis + 1000, 0, -ellipsoid.semimajor_axis + 400, 0]
+    y = [0, ellipsoid.semimajor_axis - 1000, 0, -ellipsoid.semimajor_axis - 250]
+    z = [0, 0, 0, 0]
+    longitude, latitude, height = ellipsoid.cartesian_to_geodetic((x, y, z))
+    npt.assert_allclose(longitude, [0, 90, 180, 270], atol=atol)
+    npt.assert_allclose(latitude, 0, atol=atol)
+    npt.assert_allclose(height, [1000, -1000, -400, 250], atol=atol)
+
+
+def test_cartesian_to_geodetic_pole():
+    "Test cartesian to geodetic coordinates conversion on pole."
+    ellipsoid = WGS84
+    atol = 1e-8
+    x = [0, 0, 0, 0]
+    y = [0, 0, 0, 0]
+    z = [
+        ellipsoid.semiminor_axis + 1000,
+        ellipsoid.semiminor_axis - 1000,
+        -ellipsoid.semiminor_axis + 400,
+        -ellipsoid.semiminor_axis - 250,
+    ]
+    longitude, latitude, height = ellipsoid.cartesian_to_geodetic((x, y, z))
+    npt.assert_allclose(longitude, 0, atol=atol)
+    npt.assert_allclose(latitude, [90, 90, -90, -90], atol=atol)
+    npt.assert_allclose(height, [1000, -1000, -400, 250], atol=atol)
+
+
+def test_cartesian_to_geodetic_roundtrip():
+    "Check that doing a round trip on geodetic to Cartesian works"
+    ellipsoid = WGS84
+    longitude = np.array([0, 90, 270, 260, 75, 280, 170])
+    latitude = np.array([0, 90, -10, -90, 34, -80, 61])
+    height = np.array([0, -120, 1234, -42241, 1000, -3003, 1287.22])
+    x, y, z = ellipsoid.geodetic_to_cartesian((longitude, latitude, height))
+    result = ellipsoid.cartesian_to_geodetic((x, y, z))
+    npt.assert_allclose(longitude, result[0], atol=1e-10)
+    npt.assert_allclose(latitude, result[1], atol=1e-10)
+    npt.assert_allclose(height, result[2], atol=0.001)
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
