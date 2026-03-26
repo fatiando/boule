@@ -348,6 +348,49 @@ def test_cartesian_to_spherical_roundtrip():
     npt.assert_allclose(radius, result[2])
 
 
+def test_geodetic_to_cartesian_on_equator():
+    "Test geodetic to cartesian coordinates conversion on equator."
+    ellipsoid = WGS84
+    atol = 1e-8
+    longitude = np.array([0, 90, 180, 270])
+    latitude = np.zeros_like(longitude)
+    height = 1000
+    x, y, z = ellipsoid.geodetic_to_cartesian((longitude, latitude, height))
+    npt.assert_allclose(
+        [ellipsoid.semimajor_axis + height, 0, -(ellipsoid.semimajor_axis + height), 0],
+        x,
+        atol=atol,
+    )
+    npt.assert_allclose(
+        [0, ellipsoid.semimajor_axis + height, 0, -(ellipsoid.semimajor_axis + height)],
+        y,
+        atol=atol,
+    )
+    npt.assert_allclose(0, z, atol=atol)
+
+
+def test_geodetic_to_cartesian_on_pole():
+    "Test geodetic to cartesian coordinates conversion on pole."
+    ellipsoid = WGS84
+    atol = 1e-8
+    latitude = np.array([90, 90, -90, -90])
+    height = np.array([1000, 0, -1000, 2000])
+    longitude = np.zeros_like(height)
+    x, y, z = ellipsoid.geodetic_to_cartesian((longitude, latitude, height))
+    npt.assert_allclose(0, x, atol=atol)
+    npt.assert_allclose(0, y, atol=atol)
+    npt.assert_allclose(
+        [
+            ellipsoid.semiminor_axis + 1000,
+            ellipsoid.semiminor_axis,
+            -ellipsoid.semiminor_axis + 1000,
+            -ellipsoid.semiminor_axis - 2000,
+        ],
+        z,
+        atol=atol,
+    )
+
+
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_geodetic_to_ellipsoidal_conversions(ellipsoid):
     """
