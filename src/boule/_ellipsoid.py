@@ -1013,6 +1013,83 @@ class Ellipsoid:
         )
         return longitude, latitude, height
 
+    def ellipsoidal_harmonic_to_cartesian(self, coordinates):
+        """
+        Convert from ellipsoidal harmonic to geocentric Cartesian coordinates.
+
+        In the geocentric Cartesian system, z is aligned with the Earth's axis of
+        rotation and points towards the North pole, x and y are contained in the
+        equatorial plane, x coincides with the Greenwich meridian, and y completes
+        right-handed coordinate system.
+
+        Uses the conversion specified in [HofmannHofmannWellenhofMoritz2006]_.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_reduced, u)
+            Longitude, reduced (or parametric) latitude, and u (the semiminor
+            axis of the ellipsoid that passes through the input coordinates)
+            coordinates of the points in a ellipsoidal harmonic coordinate
+            system. Each element can be a single number or an array. The shape
+            of the arrays must be compatible. Longitude and latitude must be in
+            degrees and u in meters.
+
+        Returns
+        -------
+        converted_coordinates : tuple = (x, y, z)
+            The converted x, y, z coordinates in a geocentric Cartesian
+            coordinate system. The shape of each element will be compatible
+            with the shape of the inputs. All coordinates are in meters.
+
+        References
+        ----------
+        [HofmannWellenhofMoritz2006]_
+        """
+        longitude, latitude, u = coordinates
+        latitude_radians = np.radians(latitude)
+        longitude_radians = np.radians(longitude)
+        sinlat = np.sin(latitude_radians)
+        coslat = np.cos(latitude_radians)
+        sinlon = np.sin(longitude_radians)
+        coslon = np.cos(longitude_radians)
+        sqrt_u_E = np.sqrt(u**2 + self.linear_eccentricity**2)
+        x = sqrt_u_E * coslat * coslon
+        y = sqrt_u_E * coslat * sinlon
+        z = u * sinlat
+        return x, y, z
+
+    def cartesian_to_ellipsoidal_harmonic(self, coordinates):
+        """
+        Convert from geocentric Cartesian to ellipsoidal harmonic coordinates.
+
+        In the geocentric Cartesian system, z is aligned with the Earth's axis of
+        rotation and points towards the North pole, x and y are contained in the
+        equatorial plane, x coincides with the Greenwich meridian, and y completes
+        right-handed coordinate system.
+
+        The conversion is done by passing through the geodetic coordinate system.
+
+        Parameters
+        ----------
+        coordinates : tuple = (x, y, z)
+            The x, y, z coordinates of the points in a geocentric Cartesian coordinate
+            system. Each element can be a single number or an array. The shape of the
+            arrays must be compatible. All coordinates must be in meters.
+
+        Returns
+        -------
+        converted_coordinates : tuple = (longitude, latitude_reduced, u)
+            The converted longitude, reduced (or parametric) latitude, and the
+            coordinate u (the semiminor axis of the ellipsoid that passes through the
+            input coordinates) in a ellipsoidal harmonic coordinate system. The shape of
+            each element will be compatible with the shape of the inputs. Longitude and
+            latitude will be in degrees and u in meters.
+        """
+        longitude, latitude, u = self.geodetic_to_ellipsoidal_harmonic(
+            self.cartesian_to_geodetic(coordinates)
+        )
+        return longitude, latitude, u
+
     # Gravity
     # ##################################################################################
 
