@@ -1090,6 +1090,73 @@ class Ellipsoid:
         )
         return longitude, latitude, u
 
+    def ellipsoidal_harmonic_to_spherical(self, coordinates):
+        """
+        Convert from ellipsoidal harmonic to geocentric spherical coordinates.
+
+        The conversion is performed by passing through the geodetic system. Because of
+        this, there is a loss of accuracy when doing the round-trip between spherical
+        and ellipsoidal harmonic coordinates. The latitude conversion is good to
+        approximately 0.001 degrees and radius to approximately 1 meter.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_reduced, u)
+            Longitude, reduced (or parametric) latitude, and u (the semiminor axis of
+            the ellipsoid that passes through the input coordinates) coordinates of the
+            points in a ellipsoidal harmonic coordinate system. Each element can be
+            a single number or an array. The shape of the arrays must be compatible.
+            Longitude and latitude must be in degrees and u in meters. Since longitude
+            is the same in both systems and is not used in the computations, it can be
+            passed as ``None`` if desired.
+
+        Returns
+        -------
+        converted_coordinates : tuple = (longitude, latitude_spherical, radius)
+            The converted longitude, geocentric spherical latitude, and radius
+            in a geocentric spherical coordinate system. The shape of each
+            element will be compatible with the shape of the inputs. If the
+            input longitude is ``None``, the output will also be ``None``.
+            Longitude and latitude will be in degrees and radius in meters.
+        """
+        longitude, latitude, radius = self.geodetic_to_spherical(
+            self.ellipsoidal_harmonic_to_geodetic(coordinates)
+        )
+        return longitude, latitude, radius
+
+    def spherical_to_ellipsoidal_harmonic(self, coordinates):
+        """
+        Convert from geocentric spherical to ellipsoidal harmonic coordinates.
+
+        The conversion is performed by passing through the geodetic system. Because of
+        this, there is a loss of accuracy when doing the round-trip between spherical
+        and ellipsoidal harmonic coordinates. The latitude conversion is good to
+        approximately 0.001 degrees and radius to approximately 1 meter.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_spherical, height)
+            Longitude, latitude, and radius coordinates of the points in a geocentric
+            spherical coordinate system. Each element can be a single number or an
+            array. The shape of the arrays must be compatible. Longitude and latitude
+            must be in degrees and radius in meters. Since longitude is not affected by
+            conversions, it can be assigned ``None``.
+
+        Returns
+        -------
+        converted_coordinates : tuple = (longitude, latitude_reduced, u)
+            The converted longitude, reduced (or parametric) latitude, and the
+            coordinate u (the semiminor axis of the ellipsoid that passes through the
+            input coordinates) in a ellipsoidal harmonic coordinate system. The shape
+            of each element will be compatible with the shape of the inputs. Longitude
+            and latitude will be in degrees and u in meters. If the input longitude is
+            ``None``, the output will also be ``None``.
+        """
+        longitude, latitude, u = self.geodetic_to_ellipsoidal_harmonic(
+            self.spherical_to_geodetic(coordinates)
+        )
+        return longitude, latitude, u
+
     # Gravity
     # ##################################################################################
 
