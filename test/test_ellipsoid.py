@@ -799,16 +799,30 @@ def test_geocentric_radius_geocentric_pole_equator(ellipsoid):
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
-def test_normal_gravity_against_somigliana(ellipsoid):
+@pytest.mark.parametrize(
+    "coordinate_system", ["geodetic", "spherical", "cartesian", "ellipsoidal harmonic"]
+)
+def test_normal_gravity_against_somigliana(ellipsoid, coordinate_system):
     """
     Check if normal gravity on the surface satisfies Somigliana equation
     """
     latitude = np.linspace(-90, 90, 181)
+    longitude = np.zeros_like(latitude)
+    height = np.zeros_like(latitude)
+    converters = {
+        "geodetic": lambda x: x,
+        "spherical": ellipsoid.geodetic_to_spherical,
+        "cartesian": ellipsoid.geodetic_to_cartesian,
+        "ellipsoidal harmonic": ellipsoid.geodetic_to_ellipsoidal_harmonic,
+    }
     # Somigliana equation applies only to ellipsoids that are their own
     # equipotential gravity surface. Spheres (with zero flattening) aren't.
     if ellipsoid.flattening != 0:
         npt.assert_allclose(
-            ellipsoid.normal_gravity((None, latitude, 0)),
+            ellipsoid.normal_gravity(
+                converters[coordinate_system]((longitude, latitude, height)),
+                coordinate_system=coordinate_system,
+            ),
             normal_gravity_surface(latitude, ellipsoid),
         )
 
@@ -832,17 +846,36 @@ def test_normal_gravity_computed_on_internal_point(ellipsoid):
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
-def test_normal_gravity_gravitational_centrifugal_potential(ellipsoid):
+@pytest.mark.parametrize(
+    "coordinate_system", ["geodetic", "spherical", "cartesian", "ellipsoidal harmonic"]
+)
+def test_normal_gravity_gravitational_centrifugal_potential(
+    ellipsoid, coordinate_system
+):
     """
     Test that the normal gravity potential is equal to the sum of the normal
     gravitational potential and centrifugal potential.
     """
-    size = 5
+    converters = {
+        "geodetic": lambda x: x,
+        "spherical": ellipsoid.geodetic_to_spherical,
+        "cartesian": ellipsoid.geodetic_to_cartesian,
+        "ellipsoidal harmonic": ellipsoid.geodetic_to_ellipsoidal_harmonic,
+    }
+    size = 50
+    longitude = np.zeros(size) if coordinate_system == "cartesian" else None
     latitude = np.array([np.linspace(-90, 90, size)] * 2)
     height = np.array([[0] * size, [1000] * size])
-    big_u = ellipsoid.normal_gravity_potential((None, latitude, height))
-    big_v = ellipsoid.normal_gravitational_potential((None, latitude, height))
-    big_phi = ellipsoid.centrifugal_potential((None, latitude, height))
+    coordinates = converters[coordinate_system]((longitude, latitude, height))
+    big_u = ellipsoid.normal_gravity_potential(
+        coordinates, coordinate_system=coordinate_system
+    )
+    big_v = ellipsoid.normal_gravitational_potential(
+        coordinates, coordinate_system=coordinate_system
+    )
+    big_phi = ellipsoid.centrifugal_potential(
+        coordinates, coordinate_system=coordinate_system
+    )
     npt.assert_allclose(big_u, big_v + big_phi)
 
 

@@ -573,7 +573,7 @@ class Ellipsoid:
         .. [1] See https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius
 
         """
-        check_coordinate_system(coordinate_system)
+        check_coordinate_system(coordinate_system, valid=("geodetic", "spherical"))
         latitude_rad = np.radians(latitude)
         coslat, sinlat = np.cos(latitude_rad), np.sin(latitude_rad)
         if coordinate_system == "geodetic":
@@ -1022,7 +1022,7 @@ class Ellipsoid:
         equatorial plane, x coincides with the Greenwich meridian, and y completes
         right-handed coordinate system.
 
-        Uses the conversion specified in [HofmannHofmannWellenhofMoritz2006]_.
+        Uses the conversion specified in [HofmannWellenhofMoritz2006]_.
 
         Parameters
         ----------
@@ -1160,7 +1160,7 @@ class Ellipsoid:
     # Gravity
     # ##################################################################################
 
-    def normal_gravity(self, coordinates, si_units=False):
+    def normal_gravity(self, coordinates, coordinate_system="geodetic", si_units=False):
         r"""
         Calculate the normal gravity of the ellipsoid.
 
@@ -1177,13 +1177,21 @@ class Ellipsoid:
 
         Parameters
         ----------
-        coordinates : tuple = (longitude, latitude_geodetic, height)
-            Longitude, latitude, and geometric height coordinates of the
-            computation points in a geodetic coordinate system. Each element
-            can be a single number or an array. The shape of the arrays must be
-            compatible. Longitude and latitude must be in degrees and height in
-            meters. Since longitude is not used in computations (the field is
-            symmetric with longitude), it can be assigned ``None``.
+        coordinates : tuple = (coordinate1, coordinate2, coordinate3)
+            Tuple with 3 arrays containing the coordinates of the computation points.
+            The meaning of the arrays is determined by the ``coordinate_system``
+            argument: longitude, geodetic latitude, and geometric height for a geodetic
+            system; longitude, geocentric latitude, and radius for a geocentric
+            spherical system; longitude, reduced latitude, and u for an ellipsoidal
+            harmonic system; x, y, and z for a geocentric Cartesian system. Each
+            element can be a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitudes must be in degrees and height, radius,
+            and u in meters. Since longitude is not used in computations (the potential
+            is symmetric with longitude), it can be assigned ``None``.
+        coordinate_system : str
+            The coordinate system that will be assumed for the given coordinates. Should
+            be one of: ``"geodetic"`` (default), ``"spherical"``, ``"cartesian"``, or
+            ``"ellipsoidal harmonic"``.
         si_units : bool
             Return the value in mGal (False, default) or m/s² (True).
 
@@ -1210,17 +1218,26 @@ class Ellipsoid:
         The equations used here assume that the internal density distribution
         of the ellipsoid is such that the gravity potential is constant at its
         surface. The specific internal density distribution is undefined.
+
+        .. note::
+
+            Since the calculations happen in ellipsoidal harmonic coordinates, passing
+            inputs in any other coordinate system will require conversion, which may
+            slow down computations if done in a loop.
         """
-        # Warn if height is negative
-        if np.any(coordinates[2] < 0):
+        check_coordinate_system(coordinate_system)
+        # Warn if inside the ellipsoid
+        if coordinate_system == "geodetic" and np.any(coordinates[2] < 0):
             message = (
                 "Formulas used are valid for points outside the ellipsoid."
                 "Height must be greater than or equal to zero."
             )
             warn(message, stacklevel=1)
+        # TODO: Try to add warnings for other coordinate systems. Will be tricky
+        # and will probably require doing redundant conversions.
 
-        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
-        _, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
+        # Convert to ellipsoidal harmonic coordinates
+        _, beta, u = to_ellipsoidal_harmonic(coordinates, coordinate_system, self)
         sinbeta2 = np.sin(np.radians(beta)) ** 2
         cosbeta2 = 1 - sinbeta2
         big_e = self.linear_eccentricity
@@ -1253,7 +1270,7 @@ class Ellipsoid:
 
         return gamma
 
-    def normal_gravitational_potential(self, coordinates):
+    def normal_gravitational_potential(self, coordinates, coordinate_system="geodetic"):
         r"""
         Calculate the normal gravitational potential of the ellipsoid.
 
@@ -1269,13 +1286,21 @@ class Ellipsoid:
 
         Parameters
         ----------
-        coordinates : tuple = (longitude, latitude_geodetic, height)
-            Longitude, latitude, and geometric height coordinates of the
-            computation points in a geodetic coordinate system. Each element
-            can be a single number or an array. The shape of the arrays must be
-            compatible. Longitude and latitude must be in degrees and height in
-            meters. Since longitude is not used in computations (the field is
-            symmetric with longitude), it can be assigned ``None``.
+        coordinates : tuple = (coordinate1, coordinate2, coordinate3)
+            Tuple with 3 arrays containing the coordinates of the computation points.
+            The meaning of the arrays is determined by the ``coordinate_system``
+            argument: longitude, geodetic latitude, and geometric height for a geodetic
+            system; longitude, geocentric latitude, and radius for a geocentric
+            spherical system; longitude, reduced latitude, and u for an ellipsoidal
+            harmonic system; x, y, and z for a geocentric Cartesian system. Each
+            element can be a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitudes must be in degrees and height, radius,
+            and u in meters. Since longitude is not used in computations (the potential
+            is symmetric with longitude), it can be assigned ``None``.
+        coordinate_system : str
+            The coordinate system that will be assumed for the given coordinates. Should
+            be one of: ``"geodetic"`` (default), ``"spherical"``, ``"cartesian"``, or
+            ``"ellipsoidal harmonic"``.
 
         Returns
         -------
@@ -1305,17 +1330,24 @@ class Ellipsoid:
 
         Assumes that the internal density distribution of the ellipsoid is such
         that the :term:`gravity potential` is constant at its surface.
+
+        .. note::
+
+            Since the calculations happen in ellipsoidal harmonic coordinates, passing
+            inputs in any other coordinate system will require conversion, which may
+            slow down computations if done in a loop.
         """
+        check_coordinate_system(coordinate_system)
         # Warn if height is negative
-        if np.any(coordinates[2] < 0):
+        if coordinate_system == "geodetic" and np.any(coordinates[2] < 0):
             message = (
                 "Formulas used are valid for points outside the ellipsoid."
                 "Height must be greater than or equal to zero."
             )
             warn(message, stacklevel=1)
 
-        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
-        _, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
+        # Convert to ellipsoidal harmonic coordinates
+        _, beta, u = to_ellipsoidal_harmonic(coordinates, coordinate_system, self)
         big_e = self.linear_eccentricity
 
         # Compute the auxiliary functions q and q_0 (eq 2-113 of
@@ -1333,7 +1365,7 @@ class Ellipsoid:
 
         return big_v
 
-    def normal_gravity_potential(self, coordinates):
+    def normal_gravity_potential(self, coordinates, coordinate_system="geodetic"):
         r"""
         Calculate the normal gravity potential of the ellipsoid.
 
@@ -1349,13 +1381,21 @@ class Ellipsoid:
 
         Parameters
         ----------
-        coordinates : tuple = (longitude, latitude_geodetic, height)
-            Longitude, latitude, and geometric height coordinates of the
-            computation points in a geodetic coordinate system. Each element
-            can be a single number or an array. The shape of the arrays must be
-            compatible. Longitude and latitude must be in degrees and height in
-            meters. Since longitude is not used in computations (the field is
-            symmetric with longitude), it can be assigned ``None``.
+        coordinates : tuple = (coordinate1, coordinate2, coordinate3)
+            Tuple with 3 arrays containing the coordinates of the computation points.
+            The meaning of the arrays is determined by the ``coordinate_system``
+            argument: longitude, geodetic latitude, and geometric height for a geodetic
+            system; longitude, geocentric latitude, and radius for a geocentric
+            spherical system; longitude, reduced latitude, and u for an ellipsoidal
+            harmonic system; x, y, and z for a geocentric Cartesian system. Each
+            element can be a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitudes must be in degrees and height, radius,
+            and u in meters. Since longitude is not used in computations (the potential
+            is symmetric with longitude), it can be assigned ``None``.
+        coordinate_system : str
+            The coordinate system that will be assumed for the given coordinates. Should
+            be one of: ``"geodetic"`` (default), ``"spherical"``, ``"cartesian"``, or
+            ``"ellipsoidal harmonic"``.
 
         Returns
         -------
@@ -1385,17 +1425,24 @@ class Ellipsoid:
 
         Assumes that the internal density distribution of the ellipsoid is such
         that the :term:`gravity potential` is constant at its surface.
+
+        .. note::
+
+            Since the calculations happen in ellipsoidal harmonic coordinates, passing
+            inputs in any other coordinate system will require conversion, which may
+            slow down computations if done in a loop.
         """
+        check_coordinate_system(coordinate_system)
         # Warn if height is negative
-        if np.any(coordinates[2] < 0):
+        if coordinate_system == "geodetic" and np.any(coordinates[2] < 0):
             message = (
                 "Formulas used are valid for points outside the ellipsoid."
                 "Height must be greater than or equal to zero."
             )
             warn(message, stacklevel=1)
 
-        # Convert geodetic latitude and height to ellipsoidal-harmonic coords
-        _, beta, u = self.geodetic_to_ellipsoidal_harmonic(coordinates)
+        # Convert to ellipsoidal harmonic coordinates
+        _, beta, u = to_ellipsoidal_harmonic(coordinates, coordinate_system, self)
         big_e = self.linear_eccentricity
 
         # Compute the auxiliary functions q and q_0 (eq 2-113 of
@@ -1422,22 +1469,30 @@ class Ellipsoid:
 
         return big_u
 
-    def centrifugal_potential(self, coordinates):
+    def centrifugal_potential(self, coordinates, coordinate_system="geodetic"):
         r"""
         Centrifugal potential of the rotating ellipsoid.
 
-        Calculate the centrifugal potential due to the rotation of the
-        ellipsoid about its semiminor axis at the given points.
+        Calculate the centrifugal potential due to the rotation of the ellipsoid about
+        its semiminor axis at the given points.
 
         Parameters
         ----------
-        coordinates : tuple = (longitude, latitude_geodetic, height)
-            Longitude, latitude, and geometric height coordinates of the
-            computation points in a geodetic coordinate system. Each element
-            can be a single number or an array. The shape of the arrays must be
-            compatible. Longitude and latitude must be in degrees and height in
-            meters. Since longitude is not used in computations (the field is
-            symmetric with longitude), it can be assigned ``None``.
+        coordinates : tuple = (coordinate1, coordinate2, coordinate3)
+            Tuple with 3 arrays containing the coordinates of the computation points.
+            The meaning of the arrays is determined by the ``coordinate_system``
+            argument: longitude, geodetic latitude, and geometric height for a geodetic
+            system; longitude, geocentric latitude, and radius for a geocentric
+            spherical system; longitude, reduced latitude, and u for an ellipsoidal
+            harmonic system; x, y, and z for a geocentric Cartesian system. Each
+            element can be a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitudes must be in degrees and height, radius,
+            and u in meters. Since longitude is not used in computations (the potential
+            is symmetric with longitude), it can be assigned ``None``.
+        coordinate_system : str
+            The coordinate system that will be assumed for the given coordinates. Should
+            be one of: ``"geodetic"`` (default), ``"spherical"``, ``"cartesian"``, or
+            ``"ellipsoidal harmonic"``.
 
         Returns
         -------
@@ -1446,29 +1501,67 @@ class Ellipsoid:
 
         Notes
         -----
-        The centrifugal potential :math:`\Phi` at geodetic latitude
-        :math:`\phi` and height above the ellipsoid :math:`h` (geometric
-        height) is
+        The centrifugal potential :math:`\Phi` at geodetic latitude :math:`\phi` and
+        height above the ellipsoid :math:`h` (geometric height) is
 
         .. math::
 
             \Phi(\phi, h) = \dfrac{1}{2}
                 \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)
 
-        in which :math:`N(\phi)` is the prime vertical radius of curvature of
-        the ellipsoid and :math:`\omega` is the angular velocity.
+        in which :math:`N(\phi)` is the prime vertical radius of curvature of the
+        ellipsoid and :math:`\omega` is the angular velocity.
+
+        In geocentric Cartesian coordinates, the potential is
+
+        .. math::
+
+            \Phi(x, y) = \dfrac{1}{2} \omega^2 \left(x^2 + y^2\right)^2
+
+        and in geocentric spherical coordinates, the potential is
+
+        .. math::
+
+            \Phi(\theta, r) = \dfrac{1}{2} \omega^2 r^2 \cos^2\theta
+
+        in which :math:`\theta` is the geocentric latitude and :math:`r` is the radius.
+
+        For inputs in ellipsoidal harmonic coordinates, the coordinates will be
+        converted to geodetic before calculation of the potential.
         """
-        latitude, height = coordinates[1:]
-        latitude_radians = np.radians(latitude)
-        result = (1 / 2) * (
-            self.angular_velocity
-            * (self.prime_vertical_radius(np.sin(latitude_radians)) + height)
-            * np.cos(latitude_radians)
-        ) ** 2
+        check_coordinate_system(coordinate_system)
+        if coordinate_system == "ellipsoidal harmonic":
+            coordinates = self.ellipsoidal_harmonic_to_geodetic(coordinates)
+            coordinate_system = "geodetic"
+        if coordinate_system == "cartesian":
+            x, y = coordinates[:2]
+            result = 0.5 * self.angular_velocity**2 * (x**2 + y**2)
+        elif coordinate_system == "geodetic":
+            latitude, height = coordinates[1:]
+            latitude_radians = np.radians(latitude)
+            result = (
+                0.5
+                * (
+                    self.angular_velocity
+                    * (self.prime_vertical_radius(np.sin(latitude_radians)) + height)
+                    * np.cos(latitude_radians)
+                )
+                ** 2
+            )
+        else:
+            # If we got here, it's safe to assume this is spherical coordinates
+            latitude, radius = coordinates[1:]
+            latitude_radians = np.radians(latitude)
+            result = (
+                0.5 * (self.angular_velocity * radius * np.cos(latitude_radians)) ** 2
+            )
         return result
 
 
-def check_coordinate_system(coordinate_system, valid=("geodetic", "spherical")):
+def check_coordinate_system(
+    coordinate_system,
+    valid=("geodetic", "spherical", "cartesian", "ellipsoidal harmonic"),
+):
     """
     Make sure the coordinate system is valid.
 
@@ -1489,3 +1582,30 @@ def check_coordinate_system(coordinate_system, valid=("geodetic", "spherical")):
             f"Invalid coordinate system '{coordinate_system}'. Must be one of {valid}."
         )
         raise ValueError(message)
+
+
+def to_ellipsoidal_harmonic(coordinates, coordinate_system, ellipsoid):
+    """
+    Convert from the given system to ellipsoidal harmonic coordinates.
+
+    Parameters
+    ----------
+    coordinates : tuple
+        Tuple of coordinates in the given coordinate system.
+    coordinate_system : str
+        A string specifying the coordinate system to use.
+    ellipsoid : :class:`boule.Ellipsoid`
+        The ellipsoid to use for the conversions
+
+    Returns
+    -------
+    coordinates : tuple = (longitude, latitude_reduced, u)
+        The coordinates in the ellipsoidal harmonic system.
+    """
+    converters = {
+        "geodetic": ellipsoid.geodetic_to_ellipsoidal_harmonic,
+        "spherical": ellipsoid.spherical_to_ellipsoidal_harmonic,
+        "cartesian": ellipsoid.cartesian_to_ellipsoidal_harmonic,
+        "ellipsoidal harmonic": lambda x: x,
+    }
+    return converters[coordinate_system](coordinates)
