@@ -435,6 +435,104 @@ def test_cartesian_to_geodetic_roundtrip():
     npt.assert_allclose(height, result[2], atol=0.001)
 
 
+def test_ellipsoidal_harmonic_to_cartesian_on_equator():
+    "Test ellipsoidal harmonic to cartesian coordinates conversion on equator."
+    ellipsoid = WGS84
+    atol = 1e-8
+    longitude = np.array([0, 90, 180, -90])
+    latitude = np.zeros_like(longitude)
+    height = 1000
+    x, y, z = ellipsoid.ellipsoidal_harmonic_to_cartesian(
+        ellipsoid.geodetic_to_ellipsoidal_harmonic((longitude, latitude, height))
+    )
+    npt.assert_allclose(
+        [ellipsoid.semimajor_axis + height, 0, -(ellipsoid.semimajor_axis + height), 0],
+        x,
+        atol=atol,
+    )
+    npt.assert_allclose(
+        [0, ellipsoid.semimajor_axis + height, 0, -(ellipsoid.semimajor_axis + height)],
+        y,
+        atol=atol,
+    )
+    npt.assert_allclose(0, z, atol=atol)
+
+
+def test_ellipsoidal_harmonic_to_cartesian_on_pole():
+    "Test ellipsoidal harmonic to cartesian coordinates conversion on pole."
+    ellipsoid = WGS84
+    atol = 1e-8
+    latitude = np.array([90, 90, -90, -90])
+    height = np.array([1000, 0, -1000, 2000])
+    longitude = np.zeros_like(height)
+    x, y, z = ellipsoid.ellipsoidal_harmonic_to_cartesian(
+        ellipsoid.geodetic_to_ellipsoidal_harmonic((longitude, latitude, height))
+    )
+    npt.assert_allclose(0, x, atol=atol)
+    npt.assert_allclose(0, y, atol=atol)
+    npt.assert_allclose(
+        [
+            ellipsoid.semiminor_axis + 1000,
+            ellipsoid.semiminor_axis,
+            -ellipsoid.semiminor_axis + 1000,
+            -ellipsoid.semiminor_axis - 2000,
+        ],
+        z,
+        atol=atol,
+    )
+
+
+def test_cartesian_to_ellipsoidal_harmonic_equator():
+    "Test cartesian to ellipsoidal harmonic coordinates conversion on equator."
+    ellipsoid = WGS84
+    atol = 1e-8
+    x = [ellipsoid.semimajor_axis + 1000, 0, -ellipsoid.semimajor_axis + 400, 0]
+    y = [0, ellipsoid.semimajor_axis - 1000, 0, -ellipsoid.semimajor_axis - 250]
+    z = [0, 0, 0, 0]
+    longitude, latitude, height = ellipsoid.ellipsoidal_harmonic_to_geodetic(
+        ellipsoid.cartesian_to_ellipsoidal_harmonic((x, y, z))
+    )
+    npt.assert_allclose(longitude, [0, 90, 180, 270], atol=atol)
+    npt.assert_allclose(latitude, 0, atol=atol)
+    npt.assert_allclose(height, [1000, -1000, -400, 250], atol=atol)
+
+
+def test_cartesian_to_ellipsoidal_harmonic_pole():
+    "Test cartesian to ellipsoidal harmonic coordinates conversion on pole."
+    ellipsoid = WGS84
+    x = [0, 0, 0, 0]
+    y = [0, 0, 0, 0]
+    z = [
+        ellipsoid.semiminor_axis + 1000,
+        ellipsoid.semiminor_axis - 1000,
+        -ellipsoid.semiminor_axis + 400,
+        -ellipsoid.semiminor_axis - 250,
+    ]
+    longitude, latitude, height = ellipsoid.ellipsoidal_harmonic_to_geodetic(
+        ellipsoid.cartesian_to_ellipsoidal_harmonic((x, y, z))
+    )
+    npt.assert_allclose(longitude, 0, atol=1e-10)
+    npt.assert_allclose(latitude, [90, 90, -90, -90], atol=1e-10)
+    npt.assert_allclose(height, [1000, -1000, -400, 250], atol=0.001)
+
+
+def test_cartesian_to_ellipsoidal_harmonic_roundtrip():
+    "Check that doing a round trip on ellipsoidal harmonic to Cartesian works"
+    ellipsoid = WGS84
+    longitude, latitude, u = ellipsoid.geodetic_to_ellipsoidal_harmonic(
+        (
+            np.array([0, 90, 270, 260, 75, 280, 170]),
+            np.array([0, 90, -10, -90, 34, -80, 61]),
+            np.array([0, -120, 1234, -42241, 1000, -3003, 1287.22]),
+        )
+    )
+    x, y, z = ellipsoid.ellipsoidal_harmonic_to_cartesian((longitude, latitude, u))
+    result = ellipsoid.cartesian_to_ellipsoidal_harmonic((x, y, z))
+    npt.assert_allclose(longitude, result[0], atol=1e-10)
+    npt.assert_allclose(latitude, result[1], atol=1e-10)
+    npt.assert_allclose(u, result[2], atol=0.001)
+
+
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_geodetic_to_ellipsoidal_conversions(ellipsoid):
     """
