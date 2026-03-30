@@ -23,8 +23,8 @@ It can operate on single values:
     gamma = bl.WGS84.normal_gravity(coordinates=(0, 45, 500))
     print(f"{gamma:.2f} mGal")
 
-Or on numpy array-like data (including ``pandas.DataFrame`` and
-``xarray.DataArray``):
+Or on numpy array-like data (including :class:`pandas.DataFrame` and
+:class:`xarray.DataArray`):
 
 .. jupyter-execute::
 
@@ -34,25 +34,30 @@ Or on numpy array-like data (including ``pandas.DataFrame`` and
     gamma = bl.WGS84.normal_gravity(coordinates=(0, 45, height))
     print(gamma)
 
-The arrays can be multi-dimensional so we can use :mod:`verde` to generate a
-grid of normal gravity:
+The arrays can be multi-dimensional so we can use :mod:`bordado` to generate a
+grid of normal gravity (the non-dimensional coordinate is the geometric height,
+which is constant):
 
 .. jupyter-execute::
 
-    import verde as vd
+    import bordado as bd
 
-    coordinates = vd.grid_coordinates(
-        region=[0, 360, -90, 90], spacing=0.5, extra_coords=10_000,
+    coordinates = bd.grid_coordinates(
+        region=[0, 360, -90, 90], spacing=0.5, non_dimensional_coords=10_000,
     )
     gamma = bl.WGS84.normal_gravity(coordinates)
     print(gamma)
 
-Which can be put in a :class:`xarray.Dataset`:
+Which can be put in a :class:`xarray.DataArray` for convenience:
 
 .. jupyter-execute::
 
-    grid = vd.make_xarray_grid(
-        coordinates[:2], gamma, data_names="normal_gravity",
+    import xarray as xr
+    
+    grid = xr.DataArray(
+        gamma,
+        coords={"longitude": coordinates[0][0, :], "latitude": coordinates[1][:, 0]},
+        dims=("latitude", "longitude"),
     )
     grid
 
@@ -73,7 +78,7 @@ And plotted with :mod:`pygmt`:
     import pygmt
 
     fig = pygmt.Figure()
-    fig.grdimage(grid.normal_gravity, projection="W20c", cmap="viridis")
+    fig.grdimage(grid, projection="W20c", cmap="viridis")
     fig.basemap(frame=["af", "WEsn"])
     fig.colorbar(position="JCB+w10c", frame=["af", 'y+l"mGal"', 'x+l"WGS84"'])
     fig.show()
@@ -98,12 +103,14 @@ These calculations can be performed for any oblate ellipsoid (see
 
     gamma_mars = bl.Mars2009.normal_gravity(coordinates)
 
-    grid_mars = vd.make_xarray_grid(
-        coordinates[:2], gamma_mars, data_names="normal_gravity",
+    grid_mars = xr.DataArray(
+        gamma_mars,
+        coords={"longitude": coordinates[0][0, :], "latitude": coordinates[1][:, 0]},
+        dims=("latitude", "longitude"),
     )
 
     fig = pygmt.Figure()
-    fig.grdimage(grid_mars.normal_gravity, projection="W20c", cmap="lajolla")
+    fig.grdimage(grid_mars, projection="W20c", cmap="lajolla")
     fig.basemap(frame=["af", "WEsn"])
     fig.colorbar(position="JCB+w10c", frame=["af", 'y+l"mGal"', 'x+l"Mars"'])
     fig.show()
@@ -147,17 +154,19 @@ This is what the normal gravity of Moon looks like on a map:
 
 .. jupyter-execute::
 
-    coordinates = vd.grid_coordinates(
-        region=[0, 360, -90, 90], spacing=0.5, extra_coords=10_000,
+    coordinates = bd.grid_coordinates(
+        region=[0, 360, -90, 90], spacing=0.5, non_dimensional_coords=10_000,
     )
-    gamma = bl.Moon2015.normal_gravity(coordinates)
+    gamma_moon = bl.Moon2015.normal_gravity(coordinates)
 
-    grid = vd.make_xarray_grid(
-        coordinates[:2], gamma, data_names="normal_gravity",
+    grid_moon = xr.DataArray(
+        gamma_moon,
+        coords={"longitude": coordinates[0][0, :], "latitude": coordinates[1][:, 0]},
+        dims=("latitude", "longitude"),
     )
 
     fig = pygmt.Figure()
-    fig.grdimage(grid.normal_gravity, projection="W20c", cmap="lapaz")
+    fig.grdimage(grid_moon, projection="W20c", cmap="lapaz")
     fig.basemap(frame=["af", "WEsn"])
     fig.colorbar(position="JCB+w10c", frame=["af", 'y+l"mGal"', 'x+l"Moon"'])
     fig.show()
