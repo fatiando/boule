@@ -29,6 +29,7 @@ Documentation:
 - Update the documentation on coordinates to use new coordinate conversion methods. (`#263 <https://github.com/fatiando/boule/pull/263>`__)
 - Remove reference to “height” in ``boule.Ellipsoid.geocentric_radius`` which didn’t make sense since this functions calculates radii. (`#230 <https://github.com/fatiando/boule/pull/230>`__)
 - Add a link to the Fatiando a Terra Forum in the README. (`#224 <https://github.com/fatiando/boule/pull/224>`__)
+- Use `Bordado <https://www.fatiando.org/bordado>`__ instead of `Verde <https://www.fatiando.org/verde>`__ to make grid coordinates in the documentation. (`#271 <https://github.com/fatiando/boule/pull/271>`__)
 
 Maintenance:
 
