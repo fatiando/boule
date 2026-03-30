@@ -32,10 +32,10 @@ resembling a squashed ball <https://en.wikipedia.org/wiki/Boule_(bread)>`__
 
 Boule is designed for:
 
-* Storing and manipulating ellipsoid parameters for spherical harmonic analysis
-  and coordinate system conversions.
-* Calculating :term:`normal gravity` for generating gravity anomalies and
-  :term:`gravity disturbances <gravity disturbance>`.
+* Storing and manipulating :ref:`ellipsoid parameters <defining_ellipsoids>` for spherical harmonic analysis
+  and :ref:`coordinate system conversions <coordinates>`.
+* Calculating :ref:`normal gravity <normal_gravity>` for generating gravity anomalies and
+  :ref:`gravity disturbances <gravity_disturbance>`.
 
 ----
 

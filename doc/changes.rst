@@ -3,61 +3,104 @@
 Changelog
 =========
 
+Version 0.6.0
+-------------
+
+Released on: 2026/03/30
+
+DOI: https://doi.org/10.5281/zenodo.13975491
+
+Breaking changes:
+
+- Make all methods that rely on coordinates take a single ``coordinates`` argument as input. This includes all gravity and coordinate-conversion methods. The argument is a tuple of 3 values (or arrays) representing the 3 dimensions of the given coordinate system. This standardizes the API and simplifies the documentation, making Boule closer to the other Fatiando a Terra libraries. It also makes it possible to allow passing coordinates in any coordinate system (see `#265 <https://github.com/fatiando/boule/pull/265>`__). (`#233 <https://github.com/fatiando/boule/pull/233>`__)
+- Replace the ``geodetic`` argument in ``boule.Ellipsoid.geocentric_radius`` with the new ``coordinate_system`` argument. (`#231 <https://github.com/fatiando/boule/pull/231>`__)
+- Make all keyword arguments in our methods and functions keyword-only. Passing keyword arguments as positional (without the argument name) will now cause errors. This is good because the previous behavior can lead to bugs. For example, ``WGS84.normal_gravity(coordinates, True)`` will now have to be ``WGS84.normal_gravity(coordinates, si_units=True)``. (`#270 <https://github.com/fatiando/boule/pull/270>`__)
+
+New features:
+
+- Add a ``coordinate_system`` argument to gravity calculations. The gravity, gravitation, and centrifugal calculations in ``Ellipsoid`` can now receive inputs in any of the 4 coordinate systems that we support: geodetic (default), spherical, Cartesian, and ellipsoidal harmonic. The methods automatically convert to the ellipsoidal harmonic system since this is where the math is done. (`#265 <https://github.com/fatiando/boule/pull/265>`__)
+- Add coordinate conversion to and from spherical and ellipsoidal harmonic systems. The conversion goes through the geodetic system, so there can be a loss of accuracy when doing round-trip conversions. (`#260 <https://github.com/fatiando/boule/pull/260>`__)
+- Add coordinate conversion to and from geocentric Cartesian and ellipsoidal harmonic systems. Going to Cartesian uses an analytical expression from the Physical Geodesy book. Going back to ellipsoidal harmonic is done by passing through the geodetic system. (`#259 <https://github.com/fatiando/boule/pull/259>`__)
+- Add coordinate conversion to and from geodetic and geocentric Cartesian systems. Uses the method of `Zhu (1993) <https://doi.org/10.2514/3.21016>`__ for conversion from Cartesian to geodetic. (`#258 <https://github.com/fatiando/boule/pull/258>`__)
+- Add coordinate conversion to and from spherical and geocentric Cartesian systems. (`#234 <https://github.com/fatiando/boule/pull/234>`__)
+
+Documentation:
+
+- Update the documentation on coordinates to use new coordinate conversion methods. (`#263 <https://github.com/fatiando/boule/pull/263>`__)
+- Remove reference to “height” in ``boule.Ellipsoid.geocentric_radius`` which didn’t make sense since this functions calculates radii. (`#230 <https://github.com/fatiando/boule/pull/230>`__)
+- Add a link to the Fatiando a Terra Forum in the README. (`#224 <https://github.com/fatiando/boule/pull/224>`__)
+- Use `Bordado <https://www.fatiando.org/bordado>`__ instead of `Verde <https://www.fatiando.org/verde>`__ to make grid coordinates in the documentation. (`#271 <https://github.com/fatiando/boule/pull/271>`__)
+
+Maintenance:
+
+- Drop support for Python 3.8 and 3.9, add support for 3.14. (`#249 <https://github.com/fatiando/boule/pull/249>`__)
+- Get test coverage back to 100%. (`#253 <https://github.com/fatiando/boule/pull/253>`__)
+- Stop relying on Codecov for measuring and tracking test coverage changes in pull requests and use GitHub Actions job instead. (`#251 <https://github.com/fatiando/boule/pull/251>`__)
+- Run a single job to check style and format in GitHub Actions to save compute resources. (`#252 <https://github.com/fatiando/boule/pull/252>`__)
+- Use Ruff for formatting and linting instead of black, flake8, isort. (`#250 <https://github.com/fatiando/boule/pull/250>`__)
+- Move to a ``src`` layout structure, with the library code in ``src/boule`` and tests in ``test``. This means that tests aren’t shipped with the source distributions anymore to reduce the upload size. (`#248 <https://github.com/fatiando/boule/pull/248>`__)
+- Fix upload of coverage reports to Codecov. (`#235 <https://github.com/fatiando/boule/pull/235>`__)
+
+This release contains contributions from:
+
+- Santiago Soler
+- Leonardo Uieda
+
 Version 0.5.0
 -------------
 
 Released on: 2024/10/22
 
-doi: https://doi.org/10.5281/zenodo.13975491
+DOI: https://doi.org/10.5281/zenodo.13975491
 
 Breaking changes:
 
--  Drop support for Python 3.7 (`#188 <https://github.com/fatiando/boule/pull/188>`__)
+* Drop support for Python 3.7 (`#188 <https://github.com/fatiando/boule/pull/188>`__)
 
 New features:
 
--  Add ``geocentric_radius`` to ``TriaxialEllipsoid`` (`#146 <https://github.com/fatiando/boule/pull/146>`__)
--  Add a ``volume`` property for the Sphere (`#152 <https://github.com/fatiando/boule/pull/152>`__)
--  Add ``mass``, ``mean_density``, and ``volume_equivalent_radius`` properties to classes (`#173 <https://github.com/fatiando/boule/pull/173>`__)
--  Add true mean radius for ``Sphere``, ``Ellipsoid`` and ``TriaxialEllipsoid`` (`#177 <https://github.com/fatiando/boule/pull/177>`__)
--  Add ``area`` and ``area_equivalent_radius`` to all three ellipsoid classes (`#178 <https://github.com/fatiando/boule/pull/178>`__)
--  Add new planetary ellipsoids and new naming scheme (`#180 <https://github.com/fatiando/boule/pull/180>`__)
--  Add attributes for the normal potential to ``Sphere`` and ``Ellipsoid`` (`#184 <https://github.com/fatiando/boule/pull/184>`__)
--  Add ``normal_gravitational_potential``, ``normal_gravity_potential``, and ``centrifugal_potential`` methods to ``Ellipsoid`` and ``Sphere`` classes (`#187 <https://github.com/fatiando/boule/pull/187>`__)
--  Add the ``semimedium_axis`` and ``semimajor_axis_longitude`` to the Sphere and Ellipsoid classes for compatibility with the ``TriaxialEllipsoid`` (`#192 <https://github.com/fatiando/boule/pull/192>`__)
--  Add ``__str__`` method to Ellipsoid classes (`#213 <https://github.com/fatiando/boule/pull/213>`__)
+* Add ``geocentric_radius`` to ``TriaxialEllipsoid`` (`#146 <https://github.com/fatiando/boule/pull/146>`__)
+* Add a ``volume`` property for the Sphere (`#152 <https://github.com/fatiando/boule/pull/152>`__)
+* Add ``mass``, ``mean_density``, and ``volume_equivalent_radius`` properties to classes (`#173 <https://github.com/fatiando/boule/pull/173>`__)
+* Add true mean radius for ``Sphere``, ``Ellipsoid`` and ``TriaxialEllipsoid`` (`#177 <https://github.com/fatiando/boule/pull/177>`__)
+* Add ``area`` and ``area_equivalent_radius`` to all three ellipsoid classes (`#178 <https://github.com/fatiando/boule/pull/178>`__)
+* Add new planetary ellipsoids and new naming scheme (`#180 <https://github.com/fatiando/boule/pull/180>`__)
+* Add attributes for the normal potential to ``Sphere`` and ``Ellipsoid`` (`#184 <https://github.com/fatiando/boule/pull/184>`__)
+* Add ``normal_gravitational_potential``, ``normal_gravity_potential``, and ``centrifugal_potential`` methods to ``Ellipsoid`` and ``Sphere`` classes (`#187 <https://github.com/fatiando/boule/pull/187>`__)
+* Add the ``semimedium_axis`` and ``semimajor_axis_longitude`` to the Sphere and Ellipsoid classes for compatibility with the ``TriaxialEllipsoid`` (`#192 <https://github.com/fatiando/boule/pull/192>`__)
+* Add ``__str__`` method to Ellipsoid classes (`#213 <https://github.com/fatiando/boule/pull/213>`__)
 
 Maintenance:
 
--  Extend support for Python 3.11 (`#147 <https://github.com/fatiando/boule/pull/147>`__)
--  Add Blazej Bucha to ``AUTHORS.md`` (`#148 <https://github.com/fatiando/boule/pull/148>`__)
--  Update Leo’s affiliation from Liverpool to São Paulo (`#149 <https://github.com/fatiando/boule/pull/149>`__)
--  Update Black format to version 24.2 (`#150 <https://github.com/fatiando/boule/pull/150>`__)
--  Use Burocrata to check/add license notices (`#153 <https://github.com/fatiando/boule/pull/153>`__)
--  Use Dependabot to manage updates to GitHub Actions (`#154 <https://github.com/fatiando/boule/pull/154>`__)
--  Use Trusted Publisher to deploy to PyPI (`#160 <https://github.com/fatiando/boule/pull/160>`__)
--  Move package configuration to ``pyproject.toml`` (`#171 <https://github.com/fatiando/boule/pull/171>`__)
--  Add link to Leo’s ORCID (`#190 <https://github.com/fatiando/boule/pull/190>`__)
--  Extend support to Python 3.12 (`#189 <https://github.com/fatiando/boule/pull/189>`__)
--  Run tests with oldest dependencies on x86 macos (`#200 <https://github.com/fatiando/boule/pull/200>`__)
--  Replace ``_version_generated.py`` for ``_version.py`` (`#199 <https://github.com/fatiando/boule/pull/199>`__)
--  Move push to codecov to its own job in Actions (`#203 <https://github.com/fatiando/boule/pull/203>`__)
--  Update how output variables are stored in Actions (`#206 <https://github.com/fatiando/boule/pull/206>`__)
--  Replace ``build`` for ``python-build`` in environment.yml (`#207 <https://github.com/fatiando/boule/pull/207>`__)
+* Extend support for Python 3.11 (`#147 <https://github.com/fatiando/boule/pull/147>`__)
+* Add Blazej Bucha to ``AUTHORS.md`` (`#148 <https://github.com/fatiando/boule/pull/148>`__)
+* Update Leo’s affiliation from Liverpool to São Paulo (`#149 <https://github.com/fatiando/boule/pull/149>`__)
+* Update Black format to version 24.2 (`#150 <https://github.com/fatiando/boule/pull/150>`__)
+* Use Burocrata to check/add license notices (`#153 <https://github.com/fatiando/boule/pull/153>`__)
+* Use Dependabot to manage updates to GitHub Actions (`#154 <https://github.com/fatiando/boule/pull/154>`__)
+* Use Trusted Publisher to deploy to PyPI (`#160 <https://github.com/fatiando/boule/pull/160>`__)
+* Move package configuration to ``pyproject.toml`` (`#171 <https://github.com/fatiando/boule/pull/171>`__)
+* Add link to Leo’s ORCID (`#190 <https://github.com/fatiando/boule/pull/190>`__)
+* Extend support to Python 3.12 (`#189 <https://github.com/fatiando/boule/pull/189>`__)
+* Run tests with oldest dependencies on x86 macos (`#200 <https://github.com/fatiando/boule/pull/200>`__)
+* Replace ``_version_generated.py`` for ``_version.py`` (`#199 <https://github.com/fatiando/boule/pull/199>`__)
+* Move push to codecov to its own job in Actions (`#203 <https://github.com/fatiando/boule/pull/203>`__)
+* Update how output variables are stored in Actions (`#206 <https://github.com/fatiando/boule/pull/206>`__)
+* Replace ``build`` for ``python-build`` in environment.yml (`#207 <https://github.com/fatiando/boule/pull/207>`__)
 
 Documentation:
 
--  Update the version of Sphinx and its plugins (`#170 <https://github.com/fatiando/boule/pull/170>`__)
--  Fix typo in installation instructions (`#172 <https://github.com/fatiando/boule/pull/172>`__)
--  Update coordinate conversions web documentation (`#212 <https://github.com/fatiando/boule/pull/212>`__)
--  Replace sphinx napoleon for numpydoc (`#195 <https://github.com/fatiando/boule/pull/195>`__)
+* Update the version of Sphinx and its plugins (`#170 <https://github.com/fatiando/boule/pull/170>`__)
+* Fix typo in installation instructions (`#172 <https://github.com/fatiando/boule/pull/172>`__)
+* Update coordinate conversions web documentation (`#212 <https://github.com/fatiando/boule/pull/212>`__)
+* Replace sphinx napoleon for numpydoc (`#195 <https://github.com/fatiando/boule/pull/195>`__)
 
 This release contains contributions from:
 
--  Leonardo Uieda
--  Mark Wieczorek
--  Santiago Soler
--  Blazej Bucha
+* Mark Wieczorek
+* Leonardo Uieda
+* Santiago Soler
+* Blazej Bucha
 
 
 Version 0.4.1
@@ -65,7 +108,7 @@ Version 0.4.1
 
 Released on: 2022/10/27
 
-doi: https://doi.org/10.5281/zenodo.7258175
+DOI: https://doi.org/10.5281/zenodo.7258175
 
 Documentation:
 
@@ -90,7 +133,7 @@ Version 0.4.0
 
 Released on: 2022/08/09
 
-doi: https://doi.org/10.5281/zenodo.6779998
+DOI: https://doi.org/10.5281/zenodo.6779998
 
 .. warning::
 
@@ -149,7 +192,7 @@ Version 0.3.1
 
 Released on: 2021/10/19
 
-doi:`10.5281/zenodo.5577885 <https://doi.org/10.5281/zenodo.5577885>`__
+DOI: https://doi.org/10.5281/zenodo.5577885
 
 Bug fix:
 
@@ -164,7 +207,7 @@ Version 0.3.0
 
 Released on: 2021/10/18
 
-doi:`10.5281/zenodo.5575827 <https://doi.org/10.5281/zenodo.5575827>`__
+DOI: https://doi.org/10.5281/zenodo.5575827
 
 Highlights:
 
@@ -218,9 +261,7 @@ Version 0.2.0
 
 Released on: 2020/07/10
 
-.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3939204.svg
-    :alt: Digital Object Identifier
-    :target: https://doi.org/10.5281/zenodo.3939204
+DOI: https://doi.org/10.5281/zenodo.3939204
 
 * Add the ``Ellipsoid.geocentric_radius`` method to calculate the distance from the center of the ellipsoid to its surface as a function of latitude (geodetic or geocentric). (`#37 <https://github.com/fatiando/boule/pull/37>`__)
 * Add the ``Ellipsoid.prime_vertical_radius`` method for computing the prime vertical radius (usually represented by N in equations) as a function of geodetic latitude. (`#35 <https://github.com/fatiando/boule/pull/35>`__)
@@ -246,9 +287,7 @@ Version 0.1.0
 
 Released on: 2020/01/10
 
-.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3603997.svg
-    :alt: Digital Object Identifier
-    :target: https://doi.org/10.5281/zenodo.3603997
+DOI: https://doi.org/10.5281/zenodo.3603997
 
 First release of *Boule* including basic functionality:
 
@@ -264,9 +303,7 @@ Version 0.0.1
 
 Released on: 2019/11/06
 
-.. image:: https://zenodo.org/badge/DOI/10.5281/zenodo.3530750.svg
-    :alt: Digital Object Identifier
-    :target: https://doi.org/10.5281/zenodo.3530750
+DOI: https://doi.org/10.5281/zenodo.3530750
 
 This release is a placeholder that serves as a marker for the start of this
 project. It is used to register the project on PyPI and test the continuous
