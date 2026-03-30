@@ -145,7 +145,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
         with:
           # The GitHub token is preserved by default but this job doesn't need
           # to be able to push to GitHub.
