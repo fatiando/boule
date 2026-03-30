@@ -6,7 +6,7 @@ sphinx-copybutton==0.5.*
 sphinx-design==0.5.*
 jupyter-sphinx==0.5.*
 ensaio
-verde
+bordado
 pandas
 matplotlib
 xarray
