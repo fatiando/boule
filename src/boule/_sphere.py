@@ -339,6 +339,9 @@ class Sphere:
         return self.geocentric_grav_const / self.radius
 
     def __str__(self):
+        """
+        Define a string representation of the sphere.
+        """
         s = self.name + " - " + self.long_name + "\n"
         s += "Spheroid:\n"
         s += f"  • Radius: {self.radius} m\n"
@@ -360,7 +363,7 @@ class Sphere:
             )
         return s
 
-    def normal_gravity(self, coordinates, si_units=False):
+    def normal_gravity(self, coordinates, *, si_units=False):
         r"""
         Calculate the normal gravity of the sphere.
 
@@ -508,7 +511,7 @@ class Sphere:
 
         return gamma
 
-    def normal_gravitation(self, coordinates, si_units=False):
+    def normal_gravitation(self, coordinates, *, si_units=False):
         r"""
         Calculate the normal gravitation of the sphere.
 
