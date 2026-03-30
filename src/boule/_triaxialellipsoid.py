@@ -366,6 +366,9 @@ class TriaxialEllipsoid:
         return (self.semimajor_axis - self.semiminor_axis) / self.semimajor_axis
 
     def __str__(self):
+        """
+        Define a string representation of the ellipsoid.
+        """
         s = self.name + " - " + self.long_name + "\n"
         s += "Triaxial ellipsoid:\n"
         s += f"  • Semimajor axis: {self.semimajor_axis} m\n"

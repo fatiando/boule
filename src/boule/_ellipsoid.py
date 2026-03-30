@@ -485,6 +485,9 @@ class Ellipsoid:
         return result
 
     def __str__(self):
+        """
+        Define a string representation of this class.
+        """
         s = self.name + " - " + self.long_name + "\n"
         s += "Oblate ellipsoid:\n"
         s += f"  • Semimajor axis: {self.semimajor_axis} m\n"
@@ -507,10 +510,7 @@ class Ellipsoid:
             )
         return s
 
-    # Coordinates and conversions
-    # ##################################################################################
-
-    def geocentric_radius(self, latitude, coordinate_system="geodetic"):
+    def geocentric_radius(self, latitude, *, coordinate_system="geodetic"):
         r"""
         Radial distance from the center of the ellipsoid to its surface.
 
@@ -636,6 +636,9 @@ class Ellipsoid:
 
         """
         return self.semimajor_axis / np.sqrt(1 - self.first_eccentricity**2 * sinlat**2)
+
+    # Coordinate conversions
+    # ##################################################################################
 
     def geodetic_to_spherical(self, coordinates):
         """
@@ -1160,7 +1163,9 @@ class Ellipsoid:
     # Gravity
     # ##################################################################################
 
-    def normal_gravity(self, coordinates, coordinate_system="geodetic", si_units=False):
+    def normal_gravity(
+        self, coordinates, *, coordinate_system="geodetic", si_units=False
+    ):
         r"""
         Calculate the normal gravity of the ellipsoid.
 
@@ -1270,7 +1275,9 @@ class Ellipsoid:
 
         return gamma
 
-    def normal_gravitational_potential(self, coordinates, coordinate_system="geodetic"):
+    def normal_gravitational_potential(
+        self, coordinates, *, coordinate_system="geodetic"
+    ):
         r"""
         Calculate the normal gravitational potential of the ellipsoid.
 
@@ -1365,7 +1372,7 @@ class Ellipsoid:
 
         return big_v
 
-    def normal_gravity_potential(self, coordinates, coordinate_system="geodetic"):
+    def normal_gravity_potential(self, coordinates, *, coordinate_system="geodetic"):
         r"""
         Calculate the normal gravity potential of the ellipsoid.
 
@@ -1469,7 +1476,7 @@ class Ellipsoid:
 
         return big_u
 
-    def centrifugal_potential(self, coordinates, coordinate_system="geodetic"):
+    def centrifugal_potential(self, coordinates, *, coordinate_system="geodetic"):
         r"""
         Centrifugal potential of the rotating ellipsoid.
 
@@ -1560,6 +1567,7 @@ class Ellipsoid:
 
 def check_coordinate_system(
     coordinate_system,
+    *,
     valid=("geodetic", "spherical", "cartesian", "ellipsoidal harmonic"),
 ):
     """
