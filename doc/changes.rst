@@ -8,7 +8,7 @@ Version 0.6.0
 
 Released on: 2026/03/30
 
-DOI: https://doi.org/10.5281/zenodo.13975491
+DOI: https://doi.org/10.5281/zenodo.19333956
 
 Breaking changes:
 
