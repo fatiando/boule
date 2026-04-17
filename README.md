@@ -1,13 +1,14 @@
-<img src="https://github.com/fatiando/boule/raw/main/doc/_static/readme-banner.png" alt="Boule">
+<h1><img src="https://github.com/fatiando/boule/raw/main/doc/_static/readme-banner.png" alt="Boule"></h1>
 
-<h2 align="center">Reference ellipsoids for geodesy and geophysics</h2>
+<p align="center"><strong>Reference ellipsoids for geodesy and geophysics</strong></p>
 
 <p align="center">
 <a href="https://www.fatiando.org/boule"><strong>Documentation</strong> (latest)</a> •
-<a href="https://www.fatiando.org/boule/dev"><strong>Documentation</strong> (main branch)</a> •
-<a href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md"><strong>Contributing</strong></a> •
+<a href="https://www.fatiando.org/boule/dev"><strong>Documentation</strong> (development)</a> •
+<a href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md"><strong>Contribute</strong></a> •
 <a href="https://www.fatiando.org/contact/"><strong>Contact</strong></a> •
-<a href="https://github.com/orgs/fatiando/discussions"><strong>Ask a question</strong></a>
+<a href="https://github.com/orgs/fatiando/discussions"><strong>Ask a question</strong></a> •
+<a href="https://www.fatiando.org/boule/latest/citing.html"><strong>Cite</strong></a>
 </p>
 
 <p align="center">
