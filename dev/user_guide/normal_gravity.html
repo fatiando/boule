@@ -200,6 +200,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
@@ -456,8 +457,8 @@ It can operate on single values:</p>
 </div>
 </div>
 </div>
-<p>Or on numpy array-like data (including <code class="docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code> and
-<code class="docutils literal notranslate"><span class="pre">xarray.DataArray</span></code>):</p>
+<p>Or on numpy array-like data (including <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.html#pandas.DataFrame" title="(in pandas v3.0.2)"><code class="xref py py-class docutils literal notranslate"><span class="pre">pandas.DataFrame</span></code></a> and
+<a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.4.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a>):</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -476,14 +477,15 @@ It can operate on single values:</p>
 </div>
 </div>
 </div>
-<p>The arrays can be multi-dimensional so we can use <a class="reference external" href="https://www.fatiando.org/verde/latest/api/index.html#module-verde" title="(in Verde vv1.9.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">verde</span></code></a> to generate a
-grid of normal gravity:</p>
+<p>The arrays can be multi-dimensional so we can use <a class="reference external" href="https://www.fatiando.org/bordado/latest/api/index.html#module-bordado" title="(in Bordado vv0.4.0)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">bordado</span></code></a> to generate a
+grid of normal gravity (the non-dimensional coordinate is the geometric height,
+which is constant):</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">verde</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">vd</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">bordado</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bd</span>
 
-<span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
-    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">spacing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">extra_coords</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+<span class="n">coordinates</span> <span class="o">=</span> <span class="n">bd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">spacing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">non_dimensional_coords</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
 <span class="p">)</span>
 <span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">WGS84</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">gamma</span><span class="p">)</span>
@@ -508,11 +510,15 @@ grid of normal gravity:</p>
 </div>
 </div>
 </div>
-<p>Which can be put in a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.Dataset.html#xarray.Dataset" title="(in xarray v2026.2.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.Dataset</span></code></a>:</p>
+<p>Which can be put in a <a class="reference external" href="https://docs.xarray.dev/en/stable/generated/xarray.DataArray.html#xarray.DataArray" title="(in xarray v2026.4.0)"><code class="xref py py-class docutils literal notranslate"><span class="pre">xarray.DataArray</span></code></a> for convenience:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
-    <span class="n">coordinates</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravity&quot;</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">xarray</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">xr</span>
+
+<span class="n">grid</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+    <span class="n">gamma</span><span class="p">,</span>
+    <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]},</span>
+    <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 <span class="n">grid</span>
 </pre></div>
@@ -1061,13 +1067,8 @@ dl.xr-attrs {
   filter: drop-shadow(1px 1px 5px var(--xr-font-color2));
   stroke-width: 0.8px;
 }
-</style><pre class='xr-text-repr-fallback'>&lt;xarray.Dataset&gt; Size: 2MB
-Dimensions:         (northing: 361, easting: 721)
-Coordinates:
-  * northing        (northing) float64 3kB -90.0 -89.5 -89.0 ... 89.0 89.5 90.0
-  * easting         (easting) float64 6kB 0.0 0.5 1.0 1.5 ... 359.0 359.5 360.0
-Data variables:
-    normal_gravity  (northing, easting) float64 2MB 9.801e+05 ... 9.801e+05</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.Dataset</div></div><ul class='xr-sections'><li class='xr-section-item'><input id='section-a45f345b-6b67-4167-a36b-60e21d9adfc9' class='xr-section-summary-in' type='checkbox' disabled /><label for='section-a45f345b-6b67-4167-a36b-60e21d9adfc9' class='xr-section-summary'>Dimensions:</label><div class='xr-section-inline-details'><ul class='xr-dim-list'><li><span class='xr-has-index'>northing</span>: 361</li><li><span class='xr-has-index'>easting</span>: 721</li></ul></div></li><li class='xr-section-item'><input id='section-b4b68082-0fc9-44db-9ccd-1361e0d0d594' class='xr-section-summary-in' type='checkbox' checked /><label for='section-b4b68082-0fc9-44db-9ccd-1361e0d0d594' class='xr-section-summary' title='Expand/collapse section'>Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>northing</span></div><div class='xr-var-dims'>(northing)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.5 -89.0 ... 89.5 90.0</div><input id='attrs-9b77b86a-7501-481d-bd3d-ccc51683e679' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-9b77b86a-7501-481d-bd3d-ccc51683e679' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-f43b6d93-d14a-411e-931c-a28648168f44' class='xr-var-data-in' type='checkbox'><label for='data-f43b6d93-d14a-411e-931c-a28648168f44' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-90. , -89.5, -89. , ...,  89. ,  89.5,  90. ], shape=(361,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>easting</span></div><div class='xr-var-dims'>(easting)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0 0.5 1.0 ... 359.0 359.5 360.0</div><input id='attrs-a5849c7e-c06b-4b04-9186-e5a593c13ca5' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-a5849c7e-c06b-4b04-9186-e5a593c13ca5' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-94a405ae-34e7-44ee-a379-d7b39f774591' class='xr-var-data-in' type='checkbox'><label for='data-94a405ae-34e7-44ee-a379-d7b39f774591' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0. ,   0.5,   1. , ..., 359. , 359.5, 360. ], shape=(721,))</pre></div></li></ul></div></li><li class='xr-section-item'><input id='section-a077aa09-15c2-4fb7-b38c-71afc85b0058' class='xr-section-summary-in' type='checkbox' checked /><label for='section-a077aa09-15c2-4fb7-b38c-71afc85b0058' class='xr-section-summary' title='Expand/collapse section'>Data variables: <span>(1)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span>normal_gravity</span></div><div class='xr-var-dims'>(northing, easting)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>9.801e+05 9.801e+05 ... 9.801e+05</div><input id='attrs-91aae9bd-909a-4248-97fb-3836b401b197' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-91aae9bd-909a-4248-97fb-3836b401b197' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-42887c05-1f35-4fc9-84d5-663d55dcfaad' class='xr-var-data-in' type='checkbox'><label for='data-42887c05-1f35-4fc9-84d5-663d55dcfaad' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
+</style><pre class='xr-text-repr-fallback'>&lt;xarray.DataArray (latitude: 361, longitude: 721)&gt; Size: 2MB
+array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
         980142.33509235, 980142.33509235, 980142.33509235],
        [980141.93808117, 980141.93808117, 980141.93808117, ...,
         980141.93808117, 980141.93808117, 980141.93808117],
@@ -1080,7 +1081,23 @@ Data variables:
         980141.93808117, 980141.93808117, 980141.93808117],
        [980142.33509235, 980142.33509235, 980142.33509235, ...,
         980142.33509235, 980142.33509235, 980142.33509235]],
-      shape=(361, 721))</pre></div></li></ul></div></li></ul></div></div></div></div>
+      shape=(361, 721))
+Coordinates:
+  * latitude   (latitude) float64 3kB -90.0 -89.5 -89.0 -88.5 ... 89.0 89.5 90.0
+  * longitude  (longitude) float64 6kB 0.0 0.5 1.0 1.5 ... 359.0 359.5 360.0</pre><div class='xr-wrap' style='display:none'><div class='xr-header'><div class='xr-obj-type'>xarray.DataArray</div><div class='xr-obj-name'></div><ul class='xr-dim-list'><li><span class='xr-has-index'>latitude</span>: 361</li><li><span class='xr-has-index'>longitude</span>: 721</li></ul></div><ul class='xr-sections'><li class='xr-section-item'><div class='xr-array-wrap'><input id='section-7abf9226-de86-44cf-a6d3-73e8a943fafa' class='xr-array-in' type='checkbox' checked><label for='section-7abf9226-de86-44cf-a6d3-73e8a943fafa' title='Show/hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-array-preview xr-preview'><span>9.801e+05 9.801e+05 9.801e+05 ... 9.801e+05 9.801e+05 9.801e+05</span></div><div class='xr-array-data'><pre>array([[980142.33509235, 980142.33509235, 980142.33509235, ...,
+        980142.33509235, 980142.33509235, 980142.33509235],
+       [980141.93808117, 980141.93808117, 980141.93808117, ...,
+        980141.93808117, 980141.93808117, 980141.93808117],
+       [980140.7471697 , 980140.7471697 , 980140.7471697 , ...,
+        980140.7471697 , 980140.7471697 , 980140.7471697 ],
+       ...,
+       [980140.7471697 , 980140.7471697 , 980140.7471697 , ...,
+        980140.7471697 , 980140.7471697 , 980140.7471697 ],
+       [980141.93808117, 980141.93808117, 980141.93808117, ...,
+        980141.93808117, 980141.93808117, 980141.93808117],
+       [980142.33509235, 980142.33509235, 980142.33509235, ...,
+        980142.33509235, 980142.33509235, 980142.33509235]],
+      shape=(361, 721))</pre></div></div></li><li class='xr-section-item'><input id='section-38ae7a4c-cdb2-41ad-96d8-7863781a6964' class='xr-section-summary-in' type='checkbox' checked /><label for='section-38ae7a4c-cdb2-41ad-96d8-7863781a6964' class='xr-section-summary' title='Expand/collapse section'>Coordinates: <span>(2)</span></label><div class='xr-section-inline-details'></div><div class='xr-section-details'><ul class='xr-var-list'><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>latitude</span></div><div class='xr-var-dims'>(latitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>-90.0 -89.5 -89.0 ... 89.5 90.0</div><input id='attrs-5933ec51-1f9b-4dd8-b7ee-5efbeeaff54f' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-5933ec51-1f9b-4dd8-b7ee-5efbeeaff54f' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-6b3e4b75-31cc-49a4-98ad-03e601d14113' class='xr-var-data-in' type='checkbox'><label for='data-6b3e4b75-31cc-49a4-98ad-03e601d14113' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([-90. , -89.5, -89. , ...,  89. ,  89.5,  90. ], shape=(361,))</pre></div></li><li class='xr-var-item'><div class='xr-var-name'><span class='xr-has-index'>longitude</span></div><div class='xr-var-dims'>(longitude)</div><div class='xr-var-dtype'>float64</div><div class='xr-var-preview xr-preview'>0.0 0.5 1.0 ... 359.0 359.5 360.0</div><input id='attrs-241913f0-0e89-49e6-9da7-0bd74c261d99' class='xr-var-attrs-in' type='checkbox' disabled><label for='attrs-241913f0-0e89-49e6-9da7-0bd74c261d99' title='Show/Hide attributes'><svg class='icon xr-icon-file-text2'><use xlink:href='#icon-file-text2'></use></svg></label><input id='data-8404238c-8100-4fb2-af37-f19dbe0553c7' class='xr-var-data-in' type='checkbox'><label for='data-8404238c-8100-4fb2-af37-f19dbe0553c7' title='Show/Hide data repr'><svg class='icon xr-icon-database'><use xlink:href='#icon-database'></use></svg></label><div class='xr-var-attrs'><dl class='xr-attrs'></dl></div><div class='xr-var-data'><pre>array([  0. ,   0.5,   1. , ..., 359. , 359.5, 360. ], shape=(721,))</pre></div></li></ul></div></li></ul></div></div></div></div>
 </div>
 <p>And plotted with <code class="xref py py-mod docutils literal notranslate"><span class="pre">pygmt</span></code>:</p>
 <div class="jupyter_cell docutils container">
@@ -1092,7 +1109,7 @@ Data variables:
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">pygmt</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;viridis&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;af&quot;</span><span class="p">,</span> <span class="s2">&quot;WEsn&quot;</span><span class="p">])</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;JCB+w10c&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;af&quot;</span><span class="p">,</span> <span class="s1">&#39;y+l&quot;mGal&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;x+l&quot;WGS84&quot;&#39;</span><span class="p">])</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1120,12 +1137,14 @@ particularly useful for geophysics.</p>
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">gamma_mars</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Mars2009</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
 
-<span class="n">grid_mars</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
-    <span class="n">coordinates</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">gamma_mars</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravity&quot;</span><span class="p">,</span>
+<span class="n">grid_mars</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+    <span class="n">gamma_mars</span><span class="p">,</span>
+    <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]},</span>
+    <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid_mars</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;lajolla&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid_mars</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;lajolla&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;af&quot;</span><span class="p">,</span> <span class="s2">&quot;WEsn&quot;</span><span class="p">])</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;JCB+w10c&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;af&quot;</span><span class="p">,</span> <span class="s1">&#39;y+l&quot;mGal&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;x+l&quot;Mars&quot;&#39;</span><span class="p">])</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1179,17 +1198,19 @@ of a geodetic latitude (for spheres they are actually the same thing).</p>
 <p>This is what the normal gravity of Moon looks like on a map:</p>
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
-<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
-    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">spacing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">extra_coords</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">coordinates</span> <span class="o">=</span> <span class="n">bd</span><span class="o">.</span><span class="n">grid_coordinates</span><span class="p">(</span>
+    <span class="n">region</span><span class="o">=</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">360</span><span class="p">,</span> <span class="o">-</span><span class="mi">90</span><span class="p">,</span> <span class="mi">90</span><span class="p">],</span> <span class="n">spacing</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">non_dimensional_coords</span><span class="o">=</span><span class="mi">10_000</span><span class="p">,</span>
 <span class="p">)</span>
-<span class="n">gamma</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Moon2015</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
+<span class="n">gamma_moon</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Moon2015</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">(</span><span class="n">coordinates</span><span class="p">)</span>
 
-<span class="n">grid</span> <span class="o">=</span> <span class="n">vd</span><span class="o">.</span><span class="n">make_xarray_grid</span><span class="p">(</span>
-    <span class="n">coordinates</span><span class="p">[:</span><span class="mi">2</span><span class="p">],</span> <span class="n">gamma</span><span class="p">,</span> <span class="n">data_names</span><span class="o">=</span><span class="s2">&quot;normal_gravity&quot;</span><span class="p">,</span>
+<span class="n">grid_moon</span> <span class="o">=</span> <span class="n">xr</span><span class="o">.</span><span class="n">DataArray</span><span class="p">(</span>
+    <span class="n">gamma_moon</span><span class="p">,</span>
+    <span class="n">coords</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;longitude&quot;</span><span class="p">:</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">0</span><span class="p">,</span> <span class="p">:],</span> <span class="s2">&quot;latitude&quot;</span><span class="p">:</span> <span class="n">coordinates</span><span class="p">[</span><span class="mi">1</span><span class="p">][:,</span> <span class="mi">0</span><span class="p">]},</span>
+    <span class="n">dims</span><span class="o">=</span><span class="p">(</span><span class="s2">&quot;latitude&quot;</span><span class="p">,</span> <span class="s2">&quot;longitude&quot;</span><span class="p">),</span>
 <span class="p">)</span>
 
 <span class="n">fig</span> <span class="o">=</span> <span class="n">pygmt</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
-<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;lapaz&quot;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">grdimage</span><span class="p">(</span><span class="n">grid_moon</span><span class="p">,</span> <span class="n">projection</span><span class="o">=</span><span class="s2">&quot;W20c&quot;</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s2">&quot;lapaz&quot;</span><span class="p">)</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">basemap</span><span class="p">(</span><span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;af&quot;</span><span class="p">,</span> <span class="s2">&quot;WEsn&quot;</span><span class="p">])</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">colorbar</span><span class="p">(</span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;JCB+w10c&quot;</span><span class="p">,</span> <span class="n">frame</span><span class="o">=</span><span class="p">[</span><span class="s2">&quot;af&quot;</span><span class="p">,</span> <span class="s1">&#39;y+l&quot;mGal&quot;&#39;</span><span class="p">,</span> <span class="s1">&#39;x+l&quot;Moon&quot;&#39;</span><span class="p">])</span>
 <span class="n">fig</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -1353,7 +1374,7 @@ grids of observed gravitation (without the centrifugal component).</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Apr 28, 2026.
   <br/>
 </p>
   </div>

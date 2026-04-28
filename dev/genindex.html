@@ -198,6 +198,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
@@ -408,6 +409,14 @@ document.write(`
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.cartesian_to_ellipsoidal_harmonic">cartesian_to_ellipsoidal_harmonic() (boule.Ellipsoid method)</a>
+</li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.cartesian_to_geodetic">cartesian_to_geodetic() (boule.Ellipsoid method)</a>
+</li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.cartesian_to_spherical">cartesian_to_spherical() (boule.Ellipsoid method)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.centrifugal_potential">centrifugal_potential() (boule.Ellipsoid method)</a>
 
       <ul>
@@ -416,8 +425,6 @@ document.write(`
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.centrifugal_potential">(boule.TriaxialEllipsoid method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-Co-located-grids"><strong>Co-located grids</strong></a>
 </li>
   </ul></td>
@@ -432,11 +439,15 @@ document.write(`
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.eccentricity">(boule.Sphere attribute)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid">Ellipsoid (class in boule)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.ellipsoidal_harmonic_to_cartesian">ellipsoidal_harmonic_to_cartesian() (boule.Ellipsoid method)</a>
+</li>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic">ellipsoidal_harmonic_to_geodetic() (boule.Ellipsoid method)</a>
+</li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.ellipsoidal_harmonic_to_spherical">ellipsoidal_harmonic_to_spherical() (boule.Ellipsoid method)</a>
 </li>
       <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.equatorial_flattening">equatorial_flattening (boule.TriaxialEllipsoid attribute)</a>
 </li>
@@ -470,12 +481,14 @@ document.write(`
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.geocentric_radius">(boule.TriaxialEllipsoid method)</a>
 </li>
       </ul></li>
-      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic">geodetic_to_ellipsoidal_harmonic() (boule.Ellipsoid method)</a>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_cartesian">geodetic_to_cartesian() (boule.Ellipsoid method)</a>
 </li>
-      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical">geodetic_to_spherical() (boule.Ellipsoid method)</a>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic">geodetic_to_ellipsoidal_harmonic() (boule.Ellipsoid method)</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical">geodetic_to_spherical() (boule.Ellipsoid method)</a>
+</li>
       <li><a href="glossary.html#term-Gravitational-potential"><strong>Gravitational potential</strong></a>
 </li>
       <li><a href="glossary.html#term-Gravity-disturbance"><strong>Gravity disturbance</strong></a>
@@ -627,6 +640,10 @@ document.write(`
       </ul></li>
       <li><a href="api/generated/boule.Sphere.html#boule.Sphere">Sphere (class in boule)</a>
 </li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.spherical_to_cartesian">spherical_to_cartesian() (boule.Ellipsoid method)</a>
+</li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.spherical_to_ellipsoidal_harmonic">spherical_to_ellipsoidal_harmonic() (boule.Ellipsoid method)</a>
+</li>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.spherical_to_geodetic">spherical_to_geodetic() (boule.Ellipsoid method)</a>
 </li>
   </ul></td>
@@ -715,7 +732,7 @@ document.write(`
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Apr 28, 2026.
   <br/>
 </p>
   </div>

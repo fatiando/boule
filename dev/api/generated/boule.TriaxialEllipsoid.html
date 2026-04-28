@@ -200,6 +200,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
@@ -572,7 +573,7 @@ parameters:</p>
 </dd>
 <dt><a class="reference internal" href="#boule.TriaxialEllipsoid.mean_radius" title="boule.TriaxialEllipsoid.mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_radius</span></code></a></dt><dd><p>The mean radius of the ellipsoid.</p>
 </dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.meridional_flattening" title="boule.TriaxialEllipsoid.meridional_flattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meridional_flattening</span></code></a></dt><dd><p>The meridional flattening of the ellipsoid in the meridian plane containing the semi-major axis.</p>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.meridional_flattening" title="boule.TriaxialEllipsoid.meridional_flattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meridional_flattening</span></code></a></dt><dd><p>The meridional flattening of the ellipsoid.</p>
 </dd>
 <dt><a class="reference internal" href="#boule.TriaxialEllipsoid.semiaxes_mean_radius" title="boule.TriaxialEllipsoid.semiaxes_mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiaxes_mean_radius</span></code></a></dt><dd><p>The arithmetic mean radius of the ellipsoid semi-axes.</p>
 </dd>
@@ -602,50 +603,51 @@ parameters:</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.area">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.area" title="Link to this definition">#</a></dt>
-<dd><p>The area of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})\)</span>, in which
-<span class="math notranslate nohighlight">\(R_G\)</span> is the completely-symmetric elliptic integral of the second
-kind.
-Units: <span class="math notranslate nohighlight">\(m^2\)</span>.</p>
+<dd><p>The area of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})\)</span></p>
+<p>in which <span class="math notranslate nohighlight">\(R_G\)</span> is the completely-symmetric elliptic integral of
+the second kind.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^2\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.area_equivalent_radius">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">area_equivalent_radius</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.area_equivalent_radius" title="Link to this definition">#</a></dt>
-<dd><p>The area equivalent radius of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(R_2 = \sqrt{A / (4 \pi)}\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The area equivalent radius of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_2 = \sqrt{A / (4 \pi)}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.equatorial_flattening">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">equatorial_flattening</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.equatorial_flattening" title="Link to this definition">#</a></dt>
-<dd><p>The equatorial flattening of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(f_b = \frac{a - b}{a}\)</span>.
-Units: adimensional.</p>
+<dd><p>The equatorial flattening of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(f_b = \frac{a - b}{a}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.mass">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">mass</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.mass" title="Link to this definition">#</a></dt>
-<dd><p>The mass of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(M = GM / G\)</span>.
-Units: <span class="math notranslate nohighlight">\(kg\)</span>.</p>
+<dd><p>The mass of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(M = GM / G\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(kg\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.mean_density">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">mean_density</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.mean_density" title="Link to this definition">#</a></dt>
-<dd><p>The mean density of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(\rho = M / V\)</span>.
-Units: <span class="math notranslate nohighlight">\(kg / m^3\)</span>.</p>
+<dd><p>The mean density of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(\rho = M / V\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(kg / m^3\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.mean_radius">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">mean_radius</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.mean_radius" title="Link to this definition">#</a></dt>
-<dd><p>The mean radius of the ellipsoid. This is equivalent to the degree 0
-spherical harmonic coefficient of the ellipsoid shape.</p>
+<dd><p>The mean radius of the ellipsoid.</p>
+<p>This is equivalent to the degree 0 spherical harmonic coefficient of the
+ellipsoid shape.</p>
 <p>Definition: <span class="math notranslate nohighlight">\(R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}
 \int_0^{2 \pi}} r(\theta, \lambda) \sin \theta \, d\theta \, d\lambda\)</span></p>
 <p>in which <span class="math notranslate nohighlight">\(r\)</span> is the ellipsoid spherical radius, <span class="math notranslate nohighlight">\(\theta\)</span> is
@@ -656,34 +658,35 @@ spherical latitude, and <span class="math notranslate nohighlight">\(\lambda\)</
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.meridional_flattening">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">meridional_flattening</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.meridional_flattening" title="Link to this definition">#</a></dt>
-<dd><p>The meridional flattening of the ellipsoid in the meridian plane
-containing the semi-major axis.
-Definition: <span class="math notranslate nohighlight">\(f_c = \frac{a - c}{a}\)</span>.
-Units: adimensional.</p>
+<dd><p>The meridional flattening of the ellipsoid.</p>
+<p>This is the flattening in the meridian plane containing the semi-major
+axis.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(f_c = \frac{a - c}{a}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.semiaxes_mean_radius">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">semiaxes_mean_radius</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.semiaxes_mean_radius" title="Link to this definition">#</a></dt>
-<dd><p>The arithmetic mean radius of the ellipsoid semi-axes.
-Definition: <span class="math notranslate nohighlight">\(R_1 = \dfrac{a + b + c}{3}\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The arithmetic mean radius of the ellipsoid semi-axes.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_1 = \dfrac{a + b + c}{3}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.volume">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.volume" title="Link to this definition">#</a></dt>
-<dd><p>The volume bounded by the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(V = \dfrac{4}{3} \pi a b c\)</span>.
-Units: <span class="math notranslate nohighlight">\(m^3\)</span>.</p>
+<dd><p>The volume bounded by the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(V = \dfrac{4}{3} \pi a b c\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^3\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.volume_equivalent_radius">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">volume_equivalent_radius</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.volume_equivalent_radius" title="Link to this definition">#</a></dt>
-<dd><p>The volume equivalent radius of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The volume equivalent radius of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 </section>
@@ -876,7 +879,7 @@ we used geocentric spherical latitude.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Apr 28, 2026.
   <br/>
 </p>
   </div>

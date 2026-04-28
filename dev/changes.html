@@ -199,6 +199,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
@@ -412,6 +413,7 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-6-0">Version 0.6.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-5-0">Version 0.5.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-1">Version 0.4.1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-0">Version 0.4.0</a></li>
@@ -434,10 +436,51 @@ document.write(`
                   
   <section id="changelog">
 <span id="changes"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
+<section id="version-0-6-0">
+<h2>Version 0.6.0<a class="headerlink" href="#version-0-6-0" title="Link to this heading">#</a></h2>
+<p>Released on: 2026/03/30</p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.19333956">https://doi.org/10.5281/zenodo.19333956</a></p>
+<p>Breaking changes:</p>
+<ul class="simple">
+<li><p>Make all methods that rely on coordinates take a single <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> argument as input. This includes all gravity and coordinate-conversion methods. The argument is a tuple of 3 values (or arrays) representing the 3 dimensions of the given coordinate system. This standardizes the API and simplifies the documentation, making Boule closer to the other Fatiando a Terra libraries. It also makes it possible to allow passing coordinates in any coordinate system (see <a class="reference external" href="https://github.com/fatiando/boule/pull/265">#265</a>). (<a class="reference external" href="https://github.com/fatiando/boule/pull/233">#233</a>)</p></li>
+<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">geodetic</span></code> argument in <code class="docutils literal notranslate"><span class="pre">boule.Ellipsoid.geocentric_radius</span></code> with the new <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code> argument. (<a class="reference external" href="https://github.com/fatiando/boule/pull/231">#231</a>)</p></li>
+<li><p>Make all keyword arguments in our methods and functions keyword-only. Passing keyword arguments as positional (without the argument name) will now cause errors. This is good because the previous behavior can lead to bugs. For example, <code class="docutils literal notranslate"><span class="pre">WGS84.normal_gravity(coordinates,</span> <span class="pre">True)</span></code> will now have to be <code class="docutils literal notranslate"><span class="pre">WGS84.normal_gravity(coordinates,</span> <span class="pre">si_units=True)</span></code>. (<a class="reference external" href="https://github.com/fatiando/boule/pull/270">#270</a>)</p></li>
+</ul>
+<p>New features:</p>
+<ul class="simple">
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code> argument to gravity calculations. The gravity, gravitation, and centrifugal calculations in <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> can now receive inputs in any of the 4 coordinate systems that we support: geodetic (default), spherical, Cartesian, and ellipsoidal harmonic. The methods automatically convert to the ellipsoidal harmonic system since this is where the math is done. (<a class="reference external" href="https://github.com/fatiando/boule/pull/265">#265</a>)</p></li>
+<li><p>Add coordinate conversion to and from spherical and ellipsoidal harmonic systems. The conversion goes through the geodetic system, so there can be a loss of accuracy when doing round-trip conversions. (<a class="reference external" href="https://github.com/fatiando/boule/pull/260">#260</a>)</p></li>
+<li><p>Add coordinate conversion to and from geocentric Cartesian and ellipsoidal harmonic systems. Going to Cartesian uses an analytical expression from the Physical Geodesy book. Going back to ellipsoidal harmonic is done by passing through the geodetic system. (<a class="reference external" href="https://github.com/fatiando/boule/pull/259">#259</a>)</p></li>
+<li><p>Add coordinate conversion to and from geodetic and geocentric Cartesian systems. Uses the method of <a class="reference external" href="https://doi.org/10.2514/3.21016">Zhu (1993)</a> for conversion from Cartesian to geodetic. (<a class="reference external" href="https://github.com/fatiando/boule/pull/258">#258</a>)</p></li>
+<li><p>Add coordinate conversion to and from spherical and geocentric Cartesian systems. (<a class="reference external" href="https://github.com/fatiando/boule/pull/234">#234</a>)</p></li>
+</ul>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Update the documentation on coordinates to use new coordinate conversion methods. (<a class="reference external" href="https://github.com/fatiando/boule/pull/263">#263</a>)</p></li>
+<li><p>Remove reference to “height” in <code class="docutils literal notranslate"><span class="pre">boule.Ellipsoid.geocentric_radius</span></code> which didn’t make sense since this functions calculates radii. (<a class="reference external" href="https://github.com/fatiando/boule/pull/230">#230</a>)</p></li>
+<li><p>Add a link to the Fatiando a Terra Forum in the README. (<a class="reference external" href="https://github.com/fatiando/boule/pull/224">#224</a>)</p></li>
+<li><p>Use <a class="reference external" href="https://www.fatiando.org/bordado">Bordado</a> instead of <a class="reference external" href="https://www.fatiando.org/verde">Verde</a> to make grid coordinates in the documentation. (<a class="reference external" href="https://github.com/fatiando/boule/pull/271">#271</a>)</p></li>
+</ul>
+<p>Maintenance:</p>
+<ul class="simple">
+<li><p>Drop support for Python 3.8 and 3.9, add support for 3.14. (<a class="reference external" href="https://github.com/fatiando/boule/pull/249">#249</a>)</p></li>
+<li><p>Get test coverage back to 100%. (<a class="reference external" href="https://github.com/fatiando/boule/pull/253">#253</a>)</p></li>
+<li><p>Stop relying on Codecov for measuring and tracking test coverage changes in pull requests and use GitHub Actions job instead. (<a class="reference external" href="https://github.com/fatiando/boule/pull/251">#251</a>)</p></li>
+<li><p>Run a single job to check style and format in GitHub Actions to save compute resources. (<a class="reference external" href="https://github.com/fatiando/boule/pull/252">#252</a>)</p></li>
+<li><p>Use Ruff for formatting and linting instead of black, flake8, isort. (<a class="reference external" href="https://github.com/fatiando/boule/pull/250">#250</a>)</p></li>
+<li><p>Move to a <code class="docutils literal notranslate"><span class="pre">src</span></code> layout structure, with the library code in <code class="docutils literal notranslate"><span class="pre">src/boule</span></code> and tests in <code class="docutils literal notranslate"><span class="pre">test</span></code>. This means that tests aren’t shipped with the source distributions anymore to reduce the upload size. (<a class="reference external" href="https://github.com/fatiando/boule/pull/248">#248</a>)</p></li>
+<li><p>Fix upload of coverage reports to Codecov. (<a class="reference external" href="https://github.com/fatiando/boule/pull/235">#235</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Santiago Soler</p></li>
+<li><p>Leonardo Uieda</p></li>
+</ul>
+</section>
 <section id="version-0-5-0">
 <h2>Version 0.5.0<a class="headerlink" href="#version-0-5-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2024/10/22</p>
-<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.13975491">https://doi.org/10.5281/zenodo.13975491</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.13975491">https://doi.org/10.5281/zenodo.13975491</a></p>
 <p>Breaking changes:</p>
 <ul class="simple">
 <li><p>Drop support for Python 3.7 (<a class="reference external" href="https://github.com/fatiando/boule/pull/188">#188</a>)</p></li>
@@ -482,8 +525,8 @@ document.write(`
 </ul>
 <p>This release contains contributions from:</p>
 <ul class="simple">
-<li><p>Leonardo Uieda</p></li>
 <li><p>Mark Wieczorek</p></li>
+<li><p>Leonardo Uieda</p></li>
 <li><p>Santiago Soler</p></li>
 <li><p>Blazej Bucha</p></li>
 </ul>
@@ -491,7 +534,7 @@ document.write(`
 <section id="version-0-4-1">
 <h2>Version 0.4.1<a class="headerlink" href="#version-0-4-1" title="Link to this heading">#</a></h2>
 <p>Released on: 2022/10/27</p>
-<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.7258175">https://doi.org/10.5281/zenodo.7258175</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.7258175">https://doi.org/10.5281/zenodo.7258175</a></p>
 <p>Documentation:</p>
 <ul class="simple">
 <li><p>Update contact link in the docs side bar (<a class="reference external" href="https://github.com/fatiando/boule/pull/141">#141</a>)</p></li>
@@ -514,7 +557,7 @@ document.write(`
 <section id="version-0-4-0">
 <h2>Version 0.4.0<a class="headerlink" href="#version-0-4-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2022/08/09</p>
-<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.6779998">https://doi.org/10.5281/zenodo.6779998</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.6779998">https://doi.org/10.5281/zenodo.6779998</a></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><strong>Boule v0.4.0 is the last release that is compatible with Python 3.6.</strong></p>
@@ -571,7 +614,7 @@ document.write(`
 <section id="version-0-3-1">
 <h2>Version 0.3.1<a class="headerlink" href="#version-0-3-1" title="Link to this heading">#</a></h2>
 <p>Released on: 2021/10/19</p>
-<p>doi:<a class="reference external" href="https://doi.org/10.5281/zenodo.5577885">10.5281/zenodo.5577885</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.5577885">https://doi.org/10.5281/zenodo.5577885</a></p>
 <p>Bug fix:</p>
 <ul class="simple">
 <li><p>Package the missing <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file in source distributions (<a class="reference external" href="https://github.com/fatiando/boule/pull/96">#96</a>)</p></li>
@@ -584,7 +627,7 @@ document.write(`
 <section id="version-0-3-0">
 <h2>Version 0.3.0<a class="headerlink" href="#version-0-3-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2021/10/18</p>
-<p>doi:<a class="reference external" href="https://doi.org/10.5281/zenodo.5575827">10.5281/zenodo.5575827</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.5575827">https://doi.org/10.5281/zenodo.5575827</a></p>
 <p>Highlights:</p>
 <ul class="simple">
 <li><p>Add support for Python 3.9 and 3.10 (<a class="reference external" href="https://github.com/fatiando/boule/pull/87">#87</a>)</p></li>
@@ -636,7 +679,7 @@ document.write(`
 <section id="version-0-2-0">
 <h2>Version 0.2.0<a class="headerlink" href="#version-0-2-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2020/07/10</p>
-<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3939204"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3939204.svg" /></a>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.3939204">https://doi.org/10.5281/zenodo.3939204</a></p>
 <ul class="simple">
 <li><p>Add the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.geocentric_radius</span></code> method to calculate the distance from the center of the ellipsoid to its surface as a function of latitude (geodetic or geocentric). (<a class="reference external" href="https://github.com/fatiando/boule/pull/37">#37</a>)</p></li>
 <li><p>Add the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.prime_vertical_radius</span></code> method for computing the prime vertical radius (usually represented by N in equations) as a function of geodetic latitude. (<a class="reference external" href="https://github.com/fatiando/boule/pull/35">#35</a>)</p></li>
@@ -659,7 +702,7 @@ issued).</p>
 <section id="version-0-1-0">
 <h2>Version 0.1.0<a class="headerlink" href="#version-0-1-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2020/01/10</p>
-<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3603997"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3603997.svg" /></a>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.3603997">https://doi.org/10.5281/zenodo.3603997</a></p>
 <p>First release of <em>Boule</em> including basic functionality:</p>
 <ul class="simple">
 <li><p>Definition of the <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> class: based on the semi-major axis,
@@ -673,7 +716,7 @@ geocentric.</p></li>
 <section id="version-0-0-1">
 <h2>Version 0.0.1<a class="headerlink" href="#version-0-0-1" title="Link to this heading">#</a></h2>
 <p>Released on: 2019/11/06</p>
-<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3530750"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3530750.svg" /></a>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.3530750">https://doi.org/10.5281/zenodo.3530750</a></p>
 <p>This release is a placeholder that serves as a marker for the start of this
 project. It is used to register the project on PyPI and test the continuous
 integration deployment process.</p>
@@ -725,6 +768,7 @@ integration deployment process.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-6-0">Version 0.6.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-5-0">Version 0.5.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-1">Version 0.4.1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-0">Version 0.4.0</a></li>
@@ -763,7 +807,7 @@ integration deployment process.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Apr 28, 2026.
   <br/>
 </p>
   </div>

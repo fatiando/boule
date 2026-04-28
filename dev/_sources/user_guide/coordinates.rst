@@ -3,22 +3,34 @@
 Coordinate conversions
 ======================
 
-The :class:`boule.Ellipsoid` class has methods to convert coordinates between
-different coordinate systems. Boule ellipsoids are also compatible with the
-`pymap3d <https://github.com/geospace-code/pymap3d/>`__ package and be given to
-its functions as inputs.
+The :class:`boule.Ellipsoid` class has methods to convert coordinates between different
+coordinate systems: geocentric Cartesian (a.k.a. Earth-centered Earth-fixed, ECEF),
+geocentric spherical, geodetic, and ellipsoidal harmonic.
 
+.. seealso::
+ 
+    Boule ellipsoids are also compatible with the `pymap3d
+    <https://github.com/geospace-code/pymap3d/>`__ package and be given to its functions
+    as inputs. See :ref:`pymap3d`.
+
+Below, we'll show some examples of these conversions. See the respective methods in
+:class:`boule.Ellipsoid` for more details.
+  
 .. jupyter-execute::
 
     import boule as bl
     import numpy as np
 
-Geodetic to geocentric spherical
---------------------------------
+Geodetic to and from geocentric spherical
+-----------------------------------------
 
 The :class:`boule.Ellipsoid` class implements coordinate conversions between
-geocentric geodetic coordinates and geocentric spherical coordinates. Both are
-common in geophysical applications when dealing with spherical harmonics or
+geodetic coordinates and geocentric spherical coordinates:
+
+* :meth:`boule.Ellipsoid.geodetic_to_spherical`
+* :meth:`boule.Ellipsoid.spherical_to_geodetic`
+
+Both are common in geophysical applications when dealing with spherical harmonics or
 spherical modeling of topography.
 
 The example below will show you how to convert geodetic latitude and height
@@ -34,11 +46,9 @@ into geocentric spherical latitude and radius.
         (longitude, latitude, height),
     )
 
-    print("Geodetic longitude:", longitude)
-    print("Spherical longitude:", longitude_sph)
+    print("Longitude:", longitude_sph)
+    print("Geocentric latitude:", latitude_sph)
     print("Geodetic latitude:", latitude)
-    print("Spherical latitude:", latitude_sph)
-    print("Height (m):", height)
     print("Radius (m):", radius)
 
 Notice that:
@@ -53,34 +63,49 @@ Notice that:
     We used the WGS84 ellipsoid here but the workflow is the same for any
     other oblate ellipsoid. Checkout :ref:`ellipsoids` for options.
 
-Geocentric spherical to geodetic
---------------------------------
+Geocentric Cartesian to and from spherical and geodetic
+-------------------------------------------------------
 
-Another common coordinate conversion used in global studies is from geocentric
-spherical to geodetic coordinates. The example below demonstrate this
-conversion using the Cartesian coordinates of the
-`Insight lander <https://en.wikipedia.org/wiki/InSight>`__ on Mars from
-[LeMaistre2023]_ and the Martian ellipsoid defined in Boule.
+Another common coordinate conversion used in global studies is transform between a
+geocentric Cartesian system and geocentric spherical and geodetic coordinates:
+
+* :meth:`boule.Ellipsoid.geodetic_to_cartesian`
+* :meth:`boule.Ellipsoid.spherical_to_cartesian`
+* :meth:`boule.Ellipsoid.cartesian_to_geodetic`
+* :meth:`boule.Ellipsoid.cartesian_to_spherical`
+
+The example below demonstrate this conversion using the Cartesian coordinates of the
+`Insight lander <https://en.wikipedia.org/wiki/InSight>`__ on Mars from [LeMaistre2023]_
+and the Martian ellipsoid defined in Boule.
 
 .. jupyter-execute::
 
-  xyz = [-2_417_504.5, 2_365_954.5, 266_266.7]  # InSight lander coordinates
+    # InSight lander coordinates (x, y, z) in meters
+    cartesian_coordinates = [-2_417_504.5, 2_365_954.5, 266_266.7]  
 
-  # Convert Cartesian to geocentric spherical
-  radius = np.linalg.norm(xyz)
-  latitude_sph = np.rad2deg(np.atan2(xyz[2], np.linalg.norm(xyz[0:2])))
-  longitude_sph = np.rad2deg(np.atan2(xyz[1], xyz[0]))
+    # Convert Cartesian to geocentric spherical
+    longitude, latitude_sph, radius = bl.Mars2009.cartesian_to_spherical(
+        cartesian_coordinates
+    )
 
-  longitude, latitude, height = bl.Mars2009.spherical_to_geodetic(
-      (longitude_sph, latitude_sph, radius),
-  )
+    print(f"Geocentric longitude: {longitude}")
+    print(f"Geocentric latitude: {latitude_sph}")
+    print(f"Radius (m): {radius}")
 
-  print(f"Geodetic longitude: {longitude}")
-  print(f"Geodetic latitude: {latitude}")
-  print(f"Ellipsoidal height (m): {height}")
+.. jupyter-execute::
 
-Geodetic to geocentric spherical using pymap3d
-----------------------------------------------
+    longitude, latitude_geod, height = bl.Mars2009.cartesian_to_geodetic(
+        cartesian_coordinates
+    )
+
+    print(f"Geodetic longitude: {longitude}")
+    print(f"Geodetic latitude: {latitude_geod}")
+    print(f"Ellipsoidal height (m): {height}")
+
+.. _pymap3d:
+  
+Using Boule ellipsoids with pymap3d
+-----------------------------------
 
 Boule's :class:`~boule.Ellipsoid` and :class:`~boule.Sphere` classes can be
 used with `pymap3d <https://github.com/geospace-code/pymap3d/>`__ for
@@ -111,9 +136,6 @@ in the previous example.
         latitude, longitude, height, ell=bl.WGS84,
     )
 
-    print("Geodetic longitude:", longitude)
-    print("Spherical longitude:", longitude_sph)
-    print("Geodetic latitude:", latitude)
-    print("Spherical latitude:", latitude_sph)
-    print("Height (m):", height)
+    print("Longitude:", longitude_sph)
+    print("Geocentric latitude:", latitude_sph)
     print("Radius (m):", radius)

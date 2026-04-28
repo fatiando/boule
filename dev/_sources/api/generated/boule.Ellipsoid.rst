@@ -62,7 +62,23 @@ Methods
 
 
 
+.. automethod:: Ellipsoid.cartesian_to_ellipsoidal_harmonic
+
+
+
+.. automethod:: Ellipsoid.cartesian_to_geodetic
+
+
+
+.. automethod:: Ellipsoid.cartesian_to_spherical
+
+
+
 .. automethod:: Ellipsoid.centrifugal_potential
+
+
+
+.. automethod:: Ellipsoid.ellipsoidal_harmonic_to_cartesian
 
 
 
@@ -70,7 +86,15 @@ Methods
 
 
 
+.. automethod:: Ellipsoid.ellipsoidal_harmonic_to_spherical
+
+
+
 .. automethod:: Ellipsoid.geocentric_radius
+
+
+
+.. automethod:: Ellipsoid.geodetic_to_cartesian
 
 
 
@@ -95,6 +119,14 @@ Methods
 
 
 .. automethod:: Ellipsoid.prime_vertical_radius
+
+
+
+.. automethod:: Ellipsoid.spherical_to_cartesian
+
+
+
+.. automethod:: Ellipsoid.spherical_to_ellipsoidal_harmonic
 
 
 

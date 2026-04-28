@@ -200,6 +200,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
@@ -587,7 +588,7 @@ to <code class="xref py py-class docutils literal notranslate"><span class="pre"
 </dd>
 <dt><a class="reference internal" href="#boule.Sphere.reference_normal_gravitational_potential" title="boule.Sphere.reference_normal_gravitational_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_normal_gravitational_potential</span></code></a></dt><dd><p>The normal gravitational potential on the surface of the sphere.</p>
 </dd>
-<dt><a class="reference internal" href="#boule.Sphere.semiaxes_mean_radius" title="boule.Sphere.semiaxes_mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiaxes_mean_radius</span></code></a></dt><dd><p>The arithmetic mean radius of the ellipsoid semi-axes is equal to its radius.</p>
+<dt><a class="reference internal" href="#boule.Sphere.semiaxes_mean_radius" title="boule.Sphere.semiaxes_mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiaxes_mean_radius</span></code></a></dt><dd><p>The arithmetic mean radius of the ellipsoid (equal to its radius).</p>
 </dd>
 <dt><a class="reference internal" href="#boule.Sphere.semimajor_axis" title="boule.Sphere.semimajor_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis</span></code></a></dt><dd><p>The semimajor axis of the sphere is equal to its radius.</p>
 </dd>
@@ -612,17 +613,17 @@ to <code class="xref py py-class docutils literal notranslate"><span class="pre"
 <tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.centrifugal_potential" title="boule.Sphere.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(coordinates)</p></td>
 <td><p>Centrifugal potential of the rotating sphere.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravitation" title="boule.Sphere.normal_gravitation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitation</span></code></a>(coordinates[, si_units])</p></td>
-<td><p>Normal gravitation of the sphere.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravitation" title="boule.Sphere.normal_gravitation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitation</span></code></a>(coordinates, *[, si_units])</p></td>
+<td><p>Calculate the normal gravitation of the sphere.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravitational_potential" title="boule.Sphere.normal_gravitational_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitational_potential</span></code></a>(coordinates)</p></td>
-<td><p>Normal gravitational potential of the sphere.</p></td>
+<td><p>Calculate the normal gravitational potential of the sphere.</p></td>
 </tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravity" title="boule.Sphere.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity</span></code></a>(coordinates[, si_units])</p></td>
-<td><p>Normal gravity of the sphere.</p></td>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravity" title="boule.Sphere.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity</span></code></a>(coordinates, *[, si_units])</p></td>
+<td><p>Calculate the normal gravity of the sphere.</p></td>
 </tr>
 <tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravity_potential" title="boule.Sphere.normal_gravity_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity_potential</span></code></a>(coordinates)</p></td>
-<td><p>Normal gravity potential of the sphere.</p></td>
+<td><p>Calculate the normal gravity potential of the sphere.</p></td>
 </tr>
 </tbody>
 </table>
@@ -634,17 +635,17 @@ to <code class="xref py py-class docutils literal notranslate"><span class="pre"
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.area">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#boule.Sphere.area" title="Link to this definition">#</a></dt>
-<dd><p>The area of the sphere.
-Definition: <span class="math notranslate nohighlight">\(A = 4 \pi r^2\)</span>.
-Units: <span class="math notranslate nohighlight">\(m^2\)</span>.</p>
+<dd><p>The area of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(A = 4 \pi r^2\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^2\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.area_equivalent_radius">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">area_equivalent_radius</span></span><a class="headerlink" href="#boule.Sphere.area_equivalent_radius" title="Link to this definition">#</a></dt>
-<dd><p>The area equivalent radius of the sphere is equal to its radius.
-Definition: <span class="math notranslate nohighlight">\(R_2 = R\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The area equivalent radius of the sphere is equal to its radius.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_2 = R\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -656,111 +657,110 @@ Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.first_eccentricity">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">first_eccentricity</span></span><a class="headerlink" href="#boule.Sphere.first_eccentricity" title="Link to this definition">#</a></dt>
-<dd><p>The (first) eccentricity of the sphere is equal to zero.
-Definition: <span class="math notranslate nohighlight">\(e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}\)</span>.
-Units: adimensional.</p>
+<dd><p>The (first) eccentricity of the sphere is equal to zero.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.flattening">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">flattening</span></span><a class="headerlink" href="#boule.Sphere.flattening" title="Link to this definition">#</a></dt>
-<dd><p>The flattening of the sphere is equal to zero.
-Definition: <span class="math notranslate nohighlight">\(f = \dfrac{a - b}{a}\)</span>.
-Units: adimensional.</p>
+<dd><p>The flattening of the sphere is equal to zero.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(f = \dfrac{a - b}{a}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.mass">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">mass</span></span><a class="headerlink" href="#boule.Sphere.mass" title="Link to this definition">#</a></dt>
-<dd><p>The mass of the sphere.
-Definition: <span class="math notranslate nohighlight">\(M = GM / G\)</span>.
-Units: <span class="math notranslate nohighlight">\(kg\)</span>.</p>
+<dd><p>The mass of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(M = GM / G\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(kg\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.mean_density">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">mean_density</span></span><a class="headerlink" href="#boule.Sphere.mean_density" title="Link to this definition">#</a></dt>
-<dd><p>The mean density of the sphere.
-Definition: <span class="math notranslate nohighlight">\(\rho = M / V\)</span>.
-Units: <span class="math notranslate nohighlight">\(kg / m^3\)</span>.</p>
+<dd><p>The mean density of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(\rho = M / V\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(kg / m^3\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.mean_radius">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">mean_radius</span></span><a class="headerlink" href="#boule.Sphere.mean_radius" title="Link to this definition">#</a></dt>
-<dd><p>The mean radius of the ellipsoid is equal to its radius.
-Definition: <span class="math notranslate nohighlight">\(R_0 = R\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The mean radius of the ellipsoid is equal to its radius.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_0 = R\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.reference_normal_gravitational_potential">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">reference_normal_gravitational_potential</span></span><a class="headerlink" href="#boule.Sphere.reference_normal_gravitational_potential" title="Link to this definition">#</a></dt>
-<dd><p>The normal gravitational potential on the surface of the sphere.
-Definition: <span class="math notranslate nohighlight">\(U_0 = \dfrac{GM}{R}\)</span>.
-Units: <span class="math notranslate nohighlight">\(m^2 / s^2\)</span>.</p>
+<dd><p>The normal gravitational potential on the surface of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(U_0 = \dfrac{GM}{R}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^2 / s^2\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semiaxes_mean_radius">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semiaxes_mean_radius</span></span><a class="headerlink" href="#boule.Sphere.semiaxes_mean_radius" title="Link to this definition">#</a></dt>
-<dd><p>The arithmetic mean radius of the ellipsoid semi-axes is equal to its
-radius.
-Definition: <span class="math notranslate nohighlight">\(R_1 = R\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The arithmetic mean radius of the ellipsoid (equal to its radius).</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_1 = R\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semimajor_axis">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semimajor_axis</span></span><a class="headerlink" href="#boule.Sphere.semimajor_axis" title="Link to this definition">#</a></dt>
-<dd><p>The semimajor axis of the sphere is equal to its radius.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The semimajor axis of the sphere is equal to its radius.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semimajor_axis_longitude">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semimajor_axis_longitude</span></span><a class="headerlink" href="#boule.Sphere.semimajor_axis_longitude" title="Link to this definition">#</a></dt>
-<dd><p>The semimajor axis longitude of the sphere is equal to zero.
-Definition: <span class="math notranslate nohighlight">\(\lambda_a = 0\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The semimajor axis longitude of the sphere is equal to zero.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(\lambda_a = 0\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semimedium_axis">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semimedium_axis</span></span><a class="headerlink" href="#boule.Sphere.semimedium_axis" title="Link to this definition">#</a></dt>
-<dd><p>The semimedium axis of the sphere is equal to its radius.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The semimedium axis of the sphere is equal to its radius.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semiminor_axis">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semiminor_axis</span></span><a class="headerlink" href="#boule.Sphere.semiminor_axis" title="Link to this definition">#</a></dt>
-<dd><p>The semiminor axis of the sphere is equal to its radius.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The semiminor axis of the sphere is equal to its radius.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.thirdflattening">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">thirdflattening</span></span><a class="headerlink" href="#boule.Sphere.thirdflattening" title="Link to this definition">#</a></dt>
-<dd><p>The third flattening of the sphere is equal to zero.
-Definition: <span class="math notranslate nohighlight">\(f^{\prime\prime}= \dfrac{a -b}{a + b}\)</span>.
-Units: adimensional.</p>
+<dd><p>The third flattening of the sphere is equal to zero.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(f^{\prime\prime}= \dfrac{a -b}{a + b}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.volume">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#boule.Sphere.volume" title="Link to this definition">#</a></dt>
-<dd><p>The volume of the sphere.
-Definition: <span class="math notranslate nohighlight">\(V = \dfrac{4}{3} \pi r^3\)</span>.
-Units: <span class="math notranslate nohighlight">\(m^3\)</span>.</p>
+<dd><p>The volume of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(V = \dfrac{4}{3} \pi r^3\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^3\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.volume_equivalent_radius">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">volume_equivalent_radius</span></span><a class="headerlink" href="#boule.Sphere.volume_equivalent_radius" title="Link to this definition">#</a></dt>
-<dd><p>The volume equivalent radius of the sphere is equal to its radius.
-Definition: <span class="math notranslate nohighlight">\(R_3 = R\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The volume equivalent radius of the sphere is equal to its radius.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_3 = R\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 </section>
@@ -804,8 +804,8 @@ angular velocity.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Sphere.normal_gravitation">
-<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravitation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravitation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravitation" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravitation of the sphere.</p>
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravitation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravitation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravitation" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the normal gravitation of the sphere.</p>
 <p>Computes the magnitude of the gradient of the <a class="reference internal" href="../../glossary.html#term-Gravitational-potential"><span class="xref std std-term">gravitational
 potential</span></a> generated by the sphere at the points. Assumes a homogeneous
 internal density distribution for the sphere.</p>
@@ -863,7 +863,7 @@ sphere, only the height is used in the calculation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Sphere.normal_gravitational_potential">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravitational_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravitational_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravitational_potential" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravitational potential of the sphere.</p>
+<dd><p>Calculate the normal gravitational potential of the sphere.</p>
 <p>Computes the normal <a class="reference internal" href="../../glossary.html#term-Gravitational-potential"><span class="xref std std-term">gravitational potential</span></a> generated by the
 sphere at the given points. Assumes a homogeneous internal density
 distribution for the sphere.</p>
@@ -903,8 +903,8 @@ geocentric gravitational constant of the sphere.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Sphere.normal_gravity">
-<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravity" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravity of the sphere.</p>
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravity" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the normal gravity of the sphere.</p>
 <p>Computes the magnitude of the gradient of the <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a>
 generated by the sphere at the given points.</p>
 <div class="admonition note">
@@ -1008,7 +1008,7 @@ above the sphere:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Sphere.normal_gravity_potential">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravity_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravity_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravity_potential" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravity potential of the sphere.</p>
+<dd><p>Calculate the normal gravity potential of the sphere.</p>
 <p>Computes the normal <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> (gravitational
 + centrifugal) generated by the sphere at the given points. Assumes
 a homogeneous internal density distribution for the sphere.</p>
@@ -1159,7 +1159,7 @@ the surface of the sphere.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Apr 28, 2026.
   <br/>
 </p>
   </div>
