@@ -6,17 +6,11 @@
 #
 name: test
 
-# Only build PRs, the main branch, and releases. Pushes to branches will only
-# be built when a PR is opened. This avoids duplicated buids in PRs comming
-# from branches in the origin repository (1 for PR and 1 for push).
 on:
   pull_request:
   push:
     branches:
       - main
-  release:
-    types:
-      - published
 
 permissions: {}
 
@@ -115,6 +109,13 @@ jobs:
       - name: List installed packages
         run: python -m pip freeze
 
+      - name: Build source and wheel distributions
+        run: make build
+
+      - name: Check the archives
+        run: twine check dist/*
+
+      # Do this instead of using the wheel so we can get proper coverage reports
       - name: Install the package in editable mode
         run: python -m pip install --no-deps --editable .
 
