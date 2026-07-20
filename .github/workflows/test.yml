@@ -65,7 +65,7 @@ jobs:
         run: git fetch origin 'refs/tags/*:refs/tags/*'
 
       - name: Setup Python
-        uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           python-version: ${{ matrix.python }}
 
@@ -152,7 +152,7 @@ jobs:
           # to be able to push to GitHub.
           persist-credentials: false
 
-      - uses: actions/setup-python@ece7cb06caefa5fff74198d8649806c4678c61a1
+      - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97
         with:
           # Use latest Python, so it understands all syntax.
           python-version: "3.14"
