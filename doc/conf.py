@@ -4,15 +4,17 @@
 #
 # This code is part of the Fatiando a Terra project (https://www.fatiando.org)
 #
-import datetime
+import datetime as dt
 
 import boule
 
 # Project information
 # -----------------------------------------------------------------------------
 project = "Boule"
-copyright = f"{datetime.date.today().year}, The {project} Developers"
-version = "dev" if len(boule.__version__.split(".")) > 3 else boule.__version__
+year = dt.datetime.now(tz=dt.timezone.utc).date().year
+copyright = f"{year}, The {project} Developers"
+is_dev_version = len(boule.__version__.split(".")) > 3
+version = "dev" if is_dev_version else boule.__version__
 
 # General configuration
 # -----------------------------------------------------------------------------
