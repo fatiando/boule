@@ -43,9 +43,8 @@ check-actions:
 	zizmor $(GITHUB_ACTIONS)
 
 clean:
-	find . -name "*.pyc" -exec rm -v {} \;
 	find . -name "*.orig" -exec rm -v {} \;
 	find . -name ".coverage.*" -exec rm -v {} \;
-	find . -name "__pycache__" -exec rm -v {} \;
-	find . -name "*.egg-info " -exec rm -v {} \;
+	find . -depth -name "__pycache__" -exec rm -v {} \;
+	find . -depth -name "*.egg-info " -exec rm -v {} \;
 	rm -rvf build dist MANIFEST .coverage .cache .pytest_cache src/$(PROJECT)/_version.py
