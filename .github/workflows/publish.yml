@@ -1,5 +1,8 @@
 # Build and publish packages to PyPI and documentation to GitHub Pages
 #
+# !!!DON'T USE CACHING IN THIS JOB!!! The cache can be poisoned and used to
+# corrupt our build aftifacts.
+#
 name: publish
 
 # Only pushed to the main branch and releases.
@@ -20,7 +23,7 @@ defaults:
     # But this breaks on MacOS if using actions/setup-python:
     # https://github.com/actions/setup-python/issues/132
     # -e makes sure builds fail if any command fails
-    shell: bash -e -l {0}
+    shell: bash -e -o pipefail -l {0}
 
 jobs:
 
@@ -108,6 +111,9 @@ jobs:
 
       - name: Build the documentation
         run: make -C doc clean all
+        env:
+          # Fetch the data from the GitHub releases to avoid overloading Zenodo
+          ENSAIO_DATA_FROM_GITHUB: true
 
       - name: Checkout the gh-pages branch in a separate folder
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1

@@ -6,11 +6,16 @@
 #
 name: docs
 
+# Don't build on pushes to main because publish.yml will already do it.
 on:
   pull_request:
-  push:
-    branches:
-      - main
+    paths:
+      - doc/**
+      - src/**
+      - pyproject.toml
+      - env/requirements-build.txt
+      - env/requirements-docs.txt
+      - .github/workflows/docs.yml
 
 permissions: {}
 
@@ -21,7 +26,7 @@ defaults:
     # But this breaks on MacOS if using actions/setup-python:
     # https://github.com/actions/setup-python/issues/132
     # -e makes sure builds fail if any command fails
-    shell: bash -e -l {0}
+    shell: bash -e -o pipefail -l {0}
 
 jobs:
   #############################################################################

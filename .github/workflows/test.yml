@@ -6,8 +6,16 @@
 #
 name: test
 
+# Only run on main or when relevant sources where edited.
 on:
   pull_request:
+    paths:
+      - src/**
+      - test/**
+      - pyproject.toml
+      - env/requirements-build.txt
+      - env/requirements-test.txt
+      - .github/workflows/test.yml
   push:
     branches:
       - main
