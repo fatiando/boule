@@ -1,5 +1,8 @@
 # Build and publish packages to PyPI and documentation to GitHub Pages
 #
+# !!!DON'T USE CACHING IN THIS JOB!!! The cache can be poisoned and used to
+# corrupt our build aftifacts.
+#
 name: publish
 
 # Only pushed to the main branch and releases.
@@ -87,12 +90,6 @@ jobs:
           echo "Renamed dependencies:"
           cat requirements-full.txt
 
-      - name: Setup caching for conda packages
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
-        with:
-          path: ~/conda_pkgs_dir
-          key: conda-${{ runner.os }}-${{ env.PYTHON }}-${{ hashFiles('requirements-full.txt') }}
-
       - name: Install requirements
         run: conda install --quiet --file requirements-full.txt python==$PYTHON
 
@@ -112,20 +109,11 @@ jobs:
       - name: Install the package
         run: python -m pip install --no-deps dist/*.whl
 
-      - name: Cache the Ensaio datasets
-        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9
-        with:
-          path: ${{ runner.temp }}/cache/ensaio
-          # Use a constant key to reuse the datasets across all jobs
-          key: ensaio
-
       - name: Build the documentation
         run: make -C doc clean all
         env:
           # Fetch the data from the GitHub releases to avoid overloading Zenodo
           ENSAIO_DATA_FROM_GITHUB: true
-          # Define directory where sample data will be stored
-          ENSAIO_DATA_DIR: ${{ runner.temp }}/cache/ensaio/
 
       - name: Checkout the gh-pages branch in a separate folder
         uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
