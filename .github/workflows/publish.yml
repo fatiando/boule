@@ -1,5 +1,8 @@
 # Build and publish packages to PyPI and documentation to GitHub Pages
 #
+# !!!DON'T USE CACHING IN THIS JOB!!! The cache can be poisoned and used to
+# corrupt our build aftifacts.
+#
 name: publish
 
 # Only pushed to the main branch and releases.
@@ -20,7 +23,7 @@ defaults:
     # But this breaks on MacOS if using actions/setup-python:
     # https://github.com/actions/setup-python/issues/132
     # -e makes sure builds fail if any command fails
-    shell: bash -e -l {0}
+    shell: bash -e -o pipefail -l {0}
 
 jobs:
 
@@ -39,7 +42,7 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE
       - name: Checkout
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           # Need to fetch more than the last commit so that setuptools-scm can
           # create the correct version string. If the number of commits since
@@ -55,7 +58,7 @@ jobs:
         run: git fetch origin 'refs/tags/*:refs/tags/*'
 
       - name: Setup Miniconda
-        uses: conda-incubator/setup-miniconda@8ee1f361103df19b6f8c8655fd3967a8ecb162d5
+        uses: conda-incubator/setup-miniconda@be893c923ea9cf1cf7cd510fbdde27c7e18cbdcb
         with:
           python-version: ${{ env.PYTHON }}
           miniforge-version: latest
@@ -108,9 +111,12 @@ jobs:
 
       - name: Build the documentation
         run: make -C doc clean all
+        env:
+          # Fetch the data from the GitHub releases to avoid overloading Zenodo
+          ENSAIO_DATA_FROM_GITHUB: true
 
       - name: Checkout the gh-pages branch in a separate folder
-        uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
         with:
           ref: gh-pages
           # Checkout to this folder instead of the current one
@@ -185,7 +191,7 @@ jobs:
       - name: Publish to Test PyPI
         # Only publish to TestPyPI when a PR is merged (pushed to main)
         if: success() && github.event_name == 'push'
-        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33
         with:
           repository-url: https://test.pypi.org/legacy/
           # Allow existing releases on test PyPI without errors.
@@ -195,4 +201,4 @@ jobs:
       - name: Publish to PyPI
         # Only publish to PyPI when a release triggers the build
         if: success() && github.event_name == 'release'
-        uses: pypa/gh-action-pypi-publish@cef221092ed1bacb1cc03d23a2d87d1d172e277b
+        uses: pypa/gh-action-pypi-publish@dc37677b2e1c63e2034f94d8a5b11f265b73ba33
