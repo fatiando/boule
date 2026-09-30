@@ -804,6 +804,9 @@ class Ellipsoid:
         """
         Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.
 
+        The conversion is done by passing through the geocentric Cartesian
+        coordinate system.
+
         The geodetic datum is defined by this ellipsoid.
 
         Parameters
@@ -827,20 +830,19 @@ class Ellipsoid:
             will be in degrees and height in meters.
         """
         longitude, reduced_latitude, u = coordinates
-        # Semimajor axis of the ellipsoid that passes through the input
-        # coordinates
-        a_p = np.sqrt(u**2 + self.linear_eccentricity**2)
-
-        # geodetic latitude
-        latitude = np.arctan(a_p / u * np.tan(np.radians(reduced_latitude)))
-
-        # Compute height as the difference of the prime_vertical_radius of the
-        # input ellipsoid and reference ellipsoid
-        height = self.prime_vertical_radius(np.sin(latitude)) * (
-            a_p / self.semimajor_axis - 1
+        if longitude is None:
+            # ellipsoidal_harmonic_to_cartesian needs a longitude to build the
+            # Cartesian x and y. Passing zeros keeps the point in the meridian
+            # plane (y = 0): cos(0) = 1 and sin(0) = 0 leave its distance to the
+            # rotation axis unchanged.
+            cartesian_longitude = np.zeros_like(np.asarray(u, dtype=float))
+        else:
+            cartesian_longitude = longitude
+        cartesian = self.ellipsoidal_harmonic_to_cartesian(
+            (cartesian_longitude, reduced_latitude, u)
         )
-
-        return longitude, np.degrees(latitude), height
+        _, latitude, height = self.cartesian_to_geodetic(cartesian)
+        return longitude, latitude, height
 
     def spherical_to_cartesian(self, coordinates):
         """
@@ -1097,10 +1099,7 @@ class Ellipsoid:
         """
         Convert from ellipsoidal harmonic to geocentric spherical coordinates.
 
-        The conversion is performed by passing through the geodetic system. Because of
-        this, there is a loss of accuracy when doing the round-trip between spherical
-        and ellipsoidal harmonic coordinates. The latitude conversion is good to
-        approximately 0.001 degrees and radius to approximately 1 meter.
+        The conversion is performed by passing through the geodetic system.
 
         Parameters
         ----------
@@ -1131,10 +1130,7 @@ class Ellipsoid:
         """
         Convert from geocentric spherical to ellipsoidal harmonic coordinates.
 
-        The conversion is performed by passing through the geodetic system. Because of
-        this, there is a loss of accuracy when doing the round-trip between spherical
-        and ellipsoidal harmonic coordinates. The latitude conversion is good to
-        approximately 0.001 degrees and radius to approximately 1 meter.
+        The conversion is performed by passing through the geodetic system.
 
         Parameters
         ----------

@@ -513,7 +513,7 @@ def test_cartesian_to_ellipsoidal_harmonic_pole(ellipsoid):
     )
     npt.assert_allclose(longitude, 0, atol=1e-10)
     npt.assert_allclose(latitude, [90, 90, -90, -90], atol=1e-10)
-    npt.assert_allclose(height, [1000, -1000, -400, 250], atol=0.002)
+    npt.assert_allclose(height, [1000, -1000, -400, 250], rtol=0, atol=1e-5)
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
@@ -614,39 +614,54 @@ def test_spherical_to_ellipsoidal_harmonic_roundtrip(ellipsoid):
         ellipsoid.spherical_to_ellipsoidal_harmonic(coordinates)
     )
     npt.assert_allclose(coordinates[0], result[0], atol=1e-10)
-    npt.assert_allclose(coordinates[1], result[1], atol=1e-3)
-    npt.assert_allclose(coordinates[2], result[2], atol=1)
+    npt.assert_allclose(coordinates[1], result[1], rtol=0, atol=1e-8)
+    npt.assert_allclose(coordinates[2], result[2], rtol=0, atol=1e-3)
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
-def test_geodetic_to_ellipsoidal_conversions(ellipsoid):
+@pytest.mark.parametrize(
+    "height", [0.0, 1e3, 1e5, 1e6, 1e7], ids=["0m", "1e3m", "1e5m", "1e6m", "1e7m"]
+)
+def test_geodetic_to_ellipsoidal_conversions(ellipsoid, height):
     """
     Test the geodetic to ellipsoidal-harmonic coordinate conversions by
     going from geodetic to ellipsoidal and back.
+
+    The round-trip is accurate at all altitudes, not only near the surface.
     """
     size = 5
     geodetic_latitude_in = np.linspace(-90, 90, size)
-    height_in = np.zeros(size)
+    height_in = np.full(size, height)
     longitude, reduced_latitude, u = ellipsoid.geodetic_to_ellipsoidal_harmonic(
         (None, geodetic_latitude_in, height_in)
     )
     longitude, geodetic_latitude_out, height_out = (
         ellipsoid.ellipsoidal_harmonic_to_geodetic((None, reduced_latitude, u))
     )
-    npt.assert_allclose(geodetic_latitude_in, geodetic_latitude_out)
-    npt.assert_allclose(height_in, height_out)
-
-    rtol = 1e-5  # The conversion is not too accurate for large heights
-    height_in = np.array(size * [1000])
-    longitude, reduced_latitude, u = ellipsoid.geodetic_to_ellipsoidal_harmonic(
-        (None, geodetic_latitude_in, height_in)
-    )
-    longitude, geodetic_latitude_out, height_out = (
-        ellipsoid.ellipsoidal_harmonic_to_geodetic((None, reduced_latitude, u))
-    )
-    npt.assert_allclose(geodetic_latitude_in, geodetic_latitude_out, rtol=rtol)
-    npt.assert_allclose(height_in, height_out, rtol=rtol)
+    npt.assert_allclose(geodetic_latitude_in, geodetic_latitude_out, atol=1e-8)
+    npt.assert_allclose(height_in, height_out, rtol=0, atol=1e-4)
     assert longitude is None
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+def test_geodetic_to_ellipsoidal_conversions_with_longitude(ellipsoid):
+    """
+    Test the geodetic to ellipsoidal-harmonic conversions when a longitude is
+    given, so the Cartesian step is not restricted to the meridian plane.
+    """
+    size = 5
+    longitude_in = np.linspace(-180, 180, size)
+    geodetic_latitude_in = np.linspace(-90, 90, size)
+    height_in = np.full(size, 1e5)
+    longitude, reduced_latitude, u = ellipsoid.geodetic_to_ellipsoidal_harmonic(
+        (longitude_in, geodetic_latitude_in, height_in)
+    )
+    longitude_out, geodetic_latitude_out, height_out = (
+        ellipsoid.ellipsoidal_harmonic_to_geodetic((longitude, reduced_latitude, u))
+    )
+    npt.assert_allclose(longitude_in, longitude_out, atol=1e-10)
+    npt.assert_allclose(geodetic_latitude_in, geodetic_latitude_out, atol=1e-8)
+    npt.assert_allclose(height_in, height_out, rtol=0, atol=1e-4)
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
