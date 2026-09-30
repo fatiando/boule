@@ -1018,6 +1018,63 @@ class Centrifugal:
             )
         return result
 
+    def centrifugal_acceleration(
+        self, coordinates, *, coordinate_system="geodetic", si_units=False
+    ):
+        r"""
+        Centrifugal acceleration vector of the rotating ellipsoid.
+
+        Calculate the centrifugal acceleration vector due to the rotation of the
+        ellipsoid about its semiminor axis at the given points. The acceleration
+        is the gradient of the centrifugal potential.
+
+        Parameters
+        ----------
+        coordinates : tuple = (coordinate1, coordinate2, coordinate3)
+            Tuple with 3 arrays containing the coordinates of the computation points.
+            The meaning of the arrays is determined by the ``coordinate_system``
+            argument: longitude, geodetic latitude, and geometric height for a geodetic
+            system; longitude, geocentric latitude, and radius for a geocentric
+            spherical system; longitude, reduced latitude, and u for an ellipsoidal
+            harmonic system; x, y, and z for a geocentric Cartesian system. Each
+            element can be a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitudes must be in degrees and height, radius,
+            and u in meters. Since longitude is not used in computations (the potential
+            is symmetric with longitude), it can be assigned ``None``.
+        coordinate_system : str
+            The coordinate system that will be assumed for the given coordinates. Should
+            be one of: ``"geodetic"`` (default), ``"spherical"``, ``"cartesian"``, or
+            ``"ellipsoidal harmonic"``.
+        si_units : bool
+            Return the value in mGal (False, default) or m/s² (True).
+
+        Returns
+        -------
+        acceleration : tuple = (fx, fy, fz)
+            Tuple with arrays representing the 3 components of the centrifugal
+            acceleration vector in the geocentric Cartesian system in mGal or
+            m/s².
+
+        Notes
+        -----
+        .. note::
+
+            Since the calculations happen in geocentric Cartesian coordinates,
+            passing inputs in any other coordinate system will require
+            conversion, which may slow down computations if done in a loop.
+        """
+        check_coordinate_system(coordinate_system)
+        x, y, z = to_cartesian(coordinates, coordinate_system, self)
+        fx = self.angular_velocity**2 * x
+        fy = self.angular_velocity**2 * y
+        fz = np.zeros_like(z)
+        # Convert from SI to mGal
+        if not si_units:
+            fx *= 1e5
+            fy *= 1e5
+            fz *= 1e5
+        return (fx, fy, fz)
+
 
 # The actual Ellipsoid class
 ################################################################################
@@ -1646,5 +1703,32 @@ def to_ellipsoidal_harmonic(coordinates, coordinate_system, ellipsoid):
         "spherical": ellipsoid.spherical_to_ellipsoidal_harmonic,
         "cartesian": ellipsoid.cartesian_to_ellipsoidal_harmonic,
         "ellipsoidal harmonic": lambda x: x,
+    }
+    return converters[coordinate_system](coordinates)
+
+
+def to_cartesian(coordinates, coordinate_system, ellipsoid):
+    """
+    Convert from the given system to geocentric Cartesian coordinates.
+
+    Parameters
+    ----------
+    coordinates : tuple
+        Tuple of coordinates in the given coordinate system.
+    coordinate_system : str
+        A string specifying the coordinate system to use.
+    ellipsoid : :class:`boule.Ellipsoid`
+        The ellipsoid to use for the conversions
+
+    Returns
+    -------
+    coordinates : tuple = (c, y, z)
+        The coordinates in the geocentric Cartesian system.
+    """
+    converters = {
+        "geodetic": ellipsoid.geodetic_to_cartesian,
+        "spherical": ellipsoid.spherical_to_cartesian,
+        "ellipsoidal harmonic": ellipsoid.ellipsoidal_harmonic_to_cartesian,
+        "cartesian": lambda x: x,
     }
     return converters[coordinate_system](coordinates)

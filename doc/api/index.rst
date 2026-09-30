@@ -13,6 +13,7 @@ List of functions and classes (API)
     Ellipsoid
     Sphere
     TriaxialEllipsoid
+    HomogeneousEllipsoid
 
 All :ref:`available ellipsoids <ellipsoids>` are instances of these classes.
 See the class documentation for a list their derived physical properties
