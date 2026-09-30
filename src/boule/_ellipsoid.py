@@ -804,6 +804,9 @@ class Ellipsoid:
         """
         Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.
 
+        The conversion is done by passing through the geocentric Cartesian
+        coordinate system.
+
         The geodetic datum is defined by this ellipsoid.
 
         Parameters
@@ -827,14 +830,18 @@ class Ellipsoid:
             will be in degrees and height in meters.
         """
         longitude, reduced_latitude, u = coordinates
-        reduced_latitude_radians = np.radians(reduced_latitude)
-        sqrt_u_E = np.sqrt(u**2 + self.linear_eccentricity**2)
-        # Place the point in the meridian plane (y=0) and reuse the exact
-        # Cartesian to geodetic conversion. Working in the meridian plane leaves
-        # longitude untouched, so it can be None.
-        p = sqrt_u_E * np.cos(reduced_latitude_radians)
-        z = u * np.sin(reduced_latitude_radians)
-        _, latitude, height = self.cartesian_to_geodetic((p, np.zeros_like(p * 1.0), z))
+        if longitude is None:
+            # ellipsoidal_harmonic_to_cartesian needs a longitude to build the
+            # Cartesian x and y. Passing zeros keeps the point in the meridian
+            # plane (y = 0): cos(0) = 1 and sin(0) = 0 leave its distance to the
+            # rotation axis unchanged.
+            cartesian_longitude = np.zeros_like(np.asarray(u, dtype=float))
+        else:
+            cartesian_longitude = longitude
+        cartesian = self.ellipsoidal_harmonic_to_cartesian(
+            (cartesian_longitude, reduced_latitude, u)
+        )
+        _, latitude, height = self.cartesian_to_geodetic(cartesian)
         return longitude, latitude, height
 
     def spherical_to_cartesian(self, coordinates):
