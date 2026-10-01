@@ -70,6 +70,26 @@ If that's the case, then you have the following options to choose from:
 
             Example
 
+    .. grid-item-card:: Homogeneous ellipsoid
+        :class-title: sd-fs-4 text-center
+
+        **Class:** :class:`boule.HomogeneousEllipsoid`
+
+        **When to use:** Your model has 2 semi-axis and non-zero flattening, and
+        you require knowledge of the internal density distribution.
+
+        **Caveat:** A homogeneous density ellipsoid does not have constant
+        :term:`gravity potential` on its surface.
+
+        .. button-ref:: defining_ellipsoids_homogeneous
+            :ref-type: ref
+            :click-parent:
+            :color: primary
+            :outline:
+            :expand:
+
+            Example
+
 ----
 
 .. _defining_ellipsoids_oblate:
@@ -194,3 +214,8 @@ from [Russell2012]_:
     Gravity calculations have not been implemented yet for triaxial ellipsoids.
     If you're interested in this feature or would like to help implement it,
     please `get in touch <https://www.fatiando.org/contact>`__.
+
+.. _defining_ellipsoids_homogeneous:
+
+Homogeneous oblate ellipsoids
+-----------------------------
