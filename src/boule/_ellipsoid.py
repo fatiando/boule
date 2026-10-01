@@ -977,7 +977,7 @@ class Centrifugal:
 
         .. math::
 
-            \Phi(x, y) = \dfrac{1}{2} \omega^2 \left(x^2 + y^2\right)^2
+            \Phi(x, y) = \dfrac{1}{2} \omega^2 \left(x^2 + y^2\right)
 
         and in geocentric spherical coordinates, the potential is
 
@@ -1057,6 +1057,22 @@ class Centrifugal:
 
         Notes
         -----
+        The centrifugal potential :math:`\Phi` with respect to geocentric
+        Cartesian coordinates :math:`(x, y, z)` is
+
+        .. math::
+
+            \Phi(x, y) = \dfrac{1}{2} \omega^2 \left(x^2 + y^2\right)
+
+        in which :math:`\omega` is the angular velocity. The centrifugal
+        acceleration vector :math:`\vec{f}` is
+
+        .. math::
+
+            \vec{f}(x, y) = \vec{\nabla}\Phi = (\omega^2 x,\ \omega^2 y,\ 0)
+
+        which is contained in the equatorial plane.
+
         .. note::
 
             Since the calculations happen in geocentric Cartesian coordinates,
