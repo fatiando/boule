@@ -10,7 +10,7 @@ Representation of an oblate ellipsoid with homogeneous density.
 
 import textwrap
 
-import attrs
+import attr
 import numpy as np
 
 from ._constants import G
@@ -25,20 +25,125 @@ from ._ellipsoid import (
 )
 
 
-@attrs.frozen()
+@attr.s(frozen=True)
 class HomogeneousEllipsoid(GeometricProperties, CoordinateConversion, Centrifugal):
-    """
-    Bla.
+    r"""
+    A rotating oblate ellipsoid with homogeneous density.
+
+    The ellipsoid is defined by four parameters: semimajor axis, flattening,
+    density, and angular velocity. It spins around     its semiminor axis and
+    **does not have** constant gravity potential at its surface (unlike the
+    :class:`boule.Ellipsoid`).
+
+    **This class is read-only:** Input parameters and attributes cannot be
+    changed after instantiation.
+
+    **Units:** All input parameters and derived attributes are in SI units.
+
+    Parameters
+    ----------
+    name : str
+        A short name for the ellipsoid, for example ``"WGS84"``.
+    semimajor_axis : float
+        The semimajor axis of the ellipsoid. The equatorial (large) radius.
+        Definition: :math:`a`.
+        Units: :math:`m`.
+    flattening : float
+        The (first) flattening of the ellipsoid.
+        Definition: :math:`f = (a - b)/a`.
+        Units: adimensional.
+    density : float
+        The density of the ellipsoid, considered constant throughout its volume.
+        Definition: :math:`\rho`. Units:
+        :math:`kg.m^{-3}`.
+    angular_velocity : float
+        The angular velocity of the rotating ellipsoid.
+        Definition: :math:`\omega`.
+        Units: :math:`\\rad.s^{-1}`.
+    long_name : str or None
+        A long name for the ellipsoid, for example ``"World Geodetic System
+        1984"`` (optional).
+    reference : str or None
+        Citation for the ellipsoid parameter values (optional).
+    comments : str or None
+        Additional comments regarding the ellipsoid (optional).
+
+    Notes
+    -----
+
+    .. caution::
+
+        Use :class:`boule.Sphere` if you desire zero flattening. The sphere also
+        has homogeneous density and gravity computations will likely be faster.
+
+    Examples
+    --------
+    We can define an ellipsoid by setting the 4 key numerical parameters and
+    some metadata about where they came from:
+
+    >>> ellipsoid = HomogeneousEllipsoid(
+    ...     name="Earth",
+    ...     long_name="Constant density Earth model",
+    ...     semimajor_axis=6378137,
+    ...     flattening=1 / 298.257223563,
+    ...     density=5513.41223873,
+    ...     angular_velocity=7292115e-11,
+    ...     reference="Hofmann-Wellenhof & Moritz (2006)",
+    ...     comments="The geometric properties are the same as WGS84.",
+    ... )
+    >>> print(ellipsoid) # doctest: +ELLIPSIS
+    Earth - Constant density Earth model
+    Homogeneous oblate ellipsoid:
+      • Semimajor axis: 6378137 m
+      • Flattening: 0.0033528106647474805
+      • Density: 5513.41223873 kg/m³
+      • Angular velocity: 7.292115e-05 rad/s
+    Source:
+      Hofmann-Wellenhof & Moritz (2006)
+    Comments:
+      The geometric properties are the same as WGS84.
+
+    >>> print(ellipsoid.long_name)
+    Constant density Earth model
+
+    The class then defines several derived attributes based on the input
+    parameters:
+
+    >>> print(f"{ellipsoid.semiminor_axis:.4f} m")
+    6356752.3142 m
+    >>> print(f"{ellipsoid.linear_eccentricity:.8f} m")
+    521854.00842339 m
+    >>> print(f"{ellipsoid.first_eccentricity:.13e}")
+    8.1819190842621e-02
+    >>> print(f"{ellipsoid.second_eccentricity:.13e}")
+    8.2094437949696e-02
+    >>> print(f"{ellipsoid.mean_radius:.4f} m")
+    6370994.4018 m
+    >>> print(f"{ellipsoid.semiaxes_mean_radius:.4f} m")
+    6371008.7714 m
+    >>> print(f"{ellipsoid.volume_equivalent_radius:.4f} m")
+    6371000.7900 m
+    >>> print(f"{ellipsoid.mass:.10e} kg")
+    5.9721684941e+24 kg
+    >>> print(f"{ellipsoid.volume * 1e-9:.5e} km³")
+    1.08321e+12 km³
+    >>> print(f"{ellipsoid.area:.10e} m²")
+    5.1006562172e+14 m²
+    >>> print(f"{ellipsoid.area_equivalent_radius:0.4f} m")
+    6371007.1809 m
+
+    Use the class methods for calculating normal gravity and other geometric
+    quantities.
     """
 
-    name = attrs.field()
-    semimajor_axis = attrs.field(validator=validate_semimajor_axis)
-    flattening = attrs.field(validator=validate_flattening)
-    density = attrs.field()
-    angular_velocity = attrs.field()
-    long_name = attrs.field(default=None)
-    reference = attrs.field(default=None)
-    comments = attrs.field(default=None)
+    name = attr.ib()
+    semimajor_axis = attr.ib(validator=validate_semimajor_axis)
+    flattening = attr.ib(validator=validate_flattening)
+    density = attr.ib()
+    angular_velocity = attr.ib()
+    long_name = attr.ib(default=None)
+    reference = attr.ib(default=None)
+    comments = attr.ib(default=None)
 
     def __str__(self):
         """
