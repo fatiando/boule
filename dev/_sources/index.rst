@@ -32,10 +32,10 @@ resembling a squashed ball <https://en.wikipedia.org/wiki/Boule_(bread)>`__
 
 Boule is designed for:
 
-* Storing and manipulating ellipsoid parameters for spherical harmonic analysis
-  and coordinate system conversions.
-* Calculating :term:`normal gravity` for generating gravity anomalies and
-  :term:`gravity disturbances <gravity disturbance>`.
+* Storing and manipulating :ref:`ellipsoid parameters <defining_ellipsoids>` for spherical harmonic analysis
+  and :ref:`coordinate system conversions <coordinates>`.
+* Calculating :ref:`normal gravity <normal_gravity>` for generating gravity anomalies and
+  :ref:`gravity disturbances <gravity_disturbance>`.
 
 ----
 
@@ -161,4 +161,5 @@ Boule is designed for:
     How to contribute <https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md>
     Code of Conduct <https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md>
     Source code on GitHub <https://github.com/fatiando/boule>
+    Authors <https://github.com/fatiando/boule/blob/main/AUTHORS.md>
     The Fatiando a Terra project <https://www.fatiando.org>

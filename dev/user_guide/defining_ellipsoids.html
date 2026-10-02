@@ -200,6 +200,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
@@ -498,15 +499,15 @@ parameters from <a class="reference internal" href="../references.html#hofmannwe
 
 
 <span class="n">WGS84</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Ellipsoid</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;WGS84&quot;</span><span class="p">,</span>
-    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;World Geodetic System 1984&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"WGS84"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"World Geodetic System 1984"</span><span class="p">,</span>
     <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">6378137</span><span class="p">,</span>
     <span class="n">flattening</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">298.257223563</span><span class="p">,</span>
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">3986004.418e8</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">7292115e-11</span><span class="p">,</span>
     <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy &quot;</span>
-        <span class="s2">&quot;(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer.&quot;</span>
+        <span class="s2">"Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy "</span>
+        <span class="s2">"(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">WGS84</span><span class="p">)</span>
@@ -552,15 +553,15 @@ found in <a class="reference internal" href="../references.html#wieczorek2015" i
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MERCURY</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MERCURY&quot;</span><span class="p">,</span>
-    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Mercury Spheroid&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"MERCURY"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Mercury Spheroid"</span><span class="p">,</span>
     <span class="n">radius</span><span class="o">=</span><span class="mi">2_439_372</span><span class="p">,</span>
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">22.031839221e12</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">1.2400172589e-6</span><span class="p">,</span>
     <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial &quot;</span>
-        <span class="s2">&quot;Planets, Treatise of Geophysics (Second Edition); Elsevier. &quot;</span>
-        <span class="s2">&quot;doi:10.1016/B978-0-444-53802-4.00169-X&quot;</span>
+        <span class="s2">"Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "</span>
+        <span class="s2">"Planets, Treatise of Geophysics (Second Edition); Elsevier. "</span>
+        <span class="s2">"doi:10.1016/B978-0-444-53802-4.00169-X"</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">MERCURY</span><span class="p">)</span>
@@ -600,17 +601,17 @@ from <a class="reference internal" href="../references.html#russell2012" id="id3
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VESTA</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">TriaxialEllipsoid</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;VESTA&quot;</span><span class="p">,</span>
-    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Vesta Triaxial Ellipsoid&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"VESTA"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Vesta Triaxial Ellipsoid"</span><span class="p">,</span>
     <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">286_300</span><span class="p">,</span>
     <span class="n">semimedium_axis</span><span class="o">=</span><span class="mi">278_600</span><span class="p">,</span>
     <span class="n">semiminor_axis</span><span class="o">=</span><span class="mi">223_200</span><span class="p">,</span>
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">1.729094e10</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">326.71050958367e-6</span><span class="p">,</span>
     <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, &quot;</span>
-        <span class="s2">&quot;M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the &quot;</span>
-        <span class="s2">&quot;Protoplanetary Paradigm. Science. doi:10.1126/science.1219381&quot;</span>
+        <span class="s2">"Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, "</span>
+        <span class="s2">"M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the "</span>
+        <span class="s2">"Protoplanetary Paradigm. Science. doi:10.1126/science.1219381"</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">VESTA</span><span class="p">)</span>
@@ -720,7 +721,7 @@ please <a class="reference external" href="https://www.fatiando.org/contact">get
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Oct 02, 2026.
   <br/>
 </p>
   </div>
