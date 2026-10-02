@@ -9,6 +9,7 @@ These are the functions and classes that make up the Boule API.
 """
 
 from ._ellipsoid import Ellipsoid
+from ._homogeneous_ellipsoid import HomogeneousEllipsoid
 from ._realizations import (
     EGM96,
     GRS80,

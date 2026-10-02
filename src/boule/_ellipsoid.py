@@ -16,188 +16,66 @@ import numpy as np
 
 from ._constants import G
 
+# Attribute validation
+################################################################################
 
-# Don't let ellipsoid parameters be changed to avoid messing up calculations
-# accidentally.
-@attr.s(frozen=True)
-class Ellipsoid:
-    r"""
-    A rotating oblate ellipsoid.
 
-    The ellipsoid is defined by four parameters: semimajor axis, flattening,
-    geocentric gravitational constant, and angular velocity. It spins around
-    its semiminor axis and has constant gravity potential at its surface. The
-    internal density structure of the ellipsoid is unspecified but must be such
-    that the constant potential condition is satisfied.
-
-    **This class is read-only:** Input parameters and attributes cannot be
-    changed after instantiation.
-
-    **Units:** All input parameters and derived attributes are in SI units.
-
-    Parameters
-    ----------
-    name : str
-        A short name for the ellipsoid, for example ``"WGS84"``.
-    semimajor_axis : float
-        The semimajor axis of the ellipsoid. The equatorial (large) radius.
-        Definition: :math:`a`.
-        Units: :math:`m`.
-    flattening : float
-        The (first) flattening of the ellipsoid.
-        Definition: :math:`f = (a - b)/a`.
-        Units: adimensional.
-    geocentric_grav_const : float
-        The geocentric gravitational constant. The product of the mass of the
-        ellipsoid :math:`M` and the gravitational constant :math:`G`.
-        Definition: :math:`GM`. Units:
-        :math:`m^3.s^{-2}`.
-    angular_velocity : float
-        The angular velocity of the rotating ellipsoid.
-        Definition: :math:`\omega`.
-        Units: :math:`\\rad.s^{-1}`.
-    long_name : str or None
-        A long name for the ellipsoid, for example ``"World Geodetic System
-        1984"`` (optional).
-    reference : str or None
-        Citation for the ellipsoid parameter values (optional).
-    comments : str or None
-        Additional comments regarding the ellipsoid (optional).
-
-    Notes
-    -----
-
-    .. caution::
-
-        Use :class:`boule.Sphere` if you desire zero flattening because there
-        are singularities for this particular case in the normal gravity
-        calculations.
-
-    Examples
-    --------
-    We can define an ellipsoid by setting the 4 key numerical parameters and
-    some metadata about where they came from:
-
-    >>> ellipsoid = Ellipsoid(
-    ...     name="WGS84",
-    ...     long_name="World Geodetic System 1984",
-    ...     semimajor_axis=6378137,
-    ...     flattening=1 / 298.257223563,
-    ...     geocentric_grav_const=3986004.418e8,
-    ...     angular_velocity=7292115e-11,
-    ...     reference="Hofmann-Wellenhof & Moritz (2006)",
-    ...     comments="This is the same as the boule WGS84 ellipsoid.",
-    ... )
-    >>> print(ellipsoid) # doctest: +ELLIPSIS
-    WGS84 - World Geodetic System 1984
-    Oblate ellipsoid:
-      • Semimajor axis: 6378137 m
-      • Flattening: 0.0033528106647474805
-      • GM: 398600441800000.0 m³/s²
-      • Angular velocity: 7.292115e-05 rad/s
-    Source:
-      Hofmann-Wellenhof & Moritz (2006)
-    Comments:
-      This is the same as the boule WGS84 ellipsoid.
-
-    >>> print(ellipsoid.long_name)
-    World Geodetic System 1984
-
-    The class then defines several derived attributes based on the input
-    parameters:
-
-    >>> print(f"{ellipsoid.semiminor_axis:.4f} m")
-    6356752.3142 m
-    >>> print(f"{ellipsoid.linear_eccentricity:.8f} m")
-    521854.00842339 m
-    >>> print(f"{ellipsoid.first_eccentricity:.13e}")
-    8.1819190842621e-02
-    >>> print(f"{ellipsoid.second_eccentricity:.13e}")
-    8.2094437949696e-02
-    >>> print(f"{ellipsoid.mean_radius:.4f} m")
-    6370994.4018 m
-    >>> print(f"{ellipsoid.semiaxes_mean_radius:.4f} m")
-    6371008.7714 m
-    >>> print(f"{ellipsoid.volume_equivalent_radius:.4f} m")
-    6371000.7900 m
-    >>> print(f"{ellipsoid.mass:.10e} kg")
-    5.9721684941e+24 kg
-    >>> print(f"{ellipsoid.mean_density:.0f} kg/m³")
-    5513 kg/m³
-    >>> print(f"{ellipsoid.volume * 1e-9:.5e} km³")
-    1.08321e+12 km³
-    >>> print(f"{ellipsoid.area:.10e} m²")
-    5.1006562172e+14 m²
-    >>> print(f"{ellipsoid.area_equivalent_radius:0.4f} m")
-    6371007.1809 m
-    >>> print(f"{ellipsoid.gravity_equator:.10f} m/s²")
-    9.7803253359 m/s²
-    >>> print(f"{ellipsoid.gravity_pole:.10f} m/s²")
-    9.8321849379 m/s²
-    >>> print(f"{ellipsoid.reference_normal_gravity_potential:.3f} m²/s²")
-    62636851.715 m²/s²
-
-    Use the class methods for calculating normal gravity and other geometric
-    quantities.
+def validate_flattening(instance, attribute, value):  # noqa: ARG001
     """
+    Check if flattening is valid.
+    """
+    if value < 0 or value >= 1:
+        message = (
+            f"Invalid flattening '{value}'. "
+            "Should be greater than zero and lower than 1."
+        )
+        raise ValueError(message)
+    if value == 0:
+        message = (
+            "Flattening equal to zero will lead to errors in normal gravity. "
+            "Use boule.Sphere for representing ellipsoids with zero flattening."
+        )
+        raise ValueError(message)
+    if value < 1e-7:
+        message = (
+            f"Flattening is too close to zero ('{value}'). "
+            "This may lead to inaccurate results and division by zero errors. "
+            "Use boule.Sphere for representing ellipsoids with zero flattening."
+        )
+        warn(message, stacklevel=2)
 
-    name = attr.ib()
-    semimajor_axis = attr.ib()
-    flattening = attr.ib()
-    geocentric_grav_const = attr.ib()
-    angular_velocity = attr.ib()
-    long_name = attr.ib(default=None)
-    reference = attr.ib(default=None)
-    comments = attr.ib(default=None)
 
-    # Attribute validation
-    # ##################################################################################
+def validate_semimajor_axis(instance, attribute, value):  # noqa: ARG001
+    """
+    Check if semimajor_axis is valid.
+    """
+    if not value > 0:
+        message = f"Invalid semi-major axis '{value}'. Should be greater than zero."
+        raise ValueError(message)
 
-    @flattening.validator
-    def _check_flattening(self, flattening, value):  # noqa: ARG002
-        """
-        Check if flattening is valid.
-        """
-        if value < 0 or value >= 1:
-            message = (
-                f"Invalid flattening '{value}'. "
-                "Should be greater than zero and lower than 1."
-            )
-            raise ValueError(message)
-        if value == 0:
-            message = (
-                "Flattening equal to zero will lead to errors in normal gravity. "
-                "Use boule.Sphere for representing ellipsoids with zero flattening."
-            )
-            raise ValueError(message)
-        if value < 1e-7:
-            message = (
-                f"Flattening is too close to zero ('{value}'). "
-                "This may lead to inaccurate results and division by zero errors. "
-                "Use boule.Sphere for representing ellipsoids with zero flattening."
-            )
-            warn(message, stacklevel=2)
 
-    @semimajor_axis.validator
-    def _check_semimajor_axis(self, semimajor_axis, value):  # noqa: ARG002
-        """
-        Check if semimajor_axis is valid.
-        """
-        if not value > 0:
-            message = f"Invalid semi-major axis '{value}'. Should be greater than zero."
-            raise ValueError(message)
+def validate_geocentric_grav_const(instance, attribute, value):  # noqa: ARG001
+    """
+    Warn if geocentric_grav_const is negative.
+    """
+    if value < 0:
+        message = f"The geocentric gravitational constant is negative: '{value}'"
+        warn(message, stacklevel=2)
 
-    @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(self, geocentric_grav_const, value):  # noqa: ARG002
-        """
-        Warn if geocentric_grav_const is negative.
-        """
-        if value < 0:
-            message = f"The geocentric gravitational constant is negative: '{value}'"
-            warn(message, stacklevel=2)
 
-    # Properties
-    # ##################################################################################
+# Mixin classes with properties that can be reused elsewhere
+################################################################################
+
+
+@attr.s()
+class GeometricProperties:
+    """
+    Derived properties of the geometry of the ellipsoid.
+
+    Requires the ellipsoid to have:
+    1. semimajor_axis
+    2. flattening
+    """
 
     @property
     def semiminor_axis(self):
@@ -291,6 +169,40 @@ class Ellipsoid:
         return self.first_eccentricity / (1 - self.flattening)
 
     @property
+    def area(self):
+        r"""
+        The area of the ellipsoid.
+
+        Definition: :math:`A = 2 \pi a^2 \left(1 + \dfrac{b^2}{e a^2}
+        \text{arctanh}\,e \right)`.
+
+        Units: :math:`m^2`.
+        """
+        # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
+        return (
+            2
+            * np.pi
+            * self.semimajor_axis**2
+            * (
+                1
+                + (self.semiminor_axis / self.semimajor_axis) ** 2
+                / self.first_eccentricity
+                * np.arctanh(self.first_eccentricity)
+            )
+        )
+
+    @property
+    def volume(self):
+        r"""
+        The volume bounded by the ellipsoid.
+
+        Definition: :math:`V = \dfrac{4}{3} \pi a^2 b`.
+
+        Units: :math:`m^3`.
+        """
+        return (4 / 3 * np.pi) * self.semimajor_axis**2 * self.semiminor_axis
+
+    @property
     def mean_radius(self):
         r"""
         The mean radius of the ellipsoid.
@@ -332,57 +244,6 @@ class Ellipsoid:
         return 1 / 3 * (2 * self.semimajor_axis + self.semiminor_axis)
 
     @property
-    def area(self):
-        r"""
-        The area of the ellipsoid.
-
-        Definition: :math:`A = 2 \pi a^2 \left(1 + \dfrac{b^2}{e a^2}
-        \text{arctanh}\,e \right)`.
-
-        Units: :math:`m^2`.
-        """
-        # see https://en.wikipedia.org/wiki/Ellipsoid#Surface_area
-        return (
-            2
-            * np.pi
-            * self.semimajor_axis**2
-            * (
-                1
-                + (self.semiminor_axis / self.semimajor_axis) ** 2
-                / self.first_eccentricity
-                * np.arctanh(self.first_eccentricity)
-            )
-        )
-
-    @property
-    def volume(self):
-        r"""
-        The volume bounded by the ellipsoid.
-
-        Definition: :math:`V = \dfrac{4}{3} \pi a^2 b`.
-
-        Units: :math:`m^3`.
-        """
-        return (4 / 3 * np.pi) * self.semimajor_axis**2 * self.semiminor_axis
-
-    @property
-    def reference_normal_gravity_potential(self):
-        r"""
-        The normal gravity potential on the surface of the ellipsoid.
-
-        Definition: :math:`U_0 = \dfrac{GM}{E} \arctan{\dfrac{E}{b}}
-        + \dfrac{1}{3} \omega^2 a^2`.
-
-        Units: :math:`m^2 / s^2`.
-        """
-        return (
-            self.geocentric_grav_const
-            / self.linear_eccentricity
-            * np.arctan(self.linear_eccentricity / self.semiminor_axis)
-            + (1 / 3) * self.angular_velocity**2 * self.semimajor_axis**2
-        )
-
-    @property
     def area_equivalent_radius(self):
         r"""
         The area equivalent radius of the ellipsoid.
@@ -394,28 +255,6 @@ class Ellipsoid:
         return np.sqrt(self.area / (4 * np.pi))
 
     @property
-    def mass(self):
-        r"""
-        The mass of the ellipsoid.
-
-        Definition: :math:`M = GM / G`.
-
-        Units: :math:`kg`.
-        """
-        return self.geocentric_grav_const / G
-
-    @property
-    def mean_density(self):
-        r"""
-        The mean density of the ellipsoid.
-
-        Definition: :math:`\rho = M / V`.
-
-        Units: :math:`kg / m^3`.
-        """
-        return self.mass / self.volume
-
-    @property
     def volume_equivalent_radius(self):
         r"""
         The volume equivalent radius of the ellipsoid.
@@ -425,90 +264,6 @@ class Ellipsoid:
         Units: :math:`m`.
         """
         return (self.volume * 3 / (4 * np.pi)) ** (1 / 3)
-
-    @property
-    def _emm(self):
-        """
-        Auxiliary quantity used to calculate gravity at the pole and equator.
-        """
-        return (
-            self.angular_velocity**2
-            * self.semimajor_axis**2
-            * self.semiminor_axis
-            / self.geocentric_grav_const
-        )
-
-    @property
-    def gravity_equator(self):
-        """
-        The normal gravity at the equator.
-
-        This is the norm of the gravity acceleration vector (gravitational
-        + centrifugal accelerations) at the equator on the surface of the
-        ellipsoid.
-
-        Units: :math:`m/s^2`.
-        """
-        ratio = self.semiminor_axis / self.linear_eccentricity
-        arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-        aux = (
-            self.second_eccentricity
-            * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
-            / (3 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
-        )
-        axis_mul = self.semimajor_axis * self.semiminor_axis
-        result = (
-            self.geocentric_grav_const * (1 - self._emm - self._emm * aux) / axis_mul
-        )
-        return result
-
-    @property
-    def gravity_pole(self):
-        """
-        The normal gravity at the pole.
-
-        This is the norm of the gravity acceleration vector (gravitational +
-        centrifugal accelerations) at the poles on the surface of the ellipsoid.
-
-        Units: :math:`m/s^2`.
-        """
-        ratio = self.semiminor_axis / self.linear_eccentricity
-        arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
-        aux = (
-            self.second_eccentricity
-            * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
-            / (1.5 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
-        )
-        result = (
-            self.geocentric_grav_const * (1 + self._emm * aux) / self.semimajor_axis**2
-        )
-        return result
-
-    def __str__(self):
-        """
-        Define a string representation of this class.
-        """
-        s = self.name + " - " + self.long_name + "\n"
-        s += "Oblate ellipsoid:\n"
-        s += f"  • Semimajor axis: {self.semimajor_axis} m\n"
-        s += f"  • Flattening: {self.flattening}\n"
-        s += f"  • GM: {self.geocentric_grav_const} m³/s²\n"
-        s += f"  • Angular velocity: {self.angular_velocity} rad/s"
-        if self.reference is not None:
-            s += "\nSource:"
-            for ref in self.reference.splitlines():
-                s += "\n" + textwrap.fill(
-                    ref, width=72, initial_indent=2 * " ", subsequent_indent=4 * " "
-                )
-        if self.comments is not None:
-            s += "\nComments:\n"
-            s += textwrap.fill(
-                self.comments,
-                width=72,
-                initial_indent=2 * " ",
-                subsequent_indent=2 * " ",
-            )
-        return s
 
     def geocentric_radius(self, latitude, *, coordinate_system="geodetic"):
         r"""
@@ -637,8 +392,17 @@ class Ellipsoid:
         """
         return self.semimajor_axis / np.sqrt(1 - self.first_eccentricity**2 * sinlat**2)
 
-    # Coordinate conversions
-    # ##################################################################################
+
+@attr.s()
+class CoordinateConversion:
+    """
+    Coordinate conversion methods.
+
+    Converts to and from Cartesian, spherical, geodetic, and ellipsoidal
+    harmonic.
+
+    Requires the ellipsoid to inherit from GeometricProperties.
+    """
 
     def geodetic_to_spherical(self, coordinates):
         """
@@ -1156,8 +920,440 @@ class Ellipsoid:
         )
         return longitude, latitude, u
 
-    # Gravity
+
+@attr.s()
+class Centrifugal:
+    """
+    Centrifugal potential and acceleration calculation.
+
+    Requires the ellipsoid to inherit from GeometricProperties and
+    CoordinateConversion and have the angular_velocity attribute.
+    """
+
+    def centrifugal_potential(self, coordinates, *, coordinate_system="geodetic"):
+        r"""
+        Centrifugal potential of the rotating ellipsoid.
+
+        Calculate the centrifugal potential due to the rotation of the ellipsoid about
+        its semiminor axis at the given points.
+
+        Parameters
+        ----------
+        coordinates : tuple = (coordinate1, coordinate2, coordinate3)
+            Tuple with 3 arrays containing the coordinates of the computation points.
+            The meaning of the arrays is determined by the ``coordinate_system``
+            argument: longitude, geodetic latitude, and geometric height for a geodetic
+            system; longitude, geocentric latitude, and radius for a geocentric
+            spherical system; longitude, reduced latitude, and u for an ellipsoidal
+            harmonic system; x, y, and z for a geocentric Cartesian system. Each
+            element can be a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitudes must be in degrees and height, radius,
+            and u in meters. Since longitude is not used in computations (the potential
+            is symmetric with longitude), it can be assigned ``None``.
+        coordinate_system : str
+            The coordinate system that will be assumed for the given coordinates. Should
+            be one of: ``"geodetic"`` (default), ``"spherical"``, ``"cartesian"``, or
+            ``"ellipsoidal harmonic"``.
+
+        Returns
+        -------
+        Phi : float or array
+            The centrifugal potential in m²/s².
+
+        Notes
+        -----
+        The centrifugal potential :math:`\Phi` at geodetic latitude :math:`\phi` and
+        height above the ellipsoid :math:`h` (geometric height) is
+
+        .. math::
+
+            \Phi(\phi, h) = \dfrac{1}{2}
+                \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)
+
+        in which :math:`N(\phi)` is the prime vertical radius of curvature of the
+        ellipsoid and :math:`\omega` is the angular velocity.
+
+        In geocentric Cartesian coordinates, the potential is
+
+        .. math::
+
+            \Phi(x, y) = \dfrac{1}{2} \omega^2 \left(x^2 + y^2\right)
+
+        and in geocentric spherical coordinates, the potential is
+
+        .. math::
+
+            \Phi(\theta, r) = \dfrac{1}{2} \omega^2 r^2 \cos^2\theta
+
+        in which :math:`\theta` is the geocentric latitude and :math:`r` is the radius.
+
+        For inputs in ellipsoidal harmonic coordinates, the coordinates will be
+        converted to geodetic before calculation of the potential.
+        """
+        check_coordinate_system(coordinate_system)
+        if coordinate_system == "ellipsoidal harmonic":
+            coordinates = self.ellipsoidal_harmonic_to_geodetic(coordinates)
+            coordinate_system = "geodetic"
+        if coordinate_system == "cartesian":
+            x, y = coordinates[:2]
+            result = 0.5 * self.angular_velocity**2 * (x**2 + y**2)
+        elif coordinate_system == "geodetic":
+            latitude, height = coordinates[1:]
+            latitude_radians = np.radians(latitude)
+            result = (
+                0.5
+                * (
+                    self.angular_velocity
+                    * (self.prime_vertical_radius(np.sin(latitude_radians)) + height)
+                    * np.cos(latitude_radians)
+                )
+                ** 2
+            )
+        else:
+            # If we got here, it's safe to assume this is spherical coordinates
+            latitude, radius = coordinates[1:]
+            latitude_radians = np.radians(latitude)
+            result = (
+                0.5 * (self.angular_velocity * radius * np.cos(latitude_radians)) ** 2
+            )
+        return result
+
+    def centrifugal_acceleration(
+        self, coordinates, *, coordinate_system="geodetic", si_units=False
+    ):
+        r"""
+        Centrifugal acceleration vector of the rotating ellipsoid.
+
+        Calculate the centrifugal acceleration vector due to the rotation of the
+        ellipsoid about its semiminor axis at the given points. The acceleration
+        is the gradient of the centrifugal potential.
+
+        Parameters
+        ----------
+        coordinates : tuple = (coordinate1, coordinate2, coordinate3)
+            Tuple with 3 arrays containing the coordinates of the computation points.
+            The meaning of the arrays is determined by the ``coordinate_system``
+            argument: longitude, geodetic latitude, and geometric height for a geodetic
+            system; longitude, geocentric latitude, and radius for a geocentric
+            spherical system; longitude, reduced latitude, and u for an ellipsoidal
+            harmonic system; x, y, and z for a geocentric Cartesian system. Each
+            element can be a single number or an array. The shape of the arrays must be
+            compatible. Longitude and latitudes must be in degrees and height, radius,
+            and u in meters. Since longitude is not used in computations (the potential
+            is symmetric with longitude), it can be assigned ``None``.
+        coordinate_system : str
+            The coordinate system that will be assumed for the given coordinates. Should
+            be one of: ``"geodetic"`` (default), ``"spherical"``, ``"cartesian"``, or
+            ``"ellipsoidal harmonic"``.
+        si_units : bool
+            Return the value in mGal (False, default) or m/s² (True).
+
+        Returns
+        -------
+        acceleration : tuple = (fx, fy, fz)
+            Tuple with arrays representing the 3 components of the centrifugal
+            acceleration vector in the geocentric Cartesian system in mGal or
+            m/s².
+
+        Notes
+        -----
+        The centrifugal potential :math:`\Phi` with respect to geocentric
+        Cartesian coordinates :math:`(x, y, z)` is
+
+        .. math::
+
+            \Phi(x, y) = \dfrac{1}{2} \omega^2 \left(x^2 + y^2\right)
+
+        in which :math:`\omega` is the angular velocity. The centrifugal
+        acceleration vector :math:`\vec{f}` is
+
+        .. math::
+
+            \vec{f}(x, y) = \vec{\nabla}\Phi = (\omega^2 x,\ \omega^2 y,\ 0)
+
+        which is contained in the equatorial plane.
+
+        .. note::
+
+            Since the calculations happen in geocentric Cartesian coordinates,
+            passing inputs in any other coordinate system will require
+            conversion, which may slow down computations if done in a loop.
+        """
+        check_coordinate_system(coordinate_system)
+        x, y, z = to_cartesian(coordinates, coordinate_system, self)
+        fx = self.angular_velocity**2 * x
+        fy = self.angular_velocity**2 * y
+        fz = np.zeros_like(z)
+        # Convert from SI to mGal
+        if not si_units:
+            fx *= 1e5
+            fy *= 1e5
+            fz *= 1e5
+        return (fx, fy, fz)
+
+
+# The actual Ellipsoid class
+################################################################################
+
+
+# Don't let ellipsoid parameters be changed to avoid messing up calculations
+# accidentally.
+@attr.s(frozen=True)
+class Ellipsoid(GeometricProperties, CoordinateConversion, Centrifugal):
+    r"""
+    A rotating oblate ellipsoid.
+
+    The ellipsoid is defined by four parameters: semimajor axis, flattening,
+    geocentric gravitational constant, and angular velocity. It spins around
+    its semiminor axis and has constant gravity potential at its surface. The
+    internal density structure of the ellipsoid is unspecified but must be such
+    that the constant potential condition is satisfied.
+
+    **This class is read-only:** Input parameters and attributes cannot be
+    changed after instantiation.
+
+    **Units:** All input parameters and derived attributes are in SI units.
+
+    Parameters
+    ----------
+    name : str
+        A short name for the ellipsoid, for example ``"WGS84"``.
+    semimajor_axis : float
+        The semimajor axis of the ellipsoid. The equatorial (large) radius.
+        Definition: :math:`a`.
+        Units: :math:`m`.
+    flattening : float
+        The (first) flattening of the ellipsoid.
+        Definition: :math:`f = (a - b)/a`.
+        Units: adimensional.
+    geocentric_grav_const : float
+        The geocentric gravitational constant. The product of the mass of the
+        ellipsoid :math:`M` and the gravitational constant :math:`G`.
+        Definition: :math:`GM`. Units:
+        :math:`m^3.s^{-2}`.
+    angular_velocity : float
+        The angular velocity of the rotating ellipsoid.
+        Definition: :math:`\omega`.
+        Units: :math:`\\rad.s^{-1}`.
+    long_name : str or None
+        A long name for the ellipsoid, for example ``"World Geodetic System
+        1984"`` (optional).
+    reference : str or None
+        Citation for the ellipsoid parameter values (optional).
+    comments : str or None
+        Additional comments regarding the ellipsoid (optional).
+
+    Notes
+    -----
+
+    .. caution::
+
+        Use :class:`boule.Sphere` if you desire zero flattening because there
+        are singularities for this particular case in the normal gravity
+        calculations.
+
+    Examples
+    --------
+    We can define an ellipsoid by setting the 4 key numerical parameters and
+    some metadata about where they came from:
+
+    >>> ellipsoid = Ellipsoid(
+    ...     name="WGS84",
+    ...     long_name="World Geodetic System 1984",
+    ...     semimajor_axis=6378137,
+    ...     flattening=1 / 298.257223563,
+    ...     geocentric_grav_const=3986004.418e8,
+    ...     angular_velocity=7292115e-11,
+    ...     reference="Hofmann-Wellenhof & Moritz (2006)",
+    ...     comments="This is the same as the boule WGS84 ellipsoid.",
+    ... )
+    >>> print(ellipsoid) # doctest: +ELLIPSIS
+    WGS84 - World Geodetic System 1984
+    Oblate ellipsoid:
+      • Semimajor axis: 6378137 m
+      • Flattening: 0.0033528106647474805
+      • GM: 398600441800000.0 m³/s²
+      • Angular velocity: 7.292115e-05 rad/s
+    Source:
+      Hofmann-Wellenhof & Moritz (2006)
+    Comments:
+      This is the same as the boule WGS84 ellipsoid.
+
+    >>> print(ellipsoid.long_name)
+    World Geodetic System 1984
+
+    The class then defines several derived attributes based on the input
+    parameters:
+
+    >>> print(f"{ellipsoid.semiminor_axis:.4f} m")
+    6356752.3142 m
+    >>> print(f"{ellipsoid.linear_eccentricity:.8f} m")
+    521854.00842339 m
+    >>> print(f"{ellipsoid.first_eccentricity:.13e}")
+    8.1819190842621e-02
+    >>> print(f"{ellipsoid.second_eccentricity:.13e}")
+    8.2094437949696e-02
+    >>> print(f"{ellipsoid.mean_radius:.4f} m")
+    6370994.4018 m
+    >>> print(f"{ellipsoid.semiaxes_mean_radius:.4f} m")
+    6371008.7714 m
+    >>> print(f"{ellipsoid.volume_equivalent_radius:.4f} m")
+    6371000.7900 m
+    >>> print(f"{ellipsoid.mass:.10e} kg")
+    5.9721684941e+24 kg
+    >>> print(f"{ellipsoid.mean_density:.0f} kg/m³")
+    5513 kg/m³
+    >>> print(f"{ellipsoid.volume * 1e-9:.5e} km³")
+    1.08321e+12 km³
+    >>> print(f"{ellipsoid.area:.10e} m²")
+    5.1006562172e+14 m²
+    >>> print(f"{ellipsoid.area_equivalent_radius:0.4f} m")
+    6371007.1809 m
+    >>> print(f"{ellipsoid.gravity_equator:.10f} m/s²")
+    9.7803253359 m/s²
+    >>> print(f"{ellipsoid.gravity_pole:.10f} m/s²")
+    9.8321849379 m/s²
+    >>> print(f"{ellipsoid.reference_normal_gravity_potential:.3f} m²/s²")
+    62636851.715 m²/s²
+
+    Use the class methods for calculating normal gravity and other geometric
+    quantities.
+    """
+
+    name = attr.ib()
+    semimajor_axis = attr.ib(validator=validate_semimajor_axis)
+    flattening = attr.ib(validator=validate_flattening)
+    geocentric_grav_const = attr.ib(validator=validate_geocentric_grav_const)
+    angular_velocity = attr.ib()
+    long_name = attr.ib(default=None)
+    reference = attr.ib(default=None)
+    comments = attr.ib(default=None)
+
+    def __str__(self):
+        """
+        Define a string representation of this class.
+        """
+        s = self.name + " - " + self.long_name + "\n"
+        s += "Oblate ellipsoid:\n"
+        s += f"  • Semimajor axis: {self.semimajor_axis} m\n"
+        s += f"  • Flattening: {self.flattening}\n"
+        s += f"  • GM: {self.geocentric_grav_const} m³/s²\n"
+        s += f"  • Angular velocity: {self.angular_velocity} rad/s"
+        if self.reference is not None:
+            s += "\nSource:"
+            for ref in self.reference.splitlines():
+                s += "\n" + textwrap.fill(
+                    ref, width=72, initial_indent=2 * " ", subsequent_indent=4 * " "
+                )
+        if self.comments is not None:
+            s += "\nComments:\n"
+            s += textwrap.fill(
+                self.comments,
+                width=72,
+                initial_indent=2 * " ",
+                subsequent_indent=2 * " ",
+            )
+        return s
+
+    @property
+    def mass(self):
+        r"""
+        The mass of the ellipsoid.
+
+        Definition: :math:`M = GM / G`.
+
+        Units: :math:`kg`.
+        """
+        return self.geocentric_grav_const / G
+
+    @property
+    def mean_density(self):
+        r"""
+        The mean density of the ellipsoid.
+
+        Definition: :math:`\rho = M / V`.
+
+        Units: :math:`kg / m^3`.
+        """
+        return self.mass / self.volume
+
+    # Gravity calculations
     # ##################################################################################
+
+    @property
+    def reference_normal_gravity_potential(self):
+        r"""
+        The normal gravity potential on the surface of the ellipsoid.
+
+        Definition: :math:`U_0 = \dfrac{GM}{E} \arctan{\dfrac{E}{b}}
+        + \dfrac{1}{3} \omega^2 a^2`.
+
+        Units: :math:`m^2 / s^2`.
+        """
+        return (
+            self.geocentric_grav_const
+            / self.linear_eccentricity
+            * np.arctan(self.linear_eccentricity / self.semiminor_axis)
+            + (1 / 3) * self.angular_velocity**2 * self.semimajor_axis**2
+        )
+
+    @property
+    def _emm(self):
+        """
+        Auxiliary quantity used to calculate gravity at the pole and equator.
+        """
+        return (
+            self.angular_velocity**2
+            * self.semimajor_axis**2
+            * self.semiminor_axis
+            / self.geocentric_grav_const
+        )
+
+    @property
+    def gravity_equator(self):
+        """
+        The normal gravity at the equator.
+
+        This is the norm of the gravity acceleration vector (gravitational
+        + centrifugal accelerations) at the equator on the surface of the
+        ellipsoid.
+
+        Units: :math:`m/s^2`.
+        """
+        ratio = self.semiminor_axis / self.linear_eccentricity
+        arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
+        aux = (
+            self.second_eccentricity
+            * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
+            / (3 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
+        )
+        axis_mul = self.semimajor_axis * self.semiminor_axis
+        result = (
+            self.geocentric_grav_const * (1 - self._emm - self._emm * aux) / axis_mul
+        )
+        return result
+
+    @property
+    def gravity_pole(self):
+        """
+        The normal gravity at the pole.
+
+        This is the norm of the gravity acceleration vector (gravitational +
+        centrifugal accelerations) at the poles on the surface of the ellipsoid.
+
+        Units: :math:`m/s^2`.
+        """
+        ratio = self.semiminor_axis / self.linear_eccentricity
+        arctan = np.arctan2(self.linear_eccentricity, self.semiminor_axis)
+        aux = (
+            self.second_eccentricity
+            * (3 * (1 + ratio**2) * (1 - ratio * arctan) - 1)
+            / (1.5 * ((1 + 3 * ratio**2) * arctan - 3 * ratio))
+        )
+        result = (
+            self.geocentric_grav_const * (1 + self._emm * aux) / self.semimajor_axis**2
+        )
+        return result
 
     def normal_gravity(
         self, coordinates, *, coordinate_system="geodetic", si_units=False
@@ -1472,94 +1668,6 @@ class Ellipsoid:
 
         return big_u
 
-    def centrifugal_potential(self, coordinates, *, coordinate_system="geodetic"):
-        r"""
-        Centrifugal potential of the rotating ellipsoid.
-
-        Calculate the centrifugal potential due to the rotation of the ellipsoid about
-        its semiminor axis at the given points.
-
-        Parameters
-        ----------
-        coordinates : tuple = (coordinate1, coordinate2, coordinate3)
-            Tuple with 3 arrays containing the coordinates of the computation points.
-            The meaning of the arrays is determined by the ``coordinate_system``
-            argument: longitude, geodetic latitude, and geometric height for a geodetic
-            system; longitude, geocentric latitude, and radius for a geocentric
-            spherical system; longitude, reduced latitude, and u for an ellipsoidal
-            harmonic system; x, y, and z for a geocentric Cartesian system. Each
-            element can be a single number or an array. The shape of the arrays must be
-            compatible. Longitude and latitudes must be in degrees and height, radius,
-            and u in meters. Since longitude is not used in computations (the potential
-            is symmetric with longitude), it can be assigned ``None``.
-        coordinate_system : str
-            The coordinate system that will be assumed for the given coordinates. Should
-            be one of: ``"geodetic"`` (default), ``"spherical"``, ``"cartesian"``, or
-            ``"ellipsoidal harmonic"``.
-
-        Returns
-        -------
-        Phi : float or array
-            The centrifugal potential in m²/s².
-
-        Notes
-        -----
-        The centrifugal potential :math:`\Phi` at geodetic latitude :math:`\phi` and
-        height above the ellipsoid :math:`h` (geometric height) is
-
-        .. math::
-
-            \Phi(\phi, h) = \dfrac{1}{2}
-                \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)
-
-        in which :math:`N(\phi)` is the prime vertical radius of curvature of the
-        ellipsoid and :math:`\omega` is the angular velocity.
-
-        In geocentric Cartesian coordinates, the potential is
-
-        .. math::
-
-            \Phi(x, y) = \dfrac{1}{2} \omega^2 \left(x^2 + y^2\right)^2
-
-        and in geocentric spherical coordinates, the potential is
-
-        .. math::
-
-            \Phi(\theta, r) = \dfrac{1}{2} \omega^2 r^2 \cos^2\theta
-
-        in which :math:`\theta` is the geocentric latitude and :math:`r` is the radius.
-
-        For inputs in ellipsoidal harmonic coordinates, the coordinates will be
-        converted to geodetic before calculation of the potential.
-        """
-        check_coordinate_system(coordinate_system)
-        if coordinate_system == "ellipsoidal harmonic":
-            coordinates = self.ellipsoidal_harmonic_to_geodetic(coordinates)
-            coordinate_system = "geodetic"
-        if coordinate_system == "cartesian":
-            x, y = coordinates[:2]
-            result = 0.5 * self.angular_velocity**2 * (x**2 + y**2)
-        elif coordinate_system == "geodetic":
-            latitude, height = coordinates[1:]
-            latitude_radians = np.radians(latitude)
-            result = (
-                0.5
-                * (
-                    self.angular_velocity
-                    * (self.prime_vertical_radius(np.sin(latitude_radians)) + height)
-                    * np.cos(latitude_radians)
-                )
-                ** 2
-            )
-        else:
-            # If we got here, it's safe to assume this is spherical coordinates
-            latitude, radius = coordinates[1:]
-            latitude_radians = np.radians(latitude)
-            result = (
-                0.5 * (self.angular_velocity * radius * np.cos(latitude_radians)) ** 2
-            )
-        return result
-
 
 def check_coordinate_system(
     coordinate_system,
@@ -1611,5 +1719,32 @@ def to_ellipsoidal_harmonic(coordinates, coordinate_system, ellipsoid):
         "spherical": ellipsoid.spherical_to_ellipsoidal_harmonic,
         "cartesian": ellipsoid.cartesian_to_ellipsoidal_harmonic,
         "ellipsoidal harmonic": lambda x: x,
+    }
+    return converters[coordinate_system](coordinates)
+
+
+def to_cartesian(coordinates, coordinate_system, ellipsoid):
+    """
+    Convert from the given system to geocentric Cartesian coordinates.
+
+    Parameters
+    ----------
+    coordinates : tuple
+        Tuple of coordinates in the given coordinate system.
+    coordinate_system : str
+        A string specifying the coordinate system to use.
+    ellipsoid : :class:`boule.Ellipsoid`
+        The ellipsoid to use for the conversions
+
+    Returns
+    -------
+    coordinates : tuple = (c, y, z)
+        The coordinates in the geocentric Cartesian system.
+    """
+    converters = {
+        "geodetic": ellipsoid.geodetic_to_cartesian,
+        "spherical": ellipsoid.spherical_to_cartesian,
+        "ellipsoidal harmonic": ellipsoid.ellipsoidal_harmonic_to_cartesian,
+        "cartesian": lambda x: x,
     }
     return converters[coordinate_system](coordinates)

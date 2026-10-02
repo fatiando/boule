@@ -70,6 +70,26 @@ If that's the case, then you have the following options to choose from:
 
             Example
 
+    .. grid-item-card:: Homogeneous ellipsoid
+        :class-title: sd-fs-4 text-center
+
+        **Class:** :class:`boule.HomogeneousEllipsoid`
+
+        **When to use:** Your model has 2 semi-axis and non-zero flattening, and
+        you require knowledge of the internal density distribution.
+
+        **Caveat:** A homogeneous density ellipsoid does not have constant
+        :term:`gravity potential` on its surface.
+
+        .. button-ref:: defining_ellipsoids_homogeneous
+            :ref-type: ref
+            :click-parent:
+            :color: primary
+            :outline:
+            :expand:
+
+            Example
+
 ----
 
 .. _defining_ellipsoids_oblate:
@@ -194,3 +214,41 @@ from [Russell2012]_:
     Gravity calculations have not been implemented yet for triaxial ellipsoids.
     If you're interested in this feature or would like to help implement it,
     please `get in touch <https://www.fatiando.org/contact>`__.
+
+.. _defining_ellipsoids_homogeneous:
+
+Homogeneous oblate ellipsoids
+-----------------------------
+
+Homogeneous oblate ellipsoids are defined by 4 numerical parameters:
+
+1. The semi-major axis (:math:`a`): the equatorial radius.
+2. The flattening (:math:`f = (a - b)/a`): the ratio between the equatorial and
+   polar radii.
+3. The density (:math:`\rho`), which is constant throughout the ellipsoid.
+4. The angular velocity (:math:`\omega`): spin rate of the ellipsoid which
+   defines the centrifugal potential.
+
+You can also include metadata about where the defining parameters came from (a
+citation) and a long descriptive name for the ellipsoid. For example, this is
+how we could use :class:`boule.HomogeneousEllipsoid` to define an ellipsoid that
+has the dimensions of WGS84 but has a constant density:
+
+.. jupyter-execute::
+
+    import boule as bl
+
+
+    Earth = bl.HomogeneousEllipsoid(
+        name="Earth",
+        long_name="Constant density Earth model",
+        semimajor_axis=6378137,
+        flattening=1 / 298.257223563,
+        density=5513,  # mean density of WGS84
+        angular_velocity=7292115e-11,
+        reference=(
+            "Hofmann-Wellenhof, B., & Moritz, H. (2006). Physical Geodesy "
+            "(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."
+        ),
+    )
+    print(Earth)
