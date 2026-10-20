@@ -36,7 +36,7 @@ def validate_flattening(instance, attribute, value):  # noqa: ARG001
             "Use boule.Sphere for representing ellipsoids with zero flattening."
         )
         raise ValueError(message)
-    if value < 1e-7:
+    if value < 1e-11:
         message = (
             f"Flattening is too close to zero ('{value}'). "
             "This may lead to inaccurate results and division by zero errors. "
@@ -1727,6 +1727,9 @@ def to_cartesian(coordinates, coordinate_system, ellipsoid):
     """
     Convert from the given system to geocentric Cartesian coordinates.
 
+    If the coordinate system has longitude and it's equal to None,
+    will set it to 0.
+
     Parameters
     ----------
     coordinates : tuple
@@ -1741,6 +1744,11 @@ def to_cartesian(coordinates, coordinate_system, ellipsoid):
     coordinates : tuple = (c, y, z)
         The coordinates in the geocentric Cartesian system.
     """
+    if (
+        coordinate_system in {"geodetic", "spherical", "ellipsoidal harmonic"}
+        and coordinates[0] is None
+    ):
+        coordinates = (0, coordinates[1], coordinates[2])
     converters = {
         "geodetic": ellipsoid.geodetic_to_cartesian,
         "spherical": ellipsoid.spherical_to_cartesian,
