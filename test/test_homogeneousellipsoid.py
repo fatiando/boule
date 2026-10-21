@@ -19,14 +19,8 @@ from boule import Callisto2024, Charon2024, HomogeneousEllipsoid, Moon2015, Plut
     "sphere",
     [Moon2015, Callisto2024, Pluto2024, Charon2024],
 )
-@pytest.mark.parametrize(
-    "si_units",
-    [True, False],
-)
-@pytest.mark.parametrize(
-    "longitude",
-    [None, 0, 123],
-)
+@pytest.mark.parametrize("si_units", [True, False])
+@pytest.mark.parametrize("longitude", [None, 0, 123])
 def test_homogeneous_ellipsoid_vs_sphere_gravitation(sphere, si_units, longitude):
     "Check calculations against a sphere model"
     ellipsoid = HomogeneousEllipsoid(
@@ -49,14 +43,8 @@ def test_homogeneous_ellipsoid_vs_sphere_gravitation(sphere, si_units, longitude
     "sphere",
     [Moon2015, Callisto2024, Pluto2024, Charon2024],
 )
-@pytest.mark.parametrize(
-    "si_units",
-    [True, False],
-)
-@pytest.mark.parametrize(
-    "longitude",
-    [None, 0, 123],
-)
+@pytest.mark.parametrize("si_units", [True, False])
+@pytest.mark.parametrize("longitude", [None, 0, 123])
 def test_homogeneous_ellipsoid_vs_sphere_gravity(sphere, si_units, longitude):
     "Check calculations against a sphere model"
     ellipsoid = HomogeneousEllipsoid(
@@ -72,4 +60,46 @@ def test_homogeneous_ellipsoid_vs_sphere_gravity(sphere, si_units, longitude):
         sphere.normal_gravity(coordinates, si_units=si_units),
         ellipsoid.normal_gravity(coordinates, si_units=si_units),
         rtol=1e-4,
+    )
+
+
+def test_homogeneous_ellipsoid_str():
+    "Make sure the str repr is corrent when some things are missing"
+    ellipsoid = HomogeneousEllipsoid(
+        name="bla",
+        long_name="blabla",
+        semimajor_axis=1,
+        flattening=0.5,
+        density=1,
+        angular_velocity=2,
+    )
+    assert str(ellipsoid) == (
+        "bla - blabla\n"
+        "Homogeneous oblate ellipsoid:\n"
+        "  • Semimajor axis: 1 m\n"
+        "  • Flattening: 0.5\n"
+        "  • Density: 1 kg/m³\n"
+        "  • Angular velocity: 2 rad/s"
+    )
+    ellipsoid = HomogeneousEllipsoid(
+        name="bla",
+        long_name="blabla",
+        semimajor_axis=1,
+        flattening=0.5,
+        density=1,
+        angular_velocity=2,
+        reference="Someone smart",
+        comments="A great ellipsoid",
+    )
+    assert str(ellipsoid) == (
+        "bla - blabla\n"
+        "Homogeneous oblate ellipsoid:\n"
+        "  • Semimajor axis: 1 m\n"
+        "  • Flattening: 0.5\n"
+        "  • Density: 1 kg/m³\n"
+        "  • Angular velocity: 2 rad/s\n"
+        "Source:\n"
+        "  Someone smart\n"
+        "Comments:\n"
+        "  A great ellipsoid"
     )
