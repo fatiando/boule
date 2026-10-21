@@ -252,3 +252,14 @@ has the dimensions of WGS84 but has a constant density:
         ),
     )
     print(Earth)
+
+Homogeneous ellipsoids are not their own equipotential surface,
+so the definition of :term:`normal gravity` is different from the
+:class:`boule.Ellipsoid` and is the same as :class:`boule.Sphere`.
+
+.. warning::
+
+    You **must** use :class:`boule.Sphere` to represent homogeneous
+    ellipsoids with **zero flattening**. This is because gravity calculations
+    in :class:`boule.HomogeneousEllipsoid` are singular for the case of
+    ``flattening=0``.

@@ -31,7 +31,7 @@ class HomogeneousEllipsoid(GeometricProperties, CoordinateConversion, Centrifuga
     A rotating oblate ellipsoid with homogeneous density.
 
     The ellipsoid is defined by four parameters: semimajor axis, flattening,
-    density, and angular velocity. It spins around     its semiminor axis and
+    density, and angular velocity. It spins around its semiminor axis and
     **does not have** constant gravity potential at its surface (unlike the
     :class:`boule.Ellipsoid`).
 
@@ -73,8 +73,10 @@ class HomogeneousEllipsoid(GeometricProperties, CoordinateConversion, Centrifuga
 
     .. caution::
 
-        Use :class:`boule.Sphere` if you desire zero flattening. The sphere also
-        has homogeneous density and gravity computations will likely be faster.
+        Use :class:`boule.Sphere` if you desire zero flattening. Gravity
+        calculations for the homogeneous ellipsoid have a singularity when the
+        flattening is zero. The sphere also has homogeneous density and gravity
+        computations will likely be faster.
 
     Examples
     --------
