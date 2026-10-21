@@ -137,7 +137,7 @@ def test_check_flattening():
         Ellipsoid(
             name="almost-zero-flattening",
             semimajor_axis=1,
-            flattening=1e-8,
+            flattening=1e-12,
             geocentric_grav_const=1,
             angular_velocity=0,
         )
