@@ -86,7 +86,7 @@ By participating in this project you agree to abide by its terms.
 > head that is telling you that you're not ready, that you aren't skilled
 > enough to contribute. We assure you that the little voice in your head is
 > wrong. Most importantly, **there are many valuable ways to contribute besides
-> writing code**.
+> writing code** (giving feedback, teaching, writing documentation, and more).
 >
 > *This disclaimer was adapted from the*
 > [MetPy project](https://github.com/Unidata/MetPy).
