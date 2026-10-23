@@ -1,0 +1,1751 @@
+
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    
+        <title>boule.HomogeneousEllipsoid | Boule dev</title>
+    
+
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=12168cd1" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/thebelab-helper.js"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
+    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/boule.HomogeneousEllipsoid';</script>
+    <link rel="icon" href="../../_static/favicon.png"/>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Available ellipsoids" href="../../ellipsoids.html" />
+    <link rel="prev" title="boule.TriaxialEllipsoid" href="boule.TriaxialEllipsoid.html" />
+    <!-- Plausible analytics for anonymous usage statistics -->
+    <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
+
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+  
+  
+    <p class="title logo__title">Boule <span class="project-version">dev</span></p>
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../overview.html">Overview</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../install.html">Installing</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">User Guide</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/normal_gravity.html">Normal gravity</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/gravity_disturbance.html">Gravity disturbances</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/coordinates.html">Coordinate conversions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../user_guide/defining_ellipsoids.html">Defining custom ellipsoids</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Reference Documentation</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../index.html">List of functions and classes (API)</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="boule.Ellipsoid.html">boule.Ellipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boule.Sphere.html">boule.Sphere</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">boule.HomogeneousEllipsoid</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../ellipsoids.html">Available ellipsoids</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../citing.html">Citing Boule</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossary</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../references.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../changes.html">Changelog</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../compatibility.html">Version compatibility</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../versions.html">Documentation for other versions</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/edit/main/doc/api/generated/boule.HomogeneousEllipsoid.rst" target="_blank"
+   class="btn btn-sm btn-source-edit-button dropdown-item"
+   title="Suggest edit"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-pencil-alt"></i>
+  </span>
+<span class="btn__text-container">Suggest edit</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/fatiando/boule/issues/new?title=Issue%20on%20page%20%2Fapi/generated/boule.HomogeneousEllipsoid.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../../_sources/api/generated/boule.HomogeneousEllipsoid.rst" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.rst</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>boule.HomogeneousEllipsoid</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.area"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.area</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.area_equivalent_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.area_equivalent_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.eccentricity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.eccentricity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.first_eccentricity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.first_eccentricity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.linear_eccentricity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.linear_eccentricity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.mass"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.mass</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.mean_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.mean_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.second_eccentricity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.second_eccentricity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.semiaxes_mean_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.semiaxes_mean_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.semimajor_axis_longitude"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.semimajor_axis_longitude</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.semimedium_axis"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.semimedium_axis</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.semiminor_axis"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.semiminor_axis</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.thirdflattening"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.thirdflattening</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.volume"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.volume</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.volume_equivalent_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.volume_equivalent_radius</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.cartesian_to_ellipsoidal_harmonic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.cartesian_to_ellipsoidal_harmonic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.cartesian_to_geodetic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.cartesian_to_geodetic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.cartesian_to_spherical"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.cartesian_to_spherical</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.centrifugal_acceleration"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.centrifugal_acceleration</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.centrifugal_potential"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.centrifugal_potential</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_cartesian"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.ellipsoidal_harmonic_to_cartesian</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_geodetic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.ellipsoidal_harmonic_to_geodetic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_spherical"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.ellipsoidal_harmonic_to_spherical</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.geocentric_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.geocentric_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.geodetic_to_cartesian"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.geodetic_to_cartesian</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.geodetic_to_ellipsoidal_harmonic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.geodetic_to_ellipsoidal_harmonic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.geodetic_to_spherical"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.geodetic_to_spherical</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.normal_gravitation"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.normal_gravitation</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.normal_gravitation_vector"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.normal_gravitation_vector</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.normal_gravity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.normal_gravity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.normal_gravity_vector"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.normal_gravity_vector</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.prime_vertical_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.prime_vertical_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.spherical_to_cartesian"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.spherical_to_cartesian</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.spherical_to_ellipsoidal_harmonic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.spherical_to_ellipsoidal_harmonic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.spherical_to_geodetic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.spherical_to_geodetic</span></code></a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="boule-homogeneousellipsoid">
+<h1>boule.HomogeneousEllipsoid<a class="headerlink" href="#boule-homogeneousellipsoid" title="Link to this heading">#</a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boule.</span></span><span class="sig-name descname"><span class="pre">HomogeneousEllipsoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semimajor_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">flattening</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">density</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_homogeneous_ellipsoid.html#HomogeneousEllipsoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.HomogeneousEllipsoid" title="Link to this definition">#</a></dt>
+<dd><p>A rotating oblate ellipsoid with homogeneous density.</p>
+<p>The ellipsoid is defined by four parameters: semimajor axis, flattening,
+density, and angular velocity. It spins around its semiminor axis and
+<strong>does not have</strong> constant gravity potential at its surface (unlike the
+<a class="reference internal" href="boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a>).</p>
+<p><strong>This class is read-only:</strong> Input parameters and attributes cannot be
+changed after instantiation.</p>
+<p><strong>Units:</strong> All input parameters and derived attributes are in SI units.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;WGS84&quot;</span></code>.</p>
+</dd>
+<dt><strong>semimajor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimajor axis of the ellipsoid. The equatorial (large) radius.
+Definition: <span class="math notranslate nohighlight">\(a\)</span>.
+Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd>
+<dt><strong>flattening</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The (first) flattening of the ellipsoid.
+Definition: <span class="math notranslate nohighlight">\(f = (a - b)/a\)</span>.
+Units: adimensional.</p>
+</dd>
+<dt><strong>density</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The density of the ellipsoid, considered constant throughout its volume.
+Definition: <span class="math notranslate nohighlight">\(\rho\)</span>. Units:
+<span class="math notranslate nohighlight">\(kg.m^{-3}\)</span>.</p>
+</dd>
+<dt><strong>angular_velocity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The angular velocity of the rotating ellipsoid.
+Definition: <span class="math notranslate nohighlight">\(\omega\)</span>.
+Units: <span class="math notranslate nohighlight">\(\\rad.s^{-1}\)</span>.</p>
+</dd>
+<dt><strong>long_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
+<span class="pre">1984&quot;</span></code> (optional).</p>
+</dd>
+<dt><strong>reference</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Citation for the ellipsoid parameter values (optional).</p>
+</dd>
+<dt><strong>comments</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Additional comments regarding the ellipsoid (optional).</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>Use <a class="reference internal" href="boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Sphere</span></code></a> if you desire zero flattening. Gravity
+calculations for the homogeneous ellipsoid have a singularity when the
+flattening is zero. The sphere also has homogeneous density and gravity
+computations will likely be faster.</p>
+</div>
+<p class="rubric">Examples</p>
+<p>We can define an ellipsoid by setting the 4 key numerical parameters and
+some metadata about where they came from:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ellipsoid</span> <span class="o">=</span> <span class="n">HomogeneousEllipsoid</span><span class="p">(</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"Earth"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Constant density Earth model"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">6378137</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">flattening</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">298.257223563</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">density</span><span class="o">=</span><span class="mf">5513.41223873</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">7292115e-11</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">reference</span><span class="o">=</span><span class="s2">"Hofmann-Wellenhof &amp; Moritz (2006)"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">comments</span><span class="o">=</span><span class="s2">"The geometric properties are the same as WGS84."</span><span class="p">,</span>
+<span class="gp">... </span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ellipsoid</span><span class="p">)</span> 
+<span class="go">Earth - Constant density Earth model</span>
+<span class="go">Homogeneous oblate ellipsoid:</span>
+<span class="go">  • Semimajor axis: 6378137 m</span>
+<span class="go">  • Flattening: 0.0033528106647474805</span>
+<span class="go">  • Density: 5513.41223873 kg/m³</span>
+<span class="go">  • Angular velocity: 7.292115e-05 rad/s</span>
+<span class="go">Source:</span>
+<span class="go">  Hofmann-Wellenhof &amp; Moritz (2006)</span>
+<span class="go">Comments:</span>
+<span class="go">  The geometric properties are the same as WGS84.</span>
+</pre></div>
+</div>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">long_name</span><span class="p">)</span>
+<span class="go">Constant density Earth model</span>
+</pre></div>
+</div>
+<p>The class then defines several derived attributes based on the input
+parameters:</p>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">semiminor_axis</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="go">6356752.3142 m</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">linear_eccentricity</span><span class="si">:</span><span class="s2">.8f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="go">521854.00842339 m</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">first_eccentricity</span><span class="si">:</span><span class="s2">.13e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="go">8.1819190842621e-02</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">second_eccentricity</span><span class="si">:</span><span class="s2">.13e</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+<span class="go">8.2094437949696e-02</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">mean_radius</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="go">6370994.4018 m</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">semiaxes_mean_radius</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="go">6371008.7714 m</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">volume_equivalent_radius</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="go">6371000.7900 m</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">mass</span><span class="si">:</span><span class="s2">.10e</span><span class="si">}</span><span class="s2"> kg"</span><span class="p">)</span>
+<span class="go">5.9721684941e+24 kg</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">volume</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e-9</span><span class="si">:</span><span class="s2">.5e</span><span class="si">}</span><span class="s2"> km³"</span><span class="p">)</span>
+<span class="go">1.08321e+12 km³</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">area</span><span class="si">:</span><span class="s2">.10e</span><span class="si">}</span><span class="s2"> m²"</span><span class="p">)</span>
+<span class="go">5.1006562172e+14 m²</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">area_equivalent_radius</span><span class="si">:</span><span class="s2">0.4f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
+<span class="go">6371007.1809 m</span>
+</pre></div>
+</div>
+<p>Use the class methods for calculating normal gravity and other geometric
+quantities.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Attributes<span class="colon">:</span></dt>
+<dd class="field-odd"><dl class="simple">
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.area" title="boule.HomogeneousEllipsoid.area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area</span></code></a></dt><dd><p>The area of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.area_equivalent_radius" title="boule.HomogeneousEllipsoid.area_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area_equivalent_radius</span></code></a></dt><dd><p>The area equivalent radius of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.eccentricity" title="boule.HomogeneousEllipsoid.eccentricity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentricity</span></code></a></dt><dd><p>Alias for the first eccentricity.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.first_eccentricity" title="boule.HomogeneousEllipsoid.first_eccentricity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_eccentricity</span></code></a></dt><dd><p>The (first) eccentricity of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.linear_eccentricity" title="boule.HomogeneousEllipsoid.linear_eccentricity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">linear_eccentricity</span></code></a></dt><dd><p>The linear eccentricity of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.mass" title="boule.HomogeneousEllipsoid.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></dt><dd><p>The mass of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.mean_radius" title="boule.HomogeneousEllipsoid.mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_radius</span></code></a></dt><dd><p>The mean radius of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.second_eccentricity" title="boule.HomogeneousEllipsoid.second_eccentricity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">second_eccentricity</span></code></a></dt><dd><p>The second eccentricity of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.semiaxes_mean_radius" title="boule.HomogeneousEllipsoid.semiaxes_mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiaxes_mean_radius</span></code></a></dt><dd><p>The arithmetic mean radius of the ellipsoid semi-axes <a class="reference internal" href="../../references.html#moritz1988" id="id1"><span>[Moritz1988]</span></a>.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.semimajor_axis_longitude" title="boule.HomogeneousEllipsoid.semimajor_axis_longitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis_longitude</span></code></a></dt><dd><p>The semimajor axis longitude of the ellipsoid is equal to zero.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.semimedium_axis" title="boule.HomogeneousEllipsoid.semimedium_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimedium_axis</span></code></a></dt><dd><p>The semimedium axis of the ellipsoid is equal to its semimajor axis.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.semiminor_axis" title="boule.HomogeneousEllipsoid.semiminor_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiminor_axis</span></code></a></dt><dd><p>The semiminor (small/polar) axis of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.thirdflattening" title="boule.HomogeneousEllipsoid.thirdflattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">thirdflattening</span></code></a></dt><dd><p>The third flattening of the ellipsoid (used in geodetic calculations).</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.volume" title="boule.HomogeneousEllipsoid.volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume</span></code></a></dt><dd><p>The volume bounded by the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.HomogeneousEllipsoid.volume_equivalent_radius" title="boule.HomogeneousEllipsoid.volume_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume_equivalent_radius</span></code></a></dt><dd><p>The volume equivalent radius of the ellipsoid.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.cartesian_to_ellipsoidal_harmonic" title="boule.HomogeneousEllipsoid.cartesian_to_ellipsoidal_harmonic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cartesian_to_ellipsoidal_harmonic</span></code></a>(coordinates)</p></td>
+<td><p>Convert from geocentric Cartesian to ellipsoidal harmonic coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.cartesian_to_geodetic" title="boule.HomogeneousEllipsoid.cartesian_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cartesian_to_geodetic</span></code></a>(coordinates)</p></td>
+<td><p>Convert from geocentric Cartesian to geodetic coordinates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.cartesian_to_spherical" title="boule.HomogeneousEllipsoid.cartesian_to_spherical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">cartesian_to_spherical</span></code></a>(coordinates)</p></td>
+<td><p>Convert from geocentric Cartesian coordinates to spherical coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.centrifugal_acceleration" title="boule.HomogeneousEllipsoid.centrifugal_acceleration"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_acceleration</span></code></a>(coordinates, *[, ...])</p></td>
+<td><p>Centrifugal acceleration vector of the rotating ellipsoid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.centrifugal_potential" title="boule.HomogeneousEllipsoid.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(coordinates, *[, ...])</p></td>
+<td><p>Centrifugal potential of the rotating ellipsoid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_cartesian" title="boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_cartesian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ellipsoidal_harmonic_to_cartesian</span></code></a>(coordinates)</p></td>
+<td><p>Convert from ellipsoidal harmonic to geocentric Cartesian coordinates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_geodetic" title="boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ellipsoidal_harmonic_to_geodetic</span></code></a>(coordinates)</p></td>
+<td><p>Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_spherical" title="boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_spherical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">ellipsoidal_harmonic_to_spherical</span></code></a>(coordinates)</p></td>
+<td><p>Convert from ellipsoidal harmonic to geocentric spherical coordinates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.geocentric_radius" title="boule.HomogeneousEllipsoid.geocentric_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geocentric_radius</span></code></a>(latitude, *[, ...])</p></td>
+<td><p>Radial distance from the center of the ellipsoid to its surface.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.geodetic_to_cartesian" title="boule.HomogeneousEllipsoid.geodetic_to_cartesian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geodetic_to_cartesian</span></code></a>(coordinates)</p></td>
+<td><p>Convert from geodetic to geocentric Cartesian coordinates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.geodetic_to_ellipsoidal_harmonic" title="boule.HomogeneousEllipsoid.geodetic_to_ellipsoidal_harmonic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geodetic_to_ellipsoidal_harmonic</span></code></a>(coordinates)</p></td>
+<td><p>Convert from geodetic to ellipsoidal harmonic coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.geodetic_to_spherical" title="boule.HomogeneousEllipsoid.geodetic_to_spherical"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geodetic_to_spherical</span></code></a>(coordinates)</p></td>
+<td><p>Convert from geodetic to geocentric spherical coordinates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.normal_gravitation" title="boule.HomogeneousEllipsoid.normal_gravitation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitation</span></code></a>(coordinates, *[, ...])</p></td>
+<td><p>Calculate the normal gravitation of the ellipsoid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.normal_gravitation_vector" title="boule.HomogeneousEllipsoid.normal_gravitation_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitation_vector</span></code></a>(coordinates, *[, ...])</p></td>
+<td><p>Calculate the normal gravitation vector of the ellipsoid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.normal_gravity" title="boule.HomogeneousEllipsoid.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity</span></code></a>(coordinates, *[, ...])</p></td>
+<td><p>Calculate the normal gravity of the ellipsoid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.normal_gravity_vector" title="boule.HomogeneousEllipsoid.normal_gravity_vector"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity_vector</span></code></a>(coordinates, *[, ...])</p></td>
+<td><p>Calculate the normal gravity vector of the ellipsoid.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.prime_vertical_radius" title="boule.HomogeneousEllipsoid.prime_vertical_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">prime_vertical_radius</span></code></a>(sinlat)</p></td>
+<td><p>Calculate the prime vertical radius of curvature for a given geodetic latitude.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.spherical_to_cartesian" title="boule.HomogeneousEllipsoid.spherical_to_cartesian"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spherical_to_cartesian</span></code></a>(coordinates)</p></td>
+<td><p>Convert from spherical coordinates to geocentric Cartesian coordinates.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.spherical_to_ellipsoidal_harmonic" title="boule.HomogeneousEllipsoid.spherical_to_ellipsoidal_harmonic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spherical_to_ellipsoidal_harmonic</span></code></a>(coordinates)</p></td>
+<td><p>Convert from geocentric spherical to ellipsoidal harmonic coordinates.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.HomogeneousEllipsoid.spherical_to_geodetic" title="boule.HomogeneousEllipsoid.spherical_to_geodetic"><code class="xref py py-obj docutils literal notranslate"><span class="pre">spherical_to_geodetic</span></code></a>(coordinates)</p></td>
+<td><p>Convert from geocentric spherical to geodetic coordinates.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</dd></dl>
+
+<section id="attributes">
+<h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.area">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.area" title="Link to this definition">#</a></dt>
+<dd><p>The area of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(A = 2 \pi a^2 \left(1 + \dfrac{b^2}{e a^2}
+\text{arctanh}\,e \right)\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^2\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.area_equivalent_radius">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">area_equivalent_radius</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.area_equivalent_radius" title="Link to this definition">#</a></dt>
+<dd><p>The area equivalent radius of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_2 = \sqrt{A / (4 \pi)}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.eccentricity">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">eccentricity</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.eccentricity" title="Link to this definition">#</a></dt>
+<dd><p>Alias for the first eccentricity.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.first_eccentricity">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">first_eccentricity</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.first_eccentricity" title="Link to this definition">#</a></dt>
+<dd><p>The (first) eccentricity of the ellipsoid.</p>
+<p>The ratio between the linear eccentricity and the semimajor axis.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}\)</span>.</p>
+<p>Units: adimensional.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.linear_eccentricity">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">linear_eccentricity</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.linear_eccentricity" title="Link to this definition">#</a></dt>
+<dd><p>The linear eccentricity of the ellipsoid.</p>
+<p>The distance between the ellipsoid’s center and one of its foci.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(E = \sqrt{a^2 - b^2}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.mass">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">mass</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.mass" title="Link to this definition">#</a></dt>
+<dd><p>The mass of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(M = V \rho\)</span>, in which <span class="math notranslate nohighlight">\(V\)</span> is the volume and
+<span class="math notranslate nohighlight">\(\rho\)</span> if the density.</p>
+<p>Units: <span class="math notranslate nohighlight">\(kg\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.mean_radius">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">mean_radius</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.mean_radius" title="Link to this definition">#</a></dt>
+<dd><p>The mean radius of the ellipsoid.</p>
+<p>This is equivalent to the degree 0 spherical harmonic coefficient of the
+ellipsoid shape.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}
+\int_0^{2 \pi}} r(\theta) \sin \theta \, d\theta \, d\lambda\)</span></p>
+<p>in which <span class="math notranslate nohighlight">\(r\)</span> is the ellipsoid spherical radius, <span class="math notranslate nohighlight">\(\theta\)</span> is
+spherical latitude, and <span class="math notranslate nohighlight">\(\lambda\)</span> is spherical longitude.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.second_eccentricity">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">second_eccentricity</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.second_eccentricity" title="Link to this definition">#</a></dt>
+<dd><p>The second eccentricity of the ellipsoid.</p>
+<p>The ratio between the linear eccentricity and the semiminor axis.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(e^\prime = \dfrac{\sqrt{a^2 - b^2}}{b}
+= \dfrac{\sqrt{2f - f^2}}{1 - f}\)</span>.</p>
+<p>Units: adimensional.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.semiaxes_mean_radius">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">semiaxes_mean_radius</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.semiaxes_mean_radius" title="Link to this definition">#</a></dt>
+<dd><p>The arithmetic mean radius of the ellipsoid semi-axes <a class="reference internal" href="../../references.html#moritz1988" id="id2"><span>[Moritz1988]</span></a>.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_1 = (2a + b)/3\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.semimajor_axis_longitude">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">semimajor_axis_longitude</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.semimajor_axis_longitude" title="Link to this definition">#</a></dt>
+<dd><p>The semimajor axis longitude of the ellipsoid is equal to zero.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(\lambda_a = 0\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.semimedium_axis">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">semimedium_axis</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.semimedium_axis" title="Link to this definition">#</a></dt>
+<dd><p>The semimedium axis of the ellipsoid is equal to its semimajor axis.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.semiminor_axis">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">semiminor_axis</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.semiminor_axis" title="Link to this definition">#</a></dt>
+<dd><p>The semiminor (small/polar) axis of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(b = a (1 - f)\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.thirdflattening">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">thirdflattening</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.thirdflattening" title="Link to this definition">#</a></dt>
+<dd><p>The third flattening of the ellipsoid (used in geodetic calculations).</p>
+<p>Definition: <span class="math notranslate nohighlight">\(f^{\prime\prime}= \dfrac{a -b}{a + b}\)</span>.</p>
+<p>Units: adimensional.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.volume">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.volume" title="Link to this definition">#</a></dt>
+<dd><p>The volume bounded by the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(V = \dfrac{4}{3} \pi a^2 b\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^3\)</span>.</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.volume_equivalent_radius">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">volume_equivalent_radius</span></span><a class="headerlink" href="#boule.HomogeneousEllipsoid.volume_equivalent_radius" title="Link to this definition">#</a></dt>
+<dd><p>The volume equivalent radius of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+</dd></dl>
+
+</section>
+<section id="methods">
+<h2>Methods<a class="headerlink" href="#methods" title="Link to this heading">#</a></h2>
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.cartesian_to_ellipsoidal_harmonic">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">cartesian_to_ellipsoidal_harmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.cartesian_to_ellipsoidal_harmonic" title="Link to this definition">#</a></dt>
+<dd><p>Convert from geocentric Cartesian to ellipsoidal harmonic coordinates.</p>
+<p>In the geocentric Cartesian system, z is aligned with the Earth’s axis of
+rotation and points towards the North pole, x and y are contained in the
+equatorial plane, x coincides with the Greenwich meridian, and y completes
+right-handed coordinate system.</p>
+<p>The conversion is done by passing through the geodetic coordinate system.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">z</span></code>)</span></dt><dd><p>The x, y, z coordinates of the points in a geocentric Cartesian coordinate
+system. Each element can be a single number or an array. The shape of the
+arrays must be compatible. All coordinates must be in meters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_reduced</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">u</span></code>)</span></dt><dd><p>The converted longitude, reduced (or parametric) latitude, and the
+coordinate u (the semiminor axis of the ellipsoid that passes through the
+input coordinates) in a ellipsoidal harmonic coordinate system. The shape of
+each element will be compatible with the shape of the inputs. Longitude and
+latitude will be in degrees and u in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.cartesian_to_geodetic">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">cartesian_to_geodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.cartesian_to_geodetic" title="Link to this definition">#</a></dt>
+<dd><p>Convert from geocentric Cartesian to geodetic coordinates.</p>
+<p>The geodetic datum is defined by this ellipsoid. In the geocentric Cartesian
+system, z is aligned with the Earth’s axis of rotation and points towards the
+North pole, x and y are contained in the equatorial plane, x coincides with the
+Greenwich meridian, and y completes right-handed coordinate system.</p>
+<p>Uses the non-iterative method of <a class="reference internal" href="../../references.html#zhu1993" id="id3"><span>[Zhu1993]</span></a> to make the conversion. This is
+accurate for points further than 43 km from the center of the ellipsoid.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">z</span></code>)</span></dt><dd><p>The x, y, z coordinates of the points in a geocentric Cartesian coordinate
+system. Each element can be a single number or an array. The shape of the
+arrays must be compatible. All coordinates must be in meters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>The converted longitude, geodetic latitude, and geometric height in a
+geodetic coordinate system. The shape of each element will be compatible
+with the shape of the inputs. Longitude and latitude will be in degrees and
+height in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference internal" href="../../references.html#zhu1993" id="id4"><span>[Zhu1993]</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.cartesian_to_spherical">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">cartesian_to_spherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.cartesian_to_spherical" title="Link to this definition">#</a></dt>
+<dd><p>Convert from geocentric Cartesian coordinates to spherical coordinates.</p>
+<p>In the geocentric Cartesian system, z is aligned with the Earth’s axis
+of rotation and points towards the North pole, x and y are contained in
+the equatorial plane, x coincides with the Greenwich meridian, and
+y completes right-handed coordinate system.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">z</span></code>)</span></dt><dd><p>The x, y, z coordinates of the points in a geocentric Cartesian coordinate
+system. Each element can be a single number or an array. The shape of the
+arrays must be compatible. All coordinates must be in meters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">radius</span></code>)</span></dt><dd><p>The converted longitude, spherical latitude, and radius coordinates in
+a geocentric spherical coordinate system. The shape of each element will
+be compatible with the shape of the inputs. Longitude and latitude are in
+degrees and radius in meters</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.centrifugal_acceleration">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">centrifugal_acceleration</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'geodetic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.centrifugal_acceleration" title="Link to this definition">#</a></dt>
+<dd><p>Centrifugal acceleration vector of the rotating ellipsoid.</p>
+<p>Calculate the centrifugal acceleration vector due to the rotation of the
+ellipsoid about its semiminor axis at the given points. The acceleration
+is the gradient of the centrifugal potential.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate1</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate2</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate3</span></code>)</span></dt><dd><p>Tuple with 3 arrays containing the coordinates of the computation points.
+The meaning of the arrays is determined by the <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code>
+argument: longitude, geodetic latitude, and geometric height for a geodetic
+system; longitude, geocentric latitude, and radius for a geocentric
+spherical system; longitude, reduced latitude, and u for an ellipsoidal
+harmonic system; x, y, and z for a geocentric Cartesian system. Each
+element can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitudes must be in degrees and height, radius,
+and u in meters. Since longitude is not used in computations (the potential
+is symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><strong>coordinate_system</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The coordinate system that will be assumed for the given coordinates. Should
+be one of: <code class="docutils literal notranslate"><span class="pre">&quot;geodetic&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;spherical&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cartesian&quot;</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">&quot;ellipsoidal</span> <span class="pre">harmonic&quot;</span></code>.</p>
+</dd>
+<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#bltin-boolean-values" title="(in Python v3.15)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>acceleration</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">fx</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">fy</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">fz</span></code>)</span></dt><dd><p>Tuple with arrays representing the 3 components of the centrifugal
+acceleration vector in the geocentric Cartesian system in mGal or
+m/s².</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The centrifugal potential <span class="math notranslate nohighlight">\(\Phi\)</span> with respect to geocentric
+Cartesian coordinates <span class="math notranslate nohighlight">\((x, y, z)\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\Phi(x, y) = \dfrac{1}{2} \omega^2 \left(x^2 + y^2\right)\]</div>
+<p>in which <span class="math notranslate nohighlight">\(\omega\)</span> is the angular velocity. The centrifugal
+acceleration vector <span class="math notranslate nohighlight">\(\vec{f}\)</span> is</p>
+<div class="math notranslate nohighlight">
+\[\vec{f}(x, y) = \vec{\nabla}\Phi = (\omega^2 x,\ \omega^2 y,\ 0)\]</div>
+<p>which is contained in the equatorial plane.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the calculations happen in geocentric Cartesian coordinates,
+passing inputs in any other coordinate system will require
+conversion, which may slow down computations if done in a loop.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.centrifugal_potential">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">centrifugal_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'geodetic'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.centrifugal_potential" title="Link to this definition">#</a></dt>
+<dd><p>Centrifugal potential of the rotating ellipsoid.</p>
+<p>Calculate the centrifugal potential due to the rotation of the ellipsoid about
+its semiminor axis at the given points.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate1</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate2</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate3</span></code>)</span></dt><dd><p>Tuple with 3 arrays containing the coordinates of the computation points.
+The meaning of the arrays is determined by the <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code>
+argument: longitude, geodetic latitude, and geometric height for a geodetic
+system; longitude, geocentric latitude, and radius for a geocentric
+spherical system; longitude, reduced latitude, and u for an ellipsoidal
+harmonic system; x, y, and z for a geocentric Cartesian system. Each
+element can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitudes must be in degrees and height, radius,
+and u in meters. Since longitude is not used in computations (the potential
+is symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><strong>coordinate_system</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The coordinate system that will be assumed for the given coordinates. Should
+be one of: <code class="docutils literal notranslate"><span class="pre">&quot;geodetic&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;spherical&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cartesian&quot;</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">&quot;ellipsoidal</span> <span class="pre">harmonic&quot;</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>Phi</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The centrifugal potential in m²/s².</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The centrifugal potential <span class="math notranslate nohighlight">\(\Phi\)</span> at geodetic latitude <span class="math notranslate nohighlight">\(\phi\)</span> and
+height above the ellipsoid <span class="math notranslate nohighlight">\(h\)</span> (geometric height) is</p>
+<div class="math notranslate nohighlight">
+\[\Phi(\phi, h) = \dfrac{1}{2}
+    \omega^2 \left(N(\phi) + h\right)^2 \cos^2(\phi)\]</div>
+<p>in which <span class="math notranslate nohighlight">\(N(\phi)\)</span> is the prime vertical radius of curvature of the
+ellipsoid and <span class="math notranslate nohighlight">\(\omega\)</span> is the angular velocity.</p>
+<p>In geocentric Cartesian coordinates, the potential is</p>
+<div class="math notranslate nohighlight">
+\[\Phi(x, y) = \dfrac{1}{2} \omega^2 \left(x^2 + y^2\right)\]</div>
+<p>and in geocentric spherical coordinates, the potential is</p>
+<div class="math notranslate nohighlight">
+\[\Phi(\theta, r) = \dfrac{1}{2} \omega^2 r^2 \cos^2\theta\]</div>
+<p>in which <span class="math notranslate nohighlight">\(\theta\)</span> is the geocentric latitude and <span class="math notranslate nohighlight">\(r\)</span> is the radius.</p>
+<p>For inputs in ellipsoidal harmonic coordinates, the coordinates will be
+converted to geodetic before calculation of the potential.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_cartesian">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">ellipsoidal_harmonic_to_cartesian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_cartesian" title="Link to this definition">#</a></dt>
+<dd><p>Convert from ellipsoidal harmonic to geocentric Cartesian coordinates.</p>
+<p>In the geocentric Cartesian system, z is aligned with the Earth’s axis of
+rotation and points towards the North pole, x and y are contained in the
+equatorial plane, x coincides with the Greenwich meridian, and y completes
+right-handed coordinate system.</p>
+<p>Uses the conversion specified in <a class="reference internal" href="../../references.html#hofmannwellenhofmoritz2006" id="id5"><span>[HofmannWellenhofMoritz2006]</span></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_reduced</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">u</span></code>)</span></dt><dd><p>Longitude, reduced (or parametric) latitude, and u (the semiminor
+axis of the ellipsoid that passes through the input coordinates)
+coordinates of the points in a ellipsoidal harmonic coordinate
+system. Each element can be a single number or an array. The shape
+of the arrays must be compatible. Longitude and latitude must be in
+degrees and u in meters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">z</span></code>)</span></dt><dd><p>The converted x, y, z coordinates in a geocentric Cartesian
+coordinate system. The shape of each element will be compatible
+with the shape of the inputs. All coordinates are in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<p><a class="reference internal" href="../../references.html#hofmannwellenhofmoritz2006" id="id6"><span>[HofmannWellenhofMoritz2006]</span></a></p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_geodetic">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">ellipsoidal_harmonic_to_geodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_geodetic" title="Link to this definition">#</a></dt>
+<dd><p>Convert from ellipsoidal-harmonic coordinates to geodetic coordinates.</p>
+<p>The conversion is done by passing through the geocentric Cartesian
+coordinate system.</p>
+<p>The geodetic datum is defined by this ellipsoid.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_reduced</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">u</span></code>)</span></dt><dd><p>Longitude, reduced (or parametric) latitude, and u (the semiminor
+axis of the ellipsoid that passes through the input coordinates)
+coordinates of the points in a ellipsoidal harmonic coordinate
+system. Each element can be a single number or an array. The shape
+of the arrays must be compatible. Longitude and latitude must be in
+degrees and u in meters. Since longitude is not affected by
+conversions, it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>The converted longitude, geodetic latitude, and geometric height in
+a geodetic coordinate system. The shape of each element will be
+compatible with the shape of the inputs. If the input longitude is
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. Longitude and latitude
+will be in degrees and height in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_spherical">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">ellipsoidal_harmonic_to_spherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_spherical" title="Link to this definition">#</a></dt>
+<dd><p>Convert from ellipsoidal harmonic to geocentric spherical coordinates.</p>
+<p>The conversion is performed by passing through the geodetic system.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_reduced</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">u</span></code>)</span></dt><dd><p>Longitude, reduced (or parametric) latitude, and u (the semiminor axis of
+the ellipsoid that passes through the input coordinates) coordinates of the
+points in a ellipsoidal harmonic coordinate system. Each element can be
+a single number or an array. The shape of the arrays must be compatible.
+Longitude and latitude must be in degrees and u in meters. Since longitude
+is the same in both systems and is not used in the computations, it can be
+passed as <code class="docutils literal notranslate"><span class="pre">None</span></code> if desired.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">radius</span></code>)</span></dt><dd><p>The converted longitude, geocentric spherical latitude, and radius
+in a geocentric spherical coordinate system. The shape of each
+element will be compatible with the shape of the inputs. If the
+input longitude is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will also be <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Longitude and latitude will be in degrees and radius in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.geocentric_radius">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">geocentric_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">latitude</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'geodetic'</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.geocentric_radius" title="Link to this definition">#</a></dt>
+<dd><p>Radial distance from the center of the ellipsoid to its surface.</p>
+<p>Can be calculated from either geocentric geodetic or geocentric
+spherical latitudes.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on geodetic coordinate system in degrees.</p>
+</dd>
+<dt><strong>coordinate_system</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The coordinate system that will be assumed for the given latitude.
+Should be one of: <code class="docutils literal notranslate"><span class="pre">&quot;geodetic&quot;</span></code> (default) for geodetic latitudes
+or <code class="docutils literal notranslate"><span class="pre">&quot;spherical&quot;</span></code> for geocentric spherical latitudes.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>geocentric_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geocentric radius for the given latitude(s) in the same units
+as the ellipsoid axis.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The geocentric surface radius <span class="math notranslate nohighlight">\(R\)</span> is a function of the geocentric
+geodetic latitude <span class="math notranslate nohighlight">\(\phi\)</span> and the semimajor and semiminor axis,
+<span class="math notranslate nohighlight">\(a\)</span> and <span class="math notranslate nohighlight">\(b\)</span> <a class="reference internal" href="#r6ab01f758d7b-1" id="id7">[1]</a>:</p>
+<div class="math notranslate nohighlight">
+\[R(\phi) = \sqrt{
+    \dfrac{
+        (a^2\cos\phi)^2 + (b^2\sin\phi)^2
+    }{
+        (a\cos\phi)^2 + (b\sin\phi)^2
+    }
+}\]</div>
+<p>Alternatively, the geocentric surface radius can also be calculated
+using the geocentric spherical latitude <span class="math notranslate nohighlight">\(\theta\)</span> by passing
+<code class="docutils literal notranslate"><span class="pre">geodetic=False</span></code>:</p>
+<div class="math notranslate nohighlight">
+\[R(\theta) = \sqrt{
+    \dfrac{
+        1
+    }{
+        (\frac{\cos\theta}{a})^2 + (\frac{\sin\theta}{b})^2
+    }
+}\]</div>
+<p>This can be useful if you already have the geocentric spherical
+latitudes and need the geocentric radius of the ellipsoid (for example,
+in spherical harmonic synthesis). In these cases, the coordinate
+conversion route is not possible since we need the radial coordinates
+to do that in the first place.</p>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="r6ab01f758d7b-1" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id7">1</a><span class="fn-bracket">]</span></span>
+<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius">https://en.wikipedia.org/wiki/Earth_radius#Geocentric_radius</a></p>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.geodetic_to_cartesian">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">geodetic_to_cartesian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.geodetic_to_cartesian" title="Link to this definition">#</a></dt>
+<dd><p>Convert from geodetic to geocentric Cartesian coordinates.</p>
+<p>The geodetic datum is defined by this ellipsoid. In the geocentric Cartesian
+system, z is aligned with the Earth’s axis of rotation and points towards the
+North pole, x and y are contained in the equatorial plane, x coincides with the
+Greenwich meridian, and y completes right-handed coordinate system.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and geometric height coordinates of the points
+in a geodetic coordinate system. Each element can be a single
+number or an array. The shape of the arrays must be compatible.
+Longitude and latitude must be in degrees and height in meters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">z</span></code>)</span></dt><dd><p>The converted x, y, z coordinates in a geocentric Cartesian
+coordinate system. The shape of each element will be compatible
+with the shape of the inputs. All coordinates are in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.geodetic_to_ellipsoidal_harmonic">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">geodetic_to_ellipsoidal_harmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.geodetic_to_ellipsoidal_harmonic" title="Link to this definition">#</a></dt>
+<dd><p>Convert from geodetic to ellipsoidal harmonic coordinates.</p>
+<p>The geodetic datum is defined by this ellipsoid, and the coordinates
+are converted following <a class="reference internal" href="../../references.html#lakshmanan1991" id="id9"><span>[Lakshmanan1991]</span></a> and <a class="reference internal" href="../../references.html#ligotze2001" id="id10"><span>[LiGotze2001]</span></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and geometric height coordinates of the points
+in a geodetic coordinate system. Each element can be a single
+number or an array. The shape of the arrays must be compatible.
+Longitude and latitude must be in degrees and height in meters.
+Since longitude is not affected by conversions, it can be assigned
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_reduced</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">u</span></code>)</span></dt><dd><p>The converted longitude, reduced (or parametric) latitude, and the
+coordinate u (the semiminor axis of the ellipsoid that passes
+through the input coordinates) in a ellipsoidal harmonic coordinate
+system. The shape of each element will be compatible with the shape
+of the inputs. If the input longitude is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will
+also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. Longitude and latitude will be in degrees and
+u in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.geodetic_to_spherical">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">geodetic_to_spherical</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.geodetic_to_spherical" title="Link to this definition">#</a></dt>
+<dd><p>Convert from geodetic to geocentric spherical coordinates.</p>
+<p>The geodetic datum is defined by this ellipsoid. The coordinates are
+converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id11"><span>[Vermeille2002]</span></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and geometric height coordinates of the points
+in a geodetic coordinate system. Each element can be a single
+number or an array. The shape of the arrays must be compatible.
+Longitude and latitude must be in degrees and height in meters.
+Since longitude is not affected by conversions, it can be assigned
+<code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">radius</span></code>)</span></dt><dd><p>The converted longitude, geocentric spherical latitude, and radius
+in a geocentric spherical coordinate system. The shape of each
+element will be compatible with the shape of the inputs. If the
+input longitude is <code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will also be <code class="docutils literal notranslate"><span class="pre">None</span></code>.
+Longitude and latitude will be in degrees and radius in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.normal_gravitation">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravitation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'geodetic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_homogeneous_ellipsoid.html#HomogeneousEllipsoid.normal_gravitation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.HomogeneousEllipsoid.normal_gravitation" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the normal gravitation of the ellipsoid.</p>
+<p>Computes the magnitude of the gradient of the <a class="reference internal" href="../../glossary.html#term-Gravitational-potential"><span class="xref std std-term">gravitational
+potential</span></a> generated by this ellipsoid at <strong>any point outside the
+ellipsoid</strong>. Based on the closed-form expressions by <a class="reference internal" href="../../references.html#clark1986" id="id12"><span>[Clark1986]</span></a> and
+<a class="reference internal" href="../../references.html#takahashi2017" id="id13"><span>[Takahashi2017]</span></a>.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>These expressions are only valid for heights on or above the
+surface of the ellipsoid.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate1</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate2</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate3</span></code>)</span></dt><dd><p>Tuple with 3 arrays containing the coordinates of the computation points.
+The meaning of the arrays is determined by the <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code>
+argument: longitude, geodetic latitude, and geometric height for a geodetic
+system; longitude, geocentric latitude, and radius for a geocentric
+spherical system; longitude, reduced latitude, and u for an ellipsoidal
+harmonic system; x, y, and z for a geocentric Cartesian system. Each
+element can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitudes must be in degrees and height, radius,
+and u in meters. Since longitude is not used in computations (the potential
+is symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><strong>coordinate_system</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The coordinate system that will be assumed for the given coordinates. Should
+be one of: <code class="docutils literal notranslate"><span class="pre">&quot;geodetic&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;spherical&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cartesian&quot;</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">&quot;ellipsoidal</span> <span class="pre">harmonic&quot;</span></code>.</p>
+</dd>
+<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#bltin-boolean-values" title="(in Python v3.15)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>gravitation</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The magnitude of the gravitation vector in mGal or m/s².</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the calculations happen in geocentric Cartesian coordinates,
+passing inputs in any other coordinate system will require
+conversion, which may slow down computations if done in a loop.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.normal_gravitation_vector">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravitation_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'geodetic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_homogeneous_ellipsoid.html#HomogeneousEllipsoid.normal_gravitation_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.HomogeneousEllipsoid.normal_gravitation_vector" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the normal gravitation vector of the ellipsoid.</p>
+<p>Computes the gradient vector of the <a class="reference internal" href="../../glossary.html#term-Gravitational-potential"><span class="xref std std-term">gravitational potential</span></a>
+generated by this ellipsoid at <strong>any point outside the ellipsoid</strong>.
+Based on the closed-form expressions by <a class="reference internal" href="../../references.html#clark1986" id="id14"><span>[Clark1986]</span></a> and <a class="reference internal" href="../../references.html#takahashi2017" id="id15"><span>[Takahashi2017]</span></a>.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>These expressions are only valid for heights on or above the
+surface of the ellipsoid.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate1</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate2</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate3</span></code>)</span></dt><dd><p>Tuple with 3 arrays containing the coordinates of the computation points.
+The meaning of the arrays is determined by the <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code>
+argument: longitude, geodetic latitude, and geometric height for a geodetic
+system; longitude, geocentric latitude, and radius for a geocentric
+spherical system; longitude, reduced latitude, and u for an ellipsoidal
+harmonic system; x, y, and z for a geocentric Cartesian system. Each
+element can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitudes must be in degrees and height, radius,
+and u in meters. Since longitude is not used in computations (the potential
+is symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><strong>coordinate_system</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The coordinate system that will be assumed for the given coordinates. Should
+be one of: <code class="docutils literal notranslate"><span class="pre">&quot;geodetic&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;spherical&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cartesian&quot;</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">&quot;ellipsoidal</span> <span class="pre">harmonic&quot;</span></code>.</p>
+</dd>
+<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#bltin-boolean-values" title="(in Python v3.15)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>gravitation_vector</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">gx</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">gy</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">gz</span></code>)</span></dt><dd><p>Tuple with arrays representing the 3 components of the gravitation
+vector in the geocentric Cartesian system in mGal or m/s².</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the calculations happen in geocentric Cartesian coordinates,
+passing inputs in any other coordinate system will require
+conversion, which may slow down computations if done in a loop.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.normal_gravity">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'geodetic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_homogeneous_ellipsoid.html#HomogeneousEllipsoid.normal_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.HomogeneousEllipsoid.normal_gravity" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the normal gravity of the ellipsoid.</p>
+<p>Computes the magnitude of the gradient vector of the <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity
+potential</span></a> (gravitational plus centrifugal) generated by this ellipsoid
+at <strong>any point outside the ellipsoid</strong>. Based on the closed-form
+expressions by <a class="reference internal" href="../../references.html#clark1986" id="id16"><span>[Clark1986]</span></a> and <a class="reference internal" href="../../references.html#takahashi2017" id="id17"><span>[Takahashi2017]</span></a>.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>These expressions are only valid for heights on or above the
+surface of the ellipsoid.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate1</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate2</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate3</span></code>)</span></dt><dd><p>Tuple with 3 arrays containing the coordinates of the computation points.
+The meaning of the arrays is determined by the <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code>
+argument: longitude, geodetic latitude, and geometric height for a geodetic
+system; longitude, geocentric latitude, and radius for a geocentric
+spherical system; longitude, reduced latitude, and u for an ellipsoidal
+harmonic system; x, y, and z for a geocentric Cartesian system. Each
+element can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitudes must be in degrees and height, radius,
+and u in meters. Since longitude is not used in computations (the potential
+is symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><strong>coordinate_system</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The coordinate system that will be assumed for the given coordinates. Should
+be one of: <code class="docutils literal notranslate"><span class="pre">&quot;geodetic&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;spherical&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cartesian&quot;</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">&quot;ellipsoidal</span> <span class="pre">harmonic&quot;</span></code>.</p>
+</dd>
+<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#bltin-boolean-values" title="(in Python v3.15)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>gravity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The magnitude of the gravity vector in mGal or m/s².</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the calculations happen in geocentric Cartesian coordinates,
+passing inputs in any other coordinate system will require
+conversion, which may slow down computations if done in a loop.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.normal_gravity_vector">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">normal_gravity_vector</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">coordinate_system</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'geodetic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_homogeneous_ellipsoid.html#HomogeneousEllipsoid.normal_gravity_vector"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.HomogeneousEllipsoid.normal_gravity_vector" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the normal gravity vector of the ellipsoid.</p>
+<p>Computes the gradient vector of the <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a>
+(gravitational plus centrifugal) generated by this ellipsoid at <strong>any
+point outside the ellipsoid</strong>. Based on the closed-form expressions by
+<a class="reference internal" href="../../references.html#clark1986" id="id18"><span>[Clark1986]</span></a> and <a class="reference internal" href="../../references.html#takahashi2017" id="id19"><span>[Takahashi2017]</span></a>.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>These expressions are only valid for heights on or above the
+surface of the ellipsoid.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate1</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate2</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">coordinate3</span></code>)</span></dt><dd><p>Tuple with 3 arrays containing the coordinates of the computation points.
+The meaning of the arrays is determined by the <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code>
+argument: longitude, geodetic latitude, and geometric height for a geodetic
+system; longitude, geocentric latitude, and radius for a geocentric
+spherical system; longitude, reduced latitude, and u for an ellipsoidal
+harmonic system; x, y, and z for a geocentric Cartesian system. Each
+element can be a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitudes must be in degrees and height, radius,
+and u in meters. Since longitude is not used in computations (the potential
+is symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+<dt><strong>coordinate_system</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>The coordinate system that will be assumed for the given coordinates. Should
+be one of: <code class="docutils literal notranslate"><span class="pre">&quot;geodetic&quot;</span></code> (default), <code class="docutils literal notranslate"><span class="pre">&quot;spherical&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;cartesian&quot;</span></code>, or
+<code class="docutils literal notranslate"><span class="pre">&quot;ellipsoidal</span> <span class="pre">harmonic&quot;</span></code>.</p>
+</dd>
+<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#bltin-boolean-values" title="(in Python v3.15)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>gravity_vector</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">gx</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">gy</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">gz</span></code>)</span></dt><dd><p>Tuple with arrays representing the 3 components of the gravity
+vector in the geocentric Cartesian system in mGal or m/s².</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Since the calculations happen in geocentric Cartesian coordinates,
+passing inputs in any other coordinate system will require
+conversion, which may slow down computations if done in a loop.</p>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.prime_vertical_radius">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">prime_vertical_radius</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">sinlat</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.prime_vertical_radius" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the prime vertical radius of curvature for a given geodetic latitude.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This function receives the sine of the latitude as input to avoid
+repeated computations of trigonometric functions in
+methods/functions that rely on it.</p>
+</div>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>sinlat</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like" title="(in NumPy v2.5)"><span>array_like</span></a></span></dt><dd><p>Sine of the geocentric geodetic latitude.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>prime_vertical_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/glossary.html#term-array_like" title="(in NumPy v2.5)"><span>array_like</span></a></span></dt><dd><p>Prime vertical radius given in the same units as the semi-major
+axis</p>
+</dd>
+</dl>
+</dd>
+</dl>
+<p class="rubric">Notes</p>
+<p>The prime vertical radius of curvature <span class="math notranslate nohighlight">\(N\)</span> is defined as <a class="reference internal" href="#rb2e1e1c3eaf8-2" id="id20">[2]</a>:</p>
+<div class="math notranslate nohighlight">
+\[N(\phi) = \frac{a}{\sqrt{1 - e^2 \sin^2(\phi)}}\]</div>
+<p>Where <span class="math notranslate nohighlight">\(a\)</span> is the semimajor axis and <span class="math notranslate nohighlight">\(e\)</span> is the first
+eccentricity.</p>
+<p class="rubric">References</p>
+<div role="list" class="citation-list">
+<div class="citation" id="rb2e1e1c3eaf8-2" role="doc-biblioentry">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id20">2</a><span class="fn-bracket">]</span></span>
+<p>See <a class="reference external" href="https://en.wikipedia.org/wiki/Earth_radius#Prime_vertical">https://en.wikipedia.org/wiki/Earth_radius#Prime_vertical</a></p>
+</div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.spherical_to_cartesian">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">spherical_to_cartesian</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.spherical_to_cartesian" title="Link to this definition">#</a></dt>
+<dd><p>Convert from spherical coordinates to geocentric Cartesian coordinates.</p>
+<p>In the geocentric Cartesian system, z is aligned with the Earth’s axis
+of rotation and points towards the North pole, x and y are contained in
+the equatorial plane, x coincides with the Greenwich meridian, and
+y completes right-handed coordinate system.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and radius coordinates of the points in
+a geocentric spherical coordinate system. Each element can be
+a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitude must be in degrees and radius in
+meters.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">x</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">y</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">z</span></code>)</span></dt><dd><p>The converted x, y, z coordinates in a geocentric Cartesian
+coordinate system. The shape of each element will be compatible
+with the shape of the inputs. All coordinates are in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.spherical_to_ellipsoidal_harmonic">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">spherical_to_ellipsoidal_harmonic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.spherical_to_ellipsoidal_harmonic" title="Link to this definition">#</a></dt>
+<dd><p>Convert from geocentric spherical to ellipsoidal harmonic coordinates.</p>
+<p>The conversion is performed by passing through the geodetic system.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and radius coordinates of the points in a geocentric
+spherical coordinate system. Each element can be a single number or an
+array. The shape of the arrays must be compatible. Longitude and latitude
+must be in degrees and radius in meters. Since longitude is not affected by
+conversions, it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_reduced</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">u</span></code>)</span></dt><dd><p>The converted longitude, reduced (or parametric) latitude, and the
+coordinate u (the semiminor axis of the ellipsoid that passes through the
+input coordinates) in a ellipsoidal harmonic coordinate system. The shape
+of each element will be compatible with the shape of the inputs. Longitude
+and latitude will be in degrees and u in meters. If the input longitude is
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will also be <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="boule.HomogeneousEllipsoid.spherical_to_geodetic">
+<span class="sig-prename descclassname"><span class="pre">HomogeneousEllipsoid.</span></span><span class="sig-name descname"><span class="pre">spherical_to_geodetic</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#boule.HomogeneousEllipsoid.spherical_to_geodetic" title="Link to this definition">#</a></dt>
+<dd><p>Convert from geocentric spherical to geodetic coordinates.</p>
+<p>The geodetic datum is defined by this ellipsoid. The coordinates are
+converted following <a class="reference internal" href="../../references.html#vermeille2002" id="id22"><span>[Vermeille2002]</span></a>.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><dl>
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and radius coordinates of the points in
+a geocentric spherical coordinate system. Each element can be
+a single number or an array. The shape of the arrays must be
+compatible. Longitude and latitude must be in degrees and radius in
+meters. Since longitude is not affected by conversions, it can be
+assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><dl>
+<dt><strong>converted_coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_geodetic</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>The converted longitude, geodetic latitude, and geometric height in
+a geodetic coordinate system. The shape of each element will be
+compatible with the shape of the inputs. If the input longitude is
+<code class="docutils literal notranslate"><span class="pre">None</span></code>, the output will also be <code class="docutils literal notranslate"><span class="pre">None</span></code>. Longitude and latitude
+will be in degrees and height in meters.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<div style='clear:both'></div></section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="boule.TriaxialEllipsoid.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">boule.TriaxialEllipsoid</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="../../ellipsoids.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title">Available ellipsoids</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid</span></code></a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.area"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.area</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.area_equivalent_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.area_equivalent_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.eccentricity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.eccentricity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.first_eccentricity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.first_eccentricity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.linear_eccentricity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.linear_eccentricity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.mass"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.mass</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.mean_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.mean_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.second_eccentricity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.second_eccentricity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.semiaxes_mean_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.semiaxes_mean_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.semimajor_axis_longitude"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.semimajor_axis_longitude</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.semimedium_axis"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.semimedium_axis</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.semiminor_axis"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.semiminor_axis</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.thirdflattening"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.thirdflattening</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.volume"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.volume</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.volume_equivalent_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.volume_equivalent_radius</span></code></a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#methods">Methods</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.cartesian_to_ellipsoidal_harmonic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.cartesian_to_ellipsoidal_harmonic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.cartesian_to_geodetic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.cartesian_to_geodetic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.cartesian_to_spherical"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.cartesian_to_spherical</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.centrifugal_acceleration"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.centrifugal_acceleration</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.centrifugal_potential"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.centrifugal_potential</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_cartesian"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.ellipsoidal_harmonic_to_cartesian</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_geodetic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.ellipsoidal_harmonic_to_geodetic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_spherical"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.ellipsoidal_harmonic_to_spherical</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.geocentric_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.geocentric_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.geodetic_to_cartesian"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.geodetic_to_cartesian</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.geodetic_to_ellipsoidal_harmonic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.geodetic_to_ellipsoidal_harmonic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.geodetic_to_spherical"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.geodetic_to_spherical</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.normal_gravitation"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.normal_gravitation</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.normal_gravitation_vector"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.normal_gravitation_vector</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.normal_gravity"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.normal_gravity</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.normal_gravity_vector"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.normal_gravity_vector</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.prime_vertical_radius"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.prime_vertical_radius</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.spherical_to_cartesian"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.spherical_to_cartesian</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.spherical_to_ellipsoidal_harmonic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.spherical_to_ellipsoidal_harmonic</span></code></a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.HomogeneousEllipsoid.spherical_to_geodetic"><code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid.spherical_to_geodetic</span></code></a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2026, The Boule Developers.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    <p class="last-updated">
+  Last updated on Oct 23, 2026.
+  <br/>
+</p>
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

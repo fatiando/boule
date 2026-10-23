@@ -184,6 +184,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.Sphere.html">boule.Sphere</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.HomogeneousEllipsoid.html">boule.HomogeneousEllipsoid</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../ellipsoids.html">Available ellipsoids</a></li>
@@ -200,6 +201,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
@@ -416,6 +418,7 @@ document.write(`
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblate-ellipsoids">Oblate ellipsoids</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spheres">Spheres</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#triaxial-ellipsoids">Triaxial ellipsoids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-oblate-ellipsoids">Homogeneous oblate ellipsoids</a></li>
 </ul>
             </nav>
         </div>
@@ -474,6 +477,20 @@ case for the sphere. Gravity calculations are not yet available.</p>
 </div>
 </div>
 </div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold sd-fs-4 text-center docutils">
+Homogeneous ellipsoid</div>
+<p class="sd-card-text"><strong>Class:</strong> <a class="reference internal" href="../api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid" title="boule.HomogeneousEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.HomogeneousEllipsoid</span></code></a></p>
+<p class="sd-card-text"><strong>When to use:</strong> Your model has 2 semi-axis and non-zero flattening, and
+you require knowledge of the internal density distribution.</p>
+<p class="sd-card-text"><strong>Caveat:</strong> A homogeneous density ellipsoid does not have constant
+<a class="reference internal" href="../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> on its surface.</p>
+<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary sd-stretched-link reference internal" href="#defining-ellipsoids-homogeneous"><span class="std std-ref">Example</span></a></span></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <hr class="docutils" />
@@ -498,15 +515,15 @@ parameters from <a class="reference internal" href="../references.html#hofmannwe
 
 
 <span class="n">WGS84</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Ellipsoid</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;WGS84&quot;</span><span class="p">,</span>
-    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;World Geodetic System 1984&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"WGS84"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"World Geodetic System 1984"</span><span class="p">,</span>
     <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">6378137</span><span class="p">,</span>
     <span class="n">flattening</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">298.257223563</span><span class="p">,</span>
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">3986004.418e8</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">7292115e-11</span><span class="p">,</span>
     <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy &quot;</span>
-        <span class="s2">&quot;(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer.&quot;</span>
+        <span class="s2">"Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy "</span>
+        <span class="s2">"(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">WGS84</span><span class="p">)</span>
@@ -552,15 +569,15 @@ found in <a class="reference internal" href="../references.html#wieczorek2015" i
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MERCURY</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MERCURY&quot;</span><span class="p">,</span>
-    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Mercury Spheroid&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"MERCURY"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Mercury Spheroid"</span><span class="p">,</span>
     <span class="n">radius</span><span class="o">=</span><span class="mi">2_439_372</span><span class="p">,</span>
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">22.031839221e12</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">1.2400172589e-6</span><span class="p">,</span>
     <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial &quot;</span>
-        <span class="s2">&quot;Planets, Treatise of Geophysics (Second Edition); Elsevier. &quot;</span>
-        <span class="s2">&quot;doi:10.1016/B978-0-444-53802-4.00169-X&quot;</span>
+        <span class="s2">"Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "</span>
+        <span class="s2">"Planets, Treatise of Geophysics (Second Edition); Elsevier. "</span>
+        <span class="s2">"doi:10.1016/B978-0-444-53802-4.00169-X"</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">MERCURY</span><span class="p">)</span>
@@ -600,17 +617,17 @@ from <a class="reference internal" href="../references.html#russell2012" id="id3
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VESTA</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">TriaxialEllipsoid</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;VESTA&quot;</span><span class="p">,</span>
-    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Vesta Triaxial Ellipsoid&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"VESTA"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Vesta Triaxial Ellipsoid"</span><span class="p">,</span>
     <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">286_300</span><span class="p">,</span>
     <span class="n">semimedium_axis</span><span class="o">=</span><span class="mi">278_600</span><span class="p">,</span>
     <span class="n">semiminor_axis</span><span class="o">=</span><span class="mi">223_200</span><span class="p">,</span>
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">1.729094e10</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">326.71050958367e-6</span><span class="p">,</span>
     <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, &quot;</span>
-        <span class="s2">&quot;M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the &quot;</span>
-        <span class="s2">&quot;Protoplanetary Paradigm. Science. doi:10.1126/science.1219381&quot;</span>
+        <span class="s2">"Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, "</span>
+        <span class="s2">"M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the "</span>
+        <span class="s2">"Protoplanetary Paradigm. Science. doi:10.1126/science.1219381"</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">VESTA</span><span class="p">)</span>
@@ -639,6 +656,67 @@ Source:
 <p>Gravity calculations have not been implemented yet for triaxial ellipsoids.
 If you’re interested in this feature or would like to help implement it,
 please <a class="reference external" href="https://www.fatiando.org/contact">get in touch</a>.</p>
+</div>
+</section>
+<section id="homogeneous-oblate-ellipsoids">
+<span id="defining-ellipsoids-homogeneous"></span><h2>Homogeneous oblate ellipsoids<a class="headerlink" href="#homogeneous-oblate-ellipsoids" title="Link to this heading">#</a></h2>
+<p>Homogeneous oblate ellipsoids are defined by 4 numerical parameters:</p>
+<ol class="arabic simple">
+<li><p>The semi-major axis (<span class="math notranslate nohighlight">\(a\)</span>): the equatorial radius.</p></li>
+<li><p>The flattening (<span class="math notranslate nohighlight">\(f = (a - b)/a\)</span>): the ratio between the equatorial and
+polar radii.</p></li>
+<li><p>The density (<span class="math notranslate nohighlight">\(\rho\)</span>), which is constant throughout the ellipsoid.</p></li>
+<li><p>The angular velocity (<span class="math notranslate nohighlight">\(\omega\)</span>): spin rate of the ellipsoid which
+defines the centrifugal potential.</p></li>
+</ol>
+<p>You can also include metadata about where the defining parameters came from (a
+citation) and a long descriptive name for the ellipsoid. For example, this is
+how we could use <a class="reference internal" href="../api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid" title="boule.HomogeneousEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.HomogeneousEllipsoid</span></code></a> to define an ellipsoid that
+has the dimensions of WGS84 but has a constant density:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">boule</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bl</span>
+
+
+<span class="n">Earth</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">HomogeneousEllipsoid</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"Earth"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Constant density Earth model"</span><span class="p">,</span>
+    <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">6378137</span><span class="p">,</span>
+    <span class="n">flattening</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">298.257223563</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="mi">5513</span><span class="p">,</span>  <span class="c1"># mean density of WGS84</span>
+    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">7292115e-11</span><span class="p">,</span>
+    <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">"Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy "</span>
+        <span class="s2">"(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Earth</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Earth - Constant density Earth model
+Homogeneous oblate ellipsoid:
+  • Semimajor axis: 6378137 m
+  • Flattening: 0.0033528106647474805
+  • Density: 5513 kg/m³
+  • Angular velocity: 7.292115e-05 rad/s
+Source:
+  Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy (2nd,
+    corr. ed. 2006 edition ed.). Wien ; New York: Springer.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Homogeneous ellipsoids are not their own equipotential surface,
+so the definition of <a class="reference internal" href="../glossary.html#term-Normal-gravity"><span class="xref std std-term">normal gravity</span></a> is different from the
+<a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a> and is the same as <a class="reference internal" href="../api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Sphere</span></code></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You <strong>must</strong> use <a class="reference internal" href="../api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Sphere</span></code></a> to represent homogeneous
+ellipsoids with <strong>zero flattening</strong>. This is because gravity calculations
+in <a class="reference internal" href="../api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid" title="boule.HomogeneousEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.HomogeneousEllipsoid</span></code></a> are singular for the case of
+<code class="docutils literal notranslate"><span class="pre">flattening=0</span></code>.</p>
 </div>
 </section>
 </section>
@@ -691,6 +769,7 @@ please <a class="reference external" href="https://www.fatiando.org/contact">get
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblate-ellipsoids">Oblate ellipsoids</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spheres">Spheres</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#triaxial-ellipsoids">Triaxial ellipsoids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-oblate-ellipsoids">Homogeneous oblate ellipsoids</a></li>
 </ul>
   </nav></div>
 
@@ -720,7 +799,7 @@ please <a class="reference external" href="https://www.fatiando.org/contact">get
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Oct 23, 2026.
   <br/>
 </p>
   </div>

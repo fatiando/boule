@@ -182,6 +182,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Sphere.html">boule.Sphere</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/boule.HomogeneousEllipsoid.html">boule.HomogeneousEllipsoid</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="ellipsoids.html">Available ellipsoids</a></li>
@@ -198,6 +199,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
@@ -358,6 +360,7 @@ document.write(`
  | <a href="#E"><strong>E</strong></a>
  | <a href="#F"><strong>F</strong></a>
  | <a href="#G"><strong>G</strong></a>
+ | <a href="#H"><strong>H</strong></a>
  | <a href="#L"><strong>L</strong></a>
  | <a href="#M"><strong>M</strong></a>
  | <a href="#N"><strong>N</strong></a>
@@ -374,6 +377,8 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.area">area (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.area">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.area">(boule.Sphere attribute)</a>
 </li>
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.area">(boule.TriaxialEllipsoid attribute)</a>
@@ -384,6 +389,8 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.area_equivalent_radius">area_equivalent_radius (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.area_equivalent_radius">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.area_equivalent_radius">(boule.Sphere attribute)</a>
 </li>
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.area_equivalent_radius">(boule.TriaxialEllipsoid attribute)</a>
@@ -408,16 +415,42 @@ document.write(`
 <h2 id="C">C</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.cartesian_to_ellipsoidal_harmonic">cartesian_to_ellipsoidal_harmonic() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.cartesian_to_ellipsoidal_harmonic">(boule.HomogeneousEllipsoid method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.cartesian_to_geodetic">cartesian_to_geodetic() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.cartesian_to_geodetic">(boule.HomogeneousEllipsoid method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.cartesian_to_spherical">cartesian_to_spherical() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.cartesian_to_spherical">(boule.HomogeneousEllipsoid method)</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.centrifugal_acceleration">centrifugal_acceleration() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.centrifugal_acceleration">(boule.HomogeneousEllipsoid method)</a>
+</li>
+      </ul></li>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.centrifugal_potential">centrifugal_potential() (boule.Ellipsoid method)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.centrifugal_potential">(boule.HomogeneousEllipsoid method)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.centrifugal_potential">(boule.Sphere method)</a>
 </li>
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.centrifugal_potential">(boule.TriaxialEllipsoid method)</a>
 </li>
       </ul></li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-Co-located-grids"><strong>Co-located grids</strong></a>
 </li>
   </ul></td>
@@ -429,15 +462,33 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.eccentricity">eccentricity (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.eccentricity">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.eccentricity">(boule.Sphere attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid">Ellipsoid (class in boule)</a>
+</li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.ellipsoidal_harmonic_to_cartesian">ellipsoidal_harmonic_to_cartesian() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_cartesian">(boule.HomogeneousEllipsoid method)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid">Ellipsoid (class in boule)</a>
-</li>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.ellipsoidal_harmonic_to_geodetic">ellipsoidal_harmonic_to_geodetic() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_geodetic">(boule.HomogeneousEllipsoid method)</a>
 </li>
+      </ul></li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.ellipsoidal_harmonic_to_spherical">ellipsoidal_harmonic_to_spherical() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.ellipsoidal_harmonic_to_spherical">(boule.HomogeneousEllipsoid method)</a>
+</li>
+      </ul></li>
       <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.equatorial_flattening">equatorial_flattening (boule.TriaxialEllipsoid attribute)</a>
 </li>
   </ul></td>
@@ -449,6 +500,8 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.first_eccentricity">first_eccentricity (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.first_eccentricity">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.first_eccentricity">(boule.Sphere attribute)</a>
 </li>
       </ul></li>
@@ -467,15 +520,31 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geocentric_radius">geocentric_radius() (boule.Ellipsoid method)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.geocentric_radius">(boule.HomogeneousEllipsoid method)</a>
+</li>
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.geocentric_radius">(boule.TriaxialEllipsoid method)</a>
 </li>
       </ul></li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_cartesian">geodetic_to_cartesian() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.geodetic_to_cartesian">(boule.HomogeneousEllipsoid method)</a>
+</li>
+      </ul></li>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_ellipsoidal_harmonic">geodetic_to_ellipsoidal_harmonic() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.geodetic_to_ellipsoidal_harmonic">(boule.HomogeneousEllipsoid method)</a>
 </li>
-      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical">geodetic_to_spherical() (boule.Ellipsoid method)</a>
-</li>
+      </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.geodetic_to_spherical">geodetic_to_spherical() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.geodetic_to_spherical">(boule.HomogeneousEllipsoid method)</a>
+</li>
+      </ul></li>
       <li><a href="glossary.html#term-Gravitational-potential"><strong>Gravitational potential</strong></a>
 </li>
       <li><a href="glossary.html#term-Gravity-disturbance"><strong>Gravity disturbance</strong></a>
@@ -489,11 +558,23 @@ document.write(`
   </ul></td>
 </tr></table>
 
+<h2 id="H">H</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid">HomogeneousEllipsoid (class in boule)</a>
+</li>
+  </ul></td>
+</tr></table>
+
 <h2 id="L">L</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.linear_eccentricity">linear_eccentricity (boule.Ellipsoid attribute)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.linear_eccentricity">(boule.HomogeneousEllipsoid attribute)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -503,6 +584,8 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.mass">mass (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.mass">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.mass">(boule.Sphere attribute)</a>
 </li>
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.mass">(boule.TriaxialEllipsoid attribute)</a>
@@ -521,6 +604,8 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.mean_radius">mean_radius (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.mean_radius">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.mean_radius">(boule.Sphere attribute)</a>
 </li>
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.mean_radius">(boule.TriaxialEllipsoid attribute)</a>
@@ -543,7 +628,13 @@ document.write(`
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="glossary.html#term-Normal-gravity"><strong>Normal gravity</strong></a>
 </li>
-      <li><a href="api/generated/boule.Sphere.html#boule.Sphere.normal_gravitation">normal_gravitation() (boule.Sphere method)</a>
+      <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.normal_gravitation">normal_gravitation() (boule.HomogeneousEllipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.Sphere.html#boule.Sphere.normal_gravitation">(boule.Sphere method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.normal_gravitation_vector">normal_gravitation_vector() (boule.HomogeneousEllipsoid method)</a>
 </li>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.normal_gravitational_potential">normal_gravitational_potential() (boule.Ellipsoid method)</a>
 
@@ -556,6 +647,8 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.normal_gravity">normal_gravity() (boule.Ellipsoid method)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.normal_gravity">(boule.HomogeneousEllipsoid method)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.normal_gravity">(boule.Sphere method)</a>
 </li>
       </ul></li>
@@ -565,6 +658,8 @@ document.write(`
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.normal_gravity_potential">(boule.Sphere method)</a>
 </li>
       </ul></li>
+      <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.normal_gravity_vector">normal_gravity_vector() (boule.HomogeneousEllipsoid method)</a>
+</li>
   </ul></td>
 </tr></table>
 
@@ -572,7 +667,11 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.prime_vertical_radius">prime_vertical_radius() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.prime_vertical_radius">(boule.HomogeneousEllipsoid method)</a>
 </li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -594,10 +693,16 @@ document.write(`
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.second_eccentricity">second_eccentricity (boule.Ellipsoid attribute)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.second_eccentricity">(boule.HomogeneousEllipsoid attribute)</a>
 </li>
+      </ul></li>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.semiaxes_mean_radius">semiaxes_mean_radius (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.semiaxes_mean_radius">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.semiaxes_mean_radius">(boule.Sphere attribute)</a>
 </li>
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.semiaxes_mean_radius">(boule.TriaxialEllipsoid attribute)</a>
@@ -608,27 +713,49 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.semimajor_axis_longitude">semimajor_axis_longitude (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.semimajor_axis_longitude">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.semimajor_axis_longitude">(boule.Sphere attribute)</a>
+</li>
+      </ul></li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.semimedium_axis">semimedium_axis (boule.Ellipsoid attribute)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.semimedium_axis">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
+        <li><a href="api/generated/boule.Sphere.html#boule.Sphere.semimedium_axis">(boule.Sphere attribute)</a>
 </li>
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.semimedium_axis">semimedium_axis (boule.Ellipsoid attribute)</a>
-
-      <ul>
-        <li><a href="api/generated/boule.Sphere.html#boule.Sphere.semimedium_axis">(boule.Sphere attribute)</a>
-</li>
-      </ul></li>
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.semiminor_axis">semiminor_axis (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.semiminor_axis">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.semiminor_axis">(boule.Sphere attribute)</a>
 </li>
       </ul></li>
       <li><a href="api/generated/boule.Sphere.html#boule.Sphere">Sphere (class in boule)</a>
 </li>
-      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.spherical_to_geodetic">spherical_to_geodetic() (boule.Ellipsoid method)</a>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.spherical_to_cartesian">spherical_to_cartesian() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.spherical_to_cartesian">(boule.HomogeneousEllipsoid method)</a>
 </li>
+      </ul></li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.spherical_to_ellipsoidal_harmonic">spherical_to_ellipsoidal_harmonic() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.spherical_to_ellipsoidal_harmonic">(boule.HomogeneousEllipsoid method)</a>
+</li>
+      </ul></li>
+      <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.spherical_to_geodetic">spherical_to_geodetic() (boule.Ellipsoid method)</a>
+
+      <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.spherical_to_geodetic">(boule.HomogeneousEllipsoid method)</a>
+</li>
+      </ul></li>
   </ul></td>
 </tr></table>
 
@@ -638,6 +765,8 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.thirdflattening">thirdflattening (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.thirdflattening">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.thirdflattening">(boule.Sphere attribute)</a>
 </li>
       </ul></li>
@@ -654,6 +783,8 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.volume">volume (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.volume">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.volume">(boule.Sphere attribute)</a>
 </li>
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.volume">(boule.TriaxialEllipsoid attribute)</a>
@@ -664,6 +795,8 @@ document.write(`
       <li><a href="api/generated/boule.Ellipsoid.html#boule.Ellipsoid.volume_equivalent_radius">volume_equivalent_radius (boule.Ellipsoid attribute)</a>
 
       <ul>
+        <li><a href="api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid.volume_equivalent_radius">(boule.HomogeneousEllipsoid attribute)</a>
+</li>
         <li><a href="api/generated/boule.Sphere.html#boule.Sphere.volume_equivalent_radius">(boule.Sphere attribute)</a>
 </li>
         <li><a href="api/generated/boule.TriaxialEllipsoid.html#boule.TriaxialEllipsoid.volume_equivalent_radius">(boule.TriaxialEllipsoid attribute)</a>
@@ -715,7 +848,7 @@ document.write(`
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Oct 23, 2026.
   <br/>
 </p>
   </div>

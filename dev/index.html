@@ -184,6 +184,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Sphere.html">boule.Sphere</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/boule.HomogeneousEllipsoid.html">boule.HomogeneousEllipsoid</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="ellipsoids.html">Available ellipsoids</a></li>
@@ -200,6 +201,7 @@
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
 </ul>
 
@@ -403,7 +405,7 @@ document.write(`
               
 
 <div id="jb-print-docs-body" class="onlyprint">
-    <h1>Home</h1>
+    <h1>Project status</h1>
     <!-- Table of contents -->
     <div id="print-main-content">
         <div id="jb-print-toc">
@@ -413,6 +415,11 @@ document.write(`
             </div>
             <nav aria-label="Page">
                 <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project status</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-involved">Getting involved</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a><ul class="visible nav section-nav flex-column">
+</ul>
+</li>
 </ul>
 
             </nav>
@@ -445,12 +452,16 @@ resembling a squashed ball</a>
 (much like the Earth).</p>
 <p>Boule is designed for:</p>
 <ul class="simple">
-<li><p>Storing and manipulating ellipsoid parameters for spherical harmonic analysis
-and coordinate system conversions.</p></li>
-<li><p>Calculating <a class="reference internal" href="glossary.html#term-Normal-gravity"><span class="xref std std-term">normal gravity</span></a> for generating gravity anomalies and
-<a class="reference internal" href="glossary.html#term-Gravity-disturbance"><span class="xref std std-term">gravity disturbances</span></a>.</p></li>
+<li><p>Storing and manipulating <a class="reference internal" href="user_guide/defining_ellipsoids.html#defining-ellipsoids"><span class="std std-ref">ellipsoid parameters</span></a> for spherical harmonic analysis
+and <a class="reference internal" href="user_guide/coordinates.html#coordinates"><span class="std std-ref">coordinate system conversions</span></a>.</p></li>
+<li><p>Calculating <a class="reference internal" href="user_guide/normal_gravity.html#normal-gravity"><span class="std std-ref">normal gravity</span></a> for generating gravity anomalies and
+<a class="reference internal" href="user_guide/gravity_disturbance.html#gravity-disturbance"><span class="std std-ref">gravity disturbances</span></a>.</p></li>
 </ul>
-<hr class="docutils" />
+<div class="admonition seealso">
+<p class="admonition-title">See also</p>
+<p>Boule is a part of the
+<a class="reference external" href="https://www.fatiando.org/">Fatiando a Terra</a> project.</p>
+</div>
 <div class="sd-container-fluid sd-sphinx-override sd-mt-5 sd-mb-5 sd-ml-0 sd-mr-0 sd-pt-0 sd-pb-0 sd-pl-0 sd-pr-0 docutils">
 <div class="sd-row sd-row-cols-1 sd-row-cols-xs-1 sd-row-cols-sm-2 sd-row-cols-md-1 sd-row-cols-lg-2 sd-g-4 sd-g-xs-4 sd-g-sm-4 sd-g-md-4 sd-g-lg-4 docutils">
 <div class="sd-col sd-d-flex-row docutils">
@@ -496,22 +507,50 @@ and coordinate system conversions.</p></li>
 </div>
 </div>
 <hr class="docutils" />
-<div class="important admonition">
-<p class="admonition-title">Boule is ready for use but still changing</p>
-<p>This means that we sometimes break backwards compatibility as we try to
+<section id="project-status">
+<h1>Project status<a class="headerlink" href="#project-status" title="Link to this heading">#</a></h1>
+<p><strong>Boule is ready for use but still changing.</strong>
+This means that we sometimes break backwards compatibility as we try to
 improve the software based on user experience, new ideas, better design
 decisions, etc. Please keep that in mind before you update Boule to a newer
 version.</p>
-<p><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-code-review" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 2.75a.25.25 0 01.25-.25h12.5a.25.25 0 01.25.25v8.5a.25.25 0 01-.25.25h-6.5a.75.75 0 00-.53.22L4.5 14.44v-2.19a.75.75 0 00-.75-.75h-2a.25.25 0 01-.25-.25v-8.5zM1.75 1A1.75 1.75 0 000 2.75v8.5C0 12.216.784 13 1.75 13H3v1.543a1.457 1.457 0 002.487 1.03L8.061 13h6.189A1.75 1.75 0 0016 11.25v-8.5A1.75 1.75 0 0014.25 1H1.75zm5.03 3.47a.75.75 0 010 1.06L5.31 7l1.47 1.47a.75.75 0 01-1.06 1.06l-2-2a.75.75 0 010-1.06l2-2a.75.75 0 011.06 0zm2.44 0a.75.75 0 000 1.06L10.69 7 9.22 8.47a.75.75 0 001.06 1.06l2-2a.75.75 0 000-1.06l-2-2a.75.75 0 00-1.06 0z"></path></svg> <strong>We welcome feedback and ideas!</strong> This is a great
-time to bring new ideas on how we can improve the project. <a class="reference external" href="https://www.fatiando.org/contact">Join the
-conversation</a> or submit <a class="reference external" href="https://github.com/fatiando/boule/issues">issues on
-GitHub</a>.</p>
-</div>
-<div class="admonition seealso">
-<p class="admonition-title">See also</p>
-<p>Boule is a part of the
-<a class="reference external" href="https://www.fatiando.org/">Fatiando a Terra</a> project.</p>
-</div>
+<p><strong>We welcome feedback and ideas!</strong> This is a great time to bring new ideas on
+how we can improve the project.
+<a class="reference external" href="https://www.fatiando.org/contact">Join the conversation</a> or submit
+<a class="reference external" href="https://github.com/fatiando/boule/issues">issues on GitHub</a>.</p>
+</section>
+<section id="getting-involved">
+<h1>Getting involved<a class="headerlink" href="#getting-involved" title="Link to this heading">#</a></h1>
+<p>🗨️ <strong>Contact us:</strong>
+Find out more about how to reach us at
+<a class="reference external" href="https://www.fatiando.org/contact/">fatiando.org/contact</a>.</p>
+<p>👩🏾‍💻 <strong>Contributing to project development:</strong>
+Please read our
+<a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">Contributing Guide</a>
+to see how you can help and give feedback.</p>
+<p>🤖 <strong>Policy on AI usage:</strong>
+Please read our
+<a class="reference external" href="https://github.com/fatiando/community/blob/main/AI.md">AI Usage Policy</a>.</p>
+<p>🧑🏾‍🤝‍🧑🏼 <strong>Code of conduct:</strong>
+This project is released with a
+<a class="reference external" href="https://github.com/fatiando/community/blob/main/lODE_OF_CONDUCT.md">Code of Conduct</a>.
+By participating in this project you agree to abide by its terms.</p>
+<blockquote>
+<div><p><strong>Imposter syndrome disclaimer:</strong>
+We want your help. <strong>No, really.</strong> There may be a little voice inside your
+head that is telling you that you’re not ready, that you aren’t skilled
+enough to contribute. We assure you that the little voice in your head is
+wrong. Most importantly, <strong>there are many valuable ways to contribute besides
+writing code</strong> (giving feedback, teaching, writing documentation, and more).</p>
+<p><em>This disclaimer was adapted from the</em>
+<a class="reference external" href="https://github.com/Unidata/MetPy">MetPy project</a>.</p>
+</div></blockquote>
+</section>
+<section id="license">
+<h1>License<a class="headerlink" href="#license" title="Link to this heading">#</a></h1>
+<p>This is free software: you can redistribute it and/or modify it under the terms
+of the <strong>BSD 3-clause License</strong>. A copy of this license is provided in
+<a class="reference external" href="https://github.com/fatiando/boule/blob/main/LICENSE.txt">LICENSE.txt</a>.</p>
 <div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
@@ -520,6 +559,7 @@ GitHub</a>.</p>
 </div>
 <div class="toctree-wrapper compound">
 </div>
+</section>
 
 
                 </article>
@@ -557,6 +597,11 @@ GitHub</a>.</p>
   </div>
   <nav class="bd-toc-nav page-toc">
     <ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Project status</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#getting-involved">Getting involved</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#license">License</a><ul class="visible nav section-nav flex-column">
+</ul>
+</li>
 </ul>
 
   </nav></div>
@@ -587,7 +632,7 @@ GitHub</a>.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Oct 23, 2026.
   <br/>
 </p>
   </div>
