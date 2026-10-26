@@ -978,10 +978,10 @@ class CoordinateConversion:
 
         .. math::
 
-            \mathbf{R}_e (\lambda) = \begin{bmatrix}
+            \mathbf{R}_e (\alpha) = \begin{bmatrix}
             1 & 0 & 0 \\
-            0 & \cos\lambda & \sin\lambda \\
-            0 & -\sin\lambda & \cos\lambda
+            0 & \cos\alpha & \sin\alpha \\
+            0 & -\sin\alpha & \cos\alpha
             \end{bmatrix}
         """
         if coordinates_geodetic is None:
@@ -1053,10 +1053,10 @@ class CoordinateConversion:
 
         .. math::
 
-            \mathbf{R}_e (\lambda) = \begin{bmatrix}
+            \mathbf{R}_e (\alpha) = \begin{bmatrix}
             1 & 0 & 0 \\
-            0 & \cos\lambda & \sin\lambda \\
-            0 & -\sin\lambda & \cos\lambda
+            0 & \cos\alpha & \sin\alpha \\
+            0 & -\sin\alpha & \cos\alpha
             \end{bmatrix}
         """
         if coordinates_spherical is None:
@@ -1071,6 +1071,105 @@ class CoordinateConversion:
         north_sph = cos * north + sin * up
         radial = -sin * north + cos * up
         return (east, north_sph, radial)
+
+    def vector_spherical_to_cartesian(
+        self, coordinates, vector, *, coordinates_cartesian=None
+    ):
+        r"""
+        Convert a vector from a spherical to a geocentric Cartesian system.
+
+        The conversion is done through a rotation of the coordinate system
+        at the point where vector is located. Multiple vectors at different
+        locations can be converted at once by passing arrays as each vector
+        component and coordinate.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_spherical, radius)
+            Longitude, latitude, and radius coordinates of the vectors in a
+            geocentric spherical coordinate system. Each element can be a single
+            number or an array. The shape of the arrays must be compatible.
+            Longitude and latitude must be in degrees and radius in meters.
+            Since longitude is not affected by conversions, it can be assigned
+            ``None``. If the corresponding geodetic latitude is also given
+            through ``coordinates_geodetic``, then both longitude and radius can
+            be None.
+        vector : tuple = (eastward, northward, radial)
+            The three components of the vector(s) in a geocentric spherical
+            system. Each element can be a single number or an array. The shape
+            of the arrays must be compatible with each other and with the given
+            coordinates.
+        coordinates_cartesian : tuple = (x, y, z)
+            The x, y, and z coordinates of the vectors in a geocentric Cartesian
+            coordinate system. The z-axis is aligned with the ellipsoid's
+            semiminor axis, the x-axis points towards the 0 longitude meridian,
+            and the y-axis completes a right-handed coordinate system. The shape
+            of the arrays must be compatible with each other and with the given
+            coordinates. All coordinates should be in meters. If None, then the
+            input spherical coordinates will be converted internally. Use this
+            argument avoid repeated coordinate conversions.
+
+        Returns
+        -------
+        vector_converted : tuple = (x, y, z)
+            The three components of the vector(s) in a geocentric Cartesian
+            system. The shape of each element will be compatible with the input
+            vector and coordinates.
+
+        Notes
+        -----
+        The conversion is a combination of rotations
+
+        .. math::
+
+            \mathbf{v}_c =
+            \mathbf{R}_r (\lambda - 270^\circ)
+            \mathbf{R}_e (\theta - 90^\circ)
+            \mathbf{v}_s \ ,
+
+        in which :math:`\theta` is the spherical latitude, :math:`\lambda`
+        is the longitude, :math:`\mathbf{R}_e` is a rotation matrix about the
+        eastward direction, and :math:`\mathbf{R}_r` is a rotation matrix about
+        the radial direction. The rotation matrices are given by
+
+        .. math::
+
+            \mathbf{R}_e (\alpha) = \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \cos\alpha & \sin\alpha \\
+            0 & -\sin\alpha & \cos\alpha
+            \end{bmatrix}\ ,
+
+        .. math::
+
+            \mathbf{R}_r (\alpha) = \begin{bmatrix}
+            \cos\alpha & -\sin\alpha & 0\\
+            \sin\alpha & \cos\alpha & 0\\
+            0 & 0 & 1
+            \end{bmatrix}\ ,
+
+        .. math::
+
+            \mathbf{R}_r (\beta)\mathbf{R}_e (\alpha) = \begin{bmatrix}
+            \cos\beta & -\sin\beta\cos\alpha & -\sin\beta\sin\alpha \\
+            \sin\beta & \cos\beta\cos\alpha & \cos\beta\sin\alpha \\
+            0 & -\sin\alpha & \cos\alpha
+            \end{bmatrix}\ .
+        """
+        if coordinates_cartesian is None:
+            coordinates_cartesian = self.spherical_to_cartesian(coordinates)
+        longitude, latitude, _ = coordinates
+        east, north, radial = vector
+        lon = np.radians(longitude - 270)
+        lat = np.radians(latitude - 90)
+        sinlon = np.sin(lon)
+        coslon = np.cos(lon)
+        sinlat = np.sin(lat)
+        coslat = np.cos(lat)
+        x = coslon * east - sinlon * coslat * north - sinlon * sinlat * radial
+        y = sinlon * east + coslon * coslat * north + coslon * sinlat * radial
+        z = -sinlat * north + coslat * radial
+        return (x, y, z)
 
 
 @attr.s()
