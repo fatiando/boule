@@ -772,13 +772,33 @@ def test_vector_geodetic_to_spherical_roundtrip_arrays(
         ((0, 1, 0), (0, 90, 1), (-1, 0, 0)),
     ],
 )
-def test_vector_spherical_to_cartesian(
-    ellipsoid, vector, coordinates, true
-):
-    "Test if applying both conversions in series is the identity operator"
-    coordinates_cartesian = ellipsoid.spherical_to_cartesian(coordinates)
-    vector_cartesian = ellipsoid.vector_spherical_to_cartesian(coordinates, vector, coordinates_cartesian=coordinates_cartesian)
+def test_vector_spherical_to_cartesian(ellipsoid, vector, coordinates, true):
+    "Test conversions against known solutions"
+    vector_cartesian = ellipsoid.vector_spherical_to_cartesian(coordinates, vector)
     npt.assert_allclose(vector_cartesian, true, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize(
+    ("true", "coordinates", "vector"),
+    [
+        ((1, 0, 0), (90, 90, 1), (-1, 0, 0)),
+        ((1, 0, 0), (0, 90, 1), (0, 1, 0)),
+        ((0, 0, 1), (0, 90, 1), (0, 0, 1)),
+        ((0, 0, -1), (270, 90, 1), (0, 0, -1)),
+        ((0, 0, 1), (0, -90, 1), (0, 0, -1)),
+        ((0, 0, -1), (270, -90, 1), (0, 0, 1)),
+        ((0, 0, 1), (0, 0, 1), (1, 0, 0)),
+        ((0, 0, 1), (90, 0, 1), (0, 1, 0)),
+        ((0, 0, -1), (270, 0, 1), (0, 1, 0)),
+        ((0, 1, 0), (0, 0, 1), (0, 0, 1)),
+        ((0, 1, 0), (0, 90, 1), (-1, 0, 0)),
+    ],
+)
+def test_vector_cartesian_to_spherical(ellipsoid, true, coordinates, vector):
+    "Test conversions against known solutions"
+    vector_spherical = ellipsoid.vector_cartesian_to_spherical(coordinates, vector)
+    npt.assert_allclose(vector_spherical, true, rtol=0, atol=1e-15)
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
