@@ -1236,6 +1236,147 @@ class CoordinateConversion:
         radial = -sinlon * sinlat * x - coslon * sinlat * y + coslat * z
         return (east, north, radial)
 
+    def vector_geodetic_to_cartesian(self, coordinates, vector):
+        r"""
+        Convert a vector from a geodetic to a geocentric Cartesian system.
+
+        The conversion is done through a rotation of the coordinate system
+        at the point where vector is located. Multiple vectors at different
+        locations can be converted at once by passing arrays as each vector
+        component and coordinate.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_geodetic, height)
+            Longitude, latitude, and height coordinates of the vectors in a
+            geodetic coordinate system. Each element can be a single number or
+            an array. The shape of the arrays must be compatible. Longitude and
+            latitude must be in degrees and height in meters.
+        vector : tuple = (eastward, northward, upward)
+            The three components of the vector(s) in a geodetic system. Each
+            element can be a single number or an array. The shape of the arrays
+            must be compatible with each other and with the given coordinates.
+
+        Returns
+        -------
+        vector_converted : tuple = (x, y, z)
+            The three components of the vector(s) in a geocentric Cartesian
+            system. The shape of each element will be compatible with the input
+            vector and coordinates.
+
+        Notes
+        -----
+        The conversion is a combination of rotations
+
+        .. math::
+
+            \mathbf{v}_c =
+            \mathbf{R}_r (\lambda - 270^\circ)
+            \mathbf{R}_e (\phi - 90^\circ)
+            \mathbf{v}_g \ ,
+
+        in which :math:`\phi` is the geodetic latitude, :math:`\lambda`
+        is the longitude, :math:`\mathbf{R}_e` is a rotation matrix about the
+        eastward direction, and :math:`\mathbf{R}_r` is a rotation matrix about
+        the radial direction. The rotation matrices are given by
+
+        .. math::
+
+            \mathbf{R}_e (\alpha) = \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \cos\alpha & \sin\alpha \\
+            0 & -\sin\alpha & \cos\alpha
+            \end{bmatrix}\ ,
+
+        .. math::
+
+            \mathbf{R}_r (\alpha) = \begin{bmatrix}
+            \cos\alpha & -\sin\alpha & 0\\
+            \sin\alpha & \cos\alpha & 0\\
+            0 & 0 & 1
+            \end{bmatrix}\ ,
+
+        .. math::
+
+            \mathbf{R}_r (\beta)\mathbf{R}_e (\alpha) = \begin{bmatrix}
+            \cos\beta & -\sin\beta\cos\alpha & -\sin\beta\sin\alpha \\
+            \sin\beta & \cos\beta\cos\alpha & \cos\beta\sin\alpha \\
+            0 & -\sin\alpha & \cos\alpha
+            \end{bmatrix}\ .
+        """
+        return self.vector_spherical_to_cartesian(coordinates, vector)
+
+    def vector_cartesian_to_geodetic(self, coordinates, vector):
+        r"""
+        Convert a vector from a geocentric Cartesian to a geodetic system.
+
+        The conversion is done through a rotation of the coordinate system
+        at the point where vector is located. Multiple vectors at different
+        locations can be converted at once by passing arrays as each vector
+        component and coordinate.
+
+        Parameters
+        ----------
+        coordinates : tuple = (longitude, latitude_geodetic, height)
+            Longitude, latitude, and height coordinates of the vectors in a
+            geodetic coordinate system. Each element can be a single number or
+            an array. The shape of the arrays must be compatible. Longitude and
+            latitude must be in degrees and height in meters.
+        vector : tuple = (x, y, z)
+            The three components of the vector(s) in a geocentric Cartesian
+            system. Each element can be a single number or an array. The shape
+            of the arrays must be compatible with each other and with the given
+            coordinates.
+
+        Returns
+        -------
+        vector_converted : tuple = (eastward, northward, upward)
+            The three components of the vector(s) in a geodetic system. The
+            shape of each element will be compatible with the input vector and
+            coordinates.
+
+        Notes
+        -----
+        The conversion is a combination of rotations
+
+        .. math::
+
+            \mathbf{v}_s =
+            \mathbf{R}_e (90^\circ - \phi)
+            \mathbf{R}_r (270^\circ - \lambda)
+            \mathbf{v}_c \ ,
+
+        in which :math:`\phi` is the geodetic latitude, :math:`\lambda`
+        is the longitude, :math:`\mathbf{R}_e` is a rotation matrix about the
+        eastward direction, and :math:`\mathbf{R}_r` is a rotation matrix about
+        the radial direction. The rotation matrices are given by
+
+        .. math::
+
+            \mathbf{R}_e (\alpha) = \begin{bmatrix}
+            1 & 0 & 0 \\
+            0 & \cos\alpha & \sin\alpha \\
+            0 & -\sin\alpha & \cos\alpha
+            \end{bmatrix}\ ,
+
+        .. math::
+
+            \mathbf{R}_r (\alpha) = \begin{bmatrix}
+            \cos\alpha & -\sin\alpha & 0\\
+            \sin\alpha & \cos\alpha & 0\\
+            0 & 0 & 1
+            \end{bmatrix}\ ,
+
+        .. math::
+
+            \mathbf{R}_e (\alpha)\mathbf{R}_r (\beta) = \begin{bmatrix}
+            \cos\alpha & -\sin\alpha & 0 \\
+            \sin\beta\cos\alpha & \cos\beta\cos\alpha & \sin\beta  \\
+            -\sin\beta\sin\alpha & -\cos\beta\sin\alpha & \cos\beta  \\
+            \end{bmatrix}\ .
+        """
+        return self.vector_cartesian_to_spherical(coordinates, vector)
+
 
 @attr.s()
 class Centrifugal:
