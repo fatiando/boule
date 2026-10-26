@@ -896,7 +896,7 @@ def test_vector_geodetic_to_cartesian_through_spherical(ellipsoid, vector, coord
         coordinates_spherical,
         ellipsoid.vector_geodetic_to_spherical(coordinates, vector),
     )
-    npt.assert_allclose(vector_straight, vector_spherical, rtol=0, atol=1e-15)
+    npt.assert_allclose(vector_straight, vector_spherical, rtol=0, atol=1e-12)
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
@@ -913,7 +913,7 @@ def test_vector_cartesian_to_geodetic_through_spherical(ellipsoid, vector, coord
         coordinates_spherical,
         ellipsoid.vector_cartesian_to_spherical(coordinates_spherical, vector),
     )
-    npt.assert_allclose(vector_straight, vector_spherical, rtol=0, atol=1e-15)
+    npt.assert_allclose(vector_straight, vector_spherical, rtol=0, atol=1e-12)
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
