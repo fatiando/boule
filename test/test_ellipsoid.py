@@ -678,6 +678,245 @@ def test_spherical_to_geodetic_identity(ellipsoid):
 
 
 @pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize("vector", [(1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 1, 2)])
+@pytest.mark.parametrize(
+    "coordinates_geodetic",
+    [(0, 0, 0), (180, -90, 10000), (-90, 90, -1000), (123, 0, 1234)],
+)
+def test_vector_geodetic_to_spherical_unchanged(
+    ellipsoid, vector, coordinates_geodetic
+):
+    "Vectors should be unchanged in these coordinates"
+    coordinates_spherical = ellipsoid.geodetic_to_spherical(coordinates_geodetic)
+    vector_return = ellipsoid.vector_spherical_to_geodetic(
+        coordinates_spherical, vector
+    )
+    npt.assert_allclose(vector_return, vector, rtol=0, atol=1e-15)
+    vector_return = ellipsoid.vector_geodetic_to_spherical(coordinates_geodetic, vector)
+    npt.assert_allclose(vector_return, vector, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize("vector", [(1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 1, 2)])
+@pytest.mark.parametrize(
+    "coordinates_geodetic",
+    [(0, 0, 0), (180, -45, 10000), (-90, 35, -1000), (123, 90, 1234)],
+)
+def test_vector_geodetic_to_spherical_roundtrip(
+    ellipsoid, vector, coordinates_geodetic
+):
+    "Test if applying both conversions in series is the identity operator"
+    coordinates_spherical = ellipsoid.geodetic_to_spherical(coordinates_geodetic)
+    # Try using precomputed coordinates first
+    vector_return = ellipsoid.vector_spherical_to_geodetic(
+        coordinates_spherical,
+        ellipsoid.vector_geodetic_to_spherical(
+            coordinates_geodetic, vector, coordinates_spherical=coordinates_spherical
+        ),
+        coordinates_geodetic=coordinates_geodetic,
+    )
+    npt.assert_allclose(vector_return, vector, rtol=0, atol=1e-15)
+    # And now without them
+    vector_return = ellipsoid.vector_spherical_to_geodetic(
+        coordinates_spherical,
+        ellipsoid.vector_geodetic_to_spherical(coordinates_geodetic, vector),
+    )
+    npt.assert_allclose(vector_return, vector, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize("vector", [(1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 1, 2)])
+@pytest.mark.parametrize(
+    "coordinates_geodetic",
+    [(0, 0, 0), (180, -45, 10000), (-90, 35, -1000), (123, 90, 1234)],
+)
+@pytest.mark.parametrize("shape", [50, (10, 21), (2, 4, 7), (21,)])
+def test_vector_geodetic_to_spherical_roundtrip_arrays(
+    ellipsoid, vector, coordinates_geodetic, shape
+):
+    "Test if applying both conversions in series is the identity operator"
+    vector = [np.full(shape, v) for v in vector]
+    coordinates_geodetic = [np.full(shape, c) for c in coordinates_geodetic]
+    coordinates_spherical = ellipsoid.geodetic_to_spherical(coordinates_geodetic)
+    # Try using precomputed coordinates first
+    vector_return = ellipsoid.vector_spherical_to_geodetic(
+        coordinates_spherical,
+        ellipsoid.vector_geodetic_to_spherical(
+            coordinates_geodetic, vector, coordinates_spherical=coordinates_spherical
+        ),
+        coordinates_geodetic=coordinates_geodetic,
+    )
+    npt.assert_allclose(vector_return, vector, rtol=0, atol=1e-15)
+    # And now without them
+    vector_return = ellipsoid.vector_spherical_to_geodetic(
+        coordinates_spherical,
+        ellipsoid.vector_geodetic_to_spherical(coordinates_geodetic, vector),
+    )
+    npt.assert_allclose(vector_return, vector, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize(
+    ("vector", "coordinates", "true"),
+    [
+        ((1, 0, 0), (90, 90, 1), (-1, 0, 0)),
+        ((1, 0, 0), (0, 90, 1), (0, 1, 0)),
+        ((0, 0, 1), (0, 90, 1), (0, 0, 1)),
+        ((0, 0, -1), (270, 90, 1), (0, 0, -1)),
+        ((0, 0, 1), (0, -90, 1), (0, 0, -1)),
+        ((0, 0, -1), (270, -90, 1), (0, 0, 1)),
+        ((0, 0, 1), (0, 0, 1), (1, 0, 0)),
+        ((0, 0, 1), (90, 0, 1), (0, 1, 0)),
+        ((0, 0, -1), (270, 0, 1), (0, 1, 0)),
+        ((0, 1, 0), (0, 0, 1), (0, 0, 1)),
+        ((0, 1, 0), (0, 90, 1), (-1, 0, 0)),
+    ],
+)
+def test_vector_spherical_to_cartesian(ellipsoid, vector, coordinates, true):
+    "Test conversions against known solutions"
+    vector_cartesian = ellipsoid.vector_spherical_to_cartesian(coordinates, vector)
+    npt.assert_allclose(vector_cartesian, true, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize(
+    ("true", "coordinates", "vector"),
+    [
+        ((1, 0, 0), (90, 90, 1), (-1, 0, 0)),
+        ((1, 0, 0), (0, 90, 1), (0, 1, 0)),
+        ((0, 0, 1), (0, 90, 1), (0, 0, 1)),
+        ((0, 0, -1), (270, 90, 1), (0, 0, -1)),
+        ((0, 0, 1), (0, -90, 1), (0, 0, -1)),
+        ((0, 0, -1), (270, -90, 1), (0, 0, 1)),
+        ((0, 0, 1), (0, 0, 1), (1, 0, 0)),
+        ((0, 0, 1), (90, 0, 1), (0, 1, 0)),
+        ((0, 0, -1), (270, 0, 1), (0, 1, 0)),
+        ((0, 1, 0), (0, 0, 1), (0, 0, 1)),
+        ((0, 1, 0), (0, 90, 1), (-1, 0, 0)),
+    ],
+)
+def test_vector_cartesian_to_spherical(ellipsoid, true, coordinates, vector):
+    "Test conversions against known solutions"
+    vector_spherical = ellipsoid.vector_cartesian_to_spherical(coordinates, vector)
+    npt.assert_allclose(vector_spherical, true, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize("vector", [(1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 1, 2)])
+@pytest.mark.parametrize(
+    "coordinates",
+    [(0, 0, 0), (180, -45, 10000), (-90, 35, -1000), (123, 90, 1234)],
+)
+def test_vector_spherical_to_cartesian_roundtrip(ellipsoid, vector, coordinates):
+    "Test if applying both conversions in series is the identity operator"
+    vector_return = ellipsoid.vector_cartesian_to_spherical(
+        coordinates,
+        ellipsoid.vector_spherical_to_cartesian(coordinates, vector),
+    )
+    npt.assert_allclose(vector_return, vector, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize("vector", [(1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 1, 2)])
+@pytest.mark.parametrize(
+    "coordinates",
+    [(0, 0, 0), (180, -45, 10000), (-90, 35, -1000), (123, 90, 1234)],
+)
+@pytest.mark.parametrize("shape", [50, (10, 21), (2, 4, 7), (21,)])
+def test_vector_spherical_to_cartesian_roundtrip_arrays(
+    ellipsoid, vector, coordinates, shape
+):
+    "Test if applying both conversions in series is the identity operator"
+    vector = [np.full(shape, v) for v in vector]
+    coordinates = [np.full(shape, c) for c in coordinates]
+    vector_return = ellipsoid.vector_cartesian_to_spherical(
+        coordinates,
+        ellipsoid.vector_spherical_to_cartesian(coordinates, vector),
+    )
+    npt.assert_allclose(vector_return, vector, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize(
+    ("vector", "coordinates", "true"),
+    [
+        ((1, 0, 0), (90, 90, 1), (-1, 0, 0)),
+        ((1, 0, 0), (0, 90, 1), (0, 1, 0)),
+        ((0, 0, 1), (0, 90, 1), (0, 0, 1)),
+        ((0, 0, -1), (270, 90, 1), (0, 0, -1)),
+        ((0, 0, 1), (0, -90, 1), (0, 0, -1)),
+        ((0, 0, -1), (270, -90, 1), (0, 0, 1)),
+        ((0, 0, 1), (0, 0, 1), (1, 0, 0)),
+        ((0, 0, 1), (90, 0, 1), (0, 1, 0)),
+        ((0, 0, -1), (270, 0, 1), (0, 1, 0)),
+        ((0, 1, 0), (0, 0, 1), (0, 0, 1)),
+        ((0, 1, 0), (0, 90, 1), (-1, 0, 0)),
+    ],
+)
+def test_vector_geodetic_to_cartesian(ellipsoid, vector, coordinates, true):
+    "Test conversions against known solutions"
+    vector_cartesian = ellipsoid.vector_geodetic_to_cartesian(coordinates, vector)
+    npt.assert_allclose(vector_cartesian, true, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize(
+    ("true", "coordinates", "vector"),
+    [
+        ((1, 0, 0), (90, 90, 1), (-1, 0, 0)),
+        ((1, 0, 0), (0, 90, 1), (0, 1, 0)),
+        ((0, 0, 1), (0, 90, 1), (0, 0, 1)),
+        ((0, 0, -1), (270, 90, 1), (0, 0, -1)),
+        ((0, 0, 1), (0, -90, 1), (0, 0, -1)),
+        ((0, 0, -1), (270, -90, 1), (0, 0, 1)),
+        ((0, 0, 1), (0, 0, 1), (1, 0, 0)),
+        ((0, 0, 1), (90, 0, 1), (0, 1, 0)),
+        ((0, 0, -1), (270, 0, 1), (0, 1, 0)),
+        ((0, 1, 0), (0, 0, 1), (0, 0, 1)),
+        ((0, 1, 0), (0, 90, 1), (-1, 0, 0)),
+    ],
+)
+def test_vector_cartesian_to_geodetic(ellipsoid, true, coordinates, vector):
+    "Test conversions against known solutions"
+    vector_spherical = ellipsoid.vector_cartesian_to_geodetic(coordinates, vector)
+    npt.assert_allclose(vector_spherical, true, rtol=0, atol=1e-15)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize("vector", [(1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 1, 2)])
+@pytest.mark.parametrize(
+    "coordinates",
+    [(0, 0, 0), (180, -45, 10000), (-90, 35, -1000), (123, 90, 1234)],
+)
+def test_vector_geodetic_to_cartesian_through_spherical(ellipsoid, vector, coordinates):
+    "Test if going straight from geodetic or going through spherical matches"
+    coordinates_spherical = ellipsoid.geodetic_to_spherical(coordinates)
+    vector_straight = ellipsoid.vector_geodetic_to_cartesian(coordinates, vector)
+    vector_spherical = ellipsoid.vector_spherical_to_cartesian(
+        coordinates_spherical,
+        ellipsoid.vector_geodetic_to_spherical(coordinates, vector),
+    )
+    npt.assert_allclose(vector_straight, vector_spherical, rtol=0, atol=1e-12)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
+@pytest.mark.parametrize("vector", [(1, 0, 0), (0, 1, 0), (0, 0, 1), (-1, 1, 2)])
+@pytest.mark.parametrize(
+    "coordinates",
+    [(0, 0, 0), (180, -45, 10000), (-90, 35, -1000), (123, 90, 1234)],
+)
+def test_vector_cartesian_to_geodetic_through_spherical(ellipsoid, vector, coordinates):
+    "Test if going straight from geodetic or going through spherical matches"
+    coordinates_spherical = ellipsoid.geodetic_to_spherical(coordinates)
+    vector_straight = ellipsoid.vector_cartesian_to_geodetic(coordinates, vector)
+    vector_spherical = ellipsoid.vector_spherical_to_geodetic(
+        coordinates_spherical,
+        ellipsoid.vector_cartesian_to_spherical(coordinates_spherical, vector),
+    )
+    npt.assert_allclose(vector_straight, vector_spherical, rtol=0, atol=1e-12)
+
+
+@pytest.mark.parametrize("ellipsoid", ELLIPSOIDS, ids=ELLIPSOID_NAMES)
 def test_normal_gravity_pole_equator(ellipsoid):
     "Compare normal gravity values at pole and equator"
     rtol = 1e-10
