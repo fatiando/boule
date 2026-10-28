@@ -71,14 +71,14 @@ def test_check_radius():
     """
     Check if error is raised after invalid radius
     """
-    with pytest.raises(ValueError, match="Invalid radius"):
+    with pytest.raises(ValueError, match="radius"):
         Sphere(
             name="zero_radius",
             radius=0,
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError, match="Invalid radius"):
+    with pytest.raises(ValueError, match="radius"):
         Sphere(
             name="negative_radius",
             radius=-1,

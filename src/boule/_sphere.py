@@ -15,6 +15,7 @@ import attrs
 import numpy as np
 
 from ._constants import G
+from ._validators import warn_negative
 
 
 # Disable slotted classes since they cause the init parameters to show up as
@@ -137,31 +138,13 @@ class Sphere:
 
     """
 
-    name = attrs.field()
-    radius = attrs.field()
-    geocentric_grav_const = attrs.field()
+    name = attrs.field(validator=attrs.validators.instance_of(str))
+    radius = attrs.field(validator=attrs.validators.gt(0))
+    geocentric_grav_const = attrs.field(validator=warn_negative)
     angular_velocity = attrs.field()
     long_name = attrs.field(default=None)
     reference = attrs.field(default=None)
     comments = attrs.field(default=None)
-
-    @radius.validator
-    def _check_radius(self, radius, value):  # noqa: ARG002
-        """
-        Check if the radius is positive.
-        """
-        if not value > 0:
-            message = f"Invalid radius '{value}'. Should be greater than zero."
-            raise ValueError(message)
-
-    @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(self, geocentric_grav_const, value):  # noqa: ARG002
-        """
-        Warn if geocentric_grav_const is negative.
-        """
-        if value < 0:
-            message = f"The geocentric gravitational constant is negative: '{value}'"
-            warn(message, stacklevel=2)
 
     @property
     def semiminor_axis(self):
