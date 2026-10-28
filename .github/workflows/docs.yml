@@ -95,7 +95,15 @@ jobs:
           key: conda-${{ runner.os }}-${{ env.PYTHON }}-${{ hashFiles('requirements-full.txt') }}
 
       - name: Install requirements
-        run: conda install --quiet --file requirements-full.txt python==$PYTHON
+        run: |
+          # Only install GMT with conda and install the rest with pip for faster
+          # environment solves.
+          gmt=`grep ^gmt requirements-full.txt`
+          if [ $gmt ]; then
+            conda install -y $gmt
+            sed -i "s/^gmt==.*//" requirements-full.txt
+          fi
+          python -m pip install --requirement requirements-full.txt
 
       - name: List installed packages
         run: conda list
