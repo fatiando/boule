@@ -4,6 +4,10 @@
 
 .. autoclass:: {{ objname }}
 
+.. raw:: html
+
+     <hr>
+
 {% if attributes %}
 
 Attributes
