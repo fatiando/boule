@@ -82,16 +82,21 @@ jobs:
           echo "Collected dependencies:"
           cat requirements-full.txt
 
-      - name: Rename conda-forge packages
-        run: |
-          echo "Rename conda-forge packages in requirements-full.txt"
-          # Replace "build" for "python-build"
-          sed -s --in-place 's/^build$/python-build/' requirements-full.txt
-          echo "Renamed dependencies:"
-          cat requirements-full.txt
-
       - name: Install requirements
-        run: conda install --quiet --file requirements-full.txt python==$PYTHON
+        run: |
+          # Only install GMT with conda and install the rest with pip for faster
+          # environment solves.
+          gmt=`grep ^gmt requirements-full.txt`
+          if [ $gmt ]; then
+            echo "Installing GMT from conda-forge:"
+            echo ""
+            conda install -y $gmt python==$PYTHON
+            sed -i "s/^gmt==.*//" requirements-full.txt
+          fi
+          echo ""
+          echo "Installing other packages from PyPI with pip:"
+          echo ""
+          python -m pip install --requirement requirements-full.txt
 
       - name: List installed packages
         run: conda list

@@ -92,11 +92,14 @@ jobs:
           # environment solves.
           gmt=`grep ^gmt requirements-full.txt`
           if [ $gmt ]; then
-            echo "\nInstalling GMT from conda-forge:\n"
-            conda install -y $gmt
+            echo "Installing GMT from conda-forge:"
+            echo ""
+            conda install -y $gmt python==$PYTHON
             sed -i "s/^gmt==.*//" requirements-full.txt
           fi
-          echo "\nInstalling other packages from PyPI with pip:\n"
+          echo ""
+          echo "Installing other packages from PyPI with pip:"
+          echo ""
           python -m pip install --requirement requirements-full.txt
 
       - name: List installed packages
