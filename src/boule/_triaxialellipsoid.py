@@ -9,13 +9,13 @@ Define a reference triaxial ellipsoid.
 """
 
 import textwrap
-from warnings import warn
 
 import attrs
 import numpy as np
 import scipy.special
 
 from ._constants import G
+from ._validators import validate_semiaxis, warn_negative
 
 
 # Disable slotted classes since they cause the init parameters to show up as
@@ -137,73 +137,16 @@ class TriaxialEllipsoid:
 
     """
 
-    name = attrs.field()
-    semimajor_axis = attrs.field()
-    semimedium_axis = attrs.field()
-    semiminor_axis = attrs.field()
-    geocentric_grav_const = attrs.field()
+    name = attrs.field(validator=attrs.validators.instance_of(str))
+    semimajor_axis = attrs.field(validator=validate_semiaxis)
+    semimedium_axis = attrs.field(validator=validate_semiaxis)
+    semiminor_axis = attrs.field(validator=validate_semiaxis)
+    geocentric_grav_const = attrs.field(validator=warn_negative)
     angular_velocity = attrs.field()
     semimajor_axis_longitude = attrs.field(default=0.0)
     long_name = attrs.field(default=None)
     reference = attrs.field(default=None)
     comments = attrs.field(default=None)
-
-    def _raise_invalid_axis(self):
-        """
-        Raise a ValueError informing that the axis are invalid.
-        """
-        message = (
-            "Invalid triaxial ellipsoid axis: "
-            f"major={self.semimajor_axis} "
-            f"medium={self.semimedium_axis} "
-            f"minor={self.semiminor_axis}. "
-            "Must be major > medium > minor."
-        )
-        raise ValueError(message)
-
-    @semimajor_axis.validator
-    def _check_semimajor_axis(self, semimajor_axis, value):  # noqa: ARG002
-        """
-        Check if semimajor_axis is positive and is the largest of the axis.
-        """
-        if not value > 0:
-            message = f"Invalid semi-major axis '{value}'. Should be greater than zero."
-            raise ValueError(message)
-        if self.semimedium_axis > value:
-            self._raise_invalid_axis()
-
-    @semimedium_axis.validator
-    def _check_semimedium_axis(self, semimedium_axis, value):  # noqa: ARG002
-        """
-        Check if semimedium_axis is positive and larger than semi-minor axis.
-        """
-        if not value > 0:
-            message = (
-                f"Invalid semi-medium axis '{value}'. Should be greater than zero."
-            )
-            raise ValueError(message)
-        if self.semiminor_axis > value:
-            self._raise_invalid_axis()
-
-    @semiminor_axis.validator
-    def _check_semiminor_axis(self, semiminor_axis, value):  # noqa: ARG002
-        """
-        Check if semiminor_axis is positive.
-        """
-        if not value > 0:
-            message = f"Invalid semi-minor axis '{value}'. Should be greater than zero."
-            raise ValueError(message)
-        # Don't need to check here because if the two checks for major and
-        # medium pass it means that this is the smallest.
-
-    @geocentric_grav_const.validator
-    def _check_geocentric_grav_const(self, geocentric_grav_const, value):  # noqa: ARG002
-        """
-        Warn if geocentric_grav_const is negative.
-        """
-        if value < 0:
-            message = f"The geocentric gravitational constant is negative: '{value}'"
-            warn(message, stacklevel=2)
 
     @property
     def mean_radius(self):

@@ -18,11 +18,9 @@ from ._ellipsoid import (
     Centrifugal,
     CoordinateConversion,
     GeometricProperties,
-    check_coordinate_system,
     to_cartesian,
-    validate_flattening,
-    validate_semimajor_axis,
 )
+from ._validators import check_coordinate_system, validate_flattening
 
 
 # Disable slotted classes since they cause the init parameters to show up as
@@ -142,8 +140,8 @@ class HomogeneousEllipsoid(GeometricProperties, CoordinateConversion, Centrifuga
     quantities.
     """
 
-    name = attrs.field()
-    semimajor_axis = attrs.field(validator=validate_semimajor_axis)
+    name = attrs.field(validator=attrs.validators.instance_of(str))
+    semimajor_axis = attrs.field(validator=attrs.validators.gt(0))
     flattening = attrs.field(validator=validate_flattening)
     density = attrs.field()
     angular_velocity = attrs.field()

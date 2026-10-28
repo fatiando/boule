@@ -148,7 +148,7 @@ def test_check_semimajor_axis():
     """
     Check if error is raised after invalid semimajor_axis
     """
-    with pytest.raises(ValueError, match="Invalid semi-major"):
+    with pytest.raises(ValueError, match="semimajor_axis"):
         Ellipsoid(
             name="zero_semimajor_axis",
             semimajor_axis=0,
@@ -156,7 +156,7 @@ def test_check_semimajor_axis():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError, match="Invalid semi-major"):
+    with pytest.raises(ValueError, match="semimajor_axis"):
         Ellipsoid(
             name="negative_semimajor_axis",
             semimajor_axis=-1,

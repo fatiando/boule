@@ -15,58 +15,18 @@ import attrs
 import numpy as np
 
 from ._constants import G
+from ._validators import (
+    check_coordinate_system,
+    validate_flattening,
+    warn_negative,
+)
 
-# Attribute validation
 ################################################################################
-
-
-def validate_flattening(instance, attribute, value):  # noqa: ARG001
-    """
-    Check if flattening is valid.
-    """
-    if value < 0 or value >= 1:
-        message = (
-            f"Invalid flattening '{value}'. "
-            "Should be greater than zero and lower than 1."
-        )
-        raise ValueError(message)
-    if value == 0:
-        message = (
-            "Flattening equal to zero will lead to errors in normal gravity. "
-            "Use boule.Sphere for representing ellipsoids with zero flattening."
-        )
-        raise ValueError(message)
-    if value < 1e-11:
-        message = (
-            f"Flattening is too close to zero ('{value}'). "
-            "This may lead to inaccurate results and division by zero errors. "
-            "Use boule.Sphere for representing ellipsoids with zero flattening."
-        )
-        warn(message, stacklevel=2)
-
-
-def validate_semimajor_axis(instance, attribute, value):  # noqa: ARG001
-    """
-    Check if semimajor_axis is valid.
-    """
-    if not value > 0:
-        message = f"Invalid semi-major axis '{value}'. Should be greater than zero."
-        raise ValueError(message)
-
-
-def validate_geocentric_grav_const(instance, attribute, value):  # noqa: ARG001
-    """
-    Warn if geocentric_grav_const is negative.
-    """
-    if value < 0:
-        message = f"The geocentric gravitational constant is negative: '{value}'"
-        warn(message, stacklevel=2)
-
-
 # Mixin classes with properties that can be reused elsewhere
 ################################################################################
 
 
+################################################################################
 class GeometricProperties:
     """
     Derived properties of the geometry of the ellipsoid.
@@ -392,6 +352,7 @@ class GeometricProperties:
         return self.semimajor_axis / np.sqrt(1 - self.first_eccentricity**2 * sinlat**2)
 
 
+################################################################################
 class CoordinateConversion:
     """
     Coordinate conversion methods.
@@ -1376,6 +1337,69 @@ class CoordinateConversion:
         return self.vector_cartesian_to_spherical(coordinates, vector)
 
 
+def to_ellipsoidal_harmonic(coordinates, coordinate_system, ellipsoid):
+    """
+    Convert from the given system to ellipsoidal harmonic coordinates.
+
+    Parameters
+    ----------
+    coordinates : tuple
+        Tuple of coordinates in the given coordinate system.
+    coordinate_system : str
+        A string specifying the coordinate system to use.
+    ellipsoid : :class:`boule.Ellipsoid`
+        The ellipsoid to use for the conversions
+
+    Returns
+    -------
+    coordinates : tuple = (longitude, latitude_reduced, u)
+        The coordinates in the ellipsoidal harmonic system.
+    """
+    converters = {
+        "geodetic": ellipsoid.geodetic_to_ellipsoidal_harmonic,
+        "spherical": ellipsoid.spherical_to_ellipsoidal_harmonic,
+        "cartesian": ellipsoid.cartesian_to_ellipsoidal_harmonic,
+        "ellipsoidal harmonic": lambda x: x,
+    }
+    return converters[coordinate_system](coordinates)
+
+
+def to_cartesian(coordinates, coordinate_system, ellipsoid):
+    """
+    Convert from the given system to geocentric Cartesian coordinates.
+
+    If the coordinate system has longitude and it's equal to None,
+    will set it to 0.
+
+    Parameters
+    ----------
+    coordinates : tuple
+        Tuple of coordinates in the given coordinate system.
+    coordinate_system : str
+        A string specifying the coordinate system to use.
+    ellipsoid : :class:`boule.Ellipsoid`
+        The ellipsoid to use for the conversions
+
+    Returns
+    -------
+    coordinates : tuple = (c, y, z)
+        The coordinates in the geocentric Cartesian system.
+    """
+    if (
+        coordinate_system in {"geodetic", "spherical", "ellipsoidal harmonic"}
+        and coordinates[0] is None
+    ):
+        coordinates = (0, coordinates[1], coordinates[2])
+    converters = {
+        "geodetic": ellipsoid.geodetic_to_cartesian,
+        "spherical": ellipsoid.spherical_to_cartesian,
+        "ellipsoidal harmonic": ellipsoid.ellipsoidal_harmonic_to_cartesian,
+        "cartesian": lambda x: x,
+    }
+    return converters[coordinate_system](coordinates)
+
+
+################################################################################
 class Centrifugal:
     """
     Centrifugal potential and acceleration calculation.
@@ -1546,6 +1570,7 @@ class Centrifugal:
         return (fx, fy, fz)
 
 
+################################################################################
 # The actual Ellipsoid class
 ################################################################################
 
@@ -1676,10 +1701,10 @@ class Ellipsoid(GeometricProperties, CoordinateConversion, Centrifugal):
     quantities.
     """
 
-    name = attrs.field()
-    semimajor_axis = attrs.field(validator=validate_semimajor_axis)
+    name = attrs.field(validator=attrs.validators.instance_of(str))
+    semimajor_axis = attrs.field(validator=attrs.validators.gt(0))
     flattening = attrs.field(validator=validate_flattening)
-    geocentric_grav_const = attrs.field(validator=validate_geocentric_grav_const)
+    geocentric_grav_const = attrs.field(validator=warn_negative)
     angular_velocity = attrs.field()
     long_name = attrs.field(default=None)
     reference = attrs.field(default=None)
@@ -2123,92 +2148,3 @@ class Ellipsoid(GeometricProperties, CoordinateConversion, Centrifugal):
         )
 
         return big_u
-
-
-def check_coordinate_system(
-    coordinate_system,
-    *,
-    valid=("geodetic", "spherical", "cartesian", "ellipsoidal harmonic"),
-):
-    """
-    Make sure the coordinate system is valid.
-
-    Parameters
-    ----------
-    coordinate_system : str
-        A string specifying the coordinate system to use.
-    valid : list of str
-        List of valid values for the coordinate system.
-
-    Raises
-    ------
-    ValueError
-        If the coordinate system is not in the valid list.
-    """
-    if coordinate_system not in valid:
-        message = (
-            f"Invalid coordinate system '{coordinate_system}'. Must be one of {valid}."
-        )
-        raise ValueError(message)
-
-
-def to_ellipsoidal_harmonic(coordinates, coordinate_system, ellipsoid):
-    """
-    Convert from the given system to ellipsoidal harmonic coordinates.
-
-    Parameters
-    ----------
-    coordinates : tuple
-        Tuple of coordinates in the given coordinate system.
-    coordinate_system : str
-        A string specifying the coordinate system to use.
-    ellipsoid : :class:`boule.Ellipsoid`
-        The ellipsoid to use for the conversions
-
-    Returns
-    -------
-    coordinates : tuple = (longitude, latitude_reduced, u)
-        The coordinates in the ellipsoidal harmonic system.
-    """
-    converters = {
-        "geodetic": ellipsoid.geodetic_to_ellipsoidal_harmonic,
-        "spherical": ellipsoid.spherical_to_ellipsoidal_harmonic,
-        "cartesian": ellipsoid.cartesian_to_ellipsoidal_harmonic,
-        "ellipsoidal harmonic": lambda x: x,
-    }
-    return converters[coordinate_system](coordinates)
-
-
-def to_cartesian(coordinates, coordinate_system, ellipsoid):
-    """
-    Convert from the given system to geocentric Cartesian coordinates.
-
-    If the coordinate system has longitude and it's equal to None,
-    will set it to 0.
-
-    Parameters
-    ----------
-    coordinates : tuple
-        Tuple of coordinates in the given coordinate system.
-    coordinate_system : str
-        A string specifying the coordinate system to use.
-    ellipsoid : :class:`boule.Ellipsoid`
-        The ellipsoid to use for the conversions
-
-    Returns
-    -------
-    coordinates : tuple = (c, y, z)
-        The coordinates in the geocentric Cartesian system.
-    """
-    if (
-        coordinate_system in {"geodetic", "spherical", "ellipsoidal harmonic"}
-        and coordinates[0] is None
-    ):
-        coordinates = (0, coordinates[1], coordinates[2])
-    converters = {
-        "geodetic": ellipsoid.geodetic_to_cartesian,
-        "spherical": ellipsoid.spherical_to_cartesian,
-        "ellipsoidal harmonic": ellipsoid.ellipsoidal_harmonic_to_cartesian,
-        "cartesian": lambda x: x,
-    }
-    return converters[coordinate_system](coordinates)

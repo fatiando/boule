@@ -100,7 +100,7 @@ def test_check_semimajor():
     """
     Check if error is raised after invalid semimajor axis
     """
-    with pytest.raises(ValueError, match="Invalid semi-major"):
+    with pytest.raises(ValueError, match="semimajor_axis"):
         TriaxialEllipsoid(
             name="zero_semimajor_axis",
             semimajor_axis=0,
@@ -109,7 +109,7 @@ def test_check_semimajor():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError, match="Invalid semi-major"):
+    with pytest.raises(ValueError, match="semimajor_axis"):
         TriaxialEllipsoid(
             name="negative_semimajor_axis",
             semimajor_axis=-4,
@@ -124,21 +124,21 @@ def test_check_semimedium():
     """
     Check if error is raised after invalid semimedium axis
     """
-    with pytest.raises(ValueError, match="Invalid semi-medium"):
+    with pytest.raises(ValueError, match="semimedium_axis"):
         TriaxialEllipsoid(
             name="zero_semimedium_axis",
             semimajor_axis=4,
             semimedium_axis=0,
-            semiminor_axis=1,
+            semiminor_axis=0,
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError, match="Invalid semi-medium"):
+    with pytest.raises(ValueError, match="semimedium_axis"):
         TriaxialEllipsoid(
             name="negative_semimedium_axis",
             semimajor_axis=4,
             semimedium_axis=-2,
-            semiminor_axis=1,
+            semiminor_axis=-3,
             geocentric_grav_const=0,
             angular_velocity=0,
         )
@@ -148,7 +148,7 @@ def test_check_semiminor():
     """
     Check if error is raised after invalid semiminor axis
     """
-    with pytest.raises(ValueError, match="Invalid semi-minor"):
+    with pytest.raises(ValueError, match="semiminor_axis"):
         TriaxialEllipsoid(
             name="zero_semiminor_axis",
             semimajor_axis=4,
@@ -157,7 +157,7 @@ def test_check_semiminor():
             geocentric_grav_const=0,
             angular_velocity=0,
         )
-    with pytest.raises(ValueError, match="Invalid semi-minor"):
+    with pytest.raises(ValueError, match="semiminor_axis"):
         TriaxialEllipsoid(
             name="negative_semiminor_axis",
             semimajor_axis=4,
