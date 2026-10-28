@@ -29,7 +29,7 @@ from ._ellipsoid import (
 # attributes (but without their docstrings, which are in the class docstring
 # instead). Since we usually won't have large numbers of instances, the memory
 # saving of slotted classes is not relevant anyway.
-@attrs.frozen(init=True, slots=False)
+@attrs.frozen(init=True, kw_only=True, slots=False)
 class HomogeneousEllipsoid(GeometricProperties, CoordinateConversion, Centrifugal):
     r"""
     A rotating oblate ellipsoid with homogeneous density.
