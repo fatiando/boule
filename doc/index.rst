@@ -195,9 +195,18 @@ of the **BSD 3-clause License**. A copy of this license is provided in
     :hidden:
     :caption: Community
 
-    Join the community <https://www.fatiando.org/contact>
+    Join our community <https://www.fatiando.org/contact>
     How to contribute <https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md>
     Code of Conduct <https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md>
-    Source code on GitHub <https://github.com/fatiando/boule>
     Authors <https://github.com/fatiando/boule/blob/main/AUTHORS.md>
     The Fatiando a Terra project <https://www.fatiando.org>
+
+.. toctree::
+    :maxdepth: 2
+    :hidden:
+    :caption: Code and packages
+
+    GitHub <https://github.com/fatiando/boule>
+    PyPI <https://pypi.python.org/pypi/boule>
+    conda-forge <https://github.com/conda-forge/boule-feedstock>
+    Zenodo <https://doi.org/10.5281/zenodo.3530749>
