@@ -30,7 +30,7 @@ classifiers = [
 requires-python = ">=3.10"
 dependencies = [
     "numpy>=1.23",
-    "attrs>=19.3.0",
+    "attrs>=21.3.0",
     "scipy>=1.8.0",
 ]
 
