@@ -10,7 +10,7 @@ Representation of an oblate ellipsoid with homogeneous density.
 
 import textwrap
 
-import attr
+import attrs
 import numpy as np
 
 from ._constants import G
@@ -25,7 +25,11 @@ from ._ellipsoid import (
 )
 
 
-@attr.s(frozen=True)
+# Disable slotted classes since they cause the init parameters to show up as
+# attributes (but without their docstrings, which are in the class docstring
+# instead). Since we usually won't have large numbers of instances, the memory
+# saving of slotted classes is not relevant anyway.
+@attrs.frozen(init=True, slots=False)
 class HomogeneousEllipsoid(GeometricProperties, CoordinateConversion, Centrifugal):
     r"""
     A rotating oblate ellipsoid with homogeneous density.
@@ -59,7 +63,7 @@ class HomogeneousEllipsoid(GeometricProperties, CoordinateConversion, Centrifuga
     angular_velocity : float
         The angular velocity of the rotating ellipsoid.
         Definition: :math:`\omega`.
-        Units: :math:`\\rad.s^{-1}`.
+        Units: :math:`rad.s^{-1}`.
     long_name : str or None
         A long name for the ellipsoid, for example ``"World Geodetic System
         1984"`` (optional).
@@ -138,14 +142,14 @@ class HomogeneousEllipsoid(GeometricProperties, CoordinateConversion, Centrifuga
     quantities.
     """
 
-    name = attr.ib()
-    semimajor_axis = attr.ib(validator=validate_semimajor_axis)
-    flattening = attr.ib(validator=validate_flattening)
-    density = attr.ib()
-    angular_velocity = attr.ib()
-    long_name = attr.ib(default=None)
-    reference = attr.ib(default=None)
-    comments = attr.ib(default=None)
+    name = attrs.field()
+    semimajor_axis = attrs.field(validator=validate_semimajor_axis)
+    flattening = attrs.field(validator=validate_flattening)
+    density = attrs.field()
+    angular_velocity = attrs.field()
+    long_name = attrs.field(default=None)
+    reference = attrs.field(default=None)
+    comments = attrs.field(default=None)
 
     def __str__(self):
         """

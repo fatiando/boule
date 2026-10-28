@@ -11,16 +11,18 @@ Define a reference triaxial ellipsoid.
 import textwrap
 from warnings import warn
 
-import attr
+import attrs
 import numpy as np
 import scipy.special
 
 from ._constants import G
 
 
-# Don't let ellipsoid parameters be changed to avoid messing up calculations
-# accidentally.
-@attr.s(frozen=True)
+# Disable slotted classes since they cause the init parameters to show up as
+# attributes (but without their docstrings, which are in the class docstring
+# instead). Since we usually won't have large numbers of instances, the memory
+# saving of slotted classes is not relevant anyway.
+@attrs.frozen(init=True, slots=False)
 class TriaxialEllipsoid:
     r"""
     A rotating triaxial ellipsoid.
@@ -68,7 +70,7 @@ class TriaxialEllipsoid:
     angular_velocity : float
         The angular velocity of the rotating ellipsoid.
         Definition: :math:`\omega`.
-        Units: :math:`\\rad.s^{-1}`.
+        Units: :math:`rad.s^{-1}`.
     semimajor_axis_longitude : float
         Longitude coordinate of the semimajor axis in the x-y plane. Optional,
         default value is 0.0.
@@ -135,16 +137,16 @@ class TriaxialEllipsoid:
 
     """
 
-    name = attr.ib()
-    semimajor_axis = attr.ib()
-    semimedium_axis = attr.ib()
-    semiminor_axis = attr.ib()
-    geocentric_grav_const = attr.ib()
-    angular_velocity = attr.ib()
-    semimajor_axis_longitude = attr.ib(default=0.0)
-    long_name = attr.ib(default=None)
-    reference = attr.ib(default=None)
-    comments = attr.ib(default=None)
+    name = attrs.field()
+    semimajor_axis = attrs.field()
+    semimedium_axis = attrs.field()
+    semiminor_axis = attrs.field()
+    geocentric_grav_const = attrs.field()
+    angular_velocity = attrs.field()
+    semimajor_axis_longitude = attrs.field(default=0.0)
+    long_name = attrs.field(default=None)
+    reference = attrs.field(default=None)
+    comments = attrs.field(default=None)
 
     def _raise_invalid_axis(self):
         """

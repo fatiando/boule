@@ -11,15 +11,17 @@ Define the reference sphere (ellipsoid with 0 flattening).
 import textwrap
 from warnings import warn
 
-import attr
+import attrs
 import numpy as np
 
 from ._constants import G
 
 
-# Don't let ellipsoid parameters be changed to avoid messing up calculations
-# accidentally.
-@attr.s(frozen=True)
+# Disable slotted classes since they cause the init parameters to show up as
+# attributes (but without their docstrings, which are in the class docstring
+# instead). Since we usually won't have large numbers of instances, the memory
+# saving of slotted classes is not relevant anyway.
+@attrs.frozen(init=True, slots=False)
 class Sphere:
     r"""
     A rotating sphere (zero-flattening ellipsoid).
@@ -52,7 +54,7 @@ class Sphere:
     angular_velocity : float
         The angular velocity of the rotating sphere.
         Definition: :math:`\omega`.
-        Units: :math:`\\rad.s^{-1}`.
+        Units: :math:`rad.s^{-1}`.
     long_name : str or None
         A long name for the sphere, for example ``"Moon Reference System"``
         (optional).
@@ -135,13 +137,13 @@ class Sphere:
 
     """
 
-    name = attr.ib()
-    radius = attr.ib()
-    geocentric_grav_const = attr.ib()
-    angular_velocity = attr.ib()
-    long_name = attr.ib(default=None)
-    reference = attr.ib(default=None)
-    comments = attr.ib(default=None)
+    name = attrs.field()
+    radius = attrs.field()
+    geocentric_grav_const = attrs.field()
+    angular_velocity = attrs.field()
+    long_name = attrs.field(default=None)
+    reference = attrs.field(default=None)
+    comments = attrs.field(default=None)
 
     @radius.validator
     def _check_radius(self, radius, value):  # noqa: ARG002
