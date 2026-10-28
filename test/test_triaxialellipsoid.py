@@ -331,11 +331,24 @@ def test_geocentric_radius_biaxialellipsoid(triaxialellipsoid):
     # Instantiate the "Ellipsoid" class using the following defining parameters
     # from "triaxialellipsoid": semimajor axis "a", semiminor axis "c",
     # geocentric gravitational constant "GM" and angular velocity "omega"
-    biaxialellipsoid_ref = Ellipsoid("biaxell_ref", a, (a - c) / a, gm, omega)
+    biaxialellipsoid_ref = Ellipsoid(
+        name="biaxell_ref",
+        semimajor_axis=a,
+        flattening=(a - c) / a,
+        geocentric_grav_const=gm,
+        angular_velocity=omega,
+    )
 
     # Instantiate the "TriaxialEllipsoid" class such that it in fact represents
     # "biaxialellipsoid_ref"
-    biaxialellipsoid = TriaxialEllipsoid("biaxell", a, a, c, gm, omega)
+    biaxialellipsoid = TriaxialEllipsoid(
+        name="biaxell",
+        semimajor_axis=a,
+        semimedium_axis=a,
+        semiminor_axis=c,
+        geocentric_grav_const=gm,
+        angular_velocity=omega,
+    )
 
     latitude = np.arange(-90.0, 90.0, 1.0)
     longitude = np.linspace(0.0, 360.0, num=latitude.size, endpoint=False)
