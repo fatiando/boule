@@ -11,7 +11,7 @@ Module for defining and setting the reference ellipsoid.
 import textwrap
 from warnings import warn
 
-import attr
+import attrs
 import numpy as np
 
 from ._constants import G
@@ -67,7 +67,6 @@ def validate_geocentric_grav_const(instance, attribute, value):  # noqa: ARG001
 ################################################################################
 
 
-@attr.s()
 class GeometricProperties:
     """
     Derived properties of the geometry of the ellipsoid.
@@ -393,7 +392,6 @@ class GeometricProperties:
         return self.semimajor_axis / np.sqrt(1 - self.first_eccentricity**2 * sinlat**2)
 
 
-@attr.s()
 class CoordinateConversion:
     """
     Coordinate conversion methods.
@@ -1378,7 +1376,6 @@ class CoordinateConversion:
         return self.vector_cartesian_to_spherical(coordinates, vector)
 
 
-@attr.s()
 class Centrifugal:
     """
     Centrifugal potential and acceleration calculation.
@@ -1553,9 +1550,11 @@ class Centrifugal:
 ################################################################################
 
 
-# Don't let ellipsoid parameters be changed to avoid messing up calculations
-# accidentally.
-@attr.s(frozen=True)
+# Disable slotted classes since they cause the init parameters to show up as
+# attributes (but without their docstrings, which are in the class docstring
+# instead). Since we usually won't have large numbers of instances, the memory
+# saving of slotted classes is not relevant anyway.
+@attrs.frozen(init=True, slots=False)
 class Ellipsoid(GeometricProperties, CoordinateConversion, Centrifugal):
     r"""
     A rotating oblate ellipsoid.
@@ -1591,7 +1590,7 @@ class Ellipsoid(GeometricProperties, CoordinateConversion, Centrifugal):
     angular_velocity : float
         The angular velocity of the rotating ellipsoid.
         Definition: :math:`\omega`.
-        Units: :math:`\\rad.s^{-1}`.
+        Units: :math:`rad.s^{-1}`.
     long_name : str or None
         A long name for the ellipsoid, for example ``"World Geodetic System
         1984"`` (optional).
@@ -1677,14 +1676,14 @@ class Ellipsoid(GeometricProperties, CoordinateConversion, Centrifugal):
     quantities.
     """
 
-    name = attr.ib()
-    semimajor_axis = attr.ib(validator=validate_semimajor_axis)
-    flattening = attr.ib(validator=validate_flattening)
-    geocentric_grav_const = attr.ib(validator=validate_geocentric_grav_const)
-    angular_velocity = attr.ib()
-    long_name = attr.ib(default=None)
-    reference = attr.ib(default=None)
-    comments = attr.ib(default=None)
+    name = attrs.field()
+    semimajor_axis = attrs.field(validator=validate_semimajor_axis)
+    flattening = attrs.field(validator=validate_flattening)
+    geocentric_grav_const = attrs.field(validator=validate_geocentric_grav_const)
+    angular_velocity = attrs.field()
+    long_name = attrs.field(default=None)
+    reference = attrs.field(default=None)
+    comments = attrs.field(default=None)
 
     def __str__(self):
         """
