@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     
         <title>boule.TriaxialEllipsoid | Boule dev</title>
@@ -20,79 +20,72 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=12168cd1" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/thebelab-helper.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/boule.TriaxialEllipsoid';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
-    <link rel="next" title="Available ellipsoids" href="../../ellipsoids.html" />
+    <link rel="next" title="boule.HomogeneousEllipsoid" href="boule.HomogeneousEllipsoid.html" />
     <link rel="prev" title="boule.Sphere" href="boule.Sphere.html" />
     <!-- Plausible analytics for anonymous usage statistics -->
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -108,15 +100,15 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,15 +148,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
@@ -184,6 +173,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boule.Ellipsoid.html">boule.Ellipsoid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="boule.Sphere.html">boule.Sphere</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">boule.TriaxialEllipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boule.HomogeneousEllipsoid.html">boule.HomogeneousEllipsoid</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ellipsoids.html">Available ellipsoids</a></li>
@@ -196,11 +186,18 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join our community</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code and packages</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pypi.python.org/pypi/boule">PyPI</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/conda-forge/boule-feedstock">conda-forge</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doi.org/10.5281/zenodo.3530749">Zenodo</a></li>
 </ul>
 
     </div>
@@ -209,9 +206,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -358,7 +360,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -372,25 +374,24 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
   </button>
-`);
-</script>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -412,7 +413,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.TriaxialEllipsoid"><code class="docutils literal notranslate"><span class="pre">TriaxialEllipsoid</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.TriaxialEllipsoid.area"><code class="docutils literal notranslate"><span class="pre">TriaxialEllipsoid.area</span></code></a></li>
@@ -447,7 +448,7 @@ document.write(`
 <h1>boule.TriaxialEllipsoid<a class="headerlink" href="#boule-triaxialellipsoid" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boule.</span></span><span class="sig-name descname"><span class="pre">TriaxialEllipsoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semimajor_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semimedium_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semiminor_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geocentric_grav_const</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semimajor_axis_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_triaxialellipsoid.html#TriaxialEllipsoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.TriaxialEllipsoid" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">boule.</span></span><span class="sig-name descname"><span class="pre">TriaxialEllipsoid</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semimajor_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semimedium_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semiminor_axis</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geocentric_grav_const</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">semimajor_axis_longitude</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_triaxialellipsoid.html#TriaxialEllipsoid"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.TriaxialEllipsoid" title="Link to this definition">#</a></dt>
 <dd><p>A rotating triaxial ellipsoid.</p>
 <p>The ellipsoid is defined by five parameters: semimajor axis, semimedium
 axis, semiminor axis, geocentric gravitational constant, and angular
@@ -468,57 +469,93 @@ implement it, please
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;WGS84&quot;</span></code>.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A short name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;WGS84&quot;</span></code>.</p>
 </dd>
-<dt><strong>semimajor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimajor (largest) axis of the ellipsoid.
+<dt><strong>semimajor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimajor (largest) axis of the ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(a\)</span>.
 Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd>
-<dt><strong>semimedium_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimedium (middle) axis of the ellipsoid.
+<dt><strong>semimedium_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semimedium (middle) axis of the ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(b\)</span>.
 Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd>
-<dt><strong>semiminor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semiminor (smallest) axis of the ellipsoid.
+<dt><strong>semiminor_axis</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The semiminor (smallest) axis of the ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(c\)</span>.
 Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd>
-<dt><strong>geocentric_grav_const</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The geocentric gravitational constant. The product of the mass of the
+<dt><strong>geocentric_grav_const</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The geocentric gravitational constant. The product of the mass of the
 ellipsoid <span class="math notranslate nohighlight">\(M\)</span> and the gravitational constant <span class="math notranslate nohighlight">\(G\)</span>.
 Definition: <span class="math notranslate nohighlight">\(GM\)</span>. Units:
 <span class="math notranslate nohighlight">\(m^3.s^{-2}\)</span>.</p>
 </dd>
-<dt><strong>angular_velocity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The angular velocity of the rotating ellipsoid.
+<dt><strong>angular_velocity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The angular velocity of the rotating ellipsoid.
 Definition: <span class="math notranslate nohighlight">\(\omega\)</span>.
-Units: <span class="math notranslate nohighlight">\(\\rad.s^{-1}\)</span>.</p>
+Units: <span class="math notranslate nohighlight">\(rad.s^{-1}\)</span>.</p>
 </dd>
-<dt><strong>semimajor_axis_longitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Longitude coordinate of the semimajor axis in the x-y plane. Optional,
+<dt><strong>semimajor_axis_longitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>Longitude coordinate of the semimajor axis in the x-y plane. Optional,
 default value is 0.0.</p>
 </dd>
-<dt><strong>long_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
+<dt><strong>long_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>A long name for the ellipsoid, for example <code class="docutils literal notranslate"><span class="pre">&quot;World</span> <span class="pre">Geodetic</span> <span class="pre">System</span>
 <span class="pre">1984&quot;</span></code> (optional).</p>
 </dd>
-<dt><strong>reference</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Citation for the ellipsoid parameter values (optional).</p>
+<dt><strong>reference</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Citation for the ellipsoid parameter values (optional).</p>
 </dd>
-<dt><strong>comments</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Additional comments regarding the ellipsoid (optional).</p>
+<dt><strong>comments</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Additional comments regarding the ellipsoid (optional).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.area" title="boule.TriaxialEllipsoid.area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area</span></code></a></dt><dd><p>The area of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.area_equivalent_radius" title="boule.TriaxialEllipsoid.area_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area_equivalent_radius</span></code></a></dt><dd><p>The area equivalent radius of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.equatorial_flattening" title="boule.TriaxialEllipsoid.equatorial_flattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equatorial_flattening</span></code></a></dt><dd><p>The equatorial flattening of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.mass" title="boule.TriaxialEllipsoid.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></dt><dd><p>The mass of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.mean_density" title="boule.TriaxialEllipsoid.mean_density"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_density</span></code></a></dt><dd><p>The mean density of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.mean_radius" title="boule.TriaxialEllipsoid.mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_radius</span></code></a></dt><dd><p>The mean radius of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.meridional_flattening" title="boule.TriaxialEllipsoid.meridional_flattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meridional_flattening</span></code></a></dt><dd><p>The meridional flattening of the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.semiaxes_mean_radius" title="boule.TriaxialEllipsoid.semiaxes_mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiaxes_mean_radius</span></code></a></dt><dd><p>The arithmetic mean radius of the ellipsoid semi-axes.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.volume" title="boule.TriaxialEllipsoid.volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume</span></code></a></dt><dd><p>The volume bounded by the ellipsoid.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.volume_equivalent_radius" title="boule.TriaxialEllipsoid.volume_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume_equivalent_radius</span></code></a></dt><dd><p>The volume equivalent radius of the ellipsoid.</p>
 </dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.TriaxialEllipsoid.centrifugal_potential" title="boule.TriaxialEllipsoid.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(coordinates)</p></td>
+<td><p>Centrifugal potential of the rotating ellipsoid.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.TriaxialEllipsoid.geocentric_radius" title="boule.TriaxialEllipsoid.geocentric_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geocentric_radius</span></code></a>(longitude, latitude)</p></td>
+<td><p>Radial distance from the center of the ellipsoid to its surface.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p class="rubric">Examples</p>
 <p>We can define an ellipsoid by setting the 5 key numerical parameters:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">ellipsoid</span> <span class="o">=</span> <span class="n">TriaxialEllipsoid</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Vesta&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Vesta Triaxial Ellipsoid&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"Vesta"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Vesta Triaxial Ellipsoid"</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">280_413</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">semimedium_axis</span><span class="o">=</span><span class="mi">274_572</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">semiminor_axis</span><span class="o">=</span><span class="mi">231_253</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">17.288e9</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">3.267e-4</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">semimajor_axis_longitude</span><span class="o">=</span><span class="mf">8.29</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;Karimi et al. (2017)&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">comments</span><span class="o">=</span><span class="s2">&quot;This is the same as the VestaTriaxial2017 ellipsoid.&quot;</span>
+<span class="gp">... </span>    <span class="n">reference</span><span class="o">=</span><span class="s2">"Karimi et al. (2017)"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">comments</span><span class="o">=</span><span class="s2">"This is the same as the VestaTriaxial2017 ellipsoid."</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ellipsoid</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">ellipsoid</span><span class="p">)</span>
 <span class="go">Vesta - Vesta Triaxial Ellipsoid</span>
 <span class="go">Triaxial ellipsoid:</span>
 <span class="go">  • Semimajor axis: 280413 m</span>
@@ -539,113 +576,76 @@ default value is 0.0.</p>
 </div>
 <p>The class then defines several derived attributes based on the input
 parameters:</p>
-<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">mean_radius</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">mean_radius</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
 <span class="go">260344 m</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">semiaxes_mean_radius</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">semiaxes_mean_radius</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
 <span class="go">262079 m</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">area</span><span class="si">:</span><span class="s2">.10e</span><span class="si">}</span><span class="s2"> m²&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">area</span><span class="si">:</span><span class="s2">.10e</span><span class="si">}</span><span class="s2"> m²"</span><span class="p">)</span>
 <span class="go">8.6210266337e+11 m²</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">area_equivalent_radius</span><span class="si">:</span><span class="s2">0.0f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">area_equivalent_radius</span><span class="si">:</span><span class="s2">0.0f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
 <span class="go">261924 m</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">volume_equivalent_radius</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">volume_equivalent_radius</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
 <span class="go">261124 m</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">mass</span><span class="si">:</span><span class="s2">.10e</span><span class="si">}</span><span class="s2"> kg&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">mass</span><span class="si">:</span><span class="s2">.10e</span><span class="si">}</span><span class="s2"> kg"</span><span class="p">)</span>
 <span class="go">2.5902341819e+20 kg</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">mean_density</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kg/m³&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">mean_density</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kg/m³"</span><span class="p">)</span>
 <span class="go">3473 kg/m³</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">volume</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e-9</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> km³&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">ellipsoid</span><span class="o">.</span><span class="n">volume</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1e-9</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> km³"</span><span class="p">)</span>
 <span class="go">74581373 km³</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.area" title="boule.TriaxialEllipsoid.area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area</span></code></a></dt><dd><p>The area of the ellipsoid.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.area_equivalent_radius" title="boule.TriaxialEllipsoid.area_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area_equivalent_radius</span></code></a></dt><dd><p>The area equivalent radius of the ellipsoid.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.equatorial_flattening" title="boule.TriaxialEllipsoid.equatorial_flattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">equatorial_flattening</span></code></a></dt><dd><p>The equatorial flattening of the ellipsoid.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.mass" title="boule.TriaxialEllipsoid.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></dt><dd><p>The mass of the ellipsoid.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.mean_density" title="boule.TriaxialEllipsoid.mean_density"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_density</span></code></a></dt><dd><p>The mean density of the ellipsoid.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.mean_radius" title="boule.TriaxialEllipsoid.mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_radius</span></code></a></dt><dd><p>The mean radius of the ellipsoid.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.meridional_flattening" title="boule.TriaxialEllipsoid.meridional_flattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">meridional_flattening</span></code></a></dt><dd><p>The meridional flattening of the ellipsoid in the meridian plane containing the semi-major axis.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.semiaxes_mean_radius" title="boule.TriaxialEllipsoid.semiaxes_mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiaxes_mean_radius</span></code></a></dt><dd><p>The arithmetic mean radius of the ellipsoid semi-axes.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.volume" title="boule.TriaxialEllipsoid.volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume</span></code></a></dt><dd><p>The volume bounded by the ellipsoid.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.TriaxialEllipsoid.volume_equivalent_radius" title="boule.TriaxialEllipsoid.volume_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume_equivalent_radius</span></code></a></dt><dd><p>The volume equivalent radius of the ellipsoid.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.TriaxialEllipsoid.centrifugal_potential" title="boule.TriaxialEllipsoid.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(coordinates)</p></td>
-<td><p>Centrifugal potential of the rotating ellipsoid.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.TriaxialEllipsoid.geocentric_radius" title="boule.TriaxialEllipsoid.geocentric_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">geocentric_radius</span></code></a>(longitude, latitude)</p></td>
-<td><p>Radial distance from the center of the ellipsoid to its surface.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </dd></dl>
 
-<section id="attributes">
+<hr><section id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.area">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.area" title="Link to this definition">#</a></dt>
-<dd><p>The area of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})\)</span>, in which
-<span class="math notranslate nohighlight">\(R_G\)</span> is the completely-symmetric elliptic integral of the second
-kind.
-Units: <span class="math notranslate nohighlight">\(m^2\)</span>.</p>
+<dd><p>The area of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(A = 3 V R_G(a^{-2}, b^{-2}, c^{-2})\)</span></p>
+<p>in which <span class="math notranslate nohighlight">\(R_G\)</span> is the completely-symmetric elliptic integral of
+the second kind.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^2\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.area_equivalent_radius">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">area_equivalent_radius</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.area_equivalent_radius" title="Link to this definition">#</a></dt>
-<dd><p>The area equivalent radius of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(R_2 = \sqrt{A / (4 \pi)}\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The area equivalent radius of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_2 = \sqrt{A / (4 \pi)}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.equatorial_flattening">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">equatorial_flattening</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.equatorial_flattening" title="Link to this definition">#</a></dt>
-<dd><p>The equatorial flattening of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(f_b = \frac{a - b}{a}\)</span>.
-Units: adimensional.</p>
+<dd><p>The equatorial flattening of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(f_b = \frac{a - b}{a}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.mass">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">mass</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.mass" title="Link to this definition">#</a></dt>
-<dd><p>The mass of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(M = GM / G\)</span>.
-Units: <span class="math notranslate nohighlight">\(kg\)</span>.</p>
+<dd><p>The mass of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(M = GM / G\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(kg\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.mean_density">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">mean_density</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.mean_density" title="Link to this definition">#</a></dt>
-<dd><p>The mean density of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(\rho = M / V\)</span>.
-Units: <span class="math notranslate nohighlight">\(kg / m^3\)</span>.</p>
+<dd><p>The mean density of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(\rho = M / V\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(kg / m^3\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.mean_radius">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">mean_radius</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.mean_radius" title="Link to this definition">#</a></dt>
-<dd><p>The mean radius of the ellipsoid. This is equivalent to the degree 0
-spherical harmonic coefficient of the ellipsoid shape.</p>
+<dd><p>The mean radius of the ellipsoid.</p>
+<p>This is equivalent to the degree 0 spherical harmonic coefficient of the
+ellipsoid shape.</p>
 <p>Definition: <span class="math notranslate nohighlight">\(R_0 = \dfrac{1}{4 \pi} {\displaystyle \int_0^{\pi}
 \int_0^{2 \pi}} r(\theta, \lambda) \sin \theta \, d\theta \, d\lambda\)</span></p>
 <p>in which <span class="math notranslate nohighlight">\(r\)</span> is the ellipsoid spherical radius, <span class="math notranslate nohighlight">\(\theta\)</span> is
@@ -656,34 +656,35 @@ spherical latitude, and <span class="math notranslate nohighlight">\(\lambda\)</
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.meridional_flattening">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">meridional_flattening</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.meridional_flattening" title="Link to this definition">#</a></dt>
-<dd><p>The meridional flattening of the ellipsoid in the meridian plane
-containing the semi-major axis.
-Definition: <span class="math notranslate nohighlight">\(f_c = \frac{a - c}{a}\)</span>.
-Units: adimensional.</p>
+<dd><p>The meridional flattening of the ellipsoid.</p>
+<p>This is the flattening in the meridian plane containing the semi-major
+axis.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(f_c = \frac{a - c}{a}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.semiaxes_mean_radius">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">semiaxes_mean_radius</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.semiaxes_mean_radius" title="Link to this definition">#</a></dt>
-<dd><p>The arithmetic mean radius of the ellipsoid semi-axes.
-Definition: <span class="math notranslate nohighlight">\(R_1 = \dfrac{a + b + c}{3}\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The arithmetic mean radius of the ellipsoid semi-axes.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_1 = \dfrac{a + b + c}{3}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.volume">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.volume" title="Link to this definition">#</a></dt>
-<dd><p>The volume bounded by the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(V = \dfrac{4}{3} \pi a b c\)</span>.
-Units: <span class="math notranslate nohighlight">\(m^3\)</span>.</p>
+<dd><p>The volume bounded by the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(V = \dfrac{4}{3} \pi a b c\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^3\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.TriaxialEllipsoid.volume_equivalent_radius">
 <span class="sig-prename descclassname"><span class="pre">TriaxialEllipsoid.</span></span><span class="sig-name descname"><span class="pre">volume_equivalent_radius</span></span><a class="headerlink" href="#boule.TriaxialEllipsoid.volume_equivalent_radius" title="Link to this definition">#</a></dt>
-<dd><p>The volume equivalent radius of the ellipsoid.
-Definition: <span class="math notranslate nohighlight">\(R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The volume equivalent radius of the ellipsoid.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_3 = \left(\dfrac{3}{4 \pi} V \right)^{1/3}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 </section>
@@ -698,7 +699,7 @@ ellipsoid about its semiminor axis at the given points.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
 points in a geocentric spherical coordinate system. The height is
 measured from the surface of the ellipsoid. Each element can be
 a single number or an array. The shape of the arrays must be
@@ -709,7 +710,7 @@ meters.</p>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>Phi</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The centrifugal potential in m²/s².</p>
+<dt><strong>Phi</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The centrifugal potential in m²/s².</p>
 </dd>
 </dl>
 </dd>
@@ -734,15 +735,15 @@ longitudes. The geocentric radius is calculated following <a class="reference in
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on spherical coordinate system in degrees.</p>
+<dt><strong>longitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Longitude coordinates on spherical coordinate system in degrees.</p>
 </dd>
-<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on spherical coordinate system in degrees.</p>
+<dt><strong>latitude</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>Latitude coordinates on spherical coordinate system in degrees.</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>geocentric_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geocentric radius for the given spherical latitude(s) and
+<dt><strong>geocentric_radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The geocentric radius for the given spherical latitude(s) and
 spherical longitude(s) in the same units as the axes of the
 ellipsoid.</p>
 </dd>
@@ -804,11 +805,11 @@ we used geocentric spherical latitude.</p>
       </div>
     </a>
     <a class="right-next"
-       href="../../ellipsoids.html"
+       href="boule.HomogeneousEllipsoid.html"
        title="next page">
       <div class="prev-next-info">
         <p class="prev-next-subtitle">next</p>
-        <p class="prev-next-title">Available ellipsoids</p>
+        <p class="prev-next-title">boule.HomogeneousEllipsoid</p>
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
@@ -819,15 +820,17 @@ we used geocentric spherical latitude.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.TriaxialEllipsoid"><code class="docutils literal notranslate"><span class="pre">TriaxialEllipsoid</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.TriaxialEllipsoid.area"><code class="docutils literal notranslate"><span class="pre">TriaxialEllipsoid.area</span></code></a></li>
@@ -860,6 +863,10 @@ we used geocentric spherical latitude.</p>
   
   <div class="footer-item">
     
+<p class="component-author">
+By Author name not set
+</p>
+
   </div>
   
   <div class="footer-item">
@@ -876,7 +883,7 @@ we used geocentric spherical latitude.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Oct 29, 2026.
   <br/>
 </p>
   </div>
@@ -894,8 +901,8 @@ we used geocentric spherical latitude.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     
         <title>boule.Sphere | Boule dev</title>
@@ -20,43 +20,47 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/thebelab.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=12168cd1" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="../../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
     <script src="../../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../../_static/doctools.js?v=888ff710"></script>
-    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../_static/copybutton.js?v=f281be69"></script>
     <script src="../../_static/thebelab-helper.js"></script>
-    <script src="../../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'api/generated/boule.Sphere';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../../_static/favicon.png"/>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -66,33 +70,22 @@
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../../search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -108,15 +100,15 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,15 +148,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
@@ -184,6 +173,7 @@
 <li class="toctree-l2"><a class="reference internal" href="boule.Ellipsoid.html">boule.Ellipsoid</a></li>
 <li class="toctree-l2 current active"><a class="current reference internal" href="#">boule.Sphere</a></li>
 <li class="toctree-l2"><a class="reference internal" href="boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="boule.HomogeneousEllipsoid.html">boule.HomogeneousEllipsoid</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../../ellipsoids.html">Available ellipsoids</a></li>
@@ -196,11 +186,18 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join our community</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code and packages</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pypi.python.org/pypi/boule">PyPI</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/conda-forge/boule-feedstock">conda-forge</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doi.org/10.5281/zenodo.3530749">Zenodo</a></li>
 </ul>
 
     </div>
@@ -209,9 +206,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -358,7 +360,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -372,25 +374,24 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
   </button>
-`);
-</script>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -412,7 +413,7 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.Sphere"><code class="docutils literal notranslate"><span class="pre">Sphere</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.Sphere.area"><code class="docutils literal notranslate"><span class="pre">Sphere.area</span></code></a></li>
@@ -457,7 +458,7 @@ document.write(`
 <h1>boule.Sphere<a class="headerlink" href="#boule-sphere" title="Link to this heading">#</a></h1>
 <dl class="py class">
 <dt class="sig sig-object py" id="boule.Sphere">
-<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">boule.</span></span><span class="sig-name descname"><span class="pre">Sphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geocentric_grav_const</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere" title="Link to this definition">#</a></dt>
+<span class="property"><span class="k"><span class="pre">class</span></span><span class="w"> </span></span><span class="sig-prename descclassname"><span class="pre">boule.</span></span><span class="sig-name descname"><span class="pre">Sphere</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">radius</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">geocentric_grav_const</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">angular_velocity</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">long_name</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">reference</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">comments</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere" title="Link to this definition">#</a></dt>
 <dd><p>A rotating sphere (zero-flattening ellipsoid).</p>
 <p>The ellipsoid is defined by three parameters: radius, geocentric
 gravitational constant, and angular velocity. The internal density
@@ -471,31 +472,90 @@ changed after instantiation.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A short name for the sphere, for example <code class="docutils literal notranslate"><span class="pre">&quot;Moon&quot;</span></code>.</p>
+<dt><strong>name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a></span></dt><dd><p>A short name for the sphere, for example <code class="docutils literal notranslate"><span class="pre">&quot;Moon&quot;</span></code>.</p>
 </dd>
-<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sphere.
+<dt><strong>radius</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The radius of the sphere.
 Definition: <span class="math notranslate nohighlight">\(R\)</span>.
 Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd>
-<dt><strong>geocentric_grav_const</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The geocentric gravitational constant. The product of the mass of the
+<dt><strong>geocentric_grav_const</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The geocentric gravitational constant. The product of the mass of the
 sphere <span class="math notranslate nohighlight">\(M\)</span> and the gravitational constant <span class="math notranslate nohighlight">\(G\)</span>.
 Definition: <span class="math notranslate nohighlight">\(GM\)</span>. Units:
 <span class="math notranslate nohighlight">\(m^3.s^{-2}\)</span>.</p>
 </dd>
-<dt><strong>angular_velocity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The angular velocity of the rotating sphere.
+<dt><strong>angular_velocity</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a></span></dt><dd><p>The angular velocity of the rotating sphere.
 Definition: <span class="math notranslate nohighlight">\(\omega\)</span>.
-Units: <span class="math notranslate nohighlight">\(\\rad.s^{-1}\)</span>.</p>
+Units: <span class="math notranslate nohighlight">\(rad.s^{-1}\)</span>.</p>
 </dd>
-<dt><strong>long_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>A long name for the sphere, for example <code class="docutils literal notranslate"><span class="pre">&quot;Moon</span> <span class="pre">Reference</span> <span class="pre">System&quot;</span></code>
+<dt><strong>long_name</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>A long name for the sphere, for example <code class="docutils literal notranslate"><span class="pre">&quot;Moon</span> <span class="pre">Reference</span> <span class="pre">System&quot;</span></code>
 (optional).</p>
 </dd>
-<dt><strong>reference</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Citation for the sphere parameter values (optional).</p>
+<dt><strong>reference</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Citation for the sphere parameter values (optional).</p>
 </dd>
-<dt><strong>comments</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Additional comments regarding the ellipsoid (optional).</p>
+<dt><strong>comments</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#str" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">str</span></code></a> or <a class="reference external" href="https://docs.python.org/3/builtins/constants.html#None" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">None</span></code></a></span></dt><dd><p>Additional comments regarding the ellipsoid (optional).</p>
+</dd>
+</dl>
+</dd>
+<dt class="field-even">Attributes<span class="colon">:</span></dt>
+<dd class="field-even"><dl class="simple">
+<dt><a class="reference internal" href="#boule.Sphere.area" title="boule.Sphere.area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area</span></code></a></dt><dd><p>The area of the sphere.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.area_equivalent_radius" title="boule.Sphere.area_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area_equivalent_radius</span></code></a></dt><dd><p>The area equivalent radius of the sphere is equal to its radius.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.eccentricity" title="boule.Sphere.eccentricity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentricity</span></code></a></dt><dd><p>Alias for the first eccentricity.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.first_eccentricity" title="boule.Sphere.first_eccentricity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_eccentricity</span></code></a></dt><dd><p>The (first) eccentricity of the sphere is equal to zero.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.flattening" title="boule.Sphere.flattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flattening</span></code></a></dt><dd><p>The flattening of the sphere is equal to zero.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.mass" title="boule.Sphere.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></dt><dd><p>The mass of the sphere.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.mean_density" title="boule.Sphere.mean_density"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_density</span></code></a></dt><dd><p>The mean density of the sphere.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.mean_radius" title="boule.Sphere.mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_radius</span></code></a></dt><dd><p>The mean radius of the ellipsoid is equal to its radius.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.reference_normal_gravitational_potential" title="boule.Sphere.reference_normal_gravitational_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_normal_gravitational_potential</span></code></a></dt><dd><p>The normal gravitational potential on the surface of the sphere.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.semiaxes_mean_radius" title="boule.Sphere.semiaxes_mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiaxes_mean_radius</span></code></a></dt><dd><p>The arithmetic mean radius of the ellipsoid (equal to its radius).</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.semimajor_axis" title="boule.Sphere.semimajor_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis</span></code></a></dt><dd><p>The semimajor axis of the sphere is equal to its radius.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.semimajor_axis_longitude" title="boule.Sphere.semimajor_axis_longitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis_longitude</span></code></a></dt><dd><p>The semimajor axis longitude of the sphere is equal to zero.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.semimedium_axis" title="boule.Sphere.semimedium_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimedium_axis</span></code></a></dt><dd><p>The semimedium axis of the sphere is equal to its radius.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.semiminor_axis" title="boule.Sphere.semiminor_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiminor_axis</span></code></a></dt><dd><p>The semiminor axis of the sphere is equal to its radius.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.thirdflattening" title="boule.Sphere.thirdflattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">thirdflattening</span></code></a></dt><dd><p>The third flattening of the sphere is equal to zero.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.volume" title="boule.Sphere.volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume</span></code></a></dt><dd><p>The volume of the sphere.</p>
+</dd>
+<dt><a class="reference internal" href="#boule.Sphere.volume_equivalent_radius" title="boule.Sphere.volume_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume_equivalent_radius</span></code></a></dt><dd><p>The volume equivalent radius of the sphere is equal to its radius.</p>
 </dd>
 </dl>
 </dd>
 </dl>
+<p class="rubric">Methods</p>
+<div class="pst-scrollable-table-container"><table class="autosummary longtable table">
+<tbody>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.centrifugal_potential" title="boule.Sphere.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(coordinates)</p></td>
+<td><p>Centrifugal potential of the rotating sphere.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravitation" title="boule.Sphere.normal_gravitation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitation</span></code></a>(coordinates, *[, si_units])</p></td>
+<td><p>Calculate the normal gravitation of the sphere.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravitational_potential" title="boule.Sphere.normal_gravitational_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitational_potential</span></code></a>(coordinates)</p></td>
+<td><p>Calculate the normal gravitational potential of the sphere.</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravity" title="boule.Sphere.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity</span></code></a>(coordinates, *[, si_units])</p></td>
+<td><p>Calculate the normal gravity of the sphere.</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravity_potential" title="boule.Sphere.normal_gravity_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity_potential</span></code></a>(coordinates)</p></td>
+<td><p>Calculate the normal gravity potential of the sphere.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
 <p class="rubric">Notes</p>
 <div class="admonition caution">
 <p class="admonition-title">Caution</p>
@@ -508,15 +568,15 @@ and are in fact singular when the flattening is zero.</p>
 <p class="rubric">Examples</p>
 <p>We can define a sphere by specifying the 3 key numerical parameters:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Moon&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Moon Spheroid&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"Moon"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Moon Spheroid"</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">radius</span><span class="o">=</span><span class="mi">1737151</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">4902800070000.0</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">2.6617073e-06</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">reference</span><span class="o">=</span><span class="s2">&quot;Wieczorek (2015)&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">comments</span><span class="o">=</span><span class="s2">&quot;This is the same as the boule Moon2015 spheroid.&quot;</span>
+<span class="gp">... </span>    <span class="n">reference</span><span class="o">=</span><span class="s2">"Wieczorek (2015)"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">comments</span><span class="o">=</span><span class="s2">"This is the same as the boule Moon2015 spheroid."</span>
 <span class="gp">... </span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span> 
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="p">)</span>
 <span class="go">Moon - Moon Spheroid</span>
 <span class="go">Spheroid:</span>
 <span class="go">  • Radius: 1737151 m</span>
@@ -550,101 +610,40 @@ to <code class="xref py py-class docutils literal notranslate"><span class="pre"
 <span class="go">1737151</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">semiaxes_mean_radius</span><span class="p">)</span>
 <span class="go">1737151</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">volume_equivalent_radius</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">volume_equivalent_radius</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> m"</span><span class="p">)</span>
 <span class="go">1737151.0 m</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">volume</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2"> m³&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">volume</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2"> m³"</span><span class="p">)</span>
 <span class="go">2.195843181718e+19 m³</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">area</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2"> m²&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">area</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2"> m²"</span><span class="p">)</span>
 <span class="go">3.792145613798e+13 m²</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">sphere</span><span class="o">.</span><span class="n">area_equivalent_radius</span><span class="p">)</span>
 <span class="go">1737151</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">mass</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2"> kg&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">mass</span><span class="si">:</span><span class="s2">.12e</span><span class="si">}</span><span class="s2"> kg"</span><span class="p">)</span>
 <span class="go">7.345789176393e+22 kg</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">mean_density</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kg/m³&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">mean_density</span><span class="si">:</span><span class="s2">.0f</span><span class="si">}</span><span class="s2"> kg/m³"</span><span class="p">)</span>
 <span class="go">3345 kg/m³</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">reference_normal_gravitational_potential</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m²/s²&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">sphere</span><span class="o">.</span><span class="n">reference_normal_gravitational_potential</span><span class="si">:</span><span class="s2">.3f</span><span class="si">}</span><span class="s2"> m²/s²"</span><span class="p">)</span>
 <span class="go">2822322.337 m²/s²</span>
 </pre></div>
 </div>
-<dl class="field-list simple">
-<dt class="field-odd">Attributes<span class="colon">:</span></dt>
-<dd class="field-odd"><dl class="simple">
-<dt><a class="reference internal" href="#boule.Sphere.area" title="boule.Sphere.area"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area</span></code></a></dt><dd><p>The area of the sphere.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.area_equivalent_radius" title="boule.Sphere.area_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">area_equivalent_radius</span></code></a></dt><dd><p>The area equivalent radius of the sphere is equal to its radius.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.eccentricity" title="boule.Sphere.eccentricity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">eccentricity</span></code></a></dt><dd><p>Alias for the first eccentricity.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.first_eccentricity" title="boule.Sphere.first_eccentricity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">first_eccentricity</span></code></a></dt><dd><p>The (first) eccentricity of the sphere is equal to zero.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.flattening" title="boule.Sphere.flattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">flattening</span></code></a></dt><dd><p>The flattening of the sphere is equal to zero.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.mass" title="boule.Sphere.mass"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mass</span></code></a></dt><dd><p>The mass of the sphere.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.mean_density" title="boule.Sphere.mean_density"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_density</span></code></a></dt><dd><p>The mean density of the sphere.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.mean_radius" title="boule.Sphere.mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">mean_radius</span></code></a></dt><dd><p>The mean radius of the ellipsoid is equal to its radius.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.reference_normal_gravitational_potential" title="boule.Sphere.reference_normal_gravitational_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">reference_normal_gravitational_potential</span></code></a></dt><dd><p>The normal gravitational potential on the surface of the sphere.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.semiaxes_mean_radius" title="boule.Sphere.semiaxes_mean_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiaxes_mean_radius</span></code></a></dt><dd><p>The arithmetic mean radius of the ellipsoid semi-axes is equal to its radius.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.semimajor_axis" title="boule.Sphere.semimajor_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis</span></code></a></dt><dd><p>The semimajor axis of the sphere is equal to its radius.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.semimajor_axis_longitude" title="boule.Sphere.semimajor_axis_longitude"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimajor_axis_longitude</span></code></a></dt><dd><p>The semimajor axis longitude of the sphere is equal to zero.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.semimedium_axis" title="boule.Sphere.semimedium_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semimedium_axis</span></code></a></dt><dd><p>The semimedium axis of the sphere is equal to its radius.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.semiminor_axis" title="boule.Sphere.semiminor_axis"><code class="xref py py-obj docutils literal notranslate"><span class="pre">semiminor_axis</span></code></a></dt><dd><p>The semiminor axis of the sphere is equal to its radius.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.thirdflattening" title="boule.Sphere.thirdflattening"><code class="xref py py-obj docutils literal notranslate"><span class="pre">thirdflattening</span></code></a></dt><dd><p>The third flattening of the sphere is equal to zero.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.volume" title="boule.Sphere.volume"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume</span></code></a></dt><dd><p>The volume of the sphere.</p>
-</dd>
-<dt><a class="reference internal" href="#boule.Sphere.volume_equivalent_radius" title="boule.Sphere.volume_equivalent_radius"><code class="xref py py-obj docutils literal notranslate"><span class="pre">volume_equivalent_radius</span></code></a></dt><dd><p>The volume equivalent radius of the sphere is equal to its radius.</p>
-</dd>
-</dl>
-</dd>
-</dl>
-<p class="rubric">Methods</p>
-<div class="pst-scrollable-table-container"><table class="autosummary longtable table autosummary">
-<tbody>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.centrifugal_potential" title="boule.Sphere.centrifugal_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">centrifugal_potential</span></code></a>(coordinates)</p></td>
-<td><p>Centrifugal potential of the rotating sphere.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravitation" title="boule.Sphere.normal_gravitation"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitation</span></code></a>(coordinates[, si_units])</p></td>
-<td><p>Normal gravitation of the sphere.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravitational_potential" title="boule.Sphere.normal_gravitational_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravitational_potential</span></code></a>(coordinates)</p></td>
-<td><p>Normal gravitational potential of the sphere.</p></td>
-</tr>
-<tr class="row-even"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravity" title="boule.Sphere.normal_gravity"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity</span></code></a>(coordinates[, si_units])</p></td>
-<td><p>Normal gravity of the sphere.</p></td>
-</tr>
-<tr class="row-odd"><td><p><a class="reference internal" href="#boule.Sphere.normal_gravity_potential" title="boule.Sphere.normal_gravity_potential"><code class="xref py py-obj docutils literal notranslate"><span class="pre">normal_gravity_potential</span></code></a>(coordinates)</p></td>
-<td><p>Normal gravity potential of the sphere.</p></td>
-</tr>
-</tbody>
-</table>
-</div>
 </dd></dl>
 
-<section id="attributes">
+<hr><section id="attributes">
 <h2>Attributes<a class="headerlink" href="#attributes" title="Link to this heading">#</a></h2>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.area">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">area</span></span><a class="headerlink" href="#boule.Sphere.area" title="Link to this definition">#</a></dt>
-<dd><p>The area of the sphere.
-Definition: <span class="math notranslate nohighlight">\(A = 4 \pi r^2\)</span>.
-Units: <span class="math notranslate nohighlight">\(m^2\)</span>.</p>
+<dd><p>The area of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(A = 4 \pi r^2\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^2\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.area_equivalent_radius">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">area_equivalent_radius</span></span><a class="headerlink" href="#boule.Sphere.area_equivalent_radius" title="Link to this definition">#</a></dt>
-<dd><p>The area equivalent radius of the sphere is equal to its radius.
-Definition: <span class="math notranslate nohighlight">\(R_2 = R\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The area equivalent radius of the sphere is equal to its radius.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_2 = R\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
@@ -656,111 +655,110 @@ Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.first_eccentricity">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">first_eccentricity</span></span><a class="headerlink" href="#boule.Sphere.first_eccentricity" title="Link to this definition">#</a></dt>
-<dd><p>The (first) eccentricity of the sphere is equal to zero.
-Definition: <span class="math notranslate nohighlight">\(e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}\)</span>.
-Units: adimensional.</p>
+<dd><p>The (first) eccentricity of the sphere is equal to zero.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(e = \dfrac{\sqrt{a^2 - b^2}}{a} = \sqrt{2f - f^2}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.flattening">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">flattening</span></span><a class="headerlink" href="#boule.Sphere.flattening" title="Link to this definition">#</a></dt>
-<dd><p>The flattening of the sphere is equal to zero.
-Definition: <span class="math notranslate nohighlight">\(f = \dfrac{a - b}{a}\)</span>.
-Units: adimensional.</p>
+<dd><p>The flattening of the sphere is equal to zero.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(f = \dfrac{a - b}{a}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.mass">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">mass</span></span><a class="headerlink" href="#boule.Sphere.mass" title="Link to this definition">#</a></dt>
-<dd><p>The mass of the sphere.
-Definition: <span class="math notranslate nohighlight">\(M = GM / G\)</span>.
-Units: <span class="math notranslate nohighlight">\(kg\)</span>.</p>
+<dd><p>The mass of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(M = GM / G\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(kg\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.mean_density">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">mean_density</span></span><a class="headerlink" href="#boule.Sphere.mean_density" title="Link to this definition">#</a></dt>
-<dd><p>The mean density of the sphere.
-Definition: <span class="math notranslate nohighlight">\(\rho = M / V\)</span>.
-Units: <span class="math notranslate nohighlight">\(kg / m^3\)</span>.</p>
+<dd><p>The mean density of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(\rho = M / V\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(kg / m^3\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.mean_radius">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">mean_radius</span></span><a class="headerlink" href="#boule.Sphere.mean_radius" title="Link to this definition">#</a></dt>
-<dd><p>The mean radius of the ellipsoid is equal to its radius.
-Definition: <span class="math notranslate nohighlight">\(R_0 = R\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The mean radius of the ellipsoid is equal to its radius.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_0 = R\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.reference_normal_gravitational_potential">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">reference_normal_gravitational_potential</span></span><a class="headerlink" href="#boule.Sphere.reference_normal_gravitational_potential" title="Link to this definition">#</a></dt>
-<dd><p>The normal gravitational potential on the surface of the sphere.
-Definition: <span class="math notranslate nohighlight">\(U_0 = \dfrac{GM}{R}\)</span>.
-Units: <span class="math notranslate nohighlight">\(m^2 / s^2\)</span>.</p>
+<dd><p>The normal gravitational potential on the surface of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(U_0 = \dfrac{GM}{R}\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^2 / s^2\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semiaxes_mean_radius">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semiaxes_mean_radius</span></span><a class="headerlink" href="#boule.Sphere.semiaxes_mean_radius" title="Link to this definition">#</a></dt>
-<dd><p>The arithmetic mean radius of the ellipsoid semi-axes is equal to its
-radius.
-Definition: <span class="math notranslate nohighlight">\(R_1 = R\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The arithmetic mean radius of the ellipsoid (equal to its radius).</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_1 = R\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semimajor_axis">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semimajor_axis</span></span><a class="headerlink" href="#boule.Sphere.semimajor_axis" title="Link to this definition">#</a></dt>
-<dd><p>The semimajor axis of the sphere is equal to its radius.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The semimajor axis of the sphere is equal to its radius.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semimajor_axis_longitude">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semimajor_axis_longitude</span></span><a class="headerlink" href="#boule.Sphere.semimajor_axis_longitude" title="Link to this definition">#</a></dt>
-<dd><p>The semimajor axis longitude of the sphere is equal to zero.
-Definition: <span class="math notranslate nohighlight">\(\lambda_a = 0\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The semimajor axis longitude of the sphere is equal to zero.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(\lambda_a = 0\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semimedium_axis">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semimedium_axis</span></span><a class="headerlink" href="#boule.Sphere.semimedium_axis" title="Link to this definition">#</a></dt>
-<dd><p>The semimedium axis of the sphere is equal to its radius.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The semimedium axis of the sphere is equal to its radius.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.semiminor_axis">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">semiminor_axis</span></span><a class="headerlink" href="#boule.Sphere.semiminor_axis" title="Link to this definition">#</a></dt>
-<dd><p>The semiminor axis of the sphere is equal to its radius.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The semiminor axis of the sphere is equal to its radius.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.thirdflattening">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">thirdflattening</span></span><a class="headerlink" href="#boule.Sphere.thirdflattening" title="Link to this definition">#</a></dt>
-<dd><p>The third flattening of the sphere is equal to zero.
-Definition: <span class="math notranslate nohighlight">\(f^{\prime\prime}= \dfrac{a -b}{a + b}\)</span>.
-Units: adimensional.</p>
+<dd><p>The third flattening of the sphere is equal to zero.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(f^{\prime\prime}= \dfrac{a -b}{a + b}\)</span>.</p>
+<p>Units: adimensional.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.volume">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">volume</span></span><a class="headerlink" href="#boule.Sphere.volume" title="Link to this definition">#</a></dt>
-<dd><p>The volume of the sphere.
-Definition: <span class="math notranslate nohighlight">\(V = \dfrac{4}{3} \pi r^3\)</span>.
-Units: <span class="math notranslate nohighlight">\(m^3\)</span>.</p>
+<dd><p>The volume of the sphere.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(V = \dfrac{4}{3} \pi r^3\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m^3\)</span>.</p>
 </dd></dl>
 
 <dl class="py attribute">
 <dt class="sig sig-object py" id="boule.Sphere.volume_equivalent_radius">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">volume_equivalent_radius</span></span><a class="headerlink" href="#boule.Sphere.volume_equivalent_radius" title="Link to this definition">#</a></dt>
-<dd><p>The volume equivalent radius of the sphere is equal to its radius.
-Definition: <span class="math notranslate nohighlight">\(R_3 = R\)</span>.
-Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
+<dd><p>The volume equivalent radius of the sphere is equal to its radius.</p>
+<p>Definition: <span class="math notranslate nohighlight">\(R_3 = R\)</span>.</p>
+<p>Units: <span class="math notranslate nohighlight">\(m\)</span>.</p>
 </dd></dl>
 
 </section>
@@ -775,7 +773,7 @@ sphere about its z-axis at the given points.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
 points in a geocentric spherical coordinate system. The height is
 measured from the surface of the sphere. Each element can be
 a single number or an array. The shape of the arrays must be
@@ -787,7 +785,7 @@ symmetric with longitude), it can be assigned <code class="docutils literal notr
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>Phi</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The centrifugal potential in m²/s².</p>
+<dt><strong>Phi</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The centrifugal potential in m²/s².</p>
 </dd>
 </dl>
 </dd>
@@ -804,8 +802,8 @@ angular velocity.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Sphere.normal_gravitation">
-<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravitation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravitation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravitation" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravitation of the sphere.</p>
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravitation</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravitation"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravitation" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the normal gravitation of the sphere.</p>
 <p>Computes the magnitude of the gradient of the <a class="reference internal" href="../../glossary.html#term-Gravitational-potential"><span class="xref std std-term">gravitational
 potential</span></a> generated by the sphere at the points. Assumes a homogeneous
 internal density distribution for the sphere.</p>
@@ -817,7 +815,7 @@ surface of the sphere.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
 points in a geocentric spherical coordinate system. The height is
 measured from the surface of the sphere. Each element can be
 a single number or an array. The shape of the arrays must be
@@ -825,13 +823,13 @@ compatible. Longitude and latitude must be in degrees and height in
 meters. Since longitude and latitude are not used in computations
 (the field is symmetric), they can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
-<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.14)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True)</p>
+<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#bltin-boolean-values" title="(in Python v3.15)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True)</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>gamma</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravitation in mGal.</p>
+<dt><strong>gamma</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravitation in mGal.</p>
 </dd>
 </dl>
 </dd>
@@ -847,14 +845,14 @@ constant, and <span class="math notranslate nohighlight">\(M\)</span> is the mas
 <p>Normal gravitation can be calculated at any point. However as this is a
 sphere, only the height is used in the calculation.</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Moon&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;That&#39;s no moon&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"Moon"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">"That's no moon"</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">g</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravitation</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">g</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">g</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal"</span><span class="p">)</span>
 <span class="go">50000.00 mGal</span>
 </pre></div>
 </div>
@@ -863,7 +861,7 @@ sphere, only the height is used in the calculation.</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Sphere.normal_gravitational_potential">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravitational_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravitational_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravitational_potential" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravitational potential of the sphere.</p>
+<dd><p>Calculate the normal gravitational potential of the sphere.</p>
 <p>Computes the normal <a class="reference internal" href="../../glossary.html#term-Gravitational-potential"><span class="xref std std-term">gravitational potential</span></a> generated by the
 sphere at the given points. Assumes a homogeneous internal density
 distribution for the sphere.</p>
@@ -875,7 +873,7 @@ surface of the sphere.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
 points in a geocentric spherical coordinate system. The height is
 measured from the surface of the sphere. Each element can be
 a single number or an array. The shape of the arrays must be
@@ -887,7 +885,7 @@ meters. Since longitude and latitude are not used in computations
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>V</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravitational potential in m²/s².</p>
+<dt><strong>V</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravitational potential in m²/s².</p>
 </dd>
 </dl>
 </dd>
@@ -903,8 +901,8 @@ geocentric gravitational constant of the sphere.</p>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Sphere.normal_gravity">
-<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravity" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravity of the sphere.</p>
+<span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravity</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em>, <em class="sig-param"><span class="keyword-only-separator o"><abbr title="Keyword-only parameters separator (PEP 3102)"><span class="pre">*</span></abbr></span></em>, <em class="sig-param"><span class="n"><span class="pre">si_units</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravity"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravity" title="Link to this definition">#</a></dt>
+<dd><p>Calculate the normal gravity of the sphere.</p>
 <p>Computes the magnitude of the gradient of the <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a>
 generated by the sphere at the given points.</p>
 <div class="admonition note">
@@ -924,7 +922,7 @@ surface of the sphere.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
 points in a geocentric spherical coordinate system. The height is
 measured from the surface of the sphere. Each element can be
 a single number or an array. The shape of the arrays must be
@@ -932,13 +930,13 @@ compatible. Longitude and latitude must be in degrees and height in
 meters. Since longitude is not used in computations (the field is
 symmetric with longitude), it can be assigned <code class="docutils literal notranslate"><span class="pre">None</span></code>.</p>
 </dd>
-<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#bltin-boolean-values" title="(in Python v3.14)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True).</p>
+<dt><strong>si_units</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#bltin-boolean-values" title="(in Python v3.15)"><span class="xref std std-ref">bool</span></a></span></dt><dd><p>Return the value in mGal (False, default) or m/s² (True).</p>
 </dd>
 </dl>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>gamma</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravity in mGal or m/s².</p>
+<dt><strong>gamma</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravity in mGal or m/s².</p>
 </dd>
 </dl>
 </dd>
@@ -989,17 +987,17 @@ is not normal to the surface of the sphere.</p>
 <p>Normal gravity can be calculated at any spherical latitude and height
 above the sphere:</p>
 <div class="doctest highlight-default notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">sphere</span> <span class="o">=</span> <span class="n">Sphere</span><span class="p">(</span>
-<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Moon&quot;</span><span class="p">,</span>
-<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;That&#39;s no moon&quot;</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">name</span><span class="o">=</span><span class="s2">"Moon"</span><span class="p">,</span>
+<span class="gp">... </span>    <span class="n">long_name</span><span class="o">=</span><span class="s2">"That's no moon"</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">radius</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
 <span class="gp">... </span>    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span>
 <span class="gp">... </span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gamma_equator</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">gamma_equator</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">gamma_equator</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal"</span><span class="p">)</span>
 <span class="go">175000.00 mGal</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">gamma_pole</span> <span class="o">=</span> <span class="n">sphere</span><span class="o">.</span><span class="n">normal_gravity</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="mi">90</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">gamma_pole</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="si">{</span><span class="n">gamma_pole</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2"> mGal"</span><span class="p">)</span>
 <span class="go">200000.00 mGal</span>
 </pre></div>
 </div>
@@ -1008,7 +1006,7 @@ above the sphere:</p>
 <dl class="py method">
 <dt class="sig sig-object py" id="boule.Sphere.normal_gravity_potential">
 <span class="sig-prename descclassname"><span class="pre">Sphere.</span></span><span class="sig-name descname"><span class="pre">normal_gravity_potential</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">coordinates</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/boule/_sphere.html#Sphere.normal_gravity_potential"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#boule.Sphere.normal_gravity_potential" title="Link to this definition">#</a></dt>
-<dd><p>Normal gravity potential of the sphere.</p>
+<dd><p>Calculate the normal gravity potential of the sphere.</p>
 <p>Computes the normal <a class="reference internal" href="../../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> (gravitational
 + centrifugal) generated by the sphere at the given points. Assumes
 a homogeneous internal density distribution for the sphere.</p>
@@ -1020,7 +1018,7 @@ surface of the sphere.</p>
 <dl class="field-list">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><dl>
-<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
+<dt><strong>coordinates</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/stdtypes.html#tuple" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">tuple</span></code></a> = (<code class="xref py py-obj docutils literal notranslate"><span class="pre">longitude</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">latitude_spherical</span></code>, <code class="xref py py-obj docutils literal notranslate"><span class="pre">height</span></code>)</span></dt><dd><p>Longitude, latitude, and height coordinates of the computation
 points in a geocentric spherical coordinate system. The height is
 measured from the surface of the sphere. Each element can be
 a single number or an array. The shape of the arrays must be
@@ -1032,7 +1030,7 @@ symmetric with longitude), it can be assigned <code class="docutils literal notr
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
 <dd class="field-even"><dl>
-<dt><strong>U</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.14)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.4)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravity potential in m²/s².</p>
+<dt><strong>U</strong><span class="classifier"><a class="reference external" href="https://docs.python.org/3/builtins/functions.html#float" title="(in Python v3.15)"><code class="docutils literal notranslate"><span class="pre">float</span></code></a> or <a class="reference external" href="https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v2.5)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">array</span></code></a></span></dt><dd><p>The normal gravity potential in m²/s².</p>
 </dd>
 </dl>
 </dd>
@@ -1092,15 +1090,17 @@ the surface of the sphere.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.Sphere"><code class="docutils literal notranslate"><span class="pre">Sphere</span></code></a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#attributes">Attributes</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#boule.Sphere.area"><code class="docutils literal notranslate"><span class="pre">Sphere.area</span></code></a></li>
@@ -1143,6 +1143,10 @@ the surface of the sphere.</p>
   
   <div class="footer-item">
     
+<p class="component-author">
+By Author name not set
+</p>
+
   </div>
   
   <div class="footer-item">
@@ -1159,7 +1163,7 @@ the surface of the sphere.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Oct 29, 2026.
   <br/>
 </p>
   </div>
@@ -1177,8 +1181,8 @@ the surface of the sphere.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
   <footer class="bd-footer">
   </footer>

@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     
         <title>Defining custom ellipsoids | Boule dev</title>
@@ -20,43 +20,47 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="../_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="../_static/thebelab.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=12168cd1" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
     <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="../_static/doctools.js?v=888ff710"></script>
-    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../_static/copybutton.js?v=f281be69"></script>
     <script src="../_static/thebelab-helper.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
-    <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'user_guide/defining_ellipsoids';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="../_static/favicon.png"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -66,33 +70,22 @@
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="../search.html"
       method="get">
@@ -100,7 +93,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -108,15 +100,15 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -125,7 +117,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -155,15 +148,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
@@ -184,6 +173,7 @@
 <li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.Sphere.html">boule.Sphere</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../api/generated/boule.HomogeneousEllipsoid.html">boule.HomogeneousEllipsoid</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="../ellipsoids.html">Available ellipsoids</a></li>
@@ -196,11 +186,18 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join our community</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code and packages</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pypi.python.org/pypi/boule">PyPI</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/conda-forge/boule-feedstock">conda-forge</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doi.org/10.5281/zenodo.3530749">Zenodo</a></li>
 </ul>
 
     </div>
@@ -209,9 +206,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -358,7 +360,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -372,25 +374,24 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
   </button>
-`);
-</script>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -412,10 +413,11 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblate-ellipsoids">Oblate ellipsoids</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spheres">Spheres</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#triaxial-ellipsoids">Triaxial ellipsoids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-oblate-ellipsoids">Homogeneous oblate ellipsoids</a></li>
 </ul>
             </nav>
         </div>
@@ -474,6 +476,20 @@ case for the sphere. Gravity calculations are not yet available.</p>
 </div>
 </div>
 </div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-sm docutils">
+<div class="sd-card-body docutils">
+<div class="sd-card-title sd-font-weight-bold sd-fs-4 text-center docutils">
+Homogeneous ellipsoid</div>
+<p class="sd-card-text"><strong>Class:</strong> <a class="reference internal" href="../api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid" title="boule.HomogeneousEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.HomogeneousEllipsoid</span></code></a></p>
+<p class="sd-card-text"><strong>When to use:</strong> Your model has 2 semi-axis and non-zero flattening, and
+you require knowledge of the internal density distribution.</p>
+<p class="sd-card-text"><strong>Caveat:</strong> A homogeneous density ellipsoid does not have constant
+<a class="reference internal" href="../glossary.html#term-Gravity-potential"><span class="xref std std-term">gravity potential</span></a> on its surface.</p>
+<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-outline-primary sd-stretched-link reference internal" href="#defining-ellipsoids-homogeneous"><span class="std std-ref">Example</span></a></span></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <hr class="docutils" />
@@ -498,15 +514,15 @@ parameters from <a class="reference internal" href="../references.html#hofmannwe
 
 
 <span class="n">WGS84</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Ellipsoid</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;WGS84&quot;</span><span class="p">,</span>
-    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;World Geodetic System 1984&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"WGS84"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"World Geodetic System 1984"</span><span class="p">,</span>
     <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">6378137</span><span class="p">,</span>
     <span class="n">flattening</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">298.257223563</span><span class="p">,</span>
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">3986004.418e8</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">7292115e-11</span><span class="p">,</span>
     <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy &quot;</span>
-        <span class="s2">&quot;(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer.&quot;</span>
+        <span class="s2">"Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy "</span>
+        <span class="s2">"(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">WGS84</span><span class="p">)</span>
@@ -552,15 +568,15 @@ found in <a class="reference internal" href="../references.html#wieczorek2015" i
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">MERCURY</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">Sphere</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;MERCURY&quot;</span><span class="p">,</span>
-    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Mercury Spheroid&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"MERCURY"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Mercury Spheroid"</span><span class="p">,</span>
     <span class="n">radius</span><span class="o">=</span><span class="mi">2_439_372</span><span class="p">,</span>
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">22.031839221e12</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">1.2400172589e-6</span><span class="p">,</span>
     <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial &quot;</span>
-        <span class="s2">&quot;Planets, Treatise of Geophysics (Second Edition); Elsevier. &quot;</span>
-        <span class="s2">&quot;doi:10.1016/B978-0-444-53802-4.00169-X&quot;</span>
+        <span class="s2">"Wieczorek, MA (2015). 10.05 - Gravity and Topography of the Terrestrial "</span>
+        <span class="s2">"Planets, Treatise of Geophysics (Second Edition); Elsevier. "</span>
+        <span class="s2">"doi:10.1016/B978-0-444-53802-4.00169-X"</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">MERCURY</span><span class="p">)</span>
@@ -600,17 +616,17 @@ from <a class="reference internal" href="../references.html#russell2012" id="id3
 <div class="jupyter_cell jupyter_container docutils container">
 <div class="cell_input code_cell docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">VESTA</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">TriaxialEllipsoid</span><span class="p">(</span>
-    <span class="n">name</span><span class="o">=</span><span class="s2">&quot;VESTA&quot;</span><span class="p">,</span>
-    <span class="n">long_name</span><span class="o">=</span><span class="s2">&quot;Vesta Triaxial Ellipsoid&quot;</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"VESTA"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Vesta Triaxial Ellipsoid"</span><span class="p">,</span>
     <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">286_300</span><span class="p">,</span>
     <span class="n">semimedium_axis</span><span class="o">=</span><span class="mi">278_600</span><span class="p">,</span>
     <span class="n">semiminor_axis</span><span class="o">=</span><span class="mi">223_200</span><span class="p">,</span>
     <span class="n">geocentric_grav_const</span><span class="o">=</span><span class="mf">1.729094e10</span><span class="p">,</span>
     <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">326.71050958367e-6</span><span class="p">,</span>
     <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
-        <span class="s2">&quot;Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, &quot;</span>
-        <span class="s2">&quot;M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the &quot;</span>
-        <span class="s2">&quot;Protoplanetary Paradigm. Science. doi:10.1126/science.1219381&quot;</span>
+        <span class="s2">"Russell, C. T., Raymond, C. A., Coradini, A., McSween, H. Y., Zuber, "</span>
+        <span class="s2">"M. T., Nathues, A., et al. (2012). Dawn at Vesta: Testing the "</span>
+        <span class="s2">"Protoplanetary Paradigm. Science. doi:10.1126/science.1219381"</span>
     <span class="p">),</span>
 <span class="p">)</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">VESTA</span><span class="p">)</span>
@@ -639,6 +655,67 @@ Source:
 <p>Gravity calculations have not been implemented yet for triaxial ellipsoids.
 If you’re interested in this feature or would like to help implement it,
 please <a class="reference external" href="https://www.fatiando.org/contact">get in touch</a>.</p>
+</div>
+</section>
+<section id="homogeneous-oblate-ellipsoids">
+<span id="defining-ellipsoids-homogeneous"></span><h2>Homogeneous oblate ellipsoids<a class="headerlink" href="#homogeneous-oblate-ellipsoids" title="Link to this heading">#</a></h2>
+<p>Homogeneous oblate ellipsoids are defined by 4 numerical parameters:</p>
+<ol class="arabic simple">
+<li><p>The semi-major axis (<span class="math notranslate nohighlight">\(a\)</span>): the equatorial radius.</p></li>
+<li><p>The flattening (<span class="math notranslate nohighlight">\(f = (a - b)/a\)</span>): the ratio between the equatorial and
+polar radii.</p></li>
+<li><p>The density (<span class="math notranslate nohighlight">\(\rho\)</span>), which is constant throughout the ellipsoid.</p></li>
+<li><p>The angular velocity (<span class="math notranslate nohighlight">\(\omega\)</span>): spin rate of the ellipsoid which
+defines the centrifugal potential.</p></li>
+</ol>
+<p>You can also include metadata about where the defining parameters came from (a
+citation) and a long descriptive name for the ellipsoid. For example, this is
+how we could use <a class="reference internal" href="../api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid" title="boule.HomogeneousEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.HomogeneousEllipsoid</span></code></a> to define an ellipsoid that
+has the dimensions of WGS84 but has a constant density:</p>
+<div class="jupyter_cell jupyter_container docutils container">
+<div class="cell_input code_cell docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">boule</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">bl</span>
+
+
+<span class="n">Earth</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">HomogeneousEllipsoid</span><span class="p">(</span>
+    <span class="n">name</span><span class="o">=</span><span class="s2">"Earth"</span><span class="p">,</span>
+    <span class="n">long_name</span><span class="o">=</span><span class="s2">"Constant density Earth model"</span><span class="p">,</span>
+    <span class="n">semimajor_axis</span><span class="o">=</span><span class="mi">6378137</span><span class="p">,</span>
+    <span class="n">flattening</span><span class="o">=</span><span class="mi">1</span> <span class="o">/</span> <span class="mf">298.257223563</span><span class="p">,</span>
+    <span class="n">density</span><span class="o">=</span><span class="mi">5513</span><span class="p">,</span>  <span class="c1"># mean density of WGS84</span>
+    <span class="n">angular_velocity</span><span class="o">=</span><span class="mf">7292115e-11</span><span class="p">,</span>
+    <span class="n">reference</span><span class="o">=</span><span class="p">(</span>
+        <span class="s2">"Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy "</span>
+        <span class="s2">"(2nd, corr. ed. 2006 edition ed.). Wien ; New York: Springer."</span>
+    <span class="p">),</span>
+<span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">Earth</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-none notranslate"><div class="highlight"><pre><span></span>Earth - Constant density Earth model
+Homogeneous oblate ellipsoid:
+  • Semimajor axis: 6378137 m
+  • Flattening: 0.0033528106647474805
+  • Density: 5513 kg/m³
+  • Angular velocity: 7.292115e-05 rad/s
+Source:
+  Hofmann-Wellenhof, B., &amp; Moritz, H. (2006). Physical Geodesy (2nd,
+    corr. ed. 2006 edition ed.). Wien ; New York: Springer.
+</pre></div>
+</div>
+</div>
+</div>
+<p>Homogeneous ellipsoids are not their own equipotential surface,
+so the definition of <a class="reference internal" href="../glossary.html#term-Normal-gravity"><span class="xref std std-term">normal gravity</span></a> is different from the
+<a class="reference internal" href="../api/generated/boule.Ellipsoid.html#boule.Ellipsoid" title="boule.Ellipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Ellipsoid</span></code></a> and is the same as <a class="reference internal" href="../api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Sphere</span></code></a>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>You <strong>must</strong> use <a class="reference internal" href="../api/generated/boule.Sphere.html#boule.Sphere" title="boule.Sphere"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.Sphere</span></code></a> to represent homogeneous
+ellipsoids with <strong>zero flattening</strong>. This is because gravity calculations
+in <a class="reference internal" href="../api/generated/boule.HomogeneousEllipsoid.html#boule.HomogeneousEllipsoid" title="boule.HomogeneousEllipsoid"><code class="xref py py-class docutils literal notranslate"><span class="pre">boule.HomogeneousEllipsoid</span></code></a> are singular for the case of
+<code class="docutils literal notranslate"><span class="pre">flattening=0</span></code>.</p>
 </div>
 </section>
 </section>
@@ -679,18 +756,21 @@ please <a class="reference external" href="https://www.fatiando.org/contact">get
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oblate-ellipsoids">Oblate ellipsoids</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#spheres">Spheres</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#triaxial-ellipsoids">Triaxial ellipsoids</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#homogeneous-oblate-ellipsoids">Homogeneous oblate ellipsoids</a></li>
 </ul>
   </nav></div>
 
@@ -704,6 +784,10 @@ please <a class="reference external" href="https://www.fatiando.org/contact">get
   
   <div class="footer-item">
     
+<p class="component-author">
+By Author name not set
+</p>
+
   </div>
   
   <div class="footer-item">
@@ -720,7 +804,7 @@ please <a class="reference external" href="https://www.fatiando.org/contact">get
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Oct 29, 2026.
   <br/>
 </p>
   </div>
@@ -738,8 +822,8 @@ please <a class="reference external" href="https://www.fatiando.org/contact">get
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="../_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
   <footer class="bd-footer">
   </footer>

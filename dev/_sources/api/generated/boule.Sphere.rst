@@ -5,6 +5,10 @@ boule.Sphere
 
 .. autoclass:: Sphere
 
+.. raw:: html
+
+     <hr>
+
 
 
 Attributes

@@ -5,6 +5,10 @@ boule.TriaxialEllipsoid
 
 .. autoclass:: TriaxialEllipsoid
 
+.. raw:: html
+
+     <hr>
+
 
 
 Attributes

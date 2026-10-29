@@ -5,6 +5,10 @@ boule.Ellipsoid
 
 .. autoclass:: Ellipsoid
 
+.. raw:: html
+
+     <hr>
+
 
 
 Attributes
@@ -62,7 +66,27 @@ Methods
 
 
 
+.. automethod:: Ellipsoid.cartesian_to_ellipsoidal_harmonic
+
+
+
+.. automethod:: Ellipsoid.cartesian_to_geodetic
+
+
+
+.. automethod:: Ellipsoid.cartesian_to_spherical
+
+
+
+.. automethod:: Ellipsoid.centrifugal_acceleration
+
+
+
 .. automethod:: Ellipsoid.centrifugal_potential
+
+
+
+.. automethod:: Ellipsoid.ellipsoidal_harmonic_to_cartesian
 
 
 
@@ -70,7 +94,15 @@ Methods
 
 
 
+.. automethod:: Ellipsoid.ellipsoidal_harmonic_to_spherical
+
+
+
 .. automethod:: Ellipsoid.geocentric_radius
+
+
+
+.. automethod:: Ellipsoid.geodetic_to_cartesian
 
 
 
@@ -98,7 +130,39 @@ Methods
 
 
 
+.. automethod:: Ellipsoid.spherical_to_cartesian
+
+
+
+.. automethod:: Ellipsoid.spherical_to_ellipsoidal_harmonic
+
+
+
 .. automethod:: Ellipsoid.spherical_to_geodetic
+
+
+
+.. automethod:: Ellipsoid.vector_cartesian_to_geodetic
+
+
+
+.. automethod:: Ellipsoid.vector_cartesian_to_spherical
+
+
+
+.. automethod:: Ellipsoid.vector_geodetic_to_cartesian
+
+
+
+.. automethod:: Ellipsoid.vector_geodetic_to_spherical
+
+
+
+.. automethod:: Ellipsoid.vector_spherical_to_cartesian
+
+
+
+.. automethod:: Ellipsoid.vector_spherical_to_geodetic
 
 
 

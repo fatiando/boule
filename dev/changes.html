@@ -7,7 +7,7 @@
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     
         <title>Changelog | Boule dev</title>
@@ -20,42 +20,46 @@
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
     document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-
-  
-  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/styles/theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=90905a2f556bf617f1a9" rel="stylesheet" />
 
     <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b86133f3" />
-    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=4418a689" />
     <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
     <link rel="stylesheet" type="text/css" href="_static/jupyter-sphinx.css" />
     <link rel="stylesheet" type="text/css" href="_static/thebelab.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=95c83b7e" />
     <link rel="stylesheet" type="text/css" href="_static/custom.css?v=12168cd1" />
   
+  <!-- So that users can add custom icons -->
+  <script defer src="_static/scripts/fontawesome.js?digest=90905a2f556bf617f1a9"></script>
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
-  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9" />
 
     <script src="_static/documentation_options.js?v=9eb32ce0"></script>
-    <script src="_static/doctools.js?v=888ff710"></script>
-    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="_static/copybutton.js?v=f281be69"></script>
     <script src="_static/thebelab-helper.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
-    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=fab101a9"></script>
+    <script src="_static/design-tabs.js?v=f930bc37"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@jupyter-widgets/html-manager@^1.0.1/dist/embed-amd.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'changes';</script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
     <link rel="icon" href="_static/favicon.png"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -65,33 +69,22 @@
     <script defer data-domain="fatiando.org" src="https://plausible.io/js/plausible.js"></script>
 
   </head>
-  
-  
-  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
-
+  <body data-default-mode="">
   
   
   <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
   
   <div id="pst-scroll-pixel-helper"></div>
   
   <button type="button" class="btn rounded-pill" id="pst-back-to-top">
     <i class="fa-solid fa-arrow-up"></i>Back to top</button>
-
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-primary-sidebar-checkbox"/>
-  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
-  <input type="checkbox"
-          class="sidebar-toggle"
-          id="pst-secondary-sidebar-checkbox"/>
-  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
-  <div class="search-button__wrapper">
-    <div class="search-button__overlay"></div>
-    <div class="search-button__search-container">
+  
+  <dialog id="pst-search-dialog">
+    
 <form class="bd-search d-flex align-items-center"
       action="search.html"
       method="get">
@@ -99,7 +92,6 @@
   <input type="search"
          class="form-control"
          name="q"
-         id="search-input"
          placeholder="Search..."
          aria-label="Search..."
          autocomplete="off"
@@ -107,15 +99,15 @@
          autocapitalize="off"
          spellcheck="false"/>
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
-</form></div>
-  </div>
+</form>
+  </dialog>
 
   <div class="pst-async-banner-revealer d-none">
   <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
 </div>
 
   
-    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
     </header>
   
 
@@ -124,7 +116,8 @@
       
       
       
-      <div class="bd-sidebar-primary bd-sidebar">
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
         
 
   
@@ -154,15 +147,11 @@
 </a></div>
         <div class="sidebar-primary-item">
 
- <script>
- document.write(`
-   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
-    <span class="search-button__default-text">Search</span>
-    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
-   </button>
- `);
- </script></div>
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
         <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         <p aria-level="2" class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
@@ -183,6 +172,7 @@
 <li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Ellipsoid.html">boule.Ellipsoid</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/generated/boule.Sphere.html">boule.Sphere</a></li>
 <li class="toctree-l2"><a class="reference internal" href="api/generated/boule.TriaxialEllipsoid.html">boule.TriaxialEllipsoid</a></li>
+<li class="toctree-l2"><a class="reference internal" href="api/generated/boule.HomogeneousEllipsoid.html">boule.HomogeneousEllipsoid</a></li>
 </ul>
 </details></li>
 <li class="toctree-l1"><a class="reference internal" href="ellipsoids.html">Available ellipsoids</a></li>
@@ -195,11 +185,18 @@
 </ul>
 <p aria-level="2" class="caption" role="heading"><span class="caption-text">Community</span></p>
 <ul class="nav bd-sidenav">
-<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join the community</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org/contact">Join our community</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CONTRIBUTING.md">How to contribute</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/CODE_OF_CONDUCT.md">Code of Conduct</a></li>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">Source code on GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule/blob/main/AUTHORS.md">Authors</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://www.fatiando.org">The Fatiando a Terra project</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Code and packages</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference external" href="https://github.com/fatiando/boule">GitHub</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://pypi.python.org/pypi/boule">PyPI</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/conda-forge/boule-feedstock">conda-forge</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://doi.org/10.5281/zenodo.3530749">Zenodo</a></li>
 </ul>
 
     </div>
@@ -208,9 +205,14 @@
   
   
   <div class="sidebar-primary-items__end sidebar-primary__section">
+      <div class="sidebar-primary-item">
+<div id="ethical-ad-placement"
+      class="flat"
+      data-ea-publisher="readthedocs"
+      data-ea-type="readthedocs-sidebar"
+      data-ea-manual="true">
+</div></div>
   </div>
-  
-  <div id="rtd-footer-container"></div>
 
 
       </div>
@@ -357,7 +359,7 @@
 
 
 <button onclick="toggleFullScreen()"
-  class="btn btn-sm btn-fullscreen-button"
+  class="btn btn-sm btn-fullscreen-button pst-navbar-icon"
   title="Fullscreen mode"
   data-bs-placement="bottom" data-bs-toggle="tooltip"
 >
@@ -371,25 +373,24 @@
 
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
-    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
-    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
   </button>
-`);
-</script>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div>
 
 
-<script>
-document.write(`
-  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <i class="fa-solid fa-magnifying-glass fa-lg"></i>
-  </button>
-`);
-</script>
-<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm pst-navbar-icon" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
     <span class="fa-solid fa-list"></span>
 </button>
 </div></div>
@@ -411,7 +412,9 @@ document.write(`
                 <h2> Contents </h2>
             </div>
             <nav aria-label="Page">
-                <ul class="visible nav section-nav flex-column">
+                <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-7-0">Version 0.7.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-6-0">Version 0.6.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-5-0">Version 0.5.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-1">Version 0.4.1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-0">Version 0.4.0</a></li>
@@ -434,10 +437,101 @@ document.write(`
                   
   <section id="changelog">
 <span id="changes"></span><h1>Changelog<a class="headerlink" href="#changelog" title="Link to this heading">#</a></h1>
+<section id="version-0-7-0">
+<h2>Version 0.7.0<a class="headerlink" href="#version-0-7-0" title="Link to this heading">#</a></h2>
+<p>Released on: 2026/10/29</p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.23764476">https://doi.org/10.5281/zenodo.23764476</a></p>
+<p>Breaking changes:</p>
+<ul class="simple">
+<li><p>Make all class attributes keyword-only, including positional arguments without a default value, to prevent bugs from passing arguments in the wrong order (<a class="reference external" href="https://github.com/fatiando/boule/pull/312">#312</a>)</p></li>
+</ul>
+<p>New features:</p>
+<ul class="simple">
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">HomogeneousEllipsoid</span></code> class to represent oblate ellipsoids with constant density, including calculation of centrifugal acceleration, gravity, and gravitation (<a class="reference external" href="https://github.com/fatiando/boule/pull/300">#300</a>)</p></li>
+<li><p>Add methods to the oblate ellipsoid classes to rotate vectors between spherical, geodetic, and geocentric Cartesian coordinate systems (<a class="reference external" href="https://github.com/fatiando/boule/pull/308">#308</a>)</p></li>
+<li><p>Make the coordinate conversion from ellipsoidal harmonic to geodetic exact by passing through the Cartesian system instead of using an approximate inverse (<a class="reference external" href="https://github.com/fatiando/boule/pull/291">#291</a>)</p></li>
+</ul>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Add a link to the new <a class="reference external" href="github.com/fatiando/community/blob/main/AI.md">Fatiando a Terra AI policy</a> to the README and documentation front page (<a class="reference external" href="https://github.com/fatiando/boule/pull/295">#295</a>)</p></li>
+<li><p>Add links to PyPI, conda-forge, Zenodo to the documentation navigation menu (<a class="reference external" href="https://github.com/fatiando/boule/pull/314">#314</a>)</p></li>
+<li><p>Add links and information about the contributing guide and license to the documentation index page (<a class="reference external" href="https://github.com/fatiando/boule/pull/304">#304</a>)</p></li>
+<li><p>Add a figure to the coordinate systems documentation that explains all four coordinate systems used in Boule (<a class="reference external" href="https://github.com/fatiando/boule/pull/294">#294</a>)</p></li>
+<li><p>Add link to the <code class="docutils literal notranslate"><span class="pre">AUTHORS.md</span></code> file in the documentation navigation (<a class="reference external" href="https://github.com/fatiando/boule/pull/279">#279</a>)</p></li>
+<li><p>General improvements to the installing and version compatibility pages (<a class="reference external" href="https://github.com/fatiando/boule/pull/278">#278</a>)</p></li>
+<li><p>Remove the top-level <code class="docutils literal notranslate"><span class="pre">CITATION.rst</span></code> file in favor of the citation page of the documentation (<a class="reference external" href="https://github.com/fatiando/boule/pull/277">#277</a>)</p></li>
+<li><p>Make the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> banner the <code class="docutils literal notranslate"><span class="pre">h1</span></code> element and add a link to the citation page (<a class="reference external" href="https://github.com/fatiando/boule/pull/276">#276</a>)</p></li>
+<li><p>Fix DOI for v0.6.0 in the changelog (<a class="reference external" href="https://github.com/fatiando/boule/pull/274">#274</a>)</p></li>
+</ul>
+<p>Maintenance:</p>
+<ul class="simple">
+<li><p>Use the new <a class="reference external" href="https://www.attrs.org">attrs</a> API for defining classes and attributes (<a class="reference external" href="https://github.com/fatiando/boule/pull/310">#310</a>)</p></li>
+<li><p>Simplify the use of attribute validators for the classes by using builtin <code class="docutils literal notranslate"><span class="pre">attrs</span></code> validators and reusing custom ones across the package (<a class="reference external" href="https://github.com/fatiando/boule/pull/316">#316</a>)</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">conda</span></code> only to install GMT on GitHub Actions and install the rest with <code class="docutils literal notranslate"><span class="pre">pip</span></code> to speedup jobs from 15-25 min down to 2 min (<a class="reference external" href="https://github.com/fatiando/boule/pull/315">#315</a>)</p></li>
+<li><p>Update documentation requirements to their latest versions, including sphinx, theme, and plugins (<a class="reference external" href="https://github.com/fatiando/boule/pull/311">#311</a> and <a class="reference external" href="https://github.com/fatiando/boule/pull/318">#318</a>)</p></li>
+<li><p>Reduce Dependabot schedule for Actions to monthly to avoid overloading maintainers (<a class="reference external" href="https://github.com/fatiando/boule/pull/305">#305</a>)</p></li>
+<li><p>Set up specific file triggers for GitHub Actions to avoid running jobs when relevant files weren’t updated (<a class="reference external" href="https://github.com/fatiando/boule/pull/299">#299</a>)</p></li>
+<li><p>Enable Dependabot to update our linters and formatters so we don’t get surprise CI failures in new PRs (<a class="reference external" href="https://github.com/fatiando/boule/pull/298">#298</a>)</p></li>
+<li><p>Fix datetime usage warning in the documentation configuration script (<a class="reference external" href="https://github.com/fatiando/boule/pull/297">#297</a>)</p></li>
+<li><p>Don’t use version pinning in GitHub Actions even for official ones (<a class="reference external" href="https://github.com/fatiando/boule/pull/284">#284</a>)</p></li>
+<li><p>Fix deprecation warnings in push to PyPI GitHub Action (<a class="reference external" href="https://github.com/fatiando/boule/pull/283">#283</a>)</p></li>
+<li><p>Fix cache poisoning vulnerability in GitHub Actions (<a class="reference external" href="https://github.com/fatiando/boule/pull/282">#282</a>)</p></li>
+<li><p>Fix the use of <code class="docutils literal notranslate"><span class="pre">-depth</span></code> with <code class="docutils literal notranslate"><span class="pre">find</span></code> in our <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to safely delete temporary folders (<a class="reference external" href="https://github.com/fatiando/boule/pull/281">#281</a>)</p></li>
+<li><p>Fix documentation deployment GitHub Action by setting the right permissions (<a class="reference external" href="https://github.com/fatiando/boule/pull/273">#273</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Arthur Siqueira-Macedo</p></li>
+<li><p>Bing Gao</p></li>
+<li><p>Leonardo Uieda</p></li>
+<li><p>Víctor Jean Pierre Mandujano Gutierrez</p></li>
+</ul>
+</section>
+<section id="version-0-6-0">
+<h2>Version 0.6.0<a class="headerlink" href="#version-0-6-0" title="Link to this heading">#</a></h2>
+<p>Released on: 2026/03/30</p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.19333956">https://doi.org/10.5281/zenodo.19333956</a></p>
+<p>Breaking changes:</p>
+<ul class="simple">
+<li><p>Make all methods that rely on coordinates take a single <code class="docutils literal notranslate"><span class="pre">coordinates</span></code> argument as input. This includes all gravity and coordinate-conversion methods. The argument is a tuple of 3 values (or arrays) representing the 3 dimensions of the given coordinate system. This standardizes the API and simplifies the documentation, making Boule closer to the other Fatiando a Terra libraries. It also makes it possible to allow passing coordinates in any coordinate system (see <a class="reference external" href="https://github.com/fatiando/boule/pull/265">#265</a>). (<a class="reference external" href="https://github.com/fatiando/boule/pull/233">#233</a>)</p></li>
+<li><p>Replace the <code class="docutils literal notranslate"><span class="pre">geodetic</span></code> argument in <code class="docutils literal notranslate"><span class="pre">boule.Ellipsoid.geocentric_radius</span></code> with the new <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code> argument. (<a class="reference external" href="https://github.com/fatiando/boule/pull/231">#231</a>)</p></li>
+<li><p>Make all keyword arguments in our methods and functions keyword-only. Passing keyword arguments as positional (without the argument name) will now cause errors. This is good because the previous behavior can lead to bugs. For example, <code class="docutils literal notranslate"><span class="pre">WGS84.normal_gravity(coordinates,</span> <span class="pre">True)</span></code> will now have to be <code class="docutils literal notranslate"><span class="pre">WGS84.normal_gravity(coordinates,</span> <span class="pre">si_units=True)</span></code>. (<a class="reference external" href="https://github.com/fatiando/boule/pull/270">#270</a>)</p></li>
+</ul>
+<p>New features:</p>
+<ul class="simple">
+<li><p>Add a <code class="docutils literal notranslate"><span class="pre">coordinate_system</span></code> argument to gravity calculations. The gravity, gravitation, and centrifugal calculations in <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> can now receive inputs in any of the 4 coordinate systems that we support: geodetic (default), spherical, Cartesian, and ellipsoidal harmonic. The methods automatically convert to the ellipsoidal harmonic system since this is where the math is done. (<a class="reference external" href="https://github.com/fatiando/boule/pull/265">#265</a>)</p></li>
+<li><p>Add coordinate conversion to and from spherical and ellipsoidal harmonic systems. The conversion goes through the geodetic system, so there can be a loss of accuracy when doing round-trip conversions. (<a class="reference external" href="https://github.com/fatiando/boule/pull/260">#260</a>)</p></li>
+<li><p>Add coordinate conversion to and from geocentric Cartesian and ellipsoidal harmonic systems. Going to Cartesian uses an analytical expression from the Physical Geodesy book. Going back to ellipsoidal harmonic is done by passing through the geodetic system. (<a class="reference external" href="https://github.com/fatiando/boule/pull/259">#259</a>)</p></li>
+<li><p>Add coordinate conversion to and from geodetic and geocentric Cartesian systems. Uses the method of <a class="reference external" href="https://doi.org/10.2514/3.21016">Zhu (1993)</a> for conversion from Cartesian to geodetic. (<a class="reference external" href="https://github.com/fatiando/boule/pull/258">#258</a>)</p></li>
+<li><p>Add coordinate conversion to and from spherical and geocentric Cartesian systems. (<a class="reference external" href="https://github.com/fatiando/boule/pull/234">#234</a>)</p></li>
+</ul>
+<p>Documentation:</p>
+<ul class="simple">
+<li><p>Update the documentation on coordinates to use new coordinate conversion methods. (<a class="reference external" href="https://github.com/fatiando/boule/pull/263">#263</a>)</p></li>
+<li><p>Remove reference to “height” in <code class="docutils literal notranslate"><span class="pre">boule.Ellipsoid.geocentric_radius</span></code> which didn’t make sense since this functions calculates radii. (<a class="reference external" href="https://github.com/fatiando/boule/pull/230">#230</a>)</p></li>
+<li><p>Add a link to the Fatiando a Terra Forum in the README. (<a class="reference external" href="https://github.com/fatiando/boule/pull/224">#224</a>)</p></li>
+<li><p>Use <a class="reference external" href="https://www.fatiando.org/bordado">Bordado</a> instead of <a class="reference external" href="https://www.fatiando.org/verde">Verde</a> to make grid coordinates in the documentation. (<a class="reference external" href="https://github.com/fatiando/boule/pull/271">#271</a>)</p></li>
+</ul>
+<p>Maintenance:</p>
+<ul class="simple">
+<li><p>Drop support for Python 3.8 and 3.9, add support for 3.14. (<a class="reference external" href="https://github.com/fatiando/boule/pull/249">#249</a>)</p></li>
+<li><p>Get test coverage back to 100%. (<a class="reference external" href="https://github.com/fatiando/boule/pull/253">#253</a>)</p></li>
+<li><p>Stop relying on Codecov for measuring and tracking test coverage changes in pull requests and use GitHub Actions job instead. (<a class="reference external" href="https://github.com/fatiando/boule/pull/251">#251</a>)</p></li>
+<li><p>Run a single job to check style and format in GitHub Actions to save compute resources. (<a class="reference external" href="https://github.com/fatiando/boule/pull/252">#252</a>)</p></li>
+<li><p>Use Ruff for formatting and linting instead of black, flake8, isort. (<a class="reference external" href="https://github.com/fatiando/boule/pull/250">#250</a>)</p></li>
+<li><p>Move to a <code class="docutils literal notranslate"><span class="pre">src</span></code> layout structure, with the library code in <code class="docutils literal notranslate"><span class="pre">src/boule</span></code> and tests in <code class="docutils literal notranslate"><span class="pre">test</span></code>. This means that tests aren’t shipped with the source distributions anymore to reduce the upload size. (<a class="reference external" href="https://github.com/fatiando/boule/pull/248">#248</a>)</p></li>
+<li><p>Fix upload of coverage reports to Codecov. (<a class="reference external" href="https://github.com/fatiando/boule/pull/235">#235</a>)</p></li>
+</ul>
+<p>This release contains contributions from:</p>
+<ul class="simple">
+<li><p>Santiago Soler</p></li>
+<li><p>Leonardo Uieda</p></li>
+</ul>
+</section>
 <section id="version-0-5-0">
 <h2>Version 0.5.0<a class="headerlink" href="#version-0-5-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2024/10/22</p>
-<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.13975491">https://doi.org/10.5281/zenodo.13975491</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.13975491">https://doi.org/10.5281/zenodo.13975491</a></p>
 <p>Breaking changes:</p>
 <ul class="simple">
 <li><p>Drop support for Python 3.7 (<a class="reference external" href="https://github.com/fatiando/boule/pull/188">#188</a>)</p></li>
@@ -482,8 +576,8 @@ document.write(`
 </ul>
 <p>This release contains contributions from:</p>
 <ul class="simple">
-<li><p>Leonardo Uieda</p></li>
 <li><p>Mark Wieczorek</p></li>
+<li><p>Leonardo Uieda</p></li>
 <li><p>Santiago Soler</p></li>
 <li><p>Blazej Bucha</p></li>
 </ul>
@@ -491,7 +585,7 @@ document.write(`
 <section id="version-0-4-1">
 <h2>Version 0.4.1<a class="headerlink" href="#version-0-4-1" title="Link to this heading">#</a></h2>
 <p>Released on: 2022/10/27</p>
-<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.7258175">https://doi.org/10.5281/zenodo.7258175</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.7258175">https://doi.org/10.5281/zenodo.7258175</a></p>
 <p>Documentation:</p>
 <ul class="simple">
 <li><p>Update contact link in the docs side bar (<a class="reference external" href="https://github.com/fatiando/boule/pull/141">#141</a>)</p></li>
@@ -514,7 +608,7 @@ document.write(`
 <section id="version-0-4-0">
 <h2>Version 0.4.0<a class="headerlink" href="#version-0-4-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2022/08/09</p>
-<p>doi: <a class="reference external" href="https://doi.org/10.5281/zenodo.6779998">https://doi.org/10.5281/zenodo.6779998</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.6779998">https://doi.org/10.5281/zenodo.6779998</a></p>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
 <p><strong>Boule v0.4.0 is the last release that is compatible with Python 3.6.</strong></p>
@@ -571,7 +665,7 @@ document.write(`
 <section id="version-0-3-1">
 <h2>Version 0.3.1<a class="headerlink" href="#version-0-3-1" title="Link to this heading">#</a></h2>
 <p>Released on: 2021/10/19</p>
-<p>doi:<a class="reference external" href="https://doi.org/10.5281/zenodo.5577885">10.5281/zenodo.5577885</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.5577885">https://doi.org/10.5281/zenodo.5577885</a></p>
 <p>Bug fix:</p>
 <ul class="simple">
 <li><p>Package the missing <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file in source distributions (<a class="reference external" href="https://github.com/fatiando/boule/pull/96">#96</a>)</p></li>
@@ -584,7 +678,7 @@ document.write(`
 <section id="version-0-3-0">
 <h2>Version 0.3.0<a class="headerlink" href="#version-0-3-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2021/10/18</p>
-<p>doi:<a class="reference external" href="https://doi.org/10.5281/zenodo.5575827">10.5281/zenodo.5575827</a></p>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.5575827">https://doi.org/10.5281/zenodo.5575827</a></p>
 <p>Highlights:</p>
 <ul class="simple">
 <li><p>Add support for Python 3.9 and 3.10 (<a class="reference external" href="https://github.com/fatiando/boule/pull/87">#87</a>)</p></li>
@@ -636,7 +730,7 @@ document.write(`
 <section id="version-0-2-0">
 <h2>Version 0.2.0<a class="headerlink" href="#version-0-2-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2020/07/10</p>
-<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3939204"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3939204.svg" /></a>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.3939204">https://doi.org/10.5281/zenodo.3939204</a></p>
 <ul class="simple">
 <li><p>Add the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.geocentric_radius</span></code> method to calculate the distance from the center of the ellipsoid to its surface as a function of latitude (geodetic or geocentric). (<a class="reference external" href="https://github.com/fatiando/boule/pull/37">#37</a>)</p></li>
 <li><p>Add the <code class="docutils literal notranslate"><span class="pre">Ellipsoid.prime_vertical_radius</span></code> method for computing the prime vertical radius (usually represented by N in equations) as a function of geodetic latitude. (<a class="reference external" href="https://github.com/fatiando/boule/pull/35">#35</a>)</p></li>
@@ -659,7 +753,7 @@ issued).</p>
 <section id="version-0-1-0">
 <h2>Version 0.1.0<a class="headerlink" href="#version-0-1-0" title="Link to this heading">#</a></h2>
 <p>Released on: 2020/01/10</p>
-<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3603997"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3603997.svg" /></a>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.3603997">https://doi.org/10.5281/zenodo.3603997</a></p>
 <p>First release of <em>Boule</em> including basic functionality:</p>
 <ul class="simple">
 <li><p>Definition of the <code class="docutils literal notranslate"><span class="pre">Ellipsoid</span></code> class: based on the semi-major axis,
@@ -673,7 +767,7 @@ geocentric.</p></li>
 <section id="version-0-0-1">
 <h2>Version 0.0.1<a class="headerlink" href="#version-0-0-1" title="Link to this heading">#</a></h2>
 <p>Released on: 2019/11/06</p>
-<a class="reference external image-reference" href="https://doi.org/10.5281/zenodo.3530750"><img alt="Digital Object Identifier" src="https://zenodo.org/badge/DOI/10.5281/zenodo.3530750.svg" /></a>
+<p>DOI: <a class="reference external" href="https://doi.org/10.5281/zenodo.3530750">https://doi.org/10.5281/zenodo.3530750</a></p>
 <p>This release is a placeholder that serves as a marker for the start of this
 project. It is used to register the project on PyPI and test the continuous
 integration deployment process.</p>
@@ -716,15 +810,19 @@ integration deployment process.</p>
             
             
               
-                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
 
 
-  <div class="sidebar-secondary-item">
-  <div class="page-toc tocsection onthispage">
+  <div class="sidebar-secondary-item"><div
+    id="pst-page-navigation-heading-2"
+    class="page-toc tocsection onthispage">
     <i class="fa-solid fa-list"></i> Contents
   </div>
-  <nav class="bd-toc-nav page-toc">
-    <ul class="visible nav section-nav flex-column">
+  <nav id="pst-page-toc-nav" class="page-toc" aria-labelledby="pst-page-navigation-heading-2">
+    <ul class="pst-show_toc_level nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-7-0">Version 0.7.0</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-6-0">Version 0.6.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-5-0">Version 0.5.0</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-1">Version 0.4.1</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#version-0-4-0">Version 0.4.0</a></li>
@@ -747,6 +845,10 @@ integration deployment process.</p>
   
   <div class="footer-item">
     
+<p class="component-author">
+By Author name not set
+</p>
+
   </div>
   
   <div class="footer-item">
@@ -763,7 +865,7 @@ integration deployment process.</p>
   
   <div class="footer-item">
     <p class="last-updated">
-  Last updated on Mar 24, 2026.
+  Last updated on Oct 29, 2026.
   <br/>
 </p>
   </div>
@@ -781,8 +883,8 @@ integration deployment process.</p>
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+  <script defer src="_static/scripts/bootstrap.js?digest=90905a2f556bf617f1a9"></script>
+<script defer src="_static/scripts/pydata-sphinx-theme.js?digest=90905a2f556bf617f1a9"></script>
 
   <footer class="bd-footer">
   </footer>
