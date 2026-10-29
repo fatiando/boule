@@ -1,7 +1,7 @@
 # Requirements for building the documentation
 sphinx==9.2.*
 numpydoc==1.11.*
-sphinx-book-theme==1.4.*
+sphinx-book-theme==1.4.0
 sphinx-copybutton==0.5.*
 sphinx-design==0.7.*
 jupyter-sphinx==0.5.*

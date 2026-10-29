@@ -96,4 +96,7 @@ html_theme_options = {
     "use_repository_button": True,
     "use_download_button": True,
     "home_page_in_toc": False,
+    # Need this for sidebars to work using sphinx-book-theme==1.4.0
+    # See https://github.com/fatiando/boule/issues/317
+    "navbar_persistent": [],
 }
