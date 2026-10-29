@@ -3,6 +3,58 @@
 Changelog
 =========
 
+Version 0.7.0
+-------------
+
+Released on: 2026/10/29
+
+DOI: https://doi.org/10.5281/zenodo.23764476
+
+Breaking changes:
+
+- Make all class attributes keyword-only, including positional arguments without a default value, to prevent bugs from passing arguments in the wrong order (`#312 <https://github.com/fatiando/boule/pull/312>`__)
+
+New features:
+
+- Add a ``HomogeneousEllipsoid`` class to represent oblate ellipsoids with constant density, including calculation of centrifugal acceleration, gravity, and gravitation (`#300 <https://github.com/fatiando/boule/pull/300>`__)
+- Add methods to the oblate ellipsoid classes to rotate vectors between spherical, geodetic, and geocentric Cartesian coordinate systems (`#308 <https://github.com/fatiando/boule/pull/308>`__)
+- Make the coordinate conversion from ellipsoidal harmonic to geodetic exact by passing through the Cartesian system instead of using an approximate inverse (`#291 <https://github.com/fatiando/boule/pull/291>`__)
+
+Documentation:
+
+- Add a link to the new `Fatiando a Terra AI policy <github.com/fatiando/community/blob/main/AI.md>`__ to the README and documentation front page (`#295 <https://github.com/fatiando/boule/pull/295>`__)
+- Add links to PyPI, conda-forge, Zenodo to the documentation navigation menu (`#314 <https://github.com/fatiando/boule/pull/314>`__)
+- Add links and information about the contributing guide and license to the documentation index page (`#304 <https://github.com/fatiando/boule/pull/304>`__)
+- Add a figure to the coordinate systems documentation that explains all four coordinate systems used in Boule (`#294 <https://github.com/fatiando/boule/pull/294>`__)
+- Add link to the ``AUTHORS.md`` file in the documentation navigation (`#279 <https://github.com/fatiando/boule/pull/279>`__)
+- General improvements to the installing and version compatibility pages (`#278 <https://github.com/fatiando/boule/pull/278>`__)
+- Remove the top-level ``CITATION.rst`` file in favor of the citation page of the documentation (`#277 <https://github.com/fatiando/boule/pull/277>`__)
+- Make the ``README.md`` banner the ``h1`` element and add a link to the citation page (`#276 <https://github.com/fatiando/boule/pull/276>`__)
+- Fix DOI for v0.6.0 in the changelog (`#274 <https://github.com/fatiando/boule/pull/274>`__)
+
+Maintenance:
+
+- Use the new `attrs <https://www.attrs.org>`__ API for defining classes and attributes (`#310 <https://github.com/fatiando/boule/pull/310>`__)
+- Simplify the use of attribute validators for the classes by using builtin ``attrs`` validators and reusing custom ones across the package (`#316 <https://github.com/fatiando/boule/pull/316>`__)
+- Use ``conda`` only to install GMT on GitHub Actions and install the rest with ``pip`` to speedup jobs from 15-25 min down to 2 min (`#315 <https://github.com/fatiando/boule/pull/315>`__)
+- Update documentation requirements to their latest versions, including sphinx, theme, and plugins (`#311 <https://github.com/fatiando/boule/pull/311>`__ and `#318 <https://github.com/fatiando/boule/pull/318>`__)
+- Reduce Dependabot schedule for Actions to monthly to avoid overloading maintainers (`#305 <https://github.com/fatiando/boule/pull/305>`__)
+- Set up specific file triggers for GitHub Actions to avoid running jobs when relevant files weren’t updated (`#299 <https://github.com/fatiando/boule/pull/299>`__)
+- Enable Dependabot to update our linters and formatters so we don’t get surprise CI failures in new PRs (`#298 <https://github.com/fatiando/boule/pull/298>`__)
+- Fix datetime usage warning in the documentation configuration script (`#297 <https://github.com/fatiando/boule/pull/297>`__)
+- Don’t use version pinning in GitHub Actions even for official ones (`#284 <https://github.com/fatiando/boule/pull/284>`__)
+- Fix deprecation warnings in push to PyPI GitHub Action (`#283 <https://github.com/fatiando/boule/pull/283>`__)
+- Fix cache poisoning vulnerability in GitHub Actions (`#282 <https://github.com/fatiando/boule/pull/282>`__)
+- Fix the use of ``-depth`` with ``find`` in our ``Makefile`` to safely delete temporary folders (`#281 <https://github.com/fatiando/boule/pull/281>`__)
+- Fix documentation deployment GitHub Action by setting the right permissions (`#273 <https://github.com/fatiando/boule/pull/273>`__)
+
+This release contains contributions from:
+
+- Arthur Siqueira-Macedo
+- Bing Gao
+- Leonardo Uieda
+- Víctor Jean Pierre Mandujano Gutierrez
+
 Version 0.6.0
 -------------
 
