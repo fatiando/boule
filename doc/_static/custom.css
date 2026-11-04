@@ -9,10 +9,6 @@ span.project-version {
   font-size: 1.5rem;
 }
 
-.front-page-callout {
-  margin-bottom: 4rem;
-}
-
 /* Try to make the jupyter-sphinx style match sphinx-gallery for consistency */
 div.jupyter_container {
   border: none;
@@ -31,4 +27,17 @@ div.jupyter_container .cell_output {
 
 .jupyter_container div.code_cell pre {
   padding: 10px;
+}
+
+/* Make the h1 elements larger */
+h1 {
+  font-size: 3.5rem;
+}
+.navbar-brand .logo__title {
+  font-size: 1.75rem;
+}
+
+/* Reduce the size of the logo on the sidebar */
+.navbar-brand img {
+  max-width: 75%;
 }

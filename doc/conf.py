@@ -12,7 +12,8 @@ import boule
 # -----------------------------------------------------------------------------
 project = "Boule"
 year = dt.datetime.now(tz=dt.timezone.utc).date().year
-copyright = f"{year}, The {project} Developers"
+author = f"The {project} Developers"
+copyright = f"{year}, {author}"
 is_dev_version = len(boule.__version__.split(".")) > 3
 version = "dev" if is_dev_version else boule.__version__
 
@@ -67,10 +68,7 @@ add_function_parentheses = False
 
 # HTML output configuration
 # -----------------------------------------------------------------------------
-html_title = f'{project} <span class="project-version">{version}</span>'
-# Don't use the logo since it gets in the way of the project name and is
-# repeated in the front page.
-# html_logo = "_static/boule-logo.png"
+html_title = f"{project} {version}"
 html_favicon = "_static/favicon.png"
 html_last_updated_fmt = "%b %d, %Y"
 html_copy_source = True
@@ -84,7 +82,12 @@ html_show_copyright = True
 
 html_theme = "sphinx_book_theme"
 html_theme_options = {
-    "repository_url": "https://github.com/fatiando/boule",
+    "logo": {
+        "text": f'{project} <span class="project-version">{version}</span>',
+        "image_light": f"_static/{project.lower()}-logo.png",
+        "image_dark": f"_static/{project.lower()}-logo.png",
+    },
+    "repository_url": f"https://github.com/fatiando/{project.lower()}",
     "repository_branch": "main",
     "path_to_docs": "doc",
     "launch_buttons": {
