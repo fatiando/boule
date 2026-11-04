@@ -11,7 +11,7 @@ pandas
 matplotlib
 xarray
 netcdf4
-pygmt==0.11.*
-gmt==6.5.*
+pygmt==0.19.*
+gmt==6.7.*
 ipython
 pymap3d>=2.9.0
