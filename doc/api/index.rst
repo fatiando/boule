@@ -1,7 +1,7 @@
 .. _api:
 
-List of functions and classes (API)
-===================================
+List of functions and classes
+=============================
 
 .. automodule:: boule
 
